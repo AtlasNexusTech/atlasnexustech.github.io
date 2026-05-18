@@ -26,6 +26,7 @@ body::after{content:"DÉMO — ATLASNEXUS";position:fixed;top:50%;left:50%;trans
 .gallery-slide.slide-right{transform:translateX(-80px)}
 .gallery-slide.slide-left{transform:translateX(80px)}
 .gallery-slide.visible{opacity:1;transform:translateX(0)}
+@media(min-width:1024px){.gallery-grid>:nth-child(5){grid-column:2}}
 @media(prefers-reduced-motion:reduce){.gallery-slide{opacity:1;transform:none;transition:none}}
 </style>
 </head>
@@ -103,7 +104,7 @@ body::after{content:"DÉMO — ATLASNEXUS";position:fixed;top:50%;left:50%;trans
       <h2 class="text-3xl sm:text-4xl font-extrabold text-stone-900 mt-2 tracking-tight" style="font-family:'Playfair Display',Georgia,serif">Nos <span class="text-accent-600">Réalisations</span> <span class="text-stone-400 text-base font-medium align-middle">(exemple)</span></h2>
       <p class="text-stone-500 mt-3 max-w-xl mx-auto">Quelques exemples de finitions décoratives près d'Angers.</p>
     </div>
-    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+    <div class="gallery-grid grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
       <div class="gallery-item gallery-slide slide-right"><img src="images/stock-2.jpg" alt="Peinture décorative" loading="lazy"><div class="overlay"><span>🎨 Déco — Champtocé</span></div></div>
       <div class="gallery-item gallery-slide slide-right"><img src="images/stock-3.jpg" alt="Rénovation intérieure" loading="lazy"><div class="overlay"><span>🏠 Rénovation — Angers</span></div></div>
       <div class="gallery-item gallery-slide slide-right"><img src="images/stock-4.jpg" alt="Stuc décoratif" loading="lazy"><div class="overlay"><span>✨ Stuc — Saint-Georges</span></div></div>
