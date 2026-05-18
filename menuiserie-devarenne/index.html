@@ -28,6 +28,12 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
 
+    <script>
+    if (!location.hostname.includes('atlasnexus.tech') && !location.hostname.includes('localhost') && !location.hostname.includes('127.0.0.1')) {
+        document.body.innerHTML = '<div style="display:flex;align-items:center;justify-content:center;height:100vh;font-family:system-ui,sans-serif;font-size:1.3rem;color:#999;text-align:center;padding:2rem;">Ceci est une démonstration —<br><a href="https://atlasnexus.tech/menuiserie-devarenne/" style="color:#4b6e3c;font-weight:600;">Voir la version originale sur atlasnexus.tech</a></div>';
+    }
+    </script>
+
     <style>
         html { scroll-behavior: smooth; }
         .hero-gradient {
@@ -46,6 +52,16 @@
             height: 100%;
         }
         .gallery-item:hover .gallery-img { transform: scale(1.05); }
+        body::after {
+            content: "DÉMO — ATLASNEXUS";
+            position: fixed;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%) rotate(-25deg);
+            font-size: 4rem; font-weight: 800;
+            color: rgba(0,0,0,0.05);
+            pointer-events: none; z-index: 9999;
+            white-space: nowrap; letter-spacing: 0.4em;
+        }
     </style>
 </head>
 <body class="bg-wood-50 text-stone-800 antialiased">
@@ -329,5 +345,8 @@
     </div>
 </footer>
 
+<div style="position:fixed;bottom:12px;right:12px;background:linear-gradient(135deg,#4b6e3c,#618a4e);color:white;padding:6px 14px;border-radius:8px;font-size:11px;font-family:system-ui,sans-serif;z-index:9998;opacity:0.88;box-shadow:0 2px 8px rgba(0,0,0,0.2);cursor:default;">
+    Démo par <a href="https://atlasnexus.tech" style="color:white;font-weight:700;text-decoration:underline;">AtlasNexus</a>
+</div>
 </body>
 </html>
