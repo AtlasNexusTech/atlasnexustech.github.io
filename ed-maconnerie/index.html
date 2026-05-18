@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="E.D. Maçonnerie — Artisan maçon à Estissac (Aube). Maçonnerie traditionnelle, neuf & rénovation. Devis gratuit.">
+    <meta name="keywords" content="maçon Estissac, maçonnerie Aube, Eric DELIN, maçon Pays d'Othe, construction, rénovation">
+    <title>E.D. Maçonnerie — Artisan maçon à Estissac (10)</title>
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand:  { 50:'#fef7ee', 100:'#fdedd3', 200:'#fad7a5', 300:'#f5b96d', 400:'#f09232', 500:'#ec7a12', 600:'#dd5f08', 700:'#b74709', 800:'#92380e', 900:'#76310f', 950:'#401705' },
+                        stonew: { 50:'#faf8f5', 100:'#f3ede5', 200:'#e6d9c5', 300:'#d5be9e', 400:'#c29e76', 500:'#b5875b', 600:'#a8754f', 700:'#8c5f43', 800:'#734e3b', 900:'#5e4132', 950:'#322119' },
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                        display: ['Playfair Display', 'Georgia', 'serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        html { scroll-behavior: smooth; }
+        .hero-gradient {
+            background: linear-gradient(135deg, rgba(64,23,5,0.88) 0%, rgba(118,49,15,0.82) 40%, rgba(236,122,18,0.45) 100%);
+        }
+        .card-hover { transition: transform 0.25s ease, box-shadow 0.25s ease; }
+        .card-hover:hover { transform: translateY(-4px); box-shadow: 0 20px 40px -12px rgba(0,0,0,0.18); }
+        .fade-in { animation: fadeIn 0.7s ease forwards; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+        .gallery-img {
+            transition: transform 0.35s ease;
+            aspect-ratio: 4/3;
+            object-fit: cover;
+            width: 100%;
+            height: 100%;
+        }
+        .gallery-item:hover .gallery-img { transform: scale(1.05); }
+        .gallery-item { overflow: hidden; border-radius: 12px; cursor: pointer; position: relative; }
+    </style>
+</head>
+<body class="bg-stone-50 text-stone-800 antialiased">
+
+<!-- ====== NAVIGATION ====== -->
+<nav class="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-stone-200 shadow-sm">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6">
+        <div class="flex items-center justify-between h-16 sm:h-18">
+            <!-- Logo -->
+            <a href="#accueil" class="flex items-center gap-3 no-underline">
+                <div class="w-10 h-10 bg-brand-600 rounded-lg flex items-center justify-center text-white font-bold text-lg shadow-md">ED</div>
+                <div class="hidden sm:block">
+                    <div class="font-semibold text-stone-900 leading-tight">E.D. Maçonnerie</div>
+                    <div class="text-xs text-stone-500">Artisan maçon à Estissac</div>
+                </div>
+            </a>
+
+            <!-- Desktop menu -->
+            <div class="hidden md:flex items-center gap-1">
+                <a href="#accueil" class="px-3 py-2 text-sm font-medium text-stone-600 hover:text-brand-700 rounded-lg hover:bg-brand-50 transition-colors">Accueil</a>
+                <a href="#prestations" class="px-3 py-2 text-sm font-medium text-stone-600 hover:text-brand-700 rounded-lg hover:bg-brand-50 transition-colors">Prestations</a>
+                <a href="#realisations" class="px-3 py-2 text-sm font-medium text-stone-600 hover:text-brand-700 rounded-lg hover:bg-brand-50 transition-colors">Réalisations</a>
+                <a href="#contact" class="ml-2 px-4 py-2 text-sm font-semibold text-white bg-brand-600 hover:bg-brand-700 rounded-lg shadow-sm transition-colors">
+                    Devis gratuit ✦
+                </a>
+            </div>
+
+            <!-- Mobile CTA -->
+            <a href="#contact" class="md:hidden px-3 py-2 text-sm font-semibold text-white bg-brand-600 hover:bg-brand-700 rounded-lg shadow-sm transition-colors">Devis</a>
+        </div>
+        <!-- Mobile nav links -->
+        <div class="md:hidden flex gap-2 pb-3 overflow-x-auto">
+            <a href="#accueil" class="whitespace-nowrap px-3 py-1.5 text-xs font-medium text-stone-600 bg-stone-100 rounded-full hover:bg-brand-50 hover:text-brand-700 transition-colors">Accueil</a>
+            <a href="#prestations" class="whitespace-nowrap px-3 py-1.5 text-xs font-medium text-stone-600 bg-stone-100 rounded-full hover:bg-brand-50 hover:text-brand-700 transition-colors">Prestations</a>
+            <a href="#realisations" class="whitespace-nowrap px-3 py-1.5 text-xs font-medium text-stone-600 bg-stone-100 rounded-full hover:bg-brand-50 hover:text-brand-700 transition-colors">Réalisations</a>
+        </div>
+    </div>
+</nav>
+
+<!-- ====== HERO ====== -->
+<section id="accueil" class="relative min-h-[85vh] flex items-center bg-stone-800 overflow-hidden">
+    <!-- Background image -->
+    <div class="absolute inset-0">
+        <img src="http://ed.maconnerie.free.fr/images/accueil.jpg" alt="Chantier maçonnerie" class="w-full h-full object-cover opacity-50">
+    </div>
+    <div class="absolute inset-0 hero-gradient"></div>
+
+    <div class="relative max-w-6xl mx-auto px-4 sm:px-6 py-20 sm:py-28">
+        <div class="max-w-2xl fade-in">
+            <span class="inline-block px-3 py-1 text-xs font-semibold text-brand-200 bg-brand-900/50 rounded-full backdrop-blur-sm mb-6">
+                🧱 Artisan maçon depuis 2015
+            </span>
+            <h1 class="font-display text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-tight mb-6">
+                Votre projet mérite<br>
+                <span class="text-brand-300">un savoir-faire</span> artisanal
+            </h1>
+            <p class="text-lg sm:text-xl text-stone-200 leading-relaxed mb-8 max-w-lg">
+                E.D. Maçonnerie, entreprise artisanale à Estissac (Aube). Maçonnerie traditionnelle, neuf & rénovation — pour particuliers et professionnels.
+            </p>
+            <div class="flex flex-wrap gap-3">
+                <a href="#contact" class="inline-flex items-center gap-2 px-6 py-3 bg-brand-600 hover:bg-brand-500 text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all">
+                    Demander un devis gratuit
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+                </a>
+                <a href="#realisations" class="inline-flex items-center gap-2 px-6 py-3 bg-white/10 hover:bg-white/20 text-white font-medium rounded-xl backdrop-blur-sm border border-white/20 transition-all">
+                    Voir nos réalisations
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scroll indicator -->
+    <div class="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
+        <svg class="w-6 h-6 text-white/60" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"/></svg>
+    </div>
+</section>
+
+<!-- ====== INTRO ====== -->
+<section class="py-16 sm:py-20 bg-white">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6">
+        <div class="grid md:grid-cols-2 gap-12 items-center">
+            <div>
+                <h2 class="font-display text-3xl sm:text-4xl font-bold text-stone-900 mb-6">
+                    Un artisan <span class="text-brand-600">passionné</span> à votre service
+                </h2>
+                <p class="text-stone-600 leading-relaxed mb-4">
+                    Bienvenue chez E.D. Maçonnerie, petite entreprise artisanale implantée à Estissac, dans l'Aube. Son gérant, <strong>Eric DELIN</strong>, met ses compétences, son sérieux et sa rigueur à votre service — que vous soyez particulier ou professionnel.
+                </p>
+                <p class="text-stone-600 leading-relaxed mb-6">
+                    À l'écoute de vos besoins, nous vous accompagnons de l'idée à la réalisation : conseil, modélisation 3D, et construction dans les règles de l'art, au juste prix.
+                </p>
+                <div class="flex flex-wrap gap-4">
+                    <div class="flex items-center gap-2">
+                        <span class="w-10 h-10 bg-brand-100 text-brand-700 rounded-lg flex items-center justify-center font-bold">10</span>
+                        <span class="text-sm text-stone-600">ans d'expérience</span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <span class="w-10 h-10 bg-brand-100 text-brand-700 rounded-lg flex items-center justify-center font-bold">+40</span>
+                        <span class="text-sm text-stone-600">chantiers réalisés</span>
+                    </div>
+                </div>
+            </div>
+            <div class="relative">
+                <img src="http://ed.maconnerie.free.fr/images/prestations/dallage.jpg" alt="Dallage réalisé" class="rounded-2xl shadow-2xl w-full">
+                <div class="absolute -bottom-4 -right-4 bg-brand-600 text-white px-5 py-3 rounded-xl shadow-lg">
+                    <div class="text-2xl font-bold">Devis</div>
+                    <div class="text-sm opacity-90">gratuit</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ====== PRESTATIONS ====== -->
+<section id="prestations" class="py-16 sm:py-20 bg-stone-100">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6">
+        <div class="text-center mb-14">
+            <span class="text-brand-600 font-semibold text-sm uppercase tracking-wider">Nos services</span>
+            <h2 class="font-display text-3xl sm:text-4xl font-bold text-stone-900 mt-2 mb-4">Prestations</h2>
+            <p class="text-stone-500 max-w-xl mx-auto">De la construction neuve à la rénovation, une gamme complète de services en maçonnerie</p>
+        </div>
+
+        <!-- Gros œuvre -->
+        <div class="mb-12">
+            <h3 class="text-xl font-bold text-stone-800 mb-6 flex items-center gap-3">
+                <span class="w-8 h-8 bg-brand-600 text-white rounded-lg flex items-center justify-center text-sm">🏗</span>
+                Maçonnerie générale / Gros œuvre
+            </h3>
+            <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-3">
+                <div class="bg-white rounded-xl p-4 flex items-center gap-3 card-hover shadow-sm">
+                    <span class="text-brand-500 text-lg">🧱</span>
+                    <span class="font-medium text-stone-700">Construction neuve</span>
+                </div>
+                <div class="bg-white rounded-xl p-4 flex items-center gap-3 card-hover shadow-sm">
+                    <span class="text-brand-500 text-lg">🔨</span>
+                    <span class="font-medium text-stone-700">Rénovation</span>
+                </div>
+                <div class="bg-white rounded-xl p-4 flex items-center gap-3 card-hover shadow-sm">
+                    <span class="text-brand-500 text-lg">🏠</span>
+                    <span class="font-medium text-stone-700">Extension de maison, garage</span>
+                </div>
+                <div class="bg-white rounded-xl p-4 flex items-center gap-3 card-hover shadow-sm">
+                    <span class="text-brand-500 text-lg">📐</span>
+                    <span class="font-medium text-stone-700">Murs de clôture</span>
+                </div>
+                <div class="bg-white rounded-xl p-4 flex items-center gap-3 card-hover shadow-sm">
+                    <span class="text-brand-500 text-lg">🪜</span>
+                    <span class="font-medium text-stone-700">Escalier</span>
+                </div>
+                <div class="bg-white rounded-xl p-4 flex items-center gap-3 card-hover shadow-sm">
+                    <span class="text-brand-500 text-lg">🔥</span>
+                    <span class="font-medium text-stone-700">Cheminée</span>
+                </div>
+                <div class="bg-white rounded-xl p-4 flex items-center gap-3 card-hover shadow-sm">
+                    <span class="text-brand-500 text-lg">🪨</span>
+                    <span class="font-medium text-stone-700">Dallage, plancher, chape</span>
+                </div>
+                <div class="bg-white rounded-xl p-4 flex items-center gap-3 card-hover shadow-sm">
+                    <span class="text-brand-500 text-lg">🎨</span>
+                    <span class="font-medium text-stone-700">Enduits</span>
+                </div>
+                <div class="bg-white rounded-xl p-4 flex items-center gap-3 card-hover shadow-sm">
+                    <span class="text-brand-500 text-lg">🚪</span>
+                    <span class="font-medium text-stone-700">Création d'ouvertures</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Aménagements extérieurs -->
+        <div class="mb-12">
+            <h3 class="text-xl font-bold text-stone-800 mb-6 flex items-center gap-3">
+                <span class="w-8 h-8 bg-brand-600 text-white rounded-lg flex items-center justify-center text-sm">🌳</span>
+                Aménagements extérieurs
+            </h3>
+            <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-3">
+                <div class="bg-white rounded-xl p-4 flex items-center gap-3 card-hover shadow-sm">
+                    <span class="text-brand-500 text-lg">🪵</span>
+                    <span class="font-medium text-stone-700">Terrasse bois</span>
+                </div>
+                <div class="bg-white rounded-xl p-4 flex items-center gap-3 card-hover shadow-sm">
+                    <span class="text-brand-500 text-lg">🏡</span>
+                    <span class="font-medium text-stone-700">Clôtures</span>
+                </div>
+                <div class="bg-white rounded-xl p-4 flex items-center gap-3 card-hover shadow-sm">
+                    <span class="text-brand-500 text-lg">🧩</span>
+                    <span class="font-medium text-stone-700">Pavage</span>
+                </div>
+                <div class="bg-white rounded-xl p-4 flex items-center gap-3 card-hover shadow-sm">
+                    <span class="text-brand-500 text-lg">🪨</span>
+                    <span class="font-medium text-stone-700">Béton désactivé</span>
+                </div>
+                <div class="bg-white rounded-xl p-4 flex items-center gap-3 card-hover shadow-sm">
+                    <span class="text-brand-500 text-lg">💧</span>
+                    <span class="font-medium text-stone-700">Assainissement</span>
+                </div>
+                <div class="bg-white rounded-xl p-4 flex items-center gap-3 card-hover shadow-sm">
+                    <span class="text-brand-500 text-lg">🚜</span>
+                    <span class="font-medium text-stone-700">Terrassement</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Second œuvre -->
+        <div>
+            <h3 class="text-xl font-bold text-stone-800 mb-6 flex items-center gap-3">
+                <span class="w-8 h-8 bg-brand-600 text-white rounded-lg flex items-center justify-center text-sm">🏠</span>
+                Second œuvre
+            </h3>
+            <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-3">
+                <div class="bg-white rounded-xl p-4 flex items-center gap-3 card-hover shadow-sm">
+                    <span class="text-brand-500 text-lg">🧱</span>
+                    <span class="font-medium text-stone-700">Cloisons & doublage</span>
+                </div>
+                <div class="bg-white rounded-xl p-4 flex items-center gap-3 card-hover shadow-sm">
+                    <span class="text-brand-500 text-lg">🌡️</span>
+                    <span class="font-medium text-stone-700">Isolation</span>
+                </div>
+                <div class="bg-white rounded-xl p-4 flex items-center gap-3 card-hover shadow-sm">
+                    <span class="text-brand-500 text-lg">🪞</span>
+                    <span class="font-medium text-stone-700">Carrelage, faïence</span>
+                </div>
+                <div class="bg-white rounded-xl p-4 flex items-center gap-3 card-hover shadow-sm">
+                    <span class="text-brand-500 text-lg">🖌️</span>
+                    <span class="font-medium text-stone-700">Plâtrerie, peinture</span>
+                </div>
+                <div class="bg-white rounded-xl p-4 flex items-center gap-3 card-hover shadow-sm">
+                    <span class="text-brand-500 text-lg">✨</span>
+                    <span class="font-medium text-stone-700">Sablage</span>
+                </div>
+            </div>
+        </div>
+
+        <p class="text-center text-stone-400 text-sm mt-10 italic">Liste non-exhaustive — autres prestations sur demande</p>
+    </div>
+</section>
+
+<!-- ====== RÉALISATIONS ====== -->
+<section id="realisations" class="py-16 sm:py-20 bg-white">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6">
+        <div class="text-center mb-14">
+            <span class="text-brand-600 font-semibold text-sm uppercase tracking-wider">Nos chantiers</span>
+            <h2 class="font-display text-3xl sm:text-4xl font-bold text-stone-900 mt-2 mb-4">Réalisations</h2>
+            <p class="text-stone-500 max-w-xl mx-auto">+40 chantiers réalisés dans l'Aube et le Pays d'Othe</p>
+        </div>
+
+        <!-- Extérieur -->
+        <h3 class="text-lg font-bold text-stone-700 mb-5 flex items-center gap-2">
+            <span class="text-brand-600">🌳</span> Aménagements extérieurs
+        </h3>
+        <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 mb-10">
+            <div class="gallery-item shadow-sm"><img src="http://ed.maconnerie.free.fr/photos/acces%209.jpg" alt="Accès garage" class="gallery-img" loading="lazy"><div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/60 to-transparent p-3"><p class="text-white text-xs font-medium">Accès de garage</p></div></div>
+            <div class="gallery-item shadow-sm"><img src="http://ed.maconnerie.free.fr/photos/pavage%2010.jpg" alt="Allée pavée" class="gallery-img" loading="lazy"><div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/60 to-transparent p-3"><p class="text-white text-xs font-medium">Allée & terrasse pavée</p></div></div>
+            <div class="gallery-item shadow-sm"><img src="http://ed.maconnerie.free.fr/photos/cloture%20portail%20coulissant%2010.jpg" alt="Mur clôture" class="gallery-img" loading="lazy"><div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/60 to-transparent p-3"><p class="text-white text-xs font-medium">Mur de clôture</p></div></div>
+            <div class="gallery-item shadow-sm"><img src="http://ed.maconnerie.free.fr/photos/terrasse%20en%20bambou%207.jpg" alt="Terrasse bambou" class="gallery-img" loading="lazy"><div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/60 to-transparent p-3"><p class="text-white text-xs font-medium">Terrasse bambou</p></div></div>
+        </div>
+
+        <!-- Intérieur -->
+        <h3 class="text-lg font-bold text-stone-700 mb-5 flex items-center gap-2">
+            <span class="text-brand-600">🏠</span> Travaux intérieurs
+        </h3>
+        <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3">
+            <div class="gallery-item shadow-sm"><img src="http://ed.maconnerie.free.fr/photos/creation%20sdb%205.jpg" alt="Salle de bain" class="gallery-img" loading="lazy"><div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/60 to-transparent p-3"><p class="text-white text-xs font-medium">Salle de bain</p></div></div>
+            <div class="gallery-item shadow-sm"><img src="http://ed.maconnerie.free.fr/photos/carrelage_veranda6.jpg" alt="Carrelage véranda" class="gallery-img" loading="lazy"><div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/60 to-transparent p-3"><p class="text-white text-xs font-medium">Chape & carrelage</p></div></div>
+            <div class="gallery-item shadow-sm"><img src="http://ed.maconnerie.free.fr/photos/cheminee%208.jpg" alt="Cheminée" class="gallery-img" loading="lazy"><div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/60 to-transparent p-3"><p class="text-white text-xs font-medium">Cheminée</p></div></div>
+            <div class="gallery-item shadow-sm"><img src="http://ed.maconnerie.free.fr/photos/faience_sdb%205.jpg" alt="Faïence SDB" class="gallery-img" loading="lazy"><div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/60 to-transparent p-3"><p class="text-white text-xs font-medium">Faïence</p></div></div>
+        </div>
+
+        <p class="text-center mt-8">
+            <span class="text-stone-400 text-sm">Extrait de +40 chantiers — <a href="http://ed.maconnerie.free.fr/index.php?nompage=realisations" target="_blank" rel="noopener" class="text-brand-600 hover:underline">voir toutes nos réalisations →</a></span>
+        </p>
+    </div>
+</section>
+
+<!-- ====== GARANTIES ====== -->
+<section class="py-16 sm:py-20 bg-brand-900 text-white">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6">
+        <div class="text-center mb-12">
+            <h2 class="font-display text-3xl sm:text-4xl font-bold mb-4">Pourquoi nous choisir ?</h2>
+            <p class="text-brand-200 max-w-xl mx-auto">Qualité, proximité, confiance</p>
+        </div>
+        <div class="grid sm:grid-cols-3 gap-8">
+            <div class="text-center">
+                <div class="w-14 h-14 bg-brand-700 rounded-2xl flex items-center justify-center text-2xl mx-auto mb-4">🎯</div>
+                <h3 class="font-bold text-lg mb-2">Travail soigné</h3>
+                <p class="text-brand-200 text-sm">Des finitions impeccables, dans le respect des règles de l'art et des normes en vigueur.</p>
+            </div>
+            <div class="text-center">
+                <div class="w-14 h-14 bg-brand-700 rounded-2xl flex items-center justify-center text-2xl mx-auto mb-4">💰</div>
+                <h3 class="font-bold text-lg mb-2">Juste prix</h3>
+                <p class="text-brand-200 text-sm">Devis détaillés, personnalisés et gratuits. Pas de surprise, transparence totale.</p>
+            </div>
+            <div class="text-center">
+                <div class="w-14 h-14 bg-brand-700 rounded-2xl flex items-center justify-center text-2xl mx-auto mb-4">🤝</div>
+                <h3 class="font-bold text-lg mb-2">Proximité</h3>
+                <p class="text-brand-200 text-sm">Artisan local à Estissac, disponible et à l'écoute. Nous nous déplaçons dans tout le Pays d'Othe.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ====== CONTACT ====== -->
+<section id="contact" class="py-16 sm:py-20 bg-stone-100">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6">
+        <div class="text-center mb-14">
+            <span class="text-brand-600 font-semibold text-sm uppercase tracking-wider">Parlons de votre projet</span>
+            <h2 class="font-display text-3xl sm:text-4xl font-bold text-stone-900 mt-2 mb-4">Contact & Devis</h2>
+            <p class="text-stone-500 max-w-xl mx-auto">Devis détaillé, personnalisé et <strong>gratuit</strong>. Faites de nous le partenaire de votre projet.</p>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-10 max-w-4xl mx-auto">
+            <!-- Contact info -->
+            <div class="space-y-6">
+                <div class="bg-white rounded-2xl p-6 shadow-sm card-hover">
+                    <div class="flex items-start gap-4">
+                        <div class="w-12 h-12 bg-brand-100 text-brand-700 rounded-xl flex items-center justify-center text-xl shrink-0">📍</div>
+                        <div>
+                            <h4 class="font-semibold text-stone-800 mb-1">Adresse</h4>
+                            <p class="text-stone-500 text-sm">20 rue Sadi Carnot<br>10190 Estissac (Aube)</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white rounded-2xl p-6 shadow-sm card-hover">
+                    <div class="flex items-start gap-4">
+                        <div class="w-12 h-12 bg-brand-100 text-brand-700 rounded-xl flex items-center justify-center text-xl shrink-0">📞</div>
+                        <div>
+                            <h4 class="font-semibold text-stone-800 mb-1">Téléphone</h4>
+                            <a href="tel:+33669670834" class="text-brand-600 hover:underline font-medium text-lg">06 69 67 08 34</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white rounded-2xl p-6 shadow-sm card-hover">
+                    <div class="flex items-start gap-4">
+                        <div class="w-12 h-12 bg-brand-100 text-brand-700 rounded-xl flex items-center justify-center text-xl shrink-0">✉️</div>
+                        <div>
+                            <h4 class="font-semibold text-stone-800 mb-1">Email</h4>
+                            <a href="mailto:ed.maconnerie@free.fr" class="text-brand-600 hover:underline break-all">ed.maconnerie@free.fr</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white rounded-2xl p-6 shadow-sm">
+                    <div class="flex items-start gap-4">
+                        <div class="w-12 h-12 bg-brand-100 text-brand-700 rounded-xl flex items-center justify-center text-xl shrink-0">🕐</div>
+                        <div>
+                            <h4 class="font-semibold text-stone-800 mb-1">Zone d'intervention</h4>
+                            <p class="text-stone-500 text-sm">Estissac, Pays d'Othe, Aube (10) et communes limitrophes</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contact form -->
+            <div class="bg-white rounded-2xl p-6 shadow-sm">
+                <h3 class="font-bold text-lg text-stone-800 mb-5">Demande de devis</h3>
+                <form action="https://formspree.io/f/example" method="POST" class="space-y-4">
+                    <div>
+                        <label class="block text-sm font-medium text-stone-600 mb-1">Nom complet *</label>
+                        <input type="text" name="name" required class="w-full px-4 py-2.5 border border-stone-200 rounded-xl focus:ring-2 focus:ring-brand-400 focus:border-brand-400 outline-none transition-shadow text-sm" placeholder="Votre nom">
+                    </div>
+                    <div class="grid grid-cols-2 gap-3">
+                        <div>
+                            <label class="block text-sm font-medium text-stone-600 mb-1">Téléphone *</label>
+                            <input type="tel" name="phone" required class="w-full px-4 py-2.5 border border-stone-200 rounded-xl focus:ring-2 focus:ring-brand-400 focus:border-brand-400 outline-none transition-shadow text-sm" placeholder="06 XX XX XX XX">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-stone-600 mb-1">Email</label>
+                            <input type="email" name="email" class="w-full px-4 py-2.5 border border-stone-200 rounded-xl focus:ring-2 focus:ring-brand-400 focus:border-brand-400 outline-none transition-shadow text-sm" placeholder="email@exemple.fr">
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-stone-600 mb-1">Type de projet</label>
+                        <select name="project_type" class="w-full px-4 py-2.5 border border-stone-200 rounded-xl focus:ring-2 focus:ring-brand-400 focus:border-brand-400 outline-none transition-shadow text-sm bg-white">
+                            <option value="">-- Sélectionnez --</option>
+                            <option>Construction neuve</option>
+                            <option>Rénovation</option>
+                            <option>Extension</option>
+                            <option>Aménagement extérieur</option>
+                            <option>Second œuvre</option>
+                            <option>Autre</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-stone-600 mb-1">Votre message *</label>
+                        <textarea name="message" required rows="3" class="w-full px-4 py-2.5 border border-stone-200 rounded-xl focus:ring-2 focus:ring-brand-400 focus:border-brand-400 outline-none transition-shadow text-sm resize-none" placeholder="Décrivez votre projet..."></textarea>
+                    </div>
+                    <p class="text-xs text-stone-400">* Champs obligatoires</p>
+                    <button type="submit" class="w-full py-3 bg-brand-600 hover:bg-brand-700 text-white font-semibold rounded-xl shadow-sm hover:shadow-md transition-all">
+                        Envoyer ma demande ✦
+                    </button>
+                </form>
+                <p class="text-xs text-stone-400 text-center mt-3">Ou appelez-nous directement au <strong>06 69 67 08 34</strong></p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ====== FOOTER ====== -->
+<footer class="bg-stone-900 text-stone-400 py-10">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6">
+        <div class="flex flex-col sm:flex-row items-center justify-between gap-6">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 bg-brand-600 rounded-lg flex items-center justify-center text-white font-bold">ED</div>
+                <div>
+                    <p class="font-semibold text-white">E.D. Maçonnerie</p>
+                    <p class="text-xs">Artisan maçon — Estissac, Aube</p>
+                </div>
+            </div>
+            <div class="text-center sm:text-right text-xs space-y-1">
+                <p>E.D. Maçonnerie (E.I) — Gérant : DELIN Eric</p>
+                <p>Siret : 803 973 882 00019 — APE : 4399C</p>
+                <p>20 rue Sadi Carnot, 10190 Estissac</p>
+                <p class="text-stone-500 mt-3">© 2015–2024 E.D. Maçonnerie. Tous droits réservés.</p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+</body>
+</html>
