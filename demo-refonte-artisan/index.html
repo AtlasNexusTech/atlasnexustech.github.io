@@ -29,9 +29,7 @@
     body:before{content:"";position:fixed;inset:0;pointer-events:none;background:radial-gradient(circle at 10% 10%,rgba(138,90,43,.14),transparent 32%),radial-gradient(circle at 90% 0%,rgba(111,123,78,.14),transparent 28%),linear-gradient(90deg,rgba(49,34,19,.025) 1px,transparent 1px),linear-gradient(rgba(49,34,19,.018) 1px,transparent 1px);background-size:auto,auto,96px 96px,96px 96px;z-index:-1}
     a{color:inherit;text-decoration:none}
     .wrap{width:min(1160px,calc(100% - 40px));margin:0 auto}
-    .atlas-shell{position:sticky;top:0;z-index:40;background:rgba(15,23,42,.94);backdrop-filter:blur(18px);color:#fff;border-bottom:1px solid rgba(255,255,255,.12)}
-    .atlas-nav{height:58px;display:flex;align-items:center;justify-content:space-between;gap:18px;font-size:14px}.atlas-brand{font-weight:900;letter-spacing:-.04em}.atlas-brand span{color:#93c5fd}.atlas-links{display:flex;gap:16px;color:rgba(255,255,255,.76);font-weight:800}.atlas-links a:hover{color:#fff}.atlas-pill{border:1px solid rgba(255,255,255,.18);border-radius:999px;padding:8px 11px;color:rgba(255,255,255,.82);font-weight:800;font-size:12px}
-    .topbar{position:sticky;top:58px;z-index:20;backdrop-filter:blur(18px);background:rgba(251,247,239,.78);border-bottom:1px solid var(--line)}
+    .topbar{position:sticky;top:0;z-index:20;backdrop-filter:blur(18px);background:rgba(251,247,239,.78);border-bottom:1px solid var(--line)}
     .nav{height:76px;display:flex;align-items:center;justify-content:space-between;gap:24px}
     .brand{display:flex;align-items:center;gap:14px;font-weight:800;letter-spacing:-.04em}
     .mark{width:42px;height:42px;border-radius:50%;background:linear-gradient(145deg,#a66d36,#5b3618);box-shadow:inset 0 0 0 8px rgba(255,255,255,.12),0 12px 30px rgba(90,55,27,.25);position:relative}
@@ -66,23 +64,11 @@
     .contact{padding:76px 0 100px}.contact-box{display:grid;grid-template-columns:.9fr 1.1fr;gap:24px;border-radius:34px;background:linear-gradient(145deg,#fffdf8,#f3eadc);border:1px solid var(--line);box-shadow:var(--shadow);padding:28px}.contact-info{padding:30px}.contact-info h2{font-family:"Libre Baskerville",serif;font-size:44px}.contact-info p{color:var(--muted)}
     form{display:grid;gap:12px;background:rgba(255,255,255,.55);border:1px solid var(--line);border-radius:26px;padding:22px}label{font-size:13px;font-weight:800;color:var(--muted)}input,textarea{width:100%;border:1px solid rgba(90,55,27,.2);background:#fffdf9;border-radius:16px;padding:15px 16px;font:inherit;color:var(--ink)}textarea{min-height:120px;resize:vertical}.form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}.note{font-size:12px;color:var(--muted)}
     footer{border-top:1px solid var(--line);padding:28px 0;color:var(--muted);font-size:13px}.footer-row{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}.demo-badge{position:fixed;right:18px;bottom:18px;z-index:30;border:1px solid rgba(90,55,27,.18);background:rgba(255,253,248,.86);backdrop-filter:blur(16px);border-radius:999px;padding:10px 14px;font-size:12px;color:var(--muted);box-shadow:0 12px 30px rgba(49,34,19,.12)}
-    @media(max-width:900px){.atlas-links{display:none}.atlas-nav{height:auto;min-height:58px;padding:10px 0}.atlas-pill{display:none}.topbar{top:58px}.navlinks{display:none}.hero-grid,.showcase,.contact-box{grid-template-columns:1fr}.visual{min-height:460px}.cards,.proof{grid-template-columns:1fr}.section-head{display:block}.form-row{grid-template-columns:1fr}h1{font-size:46px}.contact-info h2{font-size:34px}}
+    @media(max-width:900px){.navlinks{display:none}.hero-grid,.showcase,.contact-box{grid-template-columns:1fr}.visual{min-height:460px}.cards,.proof{grid-template-columns:1fr}.section-head{display:block}.form-row{grid-template-columns:1fr}h1{font-size:46px}.contact-info h2{font-size:34px}}
   </style>
 </head>
 <body>
   <div class="demo-badge">Démo sectorielle · AtlasNexus</div>
-  <header class="atlas-shell" aria-label="Navigation AtlasNexus">
-    <div class="wrap atlas-nav">
-      <a class="atlas-brand" href="/">Atlas<span>Nexus</span></a>
-      <nav class="atlas-links">
-        <a href="/demos-web/">Démos web</a>
-        <a href="/#offers">Offres</a>
-        <a href="/#work">Réalisations</a>
-        <a href="/#contact">Contact</a>
-      </nav>
-      <a class="atlas-pill" href="/demos-web/">Slot intégré à l’offre</a>
-    </div>
-  </header>
   <header class="topbar">
     <div class="wrap nav">
       <a class="brand" href="#top" aria-label="Démo artisan"><span class="mark"></span><span>Exemple artisan · refonte web</span></a>
