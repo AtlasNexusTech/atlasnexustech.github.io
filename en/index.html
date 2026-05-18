@@ -86,6 +86,16 @@ tailwind.config = {
   .card-hover:hover { transform: translateY(-4px); box-shadow: 0 12px 32px -6px rgba(37,99,235,0.1); border-color: #2563EB; }
   a, button, .card-hover { transition: all 200ms ease; }
   *:focus-visible { outline: 2px solid #2563EB; outline-offset: 2px; border-radius: 4px; }
+
+  /* ── Section title accent underline ── */
+  .section-title { position: relative; padding-bottom: 0.5rem; }
+  .section-title::after { content: ""; position: absolute; bottom: 0; left: 0; width: 3rem; height: 3px; border-radius: 2px; background: linear-gradient(90deg, #2563EB, #059669); }
+  .dark .section-title::after { background: linear-gradient(90deg, #60A5FA, #34D399); }
+
+  /* ── Small card dark mode ── */
+  .dark a.border.border-border.rounded-xl { border-color: #334155; }
+  .dark a.border.border-border.rounded-xl:hover { border-color: #3B82F6; }
+
   .step-number { font-size: clamp(2.4rem, 5vw, 3.5rem); font-weight: 900; background: linear-gradient(135deg, #7C3AED 0%, #A855F7 50%, #6366F1 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
 
   /* ── Step counter animation ── */
@@ -221,7 +231,7 @@ tailwind.config = {
 <body class="bg-surface dark:bg-dark-surface text-foreground dark:text-dark-foreground font-body antialiased">
 
 <!-- Hidden SVG defs for Solana logo reuse -->
-<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs><linearGradient id="sol-grad-top" x1="374" y1="329.9" x2="99.1" y2="194.3" gradientUnits="userSpaceOnUse"><stop stop-color="#00FFA3"/><stop offset="1" stop-color="#DC1FFF"/></linearGradient><linearGradient id="sol-grad-mid" x1="374" y1="95.8" x2="99.1" y2="-39.9" gradientUnits="userSpaceOnUse"><stop stop-color="#00FFA3"/><stop offset="1" stop-color="#DC1FFF"/></linearGradient><linearGradient id="sol-grad-bot" x1="374" y1="213.3" x2="99.1" y2="77.6" gradientUnits="userSpaceOnUse"><stop stop-color="#00FFA3"/><stop offset="1" stop-color="#DC1FFF"/></linearGradient></defs></svg>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs><linearGradient id="sol-grad-top" x1="374" y1="329.9" x2="99.1" y2="194.3" gradientUnits="userSpaceOnUse"><stop stop-color="#00FFA3"/><stop offset="1" stop-color="#DC1FFF"/></linearGradient><linearGradient id="sol-grad-mid" x1="374" y1="95.8" x2="99.1" y2="-39.9" gradientUnits="userSpaceOnUse"><stop stop-color="#00FFA3"/><stop offset="1" stop-color="#DC1FFF"/></linearGradient><linearGradient id="sol-grad-bot" x1="374" y1="213.3" x2="99.1" y2="77.6" gradientUnits="userSpaceOnUse"><stop stop-color="#00FFA3"/><stop offset="1" stop-color="#DC1FFF"/></linearGradient><linearGradient id="celo-gold" x1="0" y1="0" x2="24" y2="24" gradientUnits="userSpaceOnUse"><stop stop-color="#FCFF52"/><stop offset="1" stop-color="#E5C800"/></linearGradient></defs></svg>
 
 <!-- Nav -->
 <nav class="fixed top-0 w-full z-50 bg-surface/85 dark:bg-dark-surface/90 backdrop-blur-lg border-b border-border dark:border-dark-border">
@@ -299,7 +309,7 @@ tailwind.config = {
     </div>
     <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
       <div class="reveal reveal-delay-1 card-hover market-card bg-surface rounded-2xl p-8 border border-border flex flex-col">
-        <div class="w-12 h-12 bg-accent/10 rounded-xl flex items-center justify-center mb-6"><span class="text-2xl">🔮</span></div>
+        <div class="w-12 h-12 bg-accent/10 rounded-xl flex items-center justify-center mb-6"><svg class="w-6 h-6 text-accent" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><polyline points="3 17 9 11 13 15 21 7"/><polyline points="17 7 21 7 21 11"/></svg></div>
         <h3 class="text-xl font-bold text-foreground mb-2 font-display">Markets Dashboard</h3>
         <p class="text-slate-600 text-sm leading-relaxed mb-4">Live multi-asset radar: crypto, stocks, ETFs, indices, forex and commodities.</p>
         <p class="text-sm font-semibold text-accent mb-4 font-display">GitHub Pages · Yahoo Finance · TradingView</p>
@@ -315,7 +325,7 @@ tailwind.config = {
       </div>
       <!-- Framer Motion UI -->
       <div class="reveal reveal-delay-2 framer-purple-card rounded-2xl p-8 border border-border bg-white flex flex-col">
-        <div class="w-12 h-12 framer-icon-bg rounded-xl flex items-center justify-center mb-6"><span class="text-2xl">✨</span></div>
+        <div class="w-12 h-12 framer-icon-bg rounded-xl flex items-center justify-center mb-6"><svg class="w-6 h-6 framer-accent" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" viewBox="0 0 24 24"><path d="M3 18C5 6 19 18 21 6"/></svg></div>
         <h3 class="text-xl font-bold text-foreground mb-2 font-display">Framer Motion UI</h3>
         <p class="text-slate-600 text-sm leading-relaxed mb-4">Enhanced landing page, transitions, scroll reveals, parallax, gestures and entrances.</p>
         <p class="text-sm font-semibold framer-accent mb-4 font-display">Skill · Demo · GitHub Pages · Landing</p>
@@ -332,7 +342,7 @@ tailwind.config = {
       </div>
       <!-- Agentic Identity -->
       <div class="reveal reveal-delay-3 agentic-blue-card rounded-2xl p-8 border border-border bg-white flex flex-col">
-        <div class="w-12 h-12 agentic-icon-bg rounded-xl flex items-center justify-center mb-6"><svg class="w-6 h-6 agentic-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg></div>
+        <div class="w-12 h-12 agentic-icon-bg rounded-xl flex items-center justify-center mb-6"><svg class="w-7 h-7" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="url(#celo-gold)" stroke-width="2"/><circle cx="12" cy="7" r="2.3" fill="url(#celo-gold)"/><circle cx="7" cy="15.5" r="2.3" fill="url(#celo-gold)"/><circle cx="17" cy="15.5" r="2.3" fill="url(#celo-gold)"/></svg></div>
         <h3 class="text-xl font-bold text-foreground mb-2 font-display">Agentic Identity</h3>
         <p class="text-slate-600 text-sm leading-relaxed mb-4">Landing page for an on-chain Web3 development AI bounty marketplace with on-chain agent identity (Celo). Deployed with Next.js SSR.</p>
         <p class="text-sm font-semibold agentic-accent mb-4 font-display">Agent Identity ERC-721 · Celo Mainnet</p>
@@ -436,7 +446,7 @@ tailwind.config = {
       <a href="https://github.com/AtlasNexusOps/birdeye-sprint4" class="reveal reveal-delay-1 card-hover bg-white rounded-xl p-5 border border-border"><p class="font-bold text-foreground">Birdeye Sprint 4 + Hawkeye V4</p><p class="text-slate-500 text-sm">Crypto pipeline · market pressure</p></a>
       <a href="https://github.com/AtlasNexusOps/proxiesx-services" class="reveal reveal-delay-2 card-hover bg-white rounded-xl p-5 border border-border flex items-start gap-2.5"><svg class="w-4 h-4 shrink-0 mt-1" viewBox="0 0 398 312" fill="none"><path d="M64.6 237.9c2.4-2.4 5.7-3.8 9.2-3.8h317.4c5.8 0 8.7 7 4.6 11.1l-62.7 62.7c-2.4 2.4-5.7 3.8-9.2 3.8H6.5c-5.8 0-8.7-7-4.6-11.1l62.7-62.7z" fill="url(#sol-grad-top)"/><path d="M64.6 3.8C67.1 1.4 70.4 0 73.8 0h317.4c5.8 0 8.7 7 4.6 11.1l-62.7 62.7c-2.4 2.4-5.7 3.8-9.2 3.8H6.5c-5.8 0-8.7-7-4.6-11.1L64.6 3.8z" fill="url(#sol-grad-mid)"/><path d="M333.1 120.1c-2.4-2.4-5.7-3.8-9.2-3.8H6.5c-5.8 0-8.7 7-4.6 11.1l62.7 62.7c2.4 2.4 5.7 3.8 9.2 3.8h317.4c5.8 0 8.7-7 4.6-11.1l-62.7-62.7z" fill="url(#sol-grad-bot)"/></svg><div><p class="font-bold text-foreground">Proxies.sx Scraping Suite</p><p class="text-slate-500 text-sm">Microservices Python · scraping · x402</p></div></a>
       <a href="/oobe-ace-agent/" class="reveal reveal-delay-2 card-hover bg-white dark:bg-dark-card rounded-xl p-5 border border-border flex items-start gap-2.5"><svg class="w-4 h-4 shrink-0 mt-1" viewBox="0 0 398 312" fill="none"><path d="M64.6 237.9c2.4-2.4 5.7-3.8 9.2-3.8h317.4c5.8 0 8.7 7 4.6 11.1l-62.7 62.7c-2.4 2.4-5.7 3.8-9.2 3.8H6.5c-5.8 0-8.7-7-4.6-11.1l62.7-62.7z" fill="url(#sol-grad-top)"/><path d="M64.6 3.8C67.1 1.4 70.4 0 73.8 0h317.4c5.8 0 8.7 7 4.6 11.1l-62.7 62.7c-2.4 2.4-5.7 3.8-9.2 3.8H6.5c-5.8 0-8.7-7-4.6-11.1L64.6 3.8z" fill="url(#sol-grad-mid)"/><path d="M333.1 120.1c-2.4-2.4-5.7-3.8-9.2-3.8H6.5c-5.8 0-8.7 7-4.6 11.1l62.7 62.7c2.4 2.4 5.7 3.8 9.2 3.8h317.4c5.8 0 8.7-7 4.6-11.1l-62.7-62.7z" fill="url(#sol-grad-bot)"/></svg><div><p class="font-bold text-foreground dark:text-dark-foreground">Nexus Scout SAP</p><p class="text-slate-500 dark:text-slate-400 text-sm">Agent SAP mainnet · 3 x402 tools</p></div></a>
-      <a href="https://ai2work.onrender.com" class="reveal reveal-delay-3 card-hover bg-white rounded-xl p-5 border border-border hover:border-primary transition-colors"><p class="font-bold text-foreground">AI2Work — Bounty Marketplace</p><p class="text-slate-500 text-sm">On-chain · Celo Mainnet · 83 tests</p></a>
+      <a href="https://ai2work.onrender.com" class="reveal reveal-delay-3 card-hover bg-white rounded-xl p-5 border border-border hover:border-primary transition-colors flex items-start gap-2.5"><div class="flex -space-x-1 shrink-0 mt-0.5"><div class="w-3 h-3 rounded-full bg-[#FCFF52] ring-1 ring-white dark:ring-dark-card"></div><div class="w-3 h-3 rounded-full bg-gradient-to-br from-[#00FFA3] to-[#DC1FFF] ring-1 ring-white dark:ring-dark-card"></div></div><div><p class="font-bold text-foreground">AI2Work — Bounty Marketplace</p><p class="text-slate-500 text-sm">On-chain · Celo Mainnet · 83 tests</p></div></a>
       <a href="https://atlasnexusops.github.io/solana-pulse/" class="reveal reveal-delay-3 card-hover bg-white rounded-xl p-5 border border-border flex items-start gap-2.5"><svg class="w-4 h-4 shrink-0 mt-1" viewBox="0 0 398 312" fill="none"><path d="M64.6 237.9c2.4-2.4 5.7-3.8 9.2-3.8h317.4c5.8 0 8.7 7 4.6 11.1l-62.7 62.7c-2.4 2.4-5.7 3.8-9.2 3.8H6.5c-5.8 0-8.7-7-4.6-11.1l62.7-62.7z" fill="url(#sol-grad-top)"/><path d="M64.6 3.8C67.1 1.4 70.4 0 73.8 0h317.4c5.8 0 8.7 7 4.6 11.1l-62.7 62.7c-2.4 2.4-5.7 3.8-9.2 3.8H6.5c-5.8 0-8.7-7-4.6-11.1L64.6 3.8z" fill="url(#sol-grad-mid)"/><path d="M333.1 120.1c-2.4-2.4-5.7-3.8-9.2-3.8H6.5c-5.8 0-8.7 7-4.6 11.1l62.7 62.7c2.4 2.4 5.7 3.8 9.2 3.8h317.4c5.8 0 8.7-7 4.6-11.1l-62.7-62.7z" fill="url(#sol-grad-bot)"/></svg><div><p class="font-bold text-foreground">Solana Market Pulse</p><p class="text-slate-500 text-sm">SPL tokens · automated scoring</p></div></a>
     </div>
   </div>
