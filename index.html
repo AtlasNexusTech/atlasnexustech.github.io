@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
-<title>Atlas Nexus — Conseil, Opérations & IA Agentique</title>
+<title>Atlas Nexus — Conseil Opérations & IA Agentique</title>
 <link rel="canonical" href="https://atlasnexus.tech/">
 <link rel="alternate" hreflang="fr" href="https://atlasnexus.tech/">
 <link rel="alternate" hreflang="en" href="https://atlasnexus.tech/en/">
@@ -66,9 +66,9 @@ tailwind.config = {
   /* ── Core ── */
   .hero-title { font-size: clamp(2.45rem, 6.6vw, 5.15rem); font-weight: 900; letter-spacing: -0.055em; line-height: 1.08; overflow: visible; }
   .gradient-text { background: linear-gradient(135deg, #2563EB 0%, #059669 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
-  .glow-word { position: relative; display: inline-block; overflow: visible; padding: .035em .02em .13em .02em; margin: -.035em -.02em -.07em -.02em; background: linear-gradient(110deg, #0F172A 0%, #2563EB 32%, #7C3AED 56%, #059669 82%, #0F172A 100%); background-size: 240% 100%; -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; animation: agenticGlow 3.8s ease-in-out infinite; filter: drop-shadow(0 0 18px rgba(37,99,235,.22)); }
+  .glow-word { position: relative; display: inline-block; overflow: visible; padding: .035em .02em .13em .02em; margin: -.035em -.02em -.07em -.02em; background: linear-gradient(110deg, #0F172A 0%, #2563EB 32%, #7C3AED 56%, #059669 82%, #0F172A 100%); background-size: 240% 100%; -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; animation: agenticGlow 3.8s ease-in-out infinite; }
   .glow-word::after { content: ""; position: absolute; left: 2%; right: 2%; bottom: .09em; height: .14em; border-radius: 999px; background: linear-gradient(90deg, rgba(37,99,235,.0), rgba(37,99,235,.42), rgba(5,150,105,.34), rgba(37,99,235,.0)); filter: blur(5px); z-index: -1; }
-  @keyframes agenticGlow { 0%,100% { background-position: 0% 50%; filter: drop-shadow(0 0 10px rgba(37,99,235,.16)); } 50% { background-position: 100% 50%; filter: drop-shadow(0 0 24px rgba(5,150,105,.26)); } }
+  @keyframes agenticGlow { 0%,100% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } }
   .hero-orb { position: absolute; inset: auto 4% 8% auto; width: min(34vw, 360px); height: min(34vw, 360px); border-radius: 999px; background: radial-gradient(circle at 35% 35%, rgba(37,99,235,.22), rgba(5,150,105,.12) 38%, transparent 68%); filter: blur(2px); pointer-events: none; }
   .agentic-card { position: relative; overflow: hidden; border-color: rgba(37,99,235,.28)!important; box-shadow: 0 18px 60px -28px rgba(37,99,235,.55); }
   .agentic-card::before { content: ""; position: absolute; inset: -1px; background: radial-gradient(circle at 15% 0%, rgba(37,99,235,.13), transparent 38%), radial-gradient(circle at 95% 20%, rgba(5,150,105,.10), transparent 34%); pointer-events: none; }
@@ -170,7 +170,7 @@ tailwind.config = {
   .dark .hero-orb { background: radial-gradient(circle at 35% 35%, rgba(59,130,246,.28), rgba(5,150,105,.15) 45%, transparent 72%); }
   .dark .glow-word { background: linear-gradient(110deg, #60A5FA 0%, #818CF8 28%, #C084FC 52%, #34D399 78%, #60A5FA 100%); background-size: 240% 100%; -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; animation-name: agenticGlowDark; }
   .dark .glow-word::after { background: linear-gradient(90deg, rgba(96,165,250,.0), rgba(129,140,248,.6), rgba(192,132,252,.5), rgba(52,211,153,.4), rgba(96,165,250,.0)); }
-  @keyframes agenticGlowDark { 0%,100% { background-position: 0% 50%; filter: drop-shadow(0 0 18px rgba(96,165,250,.45)); } 50% { background-position: 100% 50%; filter: drop-shadow(0 0 38px rgba(192,132,252,.55)); } }
+  @keyframes agenticGlowDark { 0%,100% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } }
   .dark .gradient-text { background: linear-gradient(135deg, #60A5FA 0%, #34D399 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
   .dark .market-card { background: linear-gradient(145deg, #111827 0%, #111d30 52%, #0e1f2d 100%); border-color: rgba(59,130,246,.25)!important; box-shadow: 0 18px 52px -34px rgba(0,0,0,.6); }
   .dark .market-card:hover { box-shadow: 0 22px 70px -32px rgba(59,130,246,.25); }
@@ -269,7 +269,7 @@ tailwind.config = {
   <div class="max-w-6xl mx-auto px-6 w-full relative z-10">
     <div class="max-w-4xl hero-stagger">
       <h1 class="hero-title text-foreground dark:text-dark-foreground mb-8">
-        <span class="glow-word">Conseil,</span><br><span class="glow-word">Opérations,</span><br><span class="glow-word">IA Agentique</span>
+        <span class="glow-word">Conseil</span><br><span class="glow-word">Opérations</span><br><span class="glow-word">IA Agentique</span>
       </h1>
       <p class="text-2xl sm:text-3xl font-display font-extrabold text-foreground dark:text-dark-foreground max-w-3xl mb-5 leading-tight">
         Pour indépendants, équipes et PME.
@@ -355,7 +355,7 @@ tailwind.config = {
           <span class="px-3 py-1 bg-accent/5 text-accent text-xs font-medium rounded-full">Devnet beta</span>
         </div>
         <div class="flex gap-2 mt-auto">
-        <a href="/oobe-ace-agent/" class="text-primary dark:text-blue-400 text-sm font-semibold hover:text-primary-dark dark:hover:text-blue-300">Présentation live →</a>
+        <a href="/oobe-ace-agent/" class="text-primary dark:text-blue-400 text-sm font-semibold hover:text-primary-dark dark:hover:text-blue-300">Démo live →</a>
         <a href="https://github.com/AtlasNexusOps/oobe-ace-agent" class="text-slate-400 dark:text-slate-500 text-sm hover:text-slate-600 dark:hover:text-slate-300 ml-3">GitHub</a>
         </div>
       </div>
