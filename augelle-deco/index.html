@@ -21,10 +21,12 @@ body::after{content:"DÉMO — ATLASNEXUS";position:fixed;top:50%;left:50%;trans
 .gallery-item .overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.65) 0%,transparent 50%);opacity:0;transition:opacity .3s ease;display:flex;align-items:flex-end;padding:1rem}
 .gallery-item:hover .overlay{opacity:1}
 .gallery-item .overlay span{color:white;font-weight:600;font-size:.9rem}
-.fade-in{animation:fadeIn .8s ease forwards;opacity:0}
-@keyframes fadeIn{to{opacity:1;transform:translateY(0)}}
-.fade-in:nth-child(1){animation-delay:0s}.fade-in:nth-child(2){animation-delay:.1s}.fade-in:nth-child(3){animation-delay:.2s}.fade-in:nth-child(4){animation-delay:.3s}.fade-in:nth-child(5){animation-delay:.4s}.fade-in:nth-child(6){animation-delay:.5s}
-@media(prefers-reduced-motion:reduce){.fade-in{animation:none;opacity:1}}
+/* Slide-in animations */
+.gallery-slide{opacity:0;transition:opacity .7s ease,transform .7s cubic-bezier(.22,1,.36,1)}
+.gallery-slide.slide-right{transform:translateX(-80px)}
+.gallery-slide.slide-left{transform:translateX(80px)}
+.gallery-slide.visible{opacity:1;transform:translateX(0)}
+@media(prefers-reduced-motion:reduce){.gallery-slide{opacity:1;transform:none;transition:none}}
 </style>
 </head>
 <body class="bg-stone-50 text-stone-800 antialiased" style="font-family:Inter,system-ui,sans-serif">
@@ -102,13 +104,13 @@ body::after{content:"DÉMO — ATLASNEXUS";position:fixed;top:50%;left:50%;trans
       <p class="text-stone-500 mt-3 max-w-xl mx-auto">Quelques exemples de finitions décoratives près d'Angers.</p>
     </div>
     <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
-      <div class="gallery-item fade-in"><img src="images/stock-2.jpg" alt="Peinture décorative" loading="lazy"><div class="overlay"><span>🎨 Déco — Champtocé</span></div></div>
-      <div class="gallery-item fade-in"><img src="images/stock-3.jpg" alt="Rénovation intérieure" loading="lazy"><div class="overlay"><span>🏠 Rénovation — Angers</span></div></div>
-      <div class="gallery-item fade-in"><img src="images/stock-4.jpg" alt="Stuc décoratif" loading="lazy"><div class="overlay"><span>✨ Stuc — Saint-Georges</span></div></div>
-      <div class="gallery-item fade-in"><img src="images/stock-5.jpg" alt="Peinture chaux" loading="lazy"><div class="overlay"><span>🖌️ Chaux — Chalonnes</span></div></div>
-      <div class="gallery-item fade-in"><img src="images/stock-6.jpg" alt="Ravalement façade" loading="lazy"><div class="overlay"><span>🏗️ Ravalement — Loire</span></div></div>
-      <div class="gallery-item fade-in"><img src="images/stock-7.jpg" alt="Peinture bio" loading="lazy"><div class="overlay"><span>🌿 Bio — Bouchemaine</span></div></div>
-      <div class="gallery-item fade-in"><img src="images/stock-8.jpg" alt="Papier peint" loading="lazy"><div class="overlay"><span>📜 Papier peint — Angers</span></div></div>
+      <div class="gallery-item gallery-slide slide-right"><img src="images/stock-2.jpg" alt="Peinture décorative" loading="lazy"><div class="overlay"><span>🎨 Déco — Champtocé</span></div></div>
+      <div class="gallery-item gallery-slide slide-right"><img src="images/stock-3.jpg" alt="Rénovation intérieure" loading="lazy"><div class="overlay"><span>🏠 Rénovation — Angers</span></div></div>
+      <div class="gallery-item gallery-slide slide-right"><img src="images/stock-4.jpg" alt="Stuc décoratif" loading="lazy"><div class="overlay"><span>✨ Stuc — Saint-Georges</span></div></div>
+      <div class="gallery-item gallery-slide slide-right"><img src="images/stock-5.jpg" alt="Peinture chaux" loading="lazy"><div class="overlay"><span>🖌️ Chaux — Chalonnes</span></div></div>
+      <div class="gallery-item gallery-slide slide-left"><img src="images/stock-6.jpg" alt="Ravalement façade" loading="lazy"><div class="overlay"><span>🏗️ Ravalement — Loire</span></div></div>
+      <div class="gallery-item gallery-slide slide-left"><img src="images/stock-7.jpg" alt="Peinture bio" loading="lazy"><div class="overlay"><span>🌿 Bio — Bouchemaine</span></div></div>
+      <div class="gallery-item gallery-slide slide-left"><img src="images/stock-8.jpg" alt="Papier peint" loading="lazy"><div class="overlay"><span>📜 Papier peint — Angers</span></div></div>
     </div>
   </div>
 </section>
@@ -189,5 +191,22 @@ body::after{content:"DÉMO — ATLASNEXUS";position:fixed;top:50%;left:50%;trans
 
 <!-- BADGE -->
 <div style="position:fixed;bottom:12px;right:12px;background:linear-gradient(135deg,#991b1b,#BE0000);color:white;padding:6px 14px;border-radius:8px;font-size:11px;z-index:9998;opacity:.85;box-shadow:0 4px 12px rgba(0,0,0,.25);font-weight:600;letter-spacing:.03em">DÉMO ATLASNEXUS</div>
+<!-- Gallery slide-in observer -->
+<script>
+(function(){
+  if(window.matchMedia('(prefers-reduced-motion:reduce)').matches) return;
+  const items=document.querySelectorAll('.gallery-slide');
+  if(!items.length) return;
+  const obs=new IntersectionObserver((entries)=>{
+    entries.forEach((e,i)=>{
+      if(e.isIntersecting){
+        setTimeout(()=>e.target.classList.add('visible'),i%4*100);
+        obs.unobserve(e.target);
+      }
+    });
+  },{threshold:0.15,rootMargin:'0px 0px -30px 0px'});
+  items.forEach(el=>obs.observe(el));
+})();
+</script>
 </body>
 </html>
