@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Menuiserie DEVARENNE — Artisan menuisier-charpentier à Avenay Val d'Or (51160). Depuis 1947. Fabrication et pose, neuf & rénovation. Devis gratuit.">
+    <meta name="keywords" content="menuisier Avenay Val d'Or, menuiserie Marne, charpentier 51160, Dominique DEVARENNE, fenêtres, escaliers, cuisine, ossature bois">
+    <title>Menuiserie DEVARENNE — Menuisier-charpentier depuis 1947 | Avenay Val d'Or</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        wood:  { 50:'#faf6f0', 100:'#f2e8d9', 200:'#e3ceb2', 300:'#d0ad83', 400:'#bf8e5f', 500:'#b07a45', 600:'#9c653a', 700:'#824f32', 800:'#6b422d', 900:'#583828', 950:'#2f1c14' },
+                        leaf:  { 50:'#f3f7f1', 100:'#e2ecdc', 200:'#c6d9bb', 300:'#a2c091', 400:'#7ea46a', 500:'#618a4e', 600:'#4b6e3c', 700:'#3c5631', 800:'#32462a', 900:'#2b3b24', 950:'#141f11' },
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                        display: ['Playfair Display', 'Georgia', 'serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        html { scroll-behavior: smooth; }
+        .hero-gradient {
+            background: linear-gradient(135deg, rgba(47,28,20,0.92) 0%, rgba(88,56,40,0.80) 40%, rgba(76,110,60,0.40) 100%);
+        }
+        .card-hover { transition: transform 0.25s ease, box-shadow 0.25s ease; }
+        .card-hover:hover { transform: translateY(-4px); box-shadow: 0 20px 40px -12px rgba(0,0,0,0.15); }
+        .fade-in { animation: fadeIn 0.7s ease forwards; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+        .gallery-item { overflow: hidden; border-radius: 12px; cursor: pointer; position: relative; }
+        .gallery-img {
+            transition: transform 0.35s ease;
+            aspect-ratio: 4/3;
+            object-fit: cover;
+            width: 100%;
+            height: 100%;
+        }
+        .gallery-item:hover .gallery-img { transform: scale(1.05); }
+    </style>
+</head>
+<body class="bg-wood-50 text-stone-800 antialiased">
+
+<!-- ====== NAVIGATION ====== -->
+<nav class="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-wood-200 shadow-sm">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6">
+        <div class="flex items-center justify-between h-16 sm:h-18">
+            <a href="#accueil" class="flex items-center gap-3 no-underline">
+                <div class="w-10 h-10 bg-leaf-600 rounded-lg flex items-center justify-center text-white font-bold text-sm shadow-md">MD</div>
+                <div class="hidden sm:block">
+                    <div class="font-semibold text-stone-900 leading-tight">Menuiserie DEVARENNE</div>
+                    <div class="text-xs text-stone-500">Depuis 1947 — Avenay Val d'Or</div>
+                </div>
+            </a>
+            <div class="hidden md:flex items-center gap-1">
+                <a href="#accueil" class="px-3 py-2 text-sm font-medium text-stone-600 hover:text-leaf-700 rounded-lg hover:bg-leaf-50 transition-colors">Accueil</a>
+                <a href="#services" class="px-3 py-2 text-sm font-medium text-stone-600 hover:text-leaf-700 rounded-lg hover:bg-leaf-50 transition-colors">Services</a>
+                <a href="#realisations" class="px-3 py-2 text-sm font-medium text-stone-600 hover:text-leaf-700 rounded-lg hover:bg-leaf-50 transition-colors">Réalisations</a>
+                <a href="#contact" class="ml-2 px-4 py-2 text-sm font-semibold text-white bg-leaf-600 hover:bg-leaf-700 rounded-lg shadow-sm transition-colors">Devis gratuit ✦</a>
+            </div>
+            <a href="#contact" class="md:hidden px-3 py-2 text-sm font-semibold text-white bg-leaf-600 hover:bg-leaf-700 rounded-lg shadow-sm transition-colors">Devis</a>
+        </div>
+        <div class="md:hidden flex gap-2 pb-3 overflow-x-auto">
+            <a href="#accueil" class="whitespace-nowrap px-3 py-1.5 text-xs font-medium text-stone-600 bg-stone-100 rounded-full hover:bg-leaf-50 hover:text-leaf-700">Accueil</a>
+            <a href="#services" class="whitespace-nowrap px-3 py-1.5 text-xs font-medium text-stone-600 bg-stone-100 rounded-full hover:bg-leaf-50 hover:text-leaf-700">Services</a>
+            <a href="#realisations" class="whitespace-nowrap px-3 py-1.5 text-xs font-medium text-stone-600 bg-stone-100 rounded-full hover:bg-leaf-50 hover:text-leaf-700">Réalisations</a>
+        </div>
+    </div>
+</nav>
+
+<!-- ====== HERO ====== -->
+<section id="accueil" class="relative min-h-[85vh] flex items-center bg-wood-900 overflow-hidden">
+    <div class="absolute inset-0">
+        <img src="http://menuiserie.devarenne.free.fr/images/slider/1.jpg" alt="Atelier menuiserie" class="w-full h-full object-cover opacity-45">
+    </div>
+    <div class="absolute inset-0 hero-gradient"></div>
+
+    <div class="relative max-w-6xl mx-auto px-4 sm:px-6 py-20 sm:py-28">
+        <div class="max-w-2xl fade-in">
+            <span class="inline-block px-3 py-1 text-xs font-semibold text-leaf-200 bg-leaf-900/50 rounded-full backdrop-blur-sm mb-6">
+                🪵 Artisan menuisier-charpentier depuis 1947
+            </span>
+            <h1 class="font-display text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-tight mb-6">
+                Trois générations<br>
+                au service du <span class="text-leaf-300">travail du bois</span>
+            </h1>
+            <p class="text-lg sm:text-xl text-stone-200 leading-relaxed mb-8 max-w-lg">
+                Toutes menuiseries du bâtiment — fabrication et pose, standard et sur-mesure, neuf & rénovation. À Avenay Val d'Or.
+            </p>
+            <div class="flex flex-wrap gap-3">
+                <a href="#contact" class="inline-flex items-center gap-2 px-6 py-3 bg-leaf-600 hover:bg-leaf-500 text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all">
+                    Demander un devis gratuit
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+                </a>
+                <a href="#realisations" class="inline-flex items-center gap-2 px-6 py-3 bg-white/10 hover:bg-white/20 text-white font-medium rounded-xl backdrop-blur-sm border border-white/20 transition-all">
+                    Voir nos réalisations
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
+        <svg class="w-6 h-6 text-white/60" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"/></svg>
+    </div>
+</section>
+
+<!-- ====== INTRO ====== -->
+<section class="py-16 sm:py-20 bg-white">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6">
+        <div class="grid md:grid-cols-2 gap-12 items-center">
+            <div>
+                <h2 class="font-display text-3xl sm:text-4xl font-bold text-stone-900 mb-6">
+                    Un savoir-faire <span class="text-leaf-600">familial</span> depuis 1947
+                </h2>
+                <p class="text-stone-600 leading-relaxed mb-4">
+                    La Menuiserie DEVARENNE, c'est <strong>trois générations</strong> d'artisans menuisiers-charpentiers au service des particuliers et professionnels à Avenay Val d'Or et dans toute la Marne.
+                </p>
+                <p class="text-stone-600 leading-relaxed mb-4">
+                    Nous réalisons <strong>toutes les menuiseries du bâtiment</strong> : fabrication et pose de charpentes, menuiseries extérieures et intérieures, cuisines sur mesure, ossature bois. Standard ou sur-mesure, neuf comme en rénovation.
+                </p>
+                <p class="text-stone-600 leading-relaxed mb-6">
+                    Chaque projet bénéficie d'une <strong>étude personnalisée</strong> et d'un accompagnement complet, de la conception à la pose.
+                </p>
+                <div class="flex flex-wrap gap-4">
+                    <div class="flex items-center gap-2">
+                        <span class="w-10 h-10 bg-leaf-100 text-leaf-700 rounded-lg flex items-center justify-center font-bold">75+</span>
+                        <span class="text-sm text-stone-600">ans d'expérience</span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <span class="w-10 h-10 bg-leaf-100 text-leaf-700 rounded-lg flex items-center justify-center font-bold">3</span>
+                        <span class="text-sm text-stone-600">générations</span>
+                    </div>
+                </div>
+            </div>
+            <div class="relative">
+                <img src="http://menuiserie.devarenne.free.fr/images/slider/22.jpg" alt="Réalisation menuiserie" class="rounded-2xl shadow-2xl w-full" onerror="this.src='http://menuiserie.devarenne.free.fr/images/slider/3.jpg'">
+                <div class="absolute -bottom-4 -right-4 bg-leaf-600 text-white px-5 py-3 rounded-xl shadow-lg">
+                    <div class="text-2xl font-bold">Devis</div>
+                    <div class="text-sm opacity-90">gratuit</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ====== SERVICES ====== -->
+<section id="services" class="py-16 sm:py-20 bg-wood-100">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6">
+        <div class="text-center mb-14">
+            <span class="text-leaf-600 font-semibold text-sm uppercase tracking-wider">Nos services</span>
+            <h2 class="font-display text-3xl sm:text-4xl font-bold text-stone-900 mt-2 mb-4">Toutes menuiseries du bâtiment</h2>
+            <p class="text-stone-500 max-w-xl mx-auto">Standard et sur-mesure, tous projets d'aménagement, neuf et rénovation</p>
+        </div>
+
+        <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            <!-- Charpente -->
+            <div class="bg-white rounded-2xl p-6 shadow-sm card-hover flex flex-col items-center text-center">
+                <div class="w-16 h-16 bg-leaf-100 text-leaf-700 rounded-2xl flex items-center justify-center text-2xl mb-4">🏗️</div>
+                <h3 class="font-bold text-lg text-stone-800 mb-2">Charpente</h3>
+                <p class="text-stone-500 text-sm">Fabrication et pose. Extensions ossature bois, vérandas, terrasses.</p>
+            </div>
+            <!-- Menuiseries extérieures -->
+            <div class="bg-white rounded-2xl p-6 shadow-sm card-hover flex flex-col items-center text-center">
+                <div class="w-16 h-16 bg-leaf-100 text-leaf-700 rounded-2xl flex items-center justify-center text-2xl mb-4">🪟</div>
+                <h3 class="font-bold text-lg text-stone-800 mb-2">Menuiseries extérieures</h3>
+                <p class="text-stone-500 text-sm">Fenêtres, portes, volets roulants, stores, portails — bois, PVC, alu.</p>
+            </div>
+            <!-- Cuisines -->
+            <div class="bg-white rounded-2xl p-6 shadow-sm card-hover flex flex-col items-center text-center">
+                <div class="w-16 h-16 bg-leaf-100 text-leaf-700 rounded-2xl flex items-center justify-center text-2xl mb-4">🍳</div>
+                <h3 class="font-bold text-lg text-stone-800 mb-2">Cuisines</h3>
+                <p class="text-stone-500 text-sm">Conception et pose de votre cuisine. Étude personnalisée sur mesure.</p>
+            </div>
+            <!-- Menuiseries intérieures -->
+            <div class="bg-white rounded-2xl p-6 shadow-sm card-hover flex flex-col items-center text-center">
+                <div class="w-16 h-16 bg-leaf-100 text-leaf-700 rounded-2xl flex items-center justify-center text-2xl mb-4">🪚</div>
+                <h3 class="font-bold text-lg text-stone-800 mb-2">Menuiseries intérieures</h3>
+                <p class="text-stone-500 text-sm">Agencement, parquets, portes, escaliers, placo, isolation.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ====== RÉALISATIONS ====== -->
+<section id="realisations" class="py-16 sm:py-20 bg-white">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6">
+        <div class="text-center mb-14">
+            <span class="text-leaf-600 font-semibold text-sm uppercase tracking-wider">Notre travail</span>
+            <h2 class="font-display text-3xl sm:text-4xl font-bold text-stone-900 mt-2 mb-4">Quelques réalisations</h2>
+            <p class="text-stone-500 max-w-xl mx-auto">Cliquez pour agrandir les images</p>
+        </div>
+
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+            <div class="gallery-item shadow-sm"><img src="http://menuiserie.devarenne.free.fr/images/work/1.jpg" alt="Réalisation 1" class="gallery-img" loading="lazy"></div>
+            <div class="gallery-item shadow-sm"><img src="http://menuiserie.devarenne.free.fr/images/work/2.jpg" alt="Réalisation 2" class="gallery-img" loading="lazy"></div>
+            <div class="gallery-item shadow-sm"><img src="http://menuiserie.devarenne.free.fr/images/work/3.jpg" alt="Réalisation 3" class="gallery-img" loading="lazy"></div>
+            <div class="gallery-item shadow-sm"><img src="http://menuiserie.devarenne.free.fr/images/work/4.jpg" alt="Réalisation 4" class="gallery-img" loading="lazy"></div>
+            <div class="gallery-item shadow-sm"><img src="http://menuiserie.devarenne.free.fr/images/work/5.jpg" alt="Réalisation 5" class="gallery-img" loading="lazy"></div>
+            <div class="gallery-item shadow-sm"><img src="http://menuiserie.devarenne.free.fr/images/work/6.jpg" alt="Réalisation 6" class="gallery-img" loading="lazy"></div>
+            <div class="gallery-item shadow-sm"><img src="http://menuiserie.devarenne.free.fr/images/work/7.jpg" alt="Réalisation 7" class="gallery-img" loading="lazy"></div>
+            <div class="gallery-item shadow-sm"><img src="http://menuiserie.devarenne.free.fr/images/work/8.jpg" alt="Réalisation 8" class="gallery-img" loading="lazy"></div>
+        </div>
+    </div>
+</section>
+
+<!-- ====== CONTACT ====== -->
+<section id="contact" class="py-16 sm:py-20 bg-wood-100">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6">
+        <div class="text-center mb-14">
+            <span class="text-leaf-600 font-semibold text-sm uppercase tracking-wider">Parlons de votre projet</span>
+            <h2 class="font-display text-3xl sm:text-4xl font-bold text-stone-900 mt-2 mb-4">Contact & Devis</h2>
+            <p class="text-stone-500 max-w-xl mx-auto">Une question, un projet ? Nous vous répondons rapidement. <strong>Devis gratuit.</strong></p>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-10 max-w-4xl mx-auto">
+            <div class="space-y-6">
+                <div class="bg-white rounded-2xl p-6 shadow-sm card-hover">
+                    <div class="flex items-start gap-4">
+                        <div class="w-12 h-12 bg-leaf-100 text-leaf-700 rounded-xl flex items-center justify-center text-xl shrink-0">📍</div>
+                        <div>
+                            <h4 class="font-semibold text-stone-800 mb-1">Adresse</h4>
+                            <p class="text-stone-500 text-sm">13 rue de l'Église<br>51160 Avenay Val d'Or (Marne)</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white rounded-2xl p-6 shadow-sm card-hover">
+                    <div class="flex items-start gap-4">
+                        <div class="w-12 h-12 bg-leaf-100 text-leaf-700 rounded-xl flex items-center justify-center text-xl shrink-0">📞</div>
+                        <div>
+                            <h4 class="font-semibold text-stone-800 mb-1">Téléphone</h4>
+                            <a href="tel:+33326523034" class="text-leaf-600 hover:underline font-medium">03 26 52 30 34</a>
+                            <br><a href="tel:+33670029460" class="text-leaf-600 hover:underline font-medium">06 70 02 94 60</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white rounded-2xl p-6 shadow-sm card-hover">
+                    <div class="flex items-start gap-4">
+                        <div class="w-12 h-12 bg-leaf-100 text-leaf-700 rounded-xl flex items-center justify-center text-xl shrink-0">✉️</div>
+                        <div>
+                            <h4 class="font-semibold text-stone-800 mb-1">Email</h4>
+                            <p class="text-stone-500 text-sm">Contactez-nous via le formulaire ci-contre ou par téléphone.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white rounded-2xl p-6 shadow-sm card-hover">
+                    <div class="flex items-start gap-4">
+                        <div class="w-12 h-12 bg-leaf-100 text-leaf-700 rounded-xl flex items-center justify-center text-xl shrink-0">🗺️</div>
+                        <div>
+                            <h4 class="font-semibold text-stone-800 mb-1">Nous situer</h4>
+                            <a href="https://www.google.fr/maps/place/Menuiserie+Devarenne/@49.0740046,4.0151742,12z" target="_blank" rel="noopener" class="text-leaf-600 hover:underline text-sm">Voir sur Google Maps →</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-2xl p-6 shadow-sm">
+                <h3 class="font-bold text-lg text-stone-800 mb-5">Demande de devis</h3>
+                <form action="#" method="POST" class="space-y-4">
+                    <div>
+                        <label class="block text-sm font-medium text-stone-600 mb-1">Nom complet *</label>
+                        <input type="text" name="name" required class="w-full px-4 py-2.5 border border-stone-200 rounded-xl focus:ring-2 focus:ring-leaf-400 focus:border-leaf-400 outline-none transition-shadow text-sm" placeholder="Votre nom">
+                    </div>
+                    <div class="grid grid-cols-2 gap-3">
+                        <div>
+                            <label class="block text-sm font-medium text-stone-600 mb-1">Téléphone *</label>
+                            <input type="tel" name="phone" required class="w-full px-4 py-2.5 border border-stone-200 rounded-xl focus:ring-2 focus:ring-leaf-400 focus:border-leaf-400 outline-none transition-shadow text-sm" placeholder="06 XX XX XX XX">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-stone-600 mb-1">Email</label>
+                            <input type="email" name="email" class="w-full px-4 py-2.5 border border-stone-200 rounded-xl focus:ring-2 focus:ring-leaf-400 focus:border-leaf-400 outline-none transition-shadow text-sm" placeholder="email@exemple.fr">
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-stone-600 mb-1">Type de projet</label>
+                        <select name="project_type" class="w-full px-4 py-2.5 border border-stone-200 rounded-xl focus:ring-2 focus:ring-leaf-400 focus:border-leaf-400 outline-none transition-shadow text-sm bg-white">
+                            <option value="">-- Sélectionnez --</option>
+                            <option>Charpente / Ossature bois</option>
+                            <option>Fenêtres / Portes / Volets</option>
+                            <option>Cuisine sur mesure</option>
+                            <option>Agencement intérieur</option>
+                            <option>Escalier / Parquet</option>
+                            <option>Autre</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-stone-600 mb-1">Votre message *</label>
+                        <textarea name="message" required rows="3" class="w-full px-4 py-2.5 border border-stone-200 rounded-xl focus:ring-2 focus:ring-leaf-400 focus:border-leaf-400 outline-none transition-shadow text-sm resize-none" placeholder="Décrivez votre projet..."></textarea>
+                    </div>
+                    <p class="text-xs text-stone-400">* Champs obligatoires</p>
+                    <button type="submit" class="w-full py-3 bg-leaf-600 hover:bg-leaf-700 text-white font-semibold rounded-xl shadow-sm hover:shadow-md transition-all">
+                        Envoyer ma demande ✦
+                    </button>
+                </form>
+                <p class="text-xs text-stone-400 text-center mt-3">Ou appelez-nous au <strong>03 26 52 30 34</strong></p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ====== FOOTER ====== -->
+<footer class="bg-wood-900 text-wood-300 py-10">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6">
+        <div class="flex flex-col sm:flex-row items-center justify-between gap-6">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 bg-leaf-600 rounded-lg flex items-center justify-center text-white font-bold text-sm">MD</div>
+                <div>
+                    <p class="font-semibold text-white">Menuiserie DEVARENNE</p>
+                    <p class="text-xs">Artisan menuisier-charpentier depuis 1947</p>
+                </div>
+            </div>
+            <div class="text-center sm:text-right text-xs space-y-1">
+                <p>13 rue de l'Église, 51160 Avenay Val d'Or</p>
+                <p>Tél. 03 26 52 30 34 — 06 70 02 94 60</p>
+                <p class="text-wood-500 mt-3">© 2016–2026 Menuiserie DEVARENNE. Tous droits réservés.</p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+</body>
+</html>
