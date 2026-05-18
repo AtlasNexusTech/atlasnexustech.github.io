@@ -3,197 +3,198 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Entreprise de peinture dans le Val-d'Oise (95). Devis gratuit. Intervention sur Argenteuil, Cergy, Sannois et tout le 95.">
+<meta name="description" content="Entreprise de peinture dans le Val-d'Oise (95). Devis gratuit. Peinture intérieure, extérieure, ravalement.">
 <title>Peintre 95 — Entreprise de Peinture Val-d'Oise</title>
 <script src="https://cdn.tailwindcss.com"></script>
-<script>tailwind.config={theme:{extend:{colors:{brand:{50:'#faf5ff',100:'#f3e8ff',200:'#e9d5ff',300:'#d8b4fe',400:'#c084fc',500:'#a855f7',600:'#9815b2',700:'#7e22ce',800:'#6b21a8',900:'#581c87',950:'#3b0764'}},fontFamily:{sans:['Inter','system-ui','sans-serif'],display:['Playfair Display','Georgia','serif']}}}}}</script>
+<script>tailwind.config={theme:{extend:{colors:{brand:{50:'#faf5ff',100:'#f3e8ff',200:'#e9d5ff',300:'#d8b4fe',400:'#c084fc',500:'#a855f7',600:'#9333ea',700:'#7e22ce',800:'#6b21a8',900:'#581c87',950:'#3b0764'}},fontFamily:{sans:['Inter','system-ui','sans-serif'],display:['Playfair Display','Georgia','serif']}}}}}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
 <style>
 html{scroll-behavior:smooth}
-.hero-grad{background:linear-gradient(135deg,rgba(59,7,100,0.92),rgba(107,33,168,0.7) 50%,rgba(152,21,178,0.35) 100%)}
-.card-hover{transition:transform .25s,box-shadow .25s}
-.card-hover:hover{transform:translateY(-4px);box-shadow:0 20px 40px -12px rgba(0,0,0,.12)}
-.fade-in{animation:fadeIn .7s ease forwards}
-@keyframes fadeIn{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
-body::after{content:"DÉMO — ATLASNEXUS";position:fixed;top:50%;left:50%;transform:translate(-50%,-50%) rotate(-25deg);font-size:4rem;font-weight:800;color:rgba(0,0,0,.05);pointer-events:none;z-index:9999;white-space:nowrap;letter-spacing:.4em}
-.gallery-img{transition:transform .35s ease,box-shadow .35s ease}
-.gallery-img:hover{transform:scale(1.03);box-shadow:0 24px 48px -12px rgba(0,0,0,.18);z-index:2}
+body::after{content:"DÉMO — ATLASNEXUS";position:fixed;top:50%;left:50%;transform:translate(-50%,-50%) rotate(-25deg);font-size:4rem;font-weight:800;color:rgba(0,0,0,.04);pointer-events:none;z-index:9999;white-space:nowrap;letter-spacing:.4em}
+.card-hover{transition:transform .3s ease,box-shadow .3s ease}
+.card-hover:hover{transform:translateY(-4px);box-shadow:0 20px 40px -12px rgba(0,0,0,.15)}
+.gallery-item{position:relative;overflow:hidden;border-radius:1rem;aspect-ratio:4/3}
+.gallery-item img{width:100%;height:100%;object-fit:cover;transition:transform .5s ease}
+.gallery-item:hover img{transform:scale(1.06)}
+.gallery-item .overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.65) 0%,transparent 50%);opacity:0;transition:opacity .3s ease;display:flex;align-items:flex-end;padding:1rem}
+.gallery-item:hover .overlay{opacity:1}
+.gallery-item .overlay span{color:white;font-weight:600;font-size:.9rem}
+.fade-in{animation:fadeIn .8s ease forwards;opacity:0}
+@keyframes fadeIn{to{opacity:1;transform:translateY(0)}}
+.fade-in:nth-child(1){animation-delay:0s}.fade-in:nth-child(2){animation-delay:.12s}.fade-in:nth-child(3){animation-delay:.24s}.fade-in:nth-child(4){animation-delay:.36s}.fade-in:nth-child(5){animation-delay:.48s}.fade-in:nth-child(6){animation-delay:.6s}
+@media(prefers-reduced-motion:reduce){.fade-in{animation:none;opacity:1}}
 </style>
 </head>
 <body class="bg-stone-50 text-stone-800 antialiased" style="font-family:Inter,system-ui,sans-serif">
-<script>if(!location.hostname.includes("atlasnexus.tech")&&!location.hostname.includes("localhost")){document.body.innerHTML='<div style="display:flex;align-items:center;justify-content:center;height:100vh;font-family:sans-serif;font-size:1.2rem;color:#666">🔒 Cette démo est réservée à AtlasNexus</div>';document.head.innerHTML='<title>Accès réservé</title>'}</script>
+<script>if(!location.hostname.includes("atlasnexus.tech")&&!location.hostname.includes("localhost")){document.body.innerHTML='<div style="display:flex;align-items:center;justify-content:center;height:100vh;font-family:sans-serif;font-size:1.2rem;color:#666">🔒 Cette démo est réservée à AtlasNexus</div>'}</script>
 
-<!-- Nav -->
-<nav class="bg-white/90 backdrop-blur border-b border-stone-200 sticky top-0 z-50">
+<!-- NAV -->
+<nav class="sticky top-0 z-50 bg-white/90 backdrop-blur-lg border-b border-stone-200">
   <div class="max-w-6xl mx-auto px-4 h-16 flex items-center justify-between">
-    <a href="/" class="flex items-center gap-2">
-      <div class="w-8 h-8 bg-gradient-to-br from-brand-600 to-brand-400 rounded-lg flex items-center justify-center text-white font-bold text-sm">AN</div>
-      <span class="font-bold text-stone-800">AtlasNexus</span>
+    <a href="/demos-web/" class="flex items-center gap-2.5 group">
+      <div class="w-8 h-8 bg-gradient-to-br from-brand-600 to-brand-400 rounded-lg flex items-center justify-center text-white font-extrabold text-sm shadow-md shadow-brand-500/20 group-hover:shadow-brand-500/40 transition">AN</div>
+      <span class="font-bold text-stone-800 text-sm">AtlasNexus</span>
     </a>
     <div class="flex gap-6 text-sm font-medium">
-      <a href="#services" class="text-stone-600 hover:text-brand-600">Services</a>
-      <a href="#galerie" class="text-stone-600 hover:text-brand-600">Réalisations</a>
-      <a href="#contact" class="text-stone-600 hover:text-brand-600">Devis</a>
+      <a href="#prestations" class="text-stone-500 hover:text-brand-600 transition">Prestations</a>
+      <a href="#realisations" class="text-stone-500 hover:text-brand-600 transition">Réalisations</a>
+      <a href="#contact" class="text-stone-500 hover:text-brand-600 transition">Devis</a>
     </div>
   </div>
 </nav>
 
-<!-- Hero -->
-<section class="relative overflow-hidden" style="background:linear-gradient(135deg,#3b0764 0%,#6b21a8 40%,#7e22ce 70%,#a855f7 100%)">
+<!-- HERO -->
+<section class="relative overflow-hidden" style="background:linear-gradient(160deg,#3b0764 0%,#581c87 30%,#7e22ce 60%,#9333ea 100%)">
   <div class="max-w-6xl mx-auto px-4 py-20 md:py-28">
-    <div class="grid md:grid-cols-2 gap-12 items-center">
-      <div class="text-white fade-in">
-        <span class="inline-block bg-white/15 text-white text-xs font-semibold px-3 py-1.5 rounded-full mb-4">Val-d'Oise (95)</span>
-        <h1 class="text-4xl sm:text-5xl md:text-6xl font-bold mb-6 leading-tight" style="font-family:'Playfair Display',Georgia,serif">
+    <div class="grid md:grid-cols-2 gap-10 items-center">
+      <div>
+        <span class="inline-block bg-white/15 text-white text-xs font-semibold px-3 py-1.5 rounded-full mb-5 tracking-wide">Val-d'Oise (95) — Devis gratuit</span>
+        <h1 class="text-4xl sm:text-5xl md:text-6xl font-extrabold text-white mb-5 leading-[1.08] tracking-tight" style="font-family:'Playfair Display',Georgia,serif">
           Entreprise de<br><span class="text-brand-300">Peinture</span>
         </h1>
-        <p class="text-white/80 text-lg leading-relaxed mb-4">Peinture intérieure, extérieure, ravalement, pose de papiers peints. Travail soigné, devis gratuit, respect des délais.</p>
-        <p class="text-white/80 leading-relaxed mb-8">Intervention pour particuliers et professionnels sur <strong>tout le Val-d'Oise</strong>.</p>
-        <div class="flex flex-wrap gap-4">
-          <a href="#contact" class="inline-flex items-center gap-2 bg-white text-brand-800 font-semibold px-6 py-3 rounded-xl hover:bg-brand-50 transition shadow-lg">
-            📋 Devis gratuit
-          </a>
-          <a href="tel:0683090516" class="inline-flex items-center gap-2 bg-white/10 text-white font-semibold px-6 py-3 rounded-xl border border-white/20 hover:bg-white/20 transition backdrop-blur">
-            📞 06 83 09 05 16
-          </a>
+        <p class="text-white/75 text-lg leading-relaxed mb-8 max-w-md">Peinture intérieure & extérieure, ravalement de façade, pose de papiers peints — <strong class="text-white">particuliers & professionnels</strong>.</p>
+        <div class="flex flex-wrap gap-3">
+          <a href="#contact" class="inline-flex items-center gap-2 bg-white text-brand-800 font-semibold px-6 py-3.5 rounded-xl hover:bg-brand-50 transition shadow-xl shadow-black/20 text-sm">📋 Demander un devis</a>
+          <a href="tel:0683090516" class="inline-flex items-center gap-2 bg-white/10 text-white font-semibold px-6 py-3.5 rounded-xl border border-white/20 hover:bg-white/20 transition backdrop-blur text-sm">📞 06 83 09 05 16</a>
         </div>
       </div>
-      <div class="relative fade-in">
+      <div class="relative hidden md:block">
         <img src="images/hero.jpg" alt="Peintre 95" class="rounded-2xl shadow-2xl w-full object-cover" style="aspect-ratio:4/3">
-        <div class="absolute -bottom-4 -right-4 bg-brand-600 text-white px-6 py-4 rounded-xl shadow-xl">
-          <div class="text-2xl font-bold">DEVIS</div>
-          <div class="text-sm opacity-90">gratuit</div>
+        <div class="absolute -bottom-3 -right-3 bg-white text-brand-800 px-5 py-3.5 rounded-xl shadow-xl">
+          <div class="text-xl font-extrabold leading-none">DEVIS</div>
+          <div class="text-xs text-brand-500 font-semibold">gratuit & sans engagement</div>
         </div>
       </div>
     </div>
   </div>
-  <div class="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-stone-50 to-transparent"></div>
+  <div class="absolute bottom-0 left-0 right-0 h-12 bg-gradient-to-t from-stone-50 to-transparent"></div>
 </section>
 
-<!-- Services -->
-<section id="services" class="py-16 bg-stone-50">
+<!-- PRESTATIONS -->
+<section id="prestations" class="py-20 bg-stone-50">
   <div class="max-w-6xl mx-auto px-4">
-    <h2 class="text-3xl sm:text-4xl font-bold text-center text-stone-900 mb-10" style="font-family:'Playfair Display',Georgia,serif">
-      Nos <span class="text-brand-600">Prestations</span>
-    </h2>
+    <div class="text-center mb-12">
+      <span class="text-brand-600 font-semibold text-xs tracking-widest uppercase">Ce que nous faisons</span>
+      <h2 class="text-3xl sm:text-4xl font-extrabold text-stone-900 mt-2 tracking-tight" style="font-family:'Playfair Display',Georgia,serif">Nos <span class="text-brand-600">Prestations</span></h2>
+    </div>
     <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-3">
-      <div class="bg-white rounded-xl p-4 flex items-center gap-3 card-hover shadow-sm"><span class="text-2xl">🎨</span><span class="font-medium text-stone-700">Peinture intérieure</span></div>
-      <div class="bg-white rounded-xl p-4 flex items-center gap-3 card-hover shadow-sm"><span class="text-2xl">🏠</span><span class="font-medium text-stone-700">Peinture extérieure</span></div>
-      <div class="bg-white rounded-xl p-4 flex items-center gap-3 card-hover shadow-sm"><span class="text-2xl">🏗️</span><span class="font-medium text-stone-700">Ravalement de façade</span></div>
-      <div class="bg-white rounded-xl p-4 flex items-center gap-3 card-hover shadow-sm"><span class="text-2xl">📜</span><span class="font-medium text-stone-700">Pose de papiers peints</span></div>
-      <div class="bg-white rounded-xl p-4 flex items-center gap-3 card-hover shadow-sm"><span class="text-2xl">🖌️</span><span class="font-medium text-stone-700">Peinture décorative</span></div>
-      <div class="bg-white rounded-xl p-4 flex items-center gap-3 card-hover shadow-sm"><span class="text-2xl">🏢</span><span class="font-medium text-stone-700">Travaux pros & particuliers</span></div>
+      <div class="bg-white rounded-xl p-5 flex items-center gap-4 card-hover shadow-sm border border-stone-100"><span class="text-2xl shrink-0">🎨</span><div><span class="font-semibold text-stone-800 block">Peinture intérieure</span><span class="text-xs text-stone-500">Murs, plafonds, boiseries</span></div></div>
+      <div class="bg-white rounded-xl p-5 flex items-center gap-4 card-hover shadow-sm border border-stone-100"><span class="text-2xl shrink-0">🏠</span><div><span class="font-semibold text-stone-800 block">Peinture extérieure</span><span class="text-xs text-stone-500">Façades, volets, portails</span></div></div>
+      <div class="bg-white rounded-xl p-5 flex items-center gap-4 card-hover shadow-sm border border-stone-100"><span class="text-2xl shrink-0">🏗️</span><div><span class="font-semibold text-stone-800 block">Ravalement</span><span class="text-xs text-stone-500">Nettoyage & traitement façade</span></div></div>
+      <div class="bg-white rounded-xl p-5 flex items-center gap-4 card-hover shadow-sm border border-stone-100"><span class="text-2xl shrink-0">📜</span><div><span class="font-semibold text-stone-800 block">Papiers peints</span><span class="text-xs text-stone-500">Pose & dépose soignée</span></div></div>
+      <div class="bg-white rounded-xl p-5 flex items-center gap-4 card-hover shadow-sm border border-stone-100"><span class="text-2xl shrink-0">🖌️</span><div><span class="font-semibold text-stone-800 block">Peinture décorative</span><span class="text-xs text-stone-500">Effets, patines, stucs</span></div></div>
+      <div class="bg-white rounded-xl p-5 flex items-center gap-4 card-hover shadow-sm border border-stone-100"><span class="text-2xl shrink-0">🏢</span><div><span class="font-semibold text-stone-800 block">Tous types de chantiers</span><span class="text-xs text-stone-500">Pros & particuliers</span></div></div>
     </div>
   </div>
 </section>
 
-<!-- Galerie / Réalisations -->
-<section id="galerie" class="py-16 bg-white">
+<!-- RÉALISATIONS -->
+<section id="realisations" class="py-20 bg-white">
   <div class="max-w-6xl mx-auto px-4">
-    <h2 class="text-3xl sm:text-4xl font-bold text-center text-stone-900 mb-4" style="font-family:'Playfair Display',Georgia,serif">
-      Nos <span class="text-brand-600">Réalisations</span>
-    </h2>
-    <p class="text-stone-500 text-center mb-10 max-w-2xl mx-auto">Quelques exemples de nos chantiers dans le Val-d'Oise — peinture intérieure, extérieure et rénovation.</p>
-    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
-      <div class="gallery-img rounded-xl overflow-hidden shadow-md bg-stone-100">
-        <img src="images/galerie-1.jpg" alt="Chantier peinture Argenteuil" class="w-full h-64 object-cover">
-        <div class="p-3 text-sm text-stone-600 font-medium">🏠 Chantier — Argenteuil 95100</div>
-      </div>
-      <div class="gallery-img rounded-xl overflow-hidden shadow-md bg-stone-100">
-        <img src="images/galerie-2.jpg" alt="Chantier peinture Cergy" class="w-full h-64 object-cover">
-        <div class="p-3 text-sm text-stone-600 font-medium">🏗️ Ravalement — Cergy 95800</div>
-      </div>
-      <div class="gallery-img rounded-xl overflow-hidden shadow-md bg-stone-100">
-        <img src="images/galerie-3.jpg" alt="Rénovation peinture Argenteuil" class="w-full h-64 object-cover">
-        <div class="p-3 text-sm text-stone-600 font-medium">🎨 Rénovation — Argenteuil</div>
-      </div>
-      <div class="gallery-img rounded-xl overflow-hidden shadow-md bg-stone-100">
-        <img src="images/galerie-4.jpg" alt="Peinture intérieure Cergy" class="w-full h-64 object-cover">
-        <div class="p-3 text-sm text-stone-600 font-medium">🖌️ Intérieur — Cergy</div>
-      </div>
+    <div class="text-center mb-12">
+      <span class="text-brand-600 font-semibold text-xs tracking-widest uppercase">Galerie</span>
+      <h2 class="text-3xl sm:text-4xl font-extrabold text-stone-900 mt-2 tracking-tight" style="font-family:'Playfair Display',Georgia,serif">Nos <span class="text-brand-600">Réalisations</span></h2>
+      <p class="text-stone-500 mt-3 max-w-xl mx-auto">Quelques exemples de nos chantiers récents dans le Val-d'Oise.</p>
+    </div>
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+      <div class="gallery-item fade-in"><img src="images/stock-1.jpg" alt="Peinture intérieure Val-d'Oise" loading="lazy"><div class="overlay"><span>🎨 Peinture intérieure — Argenteuil</span></div></div>
+      <div class="gallery-item fade-in"><img src="images/stock-2.jpg" alt="Ravalement façade 95" loading="lazy"><div class="overlay"><span>🏠 Ravalement — Cergy</span></div></div>
+      <div class="gallery-item fade-in"><img src="images/stock-3.jpg" alt="Chantier rénovation peinture" loading="lazy"><div class="overlay"><span>🖌️ Rénovation — Sannois</span></div></div>
+      <div class="gallery-item fade-in"><img src="images/stock-4.jpg" alt="Peinture décorative Val-d'Oise" loading="lazy"><div class="overlay"><span>✨ Déco — Herblay</span></div></div>
+      <div class="gallery-item fade-in"><img src="images/stock-5.jpg" alt="Peinture extérieure maison" loading="lazy"><div class="overlay"><span>🏗️ Extérieur — Pontoise</span></div></div>
+      <div class="gallery-item fade-in"><img src="images/stock-7.jpg" alt="Appartement rénové peinture" loading="lazy"><div class="overlay"><span>🏢 Appartement — Eaubonne</span></div></div>
     </div>
   </div>
 </section>
 
-<!-- Villes -->
-<section id="villes" class="py-16 bg-stone-100">
+<!-- ZONES -->
+<section class="py-16 bg-stone-100">
   <div class="max-w-6xl mx-auto px-4">
-    <h2 class="text-3xl sm:text-4xl font-bold text-center text-stone-900 mb-10" style="font-family:'Playfair Display',Georgia,serif">
-      Zones <span class="text-brand-600">d'intervention</span>
-    </h2>
-    <div class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-6 gap-2 text-sm text-stone-600">
-      <span class="bg-white rounded-lg px-3 py-2 text-center shadow-sm">Argenteuil 95100</span>
-      <span class="bg-white rounded-lg px-3 py-2 text-center shadow-sm">Beauchamp 95250</span>
-      <span class="bg-white rounded-lg px-3 py-2 text-center shadow-sm">Bezons 95870</span>
-      <span class="bg-white rounded-lg px-3 py-2 text-center shadow-sm">Cergy 95800</span>
-      <span class="bg-white rounded-lg px-3 py-2 text-center shadow-sm">Cormeilles 95240</span>
-      <span class="bg-white rounded-lg px-3 py-2 text-center shadow-sm">Deuil-la-Barre 95170</span>
-      <span class="bg-white rounded-lg px-3 py-2 text-center shadow-sm">Domont 95330</span>
-      <span class="bg-white rounded-lg px-3 py-2 text-center shadow-sm">Eaubonne 95600</span>
-      <span class="bg-white rounded-lg px-3 py-2 text-center shadow-sm">Enghien 95880</span>
-      <span class="bg-white rounded-lg px-3 py-2 text-center shadow-sm">Eragny 95610</span>
-      <span class="bg-white rounded-lg px-3 py-2 text-center shadow-sm">Ermont 95120</span>
-      <span class="bg-white rounded-lg px-3 py-2 text-center shadow-sm">Franconville 95130</span>
-      <span class="bg-white rounded-lg px-3 py-2 text-center shadow-sm">Gonesse 95500</span>
-      <span class="bg-white rounded-lg px-3 py-2 text-center shadow-sm">Groslay 95410</span>
-      <span class="bg-white rounded-lg px-3 py-2 text-center shadow-sm">Herblay 95220</span>
-      <span class="bg-white rounded-lg px-3 py-2 text-center shadow-sm">Montmagny 95360</span>
-      <span class="bg-white rounded-lg px-3 py-2 text-center shadow-sm">Montmorency 95160</span>
-      <span class="bg-white rounded-lg px-3 py-2 text-center shadow-sm">Osny 95520</span>
-      <span class="bg-white rounded-lg px-3 py-2 text-center shadow-sm">Pierrelaye 95220</span>
-      <span class="bg-white rounded-lg px-3 py-2 text-center shadow-sm">Pontoise 95300</span>
-      <span class="bg-white rounded-lg px-3 py-2 text-center shadow-sm">Saint-Gratien 95210</span>
-      <span class="bg-white rounded-lg px-3 py-2 text-center shadow-sm">Saint-Prix 95390</span>
-      <span class="bg-white rounded-lg px-3 py-2 text-center shadow-sm">Sannois 95110</span>
-      <span class="bg-white rounded-lg px-3 py-2 text-center shadow-sm">Sarcelles 95200</span>
-      <span class="bg-white rounded-lg px-3 py-2 text-center shadow-sm">Taverny 95150</span>
+    <h2 class="text-2xl sm:text-3xl font-extrabold text-center text-stone-900 mb-8 tracking-tight" style="font-family:'Playfair Display',Georgia,serif">Zones <span class="text-brand-600">d'intervention</span></h2>
+    <div class="flex flex-wrap justify-center gap-2 text-sm text-stone-600">
+      <span class="bg-white rounded-lg px-3.5 py-2 shadow-sm">Argenteuil 95100</span>
+      <span class="bg-white rounded-lg px-3.5 py-2 shadow-sm">Beauchamp 95250</span>
+      <span class="bg-white rounded-lg px-3.5 py-2 shadow-sm">Bezons 95870</span>
+      <span class="bg-white rounded-lg px-3.5 py-2 shadow-sm">Cergy 95800</span>
+      <span class="bg-white rounded-lg px-3.5 py-2 shadow-sm">Cormeilles 95240</span>
+      <span class="bg-white rounded-lg px-3.5 py-2 shadow-sm">Deuil-la-Barre 95170</span>
+      <span class="bg-white rounded-lg px-3.5 py-2 shadow-sm">Domont 95330</span>
+      <span class="bg-white rounded-lg px-3.5 py-2 shadow-sm">Eaubonne 95600</span>
+      <span class="bg-white rounded-lg px-3.5 py-2 shadow-sm">Enghien 95880</span>
+      <span class="bg-white rounded-lg px-3.5 py-2 shadow-sm">Eragny 95610</span>
+      <span class="bg-white rounded-lg px-3.5 py-2 shadow-sm">Ermont 95120</span>
+      <span class="bg-white rounded-lg px-3.5 py-2 shadow-sm">Franconville 95130</span>
+      <span class="bg-white rounded-lg px-3.5 py-2 shadow-sm">Gonesse 95500</span>
+      <span class="bg-white rounded-lg px-3.5 py-2 shadow-sm">Herblay 95220</span>
+      <span class="bg-white rounded-lg px-3.5 py-2 shadow-sm">Montmorency 95160</span>
+      <span class="bg-white rounded-lg px-3.5 py-2 shadow-sm">Osny 95520</span>
+      <span class="bg-white rounded-lg px-3.5 py-2 shadow-sm">Pontoise 95300</span>
+      <span class="bg-white rounded-lg px-3.5 py-2 shadow-sm">Saint-Gratien 95210</span>
+      <span class="bg-white rounded-lg px-3.5 py-2 shadow-sm">Sannois 95110</span>
+      <span class="bg-white rounded-lg px-3.5 py-2 shadow-sm">Sarcelles 95200</span>
+      <span class="bg-white rounded-lg px-3.5 py-2 shadow-sm">Taverny 95150</span>
     </div>
   </div>
 </section>
 
-<!-- Contact / Devis -->
-<section id="contact" class="py-16 bg-stone-50">
-  <div class="max-w-6xl mx-auto px-4">
-    <h2 class="text-3xl sm:text-4xl font-bold text-center text-stone-900 mb-8" style="font-family:'Playfair Display',Georgia,serif">
-      Contact & <span class="text-brand-600">Devis</span>
-    </h2>
-    <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-      <div class="bg-white rounded-xl p-6 shadow-sm">
-        <h3 class="font-bold text-lg mb-4">📞 Contact direct</h3>
-        <div class="space-y-3 text-stone-600">
-          <p class="flex items-center gap-2"><span class="text-xl">📱</span> <strong>06 83 09 05 16</strong></p>
-          <p class="flex items-center gap-2"><span class="text-xl">📍</span> Val-d'Oise (95) — Intervention sur tout le département</p>
-          <p class="flex items-center gap-2"><span class="text-xl">⏰</span> Lun-Ven 8h-18h, Sam sur RDV</p>
+<!-- CONTACT -->
+<section id="contact" class="py-20 bg-stone-50">
+  <div class="max-w-5xl mx-auto px-4">
+    <div class="text-center mb-10">
+      <span class="text-brand-600 font-semibold text-xs tracking-widest uppercase">On en parle</span>
+      <h2 class="text-3xl sm:text-4xl font-extrabold text-stone-900 mt-2 tracking-tight" style="font-family:'Playfair Display',Georgia,serif">Contact & <span class="text-brand-600">Devis gratuit</span></h2>
+    </div>
+    <div class="grid md:grid-cols-5 gap-6 max-w-3xl mx-auto">
+      <!-- Infos contact -->
+      <div class="md:col-span-2 bg-white rounded-2xl p-6 shadow-sm border border-stone-100 flex flex-col justify-center">
+        <h3 class="font-bold text-lg text-stone-800 mb-4">📞 Nous contacter</h3>
+        <div class="space-y-4 text-stone-600">
+          <div class="flex items-start gap-3">
+            <span class="text-xl shrink-0 mt-0.5">📱</span>
+            <div><div class="font-semibold text-stone-800">06 83 09 05 16</div><div class="text-xs text-stone-400">Appel & SMS</div></div>
+          </div>
+          <div class="flex items-start gap-3">
+            <span class="text-xl shrink-0 mt-0.5">📍</span>
+            <div><div class="font-semibold text-stone-800">Val-d'Oise (95)</div><div class="text-xs text-stone-400">Intervention tout le département</div></div>
+          </div>
+          <div class="flex items-start gap-3">
+            <span class="text-xl shrink-0 mt-0.5">⏰</span>
+            <div><div class="font-semibold text-stone-800">Lun-Ven 8h-18h</div><div class="text-xs text-stone-400">Samedi sur RDV</div></div>
+          </div>
         </div>
       </div>
-      <div class="bg-white rounded-xl p-6 shadow-sm">
-        <h3 class="font-bold text-lg mb-4">📋 Demande de devis</h3>
-        <form class="space-y-3" onsubmit="alert('✅ Demande envoyée ! Nous vous recontacterons sous 24h.');return false">
-          <input type="text" placeholder="Votre nom" class="w-full px-4 py-2.5 border border-stone-200 rounded-xl text-sm" required>
-          <input type="tel" placeholder="Téléphone" class="w-full px-4 py-2.5 border border-stone-200 rounded-xl text-sm" required>
-          <select class="w-full px-4 py-2.5 border border-stone-200 rounded-xl text-sm bg-white">
-            <option>Argenteuil</option><option>Cergy</option><option>Sannois</option><option>Herblay</option><option>Autre (95)</option>
+      <!-- Formulaire -->
+      <div class="md:col-span-3 bg-white rounded-2xl p-6 shadow-sm border border-stone-100">
+        <h3 class="font-bold text-lg text-stone-800 mb-4">📋 Demande de devis</h3>
+        <form class="space-y-3" onsubmit="alert('✅ Demande envoyée ! Nous vous recontacterons sous 24h.');this.reset();return false">
+          <div class="grid sm:grid-cols-2 gap-3">
+            <input type="text" placeholder="Votre nom *" class="w-full px-4 py-3 border border-stone-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-brand-400 focus:border-transparent transition" required>
+            <input type="tel" placeholder="Téléphone *" class="w-full px-4 py-3 border border-stone-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-brand-400 focus:border-transparent transition" required>
+          </div>
+          <select class="w-full px-4 py-3 border border-stone-200 rounded-xl text-sm bg-white text-stone-600 focus:outline-none focus:ring-2 focus:ring-brand-400 focus:border-transparent transition appearance-none" style="background-image:url('data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2216%22 height=%2216%22 viewBox=%220 0 24 24%22 fill=%22none%22 stroke=%22%2394a3b8%22 stroke-width=%222%22><path d=%22M6 9l6 6 6-6%22/></svg>');background-repeat:no-repeat;background-position:right 12px center;padding-right:40px">
+            <option value="">Votre ville (Val-d'Oise)</option>
+            <option>Argenteuil 95100</option><option>Beauchamp 95250</option><option>Bezons 95870</option><option>Cergy 95800</option><option>Cormeilles 95240</option><option>Deuil-la-Barre 95170</option><option>Domont 95330</option><option>Eaubonne 95600</option><option>Enghien 95880</option><option>Ermont 95120</option><option>Franconville 95130</option><option>Herblay 95220</option><option>Pontoise 95300</option><option>Sannois 95110</option><option>Sarcelles 95200</option><option>Autre (95)</option>
           </select>
-          <textarea rows="3" placeholder="Votre message…" class="w-full px-4 py-2.5 border border-stone-200 rounded-xl text-sm resize-none" required></textarea>
-          <button class="w-full py-3 bg-brand-600 hover:bg-brand-700 text-white font-semibold rounded-xl transition shadow-md">Envoyer ✦</button>
+          <textarea rows="3" placeholder="Décrivez votre projet…" class="w-full px-4 py-3 border border-stone-200 rounded-xl text-sm resize-none focus:outline-none focus:ring-2 focus:ring-brand-400 focus:border-transparent transition"></textarea>
+          <button class="w-full py-3.5 bg-brand-600 hover:bg-brand-700 text-white font-semibold rounded-xl transition shadow-lg shadow-brand-500/20 hover:shadow-brand-500/30 text-sm">Envoyer ma demande ✦</button>
         </form>
       </div>
     </div>
   </div>
 </section>
 
-<!-- Footer -->
+<!-- FOOTER -->
 <footer class="bg-stone-900 text-stone-400 py-8">
-  <div class="max-w-6xl mx-auto px-4 text-center text-xs">
-    <p class="text-white font-semibold">Entreprise de Peinture — Val-d'Oise (95)</p>
+  <div class="max-w-6xl mx-auto px-4 text-center text-xs space-y-2">
+    <p class="text-white font-semibold text-sm">Entreprise de Peinture — Val-d'Oise (95)</p>
     <p>Intervention sur tout le département — Devis gratuit</p>
-    <p class="text-stone-500 mt-2">© Peintre 95. Tous droits réservés.</p>
+    <p class="text-stone-500">© Peintre 95. Tous droits réservés.</p>
   </div>
 </footer>
 
-<!-- Badge -->
-<div style="position:fixed;bottom:12px;right:12px;background:linear-gradient(135deg,#9815b2,#c084fc);color:white;padding:6px 14px;border-radius:8px;font-size:11px;z-index:9998;opacity:.88;box-shadow:0 4px 12px rgba(0,0,0,.25)">DÉMO ATLASNEXUS</div>
+<!-- BADGE -->
+<div style="position:fixed;bottom:12px;right:12px;background:linear-gradient(135deg,#7e22ce,#a855f7);color:white;padding:6px 14px;border-radius:8px;font-size:11px;z-index:9998;opacity:.85;box-shadow:0 4px 12px rgba(0,0,0,.25);font-weight:600;letter-spacing:.03em">DÉMO ATLASNEXUS</div>
 </body>
 </html>
