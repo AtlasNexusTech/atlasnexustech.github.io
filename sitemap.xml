@@ -51,13 +51,38 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://atlasnexus.tech/demo-refonte-artisan/</loc>
+    <lastmod>2026-05-18</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://atlasnexus.tech/demo-refonte-restaurant/</loc>
+    <lastmod>2026-05-18</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://atlasnexus.tech/demo-refonte-sante/</loc>
+    <lastmod>2026-05-18</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://atlasnexus.tech/demo-refonte-consultant/</loc>
+    <lastmod>2026-05-18</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://atlasnexus.tech/demo-menuiserie.fr/</loc>
+    <lastmod>2026-05-18</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://atlasnexus.tech/pwa-template/</loc>
     <lastmod>2026-05-18</lastmod>
-    <priority>0.7</priority>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://atlasnexus.tech/oobe-ace-agent/</loc>
     <lastmod>2026-05-18</lastmod>
-    <priority>0.7</priority>
+    <priority>0.6</priority>
   </url>
 </urlset>
