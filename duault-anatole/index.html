@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Entreprise Duault Anatole — Spécialiste entretien murs, toitures, bâtiment & peinture en Vendée et Charente-Maritime. Devis gratuit.">
+    <meta name="keywords" content="Duault Anatole, nettoyage toiture Vendée, ravalement façade Charente, démoussage, traitement hydrofuge, peinture bâtiment, isolation combles, artisan Vendée">
+    <title>Duault Anatole — Entretien Bâtiment & Peinture | Vendée • Charente</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand:  { 50:'#fff8ed', 100:'#ffefd3', 200:'#ffdaa5', 300:'#ffbf63', 400:'#ff9e2e', 500:'#fd7e14', 600:'#ee6307', 700:'#c54a08', 800:'#9c3a10', 900:'#7e3211', 950:'#441706' },
+                        warm:   { 50:'#fdf8f6', 100:'#f9ede7', 200:'#f2d9cc', 300:'#e7bc9f', 400:'#d99a70', 500:'#cc7e4d', 600:'#be6a3e', 700:'#9e5535', 800:'#814831', 900:'#6b3e2b', 950:'#391e15' },
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                        display: ['Playfair Display', 'Georgia', 'serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
+
+    <script>
+    if (!location.hostname.includes('atlasnexus.tech') && !location.hostname.includes('localhost') && !location.hostname.includes('127.0.0.1')) {
+        document.body.innerHTML = '<div style="display:flex;align-items:center;justify-content:center;height:100vh;font-family:system-ui,sans-serif;font-size:1.3rem;color:#999;text-align:center;padding:2rem;">Ceci est une démonstration —<br><a href="https://atlasnexus.tech/duault-anatole/" style="color:#7C3AED;font-weight:600;">Voir la version originale sur atlasnexus.tech</a></div>';
+    }
+    </script>
+
+    <style>
+        html { scroll-behavior: smooth; }
+        .hero-gradient {
+            background: linear-gradient(135deg, rgba(68,23,6,0.90) 0%, rgba(124,58,16,0.84) 40%, rgba(253,126,20,0.40) 100%);
+        }
+        .card-hover { transition: transform 0.25s ease, box-shadow 0.25s ease; }
+        .card-hover:hover { transform: translateY(-4px); box-shadow: 0 20px 40px -12px rgba(0,0,0,0.18); }
+        .fade-in { animation: fadeIn 0.7s ease forwards; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+        .gallery-img { transition: transform 0.35s ease; aspect-ratio: 4/3; object-fit: cover; width: 100%; height: 100%; }
+        .gallery-item:hover .gallery-img { transform: scale(1.05); }
+        .gallery-item { overflow: hidden; border-radius: 12px; cursor: pointer; position: relative; }
+        body::after {
+            content: "DÉMO — ATLASNEXUS";
+            position: fixed;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%) rotate(-15deg);
+            font-size: clamp(3rem, 10vw, 8rem);
+            font-weight: 900;
+            color: rgba(0,0,0,0.04);
+            pointer-events: none;
+            z-index: 0;
+            white-space: nowrap;
+            letter-spacing: 0.15em;
+        }
+        section, header, footer { position: relative; z-index: 1; }
+        .section-divider { height: 1px; background: linear-gradient(90deg, transparent, #fd7e1440, transparent); }
+    </style>
+</head>
+<body class="bg-warm-50 text-warm-900 font-sans antialiased">
+
+<!-- NAV -->
+<header class="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-warm-200 shadow-sm">
+    <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
+        <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-lg bg-brand-500 flex items-center justify-center text-white font-bold text-sm">DA</div>
+            <div>
+                <p class="font-semibold text-warm-900 text-sm leading-tight">Duault Anatole</p>
+                <p class="text-xs text-warm-500">Bâtiment & Peinture</p>
+            </div>
+        </div>
+        <nav class="hidden md:flex gap-6 text-sm font-medium text-warm-700">
+            <a href="#services" class="hover:text-brand-600 transition">Services</a>
+            <a href="#realisations" class="hover:text-brand-600 transition">Réalisations</a>
+            <a href="#about" class="hover:text-brand-600 transition">L'entreprise</a>
+            <a href="#contact" class="hover:text-brand-600 transition">Contact</a>
+        </nav>
+        <a href="#devis" class="bg-brand-500 hover:bg-brand-600 text-white text-sm font-semibold px-5 py-2.5 rounded-xl transition shadow-md shadow-brand-200">
+            Devis gratuit
+        </a>
+    </div>
+</header>
+
+<!-- HERO -->
+<section class="relative min-h-[85vh] flex items-center">
+    <div class="absolute inset-0 hero-gradient"></div>
+    <div class="absolute inset-0 bg-[url('data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect fill=%22%23fd7e14%22 width=%22100%22 height=%22100%22 opacity=%220.08%22/><path d=%22M0 50 Q25 30 50 50 T100 50%22 stroke=%22%23fff%22 fill=%22none%22 opacity=%220.1%22 stroke-width=%222%22/></svg>')] opacity-30 bg-cover"></div>
+    <div class="relative max-w-6xl mx-auto px-4 py-20 text-white fade-in">
+        <p class="text-brand-200 font-semibold tracking-wider uppercase text-sm mb-4">Artisan depuis 2001 • Vendée & Charente</p>
+        <h1 class="font-display text-4xl md:text-6xl font-extrabold leading-tight mb-6 max-w-2xl">
+            Duault Anatole<br>
+            <span class="text-brand-300">Entretien Bâtiment & Peinture</span>
+        </h1>
+        <p class="text-white/80 text-lg md:text-xl max-w-xl mb-8 leading-relaxed">
+            Spécialiste du nettoyage, traitement et ravalement de vos murs, toitures et façades.
+            Plus de 18 ans d'expertise au service des particuliers et professionnels.
+        </p>
+        <div class="flex flex-wrap gap-4">
+            <a href="#devis" class="bg-brand-500 hover:bg-brand-400 text-white font-bold px-8 py-4 rounded-xl transition text-lg shadow-xl shadow-brand-900/30">
+                Demander un devis →
+            </a>
+            <a href="#services" class="border-2 border-white/30 hover:border-white/60 text-white font-semibold px-8 py-4 rounded-xl transition text-lg">
+                Nos services
+            </a>
+        </div>
+        <div class="flex gap-8 mt-10 text-white/70 text-sm">
+            <div class="flex items-center gap-2"><span class="text-brand-400 text-lg">✓</span> Devis gratuit</div>
+            <div class="flex items-center gap-2"><span class="text-brand-400 text-lg">✓</span> Produits certifiés pro</div>
+            <div class="flex items-center gap-2"><span class="text-brand-400 text-lg">✓</span> Intervention rapide</div>
+        </div>
+    </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services" class="max-w-6xl mx-auto px-4 py-20">
+    <div class="text-center mb-14">
+        <p class="text-brand-600 font-semibold tracking-wider uppercase text-sm">Nos prestations</p>
+        <h2 class="font-display text-3xl md:text-4xl font-bold text-warm-900 mt-2">Ce que nous faisons</h2>
+        <p class="text-warm-500 mt-3 max-w-xl mx-auto">Des solutions complètes pour l'entretien et la valorisation de votre patrimoine</p>
+    </div>
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div class="bg-white rounded-xl p-6 border border-warm-100 card-hover shadow-sm">
+            <div class="w-12 h-12 rounded-xl bg-brand-100 flex items-center justify-center mb-4 text-2xl">🏠</div>
+            <h3 class="font-bold text-lg text-warm-900 mb-2">Nettoyage Toitures & Façades</h3>
+            <p class="text-warm-600 text-sm leading-relaxed">Produits décontaminants sans chlore, rinçage basse ou haute pression selon vos matériaux. Nous redonnons à vos surfaces leur éclat d'origine.</p>
+        </div>
+        <div class="bg-white rounded-xl p-6 border border-warm-100 card-hover shadow-sm">
+            <div class="w-12 h-12 rounded-xl bg-brand-100 flex items-center justify-center mb-4 text-2xl">🧪</div>
+            <h3 class="font-bold text-lg text-warm-900 mb-2">Traitement Anti-Mousse</h3>
+            <p class="text-warm-600 text-sm leading-relaxed">Fongicide curatif et préventif, produit professionnel Fongi+. Appliqué après nettoyage pour un traitement rapide, longue durée.</p>
+        </div>
+        <div class="bg-white rounded-xl p-6 border border-warm-100 card-hover shadow-sm">
+            <div class="w-12 h-12 rounded-xl bg-brand-100 flex items-center justify-center mb-4 text-2xl">💧</div>
+            <h3 class="font-bold text-lg text-warm-900 mb-2">Traitement Hydrofuge</h3>
+            <p class="text-warm-600 text-sm leading-relaxed">Imperméabilisation curative et préventive, anti-mousse + hydrofuge en une opération. Protège du gel, de l'humidité et des cassures.</p>
+        </div>
+        <div class="bg-white rounded-xl p-6 border border-warm-100 card-hover shadow-sm">
+            <div class="w-12 h-12 rounded-xl bg-brand-100 flex items-center justify-center mb-4 text-2xl">🎨</div>
+            <h3 class="font-bold text-lg text-warm-900 mb-2">Peinture Toiture & Façade</h3>
+            <p class="text-warm-600 text-sm leading-relaxed">Revêtements colorés PROTECTOIT et peintures façade pro. Application en 2 couches, microporeux, plusieurs coloris disponibles.</p>
+        </div>
+        <div class="bg-white rounded-xl p-6 border border-warm-100 card-hover shadow-sm">
+            <div class="w-12 h-12 rounded-xl bg-brand-100 flex items-center justify-center mb-4 text-2xl">🪵</div>
+            <h3 class="font-bold text-lg text-warm-900 mb-2">Traitement Boiseries</h3>
+            <p class="text-warm-600 text-sm leading-relaxed">Insecticide fongicide préventif et curatif. Action rapide contre capricornes, vrillettes, termites. Application par pulvérisation ou injection.</p>
+        </div>
+        <div class="bg-white rounded-xl p-6 border border-warm-100 card-hover shadow-sm">
+            <div class="w-12 h-12 rounded-xl bg-brand-100 flex items-center justify-center mb-4 text-2xl">🏗️</div>
+            <h3 class="font-bold text-lg text-warm-900 mb-2">Isolation Combles & Gouttières</h3>
+            <p class="text-warm-600 text-sm leading-relaxed">Isolation thermique par soufflerie ou panneaux (jusqu'à 30% d'économies). Pose gouttières PVC/Zinc, protection durable de vos murs.</p>
+        </div>
+    </div>
+</section>
+
+<div class="section-divider max-w-4xl mx-auto"></div>
+
+<!-- RÉALISATIONS -->
+<section id="realisations" class="max-w-6xl mx-auto px-4 py-20">
+    <div class="text-center mb-14">
+        <p class="text-brand-600 font-semibold tracking-wider uppercase text-sm">Avant / Après</p>
+        <h2 class="font-display text-3xl md:text-4xl font-bold text-warm-900 mt-2">Nos réalisations</h2>
+        <p class="text-warm-500 mt-3">La preuve par l'exemple : toitures, façades, boiseries rénovées</p>
+    </div>
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+        <div class="gallery-item"><img src="https://images.unsplash.com/photo-1589939705384-5185137a7f0f?w=600&h=450&fit=crop" class="gallery-img" alt="Nettoyage toiture" loading="lazy"><div class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/60 to-transparent p-3"><p class="text-white text-xs font-medium">Nettoyage toiture</p></div></div>
+        <div class="gallery-item"><img src="https://images.unsplash.com/photo-1625602812206-5ec545ca1231?w=600&h=450&fit=crop" class="gallery-img" alt="Ravalement façade" loading="lazy"><div class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/60 to-transparent p-3"><p class="text-white text-xs font-medium">Ravalement façade</p></div></div>
+        <div class="gallery-item"><img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=600&h=450&fit=crop" class="gallery-img" alt="Traitement hydrofuge" loading="lazy"><div class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/60 to-transparent p-3"><p class="text-white text-xs font-medium">Traitement hydrofuge</p></div></div>
+        <div class="gallery-item"><img src="https://images.unsplash.com/photo-1533048324814-79b0a592c74c?w=600&h=450&fit=crop" class="gallery-img" alt="Peinture boiserie" loading="lazy"><div class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/60 to-transparent p-3"><p class="text-white text-xs font-medium">Peinture boiserie</p></div></div>
+        <div class="gallery-item"><img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=600&h=450&fit=crop" class="gallery-img" alt="Toiture rénovée" loading="lazy"><div class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/60 to-transparent p-3"><p class="text-white text-xs font-medium">Toiture rénovée</p></div></div>
+        <div class="gallery-item"><img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=600&h=450&fit=crop" class="gallery-img" alt="Façade pierre" loading="lazy"><div class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/60 to-transparent p-3"><p class="text-white text-xs font-medium">Façade pierre</p></div></div>
+        <div class="gallery-item"><img src="https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?w=600&h=450&fit=crop" class="gallery-img" alt="Isolation combles" loading="lazy"><div class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/60 to-transparent p-3"><p class="text-white text-xs font-medium">Isolation combles</p></div></div>
+        <div class="gallery-item"><img src="https://images.unsplash.com/photo-1572120360610-d971b9d7767c?w=600&h=450&fit=crop" class="gallery-img" alt="Gouttières neuves" loading="lazy"><div class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/60 to-transparent p-3"><p class="text-white text-xs font-medium">Gouttières neuves</p></div></div>
+    </div>
+</section>
+
+<div class="section-divider max-w-4xl mx-auto"></div>
+
+<!-- ABOUT -->
+<section id="about" class="max-w-6xl mx-auto px-4 py-20">
+    <div class="grid md:grid-cols-2 gap-12 items-center">
+        <div>
+            <p class="text-brand-600 font-semibold tracking-wider uppercase text-sm">L'entreprise</p>
+            <h2 class="font-display text-3xl md:text-4xl font-bold text-warm-900 mt-2 mb-4">Artisan depuis 2001</h2>
+            <p class="text-warm-600 leading-relaxed mb-4">
+                Notre entreprise réalise tous vos chantiers de nettoyage, traitements curatifs et préventifs,
+                peinture, décoration, ravalement de façades, traitements des murs, toitures, boiseries
+                et l'isolation thermique de vos combles.
+            </p>
+            <p class="text-warm-600 leading-relaxed mb-4">
+                Depuis plus de 18 ans, nous accompagnons et fidélisons nos clients sur tout le secteur
+                de la <strong>Vendée</strong> et de la <strong>Charente-Maritime</strong>, avec toujours
+                la même volonté : la satisfaction du propriétaire souhaitant valoriser son patrimoine.
+            </p>
+            <div class="flex flex-wrap gap-3 mt-6">
+                <span class="bg-brand-50 text-brand-700 text-sm font-medium px-3 py-1.5 rounded-lg">Produits certifiés</span>
+                <span class="bg-brand-50 text-brand-700 text-sm font-medium px-3 py-1.5 rounded-lg">Devis gratuit</span>
+                <span class="bg-brand-50 text-brand-700 text-sm font-medium px-3 py-1.5 rounded-lg">TVA réduite</span>
+                <span class="bg-brand-50 text-brand-700 text-sm font-medium px-3 py-1.5 rounded-lg">Facilités de paiement</span>
+            </div>
+        </div>
+        <div class="bg-warm-100/50 rounded-2xl p-8 border border-warm-200">
+            <div class="flex items-start gap-4 mb-6">
+                <div class="text-3xl text-brand-400">"</div>
+                <p class="text-warm-700 italic leading-relaxed text-sm">
+                    L'entreprise DUAULT se fait un devoir de respecter les recommandations des fournisseurs
+                    tout en utilisant des produits respectueux de l'environnement.
+                    Nous souhaitons avant tout la satisfaction du client !
+                </p>
+            </div>
+            <p class="text-warm-400 text-xs uppercase tracking-wide mb-4">— Duault Anatole</p>
+            <div class="space-y-3 text-sm text-warm-600">
+                <div class="flex items-center gap-2"><span class="text-brand-500">✓</span> Nous n'utilisons que des produits réservés aux professionnels</div>
+                <div class="flex items-center gap-2"><span class="text-brand-500">✓</span> Nettoyage et déblayage du chantier inclus</div>
+                <div class="flex items-center gap-2"><span class="text-brand-500">✓</span> Protection de vos plantes et arbres durant les travaux</div>
+                <div class="flex items-center gap-2"><span class="text-brand-500">✓</span> Horaires adaptés à vos demandes</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="section-divider max-w-4xl mx-auto"></div>
+
+<!-- DEVIS -->
+<section id="devis" class="max-w-6xl mx-auto px-4 py-20">
+    <div class="bg-gradient-to-br from-brand-600 to-brand-800 rounded-2xl p-8 md:p-12 text-white shadow-2xl shadow-brand-900/30">
+        <div class="grid md:grid-cols-2 gap-8 items-center">
+            <div>
+                <h2 class="font-display text-3xl md:text-4xl font-bold mb-4">Un projet ?<br>Demandez votre devis gratuit</h2>
+                <p class="text-brand-100 leading-relaxed mb-6">
+                    Nos devis sont gratuits et ne vous engagent en rien. Nous traitons votre demande dans les meilleurs délais.
+                </p>
+                <div class="space-y-3 text-brand-100 text-sm">
+                    <p class="flex items-center gap-2"><span class="text-brand-300">📞</span> 06 15 81 26 70</p>
+                    <p class="flex items-center gap-2"><span class="text-brand-300">📞</span> 04 91 02 73 04</p>
+                    <p class="flex items-center gap-2"><span class="text-brand-300">✉️</span> duault.anatole@gmail.com</p>
+                    <p class="flex items-center gap-2"><span class="text-brand-300">📍</span> 2 rue du Chêne Creux — Le Poiserit, Vendée</p>
+                </div>
+            </div>
+            <form class="bg-white/10 backdrop-blur rounded-xl p-6 space-y-4" onsubmit="event.preventDefault();alert('Ceci est une démo — Demande non envoyée.\n\nContactez directement duault.anatole@gmail.com')">
+                <div>
+                    <label class="block text-sm font-medium text-white mb-1">Votre nom</label>
+                    <input type="text" placeholder="M. / Mme ..." class="w-full px-4 py-3 rounded-lg bg-white/20 border border-white/20 text-white placeholder-white/40 focus:outline-none focus:border-brand-300 transition">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-white mb-1">Email ou téléphone</label>
+                    <input type="text" placeholder="Pour vous recontacter" class="w-full px-4 py-3 rounded-lg bg-white/20 border border-white/20 text-white placeholder-white/40 focus:outline-none focus:border-brand-300 transition">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-white mb-1">Type de prestation</label>
+                    <select class="w-full px-4 py-3 rounded-lg bg-white/20 border border-white/20 text-white focus:outline-none focus:border-brand-300 transition">
+                        <option value="" class="text-warm-900">Sélectionnez...</option>
+                        <option class="text-warm-900">Nettoyage toiture / façade</option>
+                        <option class="text-warm-900">Traitement anti-mousse / hydrofuge</option>
+                        <option class="text-warm-900">Peinture toiture / façade</option>
+                        <option class="text-warm-900">Traitement boiseries</option>
+                        <option class="text-warm-900">Isolation combles</option>
+                        <option class="text-warm-900">Pose gouttières</option>
+                        <option class="text-warm-900">Autre / Multiple</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-white mb-1">Votre message</label>
+                    <textarea rows="3" placeholder="Décrivez votre projet, la surface, l'urgence..." class="w-full px-4 py-3 rounded-lg bg-white/20 border border-white/20 text-white placeholder-white/40 focus:outline-none focus:border-brand-300 transition resize-none"></textarea>
+                </div>
+                <button type="submit" class="w-full bg-brand-400 hover:bg-brand-300 text-brand-950 font-bold py-3.5 rounded-xl transition text-lg shadow-lg shadow-brand-900/20">
+                    Envoyer ma demande →
+                </button>
+                <p class="text-white/50 text-xs text-center">Démo — Ne pas utiliser. Contact direct : duault.anatole@gmail.com</p>
+            </form>
+        </div>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="bg-warm-900 text-warm-300 py-10 mt-10">
+    <div class="max-w-6xl mx-auto px-4 grid md:grid-cols-3 gap-8">
+        <div>
+            <div class="flex items-center gap-3 mb-3">
+                <div class="w-8 h-8 rounded-md bg-brand-500 flex items-center justify-center text-white text-xs font-bold">DA</div>
+                <p class="font-semibold text-white">Duault Anatole</p>
+            </div>
+            <p class="text-xs text-warm-400 leading-relaxed">Entreprise spécialiste de l'entretien du bâtiment depuis 2001. Vendée & Charente-Maritime.</p>
+        </div>
+        <div>
+            <p class="font-semibold text-white mb-3 text-sm">Services</p>
+            <ul class="space-y-1.5 text-xs">
+                <li>Nettoyage toitures & façades</li>
+                <li>Traitement anti-mousse</li>
+                <li>Traitement hydrofuge</li>
+                <li>Peinture bâtiment</li>
+                <li>Traitement boiseries</li>
+                <li>Isolation combles & gouttières</li>
+            </ul>
+        </div>
+        <div>
+            <p class="font-semibold text-white mb-3 text-sm">Contact</p>
+            <ul class="space-y-1.5 text-xs">
+                <li>📞 06 15 81 26 70</li>
+                <li>📞 04 91 02 73 04</li>
+                <li>✉️ duault.anatole@gmail.com</li>
+                <li>📍 Le Poiserit, Vendée</li>
+            </ul>
+        </div>
+    </div>
+    <div class="text-center text-xs text-warm-500 mt-8 pt-6 border-t border-warm-800 max-w-6xl mx-4 md:mx-auto">
+        Démo réalisée par <a href="https://atlasnexus.tech" class="text-brand-400 hover:underline font-medium">AtlasNexus</a> — Site vitrine professionnel pour artisans. Ceci n'est pas le site officiel de l'entreprise Duault Anatole.
+    </div>
+</footer>
+
+</body>
+</html>
