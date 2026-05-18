@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="L'Artisan Métallier — Patrick Soudry. Métallerie, chaudronnerie, soudure acier/alu/inox/fonte à Chas (63). Fabrication, rénovation, mobilier design. Devis gratuit.">
+    <meta name="keywords" content="métallier Chas, métallerie Puy-de-Dôme, chaudronnerie 63, soudure acier inox alu, rénovation portail, mobilier métal design, Billom, Clermont-Ferrand">
+    <title>L'Artisan Métallier — Patrick Soudry | Métallerie • Chaudronnerie à Chas (63)</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand:  { 50:'#f5f3f0', 100:'#e8e2db', 200:'#d3c7b9', 300:'#b8a590', 400:'#a0886e', 500:'#8b7358', 600:'#755e4a', 700:'#5f4c3e', 800:'#4a3b33', 900:'#3b2f29', 950:'#1f1815' },
+                        iron:   { 50:'#f6f6f6', 100:'#e7e7e7', 200:'#d1d1d1', 300:'#b0b0b0', 400:'#888888', 500:'#6d6d6d', 600:'#5d5d5d', 700:'#4f4f4f', 800:'#454545', 900:'#3d3d3d', 950:'#262626' },
+                        accent: { 50:'#fef7ee', 100:'#fdedd3', 200:'#fad7a5', 300:'#f5b96d', 400:'#f09232', 500:'#ec7a12', 600:'#dd5f08', 700:'#b74709', 800:'#92380e', 900:'#76310f', 950:'#401705' },
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                        display: ['Playfair Display', 'Georgia', 'serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
+
+    <script>
+    if (!location.hostname.includes('atlasnexus.tech') && !location.hostname.includes('localhost') && !location.hostname.includes('127.0.0.1')) {
+        document.body.innerHTML = '<div style="display:flex;align-items:center;justify-content:center;height:100vh;font-family:system-ui,sans-serif;font-size:1.3rem;color:#999;text-align:center;padding:2rem;">Ceci est une démonstration —<br><a href="https://atlasnexus.tech/artisan-metallier/" style="color:#7C3AED;font-weight:600;">Voir la version originale sur atlasnexus.tech</a></div>';
+    }
+    </script>
+
+    <style>
+        html { scroll-behavior: smooth; }
+        .hero-gradient {
+            background: linear-gradient(135deg, rgba(31,24,21,0.92) 0%, rgba(59,47,41,0.85) 40%, rgba(236,122,18,0.30) 100%);
+        }
+        .card-hover { transition: transform 0.25s ease, box-shadow 0.25s ease; }
+        .card-hover:hover { transform: translateY(-4px); box-shadow: 0 20px 40px -12px rgba(0,0,0,0.18); }
+        .fade-in { animation: fadeIn 0.7s ease forwards; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+        .gallery-img { transition: transform 0.35s ease; aspect-ratio: 4/3; object-fit: cover; width: 100%; height: 100%; }
+        .gallery-item:hover .gallery-img { transform: scale(1.05); }
+        .gallery-item { overflow: hidden; border-radius: 12px; cursor: pointer; position: relative; }
+        body::after {
+            content: "DÉMO — ATLASNEXUS";
+            position: fixed;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%) rotate(-15deg);
+            font-size: clamp(2.5rem, 8vw, 6rem);
+            font-weight: 900;
+            color: rgba(0,0,0,0.035);
+            pointer-events: none;
+            z-index: 0;
+            white-space: nowrap;
+            letter-spacing: 0.12em;
+        }
+        section, header, footer { position: relative; z-index: 1; }
+        .section-divider { height: 1px; background: linear-gradient(90deg, transparent, #8b735840, transparent); }
+    </style>
+</head>
+<body class="bg-iron-50 text-iron-900 font-sans antialiased">
+
+<!-- NAV -->
+<header class="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-iron-200 shadow-sm">
+    <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
+        <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-lg bg-iron-800 flex items-center justify-center text-accent-400 font-bold text-sm">AM</div>
+            <div>
+                <p class="font-semibold text-iron-900 text-sm leading-tight">L'Artisan Métallier</p>
+                <p class="text-xs text-iron-500">Patrick Soudry</p>
+            </div>
+        </div>
+        <nav class="hidden md:flex gap-6 text-sm font-medium text-iron-700">
+            <a href="#savoir-faire" class="hover:text-accent-600 transition">Savoir-faire</a>
+            <a href="#realisations" class="hover:text-accent-600 transition">Réalisations</a>
+            <a href="#atelier" class="hover:text-accent-600 transition">L'atelier</a>
+            <a href="#contact" class="hover:text-accent-600 transition">Contact</a>
+        </nav>
+        <a href="#devis" class="bg-accent-500 hover:bg-accent-600 text-white text-sm font-semibold px-5 py-2.5 rounded-xl transition shadow-md shadow-accent-200">
+            Devis gratuit
+        </a>
+    </div>
+</header>
+
+<!-- HERO -->
+<section class="relative min-h-[85vh] flex items-center">
+    <div class="absolute inset-0 hero-gradient"></div>
+    <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?w=1200&h=800&fit=crop')] bg-cover bg-center opacity-35"></div>
+    <div class="relative max-w-6xl mx-auto px-4 py-20 text-white fade-in">
+        <p class="text-accent-300 font-semibold tracking-wider uppercase text-sm mb-4">Atelier du Fer • Chas (63) • Depuis 2012</p>
+        <h1 class="font-display text-4xl md:text-6xl font-extrabold leading-tight mb-6 max-w-2xl">
+            L'Artisan Métallier<br>
+            <span class="text-accent-300">Métallerie & Chaudronnerie</span>
+        </h1>
+        <p class="text-white/80 text-lg md:text-xl max-w-xl mb-8 leading-relaxed">
+            Fabrication, rénovation et mobilier design sur mesure. Acier, inox, aluminium, fonte — votre projet, mon savoir-fer.
+        </p>
+        <div class="flex flex-wrap gap-4">
+            <a href="#devis" class="bg-accent-500 hover:bg-accent-400 text-white font-bold px-8 py-4 rounded-xl transition text-lg shadow-xl shadow-accent-900/30">
+                Demander un devis →
+            </a>
+            <a href="#savoir-faire" class="border-2 border-white/30 hover:border-white/60 text-white font-semibold px-8 py-4 rounded-xl transition text-lg">
+                Découvrir
+            </a>
+        </div>
+        <div class="flex gap-8 mt-10 text-white/70 text-sm">
+            <div class="flex items-center gap-2"><span class="text-accent-400 text-lg">✓</span> Devis gratuit à domicile</div>
+            <div class="flex items-center gap-2"><span class="text-accent-400 text-lg">✓</span> Particuliers & Pros</div>
+            <div class="flex items-center gap-2"><span class="text-accent-400 text-lg">✓</span> Qualité & Professionnalisme</div>
+        </div>
+    </div>
+</section>
+
+<!-- SAVOIR-FAIRE -->
+<section id="savoir-faire" class="max-w-6xl mx-auto px-4 py-20">
+    <div class="text-center mb-14">
+        <p class="text-accent-600 font-semibold tracking-wider uppercase text-sm">Mon savoir-fer</p>
+        <h2 class="font-display text-3xl md:text-4xl font-bold text-iron-900 mt-2">Ce que je fais</h2>
+        <p class="text-iron-500 mt-3 max-w-xl mx-auto">De la pièce unique au projet industriel, chaque réalisation est pensée et exécutée avec précision</p>
+    </div>
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div class="bg-white rounded-xl p-6 border border-iron-100 card-hover shadow-sm">
+            <div class="w-12 h-12 rounded-xl bg-accent-100 flex items-center justify-center mb-4 text-2xl">🏗️</div>
+            <h3 class="font-bold text-lg text-iron-900 mb-2">Métallerie & Chaudronnerie</h3>
+            <p class="text-iron-600 text-sm leading-relaxed">Fabrication et pose d'ouvrages métalliques : portails, garde-corps, verrières, escaliers, marquises. Plier, rouler, découper, percer — tout est possible.</p>
+        </div>
+        <div class="bg-white rounded-xl p-6 border border-iron-100 card-hover shadow-sm">
+            <div class="w-12 h-12 rounded-xl bg-accent-100 flex items-center justify-center mb-4 text-2xl">🔥</div>
+            <h3 class="font-bold text-lg text-iron-900 mb-2">Soudure tous métaux</h3>
+            <p class="text-iron-600 text-sm leading-relaxed">Soudure sur acier, inox, aluminium et fonte. Réparation de pièces cassées, modification d'ouvrages existants, assemblages complexes.</p>
+        </div>
+        <div class="bg-white rounded-xl p-6 border border-iron-100 card-hover shadow-sm">
+            <div class="w-12 h-12 rounded-xl bg-accent-100 flex items-center justify-center mb-4 text-2xl">🏛️</div>
+            <h3 class="font-bold text-lg text-iron-900 mb-2">Rénovation de portails</h3>
+            <p class="text-iron-600 text-sm leading-relaxed">Restauration de portails anciens et 1900. Dérouillage, réparation, remise en état. Votre patrimoine retrouve son éclat d'origine.</p>
+        </div>
+        <div class="bg-white rounded-xl p-6 border border-iron-100 card-hover shadow-sm">
+            <div class="w-12 h-12 rounded-xl bg-accent-100 flex items-center justify-center mb-4 text-2xl">🪑</div>
+            <h3 class="font-bold text-lg text-iron-900 mb-2">Mobilier design sur mesure</h3>
+            <p class="text-iron-600 text-sm leading-relaxed">Tables, chaises, lampes, étagères en métal. Création unique adaptée à votre intérieur. Design industriel ou contemporain.</p>
+        </div>
+        <div class="bg-white rounded-xl p-6 border border-iron-100 card-hover shadow-sm">
+            <div class="w-12 h-12 rounded-xl bg-accent-100 flex items-center justify-center mb-4 text-2xl">⚙️</div>
+            <h3 class="font-bold text-lg text-iron-900 mb-2">Usinage & tournage</h3>
+            <p class="text-iron-600 text-sm leading-relaxed">Tour à métaux conventionnel RAMO. Pièces sur plan, petites séries, prototypage. Précision et finition soignée.</p>
+        </div>
+        <div class="bg-white rounded-xl p-6 border border-iron-100 card-hover shadow-sm">
+            <div class="w-12 h-12 rounded-xl bg-accent-100 flex items-center justify-center mb-4 text-2xl">🔧</div>
+            <h3 class="font-bold text-lg text-iron-900 mb-2">Maintenance industrielle</h3>
+            <p class="text-iron-600 text-sm leading-relaxed">Maintenance agricole et industrielle. Intervention rapide pour professionnels. Références : Pouzolane des Dômes, ASM, Mairies.</p>
+        </div>
+    </div>
+</section>
+
+<div class="section-divider max-w-4xl mx-auto"></div>
+
+<!-- RÉALISATIONS -->
+<section id="realisations" class="max-w-6xl mx-auto px-4 py-20">
+    <div class="text-center mb-14">
+        <p class="text-accent-600 font-semibold tracking-wider uppercase text-sm">Le métal sublimé</p>
+        <h2 class="font-display text-3xl md:text-4xl font-bold text-iron-900 mt-2">Réalisations</h2>
+        <p class="text-iron-500 mt-3">Chaque pièce est unique — voici quelques exemples de mon travail</p>
+    </div>
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+        <div class="gallery-item"><img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=600&h=450&fit=crop" class="gallery-img" alt="Portail métallique" loading="lazy"><div class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/60 to-transparent p-3"><p class="text-white text-xs font-medium">Portail sur mesure</p></div></div>
+        <div class="gallery-item"><img src="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=600&h=450&fit=crop" class="gallery-img" alt="Verrière atelier" loading="lazy"><div class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/60 to-transparent p-3"><p class="text-white text-xs font-medium">Verrière d'atelier</p></div></div>
+        <div class="gallery-item"><img src="https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?w=600&h=450&fit=crop" class="gallery-img" alt="Soudure précision" loading="lazy"><div class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/60 to-transparent p-3"><p class="text-white text-xs font-medium">Soudure de précision</p></div></div>
+        <div class="gallery-item"><img src="https://images.unsplash.com/photo-1532372576444-dda954194ad0?w=600&h=450&fit=crop" class="gallery-img" alt="Mobilier métal design" loading="lazy"><div class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/60 to-transparent p-3"><p class="text-white text-xs font-medium">Mobilier design</p></div></div>
+        <div class="gallery-item"><img src="https://images.unsplash.com/photo-1600585152220-90363fe7e115?w=600&h=450&fit=crop" class="gallery-img" alt="Garde-corps" loading="lazy"><div class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/60 to-transparent p-3"><p class="text-white text-xs font-medium">Garde-corps</p></div></div>
+        <div class="gallery-item"><img src="https://images.unsplash.com/photo-1589939705384-5185137a7f0f?w=600&h=450&fit=crop" class="gallery-img" alt="Rénovation portail ancien" loading="lazy"><div class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/60 to-transparent p-3"><p class="text-white text-xs font-medium">Portail rénové</p></div></div>
+        <div class="gallery-item"><img src="https://images.unsplash.com/photo-1600585154363-67eb9e2e2099?w=600&h=450&fit=crop" class="gallery-img" alt="Escalier métal" loading="lazy"><div class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/60 to-transparent p-3"><p class="text-white text-xs font-medium">Escalier métallique</p></div></div>
+        <div class="gallery-item"><img src="https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=600&h=450&fit=crop" class="gallery-img" alt="Pièce usinée" loading="lazy"><div class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/60 to-transparent p-3"><p class="text-white text-xs font-medium">Pièce usinée</p></div></div>
+    </div>
+</section>
+
+<div class="section-divider max-w-4xl mx-auto"></div>
+
+<!-- ATELIER -->
+<section id="atelier" class="max-w-6xl mx-auto px-4 py-20">
+    <div class="grid md:grid-cols-2 gap-12 items-center">
+        <div>
+            <p class="text-accent-600 font-semibold tracking-wider uppercase text-sm">L'atelier</p>
+            <h2 class="font-display text-3xl md:text-4xl font-bold text-iron-900 mt-2 mb-4">L'Atelier du Fer</h2>
+            <p class="text-iron-600 leading-relaxed mb-4">
+                Installé depuis <strong>novembre 2012</strong> à Chas, dans la petite toscane auvergnate (près de Billom, Puy-de-Dôme),
+                mon atelier est équipé pour <strong>plier, rouler, découper, percer, souder et usiner</strong> tous vos projets métalliques.
+            </p>
+            <p class="text-iron-600 leading-relaxed mb-4">
+                J'interviens aussi bien pour les <strong>particuliers</strong> que les <strong>professionnels</strong>,
+                avec des références comme la Pouzolane des Dômes, l'ASM et plusieurs mairies du secteur.
+            </p>
+            <div class="flex flex-wrap gap-3 mt-6">
+                <span class="bg-accent-50 text-accent-700 text-sm font-medium px-3 py-1.5 rounded-lg">Acier</span>
+                <span class="bg-accent-50 text-accent-700 text-sm font-medium px-3 py-1.5 rounded-lg">Inox</span>
+                <span class="bg-accent-50 text-accent-700 text-sm font-medium px-3 py-1.5 rounded-lg">Aluminium</span>
+                <span class="bg-accent-50 text-accent-700 text-sm font-medium px-3 py-1.5 rounded-lg">Fonte</span>
+                <span class="bg-accent-50 text-accent-700 text-sm font-medium px-3 py-1.5 rounded-lg">Tournage</span>
+            </div>
+        </div>
+        <div class="bg-iron-100/50 rounded-2xl p-8 border border-iron-200">
+            <div class="flex items-start gap-4 mb-6">
+                <div class="text-3xl text-accent-400">"</div>
+                <p class="text-iron-700 italic leading-relaxed text-sm">
+                    Adapter mon savoir-fer à vos projets. <strong>Qualité et Professionnalisme</strong> sont mes maîtres mots.
+                    Une étude sur plan de votre projet est réalisée à votre domicile et un devis est établi dans les plus brefs délais.
+                </p>
+            </div>
+            <p class="text-iron-400 text-xs uppercase tracking-wide mb-4">— Patrick Soudry</p>
+            <div class="space-y-3 text-sm text-iron-600">
+                <div class="flex items-center gap-2"><span class="text-accent-500">✓</span> Atelier équipé pour tous les métaux</div>
+                <div class="flex items-center gap-2"><span class="text-accent-500">✓</span> Tour à métaux conventionnel RAMO</div>
+                <div class="flex items-center gap-2"><span class="text-accent-500">✓</span> Déplacement à domicile pour étude et devis</div>
+                <div class="flex items-center gap-2"><span class="text-accent-500">✓</span> Réparation et modification de tous objets métalliques</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="section-divider max-w-4xl mx-auto"></div>
+
+<!-- DEVIS -->
+<section id="devis" class="max-w-6xl mx-auto px-4 py-20">
+    <div class="bg-gradient-to-br from-iron-800 to-iron-950 rounded-2xl p-8 md:p-12 text-white shadow-2xl shadow-iron-900/30">
+        <div class="grid md:grid-cols-2 gap-8 items-center">
+            <div>
+                <h2 class="font-display text-3xl md:text-4xl font-bold mb-4">Un projet en métal ?<br>Parlons-en</h2>
+                <p class="text-iron-300 leading-relaxed mb-6">
+                    Déplacement à votre domicile pour étude et devis gratuit. Réactivité garantie.
+                </p>
+                <div class="space-y-3 text-iron-300 text-sm">
+                    <p class="flex items-center gap-2"><span class="text-accent-400">📞</span> 06 88 99 30 65</p>
+                    <p class="flex items-center gap-2"><span class="text-accent-400">✉️</span> patrick.soudry1@orange.fr</p>
+                    <p class="flex items-center gap-2"><span class="text-accent-400">📍</span> 22 rue du Pré Bâtier — 63160 Chas</p>
+                    <p class="flex items-center gap-2"><span class="text-accent-400">🗺️</span> Billom • Clermont-Ferrand • Pont-du-Château • Puy-de-Dôme</p>
+                </div>
+            </div>
+            <form class="bg-white/10 backdrop-blur rounded-xl p-6 space-y-4" onsubmit="event.preventDefault();alert('Ceci est une démo — Demande non envoyée.\n\nContactez directement patrick.soudry1@orange.fr')">
+                <div>
+                    <label class="block text-sm font-medium text-white mb-1">Votre nom</label>
+                    <input type="text" placeholder="M. / Mme ..." class="w-full px-4 py-3 rounded-lg bg-white/20 border border-white/20 text-white placeholder-white/40 focus:outline-none focus:border-accent-300 transition">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-white mb-1">Email ou téléphone</label>
+                    <input type="text" placeholder="Pour vous recontacter" class="w-full px-4 py-3 rounded-lg bg-white/20 border border-white/20 text-white placeholder-white/40 focus:outline-none focus:border-accent-300 transition">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-white mb-1">Type de projet</label>
+                    <select class="w-full px-4 py-3 rounded-lg bg-white/20 border border-white/20 text-white focus:outline-none focus:border-accent-300 transition">
+                        <option value="" class="text-iron-900">Sélectionnez...</option>
+                        <option class="text-iron-900">Portail / Garde-corps / Escalier</option>
+                        <option class="text-iron-900">Verrière / Marquise</option>
+                        <option class="text-iron-900">Mobilier design (table, chaise, lampe)</option>
+                        <option class="text-iron-900">Rénovation portail ancien</option>
+                        <option class="text-iron-900">Réparation / Soudure</option>
+                        <option class="text-iron-900">Usinage / Pièce sur plan</option>
+                        <option class="text-iron-900">Maintenance industrielle</option>
+                        <option class="text-iron-900">Autre</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-white mb-1">Description du projet</label>
+                    <textarea rows="3" placeholder="Dimensions, matériaux, inspiration, budget..." class="w-full px-4 py-3 rounded-lg bg-white/20 border border-white/20 text-white placeholder-white/40 focus:outline-none focus:border-accent-300 transition resize-none"></textarea>
+                </div>
+                <button type="submit" class="w-full bg-accent-400 hover:bg-accent-300 text-accent-950 font-bold py-3.5 rounded-xl transition text-lg shadow-lg shadow-accent-900/20">
+                    Envoyer ma demande →
+                </button>
+                <p class="text-white/50 text-xs text-center">Démo — Contact direct : patrick.soudry1@orange.fr</p>
+            </form>
+        </div>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="bg-iron-900 text-iron-300 py-10 mt-10">
+    <div class="max-w-6xl mx-auto px-4 grid md:grid-cols-3 gap-8">
+        <div>
+            <div class="flex items-center gap-3 mb-3">
+                <div class="w-8 h-8 rounded-md bg-accent-500 flex items-center justify-center text-white text-xs font-bold">AM</div>
+                <p class="font-semibold text-white">L'Artisan Métallier</p>
+            </div>
+            <p class="text-xs text-iron-400 leading-relaxed">Patrick Soudry — Atelier du Fer. Métallerie, chaudronnerie, soudure depuis 2012 à Chas (63).</p>
+        </div>
+        <div>
+            <p class="font-semibold text-white mb-3 text-sm">Services</p>
+            <ul class="space-y-1.5 text-xs">
+                <li>Métallerie & chaudronnerie</li>
+                <li>Soudure acier, inox, alu, fonte</li>
+                <li>Rénovation de portails anciens</li>
+                <li>Mobilier design sur mesure</li>
+                <li>Usinage & tournage</li>
+                <li>Maintenance industrielle</li>
+            </ul>
+        </div>
+        <div>
+            <p class="font-semibold text-white mb-3 text-sm">Contact</p>
+            <ul class="space-y-1.5 text-xs">
+                <li>📞 06 88 99 30 65</li>
+                <li>✉️ patrick.soudry1@orange.fr</li>
+                <li>📍 22 rue du Pré Bâtier, 63160 Chas</li>
+                <li>🗺️ Billom • Clermont-Ferrand • Puy-de-Dôme</li>
+            </ul>
+        </div>
+    </div>
+    <div class="text-center text-xs text-iron-500 mt-8 pt-6 border-t border-iron-800 max-w-6xl mx-4 md:mx-auto">
+        Démo réalisée par <a href="https://atlasnexus.tech" class="text-accent-400 hover:underline font-medium">AtlasNexus</a> — Site vitrine professionnel pour artisans. Ceci n'est pas le site officiel de Patrick Soudry.
+    </div>
+</footer>
+
+</body>
+</html>
