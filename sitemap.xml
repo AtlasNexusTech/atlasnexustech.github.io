@@ -1,153 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-        xmlns:xhtml="http://www.w3.org/1999/xhtml">
-  <!-- Main -->
+        xmlns:news="http://www.google.com/schemas/sitemap-news/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://atlasnexus.tech/</loc>
-    <lastmod>2026-05-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
     <xhtml:link rel="alternate" hreflang="fr" href="https://atlasnexus.tech/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://atlasnexus.tech/en/"/>
+    <image:image><image:loc>https://atlasnexus.tech/favicon.svg</image:loc></image:image>
   </url>
   <url>
     <loc>https://atlasnexus.tech/en/</loc>
-    <lastmod>2026-05-19</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>1.0</priority>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://atlasnexus.tech/"/>
+    <priority>0.9</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://atlasnexus.tech/en/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://atlasnexus.tech/"/>
   </url>
-
-  <!-- Products -->
-  <url>
-    <loc>https://atlasnexus.tech/oobe-ace-agent/</loc>
-    <lastmod>2026-05-19</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://atlasnexus.tech/markets-dashboard/</loc>
-    <lastmod>2026-05-19</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://atlasnexus.tech/framer-motion-ui/</loc>
-    <lastmod>2026-05-19</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://atlasnexus.tech/solana-pulse/</loc>
-    <lastmod>2026-05-18</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <!-- Landing IA Agentique -->
-  <url>
-    <loc>https://atlasnexus.tech/ia-agentique/</loc>
-    <lastmod>2026-05-19</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <!-- Demos web -->
-  <url>
-    <loc>https://atlasnexus.tech/demos-web/</loc>
-    <lastmod>2026-05-19</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://atlasnexus.tech/artisan-demo/</loc>
-    <lastmod>2026-05-19</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://atlasnexus.tech/demo-refonte-artisan/</loc>
-    <lastmod>2026-05-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://atlasnexus.tech/demo-refonte-restaurant/</loc>
-    <lastmod>2026-05-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://atlasnexus.tech/demo-refonte-sante/</loc>
-    <lastmod>2026-05-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://atlasnexus.tech/demo-refonte-consultant/</loc>
-    <lastmod>2026-05-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://atlasnexus.tech/demo-menuiserie.fr/</loc>
-    <lastmod>2026-05-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://atlasnexus.tech/artisan-metallier/</loc>
-    <lastmod>2026-05-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://atlasnexus.tech/duault-anatole/</loc>
-    <lastmod>2026-05-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://atlasnexus.tech/tony-zanirato/</loc>
-    <lastmod>2026-05-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://atlasnexus.tech/pwa-template/</loc>
-    <lastmod>2026-05-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
-  </url>
-  <url>
-    <loc>https://atlasnexus.tech/peintre-95/</loc>
-    <lastmod>2026-05-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://atlasnexus.tech/menuiserie-devarenne/</loc>
-    <lastmod>2026-05-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://atlasnexus.tech/ed-maconnerie/</loc>
-    <lastmod>2026-05-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://atlasnexus.tech/az-bois/</loc>
-    <lastmod>2026-05-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://atlasnexus.tech/augelle-deco/</loc>
-    <lastmod>2026-05-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
+  <url><loc>https://atlasnexus.tech/ia-agentique/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://atlasnexus.tech/markets-dashboard/</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://atlasnexus.tech/framer-motion-ui/</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://atlasnexus.tech/demos-web/</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://atlasnexus.tech/oobe-ace-agent/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://atlasnexus.tech/wallet-architecture.html</loc><changefreq>monthly</changefreq><priority>0.4</priority></url>
 </urlset>
