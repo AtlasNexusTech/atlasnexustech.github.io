@@ -1,27 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-        xmlns:news="http://www.google.com/schemas/sitemap-news/0.9"
-        xmlns:xhtml="http://www.w3.org/1999/xhtml"
-        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
-  <url>
-    <loc>https://atlasnexus.tech/</loc>
-    <changefreq>weekly</changefreq>
-    <priority>1.0</priority>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://atlasnexus.tech/"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://atlasnexus.tech/en/"/>
-    <image:image><image:loc>https://atlasnexus.tech/favicon.svg</image:loc></image:image>
-  </url>
-  <url>
-    <loc>https://atlasnexus.tech/en/</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://atlasnexus.tech/en/"/>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://atlasnexus.tech/"/>
-  </url>
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url><loc>https://atlasnexus.tech/</loc><changefreq>weekly</changefreq><priority>1.0</priority><xhtml:link rel="alternate" hreflang="fr" href="https://atlasnexus.tech/"/><xhtml:link rel="alternate" hreflang="en" href="https://atlasnexus.tech/en/"/></url>
+  <url><loc>https://atlasnexus.tech/en/</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
   <url><loc>https://atlasnexus.tech/ia-agentique/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://atlasnexus.tech/markets-dashboard/</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
   <url><loc>https://atlasnexus.tech/framer-motion-ui/</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://atlasnexus.tech/demos-web/</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://atlasnexus.tech/oobe-ace-agent/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://atlasnexus.tech/install/</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://atlasnexus.tech/wallet-architecture.html</loc><changefreq>monthly</changefreq><priority>0.4</priority></url>
+  <url><loc>https://atlasnexus.tech/artisan-demo/</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
 </urlset>
