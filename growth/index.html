@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Atlas Nexus — Trafic & Croissance</title>
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:system-ui,sans-serif;background:#0B1120;color:#F1F5F9;padding:2rem;max-width:900px;margin:0 auto}
+  h1{font-size:2rem;margin-bottom:.5rem}
+  h2{font-size:1.2rem;color:#94A3B8;margin-bottom:2rem;font-weight:400}
+  .card{background:#111827;border:1px solid #1E293B;border-radius:1rem;padding:1.5rem;margin-bottom:1rem}
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1rem;margin-bottom:2rem}
+  .stat{font-size:2.5rem;font-weight:800}
+  .stat-label{font-size:.85rem;color:#94A3B8;margin-top:.25rem}
+  .green{color:#34D399}.blue{color:#60A5FA}.purple{color:#C084FC}.amber{color:#FBBF24}
+  table{width:100%;border-collapse:collapse;margin:1rem 0}
+  th,td{padding:.75rem;text-align:left;border-bottom:1px solid #1E293B;font-size:.9rem}
+  th{color:#94A3B8;font-weight:600}
+  .bar{height:8px;background:#1E293B;border-radius:4px;overflow:hidden;margin-top:4px}
+  .bar-fill{height:100%;border-radius:4px}
+  .note{color:#64748B;font-size:.8rem;margin-top:.5rem}
+</style>
+</head>
+<body>
+<h1>Atlas Nexus — Growth Tracker</h1>
+<h2>Last updated: 20 Mai 2026</h2>
+
+<div class="grid">
+  <div class="card">
+    <div class="stat green">3</div>
+    <div class="stat-label">Articles dev.to publiés</div>
+  </div>
+  <div class="card">
+    <div class="stat blue">8</div>
+    <div class="stat-label">Pages indexées (sitemap)</div>
+  </div>
+  <div class="card">
+    <div class="stat purple">4</div>
+    <div class="stat-label">Offres actives (site)</div>
+  </div>
+  <div class="card">
+    <div class="stat amber">3</div>
+    <div class="stat-label">Proposals générées</div>
+  </div>
+</div>
+
+<div class="card">
+  <h3 style="margin-bottom:1rem">Articles dev.to</h3>
+  <table>
+    <tr><th>Titre</th><th>Date</th><th>Réactions</th></tr>
+    <tr><td>Atlas Nexus v0.1 — A Foundation for Multi-Agent Human+AI Ecosystems</td><td>19 Mai</td><td>0</td></tr>
+    <tr><td>7 Cron Jobs Run My Business 24/7</td><td>20 Mai</td><td>0</td></tr>
+    <tr><td>Keccak256 From Scratch in 200 Lines of Kotlin</td><td>20 Mai</td><td>0</td></tr>
+  </table>
+</div>
+
+<div class="card">
+  <h3 style="margin-bottom:1rem">Conversion Funnel</h3>
+  <p style="color:#94A3B8;margin-bottom:1rem">Visiteur → Lit une offre → Contacte</p>
+
+  <p style="font-size:.9rem;margin-bottom:.5rem"><strong>Pages de destination:</strong></p>
+  <div style="margin-bottom:1rem">
+    <span style="color:#94A3B8">🏠 atlasnexus.tech</span>
+    <div class="bar"><div class="bar-fill" style="width:100%;background:linear-gradient(90deg,#60A5FA,#34D399)"></div></div>
+  </div>
+
+  <p style="font-size:.9rem;margin-bottom:.5rem"><strong>Sections les plus scrollées:</strong></p>
+  <div style="margin-bottom:.5rem">Offres <span style="color:#94A3B8">(attendu)</span><div class="bar"><div class="bar-fill" style="width:70%;background:#34D399"></div></div></div>
+  <div style="margin-bottom:.5rem">Trust (nouveau)<div class="bar"><div class="bar-fill" style="width:0%;background:#C084FC"></div></div></div>
+  <div>Contact (nouveau)<div class="bar"><div class="bar-fill" style="width:0%;background:#60A5FA"></div></div></div>
+</div>
+
+<div class="note">
+  ⚠️ Données simulées — Hotjar activé, données réelles dans ~48h.<br>
+  📊 Sitemap soumis à Google Search Console le 20 Mai 2026.
+</div>
+</body>
+</html>
