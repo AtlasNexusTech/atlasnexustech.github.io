@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="fr" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,17 +9,70 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Playfair+Display:wght@600;700;800;900&display=swap" rel="stylesheet">
     <style>
-        .hero-gradient { background: linear-gradient(135deg, #1e1b4b 0%, #312e81 40%, #7c3aed 100%); }
+        /* ── Core ── */
         body { font-family: 'Inter', system-ui, sans-serif; }
         h1, h2, h3 { font-family: 'Playfair Display', Georgia, serif; }
+        .hero-gradient { background: linear-gradient(135deg, #1e1b4b 0%, #312e81 40%, #7c3aed 70%, #a78bfa 100%); position: relative; overflow: hidden; }
+        .hero-gradient::before { content: ""; position: absolute; inset: 0; background: radial-gradient(ellipse at 20% 50%, rgba(124,58,237,.25), transparent 50%), radial-gradient(ellipse at 80% 20%, rgba(167,139,250,.15), transparent 40%); pointer-events: none; }
+
+        /* ── Animated text gradient ── */
+        @keyframes gradientShift { 0%,100% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } }
+        .text-gradient-animated {
+            background: linear-gradient(110deg, #c4b5fd 0%, #a78bfa 30%, #fbbf24 55%, #a78bfa 75%, #c4b5fd 100%);
+            background-size: 250% 100%;
+            -webkit-background-clip: text; background-clip: text;
+            color: transparent;
+            animation: gradientShift 4s ease-in-out infinite;
+            display: inline-block;
+        }
+
+        /* ── Hero stagger ── */
+        .hero-stagger > * { opacity: 0; transform: translateY(30px); animation: heroFadeIn 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards; }
+        .hero-stagger > *:nth-child(1) { animation-delay: 0.1s; }
+        .hero-stagger > *:nth-child(2) { animation-delay: 0.25s; }
+        .hero-stagger > *:nth-child(3) { animation-delay: 0.40s; }
+        .hero-stagger > *:nth-child(4) { animation-delay: 0.55s; }
+        @keyframes heroFadeIn { to { opacity: 1; transform: translateY(0); } }
+
+        /* ── Scroll reveal ── */
+        .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1), transform 0.6s cubic-bezier(0.22, 1, 0.36, 1); }
+        .reveal.visible { opacity: 1; transform: translateY(0); }
+        .reveal-delay-1 { transition-delay: 0.05s; }
+        .reveal-delay-2 { transition-delay: 0.12s; }
+        .reveal-delay-3 { transition-delay: 0.19s; }
+        .reveal-delay-4 { transition-delay: 0.26s; }
+
+        /* ── Cards hover ── */
+        .card-hover { transition: all 250ms cubic-bezier(0.22, 1, 0.36, 1); }
+        .card-hover:hover { transform: translateY(-4px); box-shadow: 0 12px 32px -6px rgba(124,58,237,0.12); border-color: #a78bfa; }
+
+        /* ── Terminal ── */
         .code-block { background: #1e1b4b; color: #e0e7ff; border-radius: 12px; padding: 1.5rem; font-family: 'SF Mono', 'Fira Code', monospace; font-size: 0.85rem; line-height: 1.7; overflow-x: auto; }
         .code-block .cmd { color: #a78bfa; }
         .code-block .flag { color: #fbbf24; }
         .code-block .val { color: #34d399; }
-        .step-num { background: linear-gradient(135deg, #7c3aed, #6366f1); width: 2rem; height: 2rem; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: 700; font-size: 0.9rem; flex-shrink: 0; }
-        .pipeline-line { border-left: 2px dashed #c4b5fd; margin-left: 1rem; padding-left: 2rem; }
+
+        /* ── Step numbers ── */
+        .step-num { background: linear-gradient(135deg, #7c3aed, #6366f1); min-width: 2.2rem; height: 2.2rem; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: 700; font-size: 0.9rem; flex-shrink: 0; box-shadow: 0 4px 12px rgba(124,58,237,.3); }
+
+        /* ── Pipeline connector ── */
+        .pipeline-line { border-left: 2px dashed #c4b5fd; margin-left: 1.05rem; padding-left: 2rem; }
+
+        /* ── Price counter animation ── */
+        .counter { display: inline-block; }
+
+        /* ── Phone mockup ── */
+        @keyframes phoneFloat { 0%,100% { transform: translateY(0px); } 50% { transform: translateY(-8px); } }
+        .phone-float { animation: phoneFloat 6s ease-in-out infinite; }
+
+        /* ── Accessibility ── */
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+            .reveal { opacity: 1; transform: none; }
+            .hero-stagger > * { opacity: 1; transform: none; animation: none; }
+        }
     </style>
 </head>
 <body class="bg-slate-50 text-slate-900">
@@ -27,36 +80,36 @@
 <!-- NAV -->
 <nav class="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-slate-200">
     <div class="max-w-5xl mx-auto px-6 h-16 flex items-center justify-between">
-        <a href="/" class="flex items-center gap-3">
-            <div class="w-8 h-8 bg-indigo-600 rounded-lg flex items-center justify-center">
+        <a href="/" class="flex items-center gap-3 group">
+            <div class="w-8 h-8 bg-indigo-600 rounded-lg flex items-center justify-center group-hover:scale-105 transition-transform">
                 <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="6" r="2.5" fill="currentColor" stroke="none"/><circle cx="19" cy="13" r="2.5" fill="currentColor" stroke="none"/><circle cx="5" cy="13" r="2.5" fill="currentColor" stroke="none"/><line x1="12" y1="8.5" x2="17.5" y2="11.5"/><line x1="6.5" y1="11.5" x2="12" y2="8.5"/></svg>
             </div>
             <span class="font-bold text-lg tracking-tight">AtlasNexus</span>
         </a>
         <div class="flex gap-4 text-sm font-medium text-slate-600">
-            <a href="/demos-web/" class="hover:text-indigo-600">Portfolio</a>
-            <a href="https://github.com/AtlasNexusTech/artisan-demo" class="hover:text-indigo-600">GitHub</a>
+            <a href="/demos-web/" class="hover:text-indigo-600 transition-colors">Portfolio</a>
+            <a href="https://github.com/AtlasNexusTech/artisan-demo" class="hover:text-indigo-600 transition-colors">GitHub</a>
         </div>
     </div>
 </nav>
 
 <!-- HERO -->
-<section class="hero-gradient text-white py-24 px-6">
-    <div class="max-w-4xl mx-auto text-center">
+<section class="hero-gradient text-white py-28 px-6">
+    <div class="max-w-4xl mx-auto text-center hero-stagger">
         <p class="text-indigo-200 font-semibold tracking-widest uppercase text-xs mb-4">AtlasNexus · Outil</p>
-        <h1 class="text-4xl md:text-6xl font-extrabold leading-tight mb-6">
-            🔨 Artisan Démo
+        <h1 class="text-5xl md:text-7xl font-black leading-tight mb-6">
+            <span class="text-gradient-animated">Artisan Démo</span>
         </h1>
-        <p class="text-xl text-indigo-200 max-w-2xl mx-auto leading-relaxed mb-8">
+        <p class="text-xl text-indigo-200 max-w-2xl mx-auto leading-relaxed mb-10">
             Générateur semi-automatisé de sites vitrine pour artisans.<br>
-            <strong>5 minutes</strong> du prospect au déploiement sur atlasnexus.tech.
+            <strong class="text-white">5 minutes</strong> du prospect au déploiement sur atlasnexus.tech.
         </p>
-        <div class="flex justify-center gap-4 mb-10">
-            <a href="https://github.com/AtlasNexusTech/artisan-demo" class="bg-white text-indigo-900 font-bold px-6 py-3 rounded-xl hover:bg-indigo-50 transition shadow-lg">Voir sur GitHub →</a>
-            <a href="#usage" class="border-2 border-indigo-300 text-white font-semibold px-6 py-3 rounded-xl hover:border-white transition">Comment ça marche</a>
+        <div class="flex justify-center gap-4 mb-12">
+            <a href="https://github.com/AtlasNexusTech/artisan-demo" class="bg-white text-indigo-900 font-bold px-7 py-3.5 rounded-xl hover:bg-indigo-50 transition-all shadow-lg hover:shadow-xl hover:-translate-y-0.5">Voir sur GitHub →</a>
+            <a href="#usage" class="border-2 border-indigo-300 text-white font-semibold px-7 py-3.5 rounded-xl hover:border-white hover:bg-white/10 transition-all">Comment ça marche</a>
         </div>
         <!-- Terminal mockup -->
-        <div class="max-w-2xl mx-auto bg-slate-950 rounded-xl overflow-hidden shadow-2xl border border-indigo-500/20">
+        <div class="max-w-2xl mx-auto bg-slate-950 rounded-xl overflow-hidden shadow-2xl border border-indigo-500/20 reveal">
             <div class="flex items-center gap-2 px-4 py-3 bg-slate-900 border-b border-slate-800">
                 <div class="w-3 h-3 rounded-full bg-red-500/80"></div>
                 <div class="w-3 h-3 rounded-full bg-yellow-500/80"></div>
@@ -80,70 +133,74 @@
 </section>
 
 <!-- PIPELINE -->
-<section class="py-20 px-6" id="usage">
+<section class="py-24 px-6" id="usage">
     <div class="max-w-4xl mx-auto">
-        <p class="text-indigo-600 font-semibold tracking-widest uppercase text-xs mb-3">Pipeline</p>
-        <h2 class="text-3xl md:text-4xl font-extrabold text-slate-900 mb-4">Une commande, tout est fait</h2>
-        <p class="text-slate-500 mb-10 leading-relaxed">Du nom du prospect au site en ligne + article Dev.to, sans quitter le terminal.</p>
+        <div class="reveal">
+            <p class="text-indigo-600 font-semibold tracking-widest uppercase text-xs mb-3">Pipeline</p>
+            <h2 class="text-4xl md:text-5xl font-extrabold text-slate-900 mb-4">Une commande, tout est fait</h2>
+            <p class="text-slate-500 mb-12 leading-relaxed text-lg">Du nom du prospect au site en ligne + article Dev.to, sans quitter le terminal.</p>
+        </div>
 
-        <div class="code-block mb-8">
+        <div class="code-block mb-10 reveal reveal-delay-1">
 <span class="cmd">python3 genere-demo.py</span> <span class="val">"E.D. Maçonnerie"</span>   <span class="flag">--secteur</span> <span class="val">maconnerie</span>   <span class="flag">--ville</span> <span class="val">"Estissac (10)"</span>   <span class="flag">--tel</span> <span class="val">"06 00 00 00 00"</span>   <span class="flag">--email</span> <span class="val">"contact@ed-maconnerie.fr"</span>   <span class="flag">--auto</span>
         </div>
 
         <div class="space-y-6 pipeline-line">
-            <div class="flex items-start gap-4">
+            <div class="flex items-start gap-4 reveal reveal-delay-1">
                 <div class="step-num">1</div>
-                <div><strong class="text-slate-900">Génération config.json</strong><p class="text-slate-500 text-sm">Couleurs, services, arguments de vente adaptés au secteur</p></div>
+                <div><strong class="text-slate-900 text-lg">Génération config.json</strong><p class="text-slate-500">Couleurs, services, arguments de vente adaptés au secteur</p></div>
             </div>
-            <div class="flex items-start gap-4">
+            <div class="flex items-start gap-4 reveal reveal-delay-2">
                 <div class="step-num">2</div>
-                <div><strong class="text-slate-900">Copie du template PWA</strong><p class="text-slate-500 text-sm">Tailwind CSS, responsive, installable sur mobile, formulaire de devis</p></div>
+                <div><strong class="text-slate-900 text-lg">Copie du template PWA</strong><p class="text-slate-500">Tailwind CSS, responsive, installable sur mobile, formulaire de devis</p></div>
             </div>
-            <div class="flex items-start gap-4">
+            <div class="flex items-start gap-4 reveal reveal-delay-3">
                 <div class="step-num">3</div>
-                <div><strong class="text-slate-900">Déploiement sur atlasnexus.tech</strong><p class="text-slate-500 text-sm">Commit + push automatique → en ligne en 30 secondes</p></div>
+                <div><strong class="text-slate-900 text-lg">Déploiement sur atlasnexus.tech</strong><p class="text-slate-500">Commit + push automatique → en ligne en 30 secondes</p></div>
             </div>
-            <div class="flex items-start gap-4">
+            <div class="flex items-start gap-4 reveal reveal-delay-4">
                 <div class="step-num">4</div>
-                <div><strong class="text-slate-900">Card portfolio</strong><p class="text-slate-500 text-sm">Ajoutée automatiquement sur /demos-web/</p></div>
+                <div><strong class="text-slate-900 text-lg">Card portfolio</strong><p class="text-slate-500">Ajoutée automatiquement sur /demos-web/</p></div>
             </div>
-            <div class="flex items-start gap-4">
+            <div class="flex items-start gap-4 reveal">
                 <div class="step-num">5</div>
-                <div><strong class="text-slate-900">Article Dev.to</strong><p class="text-slate-500 text-sm">Draft prêt, publié via l'API — visibilité + SEO</p></div>
+                <div><strong class="text-slate-900 text-lg">Article Dev.to</strong><p class="text-slate-500">Draft prêt, publié via l'API — visibilité + SEO</p></div>
             </div>
         </div>
     </div>
 </section>
 
 <!-- SECTEURS -->
-<section class="py-16 px-6 bg-white">
+<section class="py-24 px-6 bg-white">
     <div class="max-w-4xl mx-auto">
-        <p class="text-indigo-600 font-semibold tracking-widest uppercase text-xs mb-3">Secteurs</p>
-        <h2 class="text-3xl font-extrabold text-slate-900 mb-8">5 secteurs pré-configurés</h2>
-        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-            <div class="bg-slate-50 rounded-xl p-5 border border-slate-200">
-                <span class="text-2xl">🧱</span>
-                <h3 class="font-bold mt-2 mb-1">Maçonnerie</h3>
+        <div class="reveal">
+            <p class="text-indigo-600 font-semibold tracking-widest uppercase text-xs mb-3">Secteurs</p>
+            <h2 class="text-4xl md:text-5xl font-extrabold text-slate-900 mb-12">5 secteurs pré-configurés</h2>
+        </div>
+        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+            <div class="card-hover bg-slate-50 rounded-xl p-6 border border-slate-200 reveal reveal-delay-1">
+                <span class="text-3xl mb-3 block">🧱</span>
+                <h3 class="font-bold text-lg mb-1">Maçonnerie</h3>
                 <p class="text-slate-500 text-sm">Terre cuite, murs, dallage, taille de pierre</p>
             </div>
-            <div class="bg-slate-50 rounded-xl p-5 border border-slate-200">
-                <span class="text-2xl">🎨</span>
-                <h3 class="font-bold mt-2 mb-1">Peinture</h3>
+            <div class="card-hover bg-slate-50 rounded-xl p-6 border border-slate-200 reveal reveal-delay-2">
+                <span class="text-3xl mb-3 block">🎨</span>
+                <h3 class="font-bold text-lg mb-1">Peinture</h3>
                 <p class="text-slate-500 text-sm">Orange chaud, ravalement, traitement bois</p>
             </div>
-            <div class="bg-slate-50 rounded-xl p-5 border border-slate-200">
-                <span class="text-2xl">🪵</span>
-                <h3 class="font-bold mt-2 mb-1">Menuiserie</h3>
+            <div class="card-hover bg-slate-50 rounded-xl p-6 border border-slate-200 reveal reveal-delay-2">
+                <span class="text-3xl mb-3 block">🪵</span>
+                <h3 class="font-bold text-lg mb-1">Menuiserie</h3>
                 <p class="text-slate-500 text-sm">Bois naturel, fenêtres, agencement</p>
             </div>
-            <div class="bg-slate-50 rounded-xl p-5 border border-slate-200">
-                <span class="text-2xl">🔩</span>
-                <h3 class="font-bold mt-2 mb-1">Métallerie</h3>
+            <div class="card-hover bg-slate-50 rounded-xl p-6 border border-slate-200 reveal reveal-delay-3">
+                <span class="text-3xl mb-3 block">🔩</span>
+                <h3 class="font-bold text-lg mb-1">Métallerie</h3>
                 <p class="text-slate-500 text-sm">Acier brut, soudure, mobilier design</p>
             </div>
-            <div class="bg-slate-50 rounded-xl p-5 border border-slate-200">
-                <span class="text-2xl">🏠</span>
-                <h3 class="font-bold mt-2 mb-1">Générique</h3>
+            <div class="card-hover bg-slate-50 rounded-xl p-6 border border-slate-200 reveal reveal-delay-3">
+                <span class="text-3xl mb-3 block">🏠</span>
+                <h3 class="font-bold text-lg mb-1">Générique</h3>
                 <p class="text-slate-500 text-sm">Bleu pro, adaptable à tout métier</p>
             </div>
         </div>
@@ -151,41 +208,43 @@
 </section>
 
 <!-- LIVE DEMOS -->
-<section class="py-16 px-6 bg-slate-50">
+<section class="py-24 px-6 bg-gradient-to-b from-slate-50 to-white">
     <div class="max-w-4xl mx-auto">
-        <div class="grid md:grid-cols-2 gap-10 items-center">
+        <div class="grid md:grid-cols-2 gap-14 items-center">
             <div>
-                <p class="text-indigo-600 font-semibold tracking-widest uppercase text-xs mb-3">Résultat</p>
-                <h2 class="text-3xl font-extrabold text-slate-900 mb-4">Démos générées avec cet outil</h2>
-                <p class="text-slate-500 mb-6">Chaque lien ci-dessous est une démo produite en quelques minutes.</p>
+                <div class="reveal">
+                    <p class="text-indigo-600 font-semibold tracking-widest uppercase text-xs mb-3">Résultat</p>
+                    <h2 class="text-4xl md:text-5xl font-extrabold text-slate-900 mb-4">Démos générées avec cet outil</h2>
+                    <p class="text-slate-500 mb-8">Chaque lien ci-dessous est une démo produite en quelques minutes.</p>
+                </div>
                 <div class="grid sm:grid-cols-1 gap-3">
-                    <a href="/ed-maconnerie/" class="bg-white p-4 rounded-xl border border-slate-200 hover:border-indigo-300 hover:shadow-md transition flex items-center gap-3">
+                    <a href="/ed-maconnerie/" class="card-hover bg-white p-4 rounded-xl border border-slate-200 flex items-center gap-3 reveal reveal-delay-1">
                         <span class="text-2xl">🧱</span>
                         <div><strong>E.D. Maçonnerie</strong><p class="text-slate-500 text-xs">Estissac, Aube</p></div>
                     </a>
-                    <a href="/duault-anatole/" class="bg-white p-4 rounded-xl border border-slate-200 hover:border-indigo-300 hover:shadow-md transition flex items-center gap-3">
+                    <a href="/duault-anatole/" class="card-hover bg-white p-4 rounded-xl border border-slate-200 flex items-center gap-3 reveal reveal-delay-1">
                         <span class="text-2xl">🎨</span>
                         <div><strong>Duault Anatole</strong><p class="text-slate-500 text-xs">Vendée, Charente</p></div>
                     </a>
-                    <a href="/artisan-metallier/" class="bg-white p-4 rounded-xl border border-slate-200 hover:border-indigo-300 hover:shadow-md transition flex items-center gap-3">
+                    <a href="/artisan-metallier/" class="card-hover bg-white p-4 rounded-xl border border-slate-200 flex items-center gap-3 reveal reveal-delay-2">
                         <span class="text-2xl">🔩</span>
                         <div><strong>Artisan Métallier</strong><p class="text-slate-500 text-xs">Chas, 63</p></div>
                     </a>
-                    <a href="/menuiserie-devarenne/" class="bg-white p-4 rounded-xl border border-slate-200 hover:border-indigo-300 hover:shadow-md transition flex items-center gap-3">
+                    <a href="/menuiserie-devarenne/" class="card-hover bg-white p-4 rounded-xl border border-slate-200 flex items-center gap-3 reveal reveal-delay-2">
                         <span class="text-2xl">🪵</span>
                         <div><strong>Menuiserie DEVARENNE</strong><p class="text-slate-500 text-xs">Avenay Val d'Or, Marne</p></div>
                     </a>
                 </div>
-                <a href="/demos-web/" class="inline-block mt-5 text-indigo-600 font-semibold hover:underline">Voir tout le portfolio →</a>
+                <a href="/demos-web/" class="inline-block mt-6 text-indigo-600 font-semibold hover:underline reveal reveal-delay-3">Voir tout le portfolio →</a>
             </div>
-            <!-- Phone mockup -->
-            <div class="hidden md:flex justify-center">
-                <div class="relative w-64 h-[480px] bg-slate-900 rounded-[3rem] border-4 border-slate-700 shadow-2xl overflow-hidden">
+            <!-- Phone mockup with float animation -->
+            <div class="hidden md:flex justify-center reveal">
+                <div class="phone-float relative w-64 h-[500px] bg-slate-900 rounded-[3rem] border-4 border-slate-700 shadow-2xl overflow-hidden">
                     <div class="absolute top-0 inset-x-0 h-8 bg-slate-900 rounded-b-2xl z-10 flex justify-center">
                         <div class="w-16 h-1 bg-slate-600 rounded-full mt-3"></div>
                     </div>
                     <div class="h-full w-full bg-white pt-8 overflow-hidden">
-                        <div class="h-2 bg-indigo-600"></div>
+                        <div class="h-2 bg-gradient-to-r from-indigo-500 to-purple-500"></div>
                         <div class="p-3">
                             <div class="h-3 w-20 bg-indigo-200 rounded mb-3"></div>
                             <div class="h-4 w-32 bg-slate-800 rounded mb-2"></div>
@@ -200,7 +259,7 @@
                             <div class="h-2 w-full bg-slate-200 rounded mb-2"></div>
                             <div class="h-2 w-5/6 bg-slate-200 rounded mb-2"></div>
                             <div class="h-2 w-2/3 bg-slate-200 rounded mb-4"></div>
-                            <div class="h-10 w-full bg-indigo-600 rounded-lg flex items-center justify-center text-white text-xs font-semibold">📋 Demander un devis</div>
+                            <div class="h-10 w-full bg-gradient-to-r from-indigo-600 to-purple-600 rounded-lg flex items-center justify-center text-white text-xs font-semibold">📋 Demander un devis</div>
                         </div>
                     </div>
                 </div>
@@ -210,37 +269,97 @@
 </section>
 
 <!-- MODEL -->
-<section class="py-16 px-6 bg-white">
+<section class="py-24 px-6 bg-white">
     <div class="max-w-4xl mx-auto text-center">
-        <p class="text-indigo-600 font-semibold tracking-widest uppercase text-xs mb-3">Modèle économique</p>
-        <h2 class="text-3xl font-extrabold text-slate-900 mb-8">50 € par site + 10 €/mois</h2>
+        <div class="reveal">
+            <p class="text-indigo-600 font-semibold tracking-widest uppercase text-xs mb-3">Modèle économique</p>
+            <h2 class="text-4xl md:text-5xl font-extrabold text-slate-900 mb-12">50 € par site + 10 €/mois</h2>
+        </div>
         <div class="grid sm:grid-cols-3 gap-6">
-            <div class="bg-indigo-50 rounded-xl p-6">
-                <p class="text-3xl font-extrabold text-indigo-600">50 €</p>
-                <p class="text-slate-600 text-sm mt-1">Forfait refonte one-page</p>
+            <div class="card-hover bg-gradient-to-br from-indigo-50 to-purple-50 rounded-xl p-8 border border-indigo-100 reveal reveal-delay-1">
+                <div class="text-5xl font-black text-indigo-600 counter mb-2">50€</div>
+                <p class="text-slate-600 font-medium">Forfait refonte one-page</p>
+                <p class="text-slate-400 text-sm mt-1">Site livré en ligne</p>
             </div>
-            <div class="bg-indigo-50 rounded-xl p-6">
-                <p class="text-3xl font-extrabold text-indigo-600">10 €</p>
-                <p class="text-slate-600 text-sm mt-1">Maintenance mensuelle</p>
+            <div class="card-hover bg-gradient-to-br from-indigo-50 to-purple-50 rounded-xl p-8 border border-indigo-100 reveal reveal-delay-2">
+                <div class="text-5xl font-black text-indigo-600 counter mb-2">10€</div>
+                <p class="text-slate-600 font-medium">Maintenance mensuelle</p>
+                <p class="text-slate-400 text-sm mt-1">Mises à jour incluses</p>
             </div>
-            <div class="bg-indigo-50 rounded-xl p-6">
-                <p class="text-3xl font-extrabold text-indigo-600">5 min</p>
-                <p class="text-slate-600 text-sm mt-1">Par démo générée</p>
+            <div class="card-hover bg-gradient-to-br from-indigo-50 to-purple-50 rounded-xl p-8 border border-indigo-100 reveal reveal-delay-3">
+                <div class="text-5xl font-black text-indigo-600 counter mb-2">5min</div>
+                <p class="text-slate-600 font-medium">Par démo générée</p>
+                <p class="text-slate-400 text-sm mt-1">De la commande au live</p>
             </div>
         </div>
     </div>
 </section>
 
 <!-- CTA -->
-<section class="py-20 px-6 bg-indigo-900 text-white text-center">
-    <h2 class="text-3xl font-extrabold mb-4">Prêt à générer votre première démo ?</h2>
-    <p class="text-indigo-200 mb-8 max-w-xl mx-auto">Clonez le repo, lancez la commande, et votre site vitrine artisan est en ligne.</p>
-    <a href="https://github.com/AtlasNexusTech/artisan-demo" class="inline-block bg-white text-indigo-900 font-bold px-8 py-4 rounded-xl hover:bg-indigo-50 transition shadow-lg text-lg">🔨 Voir sur GitHub</a>
+<section class="py-24 px-6 hero-gradient text-white text-center relative overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-t from-indigo-900/60 to-transparent"></div>
+    <div class="relative z-10 max-w-2xl mx-auto reveal">
+        <h2 class="text-4xl md:text-5xl font-extrabold mb-5">Prêt à générer votre première démo ?</h2>
+        <p class="text-indigo-200 mb-10 text-lg leading-relaxed">Clonez le repo, lancez la commande, et votre site vitrine artisan est en ligne en 30 secondes.</p>
+        <div class="flex justify-center gap-4 flex-wrap">
+            <a href="https://github.com/AtlasNexusTech/artisan-demo" class="bg-white text-indigo-900 font-bold px-8 py-4 rounded-xl hover:bg-indigo-50 transition-all shadow-xl hover:shadow-2xl hover:-translate-y-1 text-lg">Voir sur GitHub</a>
+            <a href="/demos-web/" class="border-2 border-indigo-300 text-white font-semibold px-8 py-4 rounded-xl hover:border-white hover:bg-white/10 transition-all text-lg">Voir les démos →</a>
+        </div>
+    </div>
 </section>
 
 <footer class="py-8 border-t border-slate-200 bg-white text-center text-sm text-slate-400">
     © 2026 AtlasNexus — <a href="https://atlasnexus.tech" class="text-indigo-600 hover:underline">atlasnexus.tech</a>
 </footer>
+
+<!-- Scroll Reveal + Counter Animation -->
+<script>
+(function() {
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    document.querySelectorAll('.reveal').forEach(el => el.classList.add('visible'));
+    return;
+  }
+
+  // Scroll reveal
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  // Animated counters
+  const counters = document.querySelectorAll('.counter');
+  const counterObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const el = entry.target;
+        const text = el.textContent.trim();
+        const match = text.match(/^(\d+)([^\d]*)$/);
+        if (match) {
+          const target = parseInt(match[1]);
+          const suffix = match[2];
+          let current = 0;
+          const duration = 1500;
+          const step = Math.max(1, Math.floor(target / (duration / 16)));
+          const timer = setInterval(() => {
+            current = Math.min(current + step, target);
+            el.textContent = current + suffix;
+            if (current >= target) clearInterval(timer);
+          }, 16);
+        }
+        counterObserver.unobserve(el);
+      }
+    });
+  }, { threshold: 0.5 });
+
+  counters.forEach(el => counterObserver.observe(el));
+})();
+</script>
 
 </body>
 </html>
