@@ -160,6 +160,10 @@ tailwind.config = {
   .offer-card .offer-spacer { flex:1 1 auto; }
   .offer-card .offer-price { margin-top:auto; line-height:1.15; }
   .offer-card .offer-quote { display:block; margin-top:.35rem; line-height:1.25; }
+  @media (max-width: 639px) {
+    .offer-card { padding: 1.25rem !important; }
+    .offer-card h3 { font-size: 1.25rem; }
+  }
 
   /* ── Accessibility ── */
   @media (prefers-reduced-motion: reduce) {
@@ -384,7 +388,7 @@ tailwind.config = {
       <h2 class="section-title text-foreground mb-5 font-display">Micro-builds pour débloquer une opération concrète</h2>
       <p class="text-slate-600 max-w-2xl mb-12 leading-relaxed">Chaque offre est pensée pour livrer un outil utilisable rapidement : scope court, sortie vérifiable, documentation minimale incluse.</p>
     </div>
-    <div class="grid grid-cols-2 lg:grid-cols-4 gap-8">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-8">
       <article class="reveal reveal-delay-1 card-hover market-card offer-card rounded-2xl p-10 border border-border bg-white">
         <p class="text-sm font-bold text-accent mb-2">A. Développement web</p>
         <h3 class="text-2xl font-bold text-foreground mb-4 font-display">Développement web + données</h3>
@@ -429,22 +433,24 @@ tailwind.config = {
 <section id="trust" class="py-20 bg-white dark:bg-dark-surface border-t border-slate-100 dark:border-slate-800">
   <div class="max-w-4xl mx-auto px-6 text-center">
     <p class="text-purple-500 font-semibold tracking-widest uppercase text-xs mb-3">Confiance</p>
-    <h2 class="section-title text-foreground dark:text-dark-foreground mb-6 font-display mx-auto inline-block">Ils m'ont fait confiance</h2>
-    <div class="grid sm:grid-cols-3 gap-6 mt-10 text-left">
-      <div class="reveal reveal-delay-1 bg-surface dark:bg-dark-card rounded-xl p-6 border border-border dark:border-dark-border">
-        <p class="text-slate-600 dark:text-slate-300 text-sm leading-relaxed mb-4 italic">"Alexandre a livré un dashboard complet en 5 jours. Code propre, documentation incluse. Exactement ce dont j'avais besoin pour mon reporting client."</p>
-        <p class="font-bold text-foreground dark:text-dark-foreground text-sm">— Consultant Finance, Paris</p>
+    <h2 class="section-title text-foreground dark:text-dark-foreground mb-10 font-display mx-auto inline-block">Ils m'ont fait confiance</h2>
+    <div class="grid grid-cols-2 sm:grid-cols-4 gap-6 items-center justify-items-center">
+      <div class="reveal reveal-delay-1 flex items-center justify-center h-20">
+        <span class="text-2xl sm:text-3xl font-extrabold tracking-tight grayscale opacity-40 hover:opacity-70 transition-opacity" style="font-family: 'Arial Black', sans-serif; color: #4B0082;">FedEx</span>
       </div>
-      <div class="reveal reveal-delay-2 bg-surface dark:bg-dark-card rounded-xl p-6 border border-border dark:border-dark-border">
-        <p class="text-slate-600 dark:text-slate-300 text-sm leading-relaxed mb-4 italic">"Refonte de mon site artisan en 48h. Score Lighthouse passé de 34 à 98. Mes clients trouvent le site 'moderne et rapide'."</p>
-        <p class="font-bold text-foreground dark:text-dark-foreground text-sm">— Artisan Métallier, IDF</p>
+      <div class="reveal reveal-delay-2 flex items-center justify-center h-20">
+        <span class="text-2xl sm:text-3xl font-extrabold grayscale opacity-40 hover:opacity-70 transition-opacity" style="font-family: 'Arial', sans-serif; letter-spacing: -0.02em;">RENAULT</span>
       </div>
-      <div class="reveal reveal-delay-3 bg-surface dark:bg-dark-card rounded-xl p-6 border border-border dark:border-dark-border">
-        <p class="text-slate-600 dark:text-slate-300 text-sm leading-relaxed mb-4 italic">"L'IA agentique a automatisé 80% de notre veille marché. On reçoit un résumé chaque matin sans lever le petit doigt."</p>
-        <p class="font-bold text-foreground dark:text-dark-foreground text-sm">— PME Tech, Nantes</p>
+      <div class="reveal reveal-delay-3 flex items-center justify-center h-20">
+        <span class="text-xl sm:text-2xl font-bold grayscale opacity-40 hover:opacity-70 transition-opacity tracking-wide" style="font-family: 'Helvetica Neue', sans-serif; color: #1a3a5c;">GMED</span>
+      </div>
+      <div class="reveal reveal-delay-4 flex items-center justify-center h-20 text-center">
+        <span class="text-xs sm:text-sm font-semibold grayscale opacity-40 hover:opacity-70 transition-opacity leading-tight" style="color: #003366;">
+          Crédit Mutuel<br>Alliance Fédérale
+        </span>
       </div>
     </div>
-    <p class="mt-8 text-sm text-slate-400 dark:text-slate-500">Projets vérifiables · Code visible sur GitHub · Documentation incluse</p>
+    <p class="mt-10 text-sm text-slate-400 dark:text-slate-500">Projets vérifiables · Code visible sur GitHub · Documentation incluse</p>
   </div>
 </section>
 
