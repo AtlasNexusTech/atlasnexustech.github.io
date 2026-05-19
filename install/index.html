@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<title>AI2Work — Install Android App</title>
+<link rel="canonical" href="https://atlasnexus.tech/install/">
+<meta name="description" content="Download and install the AI2Work Android app with native Ethereum wallet.">
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700;800;900&family=Nunito+Sans:ital,opsz,wght@0,6..12,200..800;1,6..12,200..800&display=swap" rel="stylesheet">
+<script>
+tailwind.config = {
+  darkMode: 'class',
+  theme: {
+    extend: {
+      fontFamily: { display: ['Rubik','sans-serif'], body: ['Nunito Sans','sans-serif'] },
+      colors: {
+        primary: '#2563EB', accent: '#059669',
+        surface: '#F8FAFC', foreground: '#0F172A',
+        'dark-surface': '#0B1120', 'dark-card': '#111827', 'dark-foreground': '#F1F5F9', 'dark-dim': '#94A3B8'
+      }
+    }
+  }
+}
+</script>
+<style>
+  .dark .bg-surface { background-color: #0B1120; }
+  .dark .text-slate-600 { color: #CBD5E1; }
+  .dark .text-slate-500 { color: #94A3B8; }
+  .dark .text-foreground { color: #F1F5F9; }
+  .step-num { font-size: clamp(2rem, 4vw, 3rem); font-weight: 900; background: linear-gradient(135deg,#2563EB,#059669); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
+</style>
+</head>
+<body class="bg-surface dark:bg-dark-surface text-foreground dark:text-dark-foreground font-body antialiased min-h-screen">
+<nav class="border-b border-slate-200 dark:border-slate-800 bg-white/80 dark:bg-dark-surface/90 backdrop-blur">
+  <div class="max-w-4xl mx-auto px-6 h-16 flex items-center justify-between">
+    <a href="/" class="font-display font-bold text-xl">Atlas Nexus</a>
+    <button id="theme-toggle" class="w-9 h-9 rounded-full border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 flex items-center justify-center" onclick="document.documentElement.classList.toggle('dark'); localStorage.setItem('theme', document.documentElement.classList.contains('dark')?'dark':'light')" aria-label="Toggle dark mode">🌓</button>
+  </div>
+</nav>
+
+<main class="max-w-4xl mx-auto px-6 py-16">
+  <div class="mb-12">
+    <p class="text-accent font-semibold tracking-widest uppercase text-xs mb-3">Mobile App</p>
+    <h1 class="text-4xl sm:text-5xl font-display font-extrabold mb-4">Install AI2Work</h1>
+    <p class="text-slate-600 dark:text-dark-dim text-lg max-w-2xl">Android app with native Ethereum wallet — sign transactions without MetaMask.</p>
+  </div>
+
+  <div class="grid md:grid-cols-3 gap-6 mb-12">
+    <div class="col-span-2 bg-white dark:bg-dark-card rounded-2xl p-8 border border-slate-200 dark:border-slate-700">
+      <h2 class="text-xl font-bold mb-6 font-display">📱 Download APK</h2>
+      <a href="https://github.com/AtlasNexusTech/ai2work-android/releases/latest/download/ai2work.apk" class="inline-flex items-center gap-3 bg-primary text-white px-8 py-4 rounded-full text-lg font-semibold hover:bg-primary-dark mb-6 font-display">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        Download APK (4.5 MB)
+      </a>
+      <p class="text-slate-500 dark:text-dark-dim text-sm">Version 1.0.0 · Android 12+ · <a href="https://github.com/AtlasNexusTech/ai2work-android" class="text-primary hover:underline">GitHub</a></p>
+    </div>
+
+    <div class="bg-white dark:bg-dark-card rounded-2xl p-8 border border-slate-200 dark:border-slate-700">
+      <h2 class="text-xl font-bold mb-6 font-display">✨ Features</h2>
+      <ul class="space-y-3 text-slate-600 dark:text-dark-dim text-sm">
+        <li>🔐 Native Ethereum wallet</li>
+        <li>🔑 Android Keystore encryption</li>
+        <li>✍️ EIP-191 + EIP-1559 signing</li>
+        <li>🌐 Web3 dApp browser</li>
+        <li>💰 Celo Mainnet support</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="mb-12">
+    <h2 class="text-2xl font-bold mb-6 font-display">Installation Steps</h2>
+    <div class="grid sm:grid-cols-4 gap-6">
+      <div class="bg-white dark:bg-dark-card rounded-xl p-6 border border-slate-200 dark:border-slate-700 text-center">
+        <div class="step-num mb-3">1</div>
+        <p class="font-bold mb-1">Download</p>
+        <p class="text-sm text-slate-500 dark:text-dark-dim">Tap the button above</p>
+      </div>
+      <div class="bg-white dark:bg-dark-card rounded-xl p-6 border border-slate-200 dark:border-slate-700 text-center">
+        <div class="step-num mb-3">2</div>
+        <p class="font-bold mb-1">Allow</p>
+        <p class="text-sm text-slate-500 dark:text-dark-dim">Enable "Install unknown apps"</p>
+      </div>
+      <div class="bg-white dark:bg-dark-card rounded-xl p-6 border border-slate-200 dark:border-slate-700 text-center">
+        <div class="step-num mb-3">3</div>
+        <p class="font-bold mb-1">Install</p>
+        <p class="text-sm text-slate-500 dark:text-dark-dim">Open the APK file</p>
+      </div>
+      <div class="bg-white dark:bg-dark-card rounded-xl p-6 border border-slate-200 dark:border-slate-700 text-center">
+        <div class="step-num mb-3">4</div>
+        <p class="font-bold mb-1">Connect</p>
+        <p class="text-sm text-slate-500 dark:text-dark-dim">Wallet auto-creates on launch</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="bg-accent/5 dark:bg-accent/10 rounded-2xl p-8 border border-accent/20">
+    <h2 class="text-xl font-bold mb-4 font-display">Architecture</h2>
+    <p class="text-slate-600 dark:text-dark-dim mb-4">The app wraps <code class="bg-slate-100 dark:bg-slate-800 px-1.5 py-0.5 rounded text-sm">ai2work.onrender.com</code> in a Capacitor WebView and injects a native Ethereum provider. Your wallet keys stay on-device, encrypted by Android Keystore.</p>
+    <a href="https://atlasnexus.tech/wallet-architecture.html" class="text-primary font-semibold hover:underline">View architecture diagram →</a>
+  </div>
+</main>
+
+<footer class="border-t border-slate-200 dark:border-slate-800 py-8 text-center text-sm text-slate-400 dark:text-slate-600">
+  <p>Atlas Nexus · <a href="/" class="hover:text-primary">Home</a> · <a href="https://github.com/AtlasNexusTech" class="hover:text-primary">GitHub</a></p>
+</footer>
+
+<script>
+(function(){
+  const saved = localStorage.getItem('theme');
+  if (saved === 'dark' || (!saved && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+    document.documentElement.classList.add('dark');
+  }
+})();
+</script>
+</body>
+</html>
