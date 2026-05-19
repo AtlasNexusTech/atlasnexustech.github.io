@@ -45,9 +45,7 @@
         /* ── Core ── */
         .hero-gradient { background: linear-gradient(135deg, #0F172A 0%, #1E3A5F 40%, #2563EB 70%, #059669 100%); position: relative; overflow: hidden; }
         .hero-gradient::before { content: ""; position: absolute; inset: 0; background: radial-gradient(ellipse at 20% 50%, rgba(37,99,235,.20), transparent 50%), radial-gradient(ellipse at 80% 20%, rgba(5,150,105,.10), transparent 40%); pointer-events: none; z-index: 1; }
-        .hero-gradient::after { content: ""; position: absolute; inset: 0; background-image: radial-gradient(circle, rgba(255,255,255,0.12) 1px, transparent 1px), radial-gradient(circle, rgba(255,255,255,0.06) 1.5px, transparent 1.5px); background-size: 32px 32px, 80px 80px; background-position: 0 0, 16px 16px; opacity: 0.8; pointer-events: none; z-index: 0; }
         .dark .hero-gradient { background: linear-gradient(135deg, #0B1120 0%, #0F1D35 40%, #1D4ED8 70%, #047857 100%); }
-        .dark .hero-gradient::after { background-image: radial-gradient(circle, rgba(255,255,255,0.18) 1px, transparent 1px), radial-gradient(circle, rgba(255,255,255,0.08) 2px, transparent 2px); opacity: 0.9; }
 
         /* ── Animated text gradient (brand) ── */
         @keyframes gradientShift { 0%,100% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } }
@@ -170,7 +168,8 @@
 
 <!-- HERO -->
 <section class="hero-gradient text-white pt-32 pb-28 px-6">
-    <div class="max-w-4xl mx-auto text-center hero-stagger">
+    <img src="https://images.unsplash.com/photo-1504917595217-d4dc7e26a9e0?w=1400&q=80" alt="" class="absolute inset-0 w-full h-full object-cover opacity-[0.12] pointer-events-none" loading="eager">
+    <div class="max-w-4xl mx-auto text-center hero-stagger relative z-10">
         <p class="text-blue-200 dark:text-blue-300 font-semibold tracking-widest uppercase text-xs mb-4 font-display">Atlas Nexus · Outil</p>
         <h1 class="font-display text-5xl md:text-7xl font-black leading-tight mb-6 tracking-tight">
             <span class="text-gradient-animated">Artisan Démo</span>
@@ -250,7 +249,7 @@
     <div class="max-w-4xl mx-auto">
         <div class="reveal">
             <p class="text-accent font-semibold tracking-widest uppercase text-xs mb-3 font-display">Secteurs</p>
-            <h2 class="section-title text-foreground dark:text-dark-foreground mb-12 font-display">5 secteurs pré-configurés</h2>
+            <h2 class="section-title text-foreground dark:text-dark-foreground mb-12 font-display">6 secteurs pré-configurés</h2>
         </div>
         <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
             <div class="card-hover market-card rounded-2xl p-6 border border-border flex flex-col reveal reveal-delay-1">
@@ -277,6 +276,11 @@
                 <span class="text-3xl mb-3 block">🏠</span>
                 <h3 class="font-bold text-lg mb-1 text-foreground dark:text-dark-foreground font-display">Générique</h3>
                 <p class="text-slate-500 dark:text-slate-400 text-sm">Bleu pro, adaptable à tout métier</p>
+            </div>
+            <div class="card-hover market-card rounded-2xl p-6 border border-border flex flex-col reveal reveal-delay-4">
+                <span class="text-3xl mb-3 block">🍽️</span>
+                <h3 class="font-bold text-lg mb-1 text-foreground dark:text-dark-foreground font-display">Restaurant</h3>
+                <p class="text-slate-500 dark:text-slate-400 text-sm">Bordeaux, menus, traiteur, salle privatisable</p>
             </div>
         </div>
     </div>
@@ -372,6 +376,7 @@
 
 <!-- CTA -->
 <section class="py-24 px-6 hero-gradient text-white text-center relative overflow-hidden">
+    <img src="https://images.unsplash.com/photo-1581092160607-ee22621dd758?w=1400&q=80" alt="" class="absolute inset-0 w-full h-full object-cover opacity-[0.12] pointer-events-none" loading="lazy">
     <div class="absolute inset-0 bg-gradient-to-t from-foreground/40 to-transparent dark:from-dark-surface/60"></div>
     <div class="relative z-10 max-w-2xl mx-auto reveal">
         <h2 class="font-display text-4xl md:text-5xl font-extrabold mb-5">Prêt à générer votre première démo ?</h2>
