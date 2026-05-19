@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/svg+xml" href="/framer-motion-ui/favicon.svg">
+<link rel="shortcut icon" href="/framer-motion-ui/favicon.svg">
+<link rel="alternate icon" type="image/svg+xml" href="/favicon.svg">
+<title>Framer Motion UI — Atlas Nexus</title>
+<link rel="canonical" href="https://atlasnexus.tech/framer-motion-ui/">
+<meta name="description" content="Page interne Atlas Nexus pour Framer Motion UI : patterns d’animation React, scroll reveals, gestures, transitions et delivery checklist.">
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700;800;900&family=Nunito+Sans:ital,opsz,wght@0,6..12,200;0,6..12,300;0,6..12,400;0,6..12,500;0,6..12,600;0,6..12,700;0,6..12,800;1,6..12,400;1,6..12,600;1,6..12,700&display=swap" rel="stylesheet">
+<script>
+tailwind.config = {
+  darkMode: 'class',
+  theme: { extend: { fontFamily: { display: ['Rubik','sans-serif'], body: ['Nunito Sans','sans-serif'] }, colors: { primary:'#2563EB','primary-dark':'#1D4ED8', secondary:'#3B82F6', accent:'#059669','accent-dark':'#047857', surface:'#F8FAFC', muted:'#F1F5FD', border:'#E4ECFC', foreground:'#0F172A','dark-surface':'#0B1120','dark-card':'#111827','dark-elevated':'#1A2235','dark-border':'#1E293B','dark-muted':'#334155','dark-foreground':'#F1F5F9','dark-dim':'#94A3B8' } } }
+}
+</script>
+<style>
+  .hero-title { font-size: clamp(2.45rem, 6.6vw, 5.15rem); font-weight: 900; letter-spacing: -0.055em; line-height: 1.08; overflow: visible; }
+  .gradient-text { background: linear-gradient(135deg, #2563EB 0%, #059669 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+  .glow-word { position: relative; display: inline-block; overflow: visible; padding: .035em .02em .13em .02em; margin: -.035em -.02em -.07em -.02em; background: linear-gradient(110deg, #0F172A 0%, #2563EB 32%, #7C3AED 56%, #059669 82%, #0F172A 100%); background-size: 240% 100%; -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; animation: agenticGlow 3.8s ease-in-out infinite; }
+  @keyframes agenticGlow { 0%,100% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } }
+  .section-title { font-size: clamp(1.8rem, 4.5vw, 3rem); font-weight: 800; letter-spacing: -0.03em; line-height: 1.1; }
+  .card-hover { transition: all 250ms ease; }
+  .card-hover:hover { transform: translateY(-4px); box-shadow: 0 12px 32px -6px rgba(37,99,235,0.1); border-color: #2563EB; }
+  a, button, .card-hover { transition: all 200ms ease; }
+  *:focus-visible { outline: 2px solid #2563EB; outline-offset: 2px; border-radius: 4px; }
+
+  /* ── Section title accent underline ── */
+  .section-title { position: relative; padding-bottom: 0.5rem; }
+  .section-title::after { content: ""; position: absolute; bottom: 0; left: 0; width: 3rem; height: 3px; border-radius: 2px; background: linear-gradient(90deg, #2563EB, #059669); }
+  .dark .section-title::after { background: linear-gradient(90deg, #60A5FA, #34D399); }
+
+  /* ── Small card dark mode ── */
+  .dark a.border.border-border.rounded-xl { border-color: #334155; }
+  .dark a.border.border-border.rounded-xl:hover { border-color: #3B82F6; }
+
+  .reveal { opacity: 1; transform: translateY(0); transition: opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1), transform 0.6s cubic-bezier(0.22, 1, 0.36, 1); }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+  .hero-stagger > * { opacity: 0; transform: translateY(30px); animation: heroFadeIn 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards; }
+  .hero-stagger > *:nth-child(1) { animation-delay: 0.1s; }
+  .hero-stagger > *:nth-child(2) { animation-delay: 0.25s; }
+  .hero-stagger > *:nth-child(3) { animation-delay: 0.40s; }
+  .hero-stagger > *:nth-child(4) { animation-delay: 0.55s; }
+  @keyframes heroFadeIn { to { opacity: 1; transform: translateY(0); } }
+  .framer-purple-card { position: relative; overflow: hidden; border-color: rgba(124,58,237,.24)!important; box-shadow: 0 18px 52px -34px rgba(124,58,237,.58); background: linear-gradient(145deg, #ffffff 0%, #fbf7ff 52%, #f5efff 100%); }
+  .framer-purple-card::before { content: ""; position: absolute; inset: -1px; pointer-events: none; background: radial-gradient(circle at 15% 0%, rgba(124,58,237,.13), transparent 38%), radial-gradient(circle at 95% 20%, rgba(168,85,247,.10), transparent 34%); }
+  .framer-purple-card:hover { box-shadow: 0 22px 70px -32px rgba(124,58,237,.68); border-color: rgba(124,58,237,.40)!important; }
+  .framer-purple-card > * { position: relative; }
+  .market-card { background: linear-gradient(145deg, #ffffff 0%, #f7fbff 52%, #eef8ff 100%); border-color: rgba(37,99,235,.22)!important; box-shadow: 0 18px 52px -34px rgba(37,99,235,.55); }
+  .motion-dot { width: .65rem; height: .65rem; border-radius: 999px; background: linear-gradient(135deg,#2563EB,#7C3AED); box-shadow: 0 0 0 8px rgba(37,99,235,.08); }
+  .orbit { position:absolute; border:1px solid rgba(124,58,237,.22); border-radius:999px; animation:spin 16s linear infinite; }
+  .orbit:nth-child(2){animation-duration:22s; animation-direction:reverse; border-color:rgba(5,150,105,.18)}
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  .metric-number { font-variant-numeric: tabular-nums; letter-spacing: -.04em; }
+  .float-card { animation: floatCard 4.8s ease-in-out infinite; transform-origin: center; }
+  .float-card:nth-child(2) { animation-delay: .35s; }
+  .float-card:nth-child(3) { animation-delay: .7s; }
+  @keyframes floatCard { 0%,100% { transform: translateY(0) scale(1); } 50% { transform: translateY(-8px) scale(1.015); } }
+  .motion-strip { position: relative; overflow: hidden; }
+  .motion-strip::after { content:""; position:absolute; inset:0; transform: translateX(-120%); background: linear-gradient(90deg, transparent, rgba(124,58,237,.18), transparent); animation: shimmer 3.2s ease-in-out infinite; }
+  @keyframes shimmer { 55%,100% { transform: translateX(120%); } }
+  .timeline-rail { position: relative; }
+  .timeline-rail::before { content:""; position:absolute; left: 1rem; top:.5rem; bottom:.5rem; width:2px; background: linear-gradient(#2563EB, #7C3AED, #059669); opacity:.35; }
+  .timeline-step { position:relative; padding-left:3rem; }
+  .timeline-step::before { content:""; position:absolute; left:.68rem; top:.35rem; width:.7rem; height:.7rem; border-radius:999px; background:linear-gradient(135deg,#2563EB,#7C3AED); box-shadow:0 0 0 7px rgba(124,58,237,.12); }
+  .spring-pill { position: relative; overflow: hidden; }
+  .spring-pill span { display:inline-block; animation: pillBreathe 2.6s cubic-bezier(.34,1.56,.64,1) infinite; }
+  @keyframes pillBreathe { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-2px); } }
+  .gesture-card { transform-style: preserve-3d; }
+  .gesture-card:hover { transform: translateY(-6px) rotateX(2deg) rotateY(-2deg); }
+
+  .motion-stage { position: relative; min-height: 360px; overflow: hidden; }
+  .motion-lane { position:absolute; left:1.25rem; right:1.25rem; height:3.25rem; border-radius:999px; border:1px solid rgba(124,58,237,.20); background:rgba(255,255,255,.62); backdrop-filter: blur(12px); }
+  .motion-lane:nth-child(1){ top:1.35rem; }
+  .motion-lane:nth-child(2){ top:6.1rem; }
+  .motion-lane:nth-child(3){ top:10.85rem; }
+  .motion-token { position:absolute; top:.55rem; width:2.15rem; height:2.15rem; border-radius:999px; background:linear-gradient(135deg,#2563EB,#7C3AED); box-shadow:0 14px 32px -14px rgba(124,58,237,.9); animation: tokenRun 6.8s cubic-bezier(.34,1.56,.64,1) infinite; }
+  .motion-lane:nth-child(2) .motion-token{ animation-duration:8.2s; animation-delay:-1.2s; background:linear-gradient(135deg,#7C3AED,#C084FC); }
+  .motion-lane:nth-child(3) .motion-token{ animation-duration:7.4s; animation-delay:-2.1s; background:linear-gradient(135deg,#059669,#2563EB); }
+  @keyframes tokenRun { 0% { left:.7rem; transform:scale(.82); } 38% { transform:scale(1.08); } 72% { left:calc(100% - 2.85rem); transform:scale(.96); } 100% { left:.7rem; transform:scale(.82); } }
+  .morph-blob { position:absolute; width:9rem; height:9rem; border-radius: 38% 62% 48% 52% / 44% 38% 62% 56%; background: radial-gradient(circle at 30% 30%, rgba(255,255,255,.85), rgba(124,58,237,.33) 34%, rgba(37,99,235,.24) 72%); filter: blur(.1px); animation: morphBlob 7.5s ease-in-out infinite; }
+  .morph-blob.one { right:2rem; bottom:2.25rem; }
+  .morph-blob.two { left:2.25rem; bottom:2.5rem; width:6rem; height:6rem; animation-delay:-2.3s; background: radial-gradient(circle at 30% 30%, rgba(255,255,255,.75), rgba(5,150,105,.30), rgba(37,99,235,.20)); }
+  @keyframes morphBlob { 0%,100% { border-radius:38% 62% 48% 52% / 44% 38% 62% 56%; transform:translateY(0) rotate(0deg); } 50% { border-radius:64% 36% 35% 65% / 52% 62% 38% 48%; transform:translateY(-14px) rotate(10deg); } }
+  .spring-graph { position:absolute; left:2rem; right:2rem; bottom:2rem; height:4rem; border-radius:1.25rem; background:linear-gradient(180deg, rgba(37,99,235,.08), rgba(124,58,237,.03)); overflow:hidden; border:1px solid rgba(37,99,235,.14); }
+  .spring-graph svg path { stroke-dasharray: 420; stroke-dashoffset: 420; animation: drawSpring 4.8s cubic-bezier(.22,1,.36,1) infinite; }
+  @keyframes drawSpring { 0%{stroke-dashoffset:420;} 55%,100%{stroke-dashoffset:0;} }
+  .loop-chip { animation: loopPulse 3.6s cubic-bezier(.34,1.56,.64,1) infinite; }
+  .loop-chip:nth-child(2){animation-delay:.45s}.loop-chip:nth-child(3){animation-delay:.9s}.loop-chip:nth-child(4){animation-delay:1.35s}
+  @keyframes loopPulse { 0%,100% { transform: translateY(0); box-shadow:0 0 0 rgba(124,58,237,0); } 50% { transform: translateY(-5px); box-shadow:0 16px 30px -20px rgba(124,58,237,.65); } }
+  .dark .motion-lane { background:rgba(17,24,39,.64); border-color:rgba(167,139,250,.22); }
+
+
+  .dark .bg-white, .dark .bg-surface { background-color: #0B1120; }
+  .dark .text-slate-600 { color: #CBD5E1; }
+  .dark .text-slate-500 { color: #94A3B8; }
+  .dark .text-slate-400 { color: #64748B; }
+  .dark .border-border { border-color: #1E293B; }
+  .dark .glow-word { background: linear-gradient(110deg, #60A5FA 0%, #818CF8 28%, #C084FC 52%, #34D399 78%, #60A5FA 100%); background-size: 240% 100%; -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+  .dark .framer-purple-card { background: linear-gradient(145deg, #111827 0%, #1a1530 52%, #241442 100%); border-color: rgba(167,139,250,.28)!important; box-shadow: 0 18px 52px -34px rgba(0,0,0,.6); }
+  .dark .market-card { background: linear-gradient(145deg, #111827 0%, #111d30 52%, #0e1f2d 100%); border-color: rgba(59,130,246,.25)!important; box-shadow: 0 18px 52px -34px rgba(0,0,0,.6); }
+  @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: 0.01ms!important; transition-duration: 0.01ms!important; } .reveal { opacity: 1; transform: none; } .hero-stagger > * { opacity: 1; transform: none; animation: none; } }
+</style>
+</head>
+<body class="font-body bg-white dark:bg-dark-surface text-foreground dark:text-dark-foreground antialiased overflow-x-hidden">
+<nav class="fixed top-0 left-0 right-0 z-50 bg-white/90 dark:bg-dark-surface/90 backdrop-blur-xl border-b border-border dark:border-dark-border">
+  <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+    <a href="/" class="flex items-center gap-2 font-display font-bold text-lg" aria-label="Atlas Nexus accueil">
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" class="text-primary"><path d="M21 12.8A8.5 8.5 0 1 1 11.2 3a6.7 6.7 0 1 0 9.8 9.8Z" fill="currentColor"/></svg>
+      Atlas Nexus
+    </a>
+    <div class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-600 dark:text-slate-300">
+      <a href="/#products" class="hover:text-primary">Produits</a>
+      <a href="/#work" class="hover:text-primary">Réalisations</a>
+      <a href="/#offers" class="hover:text-primary">Offres</a>
+      <a href="#patterns" class="hover:text-primary">Patterns</a>
+    </div>
+    <div class="flex items-center gap-3">
+      <a href="https://github.com/AtlasNexusTech/framer-motion-ui" class="hidden sm:inline-flex text-sm font-semibold text-primary hover:text-primary-dark">GitHub</a>
+      <button id="theme-toggle" class="p-2 rounded-lg hover:bg-muted dark:hover:bg-dark-elevated" aria-label="Toggle dark mode"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg></button>
+    </div>
+  </div>
+</nav>
+<main class="pt-16">
+  <section class="relative overflow-hidden py-8 md:py-10 bg-gradient-to-br from-white via-purple-50/50 to-blue-50/40 dark:from-dark-surface dark:via-dark-card dark:to-dark-elevated">
+    <div class="absolute -right-24 top-24 w-96 h-96 rounded-full bg-purple-500/10 blur-3xl"></div>
+    <div class="absolute -left-24 bottom-10 w-96 h-96 rounded-full bg-primary/10 blur-3xl"></div>
+    <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-[1.05fr_.95fr] gap-8 items-center relative">
+      <div class="hero-stagger">
+        <p class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-purple-500/10 text-purple-700 dark:text-purple-300 font-display font-bold text-sm mb-4">✨ Framer Motion UI · Atlas Nexus</p>
+        <h1 class="hero-title font-display mb-4">Des interfaces React qui <span class="glow-word">respirent</span></h1>
+        <p class="text-xl md:text-2xl text-slate-600 dark:text-slate-300 leading-relaxed max-w-3xl mb-6">Patterns Framer Motion intégrés dans la même interface AtlasNexus : timelines visibles, spring physics, counters ralentis, hover/tap, morphing shapes et transitions utilisables pour des pages commerciales crédibles.</p>
+        <div class="flex flex-wrap gap-4">
+          <a href="#patterns" class="px-6 py-3 rounded-xl bg-primary text-white font-bold hover:bg-primary-dark shadow-lg shadow-blue-500/20">Voir les patterns</a>
+          <a href="https://github.com/AtlasNexusTech/framer-motion-ui" class="px-6 py-3 rounded-xl bg-white dark:bg-dark-card border border-border dark:border-dark-border font-bold hover:border-primary">Ouvrir GitHub</a>
+        </div>
+      </div>
+      <div class="framer-purple-card rounded-3xl p-5 md:p-6 border min-h-[300px] flex flex-col justify-between">
+        <div class="relative h-36 md:h-40 rounded-2xl bg-white/70 dark:bg-dark-card/70 border border-border dark:border-dark-border overflow-hidden mb-4">
+          <div class="orbit left-1/2 top-1/2 w-52 h-52 -ml-26 -mt-26"></div>
+          <div class="orbit left-1/2 top-1/2 w-32 h-32 -ml-16 -mt-16"></div>
+          <div class="absolute inset-0 grid place-items-center">
+            <div class="w-24 h-24 rounded-3xl bg-gradient-to-br from-primary via-purple-500 to-accent shadow-2xl shadow-purple-500/30 rotate-6 grid place-items-center text-white font-display font-black text-3xl">FM</div>
+          </div>
+          <div class="absolute left-8 top-8 motion-dot"></div><div class="absolute right-10 top-16 motion-dot"></div><div class="absolute left-16 bottom-10 motion-dot"></div><div class="absolute right-20 bottom-8 motion-dot"></div>
+        </div>
+        <div class="grid grid-cols-3 gap-3">
+          <div class="float-card rounded-2xl bg-white/80 dark:bg-dark-card/80 border border-border dark:border-dark-border p-4"><p class="metric-number text-2xl font-display font-black text-primary"><span class="count-up" data-target="12" data-start="4" data-duration="3600">12</span></p><p class="text-xs text-slate-600 dark:text-slate-300 font-semibold">variantes motion</p></div>
+          <div class="float-card rounded-2xl bg-white/80 dark:bg-dark-card/80 border border-border dark:border-dark-border p-4"><p class="metric-number text-2xl font-display font-black text-purple-600 dark:text-purple-300"><span class="count-up" data-target="60" data-start="28" data-duration="4200">60</span></p><p class="text-xs text-slate-600 dark:text-slate-300 font-semibold">FPS cible</p></div>
+          <div class="float-card rounded-2xl bg-white/80 dark:bg-dark-card/80 border border-border dark:border-dark-border p-4"><p class="metric-number text-2xl font-display font-black text-accent"><span class="count-up" data-target="0" data-start="0" data-duration="2400">0</span></p><p class="text-xs text-slate-600 dark:text-slate-300 font-semibold">saccade visée</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="py-12 md:py-14 bg-white dark:bg-dark-surface">
+    <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-[.9fr_1.1fr] gap-8 items-center">
+      <div class="reveal">
+        <p class="text-purple-600 dark:text-purple-300 font-display font-bold uppercase tracking-wide text-sm mb-3">Animation playground</p>
+        <h2 class="section-title font-display mb-5">La motion doit se voir immédiatement.</h2>
+        <p class="text-lg text-slate-600 dark:text-slate-300 leading-relaxed mb-6">Cette page vend de l’animation : elle montre donc des timelines, des springs, des formes morphées et des micro-boucles directement dans l’interface, au lieu de seulement les expliquer.</p>
+        <div class="flex flex-wrap gap-3">
+          <span class="loop-chip px-4 py-2 rounded-full bg-purple-500/10 text-purple-700 dark:text-purple-300 font-bold text-sm">spring</span>
+          <span class="loop-chip px-4 py-2 rounded-full bg-primary/10 text-primary dark:text-blue-300 font-bold text-sm">timeline</span>
+          <span class="loop-chip px-4 py-2 rounded-full bg-emerald-500/10 text-emerald-700 dark:text-emerald-300 font-bold text-sm">morph</span>
+          <span class="loop-chip px-4 py-2 rounded-full bg-slate-900/5 dark:bg-white/10 font-bold text-sm">reduced-motion safe</span>
+        </div>
+      </div>
+      <div class="reveal framer-purple-card rounded-3xl border p-5 md:p-6 motion-stage">
+        <div class="motion-lane"><span class="motion-token"></span></div>
+        <div class="motion-lane"><span class="motion-token"></span></div>
+        <div class="motion-lane"><span class="motion-token"></span></div>
+        <div class="morph-blob one"></div>
+        <div class="morph-blob two"></div>
+        <div class="spring-graph">
+          <svg viewBox="0 0 420 70" width="100%" height="100%" preserveAspectRatio="none" aria-hidden="true">
+            <path d="M8 48 C 45 8, 72 8, 102 48 S 158 88, 188 48 S 244 8, 274 48 S 330 88, 412 28" fill="none" stroke="url(#springLine)" stroke-width="5" stroke-linecap="round"/>
+            <defs><linearGradient id="springLine" x1="0" x2="1"><stop offset="0" stop-color="#2563EB"/><stop offset=".55" stop-color="#7C3AED"/><stop offset="1" stop-color="#059669"/></linearGradient></defs>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section id="patterns" class="py-12 md:py-14 bg-white dark:bg-dark-surface">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="mb-12 reveal"><p class="text-primary font-display font-bold uppercase tracking-wide text-sm mb-3">ADN Framer Motion</p><h2 class="section-title font-display">Spring, layout, gestures, counters.</h2><p class="mt-4 text-lg text-slate-600 dark:text-slate-300 max-w-3xl">La page montre la motion comme matière d’interface : chiffres qui montent, cards qui respirent, états hover/tap, reveal au scroll, transitions de layout et respect de <code class="px-2 py-1 rounded-lg bg-muted dark:bg-dark-card text-sm">prefers-reduced-motion</code>.</p></div>
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-5">
+        <article class="reveal gesture-card card-hover rounded-2xl p-6 border border-border dark:border-dark-border bg-surface dark:bg-dark-card"><div class="text-3xl mb-4">🎛️</div><h3 class="font-display font-bold text-lg mb-2">Spring physics</h3><p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">Easing élastique, inertie douce, feedback immédiat sans effet gadget.</p></article>
+        <article class="reveal gesture-card card-hover rounded-2xl p-6 border border-border dark:border-dark-border bg-surface dark:bg-dark-card"><div class="text-3xl mb-4">🔢</div><h3 class="font-display font-bold text-lg mb-2">Animated counters</h3><p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">Les métriques s’incrémentent à l’entrée viewport pour donner vie aux chiffres.</p></article>
+        <article class="reveal gesture-card card-hover rounded-2xl p-6 border border-border dark:border-dark-border bg-surface dark:bg-dark-card"><div class="text-3xl mb-4">🧲</div><h3 class="font-display font-bold text-lg mb-2">Gestures</h3><p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">Hover, tap et drag-ready states avec une sensation tactile premium.</p></article>
+        <article class="reveal gesture-card card-hover rounded-2xl p-6 border border-border dark:border-dark-border bg-surface dark:bg-dark-card"><div class="text-3xl mb-4">🧩</div><h3 class="font-display font-bold text-lg mb-2">Layout transitions</h3><p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">Changement d’état, passage de card à détail, apparition/disparition propre.</p></article>
+      </div>
+    </div>
+  </section>
+  <section class="py-12 md:py-14 bg-surface dark:bg-dark-elevated">
+    <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-[1fr_1fr] gap-8 items-stretch">
+      <div class="reveal framer-purple-card rounded-3xl border p-7 md:p-8">
+        <p class="text-purple-600 dark:text-purple-300 font-display font-bold uppercase tracking-wide text-sm mb-3">Motion lab</p>
+        <h2 class="section-title font-display mb-5">Des chiffres vivants, pas des KPIs figés.</h2>
+        <div class="grid grid-cols-3 gap-3 mb-6">
+          <div class="motion-strip rounded-2xl bg-white/80 dark:bg-dark-card/80 border border-border dark:border-dark-border p-4"><p class="metric-number text-3xl font-display font-black text-primary"><span class="count-up" data-target="24" data-start="8" data-duration="3600">24</span>ms</p><p class="text-xs font-semibold text-slate-600 dark:text-slate-300">feedback tap</p></div>
+          <div class="motion-strip rounded-2xl bg-white/80 dark:bg-dark-card/80 border border-border dark:border-dark-border p-4"><p class="metric-number text-3xl font-display font-black text-purple-600 dark:text-purple-300"><span class="count-up" data-target="3" data-start="1" data-duration="3200">3</span>x</p><p class="text-xs font-semibold text-slate-600 dark:text-slate-300">stagger levels</p></div>
+          <div class="motion-strip rounded-2xl bg-white/80 dark:bg-dark-card/80 border border-border dark:border-dark-border p-4"><p class="metric-number text-3xl font-display font-black text-accent"><span class="count-up" data-target="100" data-start="35" data-duration="4600">100</span>%</p><p class="text-xs font-semibold text-slate-600 dark:text-slate-300">reduced-motion safe</p></div>
+        </div>
+        <p class="text-slate-600 dark:text-slate-300 leading-relaxed">Les nombres deviennent des points d’attention : ils arrivent avec le scroll, gardent une cadence courte, puis s’arrêtent. L’objectif est de signaler un état, pas d’hypnotiser.</p>
+      </div>
+      <div class="reveal market-card rounded-3xl border p-7 md:p-8">
+        <p class="text-primary font-display font-bold uppercase tracking-wide text-sm mb-3">Animation stack</p>
+        <div class="timeline-rail space-y-5">
+          <div class="timeline-step"><h3 class="font-display font-bold">Initial → Animate</h3><p class="text-sm text-slate-600 dark:text-slate-300">Entrées staggerées, opacity/transform, hiérarchie de lecture.</p></div>
+          <div class="timeline-step"><h3 class="font-display font-bold">While hover / tap</h3><p class="text-sm text-slate-600 dark:text-slate-300">Micro-feedback tactile sur cards, boutons et modules interactifs.</p></div>
+          <div class="timeline-step"><h3 class="font-display font-bold">Layout</h3><p class="text-sm text-slate-600 dark:text-slate-300">Transitions d’état qui gardent la continuité spatiale.</p></div>
+          <div class="timeline-step"><h3 class="font-display font-bold">Viewport</h3><p class="text-sm text-slate-600 dark:text-slate-300">Reveal et counters déclenchés seulement quand l’utilisateur arrive dessus.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="py-12 md:py-14 bg-white dark:bg-dark-surface">
+    <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-[.95fr_1.05fr] gap-8 items-start">
+      <div class="reveal"><p class="text-purple-600 dark:text-purple-300 font-display font-bold uppercase tracking-wide text-sm mb-3">Delivery checklist</p><h2 class="section-title font-display mb-5">Animation vendable, pas décorative.</h2><p class="text-lg text-slate-600 dark:text-slate-300 leading-relaxed">Chaque pattern doit guider l’attention, communiquer un état, créer une continuité ou réduire la friction. Sinon, il sort du scope.</p></div>
+      <div class="market-card rounded-3xl p-7 border">
+        <div class="grid sm:grid-cols-2 gap-4">
+          <div class="rounded-2xl bg-white/80 dark:bg-dark-card/80 border border-border dark:border-dark-border p-5"><p class="font-display font-bold mb-2">Performance</p><p class="text-sm text-slate-600 dark:text-slate-300">Transform + opacity, pas de reflow inutile.</p></div>
+          <div class="rounded-2xl bg-white/80 dark:bg-dark-card/80 border border-border dark:border-dark-border p-5"><p class="font-display font-bold mb-2">Accessibilité</p><p class="text-sm text-slate-600 dark:text-slate-300">Respect de prefers-reduced-motion.</p></div>
+          <div class="rounded-2xl bg-white/80 dark:bg-dark-card/80 border border-border dark:border-dark-border p-5"><p class="font-display font-bold mb-2">Lisibilité</p><p class="text-sm text-slate-600 dark:text-slate-300">La motion clarifie le parcours, elle ne le masque pas.</p></div>
+          <div class="rounded-2xl bg-white/80 dark:bg-dark-card/80 border border-border dark:border-dark-border p-5"><p class="font-display font-bold mb-2">Réutilisable</p><p class="text-sm text-slate-600 dark:text-slate-300">Patterns documentés et applicables aux pages AtlasNexus.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="py-12 md:py-14 bg-white dark:bg-dark-surface">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="framer-purple-card rounded-3xl border p-8 md:p-10 grid lg:grid-cols-[1fr_auto] gap-8 items-center">
+        <div><p class="text-primary font-display font-bold uppercase tracking-wide text-sm mb-3">Motion utilisable</p><h2 class="section-title font-display mb-4">Un kit Framer Motion branché sur l’interface Atlas.</h2><p class="text-lg text-slate-600 dark:text-slate-300 leading-relaxed max-w-3xl">Le scope est clair : transformer les pages React en expériences plus lisibles, plus premium et plus tactiles, avec des patterns prêts à adapter aux offres, produits et démos AtlasNexus.</p></div>
+        <div class="flex flex-wrap gap-3 lg:justify-end"><a href="/" class="px-6 py-3 rounded-xl bg-primary text-white font-bold hover:bg-primary-dark">Retour Atlas Nexus</a><a href="https://github.com/AtlasNexusTech/framer-motion-ui" class="px-6 py-3 rounded-xl bg-white dark:bg-dark-card border border-border dark:border-dark-border font-bold hover:border-primary">Repo GitHub</a></div>
+      </div>
+    </div>
+  </section>
+</main>
+<footer class="py-10 border-t border-border dark:border-dark-border bg-white dark:bg-dark-surface"><div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row gap-3 md:items-center md:justify-between text-sm text-slate-500"><p>Atlas Nexus · Framer Motion UI</p><p>React · Framer Motion · Scroll reveals · Gestures · Performance</p></div></footer>
+<script>
+if (localStorage.getItem('theme') === 'dark' || (!localStorage.getItem('theme') && window.matchMedia('(prefers-color-scheme: dark)').matches)) document.documentElement.classList.add('dark');
+document.getElementById('theme-toggle').addEventListener('click',()=>{document.documentElement.classList.toggle('dark');localStorage.setItem('theme',document.documentElement.classList.contains('dark')?'dark':'light')});
+const animateCount = (el) => {
+  if (el.dataset.done) return;
+  el.dataset.done = '1';
+  const target = Number(el.dataset.target || 0);
+  const initial = Number(el.dataset.start ?? 0);
+  const duration = Number(el.dataset.duration || 3600);
+  el.textContent = initial.toString();
+  const start = performance.now();
+  const tick = (now) => {
+    const progress = Math.min((now - start) / duration, 1);
+    const eased = 1 - Math.pow(1 - progress, 3);
+    el.textContent = Math.round(initial + (target - initial) * eased).toString();
+    if (progress < 1) requestAnimationFrame(tick);
+  };
+  requestAnimationFrame(tick);
+};
+const observer = new IntersectionObserver((entries)=>{entries.forEach(entry=>{if(entry.isIntersecting){ entry.target.classList.add('visible'); entry.target.querySelectorAll?.('.count-up').forEach(animateCount); }})},{threshold:.1});
+document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+const counterObserver = new IntersectionObserver((entries)=>{entries.forEach(entry=>{if(entry.isIntersecting) animateCount(entry.target)})},{threshold:.35});
+document.querySelectorAll('.count-up').forEach(el=>counterObserver.observe(el));
+</script>
+</body>
+</html>
