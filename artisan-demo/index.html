@@ -44,7 +44,7 @@
     <style>
         /* ── Core ── */
         .hero-gradient { background: linear-gradient(135deg, #0F172A 0%, #1E3A5F 40%, #2563EB 70%, #059669 100%); position: relative; overflow: hidden; }
-        .hero-gradient::before { content: ""; position: absolute; inset: 0; background: radial-gradient(ellipse at 20% 50%, rgba(37,99,235,.20), transparent 50%), radial-gradient(ellipse at 80% 20%, rgba(5,150,105,.10), transparent 40%); pointer-events: none; z-index: 1; }
+        .hero-gradient::before { content: ""; position: absolute; inset: 0; background: radial-gradient(ellipse at 20% 50%, rgba(37,99,235,.20), transparent 50%), radial-gradient(ellipse at 80% 20%, rgba(5,150,105,.10), transparent 40%); pointer-events: none; z-index: 2; }
         .dark .hero-gradient { background: linear-gradient(135deg, #0B1120 0%, #0F1D35 40%, #1D4ED8 70%, #047857 100%); }
 
         /* ── Animated text gradient (brand) ── */
@@ -168,7 +168,7 @@
 
 <!-- HERO -->
 <section class="hero-gradient text-white pt-32 pb-28 px-6">
-    <img src="https://images.unsplash.com/photo-1504917595217-d4dc7e26a9e0?w=1400&q=80" alt="" class="absolute inset-0 w-full h-full object-cover opacity-[0.12] pointer-events-none" loading="eager">
+    <img src="https://images.unsplash.com/photo-1504917595217-d4dc7e26a9e0?w=1400&q=80" alt="" class="absolute inset-0 w-full h-full object-cover opacity-[0.12] pointer-events-none z-[1]" loading="eager">
     <div class="max-w-4xl mx-auto text-center hero-stagger relative z-10">
         <p class="text-blue-200 dark:text-blue-300 font-semibold tracking-widest uppercase text-xs mb-4 font-display">Atlas Nexus · Outil</p>
         <h1 class="font-display text-5xl md:text-7xl font-black leading-tight mb-6 tracking-tight">
