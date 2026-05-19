@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/svg+xml" href="../favicon.svg">
+<title>ai2work Case Study — Atlas Nexus</title>
+<meta name="description" content="On-chain freelancer marketplace built on Celo — full-stack case study: Solidity smart contracts, Next.js PWA, native Android wallet.">
+<link rel="canonical" href="https://atlasnexus.tech/case-study/">
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+  :root {
+    --bg: #fafafa; --text: #1a1a1a; --text2: #555; --accent: #0ea5e9;
+    --card-bg: #fff; --card-border: #e5e5e5; --code-bg: #f0f0f0;
+  }
+  [data-theme="dark"] {
+    --bg: #0a0a0a; --text: #f0f0f0; --text2: #999; --accent: #38bdf8;
+    --card-bg: #141414; --card-border: #2a2a2a; --code-bg: #1a1a1a;
+  }
+  body { background: var(--bg); color: var(--text); transition: background 0.4s, color 0.4s; font-family: system-ui, -apple-system, sans-serif; }
+  .card { background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 12px; padding: 24px; transition: background 0.4s, border 0.4s; }
+  .code { background: var(--code-bg); border: 1px solid var(--card-border); border-radius: 8px; padding: 16px; font-family: 'SF Mono', 'Fira Code', monospace; font-size: 13px; overflow-x: auto; }
+  .accent { color: var(--accent); }
+  .stat { font-size: 28px; font-weight: 700; color: var(--accent); }
+  .tag { display: inline-block; padding: 4px 10px; border-radius: 20px; font-size: 12px; font-weight: 500; border: 1px solid var(--card-border); }
+  .hero-gradient { background: linear-gradient(135deg, #0ea5e9 0%, #8b5cf6 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+</style>
+</head>
+<body>
+<script>
+(function(){
+  const KEY = 'atlasnexus.theme';
+  const saved = localStorage.getItem(KEY) || 'light';
+  document.documentElement.setAttribute('data-theme', saved);
+})();
+</script>
+
+<nav style="max-width:1100px;margin:0 auto;padding:24px 20px;display:flex;justify-content:space-between;align-items:center;">
+  <a href="/" style="font-weight:700;font-size:18px;color:var(--text);text-decoration:none;">← Atlas Nexus</a>
+  <button onclick="(function(){const t=document.documentElement;const c=t.getAttribute('data-theme')==='dark'?'light':'dark';t.setAttribute('data-theme',c);localStorage.setItem('atlasnexus.theme',c);})()" style="background:var(--card-bg);border:1px solid var(--card-border);border-radius:8px;padding:8px 16px;cursor:pointer;color:var(--text);">🌓</button>
+</nav>
+
+<main style="max-width:800px;margin:0 auto;padding:0 20px 80px;">
+
+<!-- Hero -->
+<section style="text-align:center;margin-bottom:48px;">
+  <h1 style="font-size:40px;font-weight:800;margin-bottom:16px;"><span class="hero-gradient">ai2work</span></h1>
+  <p style="font-size:18px;color:var(--text2);max-width:600px;margin:0 auto;">On-chain freelancer marketplace — smart contracts on Celo, Next.js PWA, native Android wallet with ECDSA signing.</p>
+  <div style="margin-top:24px;display:flex;gap:8px;justify-content:center;flex-wrap:wrap;">
+    <span class="tag">Solidity</span><span class="tag">Next.js 15</span><span class="tag">Celo</span><span class="tag">Kotlin</span><span class="tag">Capacitor</span><span class="tag">ECDSA</span><span class="tag">TypeScript</span>
+  </div>
+  <div style="margin-top:20px;display:flex;gap:8px;justify-content:center;">
+    <a href="https://github.com/AtlasNexusTech/ai2work" style="background:var(--card-bg);border:1px solid var(--card-border);padding:10px 20px;border-radius:8px;color:var(--text);text-decoration:none;">📂 GitHub</a>
+    <a href="https://ai2work.onrender.com" style="background:var(--accent);color:#fff;padding:10px 20px;border-radius:8px;text-decoration:none;">🔗 Live Demo</a>
+  </div>
+</section>
+
+<!-- Stats -->
+<section style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:16px;margin-bottom:48px;">
+  <div class="card" style="text-align:center;">
+    <div class="stat">20+</div>
+    <div style="color:var(--text2);font-size:14px;">smart contract functions</div>
+  </div>
+  <div class="card" style="text-align:center;">
+    <div class="stat">3</div>
+    <div style="color:var(--text2);font-size:14px;">ERC-20 tokens supported</div>
+  </div>
+  <div class="card" style="text-align:center;">
+    <div class="stat">4</div>
+    <div style="color:var(--text2);font-size:14px;">platforms (Web + Android)</div>
+  </div>
+  <div class="card" style="text-align:center;">
+    <div class="stat">100%</div>
+    <div style="color:var(--text2);font-size:14px;">on-chain settlement</div>
+  </div>
+</section>
+
+<!-- Problem -->
+<section style="margin-bottom:48px;">
+  <h2 style="font-size:24px;font-weight:700;margin-bottom:16px;">The Problem</h2>
+  <div class="card">
+    <p style="color:var(--text2);line-height:1.8;">
+      Freelancers lose <strong>5-20% in platform fees</strong> on traditional marketplaces.
+      Payment disputes take days. Cross-border payments add 3-5% forex and 2-3 business days.
+      Smart contract escrow eliminates intermediaries, but existing Web3 freelance platforms
+      are desktop-only and require MetaMask — inaccessible to the 70% of global users on mobile.
+    </p>
+  </div>
+</section>
+
+<!-- Solution -->
+<section style="margin-bottom:48px;">
+  <h2 style="font-size:24px;font-weight:700;margin-bottom:16px;">The Solution</h2>
+  <div class="card">
+    <p style="color:var(--text2);line-height:1.8;margin-bottom:16px;">
+      <strong>ai2work</strong> is a mobile-first Web3 freelancer marketplace deployed on Celo —
+      a carbon-negative, mobile-optimized L1. Freelancers post bounties in cUSD, CELO, or USDC.
+      Funds are held in an auditable smart contract escrow. Dispute resolution is on-chain.
+    </p>
+    <p style="color:var(--text2);line-height:1.8;">
+      Fees: <strong>2% protocol fee</strong> (vs 5-20% on Web2 platforms). Settlement: <strong>instant on-chain</strong>.
+      No KYC. No bank dependency. Works on any Android device with the native APK.
+    </p>
+  </div>
+</section>
+
+<!-- Architecture -->
+<section style="margin-bottom:48px;">
+  <h2 style="font-size:24px;font-weight:700;margin-bottom:16px;">Architecture</h2>
+  <div class="card">
+    <div style="color:var(--text2);line-height:1.8;">
+
+<strong style="color:var(--text);">Smart Contracts</strong> (Solidity, Foundry)
+<div style="margin:8px 0 16px 0;color:var(--text2);">
+• ClaudelanceCore.sol — escrow, dispute resolution, stake settlement<br>
+• ReentrancyGuard + Ownable2Step + Pausable (OpenZeppelin v5)<br>
+• 20+ mutating functions, tested with forge test<br>
+• Deployed on Celo Mainnet (chain 42220), verified on Celoscan
+</div>
+
+<strong style="color:var(--text);">Web PWA</strong> (Next.js 15, TypeScript, Tailwind)
+<div style="margin:8px 0 16px 0;color:var(--text2);">
+• Server-side rendering with App Router<br>
+• WalletConnect v2 integration<br>
+• PWA with offline support, installable on mobile<br>
+• Hosted on Render.com, CI/CD via GitHub Actions
+</div>
+
+<strong style="color:var(--text);">Native Android</strong> (Kotlin, Capacitor)
+<div style="margin:8px 0 16px 0;color:var(--text2);">
+• Custom Capacitor plugin for ECDSA signing<br>
+• Android Keystore for private key storage (hardware-backed)<br>
+• Keccak256 implemented from scratch in Kotlin (no external crypto libs)<br>
+• EIP-1559 transaction signing + RLP encoding<br>
+• WebView bridge injecting window.ethereum
+</div>
+
+<strong style="color:var(--text);">SDK & Types</strong> (npm packages)
+<div style="margin:8px 0 0 0;color:var(--text2);">
+• @yeheskieltame/claudelance-sdk — typed client for the smart contract<br>
+• @yeheskieltame/claudelance-types — shared ABI + TypeScript types<br>
+• Published on npm + GitHub Packages
+</div>
+
+    </div>
+  </div>
+</section>
+
+<!-- Technical Deep Dive -->
+<section style="margin-bottom:48px;">
+  <h2 style="font-size:24px;font-weight:700;margin-bottom:16px;">Technical Deep Dive: Native ECDSA on Android</h2>
+  <div class="card">
+    <p style="color:var(--text2);line-height:1.8;margin-bottom:16px;">
+      The core innovation is a <strong>custom Capacitor plugin</strong> that implements Ethereum transaction
+      signing natively in Kotlin — no Web3 wallet required. This eliminates the MetaMask dependency
+      that blocks mobile Web3 adoption.
+    </p>
+
+    <div style="color:var(--text2);line-height:1.8;margin-bottom:16px;">
+      <strong style="color:var(--text);">Key decisions:</strong>
+      <ul style="margin:8px 0;padding-left:20px;">
+        <li>secp256k1 via BouncyCastle (SpongyCastle on Android)</li>
+        <li>Keccak256 implemented manually — no extra dependency</li>
+        <li>RLP encoding for transaction serialization</li>
+        <li>Android Keystore for key generation (hardware-backed when available)</li>
+        <li>Bridge.js injected into WebView — dapps see a standard <code>window.ethereum</code> object</li>
+      </ul>
+    </div>
+
+    <div class="code" style="color:var(--text2);">
+<span style="color:var(--accent);">// EthWalletHelper.kt — Keccak256 core</span>
+<span style="color:var(--text2);">fun keccak256(data: ByteArray): ByteArray {</span>
+<span style="color:var(--text2);">    val digest = Keccak(256)</span>
+<span style="color:var(--text2);">    return digest.digest(data)</span>
+<span style="color:var(--text2);">}</span>
+<br>
+<span style="color:var(--accent);">// EIP-1559 transaction signing</span>
+<span style="color:var(--text2);">fun signTransaction(tx: EthTransaction, key: PrivateKey): ByteArray {</span>
+<span style="color:var(--text2);">    val encoded = rlpEncode(tx.toList())</span>
+<span style="color:var(--text2);">    val hash = keccak256(encoded)</span>
+<span style="color:var(--text2);">    return signECDSA(hash, key) // secp256k1 deterministic</span>
+<span style="color:var(--text2);">}</span>
+    </div>
+  </div>
+</section>
+
+<!-- Results -->
+<section style="margin-bottom:48px;">
+  <h2 style="font-size:24px;font-weight:700;margin-bottom:16px;">Results & Impact</h2>
+  <div class="card">
+    <table style="width:100%;color:var(--text2);border-collapse:collapse;">
+      <tr style="border-bottom:1px solid var(--card-border);">
+        <td style="padding:12px 0;"><strong style="color:var(--text);">Gas cost per bounty</strong></td>
+        <td style="padding:12px 0;text-align:right;">~$0.01 (Celo)</td>
+      </tr>
+      <tr style="border-bottom:1px solid var(--card-border);">
+        <td style="padding:12px 0;"><strong style="color:var(--text);">Protocol fee</strong></td>
+        <td style="padding:12px 0;text-align:right;">2%</td>
+      </tr>
+      <tr style="border-bottom:1px solid var(--card-border);">
+        <td style="padding:12px 0;"><strong style="color:var(--text);">APK size</strong></td>
+        <td style="padding:12px 0;text-align:right;">4.2 MB</td>
+      </tr>
+      <tr style="border-bottom:1px solid var(--card-border);">
+        <td style="padding:12px 0;"><strong style="color:var(--text);">Android API</strong></td>
+        <td style="padding:12px 0;text-align:right;">24+ (99.1% devices)</td>
+      </tr>
+      <tr>
+        <td style="padding:12px 0;"><strong style="color:var(--text);">Transaction signing</strong></td>
+        <td style="padding:12px 0;text-align:right;">No external wallet needed</td>
+      </tr>
+    </table>
+  </div>
+</section>
+
+<!-- Lessons -->
+<section style="margin-bottom:48px;">
+  <h2 style="font-size:24px;font-weight:700;margin-bottom:16px;">Lessons Learned</h2>
+  <div class="card">
+    <div style="color:var(--text2);line-height:1.8;">
+      <p style="margin-bottom:12px;"><strong>1.</strong> Capacitor plugins are the right abstraction for Web3 mobile — they bridge the gap between web UX and native crypto without forcing users into a separate wallet app.</p>
+      <p style="margin-bottom:12px;"><strong>2.</strong> Celo's sub-cent gas fees make on-chain freelancing viable. On Ethereum mainnet, a single bounty posting would cost $5-20 in gas. On Celo: $0.01.</p>
+      <p style="margin-bottom:12px;"><strong>3.</strong> The hardest part of Web3 mobile is key management. Android Keystore + hardware backing is the only acceptable solution — no plaintext keys in SharedPreferences.</p>
+      <p><strong>4.</strong> The Celo ecosystem's focus on mobile-first and real-world assets (cUSD, USDC) aligns perfectly with freelancer payments — stablecoins are non-negotiable for professional use.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section style="text-align:center;margin-top:64px;">
+  <h2 style="font-size:24px;font-weight:700;margin-bottom:16px;">Want something like this?</h2>
+  <p style="color:var(--text2);margin-bottom:24px;">I build full-stack Web3 products — smart contracts, mobile apps, agent orchestration.</p>
+  <a href="/#contact" style="background:var(--accent);color:#fff;padding:14px 32px;border-radius:8px;text-decoration:none;font-weight:600;">Get in touch →</a>
+</section>
+
+</main>
+
+<footer style="text-align:center;padding:40px 20px;color:var(--text2);font-size:14px;border-top:1px solid var(--card-border);">
+  atlasnexus.tech — © 2026
+</footer>
+</body>
+</html>
