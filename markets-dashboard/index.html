@@ -209,7 +209,7 @@ footer{margin-top:34px;color:var(--muted);font-size:.85em;text-align:center;line
 [data-theme="light"] .panel .desc{color:#475569!important}
 [data-theme="light"] .panel h2{color:#0f172a!important}
 *,*::before,*::after{transition:background-color .4s ease,border-color .4s ease,color .4s ease,box-shadow .4s ease}
-</style></head><body><main class="shell"><header class="topbar"><div class="brand"><span class="brand-mark">🔮</span><span>Atlas Nexus</span></div><nav class="nav" aria-label="Dashboard navigation"><a class="active" href="#scanner">Scanner</a><a href="#dashboards">Markets</a><a href="https://github.com/AtlasNexusTech/markets-dashboard">GitHub</a><button class="theme-btn" id="themeToggle" title="Toggle theme" aria-label="Toggle dark/light theme"><span class="icon-sun">☀️</span><span class="icon-moon">🌙</span></button></nav></header><section class="hero" aria-label="Atlas Nexus Markets overview"><div class="hero-main"><div class="eyebrow"><span class="live-dot"></span> Live multi-asset intelligence</div><div class="title-emoji">🔮</div><h1>Markets Command Deck</h1><p class="hero-sub">A client-facing market intelligence cockpit for crypto, stocks, ETFs, indices, forex and commodities — live widgets, generated dashboards, and a technical scanner built for fast signal reading.</p><div class="hero-cta"><a href="#scanner" class="btn btn-primary">⚡ Open Live Scanner</a><a href="#dashboards" class="btn">Browse dashboards</a></div></div><aside class="hero-side" aria-label="Key coverage metrics"><div class="metric-card wide"><div><div class="metric-label">Scanner coverage</div><div class="metric-value"><span class="count-up" data-target="103">103</span> assets</div></div><div class="status-line"><span class="live-dot"></span>Yahoo Finance OHLCV · live scoring</div></div><div class="metric-card"><div class="metric-label">Markets</div><div class="metric-value">6</div><div class="metric-copy">Crypto · Stocks · ETF · Indices · FX · Commodities</div></div><div class="metric-card"><div class="metric-label">Scoring engine</div><div class="metric-value">Hawkeye V4</div><div class="metric-copy">Pressure · Regime · Momentum · Extension</div></div>
+</style></head><body><main class="shell"><header class="topbar"><div class="brand"><span class="brand-mark">🔮</span><span>Atlas Nexus</span></div><nav class="nav" aria-label="Dashboard navigation"><a class="active" href="#scanner">Scanner</a><a href="#dashboards">Markets</a><a href="https://github.com/AtlasNexusTech/markets-dashboard">GitHub</a><button class="theme-btn" id="themeToggle" title="Toggle theme" aria-label="Toggle dark/light theme"><span class="icon-sun">☀️</span><span class="icon-moon">🌙</span></button></nav></header><section class="hero" aria-label="Atlas Nexus Markets overview"><div class="hero-main"><div class="eyebrow"><span class="live-dot"></span> Live multi-asset intelligence</div><div class="title-emoji">🔮</div><h1>Markets Command Deck</h1><p class="hero-sub">A client-facing market intelligence cockpit for crypto, stocks, ETFs, indices, forex and commodities — live widgets, generated dashboards, and a technical scanner built for fast signal reading.</p><div class="hero-cta"><a href="#scanner" class="btn btn-primary">⚡ Open Live Scanner</a><a href="#dashboards" class="btn">Browse dashboards</a></div></div><aside class="hero-side" aria-label="Key coverage metrics"><div class="metric-card wide"><div><div class="metric-label">Scanner coverage</div><div class="metric-value"><span class="count-up" data-target="100">100</span> assets</div></div><div class="status-line"><span class="live-dot"></span>Yahoo Finance OHLCV · live scoring</div></div><div class="metric-card"><div class="metric-label">Markets</div><div class="metric-value">6</div><div class="metric-copy">Crypto · Stocks · ETF · Indices · FX · Commodities</div></div><div class="metric-card"><div class="metric-label">Scoring engine</div><div class="metric-value">Hawkeye V4</div><div class="metric-copy">Pressure · Regime · Momentum · Extension</div></div>
 <div class="index-widgets">
 <div class="index-widget spx-widget">
 <div class="idx-name">S&P 500</div>
@@ -290,101 +290,84 @@ footer{margin-top:34px;color:var(--muted);font-size:.85em;text-align:center;line
 <p class="scanner-sub">Top bullish and bearish assets ranked by composite pressure score — built for quick manual chart inspection. Each slot shows indicative market state: Open, Closed, or Pre-market.</p>
 <div class="scanner-quicklegend"><span>60–74 Active</span><span>75+ Strong</span><span>90+ Extreme</span><span>Chart ↗ opens TradingView</span></div>
 </div>
-<div class="scanner-score"><div class="num">103</div><div class="label">assets scanned</div></div>
+<div class="scanner-score"><div class="num">100</div><div class="label">assets scanned</div></div>
 </div>
 <div class="scanner-board" style="grid-template-columns:repeat(2,1fr)">
-<div class="signal-card"><h3>📈 Bullish pressure (7)</h3><div class="signal-row" data-market="stocks">
+<div class="signal-card"><h3>📈 Bullish pressure (7)</h3><div class="signal-row" data-market="etf">
 <div>
-<span class="asset-name">Caterpillar</span>
-<span class="asset-tag">Bullish pressure</span>
-<span class="asset-meta">actions · uptrend · bullish continuation</span>
-<span class="asset-levels">
-<span style="color:#bae6fd">🎟️ $888.31</span>
-<span class="market-state market-state-closed" data-market="stocks" data-market-state>Closed · listed markets</span>
-<a class="tv-link" href="https://www.tradingview.com/chart/?symbol=NYSE%3ACAT" target="_blank" rel="noopener noreferrer" title="Open NYSE:CAT on TradingView">Chart ↗</a>
-
-</span>
-</div>
-<div class="score-box">
-<span class="score-pill score-warm">73/100</span>
-<div class="score-meta">Net +46 · CAT</div>
-<div class="status-mini" style="color:#f59e0b">👁️ Active</div>
-</div>
-</div><div class="signal-row" data-market="etf">
-<div>
-<span class="asset-name">Energy Select</span>
+<span class="asset-name">SPDR Dow Jones</span>
 <span class="asset-tag">Bullish pressure</span>
 <span class="asset-meta">etf · uptrend · bullish continuation</span>
 <span class="asset-levels">
-<span style="color:#bae6fd">🎟️ $59.44</span>
+<span style="color:#bae6fd">🎟️ $493.98</span>
 <span class="market-state market-state-closed" data-market="etf" data-market-state>Closed · listed markets</span>
-<a class="tv-link" href="https://www.tradingview.com/chart/?symbol=AMEX%3AXLE" target="_blank" rel="noopener noreferrer" title="Open AMEX:XLE on TradingView">Chart ↗</a>
-
-</span>
-</div>
-<div class="score-box">
-<span class="score-pill score-warm">70/100</span>
-<div class="score-meta">Net +49 · XLE</div>
-<div class="status-mini" style="color:#f59e0b">👁️ Active</div>
-</div>
-</div><div class="signal-row" data-market="stocks">
-<div>
-<span class="asset-name">Walmart</span>
-<span class="asset-tag">Bullish pressure</span>
-<span class="asset-meta">actions · uptrend · bullish continuation</span>
-<span class="asset-levels">
-<span style="color:#bae6fd">🎟️ $131.45</span>
-<span class="market-state market-state-closed" data-market="stocks" data-market-state>Closed · listed markets</span>
-<a class="tv-link" href="https://www.tradingview.com/chart/?symbol=NYSE%3AWMT" target="_blank" rel="noopener noreferrer" title="Open NYSE:WMT on TradingView">Chart ↗</a>
+<a class="tv-link" href="https://www.tradingview.com/chart/?symbol=AMEX%3ADIA" target="_blank" rel="noopener noreferrer" title="Open AMEX:DIA on TradingView">Chart ↗</a>
 
 </span>
 </div>
 <div class="score-box">
 <span class="score-pill score-warm">69/100</span>
-<div class="score-meta">Net +42 · WMT</div>
+<div class="score-meta">Net +42 · DIA</div>
 <div class="status-mini" style="color:#f59e0b">👁️ Active</div>
 </div>
 </div><div class="signal-row" data-market="etf">
 <div>
-<span class="asset-name">iShares MSCI EM</span>
+<span class="asset-name">Invesco QQQ</span>
 <span class="asset-tag">Bullish pressure</span>
 <span class="asset-meta">etf · uptrend · bullish continuation</span>
 <span class="asset-levels">
-<span style="color:#bae6fd">🎟️ $65.07</span>
+<span style="color:#bae6fd">🎟️ $701.53</span>
 <span class="market-state market-state-closed" data-market="etf" data-market-state>Closed · listed markets</span>
-<a class="tv-link" href="https://www.tradingview.com/chart/?symbol=EEM" target="_blank" rel="noopener noreferrer" title="Open EEM on TradingView">Chart ↗</a>
+<a class="tv-link" href="https://www.tradingview.com/chart/?symbol=NASDAQ%3AQQQ" target="_blank" rel="noopener noreferrer" title="Open NASDAQ:QQQ on TradingView">Chart ↗</a>
 
 </span>
 </div>
 <div class="score-box">
-<span class="score-pill score-warm">69/100</span>
-<div class="score-meta">Net +38 · EEM</div>
+<span class="score-pill score-warm">68/100</span>
+<div class="score-meta">Net +41 · QQQ</div>
+<div class="status-mini" style="color:#f59e0b">👁️ Active</div>
+</div>
+</div><div class="signal-row" data-market="etf">
+<div>
+<span class="asset-name">Technology Select</span>
+<span class="asset-tag">Bullish pressure</span>
+<span class="asset-meta">etf · uptrend · bullish continuation</span>
+<span class="asset-levels">
+<span style="color:#bae6fd">🎟️ $173.24</span>
+<span class="market-state market-state-closed" data-market="etf" data-market-state>Closed · listed markets</span>
+<a class="tv-link" href="https://www.tradingview.com/chart/?symbol=AMEX%3AXLK" target="_blank" rel="noopener noreferrer" title="Open AMEX:XLK on TradingView">Chart ↗</a>
+
+</span>
+</div>
+<div class="score-box">
+<span class="score-pill score-warm">68/100</span>
+<div class="score-meta">Net +41 · XLK</div>
 <div class="status-mini" style="color:#f59e0b">👁️ Active</div>
 </div>
 </div><div class="signal-row" data-market="indices">
 <div>
-<span class="asset-name">Nikkei 225</span>
+<span class="asset-name">Shanghai Comp</span>
 <span class="asset-tag">Bullish pressure</span>
 <span class="asset-meta">indices · uptrend · bullish continuation</span>
 <span class="asset-levels">
-<span style="color:#bae6fd">🎟️ 61,409.29 pts</span>
+<span style="color:#bae6fd">🎟️ 4,150.98 pts</span>
 <span class="market-state market-state-open" data-market="indices" data-market-state>Open · global/futures</span>
-<a class="tv-link" href="https://www.tradingview.com/chart/?symbol=TSE%3ANI225" target="_blank" rel="noopener noreferrer" title="Open TSE:NI225 on TradingView">Chart ↗</a>
+<a class="tv-link" href="https://www.tradingview.com/chart/?symbol=000001.SS" target="_blank" rel="noopener noreferrer" title="Open 000001.SS on TradingView">Chart ↗</a>
 
 </span>
 </div>
 <div class="score-box">
 <span class="score-pill score-warm">67/100</span>
-<div class="score-meta">Net +46 · ^N225</div>
+<div class="score-meta">Net +42 · 000001.SS</div>
 <div class="status-mini" style="color:#f59e0b">👁️ Active</div>
 </div>
 </div><div class="signal-row" data-market="stocks">
 <div>
 <span class="asset-name">NVIDIA</span>
 <span class="asset-tag">Bullish pressure</span>
-<span class="asset-meta">actions · uptrend · breakout pressure · extension warning</span>
+<span class="asset-meta">actions · uptrend · bullish continuation</span>
 <span class="asset-levels">
-<span style="color:#bae6fd">🎟️ $225.32</span>
+<span style="color:#bae6fd">🎟️ $220.61</span>
 <span class="market-state market-state-closed" data-market="stocks" data-market-state>Closed · listed markets</span>
 <a class="tv-link" href="https://www.tradingview.com/chart/?symbol=NASDAQ%3ANVDA" target="_blank" rel="noopener noreferrer" title="Open NASDAQ:NVDA on TradingView">Chart ↗</a>
 
@@ -392,144 +375,161 @@ footer{margin-top:34px;color:var(--muted);font-size:.85em;text-align:center;line
 </div>
 <div class="score-box">
 <span class="score-pill score-warm">67/100</span>
-<div class="score-meta">Net +47 · NVDA</div>
-<div class="status-mini" style="color:#f59e0b">👁️ Active</div>
-</div>
-</div><div class="signal-row" data-market="commodities">
-<div>
-<span class="asset-name">Sugar</span>
-<span class="asset-tag">Bullish pressure</span>
-<span class="asset-meta">commodities · uptrend · bullish continuation</span>
-<span class="asset-levels">
-<span style="color:#bae6fd">🎟️ $14.78/USD/lb</span>
-<span class="market-state market-state-closed" data-market="commodities" data-market-state>Closed · futures/CFD</span>
-<a class="tv-link" href="https://www.tradingview.com/chart/?symbol=ICEUS%3ASB1%21" target="_blank" rel="noopener noreferrer" title="Open ICEUS:SB1! on TradingView">Chart ↗</a>
-
-</span>
-</div>
-<div class="score-box">
-<span class="score-pill score-warm">66/100</span>
-<div class="score-meta">Net +46 · SB=F</div>
-<div class="status-mini" style="color:#f59e0b">👁️ Active</div>
-</div>
-</div></div>
-<div class="signal-card"><h3>📉 Bearish pressure (7)</h3><div class="signal-row" data-market="etf">
-<div>
-<span class="asset-name">SPDR Gold</span>
-<span class="asset-tag">Bearish pressure</span>
-<span class="asset-meta">etf · downtrend · bearish continuation</span>
-<span class="asset-levels">
-<span style="color:#bae6fd">🎟️ $417.29</span>
-<span class="market-state market-state-closed" data-market="etf" data-market-state>Closed · listed markets</span>
-<a class="tv-link" href="https://www.tradingview.com/chart/?symbol=AMEX%3AGLD" target="_blank" rel="noopener noreferrer" title="Open AMEX:GLD on TradingView">Chart ↗</a>
-
-</span>
-</div>
-<div class="score-box">
-<span class="score-pill score-warm">74/100</span>
-<div class="score-meta">Net -47 · GLD</div>
-<div class="status-mini" style="color:#f59e0b">👁️ Active</div>
-</div>
-</div><div class="signal-row" data-market="stocks">
-<div>
-<span class="asset-name">Hermès</span>
-<span class="asset-tag">Bearish pressure</span>
-<span class="asset-meta">actions · downtrend · bearish continuation</span>
-<span class="asset-levels">
-<span style="color:#bae6fd">🎟️ €1,575.50</span>
-<span class="market-state market-state-closed" data-market="stocks" data-market-state>Closed · listed markets</span>
-<a class="tv-link" href="https://www.tradingview.com/chart/?symbol=EURONEXT%3ARMS" target="_blank" rel="noopener noreferrer" title="Open EURONEXT:RMS on TradingView">Chart ↗</a>
-
-</span>
-</div>
-<div class="score-box">
-<span class="score-pill score-warm">70/100</span>
-<div class="score-meta">Net -43 · RMS.PA</div>
+<div class="score-meta">Net +46 · NVDA</div>
 <div class="status-mini" style="color:#f59e0b">👁️ Active</div>
 </div>
 </div><div class="signal-row" data-market="etf">
 <div>
-<span class="asset-name">iShares Inv. Grade</span>
-<span class="asset-tag">Bearish pressure</span>
-<span class="asset-meta">etf · downtrend · breakdown pressure · extension warning</span>
+<span class="asset-name">Vanguard Total Market</span>
+<span class="asset-tag">Bullish pressure</span>
+<span class="asset-meta">etf · uptrend · bullish continuation</span>
 <span class="asset-levels">
-<span style="color:#bae6fd">🎟️ $107.86</span>
+<span style="color:#bae6fd">🎟️ $360.06</span>
 <span class="market-state market-state-closed" data-market="etf" data-market-state>Closed · listed markets</span>
-<a class="tv-link" href="https://www.tradingview.com/chart/?symbol=LQD" target="_blank" rel="noopener noreferrer" title="Open LQD on TradingView">Chart ↗</a>
-
-</span>
-</div>
-<div class="score-box">
-<span class="score-pill score-warm">69/100</span>
-<div class="score-meta">Net -49 · LQD</div>
-<div class="status-mini" style="color:#f59e0b">👁️ Active</div>
-</div>
-</div><div class="signal-row" data-market="commodities">
-<div>
-<span class="asset-name">Gold</span>
-<span class="asset-tag">Bearish pressure</span>
-<span class="asset-meta">commodities · downtrend · bearish continuation</span>
-<span class="asset-levels">
-<span style="color:#bae6fd">🎟️ $4,561.90/USD/oz</span>
-<span class="market-state market-state-closed" data-market="commodities" data-market-state>Closed · futures/CFD</span>
-<a class="tv-link" href="https://www.tradingview.com/chart/?symbol=COMEX%3AGC1%21" target="_blank" rel="noopener noreferrer" title="Open COMEX:GC1! on TradingView">Chart ↗</a>
-
-</span>
-</div>
-<div class="score-box">
-<span class="score-pill score-warm">68/100</span>
-<div class="score-meta">Net -47 · GC=F</div>
-<div class="status-mini" style="color:#f59e0b">👁️ Active</div>
-</div>
-</div><div class="signal-row" data-market="stocks">
-<div>
-<span class="asset-name">LVMH</span>
-<span class="asset-tag">Bearish pressure</span>
-<span class="asset-meta">actions · downtrend · bearish continuation</span>
-<span class="asset-levels">
-<span style="color:#bae6fd">🎟️ €455.60</span>
-<span class="market-state market-state-closed" data-market="stocks" data-market-state>Closed · listed markets</span>
-<a class="tv-link" href="https://www.tradingview.com/chart/?symbol=EURONEXT%3AMC" target="_blank" rel="noopener noreferrer" title="Open EURONEXT:MC on TradingView">Chart ↗</a>
+<a class="tv-link" href="https://www.tradingview.com/chart/?symbol=VTI" target="_blank" rel="noopener noreferrer" title="Open VTI on TradingView">Chart ↗</a>
 
 </span>
 </div>
 <div class="score-box">
 <span class="score-pill score-warm">67/100</span>
-<div class="score-meta">Net -46 · MC.PA</div>
+<div class="score-meta">Net +46 · VTI</div>
 <div class="status-mini" style="color:#f59e0b">👁️ Active</div>
 </div>
 </div><div class="signal-row" data-market="commodities">
 <div>
-<span class="asset-name">Palladium</span>
-<span class="asset-tag">Bearish pressure</span>
-<span class="asset-meta">commodities · downtrend · breakdown pressure · extension warning</span>
+<span class="asset-name">Soybeans</span>
+<span class="asset-tag">Bullish pressure</span>
+<span class="asset-meta">commodities · uptrend · bullish continuation</span>
 <span class="asset-levels">
-<span style="color:#bae6fd">🎟️ $1,426.30/USD/oz</span>
-<span class="market-state market-state-closed" data-market="commodities" data-market-state>Closed · futures/CFD</span>
-<a class="tv-link" href="https://www.tradingview.com/chart/?symbol=PA%3DF" target="_blank" rel="noopener noreferrer" title="Open PA=F on TradingView">Chart ↗</a>
+<span style="color:#bae6fd">🎟️ $1,206.75/USD/bushel</span>
+<span class="market-state market-state-open" data-market="commodities" data-market-state>Open · futures/CFD</span>
+<a class="tv-link" href="https://www.tradingview.com/chart/?symbol=CBOT%3AZS1%21" target="_blank" rel="noopener noreferrer" title="Open CBOT:ZS1! on TradingView">Chart ↗</a>
 
 </span>
 </div>
 <div class="score-box">
-<span class="score-pill score-warm">64/100</span>
-<div class="score-meta">Net -47 · PA=F</div>
+<span class="score-pill score-warm">66/100</span>
+<div class="score-meta">Net +42 · ZS=F</div>
 <div class="status-mini" style="color:#f59e0b">👁️ Active</div>
 </div>
-</div><div class="signal-row" data-market="indices">
+</div></div>
+<div class="signal-card"><h3>📉 Bearish pressure (7)</h3><div class="signal-row" data-market="indices">
 <div>
 <span class="asset-name">CAC 40</span>
 <span class="asset-tag">Bearish pressure</span>
 <span class="asset-meta">indices · downtrend · bearish continuation</span>
 <span class="asset-levels">
-<span style="color:#bae6fd">🎟️ 7,952.55 pts</span>
+<span style="color:#bae6fd">🎟️ 7,981.76 pts</span>
 <span class="market-state market-state-open" data-market="indices" data-market-state>Open · global/futures</span>
 <a class="tv-link" href="https://www.tradingview.com/chart/?symbol=EURONEXT%3APX1" target="_blank" rel="noopener noreferrer" title="Open EURONEXT:PX1 on TradingView">Chart ↗</a>
 
 </span>
 </div>
 <div class="score-box">
+<span class="score-pill score-warm">67/100</span>
+<div class="score-meta">Net -46 · ^FCHI</div>
+<div class="status-mini" style="color:#f59e0b">👁️ Active</div>
+</div>
+</div><div class="signal-row" data-market="stocks">
+<div>
+<span class="asset-name">McDonald&#x27;s</span>
+<span class="asset-tag">Bearish pressure</span>
+<span class="asset-meta">actions · downtrend · bearish continuation</span>
+<span class="asset-levels">
+<span style="color:#bae6fd">🎟️ $280.80</span>
+<span class="market-state market-state-closed" data-market="stocks" data-market-state>Closed · listed markets</span>
+<a class="tv-link" href="https://www.tradingview.com/chart/?symbol=NYSE%3AMCD" target="_blank" rel="noopener noreferrer" title="Open NYSE:MCD on TradingView">Chart ↗</a>
+
+</span>
+</div>
+<div class="score-box">
+<span class="score-pill score-warm">67/100</span>
+<div class="score-meta">Net -46 · MCD</div>
+<div class="status-mini" style="color:#f59e0b">👁️ Active</div>
+</div>
+</div><div class="signal-row" data-market="etf">
+<div>
+<span class="asset-name">iShares High Yield</span>
+<span class="asset-tag">Bearish pressure</span>
+<span class="asset-meta">etf · downtrend · breakdown pressure · extension warning</span>
+<span class="asset-levels">
+<span style="color:#bae6fd">🎟️ $79.35</span>
+<span class="market-state market-state-closed" data-market="etf" data-market-state>Closed · listed markets</span>
+<a class="tv-link" href="https://www.tradingview.com/chart/?symbol=HYG" target="_blank" rel="noopener noreferrer" title="Open HYG on TradingView">Chart ↗</a>
+
+</span>
+</div>
+<div class="score-box">
+<span class="score-pill score-warm">67/100</span>
+<div class="score-meta">Net -47 · HYG</div>
+<div class="status-mini" style="color:#f59e0b">👁️ Active</div>
+</div>
+</div><div class="signal-row" data-market="stocks">
+<div>
+<span class="asset-name">Nike</span>
+<span class="asset-tag">Bearish pressure</span>
+<span class="asset-meta">actions · downtrend · bearish continuation</span>
+<span class="asset-levels">
+<span style="color:#bae6fd">🎟️ $42.42</span>
+<span class="market-state market-state-closed" data-market="stocks" data-market-state>Closed · listed markets</span>
+<a class="tv-link" href="https://www.tradingview.com/chart/?symbol=NYSE%3ANKE" target="_blank" rel="noopener noreferrer" title="Open NYSE:NKE on TradingView">Chart ↗</a>
+
+</span>
+</div>
+<div class="score-box">
+<span class="score-pill score-warm">66/100</span>
+<div class="score-meta">Net -39 · NKE</div>
+<div class="status-mini" style="color:#f59e0b">👁️ Active</div>
+</div>
+</div><div class="signal-row" data-market="stocks">
+<div>
+<span class="asset-name">Bank of America</span>
+<span class="asset-tag">Bearish pressure</span>
+<span class="asset-meta">actions · mixed · mixed / no edge</span>
+<span class="asset-levels">
+<span style="color:#bae6fd">🎟️ $50.70</span>
+<span class="market-state market-state-closed" data-market="stocks" data-market-state>Closed · listed markets</span>
+<a class="tv-link" href="https://www.tradingview.com/chart/?symbol=NYSE%3ABAC" target="_blank" rel="noopener noreferrer" title="Open NYSE:BAC on TradingView">Chart ↗</a>
+
+</span>
+</div>
+<div class="score-box">
+<span class="score-pill score-warm">64/100</span>
+<div class="score-meta">Net -32 · BAC</div>
+<div class="status-mini" style="color:#f59e0b">👁️ Active</div>
+</div>
+</div><div class="signal-row" data-market="stocks">
+<div>
+<span class="asset-name">Mastercard</span>
+<span class="asset-tag">Bearish pressure</span>
+<span class="asset-meta">actions · downtrend · bearish continuation</span>
+<span class="asset-levels">
+<span style="color:#bae6fd">🎟️ $499.70</span>
+<span class="market-state market-state-closed" data-market="stocks" data-market-state>Closed · listed markets</span>
+<a class="tv-link" href="https://www.tradingview.com/chart/?symbol=NYSE%3AMA" target="_blank" rel="noopener noreferrer" title="Open NYSE:MA on TradingView">Chart ↗</a>
+
+</span>
+</div>
+<div class="score-box">
 <span class="score-pill score-warm">63/100</span>
-<div class="score-meta">Net -47 · ^FCHI</div>
+<div class="score-meta">Net -42 · MA</div>
+<div class="status-mini" style="color:#f59e0b">👁️ Active</div>
+</div>
+</div><div class="signal-row" data-market="etf">
+<div>
+<span class="asset-name">SPDR Gold</span>
+<span class="asset-tag">Bearish pressure</span>
+<span class="asset-meta">etf · downtrend · breakdown pressure · extension warning</span>
+<span class="asset-levels">
+<span style="color:#bae6fd">🎟️ $411.50</span>
+<span class="market-state market-state-closed" data-market="etf" data-market-state>Closed · listed markets</span>
+<a class="tv-link" href="https://www.tradingview.com/chart/?symbol=AMEX%3AGLD" target="_blank" rel="noopener noreferrer" title="Open AMEX:GLD on TradingView">Chart ↗</a>
+
+</span>
+</div>
+<div class="score-box">
+<span class="score-pill score-warm">63/100</span>
+<div class="score-meta">Net -49 · GLD</div>
 <div class="status-mini" style="color:#f59e0b">👁️ Active</div>
 </div>
 </div></div>
@@ -537,7 +537,7 @@ footer{margin-top:34px;color:var(--muted);font-size:.85em;text-align:center;line
 </div>
 <div class="legend">
 <span>0-39 Weak</span><span>40-59 Watch</span><span>60-74 Active pressure</span><span>75-89 Strong pressure</span><span>90-100 Extreme pressure</span>
-<span class="demo-tag">Updated 17/05/2026 20:31 CEST</span>
+<span class="demo-tag">Updated 20/05/2026 06:52 CEST</span>
 </div>
 </section>
 <section class="econ-section" aria-label="Economic Calendar">
