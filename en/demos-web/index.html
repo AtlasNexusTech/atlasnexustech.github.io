@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<title>Web Dev Demos — Atlas Nexus</title>
+<link rel="canonical" href="https://atlasnexus.tech/en/demos-web/">
+<meta name="description" content="Atlas Nexus web development demos integrated into the offer: artisan, restaurant, healthcare, consultant, contact and quote-oriented pages.">
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700;800;900&family=Nunito+Sans:ital,opsz,wght@0,6..12,200;0,6..12,300;0,6..12,400;0,6..12,500;0,6..12,600;0,6..12,700;0,6..12,800;1,6..12,200;1,6..12,300;1,6..12,400;1,6..12,500;1,6..12,600;1,6..12,700&display=swap" rel="stylesheet">
+<script>
+tailwind.config = {
+  darkMode: 'class',
+  theme: {
+    extend: {
+      fontFamily: {
+        display: ['Rubik', 'sans-serif'],
+        body: ['Nunito Sans', 'sans-serif'],
+      },
+      colors: {
+        primary: '#2563EB',
+        'primary-dark': '#1D4ED8',
+        secondary: '#3B82F6',
+        accent: '#059669',
+        'accent-dark': '#047857',
+        surface: '#F8FAFC',
+        muted: '#F1F5FD',
+        border: '#E4ECFC',
+        foreground: '#0F172A',
+        'dark-surface': '#0B1120',
+        'dark-card': '#111827',
+        'dark-elevated': '#1A2235',
+        'dark-border': '#1E293B',
+        'dark-muted': '#334155',
+        'dark-foreground': '#F1F5F9',
+        'dark-dim': '#94A3B8',
+      }
+    }
+  }
+}
+</script>
+<style>
+  /* ── Core ── */
+  .hero-title { font-size: clamp(2.45rem, 6.6vw, 5.15rem); font-weight: 900; letter-spacing: -0.055em; line-height: 1.08; overflow: visible; }
+  .gradient-text { background: linear-gradient(135deg, #2563EB 0%, #059669 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+  .glow-word { position: relative; display: inline-block; overflow: visible; padding: .035em .02em .13em .02em; margin: -.035em -.02em -.07em -.02em; background: linear-gradient(110deg, #0F172A 0%, #2563EB 32%, #7C3AED 56%, #059669 82%, #0F172A 100%); background-size: 240% 100%; -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; animation: agenticGlow 3.8s ease-in-out infinite; filter: drop-shadow(0 0 18px rgba(37,99,235,.22)); }
+  .glow-word::after { content: ""; position: absolute; left: 2%; right: 2%; bottom: .09em; height: .14em; border-radius: 999px; background: linear-gradient(90deg, rgba(37,99,235,.0), rgba(37,99,235,.42), rgba(5,150,105,.34), rgba(37,99,235,.0)); filter: blur(5px); z-index: -1; }
+  @keyframes agenticGlow { 0%,100% { background-position: 0% 50%; filter: drop-shadow(0 0 10px rgba(37,99,235,.16)); } 50% { background-position: 100% 50%; filter: drop-shadow(0 0 24px rgba(5,150,105,.26)); } }
+  .hero-orb { position: absolute; inset: auto 4% 8% auto; width: min(34vw, 360px); height: min(34vw, 360px); border-radius: 999px; background: radial-gradient(circle at 35% 35%, rgba(37,99,235,.22), rgba(5,150,105,.12) 38%, transparent 68%); filter: blur(2px); pointer-events: none; }
+  .agentic-card { position: relative; overflow: hidden; border-color: rgba(37,99,235,.28)!important; box-shadow: 0 18px 60px -28px rgba(37,99,235,.55); }
+  .agentic-card::before { content: ""; position: absolute; inset: -1px; background: radial-gradient(circle at 15% 0%, rgba(37,99,235,.13), transparent 38%), radial-gradient(circle at 95% 20%, rgba(5,150,105,.10), transparent 34%); pointer-events: none; }
+  .agentic-card > * { position: relative; }
+  .market-card { background: linear-gradient(145deg, #ffffff 0%, #f7fbff 52%, #eef8ff 100%); border-color: rgba(37,99,235,.22)!important; box-shadow: 0 18px 52px -34px rgba(37,99,235,.55); }
+  .market-card:hover { box-shadow: 0 22px 70px -32px rgba(37,99,235,.65); }
+  .section-title { font-size: clamp(1.8rem, 4.5vw, 3rem); font-weight: 800; letter-spacing: -0.03em; line-height: 1.1; }
+  .card-hover { transition: all 250ms ease; }
+  .lang-switch { position: relative; display:inline-grid; grid-template-columns:1fr 1fr; align-items:center; min-width:92px; height:38px; padding:4px; border:1px solid rgba(37,99,235,.18); border-radius:999px; background:linear-gradient(135deg, rgba(255,255,255,.92), rgba(241,245,253,.84)); color:#64748B; font-size:.76rem; font-weight:900; box-shadow:inset 0 1px 0 rgba(255,255,255,.9), 0 12px 26px -20px rgba(37,99,235,.55); }
+  .lang-switch::before { content:""; position:absolute; top:4px; bottom:4px; width:calc(50% - 4px); border-radius:999px; background:linear-gradient(135deg,#2563EB,#059669); box-shadow:0 10px 22px -12px rgba(37,99,235,.75); transition:transform 220ms ease; }
+  .lang-switch[data-active="fr"]::before { transform:translateX(0); left:4px; }
+  .lang-switch[data-active="en"]::before { transform:translateX(100%); left:4px; }
+  .lang-switch a { position:relative; z-index:1; display:flex; align-items:center; justify-content:center; height:30px; border-radius:999px; color:#64748B; letter-spacing:.03em; }
+  .lang-switch a.active { color:white; }
+  .lang-switch:hover { border-color:rgba(37,99,235,.34); box-shadow:inset 0 1px 0 rgba(255,255,255,.9), 0 16px 34px -22px rgba(37,99,235,.72); }
+  .card-hover:hover { transform: translateY(-4px); box-shadow: 0 12px 32px -6px rgba(37,99,235,0.1); border-color: #2563EB; }
+  a, button, .card-hover { transition: all 200ms ease; }
+  *:focus-visible { outline: 2px solid #2563EB; outline-offset: 2px; border-radius: 4px; }
+  .step-number { font-size: clamp(2.4rem, 5vw, 3.5rem); font-weight: 900; background: linear-gradient(135deg, #7C3AED 0%, #A855F7 50%, #6366F1 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+
+  /* ── Step counter animation ── */
+  .step-number.animate { animation: countPulse 0.6s cubic-bezier(0.22, 1, 0.36, 1); }
+  @keyframes countPulse { 0% { transform: scale(0.6); opacity: 0; } 60% { transform: scale(1.15); } 100% { transform: scale(1); opacity: 1; } }
+  .step-number.final { animation: none; transform: scale(1); opacity: 1; }
+
+  /* ── Scroll Reveal Animations ── */
+  .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1), transform 0.6s cubic-bezier(0.22, 1, 0.36, 1); }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+  .reveal-delay-1 { transition-delay: 0.05s; }
+  .reveal-delay-2 { transition-delay: 0.12s; }
+  .reveal-delay-3 { transition-delay: 0.19s; }
+  .reveal-delay-4 { transition-delay: 0.26s; }
+  .reveal-delay-5 { transition-delay: 0.33s; }
+
+  /* ── Hero stagger children ── */
+  .hero-stagger > * { opacity: 0; transform: translateY(30px); animation: heroFadeIn 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards; }
+  .hero-stagger > *:nth-child(1) { animation-delay: 0.1s; }
+  .hero-stagger > *:nth-child(2) { animation-delay: 0.25s; }
+  .hero-stagger > *:nth-child(3) { animation-delay: 0.40s; }
+  .hero-stagger > *:nth-child(4) { animation-delay: 0.55s; }
+  .hero-stagger > *:nth-child(5) { animation-delay: 0.70s; }
+  @keyframes heroFadeIn { to { opacity: 1; transform: translateY(0); } }
+
+  /* ── Motion accent card ── */
+  .motion-card { position: relative; overflow: hidden; border-color: rgba(124,58,237,.28)!important; box-shadow: 0 18px 60px -28px rgba(124,58,237,.35); background: linear-gradient(145deg, #ffffff 0%, #faf5ff 52%, #f3e8ff 100%); }
+  .motion-card::before { content: ""; position: absolute; inset: -1px; background: radial-gradient(circle at 15% 0%, rgba(124,58,237,.10), transparent 38%), radial-gradient(circle at 95% 20%, rgba(59,130,246,.08), transparent 34%); pointer-events: none; }
+  .motion-card > * { position: relative; }
+  .motion-card:hover { box-shadow: 0 22px 70px -32px rgba(124,58,237,.45); transform: translateY(-4px); }
+
+  /* ATLAS_CARD_THEME_SWITCH_20260517: Framer purple, Agentic Identity blue */
+  .framer-purple-card { position: relative; overflow: hidden; border-color: rgba(124,58,237,.24)!important; box-shadow: 0 18px 52px -34px rgba(124,58,237,.58); background: linear-gradient(145deg, #ffffff 0%, #fbf7ff 52%, #f5efff 100%); }
+  .framer-purple-card::before { content: ""; position: absolute; inset: -1px; pointer-events: none; background: radial-gradient(circle at 15% 0%, rgba(124,58,237,.13), transparent 38%), radial-gradient(circle at 95% 20%, rgba(168,85,247,.10), transparent 34%); }
+  .framer-purple-card:hover { box-shadow: 0 22px 70px -32px rgba(124,58,237,.68); border-color: rgba(124,58,237,.40)!important; }
+  .framer-purple-card > * { position: relative; }
+  .framer-purple-card .framer-icon-bg { background: rgba(124,58,237,.10)!important; }
+  .framer-purple-card .framer-accent { color: #7c3aed!important; }
+  .framer-purple-card .framer-chip { background: rgba(124,58,237,.08)!important; color: #6d28d9!important; }
+  .dark .framer-purple-card { background: linear-gradient(145deg, #111827 0%, #1a1530 52%, #241442 100%); border-color: rgba(167,139,250,.28)!important; box-shadow: 0 18px 52px -34px rgba(0,0,0,.6); }
+  .dark .framer-purple-card::before { content: ""; position: absolute; inset: -1px; pointer-events: none; background: radial-gradient(circle at 15% 0%, rgba(167,139,250,.17), transparent 38%), radial-gradient(circle at 95% 20%, rgba(124,58,237,.14), transparent 34%); }
+  .dark .framer-purple-card > * { position: relative; }
+  .dark .framer-purple-card .framer-icon-bg { background: rgba(124,58,237,.20)!important; }
+  .dark .framer-purple-card .framer-accent { color: #C4B5FD!important; }
+  .dark .framer-purple-card .framer-chip { background: rgba(124,58,237,.18)!important; color: #DDD6FE!important; }
+
+  .agentic-blue-card { position: relative; overflow: hidden; border-color: rgba(37,99,235,.22)!important; box-shadow: 0 18px 52px -34px rgba(37,99,235,.55); background: linear-gradient(145deg, #ffffff 0%, #f7fbff 52%, #eef8ff 100%); }
+  .agentic-blue-card::before { content: ""; position: absolute; inset: -1px; pointer-events: none; background: radial-gradient(circle at 15% 0%, rgba(37,99,235,.12), transparent 38%), radial-gradient(circle at 95% 20%, rgba(14,165,233,.10), transparent 34%); }
+  .agentic-blue-card:hover { box-shadow: 0 22px 70px -32px rgba(37,99,235,.65); border-color: rgba(37,99,235,.36)!important; }
+  .agentic-blue-card > * { position: relative; }
+  .agentic-blue-card .agentic-icon-bg { background: rgba(37,99,235,.10)!important; }
+  .agentic-blue-card .agentic-accent { color: #2563eb!important; }
+  .agentic-blue-card .agentic-chip { background: rgba(37,99,235,.07)!important; color: #1d4ed8!important; }
+  .dark .agentic-blue-card { background: linear-gradient(145deg, #111827 0%, #111d30 52%, #0e1f2d 100%); border-color: rgba(59,130,246,.25)!important; box-shadow: 0 18px 52px -34px rgba(0,0,0,.6); }
+  .dark .agentic-blue-card::before { content: ""; position: absolute; inset: -1px; pointer-events: none; background: radial-gradient(circle at 15% 0%, rgba(59,130,246,.15), transparent 38%), radial-gradient(circle at 95% 20%, rgba(14,165,233,.12), transparent 34%); }
+  .dark .agentic-blue-card > * { position: relative; }
+  .dark .agentic-blue-card .agentic-icon-bg { background: rgba(59,130,246,.16)!important; }
+  .dark .agentic-blue-card .agentic-accent { color: #93C5FD!important; }
+  .dark .agentic-blue-card .agentic-chip { background: rgba(59,130,246,.14)!important; color: #BFDBFE!important; }
+
+  .offer-card { display:flex; flex-direction:column; }
+  .offer-card .offer-spacer { flex:1 1 auto; }
+  .offer-card .offer-price { margin-top:auto; line-height:1.15; }
+  .offer-card .offer-quote { display:block; margin-top:.35rem; line-height:1.25; }
+
+  /* ── Accessibility ── */
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+    .reveal { opacity: 1; transform: none; }
+    .hero-stagger > * { opacity: 1; transform: none; animation: none; }
+  }
+
+  /* ── Dark mode overrides ── */
+  .dark .bg-white, .dark .bg-surface { background-color: #0B1120; }
+  .dark .text-slate-600 { color: #CBD5E1; }
+  .dark .text-slate-500 { color: #94A3B8; }
+  .dark .text-slate-400 { color: #64748B; }
+  .dark .border-border { border-color: #1E293B; }
+  .dark a.hover\:text-primary:hover, .dark .hover\:text-primary:hover { color: #60A5FA; }
+  .dark a.hover\:text-primary-dark:hover { color: #93C5FD; }
+  .dark .hero-orb { background: radial-gradient(circle at 35% 35%, rgba(59,130,246,.28), rgba(5,150,105,.15) 45%, transparent 72%); }
+  .dark .glow-word { background: linear-gradient(110deg, #60A5FA 0%, #818CF8 28%, #C084FC 52%, #34D399 78%, #60A5FA 100%); background-size: 240% 100%; -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; animation-name: agenticGlowDark; }
+  .dark .glow-word::after { background: linear-gradient(90deg, rgba(96,165,250,.0), rgba(129,140,248,.6), rgba(192,132,252,.5), rgba(52,211,153,.4), rgba(96,165,250,.0)); }
+  @keyframes agenticGlowDark { 0%,100% { background-position: 0% 50%; filter: drop-shadow(0 0 18px rgba(96,165,250,.45)); } 50% { background-position: 100% 50%; filter: drop-shadow(0 0 38px rgba(192,132,252,.55)); } }
+  .dark .gradient-text { background: linear-gradient(135deg, #60A5FA 0%, #34D399 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+  .dark .market-card { background: linear-gradient(145deg, #111827 0%, #111d30 52%, #0e1f2d 100%); border-color: rgba(59,130,246,.25)!important; box-shadow: 0 18px 52px -34px rgba(0,0,0,.6); }
+  .dark .market-card:hover { box-shadow: 0 22px 70px -32px rgba(59,130,246,.25); }
+  .dark .agentic-card { border-color: rgba(59,130,246,.3)!important; box-shadow: 0 18px 60px -28px rgba(59,130,246,.35); }
+  .dark .agentic-card::before { background: radial-gradient(circle at 15% 0%, rgba(59,130,246,.15), transparent 38%), radial-gradient(circle at 95% 20%, rgba(5,150,105,.12), transparent 34%); }
+  .dark .motion-card { background: linear-gradient(145deg, #111827 0%, #1a1428 52%, #1a1228 100%); border-color: rgba(124,58,237,.3)!important; box-shadow: 0 18px 60px -28px rgba(124,58,237,.25); }
+  .dark .motion-card::before { background: radial-gradient(circle at 15% 0%, rgba(124,58,237,.12), transparent 38%), radial-gradient(circle at 95% 20%, rgba(59,130,246,.1), transparent 34%); }
+  .dark .motion-card:hover { box-shadow: 0 22px 70px -32px rgba(124,58,237,.35); }
+  .dark .card-hover:hover { box-shadow: 0 12px 32px -6px rgba(0,0,0,.4); }
+  .dark .card-hover.hover\:border-primary:hover { border-color: #3B82F6; }
+  .dark .card-hover.hover\:border-purple-500:hover { border-color: #8B5CF6; }
+  .dark .bg-green-100 { background-color: #064E3B; }
+  .dark .text-green-600 { color: #34D399; }
+  .dark .bg-green-50 { background-color: #064E3B; }
+  .dark .bg-purple-100 { background-color: #3B1F6E; }
+  .dark .bg-purple-50 { background-color: #3B1F6E; }
+  .dark .bg-accent\/10 { background-color: rgba(5,150,105,.15); }
+  .dark .bg-accent\/5 { background-color: rgba(5,150,105,.1); }
+  .dark .step-number { background: linear-gradient(135deg, #8B5CF6 0%, #A78BFA 50%, #818CF8 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+  .dark .text-foreground, .dark strong.text-foreground { color: #F1F5F9; }
+  .dark .border-purple-200 { border-color: #4C1D95; }
+  .dark .text-purple-700 { color: #C4B5FD; }
+  .dark .text-purple-600 { color: #A78BFA; }
+  .dark .hover\:text-purple-700:hover { color: #C4B5FD; }
+  .dark .hover\:text-purple-800:hover { color: #DDD6FE; }
+  .dark .bg-foreground { background-color: #1A2235; }
+  .dark .hover\:border-primary:hover { border-color: #3B82F6; }
+  .dark .hover\:text-primary:hover { color: #3B82F6; }
+
+  /* ── Dark mode buttons ── */
+  .dark .bg-primary { box-shadow: 0 0 18px -4px rgba(37,99,235,.45); }
+  .dark .bg-primary:hover { box-shadow: 0 0 28px -4px rgba(37,99,235,.65); }
+  .dark .bg-purple-600 { box-shadow: 0 0 18px -4px rgba(124,58,237,.4); }
+  .dark .bg-purple-600:hover { box-shadow: 0 0 28px -4px rgba(124,58,237,.6); }
+  .dark .border.border-border { border-color: #334155; }
+  .dark a.border.border-border:hover { border-color: #3B82F6; }
+  .dark a.border.border-border.hover\:text-primary:hover { color: #3B82F6; }
+  .dark a.border.border-border.hover\:border-purple-500:hover { border-color: #8B5CF6; color: #A78BFA; }
+</style>
+
+</head>
+<body class="bg-surface dark:bg-dark-surface text-foreground dark:text-dark-foreground font-body antialiased">
+<!-- Nav -->
+<nav class="fixed top-0 w-full z-50 bg-surface/85 dark:bg-dark-surface/90 backdrop-blur-lg border-b border-border dark:border-dark-border">
+  <div class="max-w-6xl mx-auto px-6 h-[72px] flex items-center justify-between">
+    <a href="/" class="flex items-center gap-3" aria-label="Atlas Nexus home">
+      <div class="w-9 h-9 bg-primary rounded-lg flex items-center justify-center shadow-lg shadow-blue-500/20">
+        <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" aria-hidden="true">
+          <circle cx="12" cy="6" r="2.5" fill="currentColor" stroke="none"/>
+          <circle cx="19" cy="13" r="2.5" fill="currentColor" stroke="none"/>
+          <circle cx="5" cy="13" r="2.5" fill="currentColor" stroke="none"/>
+          <line x1="12" y1="8.5" x2="17.5" y2="11.5"/>
+          <line x1="6.5" y1="11.5" x2="12" y2="8.5"/>
+        </svg>
+      </div>
+      <span class="font-display font-bold text-xl text-foreground dark:text-dark-foreground tracking-tight">Atlas Nexus</span>
+    </a>
+    <div class="hidden md:flex items-center gap-6 text-sm font-medium text-slate-600 dark:text-dark-dim">
+      <a href="/#products" class="hover:text-primary dark:hover:text-blue-400">Products</a>
+      <a href="/#work" class="hover:text-primary dark:hover:text-blue-400">Work</a>
+      <a href="/#offers" class="hover:text-primary dark:hover:text-blue-400">Offers</a>
+      <a href="/#why" class="hover:text-primary dark:hover:text-blue-400">Why</a>
+      <a href="https://github.com/AtlasNexusTech" class="hover:text-primary dark:hover:text-blue-400">GitHub</a>
+    </div>
+    <div class="flex items-center gap-3">
+      <div class="hidden sm:inline-grid lang-switch" data-active="en" aria-label="Language selector">
+      <a href="/demos-web/?lang=fr" onclick="localStorage.setItem('atlasnexus.lang','fr')">FR</a>
+      <a class="active" href="/en/demos-web/" onclick="localStorage.setItem('atlasnexus.lang','en')">EN</a>
+    </div>
+      <button id="theme-toggle" class="w-10 h-10 rounded-full border border-black/10 dark:border-white/10 bg-white/70 dark:bg-white/5 backdrop-blur-xl flex items-center justify-center hover:bg-white dark:hover:bg-white/10 dark:hover:bg-white/10 transition-all shadow-sm shadow-black/5 dark:shadow-lg dark:shadow-black/20 text-slate-500 dark:text-slate-300" aria-label="Toggle dark mode">
+        <svg class="w-4 h-4 rotate-0 scale-100 transition-transform duration-300 dark:-rotate-90 dark:scale-0" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+        <svg class="absolute w-4 h-4 rotate-90 scale-0 transition-transform duration-300 dark:rotate-0 dark:scale-100" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
+      </button>
+      <a href="/#contact" class="cursor-pointer bg-primary text-white px-5 py-2.5 rounded-full text-sm font-semibold hover:bg-primary-dark">
+        Contact
+      </a>
+    </div>
+  </div>
+</nav>
+
+
+
+<main id="top" class="pt-28">
+  <section class="relative py-20 bg-surface dark:bg-dark-surface overflow-hidden">
+    <div class="hero-orb"></div>
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="hero-stagger max-w-4xl">
+        <p class="text-accent font-semibold tracking-widest uppercase text-xs mb-4">Atlas Nexus · Web development · Integrated demos</p>
+        <h1 class="hero-title text-foreground dark:text-dark-foreground font-display mb-6">A <span class="glow-word">web demo slot</span> built right into the offer.</h1>
+        <p class="text-xl text-slate-600 dark:text-slate-300 leading-relaxed max-w-3xl mb-8">Same header, same cards, same domain: these examples serve as commercial proof before quoting, without feeling like you're leaving AtlasNexus.</p>
+        <div class="flex flex-wrap gap-4">
+          <a href="/demo-refonte-artisan/" class="bg-primary text-white px-6 py-3 rounded-full text-sm font-semibold hover:bg-primary-dark shadow-lg shadow-blue-500/20">View the artisan example</a>
+          <a href="/#contact" class="border border-border dark:border-dark-border px-6 py-3 rounded-full text-sm font-semibold hover:border-primary hover:text-primary bg-white/70 dark:bg-white/5">Request a version for my business</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-20 bg-white dark:bg-dark-surface">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="reveal mb-12">
+        <p class="text-accent font-semibold tracking-widest uppercase text-xs mb-3">Proof catalogue</p>
+        <h2 class="section-title text-foreground dark:text-dark-foreground mb-5 font-display">Express redesign categories</h2>
+        <p class="text-slate-600 dark:text-slate-300 max-w-2xl leading-relaxed">Each card mirrors the homepage's visual language: clear offer, benefits, light pricing, contact CTA or live demo.</p>
+      </div>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        <a href="/ed-maconnerie/" class="reveal reveal-delay-1 card-hover market-card rounded-2xl overflow-hidden border border-border bg-white dark:bg-dark-card flex flex-col">
+          <div class="h-40 bg-stone-200 overflow-hidden"><img src="/ed-maconnerie/images/hero.jpg" alt="E.D. Maçonnerie" class="w-full h-full object-cover"></div>
+          <div class="p-4"><span class="font-bold text-foreground dark:text-dark-foreground">🧱 E.D. Maçonnerie</span><p class="text-slate-500 text-xs mt-1">Estissac, Aube — Eric DELIN</p></div>
+        </a>
+        <a href="/menuiserie-devarenne/" class="reveal reveal-delay-1 card-hover market-card rounded-2xl overflow-hidden border border-border bg-white dark:bg-dark-card flex flex-col">
+          <div class="h-40 bg-stone-200 overflow-hidden"><img src="/menuiserie-devarenne/images/work/1.jpg" alt="Menuiserie DEVARENNE" class="w-full h-full object-cover"></div>
+          <div class="p-4"><span class="font-bold text-foreground dark:text-dark-foreground">🪵 Menuiserie DEVARENNE</span><p class="text-slate-500 text-xs mt-1">Avenay Val d'Or, Marne — Since 1947</p></div>
+        </a>
+        <a href="/tony-zanirato/" class="reveal reveal-delay-1 card-hover market-card rounded-2xl overflow-hidden border border-border bg-white dark:bg-dark-card flex flex-col">
+          <div class="h-40 bg-stone-200 overflow-hidden"><img src="/tony-zanirato/images/pot_de_peinture___la_preparation_a_faire_avant_tout_travaux.jpg" alt="Tony ZANIRATO" class="w-full h-full object-cover"></div>
+          <div class="p-4"><span class="font-bold text-foreground dark:text-dark-foreground">🎨 Tony ZANIRATO</span><p class="text-slate-500 text-xs mt-1">Saint-Max, 54 — Painter since 1959</p></div>
+        </a>
+        <a href="/augelle-deco/" class="reveal reveal-delay-2 card-hover market-card rounded-2xl overflow-hidden border border-border bg-white dark:bg-dark-card flex flex-col">
+          <div class="h-40 bg-stone-200 overflow-hidden"><img src="/augelle-deco/images/stock-1.jpg" alt="AUGELLE Déco Peinture" class="w-full h-full object-cover"></div>
+          <div class="p-4"><span class="font-bold text-foreground dark:text-dark-foreground">✨ AUGELLE Déco Peinture</span><p class="text-slate-500 text-xs mt-1">Champtocé-sur-Loire, 49 — 15 yrs exp.</p></div>
+        </a>
+        <a href="/az-bois/" class="reveal reveal-delay-2 card-hover market-card rounded-2xl overflow-hidden border border-border bg-white dark:bg-dark-card flex flex-col">
+          <div class="h-40 bg-stone-200 overflow-hidden"><img src="/az-bois/images/bois.jpg" alt="AZ Bois" class="w-full h-full object-cover"></div>
+          <div class="p-4"><span class="font-bold text-foreground dark:text-dark-foreground">🪚 AZ Bois</span><p class="text-slate-500 text-xs mt-1">Paris 11e — Since 2003</p></div>
+        </a>
+        <a href="/peintre-95/" class="reveal reveal-delay-2 card-hover market-card rounded-2xl overflow-hidden border border-border bg-white dark:bg-dark-card flex flex-col">
+          <div class="h-40 bg-stone-200 overflow-hidden"><img src="/peintre-95/images/hero.jpg" alt="Peintre 95" class="w-full h-full object-cover"></div>
+          <div class="p-4"><span class="font-bold text-foreground dark:text-dark-foreground">🏠 Peintre 95</span><p class="text-slate-500 text-xs mt-1">Val-d'Oise — 06 83 09 05 16</p></div>
+        </a>
+        <a href="/duault-anatole/" class="reveal reveal-delay-3 card-hover market-card rounded-2xl overflow-hidden border border-border bg-white dark:bg-dark-card flex flex-col">
+          <div class="h-40 bg-amber-100 overflow-hidden"><img src="https://images.unsplash.com/photo-1504148455328-c376907d081c?w=600&h=400&fit=crop" alt="Duault Anatole" class="w-full h-full object-cover"></div>
+          <div class="p-4"><span class="font-bold text-foreground dark:text-dark-foreground">🧱 Duault Anatole</span><p class="text-slate-500 text-xs mt-1">Vendée, Charente — Building & Painting</p></div>
+        </a>
+        <a href="/artisan-metallier/" class="reveal reveal-delay-3 card-hover market-card rounded-2xl overflow-hidden border border-border bg-white dark:bg-dark-card flex flex-col">
+          <div class="h-40 bg-stone-300 overflow-hidden"><img src="https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?w=600&h=400&fit=crop" alt="Artisan Métallier" class="w-full h-full object-cover"></div>
+          <div class="p-4"><span class="font-bold text-foreground dark:text-dark-foreground">🔩 Artisan Métallier</span><p class="text-slate-500 text-xs mt-1">Chas, 63 — Patrick Soudry</p></div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-12 bg-surface dark:bg-dark-elevated">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="market-card rounded-2xl p-8 border border-border bg-white dark:bg-dark-card">
+        <p class="text-accent font-semibold tracking-widest uppercase text-xs mb-3">Why this slot exists</p>
+        <h2 class="section-title text-foreground dark:text-dark-foreground mb-5 font-display">The demo becomes proof, not an exit from the site.</h2>
+        <p class="text-slate-600 dark:text-slate-300 leading-relaxed max-w-3xl">The prospect stays in the same AtlasNexus environment: navigation, style, cards, pricing and contact. The industry pages then serve as concrete examples before quoting.</p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- Footer -->
+<footer class="py-12 border-t border-border bg-white">
+  <div class="max-w-6xl mx-auto px-6 flex flex-col sm:flex-row justify-between items-center gap-4">
+    <p class="text-slate-400 text-sm">&copy; 2026 Atlas Nexus — Alexandre Lasly · Web development demos</p>
+  </div>
+</footer>
+
+<!-- Scroll Reveal Observer + Step Animation -->
+<script>
+(function() {
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    document.querySelectorAll('.reveal').forEach(el => el.classList.add('visible'));
+    document.querySelectorAll('.step-number').forEach(el => { el.classList.add('animate'); el.classList.add('final'); });
+    return;
+  }
+
+  // ── Step number animation: pulse when entering, lock when leaving ──
+  const processSection = document.querySelector('#process');
+  const stepNumbers = document.querySelectorAll('.step-number');
+
+  if (processSection && stepNumbers.length) {
+    const processObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          // Section is visible — restart pulse animation
+          stepNumbers.forEach(el => {
+            el.classList.remove('final');
+            el.classList.add('animate');
+            // Re-trigger animation
+            void el.offsetWidth;
+            el.classList.remove('animate');
+            void el.offsetWidth;
+            el.classList.add('animate');
+          });
+        } else if (entry.boundingClientRect.top < 0) {
+          // User scrolled past — lock all numbers in final state
+          stepNumbers.forEach(el => {
+            el.classList.add('final');
+            el.classList.remove('animate');
+          });
+        }
+      });
+    }, { threshold: 0 });
+
+    processObserver.observe(processSection);
+  }
+
+  // ── Scroll reveal ──
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+})();
+</script>
+
+<!-- Dark mode toggle -->
+<script>
+(function() {
+  const html = document.documentElement;
+  const toggle = document.getElementById('theme-toggle');
+
+  function apply(isDark) {
+    if (isDark) html.classList.add('dark');
+    else html.classList.remove('dark');
+  }
+
+  const stored = localStorage.getItem('theme');
+  if (stored === 'dark') apply(true);
+  else if (stored === 'light') apply(false);
+  else if (window.matchMedia('(prefers-color-scheme: dark)').matches) apply(true);
+
+  toggle.addEventListener('click', () => {
+    const isDark = !html.classList.contains('dark');
+    apply(isDark);
+    localStorage.setItem('theme', isDark ? 'dark' : 'light');
+  });
+})();
+</script>
+
+</body>
+</html>
