@@ -1,15 +1,15 @@
      1|<!DOCTYPE html>
-     2|<html lang="fr" class="scroll-smooth">
+     2|<html lang="en" class="scroll-smooth">
      3|<head>
      4|  <meta charset="UTF-8">
      5|  <meta name="viewport" content="width=device-width, initial-scale=1.0">
      6|  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
      7|  <title>OOBE × Ace Agent — Atlas Nexus</title>
-     8|  <link rel="canonical" href="https://atlasnexus.tech/oobe-ace-agent/">
-     9|  <meta name="description" content="Présentation Atlas Nexus de l’agent autonome OOBE × Ace Data Cloud : SAP, x402guard, Solana, AceDataCloud et Seedance 2.0.">
+     8|  <link rel="canonical" href="https://atlasnexus.tech/oobe-ace-agent/en/">
+     9|  <meta name="description" content="Atlas Nexus presentation of the autonomous OOBE × Ace Data Cloud agent: SAP, x402guard, Solana, AceDataCloud and Seedance 2.0.">
     10|  <meta property="og:title" content="OOBE × Ace Agent — Atlas Nexus">
-    11|  <meta property="og:description" content="Agent autonome multi-service publié sur Synapse Agent Protocol et connecté à x402guard pour les garde-fous de dépense on-chain.">
-    12|  <meta property="og:url" content="https://atlasnexus.tech/oobe-ace-agent/">
+    11|  <meta property="og:description" content="Autonomous multi-service agent published on Synapse Agent Protocol and connected to x402guard for on-chain spending guardrails.">
+    12|  <meta property="og:url" content="https://atlasnexus.tech/oobe-ace-agent/en/">
     13|  <script src="https://cdn.tailwindcss.com"></script>
     14|  <link rel="preconnect" href="https://fonts.googleapis.com">
     15|  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -37,7 +37,7 @@
     37|<body class="bg-white dark:bg-dark-surface text-foreground dark:text-dark-foreground antialiased">
     38|  <nav class="fixed top-0 left-0 right-0 z-50 bg-white/90 dark:bg-dark-surface/90 backdrop-blur-xl border-b border-border dark:border-dark-border">
     39|    <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
-    40|      <a href="/" class="flex items-center gap-2 font-display font-bold text-lg" aria-label="Atlas Nexus accueil">
+    40|      <a href="/" class="flex items-center gap-2 font-display font-bold text-lg" aria-label="Atlas Nexus home">
     41|        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" class="text-primary"><path d="M21 12.8A8.5 8.5 0 1 1 11.2 3a6.7 6.7 0 1 0 9.8 9.8Z" fill="currentColor"/></svg>
     42|        Atlas Nexus
     43|      </a>
@@ -45,9 +45,9 @@
     45|        <a href="#architecture" class="hover:text-primary">Architecture</a><a href="#tools" class="hover:text-primary">Tools</a><a href="#guardrails" class="hover:text-primary">x402guard</a><a href="#proof" class="hover:text-primary">Proof</a>
     46|      </div>
     47|      <div class="flex items-center gap-3">
-    48|        <div class="hidden sm:inline-grid lang-switch" data-active="fr" aria-label="Sélecteur de langue">
-    49|          <a class="active" href="/oobe-ace-agent/?lang=fr" onclick="localStorage.setItem('atlasnexus.lang','fr')">FR</a>
-    50|          <a href="/oobe-ace-agent/en/" onclick="localStorage.setItem('atlasnexus.lang','en')">EN</a>
+    48|        <div class="hidden sm:inline-grid lang-switch" data-active="en" aria-label="Language selector">
+    49|          <a href="/oobe-ace-agent/?lang=fr" onclick="localStorage.setItem('atlasnexus.lang','fr')">FR</a>
+    50|          <a class="active" href="/oobe-ace-agent/en/" onclick="localStorage.setItem('atlasnexus.lang','en')">EN</a>
     51|        </div>
     52|        <a href="https://github.com/AtlasNexusTech/oobe-ace-agent" class="hidden sm:inline-flex text-sm font-semibold text-primary hover:text-primary-dark">GitHub</a>
     53|        <button id="theme-toggle" class="p-2 rounded-lg hover:bg-muted dark:hover:bg-dark-elevated" aria-label="Toggle dark mode"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg></button>
@@ -62,16 +62,16 @@
     62|      <div class="max-w-7xl mx-auto px-6 relative grid lg:grid-cols-[1.05fr_.95fr] gap-12 items-center">
     63|        <div class="reveal visible">
     64|          <p class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary font-display font-bold text-sm mb-6">🔮 OOBE × Ace Data Cloud · Autonomous Agent Bounty</p>
-    65|          <h1 class="hero-title font-display mb-6">Agent autonome <span class="glow-word">SAP + x402</span> pour data intelligence.</h1>
-    66|          <p class="text-xl md:text-2xl text-slate-600 dark:text-slate-300 leading-relaxed max-w-3xl mb-8">AtlasNexusScout publie 8 tools sur Synapse Agent Protocol, connecte AceDataCloud et Seedance 2.0, puis encadre les dépenses API via x402guard sur Solana.</p>
+    65|          <h1 class="hero-title font-display mb-6">Autonomous <span class="glow-word">SAP + x402</span> agent for data intelligence.</h1>
+    66|          <p class="text-xl md:text-2xl text-slate-600 dark:text-slate-300 leading-relaxed max-w-3xl mb-8">AtlasNexusScout publishes 8 tools on Synapse Agent Protocol, connects to AceDataCloud and Seedance 2.0, then enforces API spending via x402guard on Solana.</p>
     67|          <div class="flex flex-wrap gap-4">
-    68|            <a href="https://github.com/AtlasNexusTech/oobe-ace-agent" class="px-6 py-3 rounded-xl bg-primary text-white font-bold hover:bg-primary-dark shadow-lg shadow-blue-500/20">Voir le repo GitHub</a>
-    69|            <a href="#architecture" class="px-6 py-3 rounded-xl bg-white dark:bg-dark-card border border-border dark:border-dark-border font-bold hover:border-primary">Lire l’architecture</a>
+    68|            <a href="https://github.com/AtlasNexusTech/oobe-ace-agent" class="px-6 py-3 rounded-xl bg-primary text-white font-bold hover:bg-primary-dark shadow-lg shadow-blue-500/20">View the GitHub repo</a>
+    69|            <a href="#architecture" class="px-6 py-3 rounded-xl bg-white dark:bg-dark-card border border-border dark:border-dark-border font-bold hover:border-primary">Read the architecture</a>
     70|          </div>
     71|        </div>
     72|        <div class="atlas-card rounded-3xl p-6 md:p-8 border">
     73|          <div class="grid grid-cols-2 gap-4 mb-6">
-    74|            <div class="rounded-2xl bg-white/80 dark:bg-dark-card/80 border border-border dark:border-dark-border p-5"><p class="text-3xl font-display font-black text-primary">8</p><p class="text-sm text-slate-600 dark:text-slate-300 font-semibold">tools publiés SAP</p></div>
+    74|            <div class="rounded-2xl bg-white/80 dark:bg-dark-card/80 border border-border dark:border-dark-border p-5"><p class="text-3xl font-display font-black text-primary">8</p><p class="text-sm text-slate-600 dark:text-slate-300 font-semibold">tools published SAP</p></div>
     75|            <div class="rounded-2xl bg-white/80 dark:bg-dark-card/80 border border-border dark:border-dark-border p-5"><p class="text-3xl font-display font-black text-accent">0.1 SOL</p><p class="text-sm text-slate-600 dark:text-slate-300 font-semibold">stake agent</p></div>
     76|            <div class="rounded-2xl bg-white/80 dark:bg-dark-card/80 border border-border dark:border-dark-border p-5"><p class="text-3xl font-display font-black text-primary">2 USDC</p><p class="text-sm text-slate-600 dark:text-slate-300 font-semibold">daily cap vault</p></div>
     77|            <div class="rounded-2xl bg-white/80 dark:bg-dark-card/80 border border-border dark:border-dark-border p-5"><p class="text-3xl font-display font-black text-accent">4</p><p class="text-sm text-slate-600 dark:text-slate-300 font-semibold">tools MCP guard</p></div>
@@ -83,20 +83,20 @@
     83|
     84|    <section id="architecture" class="py-20 bg-white dark:bg-dark-surface">
     85|      <div class="max-w-7xl mx-auto px-6">
-    86|        <div class="mb-12 reveal"><p class="text-primary font-display font-bold uppercase tracking-wide text-sm mb-3">Architecture</p><h2 class="section-title font-display">Un agent, deux couches de confiance.</h2><p class="mt-4 text-lg text-slate-600 dark:text-slate-300 max-w-3xl">La démo sépare l’identité/capacité agentique côté SAP et la dépense contrôlée côté x402guard.</p></div>
+    86|        <div class="mb-12 reveal"><p class="text-primary font-display font-bold uppercase tracking-wide text-sm mb-3">Architecture</p><h2 class="section-title font-display">One agent, two trust layers.</h2><p class="mt-4 text-lg text-slate-600 dark:text-slate-300 max-w-3xl">The demo separates agentic identity/capability on the SAP side and controlled spending on the x402guard side.</p></div>
     87|        <div class="grid md:grid-cols-3 gap-6">
-    88|          <article class="card-hover rounded-2xl p-7 border border-border dark:border-dark-border bg-surface dark:bg-dark-card"><div class="text-3xl mb-4">🧠</div><h3 class="font-display font-bold text-xl mb-3">Agent SAP</h3><p class="text-slate-600 dark:text-slate-300 leading-relaxed">Agent enregistré sur Synapse Agent Protocol avec PDA on-chain, stake et catalogue de tools.</p></article>
-    89|          <article class="card-hover rounded-2xl p-7 border border-border dark:border-dark-border bg-surface dark:bg-dark-card"><div class="text-3xl mb-4">🌐</div><h3 class="font-display font-bold text-xl mb-3">Ace + Seedance</h3><p class="text-slate-600 dark:text-slate-300 leading-relaxed">Recherche web structurée, analyse chat, génération image et pipelines vidéo Seedance 2.0.</p></article>
-    90|          <article class="card-hover rounded-2xl p-7 border border-border dark:border-dark-border bg-surface dark:bg-dark-card"><div class="text-3xl mb-4">🛡️</div><h3 class="font-display font-bold text-xl mb-3">x402guard</h3><p class="text-slate-600 dark:text-slate-300 leading-relaxed">Vault Solana devnet, caps USDC, allowlist endpoint et enforcement avant chaque dépense API.</p></article>
+    88|          <article class="card-hover rounded-2xl p-7 border border-border dark:border-dark-border bg-surface dark:bg-dark-card"><div class="text-3xl mb-4">🧠</div><h3 class="font-display font-bold text-xl mb-3">SAP Agent</h3><p class="text-slate-600 dark:text-slate-300 leading-relaxed">Agent registered on Synapse Agent Protocol with on-chain PDA, stake and tool catalogue.</p></article>
+    89|          <article class="card-hover rounded-2xl p-7 border border-border dark:border-dark-border bg-surface dark:bg-dark-card"><div class="text-3xl mb-4">🌐</div><h3 class="font-display font-bold text-xl mb-3">Ace + Seedance</h3><p class="text-slate-600 dark:text-slate-300 leading-relaxed">Structured web search, chat analysis, image generation and Seedance 2.0 video pipelines.</p></article>
+    90|          <article class="card-hover rounded-2xl p-7 border border-border dark:border-dark-border bg-surface dark:bg-dark-card"><div class="text-3xl mb-4">🛡️</div><h3 class="font-display font-bold text-xl mb-3">x402guard</h3><p class="text-slate-600 dark:text-slate-300 leading-relaxed">Solana devnet vault, USDC caps, endpoint allowlist and enforcement before every API spend.</p></article>
     91|        </div>
     92|      </div>
     93|    </section>
     94|
     95|    <section id="tools" class="py-20 bg-surface dark:bg-dark-elevated">
     96|      <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-8 items-start">
-    97|        <div class="reveal"><p class="text-primary font-display font-bold uppercase tracking-wide text-sm mb-3">Published tools</p><h2 class="section-title font-display mb-5">8 capacités exposées pour un agent autonome.</h2><p class="text-lg text-slate-600 dark:text-slate-300 leading-relaxed">Le repo documente les scripts de publication, vérification agent PDA et workflow autonome. Cette page sert de présentation lisible pour visiteurs et bounty reviewers.</p></div>
+    97|        <div class="reveal"><p class="text-primary font-display font-bold uppercase tracking-wide text-sm mb-3">Published tools</p><h2 class="section-title font-display mb-5">8 capabilities exposed for an autonomous agent.</h2><p class="text-lg text-slate-600 dark:text-slate-300 leading-relaxed">The repo documents the publishing scripts, agent PDA verification and the autonomous workflow. This page serves as a readable presentation for visitors and bounty reviewers.</p></div>
     98|        <div class="grid sm:grid-cols-2 gap-4">
-    99|          <div class="rounded-2xl bg-white dark:bg-dark-card border border-border dark:border-dark-border p-5"><p class="font-display font-bold text-lg mb-2">AceDataCloud</p><ul class="text-slate-600 dark:text-slate-300 space-y-2 text-sm"><li>• search structuré</li><li>• chat analytique GPT-4o-mini</li><li>• génération images</li></ul></div>
+    99|          <div class="rounded-2xl bg-white dark:bg-dark-card border border-border dark:border-dark-border p-5"><p class="font-display font-bold text-lg mb-2">AceDataCloud</p><ul class="text-slate-600 dark:text-slate-300 space-y-2 text-sm"><li>• structured search</li><li>• GPT-4o-mini analytical chat</li><li>• image generation</li></ul></div>
    100|          <div class="rounded-2xl bg-white dark:bg-dark-card border border-border dark:border-dark-border p-5"><p class="font-display font-bold text-lg mb-2">Seedance 2.0</p><ul class="text-slate-600 dark:text-slate-300 space-y-2 text-sm"><li>• text-to-video</li><li>• image-to-video</li><li>• character / omni / edit</li></ul></div>
    101|        </div>
    102|      </div>
@@ -105,7 +105,7 @@
    105|    <section id="guardrails" class="py-20 bg-white dark:bg-dark-surface">
    106|      <div class="max-w-7xl mx-auto px-6">
    107|        <div class="atlas-card rounded-3xl border p-8 md:p-10 grid lg:grid-cols-[.9fr_1.1fr] gap-8 items-center">
-   108|          <div><p class="text-accent font-display font-bold uppercase tracking-wide text-sm mb-3">x402 spending guardrails</p><h2 class="section-title font-display mb-5">Paiement API contrôlé avant exécution.</h2><p class="text-lg text-slate-600 dark:text-slate-300 leading-relaxed">x402guard impose un plafond par appel, un plafond quotidien et une allowlist d’endpoint. L’agent peut acheter des capacités API sans transformer son wallet en surface de risque ouverte.</p></div>
+   108|          <div><p class="text-accent font-display font-bold uppercase tracking-wide text-sm mb-3">x402 spending guardrails</p><h2 class="section-title font-display mb-5">API payment controlled before execution.</h2><p class="text-lg text-slate-600 dark:text-slate-300 leading-relaxed">x402guard enforces a per-call cap, a daily cap and an endpoint allowlist. The agent can buy API capabilities without turning its wallet into an open risk surface.</p></div>
    109|          <div class="grid sm:grid-cols-2 gap-3">
    110|            <div class="rounded-2xl bg-white/80 dark:bg-dark-card/80 border border-border dark:border-dark-border p-5"><p class="font-display font-black text-2xl text-accent">0.5 USDC</p><p class="text-sm text-slate-600 dark:text-slate-300">per-call cap</p></div>
    111|            <div class="rounded-2xl bg-white/80 dark:bg-dark-card/80 border border-border dark:border-dark-border p-5"><p class="font-display font-black text-2xl text-accent">api.acedata.cloud</p><p class="text-sm text-slate-600 dark:text-slate-300">endpoint allowlist</p></div>
@@ -118,8 +118,8 @@
    118|
    119|    <section id="proof" class="py-20 bg-surface dark:bg-dark-elevated">
    120|      <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-8">
-   121|        <div class="rounded-3xl bg-white dark:bg-dark-card border border-border dark:border-dark-border p-8"><p class="text-primary font-display font-bold uppercase tracking-wide text-sm mb-3">Repo proof</p><h2 class="font-display font-extrabold text-3xl mb-4">Scripts et limites documentés.</h2><p class="text-slate-600 dark:text-slate-300 leading-relaxed mb-6">Le README liste les outils SAP, l’intégration x402guard, les scripts disponibles et les limites connues du flux pricing_menu / top-up devnet.</p><a href="https://github.com/AtlasNexusTech/oobe-ace-agent" class="inline-flex px-5 py-3 rounded-xl bg-primary text-white font-bold hover:bg-primary-dark">Ouvrir GitHub →</a></div>
-   122|        <div class="rounded-3xl bg-white dark:bg-dark-card border border-border dark:border-dark-border p-8"><p class="text-accent font-display font-bold uppercase tracking-wide text-sm mb-3">AtlasNexus position</p><h2 class="font-display font-extrabold text-3xl mb-4">Une preuve d’infra agentique.</h2><p class="text-slate-600 dark:text-slate-300 leading-relaxed mb-6">Cette présentation remplace le lien brut x402 par une page claire, alignée avec le thème AtlasNexus, pour montrer le rôle de l’agent dans l’écosystème.</p><a href="/" class="inline-flex px-5 py-3 rounded-xl border border-border dark:border-dark-border font-bold hover:border-primary">Retour Atlas Nexus →</a></div>
+   121|        <div class="rounded-3xl bg-white dark:bg-dark-card border border-border dark:border-dark-border p-8"><p class="text-primary font-display font-bold uppercase tracking-wide text-sm mb-3">Repo proof</p><h2 class="font-display font-extrabold text-3xl mb-4">Scripts and documented limits.</h2><p class="text-slate-600 dark:text-slate-300 leading-relaxed mb-6">The README lists the SAP tools, x402guard integration, available scripts and known limitations of the pricing_menu / devnet top-up flow.</p><a href="https://github.com/AtlasNexusTech/oobe-ace-agent" class="inline-flex px-5 py-3 rounded-xl bg-primary text-white font-bold hover:bg-primary-dark">Open GitHub →</a></div>
+   122|        <div class="rounded-3xl bg-white dark:bg-dark-card border border-border dark:border-dark-border p-8"><p class="text-accent font-display font-bold uppercase tracking-wide text-sm mb-3">AtlasNexus position</p><h2 class="font-display font-extrabold text-3xl mb-4">An agentic infra proof of concept.</h2><p class="text-slate-600 dark:text-slate-300 leading-relaxed mb-6">This presentation replaces the raw x402 link with a clear page, aligned with the AtlasNexus theme, to showcase the agent's role in the ecosystem.</p><a href="/" class="inline-flex px-5 py-3 rounded-xl border border-border dark:border-dark-border font-bold hover:border-primary">Back to Atlas Nexus →</a></div>
    123|      </div>
    124|    </section>
    125|  </main>
