@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Template Artisan — Site vitrine PWA prêt à l'emploi | 39€</title>
+<meta name="description" content="Site vitrine professionnel pour artisans. 6 secteurs prêts (maçonnerie, peinture, menuiserie, métallerie, restaurant, générique). PWA, responsive, SEO. Zéro code.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔨</text></svg>">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>tailwind.config={theme:{extend:{colors:{brand:{50:'#faf5ff',600:'#7C3AED',700:'#5B21B6'},amber:{450:'#EC7A12'}}}}}</script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
+<style>
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Inter', system-ui, sans-serif; }
+  .fade-in { animation: fadeIn .7s ease forwards; }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+  .demo-card:hover { transform: translateY(-4px); box-shadow: 0 20px 60px rgba(124,58,237,.15); }
+  .pricing-glow { box-shadow: 0 0 40px rgba(124,58,237,.2); }
+</style>
+</head>
+<body class="bg-stone-50 text-stone-800">
+
+<!-- Nav -->
+<nav class="sticky top-0 z-50 bg-white/80 backdrop-blur border-b border-stone-200">
+  <div class="max-w-6xl mx-auto px-6 py-3 flex items-center justify-between">
+    <span class="font-bold text-xl text-brand-700">🔨 Template Artisan</span>
+    <a href="#prix" class="px-5 py-2 bg-brand-600 text-white rounded-lg font-semibold hover:bg-brand-700 transition shadow-lg">39€ — Commander</a>
+  </div>
+</nav>
+
+<!-- Hero -->
+<section class="relative overflow-hidden bg-gradient-to-br from-stone-900 via-stone-800 to-stone-900 text-white">
+  <div class="absolute inset-0 opacity-10" style="background:radial-gradient(ellipse at 30% 20%, #7C3AED 0%, transparent 60%)"></div>
+  <div class="relative max-w-5xl mx-auto px-6 py-20 md:py-28">
+    <div class="inline-flex items-center gap-2 bg-white/10 backdrop-blur px-4 py-2 rounded-full text-sm mb-6">
+      <span class="w-2 h-2 bg-green-400 rounded-full animate-pulse"></span>
+      Démos live disponibles
+    </div>
+    <h1 class="text-4xl md:text-6xl font-black mb-6 leading-tight">
+      Votre site vitrine <span class="text-brand-600">en 5 minutes</span>
+    </h1>
+    <p class="text-lg md:text-xl text-stone-300 max-w-xl mb-8">
+      Un template professionnel pour artisans. Modifiez un simple fichier <code class="bg-stone-700 px-2 py-0.5 rounded text-sm text-amber-450">config.json</code>, déployez sur GitHub Pages. Zéro code. PWA, responsive, SEO-ready.
+    </p>
+    <div class="flex flex-wrap gap-4">
+      <a href="#prix" class="px-8 py-4 bg-brand-600 hover:bg-brand-700 text-white rounded-xl font-bold text-lg transition shadow-xl shadow-brand-600/20">Acheter — 39€</a>
+      <a href="#demos" class="px-8 py-4 border-2 border-stone-500 hover:border-white text-stone-200 rounded-xl font-semibold text-lg transition">Voir les démos ↓</a>
+    </div>
+    <div class="mt-8 flex flex-wrap gap-6 text-sm text-stone-400">
+      <span class="flex items-center gap-2">📱 PWA installable</span>
+      <span class="flex items-center gap-2">🔍 SEO optimisé</span>
+      <span class="flex items-center gap-2">📝 Zéro code</span>
+      <span class="flex items-center gap-2">🚀 Déploiement gratuit</span>
+    </div>
+  </div>
+</section>
+
+<!-- What you get -->
+<section class="max-w-5xl mx-auto px-6 py-20">
+  <h2 class="text-3xl md:text-4xl font-black text-center mb-4">Ce que vous recevez</h2>
+  <p class="text-stone-500 text-center mb-12 max-w-lg mx-auto">Un site complet, professionnel, prêt à être en ligne en quelques minutes.</p>
+  
+  <div class="grid md:grid-cols-3 gap-6">
+    <div class="bg-white rounded-2xl p-6 border border-stone-200 shadow-sm hover:shadow-md transition">
+      <div class="text-3xl mb-3">📁</div>
+      <h3 class="font-bold text-lg mb-2">Fichiers complets</h3>
+      <p class="text-stone-500 text-sm">Template HTML, config.json modifiable, PWA manifest, service worker, icônes. Tout est inclus.</p>
+    </div>
+    <div class="bg-white rounded-2xl p-6 border border-stone-200 shadow-sm hover:shadow-md transition">
+      <div class="text-3xl mb-3">🔧</div>
+      <h3 class="font-bold text-lg mb-2">Script de génération</h3>
+      <p class="text-stone-500 text-sm"><code class="bg-stone-100 px-1 rounded">genere-demo.py</code> — une commande pour générer votre site personnalisé avec vos infos.</p>
+    </div>
+    <div class="bg-white rounded-2xl p-6 border border-stone-200 shadow-sm hover:shadow-md transition">
+      <div class="text-3xl mb-3">🎨</div>
+      <h3 class="font-bold text-lg mb-2">6 secteurs prêts</h3>
+      <p class="text-stone-500 text-sm">Maçonnerie, peinture, menuiserie, métallerie, restaurant, générique. Couleurs, services, icônes — tout est pré-paramétré.</p>
+    </div>
+    <div class="bg-white rounded-2xl p-6 border border-stone-200 shadow-sm hover:shadow-md transition">
+      <div class="text-3xl mb-3">📱</div>
+      <h3 class="font-bold text-lg mb-2">PWA installable</h3>
+      <p class="text-stone-500 text-sm">Votre site s'installe sur le téléphone de vos clients comme une app. Notification "Ajouter à l'écran d'accueil".</p>
+    </div>
+    <div class="bg-white rounded-2xl p-6 border border-stone-200 shadow-sm hover:shadow-md transition">
+      <div class="text-3xl mb-3">🔍</div>
+      <h3 class="font-bold text-lg mb-2">SEO optimisé</h3>
+      <p class="text-stone-500 text-sm">Balises meta, schema.org, titre, description optimisés. Google vous trouve facilement.</p>
+    </div>
+    <div class="bg-white rounded-2xl p-6 border border-stone-200 shadow-sm hover:shadow-md transition">
+      <div class="text-3xl mb-3">📖</div>
+      <h3 class="font-bold text-lg mb-2">Guide de déploiement</h3>
+      <p class="text-stone-500 text-sm">README pas-à-pas : configurer, déployer sur GitHub Pages (gratuit), connecter votre nom de domaine.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Démos -->
+<section id="demos" class="bg-stone-900 text-white py-20">
+  <div class="max-w-5xl mx-auto px-6">
+    <h2 class="text-3xl md:text-4xl font-black text-center mb-4">Démos live — 6 secteurs</h2>
+    <p class="text-stone-400 text-center mb-12">Cliquez pour voir chaque secteur en action. Sites réels, déployés.</p>
+    
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6" id="demos-grid"></div>
+  </div>
+</section>
+
+<!-- Pricing -->
+<section id="prix" class="max-w-2xl mx-auto px-6 py-20">
+  <div class="bg-white rounded-3xl border-2 border-brand-600 pricing-glow p-8 md:p-12 text-center">
+    <span class="inline-block bg-brand-50 text-brand-700 px-4 py-1 rounded-full text-sm font-semibold mb-4">Offre de lancement</span>
+    <div class="text-6xl font-black mb-2">39€</div>
+    <p class="text-stone-500 mb-2">Paiement unique. Accès à vie.</p>
+    <p class="text-stone-400 text-sm mb-8">Mises à jour incluses. Licence pour 1 site.</p>
+    
+    <ul class="text-left space-y-3 mb-8 max-w-sm mx-auto">
+      <li class="flex items-start gap-3"><span class="text-green-500 mt-0.5">✓</span> Template HTML complet (PWA, SEO, responsive)</li>
+      <li class="flex items-start gap-3"><span class="text-green-500 mt-0.5">✓</span> Script generateur (6 secteurs)</li>
+      <li class="flex items-start gap-3"><span class="text-green-500 mt-0.5">✓</span> Images professionnelles (Unsplash)</li>
+      <li class="flex items-start gap-3"><span class="text-green-500 mt-0.5">✓</span> Guide de deploiement (GitHub Pages gratuit)</li>
+      <li class="flex items-start gap-3"><span class="text-green-500 mt-0.5">✓</span> Fichier config.json simple a modifier</li>
+    </ul>
+    
+    <a href="https://buy.stripe.com/placeholder" id="buy-btn" class="block w-full px-8 py-4 bg-brand-600 hover:bg-brand-700 text-white rounded-xl font-bold text-lg transition shadow-xl shadow-brand-600/20">
+      Acheter maintenant — 39€
+    </a>
+    <p class="text-stone-400 text-xs mt-4">Paiement sécurisé. Livraison instantanée par email.</p>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="max-w-3xl mx-auto px-6 pb-20">
+  <h2 class="text-2xl font-bold text-center mb-8">Questions fréquentes</h2>
+  <div class="space-y-4">
+    <details class="bg-white rounded-xl p-5 border border-stone-200">
+      <summary class="font-semibold cursor-pointer">Comment ça marche après l'achat ?</summary>
+      <p class="mt-3 text-stone-500 text-sm">Vous recevez un ZIP par email. Vous modifiez le fichier <code>config.json</code> avec vos infos (nom, téléphone, services…), vous glissez-déposez sur GitHub Pages, et votre site est en ligne. 5 minutes montre en main.</p>
+    </details>
+    <details class="bg-white rounded-xl p-5 border border-stone-200">
+      <summary class="font-semibold cursor-pointer">J'ai besoin de compétences techniques ?</summary>
+      <p class="mt-3 text-stone-500 text-sm">Zéro. Le <code>config.json</code> est un fichier texte simple. Vous remplacez les infos d'exemple par les vôtres. Le guide explique tout pas à pas avec captures d'écran.</p>
+    </details>
+    <details class="bg-white rounded-xl p-5 border border-stone-200">
+      <summary class="font-semibold cursor-pointer">C'est quoi GitHub Pages ? C'est payant ?</summary>
+      <p class="mt-3 text-stone-500 text-sm">GitHub Pages est un hébergement <strong>gratuit et illimité</strong>. Vous créez un compte gratuit en 2 minutes. Votre site sera en <code>votrenom.github.io</code> ou sur votre propre nom de domaine.</p>
+    </details>
+    <details class="bg-white rounded-xl p-5 border border-stone-200">
+      <summary class="font-semibold cursor-pointer">Je peux utiliser mon propre nom de domaine ?</summary>
+      <p class="mt-3 text-stone-500 text-sm">Oui. Le guide explique comment connecter <code>mon-artisan.fr</code> à votre site GitHub Pages. C'est gratuit et ça prend 5 minutes.</p>
+    </details>
+    <details class="bg-white rounded-xl p-5 border border-stone-200">
+      <summary class="font-semibold cursor-pointer">Et si je veux un site différent des démos ?</summary>
+      <p class="mt-3 text-stone-500 text-sm">Le secteur "générique" est entièrement personnalisable. Vous choisissez vos couleurs, vos icônes, vos services. Ou contactez-nous pour un site sur mesure.</p>
+    </details>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="border-t border-stone-200 py-8 text-center text-sm text-stone-400">
+  Template Artisan — propulsé par <a href="https://atlasnexus.tech" class="text-brand-600 hover:underline">Atlas Nexus</a>
+</footer>
+
+<script>
+const DEMOS = [
+  {secteur:"Maçonnerie",emoji:"🧱",color:"#b74709",slug:"maconnerie",desc:"Construction, rénovation, murs, dallage"},
+  {secteur:"Peinture",emoji:"🎨",color:"#dd5f08",slug:"peinture",desc:"Intérieur, façade, traitement bois, toiture"},
+  {secteur:"Menuiserie",emoji:"🪵",color:"#8b7358",slug:"menuiserie",desc:"Sur mesure, fenêtres, agencement, charpente"},
+  {secteur:"Métallerie",emoji:"🔩",color:"#4a3b33",slug:"metallerie",desc:"Portails, garde-corps, soudure, mobilier"},
+  {secteur:"Restaurant",emoji:"🍽️",color:"#c2410c",slug:"restaurant",desc:"Menu, réservation, contact, avis"},
+  {secteur:"Générique",emoji:"🏠",color:"#2563EB",slug:"generique",desc:"Tous métiers — personnalisable à 100%"},
+];
+
+const grid = document.getElementById('demos-grid');
+DEMOS.forEach(d => {
+  grid.innerHTML += `
+    <a href="https://atlasnexus.tech/artisan-demo/${d.slug}/" target="_blank" 
+       class="demo-card group bg-stone-800 rounded-2xl p-6 border border-stone-700 hover:border-stone-500 transition-all duration-300 no-underline">
+      <div class="flex items-center gap-3 mb-3">
+        <span class="text-3xl">${d.emoji}</span>
+        <div>
+          <h3 class="font-bold text-white group-hover:text-brand-600 transition">${d.secteur}</h3>
+          <span class="text-xs px-2 py-0.5 rounded-full text-white/80" style="background:${d.color}33;color:${d.color}">Live demo</span>
+        </div>
+      </div>
+      <p class="text-stone-400 text-sm">${d.desc}</p>
+      <span class="inline-block mt-3 text-xs text-brand-600 opacity-0 group-hover:opacity-100 transition">Voir le site →</span>
+    </a>`;
+});
+</script>
+
+</body>
+</html>
