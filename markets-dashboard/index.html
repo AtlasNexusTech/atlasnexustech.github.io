@@ -237,7 +237,7 @@ footer{margin-top:34px;color:var(--muted);font-size:.85em;text-align:center;line
 </div>
 </div>
 <div class="fng-info">
-<h3><span class="fng-emoji" id="fng-emoji">😐</span> <span id="fng-classification">Chargement...</span></h3>
+<h3> <span id="fng-classification">Chargement...</span></h3>
 <div class="fng-classification" id="fng-text">Fetching Crypto Fear & Greed Index...</div>
 <div class="fng-timestamp" id="fng-timestamp">Updated: --</div>
 </div>
@@ -698,11 +698,11 @@ footer{margin-top:34px;color:var(--muted);font-size:.85em;text-align:center;line
   const REFRESH_MS = 15 * 60 * 1000; // 15 minutes
   
   const classifications = {
-    'Extreme Fear': { emoji: '😱', color: '#e11d48', range: [0, 25] },
-    'Fear': { emoji: '😨', color: '#f97316', range: [25, 45] },
-    'Neutral': { emoji: '😐', color: '#eab308', range: [45, 55] },
-    'Greed': { emoji: '😊', color: '#84cc16', range: [55, 75] },
-    'Extreme Greed': { emoji: '🤑', color: '#22c55e', range: [75, 100] }
+    'Extreme Fear': { color: '#e11d48', range: [0, 25] },
+    'Fear': { color: '#f97316', range: [25, 45] },
+    'Neutral': { color: '#eab308', range: [45, 55] },
+    'Greed': { color: '#84cc16', range: [55, 75] },
+    'Extreme Greed': { color: '#22c55e', range: [75, 100] }
   };
   
   // Gauge: circumference = 2 * PI * 42 = 263.89
@@ -726,7 +726,7 @@ footer{margin-top:34px;color:var(--muted);font-size:.85em;text-align:center;line
   function updateFNG(data) {
     const gaugeFill = document.getElementById('fng-gauge-fill');
     const valueEl = document.getElementById('fng-value');
-    const emojiEl = document.getElementById('fng-emoji');
+    // fng-emoji removed
     const classEl = document.getElementById('fng-classification');
     const textEl = document.getElementById('fng-text');
     const timeEl = document.getElementById('fng-timestamp');
@@ -756,7 +756,7 @@ footer{margin-top:34px;color:var(--muted);font-size:.85em;text-align:center;line
     }
     
     // Update classification
-    if (emojiEl) emojiEl.textContent = info.emoji;
+    // emoji removed
     if (classEl) {
       classEl.textContent = data.classification;
       classEl.style.color = info.color;
