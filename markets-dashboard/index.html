@@ -133,7 +133,64 @@ footer{margin-top:34px;color:var(--muted);font-size:.85em;text-align:center;line
 [data-theme="light"] .score-warm{background:rgba(217,119,6,.10)!important;color:#b45309!important;border-color:rgba(217,119,6,.16)!important}
 [data-theme="light"] .score-muted{background:rgba(71,85,105,.08)!important;color:#475569!important;border-color:rgba(71,85,105,.14)!important}
 [data-theme="light"] .demo-tag{color:#78350f!important}
-[data-theme="light"] .market-state{background:rgba(241,245,249,.9)!important;border-color:rgba(0,0,0,.12)!important;color:#475569!important}
+[data-theme="light"] 
+/* ATLAS_FNG_20260520 */
+.fng-section{margin:0 0 22px;padding:20px 24px;border:1px solid var(--border);border-radius:24px;background:linear-gradient(135deg,rgba(16,22,34,.92),rgba(18,14,33,.86) 48%,rgba(10,13,20,.88));box-shadow:var(--shadow),var(--ring);position:relative;overflow:hidden}
+.fng-section:before{content:"";position:absolute;inset:-1px;background:radial-gradient(circle at 16% 0%,rgba(245,158,11,.12),transparent 30%),radial-gradient(circle at 85% 10%,rgba(239,68,68,.08),transparent 25%);pointer-events:none}
+.fng-inner{position:relative;display:flex;align-items:center;gap:20px;flex-wrap:wrap}
+.fng-gauge{position:relative;width:90px;height:90px;flex-shrink:0}
+.fng-gauge svg{width:100%;height:100%;transform:rotate(-90deg)}
+.fng-gauge .bg{fill:none;stroke:rgba(255,255,255,.08);stroke-width:8}
+.fng-gauge .fill{fill:none;stroke-width:8;stroke-linecap:round;transition:stroke-dashoffset .6s ease,stroke .6s ease}
+.fng-value{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.fng-value .num{font-size:1.5em;font-weight:850;line-height:1;letter-spacing:-.04em}
+.fng-value .label{font-size:.62em;color:var(--muted);margin-top:2px;text-transform:uppercase;letter-spacing:.05em}
+.fng-info{flex:1;min-width:200px}
+.fng-info h3{font-size:1.15em;font-weight:750;letter-spacing:-.03em;margin:0 0 6px;display:flex;align-items:center;gap:8px}
+.fng-info .fng-classification{font-size:.82em;color:var(--muted);line-height:1.4}
+.fng-info .fng-timestamp{font-size:.7em;color:var(--faint);margin-top:4px}
+.fng-emoji{font-size:1.6em}
+.fng-meter{flex:1;min-width:150px}
+.fng-meter-bar{height:8px;border-radius:999px;background:rgba(255,255,255,.06);overflow:hidden;position:relative}
+.fng-meter-fill{height:100%;border-radius:999px;transition:width .5s ease,background .5s ease}
+.fng-meter-labels{display:flex;justify-content:space-between;font-size:.62em;color:var(--faint);margin-top:4px;text-transform:uppercase;letter-spacing:.03em}
+.fng-extreme-fear{color:#e11d48!important}.fng-fear{color:#f97316!important}.fng-neutral{color:#eab308!important}.fng-greed{color:#84cc16!important}.fng-extreme-greed{color:#22c55e!important}
+[data-theme="light"] .fng-section{background:#fff!important;box-shadow:0 2px 16px rgba(0,0,0,.06),var(--ring)!important}
+[data-theme="light"] .fng-section:before{opacity:.35!important}
+[data-theme="light"] .fng-info h3{color:#0f172a!important}
+[data-theme="light"] .fng-classification{color:#475569!important}
+
+/* ATLAS_HEATMAP_20260520 */
+.heatmap-section{margin:0 0 22px;padding:20px 24px;border:1px solid var(--border);border-radius:24px;background:linear-gradient(135deg,rgba(16,22,34,.92),rgba(18,14,33,.86) 48%,rgba(10,13,20,.88));box-shadow:var(--shadow),var(--ring);position:relative;overflow:hidden}
+.heatmap-section:before{content:"";position:absolute;inset:-1px;background:radial-gradient(circle at 16% 0%,rgba(34,197,94,.10),transparent 35%),radial-gradient(circle at 92% 14%,rgba(239,68,68,.08),transparent 28%);pointer-events:none}
+.heatmap-section h3{position:relative;font-size:1.15em;font-weight:750;letter-spacing:-.03em;margin:0 0 8px;display:flex;align-items:center;gap:8px}
+.heatmap-wrap{position:relative;border-radius:16px;overflow:hidden;min-height:400px}
+[data-theme="light"] .heatmap-section{background:#fff!important;box-shadow:0 2px 16px rgba(0,0,0,.06),var(--ring)!important}
+[data-theme="light"] .heatmap-section h3{color:#0f172a!important}
+
+/* ATLAS_ECONCAL_20260520 */
+.econ-section{margin:0 0 22px;padding:20px 24px;border:1px solid var(--border);border-radius:24px;background:linear-gradient(135deg,rgba(16,22,34,.92),rgba(18,14,33,.86) 48%,rgba(10,13,20,.88));box-shadow:var(--shadow),var(--ring);position:relative;overflow:hidden}
+.econ-section:before{content:"";position:absolute;inset:-1px;background:radial-gradient(circle at 16% 0%,rgba(56,189,248,.12),transparent 35%),radial-gradient(circle at 92% 14%,rgba(124,92,255,.08),transparent 28%);pointer-events:none}
+.econ-section h3{position:relative;font-size:1.15em;font-weight:750;letter-spacing:-.03em;margin:0 0 8px;display:flex;align-items:center;gap:8px}
+.econ-wrap{position:relative;border-radius:16px;overflow:hidden;min-height:500px}
+[data-theme="light"] .econ-section{background:#fff!important;box-shadow:0 2px 16px rgba(0,0,0,.06),var(--ring)!important}
+[data-theme="light"] .econ-section h3{color:#0f172a!important}
+
+/* ATLAS_INDEX_WIDGETS_20260520 */
+.index-widgets{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px}
+.index-widget{background:rgba(255,255,255,.055);border:1px solid var(--border);border-radius:16px;padding:14px 16px;display:flex;flex-direction:column;gap:4px;transition:all .2s}
+.index-widget .idx-name{font-size:.74em;color:var(--faint);font-weight:850;text-transform:uppercase;letter-spacing:.06em}
+.index-widget .idx-price{font-size:1.35em;font-weight:780;letter-spacing:-.035em;color:#f8fbff;font-variant-numeric:tabular-nums}
+.index-widget .idx-change{font-size:.82em;font-weight:750;font-variant-numeric:tabular-nums}
+.index-widget .idx-time{font-size:.66em;color:var(--faint);margin-top:2px}
+.idx-up{color:#22c55e!important}.idx-down{color:#ef4444!important}
+.spx-widget{border-color:rgba(124,92,255,.22);background:linear-gradient(135deg,rgba(124,92,255,.08),rgba(56,189,248,.05))}
+.ndx-widget{border-color:rgba(56,189,248,.22);background:linear-gradient(135deg,rgba(56,189,248,.08),rgba(124,92,255,.05))}
+[data-theme="light"] .index-widget{background:rgba(0,0,0,.02)!important;border-color:rgba(0,0,0,.08)!important}
+[data-theme="light"] .idx-price{color:#0f172a!important}
+[data-theme="light"] .spx-widget{background:linear-gradient(135deg,rgba(124,92,255,.05),rgba(56,189,248,.03))!important}
+[data-theme="light"] .ndx-widget{background:linear-gradient(135deg,rgba(56,189,248,.05),rgba(124,92,255,.03))!important}
+.market-state{background:rgba(241,245,249,.9)!important;border-color:rgba(0,0,0,.12)!important;color:#475569!important}
 [data-theme="light"] .market-state:before{background:#94a3b8!important;box-shadow:0 0 8px rgba(148,163,184,.4)!important}
 [data-theme="light"] .market-state-open{color:#16a34a!important;border-color:rgba(22,163,74,.22)!important;background:rgba(22,163,74,.06)!important}
 [data-theme="light"] .market-state-open:before{background:#16a34a!important;box-shadow:0 0 10px rgba(22,163,74,.6)!important}
@@ -152,7 +209,71 @@ footer{margin-top:34px;color:var(--muted);font-size:.85em;text-align:center;line
 [data-theme="light"] .panel .desc{color:#475569!important}
 [data-theme="light"] .panel h2{color:#0f172a!important}
 *,*::before,*::after{transition:background-color .4s ease,border-color .4s ease,color .4s ease,box-shadow .4s ease}
-</style></head><body><main class="shell"><header class="topbar"><div class="brand"><span class="brand-mark">🔮</span><span>Atlas Nexus</span></div><nav class="nav" aria-label="Dashboard navigation"><a class="active" href="#scanner">Scanner</a><a href="#dashboards">Markets</a><a href="https://github.com/AtlasNexusTech/markets-dashboard">GitHub</a><button class="theme-btn" id="themeToggle" title="Toggle theme" aria-label="Toggle dark/light theme"><span class="icon-sun">☀️</span><span class="icon-moon">🌙</span></button></nav></header><section class="hero" aria-label="Atlas Nexus Markets overview"><div class="hero-main"><div class="eyebrow"><span class="live-dot"></span> Live multi-asset intelligence</div><div class="title-emoji">🔮</div><h1>Markets Command Deck</h1><p class="hero-sub">A client-facing market intelligence cockpit for crypto, stocks, ETFs, indices, forex and commodities — live widgets, generated dashboards, and a technical scanner built for fast signal reading.</p><div class="hero-cta"><a href="#scanner" class="btn btn-primary">⚡ Open Live Scanner</a><a href="#dashboards" class="btn">Browse dashboards</a></div></div><aside class="hero-side" aria-label="Key coverage metrics"><div class="metric-card wide"><div><div class="metric-label">Scanner coverage</div><div class="metric-value"><span class="count-up" data-target="103">103</span> assets</div></div><div class="status-line"><span class="live-dot"></span>Yahoo Finance OHLCV · live scoring</div></div><div class="metric-card"><div class="metric-label">Markets</div><div class="metric-value">6</div><div class="metric-copy">Crypto · Stocks · ETF · Indices · FX · Commodities</div></div><div class="metric-card"><div class="metric-label">Scoring engine</div><div class="metric-value">Hawkeye V4</div><div class="metric-copy">Pressure · Regime · Momentum · Extension</div></div></aside></section><section class="market-strip" aria-label="Live market ticker"><div class="ticker-wrap"><div class="tradingview-widget-container"><div class="tradingview-widget-container__widget"></div><script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js" async>{"symbols":[{"proName":"FOREXCOM:SPXUSD","title":"S&P 500"},{"proName":"FOREXCOM:NAS100","title":"Nasdaq"},{"proName":"BITSTAMP:BTCUSD","title":"BTC/USD"},{"proName":"BITSTAMP:ETHUSD","title":"ETH/USD"},{"proName":"TVC:GOLD","title":"Gold"},{"proName":"TVC:USOIL","title":"WTI Oil"},{"proName":"FOREXCOM:EURUSD","title":"EUR/USD"},{"proName":"NASDAQ:AAPL","title":"Apple"},{"proName":"NASDAQ:NVDA","title":"NVIDIA"},{"proName":"AMEX:SPY","title":"SPY"},{"proName":"NASDAQ:QQQ","title":"QQQ"},{"proName":"TVC:DXY","title":"DXY"}],"showSymbolLogo":true,"isTransparent":true,"displayMode":"adaptive","colorTheme":"light","locale":"en"}</script></div></div></section><section id="scanner" class="scanner">
+</style></head><body><main class="shell"><header class="topbar"><div class="brand"><span class="brand-mark">🔮</span><span>Atlas Nexus</span></div><nav class="nav" aria-label="Dashboard navigation"><a class="active" href="#scanner">Scanner</a><a href="#dashboards">Markets</a><a href="https://github.com/AtlasNexusTech/markets-dashboard">GitHub</a><button class="theme-btn" id="themeToggle" title="Toggle theme" aria-label="Toggle dark/light theme"><span class="icon-sun">☀️</span><span class="icon-moon">🌙</span></button></nav></header><section class="hero" aria-label="Atlas Nexus Markets overview"><div class="hero-main"><div class="eyebrow"><span class="live-dot"></span> Live multi-asset intelligence</div><div class="title-emoji">🔮</div><h1>Markets Command Deck</h1><p class="hero-sub">A client-facing market intelligence cockpit for crypto, stocks, ETFs, indices, forex and commodities — live widgets, generated dashboards, and a technical scanner built for fast signal reading.</p><div class="hero-cta"><a href="#scanner" class="btn btn-primary">⚡ Open Live Scanner</a><a href="#dashboards" class="btn">Browse dashboards</a></div></div><aside class="hero-side" aria-label="Key coverage metrics"><div class="metric-card wide"><div><div class="metric-label">Scanner coverage</div><div class="metric-value"><span class="count-up" data-target="103">103</span> assets</div></div><div class="status-line"><span class="live-dot"></span>Yahoo Finance OHLCV · live scoring</div></div><div class="metric-card"><div class="metric-label">Markets</div><div class="metric-value">6</div><div class="metric-copy">Crypto · Stocks · ETF · Indices · FX · Commodities</div></div><div class="metric-card"><div class="metric-label">Scoring engine</div><div class="metric-value">Hawkeye V4</div><div class="metric-copy">Pressure · Regime · Momentum · Extension</div></div>
+<div class="index-widgets">
+<div class="index-widget spx-widget">
+<div class="idx-name">S&P 500</div>
+<div class="idx-price" id="spx-price">--</div>
+<div class="idx-change" id="spx-change">--</div>
+<div class="idx-time" id="spx-time">Fetching...</div>
+</div>
+<div class="index-widget ndx-widget">
+<div class="idx-name">Nasdaq</div>
+<div class="idx-price" id="ndx-price">--</div>
+<div class="idx-change" id="ndx-change">--</div>
+<div class="idx-time" id="ndx-time">Fetching...</div>
+</div>
+</div></aside>
+<section class="fng-section" aria-label="Crypto Fear & Greed Index">
+<div class="fng-inner">
+<div class="fng-gauge">
+<svg viewBox="0 0 100 100">
+<circle class="bg" cx="50" cy="50" r="42"/>
+<circle class="fill" id="fng-gauge-fill" cx="50" cy="50" r="42"/>
+</svg>
+<div class="fng-value">
+<div class="num" id="fng-value">--</div>
+<div class="label">Fear & Greed</div>
+</div>
+</div>
+<div class="fng-info">
+<h3><span class="fng-emoji" id="fng-emoji">😐</span> <span id="fng-classification">Chargement...</span></h3>
+<div class="fng-classification" id="fng-text">Fetching Crypto Fear & Greed Index...</div>
+<div class="fng-timestamp" id="fng-timestamp">Updated: --</div>
+</div>
+<div class="fng-meter">
+<div class="fng-meter-bar"><div class="fng-meter-fill" id="fng-meter-fill" style="width:50%"></div></div>
+<div class="fng-meter-labels"><span>Extreme Fear</span><span>Fear</span><span>Neutral</span><span>Greed</span><span>Extreme Greed</span></div>
+</div>
+</div>
+</section></section><section class="market-strip" aria-label="Live market ticker"><div class="ticker-wrap"><div class="tradingview-widget-container"><div class="tradingview-widget-container__widget"></div><script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js" async>{"symbols":[{"proName":"FOREXCOM:SPXUSD","title":"S&P 500"},{"proName":"FOREXCOM:NAS100","title":"Nasdaq"},{"proName":"BITSTAMP:BTCUSD","title":"BTC/USD"},{"proName":"BITSTAMP:ETHUSD","title":"ETH/USD"},{"proName":"TVC:GOLD","title":"Gold"},{"proName":"TVC:USOIL","title":"WTI Oil"},{"proName":"FOREXCOM:EURUSD","title":"EUR/USD"},{"proName":"NASDAQ:AAPL","title":"Apple"},{"proName":"NASDAQ:NVDA","title":"NVIDIA"},{"proName":"AMEX:SPY","title":"SPY"},{"proName":"NASDAQ:QQQ","title":"QQQ"},{"proName":"TVC:DXY","title":"DXY"}],"showSymbolLogo":true,"isTransparent":true,"displayMode":"adaptive","colorTheme":"light","locale":"en"}</script></div></div></section>
+<section class="heatmap-section" aria-label="Stock Market Heatmap">
+<h3>🗺️ Stock Market Heatmap</h3>
+<div class="heatmap-wrap">
+<div class="tradingview-widget-container">
+<div class="tradingview-widget-container__widget"></div>
+<script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-stock-heatmap.js" async>
+{
+"exchanges": [],
+"dataSource": "SPX500",
+"grouping": "sector",
+"blockSize": "market_cap_basic",
+"blockColor": "change",
+"locale": "en",
+"symbolUrl": "",
+"colorTheme": "dark",
+"hasTopBar": true,
+"isDataSetEnabled": true,
+"isZoomEnabled": true,
+"hasSymbolTooltip": true,
+"isMonoSize": false,
+"width": "100%",
+"height": "450"
+}
+</script>
+</div>
+</div>
+</section><section id="scanner" class="scanner">
 <style>
 .market-state{display:inline-flex;align-items:center;gap:5px;padding:4px 7px;border-radius:999px;border:1px solid rgba(148,163,184,.18);background:rgba(15,23,42,.56);font-size:.72rem;font-weight:950;text-transform:uppercase;letter-spacing:.035em;white-space:nowrap}
 .market-state:before{content:"";width:6px;height:6px;border-radius:999px;background:#94a3b8;box-shadow:0 0 12px rgba(148,163,184,.65)}
@@ -418,6 +539,25 @@ footer{margin-top:34px;color:var(--muted);font-size:.85em;text-align:center;line
 <span>0-39 Weak</span><span>40-59 Watch</span><span>60-74 Active pressure</span><span>75-89 Strong pressure</span><span>90-100 Extreme pressure</span>
 <span class="demo-tag">Updated 17/05/2026 20:31 CEST</span>
 </div>
+</section>
+<section class="econ-section" aria-label="Economic Calendar">
+<h3>📅 Economic Calendar</h3>
+<div class="econ-wrap">
+<div class="tradingview-widget-container">
+<div class="tradingview-widget-container__widget"></div>
+<script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-events.js" async>
+{
+"colorTheme": "dark",
+"isTransparent": true,
+"width": "100%",
+"height": "550",
+"locale": "en",
+"importanceFilter": "-1,0,1",
+"countryFilter": "ar,au,br,ca,cn,fr,de,in,id,it,jp,kr,mx,ru,sa,za,tr,gb,us,eu"
+}
+</script>
+</div>
+</div>
 </section><section id="dashboards" aria-label="Live dashboards"><div class="section-head"><div><div class="section-label">Live Dashboards</div><div class="section-kicker">Six live boards, refreshed for the current market context.</div></div></div><div class="grid"><a href="crypto_dashboard.html" class="panel crypto" data-market="crypto"><div class="emoji">🪙</div><h2>Crypto</h2><div class="desc">BTC, ETH, SOL & liquid majors · 24/7 momentum</div><span class="count">24/7 market</span><span class="session-led open" data-session-label>OPEN · 24/7</span></a><a href="commodities_dashboard.html" class="panel commodities" data-market="commodities"><div class="emoji">🛢️</div><h2>Commodities</h2><div class="desc">Gold, Silver, Oil, Copper, Grains · CFD/extended context</div><span class="count">15 assets</span><span class="session-led soon" data-session-label>SESSION</span></a><a href="indices_dashboard.html" class="panel indices" data-market="indices"><div class="emoji">🌍</div><h2>Indices</h2><div class="desc">S&P 500, Nasdaq, DAX, CAC, Nikkei · global risk pulse</div><span class="count">16 indices</span><span class="session-led soon" data-session-label>SESSION</span></a><a href="forex_dashboard.html" class="panel forex" data-market="forex"><div class="emoji">💱</div><h2>Forex</h2><div class="desc">EURUSD, GBPJPY, AUDUSD · majors, crosses and exotics</div><span class="count">19 pairs</span><span class="session-led soon" data-session-label>SESSION</span></a><a href="actions_dashboard.html" class="panel actions" data-market="stocks"><div class="emoji">🏛️</div><h2>Stocks</h2><div class="desc">Mega-cap tech, luxury, banks, defensives · equity momentum</div><span class="count">30 stocks</span><span class="session-led soon" data-session-label>SESSION</span></a><a href="etf_dashboard.html" class="panel etf" data-market="etf"><div class="emoji">💼</div><h2>ETF</h2><div class="desc">SPY, QQQ, GLD, TLT, ARKK · themes and cross-asset exposure</div><span class="count">24 ETFs</span><span class="session-led soon" data-session-label>SESSION</span></a></div></section><footer><p>🔮 Built by <strong>Atlas Nexus</strong> · Data: Yahoo Finance + TradingView · Open source</p><p><a href="https://github.com/AtlasNexusTech/markets-dashboard">github.com/AtlasNexusTech/markets-dashboard</a></p></footer><script>
 (() => {
   const minutesUtc = d => d.getUTCHours() * 60 + d.getUTCMinutes();
@@ -491,4 +631,153 @@ footer{margin-top:34px;color:var(--muted);font-size:.85em;text-align:center;line
     localStorage.setItem('atlas-theme',next);
   });
 })();
-</script></main></body></html>
+</script></main>
+<script>
+// ================================================================
+// ATLAS LIVE INDEX WIDGETS — Yahoo Finance
+// ================================================================
+(function() {
+  const YAHOO_BASE = 'https://query1.finance.yahoo.com/v8/finance/chart/';
+  
+  async function fetchYahooIndex(symbol) {
+    try {
+      const resp = await fetch(YAHOO_BASE + symbol + '?interval=1d&range=2d');
+      const data = await resp.json();
+      const result = data.chart.result[0];
+      const meta = result.meta;
+      const price = meta.regularMarketPrice;
+      const prevClose = meta.previousClose || meta.chartPreviousClose;
+      const change = price - prevClose;
+      const changePct = (change / prevClose) * 100;
+      const time = new Date(meta.regularMarketTime * 1000);
+      return { price, change, changePct, time };
+    } catch(e) {
+      console.error('Yahoo fetch error for', symbol, e);
+      return null;
+    }
+  }
+  
+  function formatPrice(p) {
+    if (p >= 1000) return p.toLocaleString('en-US', {minimumFractionDigits: 0, maximumFractionDigits: 0});
+    return p.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
+  }
+  
+  function updateWidget(idPrice, idChange, idTime, data, isUp) {
+    if (!data) {
+      document.getElementById(idPrice).textContent = 'Error';
+      document.getElementById(idChange).textContent = '--';
+      return;
+    }
+    document.getElementById(idPrice).textContent = formatPrice(data.price);
+    const sign = data.change >= 0 ? '+' : '';
+    const cls = data.change >= 0 ? 'idx-up' : 'idx-down';
+    const el = document.getElementById(idChange);
+    el.textContent = sign + data.change.toFixed(2) + ' (' + sign + data.changePct.toFixed(2) + '%)';
+    el.className = 'idx-change ' + cls;
+    document.getElementById(idTime).textContent = 'Updated: ' + data.time.toLocaleTimeString('en-US', {hour:'2-digit',minute:'2-digit'});
+  }
+  
+  async function refreshIndices() {
+    const [spx, ndx] = await Promise.all([
+      fetchYahooIndex('%5EGSPC'),
+      fetchYahooIndex('%5EIXIC')
+    ]);
+    updateWidget('spx-price', 'spx-change', 'spx-time', spx);
+    updateWidget('ndx-price', 'ndx-change', 'ndx-time', ndx);
+  }
+  
+  refreshIndices();
+  setInterval(refreshIndices, 60000); // Every 1 min
+})();
+
+// ================================================================
+// ATLAS FEAR & GREED INDEX — alternative.me API
+// ================================================================
+(function() {
+  const FNG_API = 'https://api.alternative.me/fng/?limit=1';
+  const REFRESH_MS = 15 * 60 * 1000; // 15 minutes
+  
+  const classifications = {
+    'Extreme Fear': { emoji: '😱', color: '#e11d48', range: [0, 25] },
+    'Fear': { emoji: '😨', color: '#f97316', range: [25, 45] },
+    'Neutral': { emoji: '😐', color: '#eab308', range: [45, 55] },
+    'Greed': { emoji: '😊', color: '#84cc16', range: [55, 75] },
+    'Extreme Greed': { emoji: '🤑', color: '#22c55e', range: [75, 100] }
+  };
+  
+  // Gauge: circumference = 2 * PI * 42 = 263.89
+  const circumference = 2 * Math.PI * 42;
+  
+  async function fetchFNG() {
+    try {
+      const resp = await fetch(FNG_API);
+      const data = await resp.json();
+      const entry = data.data[0];
+      const value = parseInt(entry.value);
+      const classification = entry.value_classification;
+      const timestamp = new Date(parseInt(entry.timestamp) * 1000);
+      return { value, classification, timestamp };
+    } catch(e) {
+      console.error('FNG fetch error:', e);
+      return null;
+    }
+  }
+  
+  function updateFNG(data) {
+    const gaugeFill = document.getElementById('fng-gauge-fill');
+    const valueEl = document.getElementById('fng-value');
+    const emojiEl = document.getElementById('fng-emoji');
+    const classEl = document.getElementById('fng-classification');
+    const textEl = document.getElementById('fng-text');
+    const timeEl = document.getElementById('fng-timestamp');
+    const meterFill = document.getElementById('fng-meter-fill');
+    
+    if (!data) {
+      if (valueEl) valueEl.textContent = 'Error';
+      if (classEl) classEl.textContent = 'API Error';
+      return;
+    }
+    
+    const pct = data.value / 100;
+    const offset = circumference * (1 - pct);
+    const info = classifications[data.classification] || classifications['Neutral'];
+    
+    // Update gauge
+    if (gaugeFill) {
+      gaugeFill.setAttribute('stroke-dasharray', circumference);
+      gaugeFill.setAttribute('stroke-dashoffset', offset);
+      gaugeFill.setAttribute('stroke', info.color);
+    }
+    
+    // Update value
+    if (valueEl) {
+      valueEl.textContent = data.value;
+      valueEl.style.color = info.color;
+    }
+    
+    // Update classification
+    if (emojiEl) emojiEl.textContent = info.emoji;
+    if (classEl) {
+      classEl.textContent = data.classification;
+      classEl.style.color = info.color;
+    }
+    if (textEl) textEl.textContent = 'Crypto Fear & Greed Index — value out of 100';
+    
+    // Update meter
+    if (meterFill) {
+      meterFill.style.width = data.value + '%';
+      meterFill.style.background = info.color;
+    }
+    
+    // Update timestamp
+    if (timeEl) {
+      timeEl.textContent = 'Updated: ' + data.timestamp.toLocaleDateString('en-US', {
+        month:'short', day:'numeric', hour:'2-digit', minute:'2-digit'
+      });
+    }
+  }
+  
+  fetchFNG().then(updateFNG);
+  setInterval(() => fetchFNG().then(updateFNG), REFRESH_MS);
+})();
+</script></body></html>
