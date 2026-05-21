@@ -1,0 +1,1 @@
+const e={"button.disconnect":{message:"Katkaise yhteys",description:"Painikkeen teksti, joka katkaisee yhteyden liitettyyn lompakkoon."},"message.connectError":{message:"Lompakon yhdistäminen epäonnistui.",description:"Virheilmoitus, joka näytetään, kun lompakon yhdistäminen epäonnistuu."}};export{e as default};

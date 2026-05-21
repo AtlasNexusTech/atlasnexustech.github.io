@@ -1,0 +1,1 @@
+const e={"button.disconnect":{message:"Déconnecter",description:"Texte du bouton pour déconnecter le portefeuille connecté."},"message.connectError":{message:"Échec de la connexion au portefeuille.",description:"Message d'erreur affiché lorsque la connexion au portefeuille échoue."}};export{e as default};

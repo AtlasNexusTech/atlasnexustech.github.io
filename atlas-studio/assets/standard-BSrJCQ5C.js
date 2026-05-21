@@ -1,0 +1,1 @@
+const a="solana:signAndSendTransaction",t="solana:signTransaction",s="standard:connect",e="standard:events";function o(n){return s in n.features&&e in n.features&&(a in n.features||t in n.features)}export{o as i};

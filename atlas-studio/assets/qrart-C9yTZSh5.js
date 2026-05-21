@@ -1,0 +1,1 @@
+const A="38ecf158-36f2-42f2-8e7f-6786cdfc2452",R=2,T=20,_="",s="text",E="1:1",D=!1,a=5,c="center",t="square",L="square",n="square",Q=0,o="H",U=0;export{A as Q,s as a,E as b,R as c,T as d,D as e,L as f,n as g,Q as h,o as i,c as j,a as k,U as l,t as m,_ as n};

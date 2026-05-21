@@ -1,0 +1,1 @@
+const e={"button.disconnect":{message:"Desconectar",description:"Texto del botón para desconectar la billetera conectada."},"message.connectError":{message:"Error al conectar la billetera.",description:"Mensaje de error que se muestra cuando falla la conexión con la billetera."}};export{e as default};

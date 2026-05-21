@@ -1,0 +1,1 @@
+const e={"button.disconnect":{message:"Відключити",description:"Кнопка для відключення підключеного гаманця."},"message.connectError":{message:"Не вдалося підключити гаманець.",description:"Повідомлення про помилку, яке відображається при невдалому підключенні гаманця."}};export{e as default};

@@ -1,0 +1,1 @@
+const a={"button.disconnect":{message:"Desconectar",description:"Texto do botão para desconectar a carteira conectada."},"message.connectError":{message:"Falha na conexão da carteira.",description:"Mensagem de erro exibida quando a conexão da carteira falha."}};export{a as default};

@@ -1,0 +1,1 @@
+const e={"button.disconnect":{message:"فصل الاتصال",description:"نص زر فصل الاتصال بمحفظة متصلة."},"message.connectError":{message:"فشل في الاتصال بالمحفظة.",description:"رسالة الخطأ المعروضة عند فشل الاتصال بالمحفظة."}};export{e as default};

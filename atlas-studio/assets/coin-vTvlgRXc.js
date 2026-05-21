@@ -1,0 +1,1 @@
+const e={"button.disconnect":{message:"接続を切断",description:"接続されているウォレットを切断するボタンの文言。"},"message.connectError":{message:"ウォレットの接続に失敗しました。",description:"ウォレットの接続に失敗した際に表示されるエラーメッセージ。"}};export{e as default};
