@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="fr" class="scroll-smooth">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
 <title>Atlas Nexus — Consulting Operations & Agentic AI</title>
-<link rel="canonical" href="https://atlasnexus.tech/en/">
+<link rel="canonical" href="https://atlasnexus.tech/">
 <link rel="alternate" hreflang="fr" href="https://atlasnexus.tech/">
 <link rel="alternate" hreflang="en" href="https://atlasnexus.tech/en/">
 <link rel="alternate" hreflang="x-default" href="https://atlasnexus.tech/en/">
@@ -17,16 +17,16 @@
     const explicit = params.get('lang');
     if (explicit === 'fr' || explicit === 'en') localStorage.setItem(KEY, explicit);
     const saved = localStorage.getItem(KEY);
-    if (saved === 'en') return;
-    if (saved === 'fr') { window.location.replace('/' + window.location.hash); return; }
+    if (saved === 'fr') return;
+    if (saved === 'en') { window.location.replace('/en/' + window.location.hash); return; }
     const langs = (navigator.languages && navigator.languages.length ? navigator.languages : [navigator.language || '']).map(x => String(x).toLowerCase());
     const isFrancophone = langs.some(x => x === 'fr' || x.startsWith('fr-'));
-    if (isFrancophone) window.location.replace('/' + window.location.hash);
+    if (!isFrancophone) window.location.replace('/en/' + window.location.hash);
   } catch(e) {}
 })();
 </script>
 
-<meta name="description" content="Operations consulting, live dashboards, data pipelines, animated web interfaces and agentic AI for freelancers, teams and SMBs. Fast builds, GitHub-visible code when possible, documentation included.">
+<meta name="description" content="Conseil opérationnel, dashboards live, pipelines data, animations web et IA agentique pour indépendants, équipes et PME. Builds rapides, code visible sur GitHub, documentation incluse.">
 <script src="https://cdn.tailwindcss.com"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -64,7 +64,7 @@ tailwind.config = {
 </script>
 <style>
   /* ── Core ── */
-  .hero-title { font-size: clamp(2.45rem, 6.6vw, 5.15rem); font-weight: 900; letter-spacing: -0.055em; line-height: 1.08; overflow: visible; }
+  .hero-title { font-size: clamp(3.2rem, 9vw, 7rem); font-weight: 900; letter-spacing: -0.055em; line-height: 1.05; overflow: visible; }
   .gradient-text { background: linear-gradient(135deg, #2563EB 0%, #059669 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
   .glow-word { position: relative; display: inline-block; overflow: visible; padding: .035em .02em .13em .02em; margin: -.035em -.02em -.07em -.02em; background: linear-gradient(110deg, #0F172A 0%, #2563EB 32%, #7C3AED 56%, #059669 82%, #0F172A 100%); background-size: 240% 100%; -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; animation: agenticGlow 3.8s ease-in-out infinite; }
   @keyframes agenticGlow { 0%,100% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } }
@@ -160,6 +160,10 @@ tailwind.config = {
   .offer-card .offer-spacer { flex:1 1 auto; }
   .offer-card .offer-price { margin-top:auto; line-height:1.15; }
   .offer-card .offer-quote { display:block; margin-top:.35rem; line-height:1.25; }
+  @media (max-width: 639px) {
+    .offer-card { padding: 1.25rem !important; }
+    .offer-card h3 { font-size: 1.25rem; }
+  }
 
   /* ── Accessibility ── */
   @media (prefers-reduced-motion: reduce) {
@@ -188,6 +192,8 @@ tailwind.config = {
   .dark .motion-card::before { background: radial-gradient(circle at 15% 0%, rgba(124,58,237,.12), transparent 38%), radial-gradient(circle at 95% 20%, rgba(59,130,246,.1), transparent 34%); }
   .dark .motion-card:hover { box-shadow: 0 22px 70px -32px rgba(124,58,237,.35); }
   .dark .card-hover:hover { box-shadow: 0 12px 32px -6px rgba(0,0,0,.4); }
+  .dark .card-hover.hover\:border-primary:hover { border-color: #3B82F6; }
+  .dark .card-hover.hover\:border-purple-500:hover { border-color: #8B5CF6; }
   .dark .bg-green-100 { background-color: #064E3B; }
   .dark .text-green-600 { color: #34D399; }
   .dark .bg-green-50 { background-color: #064E3B; }
@@ -213,8 +219,8 @@ tailwind.config = {
   .dark .bg-purple-600:hover { box-shadow: 0 0 28px -4px rgba(124,58,237,.6); }
   .dark .border.border-border { border-color: #334155; }
   .dark a.border.border-border:hover { border-color: #3B82F6; }
-  .dark .lang-switch { background: linear-gradient(135deg, rgba(17,24,39,.92), rgba(26,34,53,.84)); border-color: rgba(59,130,246,.25); color: #94A3B8; box-shadow: inset 0 1px 0 rgba(255,255,255,.05), 0 12px 26px -20px rgba(37,99,235,.35); }
-  .dark .lang-switch:hover { border-color: rgba(59,130,246,.45); box-shadow: inset 0 1px 0 rgba(255,255,255,.08), 0 16px 34px -22px rgba(37,99,235,.5); }
+  .dark a.border.border-border.hover\:text-primary:hover { color: #3B82F6; }
+  .dark a.border.border-border.hover\:border-purple-500:hover { border-color: #8B5CF6; color: #A78BFA; }
 </style>
 <!-- Hotjar Tracking Code for Atlas Nexus -->
 <script>
@@ -236,7 +242,7 @@ tailwind.config = {
 <!-- Nav -->
 <nav class="fixed top-0 w-full z-50 bg-surface/85 dark:bg-dark-surface/90 backdrop-blur-lg border-b border-border dark:border-dark-border">
   <div class="max-w-6xl mx-auto px-6 h-[72px] flex items-center justify-between">
-    <a href="#top" class="flex items-center gap-3" aria-label="Atlas Nexus home">
+    <a href="#top" class="flex items-center gap-3" aria-label="Atlas Nexus accueil">
       <div class="w-9 h-9 bg-primary rounded-lg flex items-center justify-center shadow-lg shadow-blue-500/20">
         <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" aria-hidden="true">
           <circle cx="12" cy="6" r="2.5" fill="currentColor" stroke="none"/>
@@ -258,9 +264,9 @@ tailwind.config = {
       <a href="https://github.com/AtlasNexusTech" class="hover:text-primary dark:hover:text-blue-400">GitHub</a>
     </div>
     <div class="flex items-center gap-3">
-      <div class="hidden sm:inline-grid lang-switch" data-active="en" aria-label="Language selector">
-      <a href="/?lang=fr" onclick="localStorage.setItem('atlasnexus.lang','fr')">FR</a>
-      <a class="active" href="/en/" onclick="localStorage.setItem('atlasnexus.lang','en')">EN</a>
+      <div class="hidden sm:inline-grid lang-switch" data-active="fr" aria-label="Sélecteur de langue">
+      <a class="active" href="/?lang=fr" onclick="localStorage.setItem('atlasnexus.lang','fr')">FR</a>
+      <a href="/en/" onclick="localStorage.setItem('atlasnexus.lang','en')">EN</a>
     </div>
       <button id="theme-toggle" class="w-10 h-10 rounded-full border border-black/10 dark:border-white/10 bg-white/70 dark:bg-white/5 backdrop-blur-xl flex items-center justify-center hover:bg-white dark:hover:bg-white/10 dark:hover:bg-white/10 transition-all shadow-sm shadow-black/5 dark:shadow-lg dark:shadow-black/20 text-slate-500 dark:text-slate-300" aria-label="Toggle dark mode">
         <svg class="w-4 h-4 rotate-0 scale-100 transition-transform duration-300 dark:-rotate-90 dark:scale-0" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
@@ -278,25 +284,25 @@ tailwind.config = {
   <div class="hero-orb"></div>
   <div class="max-w-6xl mx-auto px-6 w-full relative z-10">
     <div class="max-w-4xl hero-stagger">
-      <h1 class="hero-title text-foreground mb-8">
+      <h1 class="hero-title text-foreground dark:text-dark-foreground mb-8">
         <span class="glow-word">Consulting</span><br><span class="glow-word">Operations</span><br><span class="glow-word">Agentic AI</span>
       </h1>
-      <p class="text-2xl sm:text-3xl font-display font-extrabold text-foreground max-w-3xl mb-5 leading-tight">
-        For freelancers, teams and SMBs.
+      <p class="text-2xl sm:text-3xl font-display font-extrabold text-foreground dark:text-dark-foreground max-w-3xl mb-5 leading-tight">
+        Pour indépendants, équipes et PME.
       </p>
       <p class="text-lg sm:text-xl text-slate-600 dark:text-slate-300 max-w-2xl mb-10 leading-relaxed">
-        I help with operations, automation, agentic AI deployments and web interface creation.
+        Je vous aide pour vos opérations, votre automatisation, le déploiement d'IA agentiques et la création d'interfaces web.
       </p>
       <div class="flex gap-3 flex-wrap">
         <a href="#work" class="bg-primary text-white px-7 py-3.5 rounded-full text-base font-semibold hover:bg-primary-dark inline-flex items-center gap-2 font-display">
-          See the work
+          Voir les réalisations
           <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
         </a>
         <a href="https://ai2work.onrender.com" class="border-2 border-purple-200 dark:border-purple-800 text-purple-700 dark:text-purple-300 px-7 py-3.5 rounded-full text-base font-semibold hover:border-purple-500 hover:bg-purple-50 dark:hover:bg-purple-900/30 dark:hover:border-purple-500 font-display">
-          Agentic Identity
+          Identité Agentique
         </a>
       </div>
-      <p class="mt-5 text-sm text-slate-500">Short builds, verifiable deliverables, GitHub-visible code when the project allows it.</p>
+      <p class="mt-5 text-sm text-slate-500 dark:text-slate-400">Short builds, verifiable deliverables, GitHub-visible code when the project allows it.</p>
     </div>
   </div>
 </section>
@@ -306,13 +312,13 @@ tailwind.config = {
   <div class="max-w-6xl mx-auto px-6">
     <div class="reveal">
       <p class="text-accent font-semibold tracking-widest uppercase text-xs mb-3">Products</p>
-      <h2 class="section-title text-foreground mb-12 font-display">Useful demos, not just decorative pages</h2>
+      <h2 class="section-title text-foreground dark:text-dark-foreground mb-12 font-display">Useful demos, not just decorative pages</h2>
     </div>
     <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
       <div class="reveal reveal-delay-1 card-hover market-card bg-surface rounded-2xl p-8 border border-border flex flex-col">
         <div class="w-12 h-12 bg-accent/10 rounded-xl flex items-center justify-center mb-6"><svg class="w-6 h-6 text-accent" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><polyline points="3 17 9 11 13 15 21 7"/><polyline points="17 7 21 7 21 11"/></svg></div>
-        <h3 class="text-xl font-bold text-foreground mb-2 font-display">Markets Dashboard</h3>
-        <p class="text-slate-600 text-sm leading-relaxed mb-4">Live multi-asset radar: crypto, stocks, ETFs, indices, forex and commodities.</p>
+        <h3 class="text-xl font-bold text-foreground dark:text-dark-foreground mb-2 font-display">Markets Dashboard</h3>
+        <p class="text-slate-600 dark:text-slate-300 text-sm leading-relaxed mb-4">Live multi-asset radar: crypto, stocks, ETFs, indices, forex and commodities.</p>
         <p class="text-sm font-semibold text-accent mb-4 font-display">GitHub Pages · Yahoo Finance · TradingView</p>
         <div class="flex flex-wrap gap-2 mb-4">
           <span class="px-3 py-1 bg-accent/5 text-accent text-xs font-medium rounded-full">Dashboard live</span>
@@ -320,15 +326,15 @@ tailwind.config = {
           <span class="px-3 py-1 bg-accent/5 text-accent text-xs font-medium rounded-full">100+ assets</span>
         </div>
         <div class="flex gap-2 mt-auto">
-        <a href="https://atlasnexus.tech/dashboard.html" class="text-primary text-sm font-semibold hover:text-primary-dark">Live demo →</a>
-        <a href="https://github.com/AtlasNexusTech/markets-dashboard" class="text-slate-400 text-sm hover:text-slate-600 ml-3">GitHub</a>
-      </div>
+        <a href="https://atlasnexus.tech/dashboard.html" class="text-primary dark:text-blue-400 text-sm font-semibold hover:text-primary-dark dark:hover:text-blue-300">Live demo →</a>
+        <a href="https://github.com/AtlasNexusTech/markets-dashboard" class="text-slate-400 dark:text-slate-500 text-sm hover:text-slate-600 dark:hover:text-slate-300 ml-3">GitHub</a>
+        </div>
       </div>
       <!-- Framer Motion UI -->
       <div class="reveal reveal-delay-2 framer-purple-card rounded-2xl p-8 border border-border bg-white flex flex-col">
         <div class="w-12 h-12 framer-icon-bg rounded-xl flex items-center justify-center mb-6"><svg class="w-6 h-6 framer-accent" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" viewBox="0 0 24 24"><path d="M3 18C5 6 19 18 21 6"/></svg></div>
-        <h3 class="text-xl font-bold text-foreground mb-2 font-display">Framer Motion UI</h3>
-        <p class="text-slate-600 text-sm leading-relaxed mb-4">Enhanced landing page, transitions, scroll reveals, parallax, gestures and entrances.</p>
+        <h3 class="text-xl font-bold text-foreground dark:text-dark-foreground mb-2 font-display">Framer Motion UI</h3>
+        <p class="text-slate-600 dark:text-slate-300 text-sm leading-relaxed mb-4">Enhanced landing page, transitions, scroll reveals, parallax, gestures and entrances.</p>
         <p class="text-sm font-semibold framer-accent mb-4 font-display">Skill · Demo · GitHub Pages · Landing</p>
         <div class="flex flex-wrap gap-2 mb-4">
           <span class="px-3 py-1 framer-chip text-xs font-medium rounded-full">React</span>
@@ -338,24 +344,24 @@ tailwind.config = {
         </div>
         <div class="flex gap-2 mt-auto">
         <a href="https://atlasnexus.tech/framer-motion-ui/" class="framer-accent text-sm font-semibold hover:text-primary-dark">Live demo →</a>
-        <a href="https://github.com/AtlasNexusTech/framer-motion-ui" class="text-slate-400 text-sm hover:text-slate-600 ml-3">GitHub</a>
+        <a href="https://github.com/AtlasNexusTech/framer-motion-ui" class="text-slate-400 dark:text-slate-500 text-sm hover:text-slate-600 dark:hover:text-slate-300 ml-3">GitHub</a>
         </div>
       </div>
-      <!-- Agentic Identity -->
+      <!-- Identité Agentique -->
       <div class="reveal reveal-delay-3 agentic-blue-card rounded-2xl p-8 border border-border bg-white flex flex-col">
         <div class="w-12 h-12 agentic-icon-bg rounded-xl flex items-center justify-center mb-6"><svg class="w-7 h-7" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="url(#celo-gold)" stroke-width="2"/><circle cx="12" cy="7" r="2.3" fill="url(#celo-gold)"/><circle cx="7" cy="15.5" r="2.3" fill="url(#celo-gold)"/><circle cx="17" cy="15.5" r="2.3" fill="url(#celo-gold)"/></svg></div>
-        <h3 class="text-xl font-bold text-foreground mb-2 font-display">Agentic Identity</h3>
-        <p class="text-slate-600 text-sm leading-relaxed mb-4">On-chain AI bounty marketplace for Web3 development. Verifiable agent identity on-chain (Celo Identity ERC-721 / ERC-8004). Deployed with Next.js SSR.</p>
+        <h3 class="text-xl font-bold text-foreground dark:text-dark-foreground mb-2 font-display">Agentic Identity</h3>
+        <p class="text-slate-600 dark:text-slate-300 text-sm leading-relaxed mb-4">On-chain AI bounty marketplace for Web3 development. Verifiable agent identity on-chain (Celo Identity ERC-721 / ERC-8004). Deployed with Next.js SSR.</p>
         <p class="text-sm font-semibold agentic-accent mb-4 font-display">Agent Identity ERC-721 (ERC-8004) · Celo Mainnet · Next.js SSR</p>
         <div class="flex flex-wrap gap-2 mb-4"><span class="px-3 py-1 agentic-chip text-xs font-medium rounded-full">Next.js 15</span><span class="px-3 py-1 agentic-chip text-xs font-medium rounded-full">React 19</span><span class="px-3 py-1 agentic-chip text-xs font-medium rounded-full">pnpm</span></div>
         <div class="flex gap-2 mt-auto">
         <a href="/verify/" class="agentic-accent text-sm font-semibold hover:text-primary-dark">Verify identity →</a>
-        <a href="https://ai2work.onrender.com" class="text-slate-400 text-sm hover:text-slate-600 ml-3">Live demo</a>
+        <a href="https://ai2work.onrender.com" class="text-slate-400 dark:text-slate-500 text-sm hover:text-slate-600 dark:hover:text-slate-300 ml-3">Live demo</a>
         </div>
       </div>
-      <!-- x402guard -->
+      <!-- Atlas Toolkit -->
       <div class="reveal reveal-delay-4 card-hover bg-surface dark:bg-dark-card rounded-2xl p-8 border border-border flex flex-col" style="border-color: rgba(5,150,105,.28)!important; box-shadow: 0 18px 52px -34px rgba(5,150,105,.55);">
-        <div class="w-12 h-12 bg-accent/10 rounded-xl flex items-center justify-center mb-6"><svg class="w-7 h-7" viewBox="0 0 398 312" fill="none"><path d="M64.6 237.9c2.4-2.4 5.7-3.8 9.2-3.8h317.4c5.8 0 8.7 7 4.6 11.1l-62.7 62.7c-2.4 2.4-5.7 3.8-9.2 3.8H6.5c-5.8 0-8.7-7-4.6-11.1l62.7-62.7z" fill="url(#sol-grad-top)"/><path d="M64.6 3.8C67.1 1.4 70.4 0 73.8 0h317.4c5.8 0 8.7 7 4.6 11.1l-62.7 62.7c-2.4 2.4-5.7 3.8-9.2 3.8H6.5c-5.8 0-8.7-7-4.6-11.1L64.6 3.8z" fill="url(#sol-grad-mid)"/><path d="M333.1 120.1c-2.4-2.4-5.7-3.8-9.2-3.8H6.5c-5.8 0 8.7 7-4.6 11.1l62.7 62.7c2.4 2.4 5.7 3.8 9.2 3.8h317.4c5.8 0 8.7-7 4.6-11.1l-62.7-62.7z" fill="url(#sol-grad-bot)"/></svg></div>
+        <div class="w-12 h-12 bg-accent/10 rounded-xl flex items-center justify-center mb-6"><svg class="w-6 h-6 text-accent" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg></div>
         <h3 class="text-xl font-bold text-foreground dark:text-dark-foreground mb-2 font-display">OOBE × Ace Agent</h3>
         <p class="text-slate-600 dark:text-slate-300 text-sm leading-relaxed mb-4">Solana-native spending guardrails for AI agents. On-chain vault, daily caps, endpoint allowlist, native MCP.</p>
         <p class="text-sm font-semibold text-accent mb-4 font-display">Solana · x402 · MCP · USDC</p>
@@ -365,8 +371,8 @@ tailwind.config = {
           <span class="px-3 py-1 bg-accent/5 text-accent text-xs font-medium rounded-full">Devnet beta</span>
         </div>
         <div class="flex gap-2 mt-auto">
-        <a href="/oobe-ace-agent/" class="text-primary dark:text-blue-400 text-sm font-semibold hover:text-primary-dark dark:hover:text-blue-300">Live demo →</a>
-        <a href="https://github.com/AtlasNexusTech/oobe-ace-agent" class="text-slate-400 dark:text-slate-500 text-sm hover:text-slate-600 dark:hover:text-slate-300 ml-3">GitHub</a>
+        <a href="/datatoolkit/" class="text-primary dark:text-blue-400 text-sm font-semibold hover:text-primary-dark dark:hover:text-blue-300">Live demo →</a>
+        <a href="https://github.com/AtlasNexusTech/datatoolkit" class="text-slate-400 dark:text-slate-500 text-sm hover:text-slate-600 dark:hover:text-slate-300 ml-3">GitHub</a>
         </div>
       </div>
     </div>
@@ -385,28 +391,28 @@ tailwind.config = {
       <article class="reveal reveal-delay-1 card-hover market-card offer-card rounded-2xl p-12 border border-border bg-white">
         <p class="text-sm font-bold text-accent mb-2">A. Web development</p>
         <h3 class="text-2xl font-bold text-foreground mb-4 font-display">Web development + data</h3>
-        <p class="text-slate-600 text-sm leading-relaxed mb-5"><strong>Deliverable:</strong> landing site, dashboard, web app, structured data, hosting.</p>
-        <p class="text-slate-600 text-sm leading-relaxed mb-5"><strong>For:</strong> freelancers, SMBs, SaaS, finance, CLI, reporting.</p>
+        <p class="text-slate-600 text-sm leading-relaxed mb-5"><strong>Deliverable:</strong> dashboard, app web, données structurées.</p>
+        <p class="text-slate-600 text-sm leading-relaxed mb-5"><strong>For:</strong> indépendants, PME, SaaS, finance, veille, reporting.</p>
         <div class="offer-spacer"></div>
-        <p class="offer-price text-xl font-extrabold text-foreground mb-6 font-display">From €150 <span class="offer-quote text-sm font-semibold text-slate-500">or lightweight quote</span></p>
+        <p class="offer-price text-xl font-extrabold text-foreground mb-6 font-display">À partir de 150€ <span class="offer-quote text-sm font-semibold text-slate-500">or lightweight quote</span></p>
         <div class="flex flex-col gap-2"><a href="https://atlasnexus.tech/dashboard.html" class="inline-flex text-primary font-semibold hover:text-primary-dark">View web demos →</a><a href="#contact" class="inline-flex text-slate-500 text-sm font-semibold hover:text-primary">Request this build</a></div>
       </article>
       <article class="reveal reveal-delay-2 card-hover agentic-blue-card offer-card rounded-2xl p-12 border border-border bg-white">
         <p class="text-sm font-bold agentic-accent mb-2">B. Operational AI agent</p>
         <h3 class="text-2xl font-bold text-foreground mb-4 font-display">Agentic AI</h3>
-        <p class="text-slate-600 text-sm leading-relaxed mb-5"><strong>Deliverable:</strong> professional agentic AI, automated workflow, reporting, API integration.</p>
-        <p class="text-slate-600 text-sm leading-relaxed mb-5"><strong>For:</strong> Telegram, Discord, CLI, true co-pilot.</p>
+        <p class="text-slate-600 text-sm leading-relaxed mb-5"><strong>Deliverable:</strong> IA agentique professionnelle, workflow automatisé, reporting, intégration API, vrai copilote Telegram, Discord, CLI.</p>
+        <p class="text-slate-600 text-sm leading-relaxed mb-5"><strong>For:</strong> indépendants, équipes tech, PME, automatisation métier, support client.</p>
         <div class="offer-spacer"></div>
-        <p class="offer-price text-xl font-extrabold text-foreground mb-6 font-display">From €100 <span class="offer-quote text-sm font-semibold text-slate-500">or lightweight quote</span></p>
+        <p class="offer-price text-xl font-extrabold text-foreground mb-6 font-display">À partir de 100€ <span class="offer-quote text-sm font-semibold text-slate-500">or lightweight quote</span></p>
         <div class="flex flex-col gap-2"><a href="https://atlasnexus.tech/ia-agentique/" class="inline-flex agentic-accent font-semibold hover:text-primary-dark">View options →</a><a href="#contact" class="inline-flex text-slate-500 text-sm font-semibold hover:text-primary">Request this build</a></div>
       </article>
       <article class="reveal reveal-delay-3 framer-purple-card offer-card rounded-2xl p-12 border border-border bg-white">
         <p class="text-sm font-bold framer-accent mb-2">C. Animated UI</p>
         <h3 class="text-2xl font-bold text-foreground mb-4 font-display">React pages · Framer Motion</h3>
-        <p class="text-slate-600 text-sm leading-relaxed mb-5"><strong>Deliverable:</strong> landing page, animated components, transitions, scroll reveals, gestures.</p>
-        <p class="text-slate-600 text-sm leading-relaxed mb-5"><strong>For:</strong> SaaS, portfolios, dashboards, sales pages, onboarding.</p>
+        <p class="text-slate-600 text-sm leading-relaxed mb-5"><strong>Deliverable:</strong> landing page, composants animés, transitions, scroll reveals, gestures.</p>
+        <p class="text-slate-600 text-sm leading-relaxed mb-5"><strong>For:</strong> SaaS, portfolios, dashboards, pages de vente, onboarding.</p>
         <div class="offer-spacer"></div>
-        <p class="offer-price text-xl font-extrabold text-foreground mb-6 font-display">From €75 <span class="offer-quote text-sm font-semibold text-slate-500">or lightweight quote</span></p>
+        <p class="offer-price text-xl font-extrabold text-foreground mb-6 font-display">À partir de 75€ <span class="offer-quote text-sm font-semibold text-slate-500">or lightweight quote</span></p>
         <div class="flex flex-col gap-2"><a href="/demos-web/" class="inline-flex framer-accent font-semibold hover:text-purple-700">View web demos →</a><a href="#contact" class="inline-flex text-slate-500 text-sm font-semibold hover:text-primary">Request this build</a></div>
       </article>
     </div>
@@ -447,7 +453,7 @@ tailwind.config = {
       <a href="https://github.com/AtlasNexusTech/birdeye-sprint4" class="reveal reveal-delay-1 card-hover bg-white rounded-xl p-5 border border-border"><p class="font-bold text-foreground">Birdeye Sprint 4 + Hawkeye V4</p><p class="text-slate-500 text-sm">Crypto pipeline · market pressure</p></a>
       <a href="https://github.com/AtlasNexusTech/proxiesx-services" class="reveal reveal-delay-2 card-hover bg-white rounded-xl p-5 border border-border flex items-start gap-2.5"><svg class="w-4 h-4 shrink-0 mt-1" viewBox="0 0 398 312" fill="none"><path d="M64.6 237.9c2.4-2.4 5.7-3.8 9.2-3.8h317.4c5.8 0 8.7 7 4.6 11.1l-62.7 62.7c-2.4 2.4-5.7 3.8-9.2 3.8H6.5c-5.8 0-8.7-7-4.6-11.1l62.7-62.7z" fill="url(#sol-grad-top)"/><path d="M64.6 3.8C67.1 1.4 70.4 0 73.8 0h317.4c5.8 0 8.7 7 4.6 11.1l-62.7 62.7c-2.4 2.4-5.7 3.8-9.2 3.8H6.5c-5.8 0-8.7-7-4.6-11.1L64.6 3.8z" fill="url(#sol-grad-mid)"/><path d="M333.1 120.1c-2.4-2.4-5.7-3.8-9.2-3.8H6.5c-5.8 0-8.7 7-4.6 11.1l62.7 62.7c2.4 2.4 5.7 3.8 9.2 3.8h317.4c5.8 0 8.7-7 4.6-11.1l-62.7-62.7z" fill="url(#sol-grad-bot)"/></svg><div><p class="font-bold text-foreground">Proxies.sx Scraping Suite</p><p class="text-slate-500 text-sm">Microservices Python · scraping · x402</p></div></a>
       <a href="/oobe-ace-agent/" class="reveal reveal-delay-2 card-hover bg-white dark:bg-dark-card rounded-xl p-5 border border-border flex items-start gap-2.5"><svg class="w-4 h-4 shrink-0 mt-1" viewBox="0 0 398 312" fill="none"><path d="M64.6 237.9c2.4-2.4 5.7-3.8 9.2-3.8h317.4c5.8 0 8.7 7 4.6 11.1l-62.7 62.7c-2.4 2.4-5.7 3.8-9.2 3.8H6.5c-5.8 0-8.7-7-4.6-11.1l62.7-62.7z" fill="url(#sol-grad-top)"/><path d="M64.6 3.8C67.1 1.4 70.4 0 73.8 0h317.4c5.8 0 8.7 7 4.6 11.1l-62.7 62.7c-2.4 2.4-5.7 3.8-9.2 3.8H6.5c-5.8 0-8.7-7-4.6-11.1L64.6 3.8z" fill="url(#sol-grad-mid)"/><path d="M333.1 120.1c-2.4-2.4-5.7-3.8-9.2-3.8H6.5c-5.8 0-8.7 7-4.6 11.1l62.7 62.7c2.4 2.4 5.7 3.8 9.2 3.8h317.4c5.8 0 8.7-7 4.6-11.1l-62.7-62.7z" fill="url(#sol-grad-bot)"/></svg><div><p class="font-bold text-foreground dark:text-dark-foreground">Nexus Scout SAP</p><p class="text-slate-500 dark:text-slate-400 text-sm">Agent SAP mainnet · 3 x402 tools</p></div></a>
-      <a href="https://ai2work.onrender.com" class="reveal reveal-delay-3 card-hover bg-white rounded-xl p-5 border border-border hover:border-primary transition-colors flex items-start gap-2.5"><div class="flex -space-x-1 shrink-0 mt-0.5"><div class="w-3 h-3 rounded-full bg-[#FCFF52] ring-1 ring-white dark:ring-dark-card"></div><div class="w-3 h-3 rounded-full bg-gradient-to-br from-[#00FFA3] to-[#DC1FFF] ring-1 ring-white dark:ring-dark-card"></div></div><div><p class="font-bold text-foreground">AI2Work — Bounty Marketplace</p><p class="text-slate-500 text-sm">On-chain · Celo Mainnet · 83 tests</p></div></a>
+      <a href="/case-study/" class="reveal reveal-delay-3 card-hover bg-white rounded-xl p-5 border border-border hover:border-primary transition-colors flex items-start gap-2.5"><div class="flex -space-x-1 shrink-0 mt-0.5"><div class="w-3 h-3 rounded-full bg-[#FCFF52] ring-1 ring-white dark:ring-dark-card"></div><div class="w-3 h-3 rounded-full bg-gradient-to-br from-[#00FFA3] to-[#DC1FFF] ring-1 ring-white dark:ring-dark-card"></div></div><div><p class="font-bold text-foreground">AI2Work — Bounty Marketplace</p><p class="text-slate-500 text-sm">On-chain · Celo Mainnet · 83 tests</p></div></a>
       <a href="https://atlasnexusops.github.io/solana-pulse/" class="reveal reveal-delay-3 card-hover bg-white rounded-xl p-5 border border-border flex items-start gap-2.5"><svg class="w-4 h-4 shrink-0 mt-1" viewBox="0 0 398 312" fill="none"><path d="M64.6 237.9c2.4-2.4 5.7-3.8 9.2-3.8h317.4c5.8 0 8.7 7 4.6 11.1l-62.7 62.7c-2.4 2.4-5.7 3.8-9.2 3.8H6.5c-5.8 0-8.7-7-4.6-11.1l62.7-62.7z" fill="url(#sol-grad-top)"/><path d="M64.6 3.8C67.1 1.4 70.4 0 73.8 0h317.4c5.8 0 8.7 7 4.6 11.1l-62.7 62.7c-2.4 2.4-5.7 3.8-9.2 3.8H6.5c-5.8 0-8.7-7-4.6-11.1L64.6 3.8z" fill="url(#sol-grad-mid)"/><path d="M333.1 120.1c-2.4-2.4-5.7-3.8-9.2-3.8H6.5c-5.8 0-8.7 7-4.6 11.1l62.7 62.7c2.4 2.4 5.7 3.8 9.2 3.8h317.4c5.8 0 8.7-7 4.6-11.1l-62.7-62.7z" fill="url(#sol-grad-bot)"/></svg><div><p class="font-bold text-foreground">Solana Market Pulse</p><p class="text-slate-500 text-sm">SPL tokens · automated scoring</p></div></a>
     </div>
   </div>
@@ -460,7 +466,7 @@ tailwind.config = {
       <p class="text-purple-500 font-semibold tracking-widest uppercase text-xs mb-3">Method</p>
       <h2 class="section-title mb-16 font-display">How I work</h2>
     </div>
-    <div class="grid md:grid-cols-3 gap-10">
+    <div class="grid md:grid-cols-3 gap-12">
       <div class="reveal reveal-delay-1 flex gap-5 items-start"><span class="step-number shrink-0" data-step="01">01</span><div><h3 class="font-bold text-2xl mb-3 font-display">Brief</h3><p class="text-slate-600 dark:text-slate-300 text-base leading-relaxed">You define the need, sources, format and timeline. I propose a concrete scope.</p></div></div>
       <div class="reveal reveal-delay-2 flex gap-5 items-start"><span class="step-number shrink-0" data-step="02">02</span><div><h3 class="font-bold text-2xl mb-3 font-display">Build</h3><p class="text-slate-600 dark:text-slate-300 text-base leading-relaxed">I build, test and document. Clean code, delivered on GitHub when possible.</p></div></div>
       <div class="reveal reveal-delay-3 flex gap-5 items-start"><span class="step-number shrink-0" data-step="03">03</span><div><h3 class="font-bold text-2xl mb-3 font-display">Deliver</h3><p class="text-slate-600 dark:text-slate-300 text-base leading-relaxed">You receive the deliverable, useful commands, known limits and next options.</p></div></div>
@@ -522,7 +528,7 @@ tailwind.config = {
     </div>
     <div class="reveal reveal-delay-4 text-center mt-12">
       <a href="https://github.com/AtlasNexusTech/atlas-nexus" class="bg-primary text-white px-7 py-3.5 rounded-full text-base font-semibold hover:bg-primary-dark inline-flex items-center gap-2 font-display">
-        View the framework on GitHub
+        Voir le framework sur GitHub
         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
       </a>
       <p class="text-slate-500 dark:text-slate-400 text-sm mt-4">Open-source · MIT · Built by Atlas Nexus Operations</p>
@@ -559,7 +565,7 @@ tailwind.config = {
       <!-- AI2Work -->
       <a href="https://ai2work.onrender.com" class="reveal reveal-delay-2 card-hover agentic-blue-card rounded-2xl p-8 border border-border bg-white dark:bg-dark-card flex flex-col">
         <div class="w-12 h-12 agentic-icon-bg rounded-xl flex items-center justify-center mb-6">
-          <img src="https://raw.githubusercontent.com/AtlasNexusTech/ai2work/main/assets/logo.png" alt="AI2Work" class="w-9 h-9 object-contain">
+          <img src="https://ai2work.onrender.com/icon.svg" alt="AI2Work" class="w-9 h-9 object-contain">
         </div>
         <h3 class="text-xl font-bold text-foreground dark:text-dark-foreground mb-2 font-display">AI2Work</h3>
         <p class="text-slate-600 dark:text-slate-300 text-sm leading-relaxed mb-4">On-chain marketplace where AI agents solve GitHub bounties and earn stablecoins. Multi-chain: Celo, Base, Polygon + Solana.</p>
@@ -591,6 +597,41 @@ tailwind.config = {
     </div>
   </div>
 </section>
+
+<!-- Contact -->
+<section id="contact" class="py-28 bg-surface dark:bg-dark-surface">
+  <div class="max-w-3xl mx-auto px-6 text-center">
+    <p class="text-accent font-semibold tracking-widest uppercase text-xs mb-3">Contact</p>
+    <h2 class="section-title text-foreground dark:text-dark-foreground mb-6 font-display mx-auto inline-block">Let's talk about your project</h2>
+    <p class="text-slate-600 dark:text-slate-300 text-lg mb-10 max-w-xl mx-auto">A need, a question, a quote? Write me directly or call.</p>
+    <div class="grid sm:grid-cols-3 gap-6 mb-10">
+      <a href="mailto:laslyalexandre@gmail.com" class="reveal reveal-delay-1 card-hover bg-white dark:bg-dark-card rounded-xl p-6 border border-border dark:border-dark-border flex flex-col items-center gap-3">
+        <svg class="w-8 h-8 text-primary" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 4L12 13 2 4"/></svg>
+        <span class="font-bold text-foreground dark:text-dark-foreground">Email</span>
+        <span class="text-sm text-slate-500 dark:text-slate-400">laslyalexandre@gmail.com</span>
+        <span class="text-xs text-slate-400 dark:text-slate-500">atlasnexus.ops@proton.me</span>
+      </a>
+      <a href="tel:+33750504595" class="reveal reveal-delay-2 card-hover bg-white dark:bg-dark-card rounded-xl p-6 border border-border dark:border-dark-border flex flex-col items-center gap-3">
+        <svg class="w-8 h-8 text-accent" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
+        <span class="font-bold text-foreground dark:text-dark-foreground">Phone</span>
+        <span class="text-sm text-slate-500 dark:text-slate-400">+33 7 50 50 45 95</span>
+      </a>
+      <a href="https://www.malt.fr/profile/alexandrechahibalasly" class="reveal reveal-delay-3 card-hover bg-white dark:bg-dark-card rounded-xl p-6 border border-border dark:border-dark-border flex flex-col items-center gap-3">
+        <img src="/images/malt-logo.png" alt="Malt" class="h-10 w-auto object-contain">
+        <span class="font-bold text-foreground dark:text-dark-foreground">Response within 24h · Free quote</span>
+        <span class="text-sm text-slate-500 dark:text-slate-400">&copy; Atlas Nexus — Alexandre Lasly</span>
+      </a>
+    </div>
+    <p class="text-sm text-slate-400 dark:text-slate-500">Réponse sous 24h · Devis gratuit</p>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="py-12 border-t border-border bg-white">
+  <div class="max-w-6xl mx-auto px-6 flex flex-col sm:flex-row justify-between items-center gap-4">
+    <p class="text-slate-400 text-sm">&copy; 2026 Atlas Nexus — Alexandre Lasly</p>
+  </div>
+</footer>
 
 <!-- Scroll Reveal Observer + Step Animation -->
 <script>
@@ -645,36 +686,6 @@ tailwind.config = {
   document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 })();
 </script>
-
-<!-- Contact -->
-<section id="contact" class="py-28 bg-surface dark:bg-dark-surface">
-  <div class="max-w-3xl mx-auto px-6 text-center">
-    <p class="text-accent font-semibold tracking-widest uppercase text-xs mb-3">Contact</p>
-    <h2 class="section-title text-foreground dark:text-dark-foreground mb-6 font-display mx-auto inline-block">Let's talk about your project</h2>
-    <p class="text-slate-600 dark:text-slate-300 text-lg mb-10 max-w-xl mx-auto">A need, a question, a quote? Write me directly or call.</p>
-    <div class="flex justify-center gap-6 mb-10 flex-wrap">
-      <a href="mailto:laslyalexandre@gmail.com" class="reveal reveal-delay-1 card-hover bg-white dark:bg-dark-card rounded-xl p-6 border border-border dark:border-dark-border flex flex-col items-center gap-3 min-w-[220px] max-w-[280px] flex-1">
-        <svg class="w-8 h-8 text-primary" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 4L12 13 2 4"/></svg>
-        <span class="font-bold text-foreground dark:text-dark-foreground">Email</span>
-        <span class="text-sm text-slate-500 dark:text-slate-400">laslyalexandre@gmail.com</span>
-        <span class="text-xs text-slate-400 dark:text-slate-500">atlasnexus.ops@proton.me</span>
-      </a>
-      <a href="tel:+337****4595" class="reveal reveal-delay-2 card-hover bg-white dark:bg-dark-card rounded-xl p-6 border border-border dark:border-dark-border flex flex-col items-center gap-3 min-w-[220px] max-w-[280px] flex-1">
-        <svg class="w-8 h-8 text-accent" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
-        <span class="font-bold text-foreground dark:text-dark-foreground">Phone</span>
-        <span class="text-sm text-slate-500 dark:text-slate-400">+33 7 50 50 45 95</span>
-      </a>
-    </div>
-    <p class="text-sm text-slate-400 dark:text-slate-500">Response within 24h · Free quote</p>
-  </div>
-</section>
-
-<!-- Footer -->
-<footer class="py-6 border-t border-border bg-white">
-  <div class="max-w-6xl mx-auto px-6">
-    <p class="text-slate-400 text-sm">&copy; Atlas Nexus — Alexandre Lasly</p>
-  </div>
-</footer>
 
 <!-- Dark mode toggle -->
 <script>
