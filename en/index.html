@@ -255,6 +255,7 @@ tailwind.config = {
       <a href="#offers" class="hover:text-primary dark:hover:text-blue-400">Offers</a>
       <a href="#why" class="hover:text-primary dark:hover:text-blue-400">Why</a>
       <a href="#framework" class="hover:text-primary dark:hover:text-blue-400">Framework</a>
+      <a href="#projects" class="hover:text-primary dark:hover:text-blue-400">Projects</a>
       <a href="https://github.com/AtlasNexusTech" class="hover:text-primary dark:hover:text-blue-400">GitHub</a>
     </div>
     <div class="flex items-center gap-3">
@@ -526,6 +527,67 @@ tailwind.config = {
         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
       </a>
       <p class="text-slate-500 dark:text-slate-400 text-sm mt-4">Open-source · MIT · Built by Atlas Nexus Operations</p>
+    </div>
+  </div>
+</section>
+
+<!-- Projects -->
+<section id="projects" class="py-28 bg-white dark:bg-dark-surface">
+  <div class="max-w-6xl mx-auto px-6">
+    <div class="reveal text-center mb-16">
+      <p class="text-accent font-semibold tracking-widest uppercase text-xs mb-3">Projects</p>
+      <h2 class="section-title text-foreground dark:text-dark-foreground mb-5 font-display">The ecosystem under construction</h2>
+      <p class="text-slate-600 dark:text-slate-300 max-w-2xl mx-auto leading-relaxed">Three complementary projects covering the full cycle: data infrastructure, agent orchestration, and on-chain marketplace.</p>
+    </div>
+    <div class="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+      <!-- AI Studio -->
+      <a href="/ai-studio/" class="reveal reveal-delay-1 card-hover rounded-2xl p-8 border border-border flex flex-col bg-white dark:bg-dark-card" style="border-color: rgba(8,145,178,.28)!important; box-shadow: 0 18px 52px -34px rgba(8,145,178,.55);">
+        <div class="w-12 h-12 bg-cyan-100 dark:bg-cyan-900/30 rounded-xl flex items-center justify-center mb-6">
+          <svg class="w-6 h-6 text-cyan-600 dark:text-cyan-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="8" rx="2" fill="currentColor" stroke="none"/><rect x="2" y="14" width="20" height="8" rx="2" fill="currentColor" stroke="none" opacity="0.6"/></svg>
+        </div>
+        <h3 class="text-xl font-bold text-foreground dark:text-dark-foreground mb-2 font-display">AI Studio</h3>
+        <p class="text-slate-600 dark:text-slate-300 text-sm leading-relaxed mb-4">AI agent creation and orchestration platform, powered by Ace Data Cloud. Vector store, ETL pipelines, API Gateway.</p>
+        <div class="flex flex-wrap gap-2 mb-4">
+          <span class="px-3 py-1 bg-cyan-50 dark:bg-cyan-900/20 text-cyan-700 dark:text-cyan-300 text-xs font-medium rounded-full">AI Agents</span>
+          <span class="px-3 py-1 bg-cyan-50 dark:bg-cyan-900/20 text-cyan-700 dark:text-cyan-300 text-xs font-medium rounded-full">Data Cloud</span>
+          <span class="px-3 py-1 bg-cyan-50 dark:bg-cyan-900/20 text-cyan-700 dark:text-cyan-300 text-xs font-medium rounded-full">3 tiers</span>
+        </div>
+        <div class="mt-auto flex gap-2 items-center">
+          <span class="text-cyan-600 dark:text-cyan-400 text-sm font-semibold">Discover →</span>
+        </div>
+      </a>
+      <!-- AI2Work -->
+      <a href="https://ai2work.onrender.com" class="reveal reveal-delay-2 card-hover agentic-blue-card rounded-2xl p-8 border border-border bg-white dark:bg-dark-card flex flex-col">
+        <div class="w-12 h-12 agentic-icon-bg rounded-xl flex items-center justify-center mb-6">
+          <svg class="w-7 h-7" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="url(#celo-gold)" stroke-width="2"/><circle cx="12" cy="7" r="2.3" fill="url(#celo-gold)"/><circle cx="7" cy="15.5" r="2.3" fill="url(#celo-gold)"/><circle cx="17" cy="15.5" r="2.3" fill="url(#celo-gold)"/></svg>
+        </div>
+        <h3 class="text-xl font-bold text-foreground dark:text-dark-foreground mb-2 font-display">AI2Work</h3>
+        <p class="text-slate-600 dark:text-slate-300 text-sm leading-relaxed mb-4">On-chain marketplace where AI agents solve GitHub bounties and earn stablecoins. Multi-chain: Celo, Base, Polygon + Solana.</p>
+        <div class="flex flex-wrap gap-2 mb-4">
+          <span class="px-3 py-1 agentic-chip text-xs font-medium rounded-full">Web3</span>
+          <span class="px-3 py-1 agentic-chip text-xs font-medium rounded-full">On-chain</span>
+          <span class="px-3 py-1 agentic-chip text-xs font-medium rounded-full">Marketplace</span>
+        </div>
+        <div class="mt-auto flex gap-2 items-center">
+          <span class="agentic-accent text-sm font-semibold">View demo →</span>
+        </div>
+      </a>
+      <!-- OOBE Ace Agent -->
+      <a href="/oobe-ace-agent/" class="reveal reveal-delay-3 card-hover rounded-2xl p-8 border border-border flex flex-col bg-white dark:bg-dark-card" style="border-color: rgba(5,150,105,.28)!important; box-shadow: 0 18px 52px -34px rgba(5,150,105,.55);">
+        <div class="w-12 h-12 bg-green-100 dark:bg-green-900/30 rounded-xl flex items-center justify-center mb-6">
+          <svg class="w-6 h-6 text-green-600 dark:text-green-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <h3 class="text-xl font-bold text-foreground dark:text-dark-foreground mb-2 font-display">OOBE × Ace Agent</h3>
+        <p class="text-slate-600 dark:text-slate-300 text-sm leading-relaxed mb-4">Solana-native spending guardrails for autonomous AI agents. On-chain vault, daily caps, endpoint allowlist, native MCP.</p>
+        <div class="flex flex-wrap gap-2 mb-4">
+          <span class="px-3 py-1 bg-green-50 dark:bg-green-900/20 text-green-700 dark:text-green-300 text-xs font-medium rounded-full">Solana</span>
+          <span class="px-3 py-1 bg-green-50 dark:bg-green-900/20 text-green-700 dark:text-green-300 text-xs font-medium rounded-full">x402</span>
+          <span class="px-3 py-1 bg-green-50 dark:bg-green-900/20 text-green-700 dark:text-green-300 text-xs font-medium rounded-full">MCP</span>
+        </div>
+        <div class="mt-auto flex gap-2 items-center">
+          <span class="text-green-600 dark:text-green-400 text-sm font-semibold">Explore →</span>
+        </div>
+      </a>
     </div>
   </div>
 </section>
