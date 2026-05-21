@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>AI Studio — Ace Data Cloud</title>
-<meta name="description" content="Plateforme de création et d'orchestration d'agents IA, propulsée par Ace Data Cloud. Build, déploiement, monitoring. À partir de 150€.">
+<meta name="description" content="Hub créatif IA tout-en-un : génération d'images (Midjourney, Flux, Kling), vidéo (Luma, Sora, Veo), musique (Suno), chat (GPT, Claude, Gemini, DeepSeek). Propulsé par Ace Data Cloud.">
 <script src="https://cdn.tailwindcss.com"></script>
 <script>
 tailwind.config = {
@@ -48,7 +48,15 @@ tailwind.config = {
   .pricing-card.featured:hover { box-shadow: 0 22px 70px -32px rgba(37,99,235,.65); }
   .check-icon { color: #0891B2; }
 
-  /* ── Language switch ── */
+  /* ── Category cards ── */
+  .cat-image { --cat-color: #EC4899; --cat-bg: #FDF2F8; }
+  .cat-video { --cat-color: #8B5CF6; --cat-bg: #F5F3FF; }
+  .cat-music { --cat-color: #F59E0B; --cat-bg: #FFFBEB; }
+  .cat-chat { --cat-color: #10B981; --cat-bg: #ECFDF5; }
+  .cat-tools { --cat-color: #6366F1; --cat-bg: #EEF2FF; }
+  .cat-card { border-color: rgba(0,0,0,.08)!important; }
+  .cat-card:hover { border-color: var(--cat-color)!important; box-shadow: 0 12px 32px -8px color-mix(in srgb, var(--cat-color) 25%, transparent); }
+
   .lang-switch { position: relative; display:inline-grid; grid-template-columns:1fr 1fr; align-items:center; min-width:92px; height:38px; padding:4px; border:1px solid rgba(8,145,178,.18); border-radius:999px; background:linear-gradient(135deg, rgba(255,255,255,.92), rgba(240,249,255,.84)); color:#64748B; font-size:.76rem; font-weight:900; box-shadow:inset 0 1px 0 rgba(255,255,255,.9), 0 12px 26px -20px rgba(8,145,178,.55); }
   .lang-switch::before { content:""; position:absolute; top:4px; bottom:4px; width:calc(50% - 4px); border-radius:999px; background:linear-gradient(135deg,#2563EB,#0891B2); box-shadow:0 10px 22px -12px rgba(8,145,178,.75); transition:transform 220ms ease; }
   .lang-switch[data-active="fr"]::before { transform:translateX(0); left:4px; }
@@ -57,7 +65,6 @@ tailwind.config = {
   .lang-switch a.active { color:white; }
   .lang-switch:hover { border-color:rgba(8,145,178,.34); box-shadow:inset 0 1px 0 rgba(255,255,255,.9), 0 16px 34px -22px rgba(8,145,178,.72); }
 
-  /* ── Process step buttons: fall from top ── */
   .step-fall { opacity: 0; transform: translateY(-120px); }
   .step-fall.animate { animation: fallFromTop 1s cubic-bezier(0.22, 1, 0.36, 1) forwards; }
   @keyframes fallFromTop {
@@ -92,7 +99,7 @@ tailwind.config = {
         <a class="active" href="/ai-studio/?lang=fr" onclick="localStorage.setItem('adc.lang','fr')">FR</a>
         <a href="/ai-studio/en/" onclick="localStorage.setItem('adc.lang','en')">EN</a>
       </div>
-      <a href="#contact" class="bg-accent text-white px-5 py-2.5 rounded-full text-sm font-semibold hover:bg-accent-dark font-display">Démarrer un projet</a>
+      <a href="https://studio.acedata.cloud" class="bg-accent text-white px-5 py-2.5 rounded-full text-sm font-semibold hover:bg-accent-dark font-display">Accéder au Studio</a>
     </div>
   </div>
 </nav>
@@ -104,24 +111,24 @@ tailwind.config = {
     <div class="max-w-4xl">
       <p class="text-accent font-semibold tracking-widest uppercase text-xs mb-4">AI Studio — Propulsé par Ace Data Cloud</p>
       <h1 class="text-6xl sm:text-7xl lg:text-8xl font-black tracking-tight leading-none mb-6 font-display">
-        <span class="glow-word">Vos agents IA</span><br>
-        <span class="text-foreground">conçus, déployés</span><br>
-        <span class="gradient-text">et orchestrés</span>
+        <span class="glow-word">Le hub créatif</span><br>
+        <span class="text-foreground">tout-en-un pour</span><br>
+        <span class="gradient-text">l'IA générative</span>
       </h1>
       <p class="text-xl sm:text-2xl text-slate-600 max-w-2xl mb-3 leading-relaxed">
-        Une plateforme complète pour créer, tester et gérer vos agents IA — de l'idée à la production, sans infrastructure à gérer.
+        Images, vidéos, musique et chat — tous les meilleurs modèles IA réunis sur une seule plateforme. Sans configuration, sans limite.
       </p>
       <p class="text-lg text-slate-500 max-w-xl mb-10">
-        Multi-agents · Multi-canaux · APIs · Dashboard · Monitoring 24/7
+        Midjourney · Flux · Kling · Luma · Sora · Suno · GPT · Claude · Gemini · DeepSeek
       </p>
       <div class="flex gap-4 flex-wrap">
-        <a href="#pricing" class="bg-accent text-white px-8 py-4 rounded-full text-lg font-semibold hover:bg-accent-dark font-display">Voir les offres</a>
-        <a href="#contact" class="border-2 border-slate-300 text-slate-700 px-8 py-4 rounded-full text-lg font-semibold hover:border-accent hover:text-accent font-display">Me contacter</a>
+        <a href="https://studio.acedata.cloud" class="bg-accent text-white px-8 py-4 rounded-full text-lg font-semibold hover:bg-accent-dark font-display">Essayer le Studio</a>
+        <a href="#categories" class="border-2 border-slate-300 text-slate-700 px-8 py-4 rounded-full text-lg font-semibold hover:border-accent hover:text-accent font-display">Explorer les outils</a>
       </div>
       <div class="flex gap-6 mt-12 text-sm text-slate-400">
-        <span>✓ Infrastructure managée</span>
-        <span>✓ Code & docs inclus</span>
-        <span>✓ Support 30 jours</span>
+        <span>✓ 15+ modèles IA</span>
+        <span>✓ Interface unifiée</span>
+        <span>✓ Zéro configuration</span>
       </div>
     </div>
   </div>
@@ -133,64 +140,110 @@ tailwind.config = {
     <div class="grid lg:grid-cols-2 gap-16 items-center">
       <div class="reveal">
         <p class="text-accent font-semibold tracking-widest uppercase text-xs mb-3">Le problème</p>
-        <h2 class="section-title text-foreground mb-6 font-display">Construire des agents IA, c'est complexe et coûteux</h2>
+        <h2 class="section-title text-foreground mb-6 font-display">Trop d'outils IA éparpillés, pas assez de temps</h2>
         <ul class="space-y-4 text-slate-600">
-          <li class="flex gap-3"><span class="text-red-400 font-bold shrink-0">✗</span> Des semaines à configurer l'infrastructure et les APIs</li>
-          <li class="flex gap-3"><span class="text-red-400 font-bold shrink-0">✗</span> Des agents qui fonctionnent en local mais pas en production</li>
-          <li class="flex gap-3"><span class="text-red-400 font-bold shrink-0">✗</span> Aucune visibilité sur les performances et les coûts</li>
-          <li class="flex gap-3"><span class="text-red-400 font-bold shrink-0">✗</span> Maintenance chronophage : MLOps, monitoring, mises à jour</li>
+          <li class="flex gap-3"><span class="text-red-400 font-bold shrink-0">✗</span> Midjourney sur Discord, Flux sur Replicate, Suno sur son site...</li>
+          <li class="flex gap-3"><span class="text-red-400 font-bold shrink-0">✗</span> Chaque outil a son interface, ses quotas, sa courbe d'apprentissage</li>
+          <li class="flex gap-3"><span class="text-red-400 font-bold shrink-0">✗</span> Pas de workflow unifié : générer une image, l'animer, créer la musique</li>
+          <li class="flex gap-3"><span class="text-red-400 font-bold shrink-0">✗</span> Crédits éparpillés, facturation multiple, zéro visibilité sur les coûts</li>
         </ul>
       </div>
       <div class="reveal">
         <p class="text-accent font-semibold tracking-widest uppercase text-xs mb-3">La solution</p>
-        <h2 class="section-title text-foreground mb-6 font-display">Un studio clé-en-main pour vos agents, du prototype au scale</h2>
+        <h2 class="section-title text-foreground mb-6 font-display">Un seul hub, tous les modèles, zéro friction</h2>
         <ul class="space-y-4 text-slate-600">
-          <li class="flex gap-3"><span class="check-icon font-bold shrink-0">✓</span> Agents opérationnels en 24h, sur votre infrastructure ou la nôtre</li>
-          <li class="flex gap-3"><span class="check-icon font-bold shrink-0">✓</span> Orchestration multi-agents : pipelines, chaînes, workflows</li>
-          <li class="flex gap-3"><span class="check-icon font-bold shrink-0">✓</span> Dashboard de monitoring : tokens, latence, erreurs, coûts</li>
-          <li class="flex gap-3"><span class="check-icon font-bold shrink-0">✓</span> Maintenance incluse : mises à jour, correctifs, évolution des modèles</li>
+          <li class="flex gap-3"><span class="check-icon font-bold shrink-0">✓</span> Tous les modèles réunis : image, vidéo, musique et chat dans la même interface</li>
+          <li class="flex gap-3"><span class="check-icon font-bold shrink-0">✓</span> Prompt une fois, utilisez partout — workflow créatif unifié</li>
+          <li class="flex gap-3"><span class="check-icon font-bold shrink-0">✓</span> Crédits centralisés, Historique complet, pas de surprise</li>
+          <li class="flex gap-3"><span class="check-icon font-bold shrink-0">✓</span> Nouveaux modèles ajoutés en continu — vous avez toujours les derniers</li>
         </ul>
       </div>
     </div>
   </div>
 </section>
 
-<!-- Architecture -->
-<section class="py-24 bg-muted">
+<!-- Categories -->
+<section id="categories" class="py-28 bg-muted">
   <div class="max-w-6xl mx-auto px-6">
     <div class="reveal text-center mb-16">
-      <p class="text-accent font-semibold tracking-widest uppercase text-xs mb-3">Architecture</p>
-      <h2 class="section-title text-foreground mb-5 font-display">Propulsé par Ace Data Cloud</h2>
-      <p class="text-slate-600 max-w-2xl mx-auto">Vos agents s'appuient sur une infrastructure data cloud robuste : stockage vectoriel, pipelines ETL, cache distribué et APIs sécurisées.</p>
+      <p class="text-accent font-semibold tracking-widest uppercase text-xs mb-3">Catégories</p>
+      <h2 class="section-title text-foreground mb-5 font-display">Cinq univers créatifs, une plateforme</h2>
+      <p class="text-slate-600 max-w-xl mx-auto">Chaque catégorie donne accès aux meilleurs modèles du marché, sans changer d'outil.</p>
     </div>
-    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-5xl mx-auto">
-      <div class="reveal studio-card bg-white rounded-2xl p-6 border border-border text-center">
-        <div class="w-14 h-14 bg-cyan-100 rounded-2xl flex items-center justify-center mx-auto mb-4">
-          <svg class="w-7 h-7 text-accent" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5"/><line x1="2" y1="10" x2="22" y2="10"/></svg>
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
+      <!-- Image -->
+      <div class="reveal cat-card cat-image bg-white rounded-2xl p-8 border border-border text-center hover:-translate-y-1 transition-all duration-300">
+        <div class="w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-5" style="background:var(--cat-bg)">
+          <svg class="w-8 h-8" style="color:var(--cat-color)" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
         </div>
-        <h3 class="font-bold text-lg mb-2 font-display">Data Lake</h3>
-        <p class="text-slate-600 text-sm">Stockage unifié de vos données, accessibles en temps réel par vos agents.</p>
+        <h3 class="font-bold text-2xl mb-2 font-display">Image</h3>
+        <p class="text-slate-600 text-sm mb-5 leading-relaxed">Génération d'images haute qualité avec les meilleurs modèles du marché.</p>
+        <div class="flex flex-wrap justify-center gap-2">
+          <span class="px-3 py-1.5 text-xs font-semibold rounded-full" style="background:var(--cat-bg);color:var(--cat-color)">Midjourney</span>
+          <span class="px-3 py-1.5 text-xs font-semibold rounded-full" style="background:var(--cat-bg);color:var(--cat-color)">Flux</span>
+          <span class="px-3 py-1.5 text-xs font-semibold rounded-full" style="background:var(--cat-bg);color:var(--cat-color)">Kling</span>
+          <span class="px-3 py-1.5 text-xs font-semibold rounded-full" style="background:var(--cat-bg);color:var(--cat-color)">Pixverse</span>
+          <span class="px-3 py-1.5 text-xs font-semibold rounded-full" style="background:var(--cat-bg);color:var(--cat-color)">Hailuo</span>
+          <span class="px-3 py-1.5 text-xs font-semibold rounded-full" style="background:var(--cat-bg);color:var(--cat-color)">Wan</span>
+        </div>
       </div>
-      <div class="reveal studio-card bg-white rounded-2xl p-6 border border-border text-center">
-        <div class="w-14 h-14 bg-blue-100 rounded-2xl flex items-center justify-center mx-auto mb-4">
-          <svg class="w-7 h-7 text-primary" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+      <!-- Video -->
+      <div class="reveal cat-card cat-video bg-white rounded-2xl p-8 border border-border text-center hover:-translate-y-1 transition-all duration-300">
+        <div class="w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-5" style="background:var(--cat-bg)">
+          <svg class="w-8 h-8" style="color:var(--cat-color)" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg>
         </div>
-        <h3 class="font-bold text-lg mb-2 font-display">Vector Store</h3>
-        <p class="text-slate-600 text-sm">Recherche sémantique et RAG optimisé pour des agents contextuels.</p>
+        <h3 class="font-bold text-2xl mb-2 font-display">Vidéo</h3>
+        <p class="text-slate-600 text-sm mb-5 leading-relaxed">Créez des vidéos à partir de texte ou d'images avec les modèles les plus avancés.</p>
+        <div class="flex flex-wrap justify-center gap-2">
+          <span class="px-3 py-1.5 text-xs font-semibold rounded-full" style="background:var(--cat-bg);color:var(--cat-color)">Luma</span>
+          <span class="px-3 py-1.5 text-xs font-semibold rounded-full" style="background:var(--cat-bg);color:var(--cat-color)">Sora</span>
+          <span class="px-3 py-1.5 text-xs font-semibold rounded-full" style="background:var(--cat-bg);color:var(--cat-color)">Veo</span>
+          <span class="px-3 py-1.5 text-xs font-semibold rounded-full" style="background:var(--cat-bg);color:var(--cat-color)">Vidu</span>
+        </div>
       </div>
-      <div class="reveal studio-card bg-white rounded-2xl p-6 border border-border text-center">
-        <div class="w-14 h-14 bg-indigo-100 rounded-2xl flex items-center justify-center mx-auto mb-4">
-          <svg class="w-7 h-7 text-indigo-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+      <!-- Music -->
+      <div class="reveal cat-card cat-music bg-white rounded-2xl p-8 border border-border text-center hover:-translate-y-1 transition-all duration-300">
+        <div class="w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-5" style="background:var(--cat-bg)">
+          <svg class="w-8 h-8" style="color:var(--cat-color)" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
         </div>
-        <h3 class="font-bold text-lg mb-2 font-display">Pipelines ETL</h3>
-        <p class="text-slate-600 text-sm">Extraction, transformation et chargement automatisé de vos sources.</p>
+        <h3 class="font-bold text-2xl mb-2 font-display">Musique</h3>
+        <p class="text-slate-600 text-sm mb-5 leading-relaxed">Générez des morceaux originaux à partir d'un prompt texte, avec paroles et style.</p>
+        <div class="flex flex-wrap justify-center gap-2">
+          <span class="px-3 py-1.5 text-xs font-semibold rounded-full" style="background:var(--cat-bg);color:var(--cat-color)">Suno</span>
+        </div>
       </div>
-      <div class="reveal studio-card bg-white rounded-2xl p-6 border border-border text-center">
-        <div class="w-14 h-14 bg-teal-100 rounded-2xl flex items-center justify-center mx-auto mb-4">
-          <svg class="w-7 h-7 text-teal-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      <!-- Chat -->
+      <div class="reveal cat-card cat-chat bg-white rounded-2xl p-8 border border-border text-center hover:-translate-y-1 transition-all duration-300">
+        <div class="w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-5" style="background:var(--cat-bg)">
+          <svg class="w-8 h-8" style="color:var(--cat-color)" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
         </div>
-        <h3 class="font-bold text-lg mb-2 font-display">API Gateway</h3>
-        <p class="text-slate-600 text-sm">APIs sécurisées et rate-limitées pour exposer vos agents au monde.</p>
+        <h3 class="font-bold text-2xl mb-2 font-display">Chat</h3>
+        <p class="text-slate-600 text-sm mb-5 leading-relaxed">Discutez avec les LLMs les plus puissants, comparez les réponses, affinez vos prompts.</p>
+        <div class="flex flex-wrap justify-center gap-2">
+          <span class="px-3 py-1.5 text-xs font-semibold rounded-full" style="background:var(--cat-bg);color:var(--cat-color)">GPT</span>
+          <span class="px-3 py-1.5 text-xs font-semibold rounded-full" style="background:var(--cat-bg);color:var(--cat-color)">Claude</span>
+          <span class="px-3 py-1.5 text-xs font-semibold rounded-full" style="background:var(--cat-bg);color:var(--cat-color)">Gemini</span>
+          <span class="px-3 py-1.5 text-xs font-semibold rounded-full" style="background:var(--cat-bg);color:var(--cat-color)">DeepSeek</span>
+        </div>
+      </div>
+      <!-- Tools -->
+      <div class="reveal cat-card cat-tools bg-white rounded-2xl p-8 border border-border text-center hover:-translate-y-1 transition-all duration-300">
+        <div class="w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-5" style="background:var(--cat-bg)">
+          <svg class="w-8 h-8" style="color:var(--cat-color)" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z"/></svg>
+        </div>
+        <h3 class="font-bold text-2xl mb-2 font-display">Outils</h3>
+        <p class="text-slate-600 text-sm mb-5 leading-relaxed">Recherche web, extraction de données, génération d'avatars et plus.</p>
+        <div class="flex flex-wrap justify-center gap-2">
+          <span class="px-3 py-1.5 text-xs font-semibold rounded-full" style="background:var(--cat-bg);color:var(--cat-color)">SERP Search</span>
+          <span class="px-3 py-1.5 text-xs font-semibold rounded-full" style="background:var(--cat-bg);color:var(--cat-color)">Web Extractor</span>
+          <span class="px-3 py-1.5 text-xs font-semibold rounded-full" style="background:var(--cat-bg);color:var(--cat-color)">Avatar</span>
+        </div>
+      </div>
+      <!-- All models summary -->
+      <div class="reveal studio-card bg-white rounded-2xl p-8 border border-border text-center sm:col-span-2 lg:col-span-3">
+        <p class="text-accent font-semibold tracking-widest uppercase text-xs mb-2">Et ce n'est que le début</p>
+        <h3 class="font-bold text-xl mb-3 font-display">De nouveaux modèles ajoutés en continu</h3>
+        <p class="text-slate-600 text-sm max-w-xl mx-auto">L'équipe Ace Data Cloud intègre les derniers modèles dès leur sortie. Vous avez toujours accès à la pointe de l'IA générative, sans rien faire.</p>
       </div>
     </div>
   </div>
@@ -201,151 +254,108 @@ tailwind.config = {
   <div class="max-w-6xl mx-auto px-6">
     <div class="reveal text-center mb-16">
       <p class="text-accent font-semibold tracking-widest uppercase text-xs mb-3">Offres</p>
-      <h2 class="section-title text-foreground mb-5 font-display">Lancez votre premier agent</h2>
-      <p class="text-slate-600 max-w-xl mx-auto">Chaque offre inclut : conception, build, test, dashboard, documentation, déploiement et 30 jours de support.</p>
+      <h2 class="section-title text-foreground mb-5 font-display">Un plan pour chaque créateur</h2>
+      <p class="text-slate-600 max-w-xl mx-auto">Crédits unifiés utilisables sur tous les modèles. Pas de surprise, pas de quota par outil.</p>
     </div>
 
     <div class="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-      <!-- Starter -->
+      <!-- Free -->
       <div class="reveal pricing-card rounded-2xl p-8 border border-border flex flex-col">
-        <p class="text-sm font-bold text-accent mb-2">STARTER</p>
-        <h3 class="text-2xl font-bold text-foreground mb-1 font-display">Agent Solo</h3>
-        <p class="text-slate-500 text-sm mb-6">Pour indépendants et early-stage</p>
-        <p class="text-4xl font-black text-foreground mb-1 font-display">150€</p>
-        <p class="text-sm text-slate-400 mb-8">One-shot · Livré en 24 heures</p>
+        <p class="text-sm font-bold text-accent mb-2">GRATUIT</p>
+        <h3 class="text-2xl font-bold text-foreground mb-1 font-display">Découverte</h3>
+        <p class="text-slate-500 text-sm mb-6">Pour tester la plateforme</p>
+        <p class="text-4xl font-black text-foreground mb-1 font-display">0€</p>
+        <p class="text-sm text-slate-400 mb-8">Crédits offerts à l'inscription</p>
         <ul class="space-y-3 mb-8 text-sm text-slate-600 flex-1">
-          <li class="flex gap-2"><span class="check-icon">✓</span> 1 agent IA sur 1 canal (Telegram, Discord, ou API)</li>
-          <li class="flex gap-2"><span class="check-icon">✓</span> 1 use case métier</li>
-          <li class="flex gap-2"><span class="check-icon">✓</span> Intégration 1 API externe</li>
-          <li class="flex gap-2"><span class="check-icon">✓</span> Dashboard de monitoring basique</li>
-          <li class="flex gap-2"><span class="check-icon">✓</span> Documentation + repo GitHub</li>
-          <li class="flex gap-2"><span class="check-icon">✓</span> 1 révision incluse</li>
+          <li class="flex gap-2"><span class="check-icon">✓</span> Accès à tous les modèles</li>
+          <li class="flex gap-2"><span class="check-icon">✓</span> Crédits mensuels offerts</li>
+          <li class="flex gap-2"><span class="check-icon">✓</span> Historique des générations</li>
+          <li class="flex gap-2"><span class="check-icon">✓</span> Interface web complète</li>
         </ul>
-        <a href="#contact" class="block text-center bg-accent text-white py-3 rounded-full font-semibold hover:bg-accent-dark font-display">Commencer</a>
+        <a href="https://studio.acedata.cloud" class="block text-center border-2 border-accent text-accent py-3 rounded-full font-semibold hover:bg-accent hover:text-white font-display transition-colors">Essayer gratuitement</a>
       </div>
 
       <!-- Pro (featured) -->
       <div class="reveal pricing-card featured rounded-2xl p-8 border-2 flex flex-col relative" style="overflow:visible">
         <div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-primary text-white text-xs font-bold px-4 py-1 rounded-full">LE PLUS POPULAIRE</div>
         <p class="text-sm font-bold text-primary mb-2">PRO</p>
-        <h3 class="text-2xl font-bold text-foreground mb-1 font-display">Studio Complet</h3>
-        <p class="text-slate-500 text-sm mb-6">Pour PME, SaaS et équipes tech</p>
-        <p class="text-4xl font-black text-foreground mb-1 font-display">350€</p>
-        <p class="text-sm text-slate-400 mb-8">One-shot · Livré en 24-48h</p>
+        <h3 class="text-2xl font-bold text-foreground mb-1 font-display">Créateur</h3>
+        <p class="text-slate-500 text-sm mb-6">Pour les créateurs réguliers</p>
+        <p class="text-4xl font-black text-foreground mb-1 font-display">Sur abonnement</p>
+        <p class="text-sm text-slate-400 mb-8">Crédits mensuels · Sans engagement</p>
         <ul class="space-y-3 mb-8 text-sm text-slate-600 flex-1">
-          <li class="flex gap-2"><span class="check-icon">✓</span> Jusqu'à 3 agents en pipeline orchestré</li>
-          <li class="flex gap-2"><span class="check-icon">✓</span> Multi-canal (Telegram, Discord, API, Web)</li>
-          <li class="flex gap-2"><span class="check-icon">✓</span> Accès Ace Data Cloud — vector store + ETL</li>
-          <li class="flex gap-2"><span class="check-icon">✓</span> Dashboard live avancé (coûts, latence, tokens)</li>
-          <li class="flex gap-2"><span class="check-icon">✓</span> 3 APIs externes + webhooks</li>
-          <li class="flex gap-2"><span class="check-icon">✓</span> 2 révisions incluses</li>
+          <li class="flex gap-2"><span class="check-icon">✓</span> Tout le plan Gratuit</li>
+          <li class="flex gap-2"><span class="check-icon">✓</span> Volume de crédits étendu</li>
+          <li class="flex gap-2"><span class="check-icon">✓</span> Générations prioritaires</li>
+          <li class="flex gap-2"><span class="check-icon">✓</span> Export haute résolution</li>
+          <li class="flex gap-2"><span class="check-icon">✓</span> Support prioritaire</li>
         </ul>
-        <a href="#contact" class="block text-center bg-primary text-white py-3 rounded-full font-semibold hover:bg-primary-dark font-display">Commencer</a>
+        <a href="https://studio.acedata.cloud" class="block text-center bg-primary text-white py-3 rounded-full font-semibold hover:bg-primary-dark font-display">Voir les plans</a>
       </div>
 
       <!-- Enterprise -->
       <div class="reveal pricing-card rounded-2xl p-8 border border-border flex flex-col">
         <p class="text-sm font-bold text-accent mb-2">ENTERPRISE</p>
-        <h3 class="text-2xl font-bold text-foreground mb-1 font-display">Agents Managés</h3>
-        <p class="text-slate-500 text-sm mb-6">Pour volume, scale et long-terme</p>
-        <p class="text-4xl font-black text-foreground mb-1 font-display">100€<span class="text-lg font-normal text-slate-400">/mois</span></p>
-        <p class="text-sm text-slate-400 mb-8">Abonnement · Sans engagement</p>
+        <h3 class="text-2xl font-bold text-foreground mb-1 font-display">Équipe</h3>
+        <p class="text-slate-500 text-sm mb-6">Pour les équipes et entreprises</p>
+        <p class="text-4xl font-black text-foreground mb-1 font-display">Sur mesure</p>
+        <p class="text-sm text-slate-400 mb-8">Volume, API, support dédié</p>
         <ul class="space-y-3 mb-8 text-sm text-slate-600 flex-1">
-          <li class="flex gap-2"><span class="check-icon">✓</span> Agents illimités — scale horizontal natif</li>
-          <li class="flex gap-2"><span class="check-icon">✓</span> Tous les canaux + intégrations custom</li>
-          <li class="flex gap-2"><span class="check-icon">✓</span> Ace Data Cloud full access (vector, ETL, cache)</li>
-          <li class="flex gap-2"><span class="check-icon">✓</span> Maintenance continue & MLOps</li>
-          <li class="flex gap-2"><span class="check-icon">✓</span> SLA < 24h, révisions illimitées</li>
-          <li class="flex gap-2"><span class="check-icon">✓</span> Support prioritaire dédié</li>
+          <li class="flex gap-2"><span class="check-icon">✓</span> Tout le plan Créateur</li>
+          <li class="flex gap-2"><span class="check-icon">✓</span> Accès API complet</li>
+          <li class="flex gap-2"><span class="check-icon">✓</span> Crédits en volume</li>
+          <li class="flex gap-2"><span class="check-icon">✓</span> Gestion multi-utilisateurs</li>
+          <li class="flex gap-2"><span class="check-icon">✓</span> Support dédié & SLA</li>
         </ul>
-        <a href="#contact" class="block text-center bg-accent text-white py-3 rounded-full font-semibold hover:bg-accent-dark font-display">Commencer</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- Use Cases -->
-<section class="py-28 bg-white">
-  <div class="max-w-6xl mx-auto px-6">
-    <div class="reveal text-center mb-16">
-      <p class="text-accent font-semibold tracking-widest uppercase text-xs mb-3">Cas d'usage</p>
-      <h2 class="section-title text-foreground mb-5 font-display">Ce que vous pouvez construire</h2>
-    </div>
-    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-      <div class="reveal studio-card bg-white rounded-2xl p-6 border border-border">
-        <div class="w-12 h-12 bg-cyan-100 rounded-xl flex items-center justify-center mb-4"><svg class="w-6 h-6 text-accent" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
-        <h3 class="font-bold text-lg mb-2 font-display">Support Client IA</h3>
-        <p class="text-slate-600 text-sm">Agent conversationnel qui répond aux questions, qualifie les leads et escalade aux humains si nécessaire.</p>
-      </div>
-      <div class="reveal studio-card bg-white rounded-2xl p-6 border border-border">
-        <div class="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center mb-4"><svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="3 17 9 11 13 15 21 7"/><polyline points="17 7 21 7 21 11"/></svg></div>
-        <h3 class="font-bold text-lg mb-2 font-display">Pipeline Data Intelligent</h3>
-        <p class="text-slate-600 text-sm">Scraping → enrichissement → analyse → rapport. Vos données traitées automatiquement de bout en bout.</p>
-      </div>
-      <div class="reveal studio-card bg-white rounded-2xl p-6 border border-border">
-        <div class="w-12 h-12 bg-indigo-100 rounded-xl flex items-center justify-center mb-4"><svg class="w-6 h-6 text-indigo-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></div>
-        <h3 class="font-bold text-lg mb-2 font-display">Dashboard Cognitif</h3>
-        <p class="text-slate-600 text-sm">Agrégation de KPIs multi-sources avec analyse IA. Rapports générés et livrés automatiquement.</p>
-      </div>
-      <div class="reveal studio-card bg-white rounded-2xl p-6 border border-border">
-        <div class="w-12 h-12 bg-teal-100 rounded-xl flex items-center justify-center mb-4"><svg class="w-6 h-6 text-teal-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg></div>
-        <h3 class="font-bold text-lg mb-2 font-display">Agent de Veille</h3>
-        <p class="text-slate-600 text-sm">Surveillance de marchés, concurrents, réglementation. Alertes contextuelles et synthèses quotidiennes.</p>
-      </div>
-      <div class="reveal studio-card bg-white rounded-2xl p-6 border border-border">
-        <div class="w-12 h-12 bg-orange-100 rounded-xl flex items-center justify-center mb-4"><svg class="w-6 h-6 text-orange-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></div>
-        <h3 class="font-bold text-lg mb-2 font-display">Alertes & Anomalies</h3>
-        <p class="text-slate-600 text-sm">Détection intelligente d'anomalies sur vos métriques. Notifications multi-canal avec contexte.</p>
-      </div>
-      <div class="reveal studio-card bg-white rounded-2xl p-6 border border-border">
-        <div class="w-12 h-12 bg-purple-100 rounded-xl flex items-center justify-center mb-4"><svg class="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg></div>
-        <h3 class="font-bold text-lg mb-2 font-display">Workflow Sur Mesure</h3>
-        <p class="text-slate-600 text-sm">Votre processus métier unique, automatisé avec des agents qui collaborent. Zero code.</p>
+        <a href="#contact" class="block text-center bg-accent text-white py-3 rounded-full font-semibold hover:bg-accent-dark font-display">Nous contacter</a>
       </div>
     </div>
   </div>
 </section>
 
 <!-- Process -->
-<section class="py-28 bg-muted">
+<section class="py-28 bg-white">
   <div class="max-w-6xl mx-auto px-6">
     <div class="reveal text-center mb-16">
-      <p class="text-accent font-semibold tracking-widest uppercase text-xs mb-3">Processus</p>
-      <h2 class="section-title text-foreground mb-5 font-display">Votre AI Studio opérationnel en 3 étapes</h2>
+      <p class="text-accent font-semibold tracking-widest uppercase text-xs mb-3">Workflow</p>
+      <h2 class="section-title text-foreground mb-5 font-display">Créez en 3 étapes</h2>
     </div>
     <div class="grid md:grid-cols-3 gap-10 max-w-4xl mx-auto">
       <div class="reveal text-center">
         <div class="step-fall w-16 h-16 bg-accent text-white rounded-2xl flex items-center justify-center text-2xl font-black mx-auto mb-5" style="animation-delay:0.1s">1</div>
-        <h3 class="font-bold text-xl mb-3 font-display">Brief & Architecture</h3>
-        <p class="text-slate-600 text-sm leading-relaxed">On définit vos agents, leurs rôles, le pipeline de données et les intégrations. 30 min d'appel.</p>
+        <h3 class="font-bold text-xl mb-3 font-display">Choisissez votre outil</h3>
+        <p class="text-slate-600 text-sm leading-relaxed">Image, vidéo, musique ou chat — sélectionnez la catégorie et le modèle qui correspond à votre besoin.</p>
       </div>
       <div class="reveal text-center">
         <div class="step-fall w-16 h-16 bg-accent text-white rounded-2xl flex items-center justify-center text-2xl font-black mx-auto mb-5" style="animation-delay:0.4s">2</div>
-        <h3 class="font-bold text-xl mb-3 font-display">Build & Orchestration</h3>
-        <p class="text-slate-600 text-sm leading-relaxed">Je construis vos agents, configure l'orchestration et le dashboard. Vous suivez sur GitHub.</p>
+        <h3 class="font-bold text-xl mb-3 font-display">Écrivez votre prompt</h3>
+        <p class="text-slate-600 text-sm leading-relaxed">Décrivez ce que vous voulez en langage naturel. L'interface vous guide avec des suggestions et des exemples.</p>
       </div>
       <div class="reveal text-center">
         <div class="step-fall w-16 h-16 bg-primary text-white rounded-2xl flex items-center justify-center text-2xl font-black mx-auto mb-5" style="animation-delay:0.7s">3</div>
-        <h3 class="font-bold text-xl mb-3 font-display">Déploiement & Scale</h3>
-        <p class="text-slate-600 text-sm leading-relaxed">Vos agents sont en production sur Ace Data Cloud. Monitoring, alertes et support activés.</p>
+        <h3 class="font-bold text-xl mb-3 font-display">Téléchargez & itérez</h3>
+        <p class="text-slate-600 text-sm leading-relaxed">Votre création est prête en quelques secondes. Téléchargez, affinez votre prompt, ou passez à l'outil suivant.</p>
       </div>
     </div>
   </div>
 </section>
 
 <!-- Contact -->
-<section id="contact" class="py-28 bg-white">
+<section id="contact" class="py-28 bg-muted">
   <div class="max-w-3xl mx-auto px-6 text-center">
     <div class="reveal">
-      <h2 class="section-title text-foreground mb-5 font-display">Prêt à lancer votre AI Studio ?</h2>
-      <p class="text-slate-600 text-lg mb-10 max-w-xl mx-auto">Décrivez votre besoin en 2 phrases et je vous réponds avec une architecture concrète sous 24h.</p>
+      <h2 class="section-title text-foreground mb-5 font-display">Une question sur le Studio ?</h2>
+      <p class="text-slate-600 text-lg mb-10 max-w-xl mx-auto">Contactez-moi pour les offres Enterprise, l'accès API ou un accompagnement personnalisé.</p>
       <div class="flex flex-col gap-4 items-center">
-        <a href="mailto:laslyalexandre@gmail.com?subject=AI%20Studio%20-%20Projet" class="bg-accent text-white px-10 py-4 rounded-full text-lg font-semibold hover:bg-accent-dark font-display inline-flex items-center gap-2">
+        <a href="mailto:laslyalexandre@gmail.com?subject=AI%20Studio%20-%20Ace%20Data%20Cloud" class="bg-accent text-white px-10 py-4 rounded-full text-lg font-semibold hover:bg-accent-dark font-display inline-flex items-center gap-2">
           <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
           laslyalexandre@gmail.com
         </a>
         <p class="text-slate-400 text-sm">Ou via <a href="mailto:atlasnexus.ops@proton.me" class="text-accent hover:underline">atlasnexus.ops@proton.me</a></p>
-        <p class="text-accent font-semibold tracking-widest uppercase text-xs mt-6">Ace Data Cloud — Infrastructure pour agents IA</p>
+        <a href="https://studio.acedata.cloud" class="mt-6 bg-primary text-white px-8 py-3.5 rounded-full text-base font-semibold hover:bg-primary-dark font-display inline-flex items-center gap-2">
+          Accéder au Studio
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+        </a>
       </div>
     </div>
   </div>
@@ -355,7 +365,11 @@ tailwind.config = {
 <footer class="py-12 border-t border-border bg-white">
   <div class="max-w-6xl mx-auto px-6 text-center">
     <p class="text-slate-400 text-sm">&copy; 2026 Ace Data Cloud — Propulsé par Atlas Nexus</p>
-    <p class="text-slate-400 text-xs mt-2"><a href="https://atlasnexus.tech" class="hover:text-accent">← Atlas Nexus</a> · <a href="https://atlasnexus.tech/ia-agentique/" class="hover:text-accent">IA Agentique</a></p>
+    <p class="text-slate-400 text-xs mt-2">
+      <a href="https://studio.acedata.cloud" class="hover:text-accent">Studio</a> ·
+      <a href="https://atlasnexus.tech" class="hover:text-accent">Atlas Nexus</a> ·
+      <a href="https://atlasnexus.tech/ia-agentique/" class="hover:text-accent">IA Agentique</a>
+    </p>
   </div>
 </footer>
 
