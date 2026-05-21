@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Studio — Ace Data Cloud</title>
+<meta name="description" content="Plateforme de création et d'orchestration d'agents IA, propulsée par Ace Data Cloud. Build, déploiement, monitoring. À partir de 150€.">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config = {
+  darkMode: 'class',
+  theme: {
+    extend: {
+      fontFamily: {
+        display: ['Rubik', 'sans-serif'],
+        body: ['Nunito Sans', 'sans-serif'],
+      },
+      colors: {
+        primary: '#2563EB', 'primary-dark': '#1D4ED8',
+        secondary: '#3B82F6',
+        accent: '#0891B2', 'accent-dark': '#0E7490',
+        surface: '#F8FAFC', muted: '#F0F9FF',
+        border: '#E0F2FE', foreground: '#0F172A',
+      }
+    }
+  }
+}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700;800;900&family=Nunito+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  .gradient-text { background: linear-gradient(135deg, #2563EB 0%, #0891B2 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+  .glow-word { position: relative; display: inline-block; background: linear-gradient(110deg, #0F172A 0%, #2563EB 32%, #0891B2 56%, #06B6D4 82%, #0F172A 100%); background-size: 240% 100%; -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; animation: agenticGlow 3.8s ease-in-out infinite; }
+  @keyframes agenticGlow { 0%,100% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } }
+  .studio-card { position: relative; overflow: hidden; border-color: rgba(8,145,178,.28)!important; box-shadow: 0 18px 60px -28px rgba(8,145,178,.45); }
+  .studio-card::before { content: ""; position: absolute; inset: -1px; background: radial-gradient(circle at 15% 0%, rgba(8,145,178,.13), transparent 38%), radial-gradient(circle at 95% 20%, rgba(37,99,235,.10), transparent 34%); pointer-events: none; }
+  .studio-card > * { position: relative; }
+  .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.6s ease, transform 0.6s ease; }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+  .section-title { font-size: clamp(1.8rem, 4.5vw, 3rem); font-weight: 800; letter-spacing: -0.03em; line-height: 1.1; }
+  .section-title::after { content: ""; display: block; width: 3rem; height: 3px; border-radius: 2px; background: linear-gradient(90deg, #2563EB, #0891B2); margin-top: 0.5rem; }
+  .hero-orb { position: absolute; inset: auto 4% 8% auto; width: min(34vw, 360px); height: min(34vw, 360px); border-radius: 999px; background: radial-gradient(circle at 35% 35%, rgba(8,145,178,.22), rgba(37,99,235,.12) 38%, transparent 68%); filter: blur(2px); pointer-events: none; }
+  .pricing-card { position: relative; overflow: hidden; border-color: rgba(8,145,178,.22)!important; box-shadow: 0 18px 52px -34px rgba(8,145,178,.55); background: linear-gradient(145deg, #ffffff 0%, #f0fdff 52%, #ecfeff 100%); }
+  .pricing-card::before { content: ""; position: absolute; inset: -1px; background: radial-gradient(circle at 15% 0%, rgba(8,145,178,.10), transparent 38%), radial-gradient(circle at 95% 20%, rgba(37,99,235,.08), transparent 34%); pointer-events: none; }
+  .pricing-card > * { position: relative; }
+  .pricing-card:hover { box-shadow: 0 22px 70px -32px rgba(8,145,178,.65); transform: translateY(-4px); transition: all 250ms ease; }
+  .pricing-card.featured { border-color: rgba(37,99,235,.35)!important; box-shadow: 0 18px 60px -28px rgba(37,99,235,.50); background: linear-gradient(145deg, #ffffff 0%, #f0f7ff 52%, #eff6ff 100%); }
+  .pricing-card.featured:hover { box-shadow: 0 22px 70px -32px rgba(37,99,235,.65); }
+  .check-icon { color: #0891B2; }
+
+  /* ── Language switch ── */
+  .lang-switch { position: relative; display:inline-grid; grid-template-columns:1fr 1fr; align-items:center; min-width:92px; height:38px; padding:4px; border:1px solid rgba(8,145,178,.18); border-radius:999px; background:linear-gradient(135deg, rgba(255,255,255,.92), rgba(240,249,255,.84)); color:#64748B; font-size:.76rem; font-weight:900; box-shadow:inset 0 1px 0 rgba(255,255,255,.9), 0 12px 26px -20px rgba(8,145,178,.55); }
+  .lang-switch::before { content:""; position:absolute; top:4px; bottom:4px; width:calc(50% - 4px); border-radius:999px; background:linear-gradient(135deg,#2563EB,#0891B2); box-shadow:0 10px 22px -12px rgba(8,145,178,.75); transition:transform 220ms ease; }
+  .lang-switch[data-active="fr"]::before { transform:translateX(0); left:4px; }
+  .lang-switch[data-active="en"]::before { transform:translateX(100%); left:4px; }
+  .lang-switch a { position:relative; z-index:1; display:flex; align-items:center; justify-content:center; height:30px; border-radius:999px; color:#64748B; letter-spacing:.03em; }
+  .lang-switch a.active { color:white; }
+  .lang-switch:hover { border-color:rgba(8,145,178,.34); box-shadow:inset 0 1px 0 rgba(255,255,255,.9), 0 16px 34px -22px rgba(8,145,178,.72); }
+
+  /* ── Process step buttons: fall from top ── */
+  .step-fall { opacity: 0; transform: translateY(-120px); }
+  .step-fall.animate { animation: fallFromTop 1s cubic-bezier(0.22, 1, 0.36, 1) forwards; }
+  @keyframes fallFromTop {
+    0%   { opacity: 0; transform: translateY(-120px); }
+    60%  { opacity: 1; transform: translateY(8px); }
+    80%  { transform: translateY(-3px); }
+    100% { opacity: 1; transform: translateY(0); }
+  }
+</style>
+    <link rel="canonical" href="https://atlasnexus.tech/ai-studio/">
+</head>
+<body class="bg-surface text-foreground font-body antialiased">
+
+<!-- Nav -->
+<nav class="fixed top-0 w-full z-50 bg-surface/85 backdrop-blur-lg border-b border-border">
+  <div class="max-w-6xl mx-auto px-6 h-[72px] flex items-center justify-between">
+    <a href="https://atlasnexus.tech" class="flex items-center gap-3">
+      <div class="w-9 h-9 bg-accent rounded-lg flex items-center justify-center shadow-lg shadow-cyan-500/20">
+        <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <rect x="2" y="2" width="20" height="8" rx="2" fill="currentColor" stroke="none"/>
+          <rect x="2" y="14" width="20" height="8" rx="2" fill="currentColor" stroke="none" opacity="0.6"/>
+          <circle cx="7" cy="6" r="1" fill="white"/>
+          <circle cx="11" cy="6" r="1" fill="white" opacity="0.7"/>
+          <circle cx="7" cy="18" r="1" fill="white"/>
+          <circle cx="11" cy="18" r="1" fill="white" opacity="0.7"/>
+        </svg>
+      </div>
+      <span class="font-display font-bold text-xl tracking-tight">Ace Data Cloud</span>
+    </a>
+    <div class="flex items-center gap-3">
+      <div class="hidden sm:inline-grid lang-switch" data-active="fr" aria-label="Sélecteur de langue">
+        <a class="active" href="/ai-studio/?lang=fr" onclick="localStorage.setItem('adc.lang','fr')">FR</a>
+        <a href="/ai-studio/en/" onclick="localStorage.setItem('adc.lang','en')">EN</a>
+      </div>
+      <a href="#contact" class="bg-accent text-white px-5 py-2.5 rounded-full text-sm font-semibold hover:bg-accent-dark font-display">Démarrer un projet</a>
+    </div>
+  </div>
+</nav>
+
+<!-- Hero -->
+<section id="top" class="min-h-screen flex items-center pt-24 pb-16 relative overflow-hidden">
+  <div class="hero-orb"></div>
+  <div class="max-w-6xl mx-auto px-6 w-full relative z-10">
+    <div class="max-w-4xl">
+      <p class="text-accent font-semibold tracking-widest uppercase text-xs mb-4">AI Studio — Propulsé par Ace Data Cloud</p>
+      <h1 class="text-6xl sm:text-7xl lg:text-8xl font-black tracking-tight leading-none mb-6 font-display">
+        <span class="glow-word">Vos agents IA</span><br>
+        <span class="text-foreground">conçus, déployés</span><br>
+        <span class="gradient-text">et orchestrés</span>
+      </h1>
+      <p class="text-xl sm:text-2xl text-slate-600 max-w-2xl mb-3 leading-relaxed">
+        Une plateforme complète pour créer, tester et gérer vos agents IA — de l'idée à la production, sans infrastructure à gérer.
+      </p>
+      <p class="text-lg text-slate-500 max-w-xl mb-10">
+        Multi-agents · Multi-canaux · APIs · Dashboard · Monitoring 24/7
+      </p>
+      <div class="flex gap-4 flex-wrap">
+        <a href="#pricing" class="bg-accent text-white px-8 py-4 rounded-full text-lg font-semibold hover:bg-accent-dark font-display">Voir les offres</a>
+        <a href="#contact" class="border-2 border-slate-300 text-slate-700 px-8 py-4 rounded-full text-lg font-semibold hover:border-accent hover:text-accent font-display">Me contacter</a>
+      </div>
+      <div class="flex gap-6 mt-12 text-sm text-slate-400">
+        <span>✓ Infrastructure managée</span>
+        <span>✓ Code & docs inclus</span>
+        <span>✓ Support 30 jours</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Problem/Solution -->
+<section class="py-24 bg-white">
+  <div class="max-w-6xl mx-auto px-6">
+    <div class="grid lg:grid-cols-2 gap-16 items-center">
+      <div class="reveal">
+        <p class="text-accent font-semibold tracking-widest uppercase text-xs mb-3">Le problème</p>
+        <h2 class="section-title text-foreground mb-6 font-display">Construire des agents IA, c'est complexe et coûteux</h2>
+        <ul class="space-y-4 text-slate-600">
+          <li class="flex gap-3"><span class="text-red-400 font-bold shrink-0">✗</span> Des semaines à configurer l'infrastructure et les APIs</li>
+          <li class="flex gap-3"><span class="text-red-400 font-bold shrink-0">✗</span> Des agents qui fonctionnent en local mais pas en production</li>
+          <li class="flex gap-3"><span class="text-red-400 font-bold shrink-0">✗</span> Aucune visibilité sur les performances et les coûts</li>
+          <li class="flex gap-3"><span class="text-red-400 font-bold shrink-0">✗</span> Maintenance chronophage : MLOps, monitoring, mises à jour</li>
+        </ul>
+      </div>
+      <div class="reveal">
+        <p class="text-accent font-semibold tracking-widest uppercase text-xs mb-3">La solution</p>
+        <h2 class="section-title text-foreground mb-6 font-display">Un studio clé-en-main pour vos agents, du prototype au scale</h2>
+        <ul class="space-y-4 text-slate-600">
+          <li class="flex gap-3"><span class="check-icon font-bold shrink-0">✓</span> Agents opérationnels en 24h, sur votre infrastructure ou la nôtre</li>
+          <li class="flex gap-3"><span class="check-icon font-bold shrink-0">✓</span> Orchestration multi-agents : pipelines, chaînes, workflows</li>
+          <li class="flex gap-3"><span class="check-icon font-bold shrink-0">✓</span> Dashboard de monitoring : tokens, latence, erreurs, coûts</li>
+          <li class="flex gap-3"><span class="check-icon font-bold shrink-0">✓</span> Maintenance incluse : mises à jour, correctifs, évolution des modèles</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Architecture -->
+<section class="py-24 bg-muted">
+  <div class="max-w-6xl mx-auto px-6">
+    <div class="reveal text-center mb-16">
+      <p class="text-accent font-semibold tracking-widest uppercase text-xs mb-3">Architecture</p>
+      <h2 class="section-title text-foreground mb-5 font-display">Propulsé par Ace Data Cloud</h2>
+      <p class="text-slate-600 max-w-2xl mx-auto">Vos agents s'appuient sur une infrastructure data cloud robuste : stockage vectoriel, pipelines ETL, cache distribué et APIs sécurisées.</p>
+    </div>
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-5xl mx-auto">
+      <div class="reveal studio-card bg-white rounded-2xl p-6 border border-border text-center">
+        <div class="w-14 h-14 bg-cyan-100 rounded-2xl flex items-center justify-center mx-auto mb-4">
+          <svg class="w-7 h-7 text-accent" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5"/><line x1="2" y1="10" x2="22" y2="10"/></svg>
+        </div>
+        <h3 class="font-bold text-lg mb-2 font-display">Data Lake</h3>
+        <p class="text-slate-600 text-sm">Stockage unifié de vos données, accessibles en temps réel par vos agents.</p>
+      </div>
+      <div class="reveal studio-card bg-white rounded-2xl p-6 border border-border text-center">
+        <div class="w-14 h-14 bg-blue-100 rounded-2xl flex items-center justify-center mx-auto mb-4">
+          <svg class="w-7 h-7 text-primary" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        </div>
+        <h3 class="font-bold text-lg mb-2 font-display">Vector Store</h3>
+        <p class="text-slate-600 text-sm">Recherche sémantique et RAG optimisé pour des agents contextuels.</p>
+      </div>
+      <div class="reveal studio-card bg-white rounded-2xl p-6 border border-border text-center">
+        <div class="w-14 h-14 bg-indigo-100 rounded-2xl flex items-center justify-center mx-auto mb-4">
+          <svg class="w-7 h-7 text-indigo-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+        </div>
+        <h3 class="font-bold text-lg mb-2 font-display">Pipelines ETL</h3>
+        <p class="text-slate-600 text-sm">Extraction, transformation et chargement automatisé de vos sources.</p>
+      </div>
+      <div class="reveal studio-card bg-white rounded-2xl p-6 border border-border text-center">
+        <div class="w-14 h-14 bg-teal-100 rounded-2xl flex items-center justify-center mx-auto mb-4">
+          <svg class="w-7 h-7 text-teal-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <h3 class="font-bold text-lg mb-2 font-display">API Gateway</h3>
+        <p class="text-slate-600 text-sm">APIs sécurisées et rate-limitées pour exposer vos agents au monde.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Pricing -->
+<section id="pricing" class="py-28 bg-surface">
+  <div class="max-w-6xl mx-auto px-6">
+    <div class="reveal text-center mb-16">
+      <p class="text-accent font-semibold tracking-widest uppercase text-xs mb-3">Offres</p>
+      <h2 class="section-title text-foreground mb-5 font-display">Lancez votre premier agent</h2>
+      <p class="text-slate-600 max-w-xl mx-auto">Chaque offre inclut : conception, build, test, dashboard, documentation, déploiement et 30 jours de support.</p>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+      <!-- Starter -->
+      <div class="reveal pricing-card rounded-2xl p-8 border border-border flex flex-col">
+        <p class="text-sm font-bold text-accent mb-2">STARTER</p>
+        <h3 class="text-2xl font-bold text-foreground mb-1 font-display">Agent Solo</h3>
+        <p class="text-slate-500 text-sm mb-6">Pour indépendants et early-stage</p>
+        <p class="text-4xl font-black text-foreground mb-1 font-display">150€</p>
+        <p class="text-sm text-slate-400 mb-8">One-shot · Livré en 24 heures</p>
+        <ul class="space-y-3 mb-8 text-sm text-slate-600 flex-1">
+          <li class="flex gap-2"><span class="check-icon">✓</span> 1 agent IA sur 1 canal (Telegram, Discord, ou API)</li>
+          <li class="flex gap-2"><span class="check-icon">✓</span> 1 use case métier</li>
+          <li class="flex gap-2"><span class="check-icon">✓</span> Intégration 1 API externe</li>
+          <li class="flex gap-2"><span class="check-icon">✓</span> Dashboard de monitoring basique</li>
+          <li class="flex gap-2"><span class="check-icon">✓</span> Documentation + repo GitHub</li>
+          <li class="flex gap-2"><span class="check-icon">✓</span> 1 révision incluse</li>
+        </ul>
+        <a href="#contact" class="block text-center bg-accent text-white py-3 rounded-full font-semibold hover:bg-accent-dark font-display">Commencer</a>
+      </div>
+
+      <!-- Pro (featured) -->
+      <div class="reveal pricing-card featured rounded-2xl p-8 border-2 flex flex-col relative" style="overflow:visible">
+        <div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-primary text-white text-xs font-bold px-4 py-1 rounded-full">LE PLUS POPULAIRE</div>
+        <p class="text-sm font-bold text-primary mb-2">PRO</p>
+        <h3 class="text-2xl font-bold text-foreground mb-1 font-display">Studio Complet</h3>
+        <p class="text-slate-500 text-sm mb-6">Pour PME, SaaS et équipes tech</p>
+        <p class="text-4xl font-black text-foreground mb-1 font-display">350€</p>
+        <p class="text-sm text-slate-400 mb-8">One-shot · Livré en 24-48h</p>
+        <ul class="space-y-3 mb-8 text-sm text-slate-600 flex-1">
+          <li class="flex gap-2"><span class="check-icon">✓</span> Jusqu'à 3 agents en pipeline orchestré</li>
+          <li class="flex gap-2"><span class="check-icon">✓</span> Multi-canal (Telegram, Discord, API, Web)</li>
+          <li class="flex gap-2"><span class="check-icon">✓</span> Accès Ace Data Cloud — vector store + ETL</li>
+          <li class="flex gap-2"><span class="check-icon">✓</span> Dashboard live avancé (coûts, latence, tokens)</li>
+          <li class="flex gap-2"><span class="check-icon">✓</span> 3 APIs externes + webhooks</li>
+          <li class="flex gap-2"><span class="check-icon">✓</span> 2 révisions incluses</li>
+        </ul>
+        <a href="#contact" class="block text-center bg-primary text-white py-3 rounded-full font-semibold hover:bg-primary-dark font-display">Commencer</a>
+      </div>
+
+      <!-- Enterprise -->
+      <div class="reveal pricing-card rounded-2xl p-8 border border-border flex flex-col">
+        <p class="text-sm font-bold text-accent mb-2">ENTERPRISE</p>
+        <h3 class="text-2xl font-bold text-foreground mb-1 font-display">Agents Managés</h3>
+        <p class="text-slate-500 text-sm mb-6">Pour volume, scale et long-terme</p>
+        <p class="text-4xl font-black text-foreground mb-1 font-display">100€<span class="text-lg font-normal text-slate-400">/mois</span></p>
+        <p class="text-sm text-slate-400 mb-8">Abonnement · Sans engagement</p>
+        <ul class="space-y-3 mb-8 text-sm text-slate-600 flex-1">
+          <li class="flex gap-2"><span class="check-icon">✓</span> Agents illimités — scale horizontal natif</li>
+          <li class="flex gap-2"><span class="check-icon">✓</span> Tous les canaux + intégrations custom</li>
+          <li class="flex gap-2"><span class="check-icon">✓</span> Ace Data Cloud full access (vector, ETL, cache)</li>
+          <li class="flex gap-2"><span class="check-icon">✓</span> Maintenance continue & MLOps</li>
+          <li class="flex gap-2"><span class="check-icon">✓</span> SLA < 24h, révisions illimitées</li>
+          <li class="flex gap-2"><span class="check-icon">✓</span> Support prioritaire dédié</li>
+        </ul>
+        <a href="#contact" class="block text-center bg-accent text-white py-3 rounded-full font-semibold hover:bg-accent-dark font-display">Commencer</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Use Cases -->
+<section class="py-28 bg-white">
+  <div class="max-w-6xl mx-auto px-6">
+    <div class="reveal text-center mb-16">
+      <p class="text-accent font-semibold tracking-widest uppercase text-xs mb-3">Cas d'usage</p>
+      <h2 class="section-title text-foreground mb-5 font-display">Ce que vous pouvez construire</h2>
+    </div>
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div class="reveal studio-card bg-white rounded-2xl p-6 border border-border">
+        <div class="w-12 h-12 bg-cyan-100 rounded-xl flex items-center justify-center mb-4"><svg class="w-6 h-6 text-accent" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
+        <h3 class="font-bold text-lg mb-2 font-display">Support Client IA</h3>
+        <p class="text-slate-600 text-sm">Agent conversationnel qui répond aux questions, qualifie les leads et escalade aux humains si nécessaire.</p>
+      </div>
+      <div class="reveal studio-card bg-white rounded-2xl p-6 border border-border">
+        <div class="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center mb-4"><svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="3 17 9 11 13 15 21 7"/><polyline points="17 7 21 7 21 11"/></svg></div>
+        <h3 class="font-bold text-lg mb-2 font-display">Pipeline Data Intelligent</h3>
+        <p class="text-slate-600 text-sm">Scraping → enrichissement → analyse → rapport. Vos données traitées automatiquement de bout en bout.</p>
+      </div>
+      <div class="reveal studio-card bg-white rounded-2xl p-6 border border-border">
+        <div class="w-12 h-12 bg-indigo-100 rounded-xl flex items-center justify-center mb-4"><svg class="w-6 h-6 text-indigo-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></div>
+        <h3 class="font-bold text-lg mb-2 font-display">Dashboard Cognitif</h3>
+        <p class="text-slate-600 text-sm">Agrégation de KPIs multi-sources avec analyse IA. Rapports générés et livrés automatiquement.</p>
+      </div>
+      <div class="reveal studio-card bg-white rounded-2xl p-6 border border-border">
+        <div class="w-12 h-12 bg-teal-100 rounded-xl flex items-center justify-center mb-4"><svg class="w-6 h-6 text-teal-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg></div>
+        <h3 class="font-bold text-lg mb-2 font-display">Agent de Veille</h3>
+        <p class="text-slate-600 text-sm">Surveillance de marchés, concurrents, réglementation. Alertes contextuelles et synthèses quotidiennes.</p>
+      </div>
+      <div class="reveal studio-card bg-white rounded-2xl p-6 border border-border">
+        <div class="w-12 h-12 bg-orange-100 rounded-xl flex items-center justify-center mb-4"><svg class="w-6 h-6 text-orange-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></div>
+        <h3 class="font-bold text-lg mb-2 font-display">Alertes & Anomalies</h3>
+        <p class="text-slate-600 text-sm">Détection intelligente d'anomalies sur vos métriques. Notifications multi-canal avec contexte.</p>
+      </div>
+      <div class="reveal studio-card bg-white rounded-2xl p-6 border border-border">
+        <div class="w-12 h-12 bg-purple-100 rounded-xl flex items-center justify-center mb-4"><svg class="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg></div>
+        <h3 class="font-bold text-lg mb-2 font-display">Workflow Sur Mesure</h3>
+        <p class="text-slate-600 text-sm">Votre processus métier unique, automatisé avec des agents qui collaborent. Zero code.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Process -->
+<section class="py-28 bg-muted">
+  <div class="max-w-6xl mx-auto px-6">
+    <div class="reveal text-center mb-16">
+      <p class="text-accent font-semibold tracking-widest uppercase text-xs mb-3">Processus</p>
+      <h2 class="section-title text-foreground mb-5 font-display">Votre AI Studio opérationnel en 3 étapes</h2>
+    </div>
+    <div class="grid md:grid-cols-3 gap-10 max-w-4xl mx-auto">
+      <div class="reveal text-center">
+        <div class="step-fall w-16 h-16 bg-accent text-white rounded-2xl flex items-center justify-center text-2xl font-black mx-auto mb-5" style="animation-delay:0.1s">1</div>
+        <h3 class="font-bold text-xl mb-3 font-display">Brief & Architecture</h3>
+        <p class="text-slate-600 text-sm leading-relaxed">On définit vos agents, leurs rôles, le pipeline de données et les intégrations. 30 min d'appel.</p>
+      </div>
+      <div class="reveal text-center">
+        <div class="step-fall w-16 h-16 bg-accent text-white rounded-2xl flex items-center justify-center text-2xl font-black mx-auto mb-5" style="animation-delay:0.4s">2</div>
+        <h3 class="font-bold text-xl mb-3 font-display">Build & Orchestration</h3>
+        <p class="text-slate-600 text-sm leading-relaxed">Je construis vos agents, configure l'orchestration et le dashboard. Vous suivez sur GitHub.</p>
+      </div>
+      <div class="reveal text-center">
+        <div class="step-fall w-16 h-16 bg-primary text-white rounded-2xl flex items-center justify-center text-2xl font-black mx-auto mb-5" style="animation-delay:0.7s">3</div>
+        <h3 class="font-bold text-xl mb-3 font-display">Déploiement & Scale</h3>
+        <p class="text-slate-600 text-sm leading-relaxed">Vos agents sont en production sur Ace Data Cloud. Monitoring, alertes et support activés.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Contact -->
+<section id="contact" class="py-28 bg-white">
+  <div class="max-w-3xl mx-auto px-6 text-center">
+    <div class="reveal">
+      <h2 class="section-title text-foreground mb-5 font-display">Prêt à lancer votre AI Studio ?</h2>
+      <p class="text-slate-600 text-lg mb-10 max-w-xl mx-auto">Décrivez votre besoin en 2 phrases et je vous réponds avec une architecture concrète sous 24h.</p>
+      <div class="flex flex-col gap-4 items-center">
+        <a href="mailto:laslyalexandre@gmail.com?subject=AI%20Studio%20-%20Projet" class="bg-accent text-white px-10 py-4 rounded-full text-lg font-semibold hover:bg-accent-dark font-display inline-flex items-center gap-2">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          laslyalexandre@gmail.com
+        </a>
+        <p class="text-slate-400 text-sm">Ou via <a href="mailto:atlasnexus.ops@proton.me" class="text-accent hover:underline">atlasnexus.ops@proton.me</a></p>
+        <p class="text-accent font-semibold tracking-widest uppercase text-xs mt-6">Ace Data Cloud — Infrastructure pour agents IA</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="py-12 border-t border-border bg-white">
+  <div class="max-w-6xl mx-auto px-6 text-center">
+    <p class="text-slate-400 text-sm">&copy; 2026 Ace Data Cloud — Propulsé par Atlas Nexus</p>
+    <p class="text-slate-400 text-xs mt-2"><a href="https://atlasnexus.tech" class="hover:text-accent">← Atlas Nexus</a> · <a href="https://atlasnexus.tech/ia-agentique/" class="hover:text-accent">IA Agentique</a></p>
+  </div>
+</footer>
+
+<!-- Scroll Reveal -->
+<script>
+(function() {
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    document.querySelectorAll('.reveal').forEach(el => el.classList.add('visible'));
+    document.querySelectorAll('.step-fall').forEach(el => { el.classList.add('animate'); el.style.opacity = '1'; el.style.transform = 'none'; });
+    return;
+  }
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  const stepObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('animate');
+        stepObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.5 });
+  document.querySelectorAll('.step-fall').forEach(el => stepObserver.observe(el));
+})();
+</script>
+
+</body>
+</html>
