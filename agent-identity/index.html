@@ -221,41 +221,64 @@ tailwind.config = {
   </div>
 </section>
 
-<!-- SOUL.md + Self-Model -->
+<!-- SOUL.md + Self-Model (NOT a verification mechanism) -->
 <section class="py-28 bg-muted">
   <div class="max-w-6xl mx-auto px-6">
     <div class="reveal text-center mb-16">
-      <p class="text-purple-500 font-semibold tracking-widest uppercase text-xs mb-3">Standard Émergent</p>
-      <h2 class="section-title text-foreground font-display">SOUL.md : l'identité déclarée</h2>
-      <p class="text-slate-600 max-w-2xl mx-auto mt-4">Un fichier markdown portable qui définit qui est l'agent — nom, objectifs, valeurs, guidelines, historique. Versionné. Horodaté. Signé.</p>
+      <p class="text-purple-500 font-semibold tracking-widest uppercase text-xs mb-3">Outil de commodité — pas une solution de sécurité</p>
+      <h2 class="section-title text-foreground font-display">SOUL.md : un self-model, pas une preuve</h2>
+      <p class="text-slate-600 max-w-2xl mx-auto mt-4">Un fichier markdown portable qui décrit ce que l'agent <em>prétend</em> être. Utile pour la portabilité et la documentation. <strong class="text-red-600">Pas fiable pour la vérification d'identité.</strong></p>
     </div>
+
+    <!-- ⚠ Warning Banner -->
+    <div class="reveal max-w-4xl mx-auto mb-10">
+      <div class="bg-red-50 border-2 border-red-300 rounded-2xl p-6">
+        <div class="flex gap-3 items-start">
+          <span class="text-2xl shrink-0">⚠️</span>
+          <div>
+            <p class="text-red-700 font-bold mb-2 font-display">SOUL.md n'est PAS un mécanisme d'identité fiable</p>
+            <ul class="text-red-600 text-sm space-y-1.5">
+              <li>• <strong>C'est juste un prompt.</strong> Un agent avec un SOUL.md qui dit « Je suis Alice » n'est pas Alice. Il prétend juste l'être parce que son prompt le lui dit.</li>
+              <li>• <strong>Copiable.</strong> N'importe qui peut copier le SOUL.md d'un agent et créer un clone qui revendique la même identité.</li>
+              <li>• <strong>Même signé, ça ne suffit pas.</strong> Une signature prouve que le détenteur d'une clé a créé le fichier — pas que l'agent se comporte conformément à ce qu'il déclare.</li>
+              <li>• <strong>Aspirationnel ≠ garanti.</strong> Un agent peut déclarer « Je ne signe jamais sans confirmation humaine » et le faire quand même. Le SOUL.md décrit une intention, pas un comportement.</li>
+            </ul>
+            <p class="text-red-500 text-xs mt-3 italic">→ La vérification d'identité réelle repose sur les signatures cryptographiques, le registre on-chain, et le monitoring comportemental — pas sur un fichier déclaratif.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <div class="grid lg:grid-cols-2 gap-12 max-w-5xl mx-auto items-center">
       <div class="reveal">
-        <div class="code-block text-sm">
-          <span class="comment"># SOUL.md — Agent Identity Self-Model</span><br>
+        <div class="code-block text-sm opacity-75">
+          <span class="comment"># SOUL.md — Self-model (aspirational, NOT proof)</span><br>
           <span class="keyword">name:</span> <span class="string">AtlasNexus/Validator-v3</span><br>
           <span class="keyword">version:</span> <span class="string">3.2.1</span><br>
           <span class="keyword">created:</span> <span class="string">2026-05-15T10:00:00Z</span><br>
           <span class="keyword">pubkey:</span> <span class="string">0x7Bd9...a3F2</span><br>
+          <span class="comment">// ⚠ Signature proves key ownership, NOT behavior</span><br>
           <span class="keyword">signature:</span> <span class="string">0x8f3a...c21d</span><br><br>
-          <span class="comment">## Core Purpose</span><br>
-          <span class="string">I verify agent identities on-chain using</span><br>
-          <span class="string">ERC-8004 attestations. I am NOT a</span><br>
-          <span class="string">marketplace. I am a verification oracle.</span><br><br>
-          <span class="comment">## Behavioral Boundaries</span><br>
+          <span class="comment">## Core Purpose (aspirational)</span><br>
+          <span class="string">I verify agent identities on-chain.</span><br>
+          <span class="string">I am a verification oracle.</span><br><br>
+          <span class="comment">## Behavioral Boundaries (declared, not enforced)</span><br>
           <span class="string">- Never sign without human confirmation</span><br>
           <span class="string">- Always log verification attempts</span><br>
-          <span class="string">- Reject unverifiable claims immediately</span>
+          <span class="string">- Reject unverifiable claims</span>
         </div>
       </div>
       <div class="reveal space-y-6">
-        <h3 class="text-2xl font-bold font-display">Pourquoi SOUL.md ?</h3>
+        <h3 class="text-2xl font-bold font-display">À quoi sert SOUL.md alors ?</h3>
+        <p class="text-slate-600 text-sm">SOUL.md reste utile comme <strong>outil de commodité</strong>, pas comme couche de sécurité :</p>
         <ul class="space-y-4">
-          <li class="flex gap-3"><span class="check-icon font-bold shrink-0">🔏</span><div><p class="font-semibold">Signé cryptographiquement</p><p class="text-slate-500 text-sm">Le fichier inclut la signature de la clé privée. Toute modification est détectable.</p></div></li>
-          <li class="flex gap-3"><span class="check-icon font-bold shrink-0">📦</span><div><p class="font-semibold">Portable</p><p class="text-slate-500 text-sm">Le SOUL.md voyage avec l'agent, peu importe l'infrastructure. L'identité survit aux migrations.</p></div></li>
-          <li class="flex gap-3"><span class="check-icon font-bold shrink-0">📜</span><div><p class="font-semibold">Versionné</p><p class="text-slate-500 text-sm">Chaque évolution de l'identité est tracée. L'historique des changements est auditable.</p></div></li>
-          <li class="flex gap-3"><span class="check-icon font-bold shrink-0">🔄</span><div><p class="font-semibold">Auto-modèle</p><p class="text-slate-500 text-sm">L'agent lit son SOUL.md au démarrage. Il sait qui il est, ce qu'il peut faire, ses limites.</p></div></li>
+          <li class="flex gap-3"><span class="text-slate-400 font-bold shrink-0">📦</span><div><p class="font-semibold">Portabilité</p><p class="text-slate-500 text-sm">Le SOUL.md peut voyager avec l'agent entre infrastructures. Utile pour la migration, pas pour la vérification.</p></div></li>
+          <li class="flex gap-3"><span class="text-slate-400 font-bold shrink-0">📜</span><div><p class="font-semibold">Documentation</p><p class="text-slate-500 text-sm">Versionné, il sert de journal d'évolution de l'identité déclarée. Utile pour l'audit humain, pas pour l'authentification.</p></div></li>
+          <li class="flex gap-3"><span class="text-slate-400 font-bold shrink-0">🔄</span><div><p class="font-semibold">Bootstrapping</p><p class="text-slate-500 text-sm">L'agent lit son SOUL.md au démarrage pour connaître son rôle. Gain de temps opérationnel, pas de sécurité.</p></div></li>
         </ul>
+        <div class="bg-amber-50 border border-amber-200 rounded-xl p-4 mt-4">
+          <p class="text-amber-700 text-xs font-semibold">🔑 La vérification d'identité repose sur la <strong>clé privée</strong> et le <strong>registre on-chain</strong>. SOUL.md est un post-it pratique, pas un passeport.</p>
+        </div>
       </div>
     </div>
   </div>
