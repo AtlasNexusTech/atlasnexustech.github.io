@@ -29,12 +29,17 @@
   "name": "Alexandre Lasly — Consultant Architecture Agentique",
   "description": "Déploiement d'agents IA autonomes avec LLM, mémoire persistante et skills métier sur mesure.",
   "url": "https://atlasnexusops.github.io/",
-  "offers": {
+  "offers": [{
     "@type": "Offer",
     "price": "85.00",
     "priceCurrency": "EUR",
     "url": "https://comeup.com/fr/service/525386/deployer-vos-agents-ia-autonomes"
-  },
+  },{
+    "@type": "Offer",
+    "price": "29.00",
+    "priceCurrency": "EUR",
+    "name": "The Solana Agent Economy Playbook"
+  }],
   "areaServed": { "@type": "Country", "name": "France" },
   "availableLanguage": "fr"
 }
@@ -78,6 +83,12 @@
   .footer { margin-top: 48px; padding-top: 24px; border-top: 1px solid var(--border); font-size: 13px; color: var(--muted); }
   .footer a { color: var(--accent); text-decoration: none; }
   .divider { border: none; border-top: 1px solid var(--border); margin: 40px 0; }
+  .playbook-btn {
+    display: inline-block; background: var(--accent); color: white; padding: 10px 24px;
+    border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 14px;
+    transition: opacity 0.2s;
+  }
+  .playbook-btn:hover { opacity: 0.9; }
 </style>
 </head>
 <body>
@@ -118,6 +129,23 @@
     <h3>Pourquoi pas n8n ?</h3>
     <p>n8n exécute un script. Mes agents réfléchissent. Si le plan A échoue, ils trouvent un plan B sans vous réveiller. La différence, c'est l'autonomie.</p>
   </div>
+
+  <hr class="divider">
+
+  <h2 style="font-size:20px;margin-bottom:16px;">📖 The Solana Agent Economy Playbook</h2>
+  <p style="color:var(--muted);font-size:14px;margin-bottom:16px;">
+    60 pages. Construisez des outils x402 que les agents IA paient automatiquement. Code, pricing, déploiement — le blueprint complet.
+  </p>
+  <div style="text-align:center;margin-bottom:8px;">
+    <span style="font-size:36px;font-weight:800;color:var(--accent);">29€</span>
+    <span style="color:var(--muted);font-size:14px;"> — accès à vie</span>
+  </div>
+  <div style="text-align:center;margin-bottom:8px;">
+    <a href="mailto:laslyalexandre@gmail.com?subject=Playbook%20Solana%20Agent%20Economy%2029€&body=Bonjour%20Alexandre%2C%0A%0AJe%20souhaite%20acheter%20le%20Playbook%20Solana%20Agent%20Economy%20(29€).%0A%0AEmail%20pour%20l'envoi%20%3A%20%0A%0AMerci%20!" class="playbook-btn">🛒 Acheter le Playbook →</a>
+  </div>
+  <p style="text-align:center;font-size:11px;color:var(--muted);">
+    📦 10 chapitres • Code Python/FastAPI • Modèles de pricing • Guide SAP mainnet • Multi-provider
+  </p>
 
   <hr class="divider">
 
