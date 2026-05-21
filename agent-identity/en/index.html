@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Agent Identity Verification — Atlas Nexus</title>
+<meta name="description" content="How do AI agents prove who they are? Cryptographic signatures, on-chain identity (ERC-8004), SOUL.md, Web of Trust. The complete solution for verifying agent identity.">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config = {
+  darkMode: 'class',
+  theme: {
+    extend: {
+      fontFamily: {
+        display: ['Rubik', 'sans-serif'],
+        body: ['Nunito Sans', 'sans-serif'],
+      },
+      colors: {
+        primary: '#2563EB', 'primary-dark': '#1D4ED8',
+        secondary: '#3B82F6',
+        accent: '#059669', 'accent-dark': '#047857',
+        surface: '#F8FAFC', muted: '#F1F5FD',
+        border: '#E4ECFC', foreground: '#0F172A',
+      }
+    }
+  }
+}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700;800;900&family=Nunito+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  .gradient-text { background: linear-gradient(135deg, #2563EB 0%, #059669 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+  .glow-word { position: relative; display: inline-block; background: linear-gradient(110deg, #0F172A 0%, #2563EB 32%, #7C3AED 56%, #059669 82%, #0F172A 100%); background-size: 240% 100%; -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; animation: agenticGlow 3.8s ease-in-out infinite; }
+  @keyframes agenticGlow { 0%,100% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } }
+  .agentic-card { position: relative; overflow: hidden; border-color: rgba(37,99,235,.28)!important; box-shadow: 0 18px 60px -28px rgba(37,99,235,.55); }
+  .agentic-card::before { content: ""; position: absolute; inset: -1px; background: radial-gradient(circle at 15% 0%, rgba(37,99,235,.13), transparent 38%), radial-gradient(circle at 95% 20%, rgba(5,150,105,.10), transparent 34%); pointer-events: none; }
+  .agentic-card > * { position: relative; }
+  .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.6s ease, transform 0.6s ease; }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+  .section-title { font-size: clamp(1.8rem, 4.5vw, 3rem); font-weight: 800; letter-spacing: -0.03em; line-height: 1.1; }
+  .section-title::after { content: ""; display: block; width: 3rem; height: 3px; border-radius: 2px; background: linear-gradient(90deg, #2563EB, #059669); margin-top: 0.5rem; }
+  .hero-orb { position: absolute; inset: auto 4% 8% auto; width: min(34vw, 360px); height: min(34vw, 360px); border-radius: 999px; background: radial-gradient(circle at 35% 35%, rgba(37,99,235,.22), rgba(5,150,105,.12) 38%, transparent 68%); filter: blur(2px); pointer-events: none; }
+  .lang-switch { position: relative; display:inline-grid; grid-template-columns:1fr 1fr; align-items:center; min-width:92px; height:38px; padding:4px; border:1px solid rgba(37,99,235,.18); border-radius:999px; background:linear-gradient(135deg, rgba(255,255,255,.92), rgba(241,245,253,.84)); color:#64748B; font-size:.76rem; font-weight:900; box-shadow:inset 0 1px 0 rgba(255,255,255,.9), 0 12px 26px -20px rgba(37,99,235,.55); }
+  .lang-switch::before { content:""; position:absolute; top:4px; bottom:4px; width:calc(50% - 4px); border-radius:999px; background:linear-gradient(135deg,#2563EB,#059669); box-shadow:0 10px 22px -12px rgba(37,99,235,.75); transition:transform 220ms ease; }
+  .lang-switch[data-active="fr"]::before { transform:translateX(0); left:4px; }
+  .lang-switch[data-active="en"]::before { transform:translateX(100%); left:4px; }
+  .lang-switch a { position:relative; z-index:1; display:flex; align-items:center; justify-content:center; height:30px; border-radius:999px; color:#64748B; letter-spacing:.03em; }
+  .lang-switch a.active { color:white; }
+  .lang-switch:hover { border-color:rgba(37,99,235,.34); box-shadow:inset 0 1px 0 rgba(255,255,255,.9), 0 16px 34px -22px rgba(37,99,235,.72); }
+  .layer-card { position: relative; border-left: 4px solid; border-radius: 16px; transition: all 0.3s ease; }
+  .layer-card:hover { transform: translateY(-4px); box-shadow: 0 20px 40px -20px rgba(37,99,235,.3); }
+  .layer-card.config { border-left-color: #3B82F6; }
+  .layer-card.behavior { border-left-color: #8B5CF6; }
+  .layer-card.memory { border-left-color: #F59E0B; }
+  .layer-card.sovereign { border-left-color: #059669; }
+  .code-block { background: #0F172A; color: #E2E8F0; border-radius: 12px; padding: 1.5rem; font-family: 'SF Mono', 'Fira Code', monospace; font-size: 0.85rem; line-height: 1.7; overflow-x: auto; }
+  .code-block .comment { color: #64748B; }
+  .code-block .keyword { color: #7C3AED; }
+  .code-block .string { color: #059669; }
+  .code-block .func { color: #3B82F6; }
+  .flow-step { counter-increment: step; }
+  .flow-step::before { content: counter(step); width: 2.5rem; height: 2.5rem; border-radius: 50%; background: linear-gradient(135deg, #2563EB, #059669); color: white; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 1.1rem; flex-shrink: 0; }
+  @media (max-width: 640px) {
+    .code-block { font-size: 0.72rem; padding: 1rem; }
+  }
+</style>
+</head>
+<body class="bg-surface text-foreground font-body antialiased">
+
+<!-- Nav -->
+<nav class="fixed top-0 w-full z-50 bg-surface/85 backdrop-blur-lg border-b border-border">
+  <div class="max-w-6xl mx-auto px-6 h-[72px] flex items-center justify-between">
+    <a href="https://atlasnexus.tech" class="flex items-center gap-3">
+      <div class="w-9 h-9 bg-primary rounded-lg flex items-center justify-center shadow-lg shadow-blue-500/20">
+        <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="6" r="2.5" fill="currentColor" stroke="none"/><circle cx="19" cy="13" r="2.5" fill="currentColor" stroke="none"/><circle cx="5" cy="13" r="2.5" fill="currentColor" stroke="none"/><line x1="12" y1="8.5" x2="17.5" y2="11.5"/><line x1="6.5" y1="11.5" x2="12" y2="8.5"/></svg>
+      </div>
+      <span class="font-display font-bold text-xl tracking-tight">Atlas Nexus</span>
+    </a>
+    <div class="flex items-center gap-3">
+      <div class="hidden sm:inline-grid lang-switch" data-active="en" aria-label="Language selector">
+        <a href="/agent-identity/">FR</a>
+        <a class="active" href="/agent-identity/en/?lang=en">EN</a>
+      </div>
+      <a href="#contact" class="bg-primary text-white px-5 py-2.5 rounded-full text-sm font-semibold hover:bg-primary-dark font-display">Contact us</a>
+    </div>
+  </div>
+</nav>
+
+<!-- Hero -->
+<section id="top" class="min-h-screen flex items-center pt-24 pb-16 relative overflow-hidden">
+  <div class="hero-orb"></div>
+  <div class="max-w-6xl mx-auto px-6 w-full relative z-10">
+    <div class="max-w-4xl">
+      <p class="text-accent font-semibold tracking-widest uppercase text-xs mb-4">Agent Identity</p>
+      <h1 class="text-5xl sm:text-6xl lg:text-7xl font-black tracking-tight leading-none mb-6 font-display">
+        <span class="glow-word">Who is this agent?</span><br>
+        <span class="text-foreground">Cryptographic</span><br>
+        <span class="gradient-text">identity verification</span>
+      </h1>
+      <p class="text-xl sm:text-2xl text-slate-600 max-w-2xl mb-3 leading-relaxed">
+        In an ecosystem of autonomous agents, the most dangerous line of code is also the simplest: <code class="bg-slate-200 px-1.5 py-0.5 rounded text-sm">agent.name = "TrustedAgent"</code>.
+      </p>
+      <p class="text-lg text-slate-500 max-w-xl mb-10">
+        Any agent can claim to be anyone. The solution: verifiable, cryptographically signed, on-chain anchored identity.
+      </p>
+      <div class="flex gap-4 flex-wrap">
+        <a href="#problem" class="bg-primary text-white px-8 py-4 rounded-full text-lg font-semibold hover:bg-primary-dark font-display">Understand the problem</a>
+        <a href="#solution" class="border-2 border-slate-300 text-slate-700 px-8 py-4 rounded-full text-lg font-semibold hover:border-primary hover:text-primary font-display">The solution</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Problem -->
+<section id="problem" class="py-28 bg-white">
+  <div class="max-w-6xl mx-auto px-6">
+    <div class="reveal text-center mb-16">
+      <p class="text-red-500 font-semibold tracking-widest uppercase text-xs mb-3">The Problem</p>
+      <h2 class="section-title text-foreground font-display">The agent identity paradox</h2>
+    </div>
+    <div class="grid lg:grid-cols-2 gap-12 max-w-5xl mx-auto">
+      <div class="reveal space-y-6">
+        <h3 class="text-2xl font-bold font-display">The Ship of Theseus for agents</h3>
+        <p class="text-slate-600 leading-relaxed">When you restart your AI agent, is it still the same agent? You swap the model (GPT-4 → Claude → Llama), rewrite the system prompt, replace the memory store — at what point does Agent A become Agent B?</p>
+        <div class="bg-red-50 border border-red-200 rounded-xl p-6">
+          <p class="text-red-700 font-semibold mb-2">⚠ The impersonation problem</p>
+          <p class="text-red-600 text-sm">An attacker can: copy an agent's configuration, steal its memory, create a clone claiming to be the original. Without cryptographic verification, the real and the fake are indistinguishable.</p>
+        </div>
+      </div>
+      <div class="reveal space-y-4">
+        <h3 class="text-2xl font-bold font-display">The 5 critical scenarios</h3>
+        <div class="space-y-3">
+          <div class="flex gap-3 items-start p-4 bg-surface rounded-xl"><span class="text-primary font-black text-lg shrink-0">1</span><div><p class="font-semibold text-sm">Model upgrade</p><p class="text-slate-500 text-xs">GPT-4 → GPT-4.5: same agent if memory persists, but behavior shifts</p></div></div>
+          <div class="flex gap-3 items-start p-4 bg-surface rounded-xl"><span class="text-purple-600 font-black text-lg shrink-0">2</span><div><p class="font-semibold text-sm">Prompt rewrite</p><p class="text-slate-500 text-xs">Changing personality & goals = new agent, even with the same memory</p></div></div>
+          <div class="flex gap-3 items-start p-4 bg-surface rounded-xl"><span class="text-amber-600 font-black text-lg shrink-0">3</span><div><p class="font-semibold text-sm">Memory loss</p><p class="text-slate-500 text-xs">DB crash, restore from backup: the agent loses part of its identity</p></div></div>
+          <div class="flex gap-3 items-start p-4 bg-surface rounded-xl"><span class="text-accent font-black text-lg shrink-0">4</span><div><p class="font-semibold text-sm">Memory fork</p><p class="text-slate-500 text-xs">Two instances, same past, diverging futures: which one is the "real" agent?</p></div></div>
+          <div class="flex gap-3 items-start p-4 bg-surface rounded-xl"><span class="text-red-500 font-black text-lg shrink-0">5</span><div><p class="font-semibold text-sm">Complete replacement</p><p class="text-slate-500 text-xs">Perfect clone, identical behavior, but no causal continuity: impersonation</p></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- The 4 Layers -->
+<section class="py-28 bg-muted">
+  <div class="max-w-6xl mx-auto px-6">
+    <div class="reveal text-center mb-16">
+      <p class="text-accent font-semibold tracking-widest uppercase text-xs mb-3">Framework</p>
+      <h2 class="section-title text-foreground font-display">The 4 pillars of agent identity</h2>
+      <p class="text-slate-600 max-w-2xl mx-auto mt-4">Based on the community-established framework — each layer answers the "same agent?" question differently.</p>
+    </div>
+    <div class="grid sm:grid-cols-2 gap-6 max-w-5xl mx-auto">
+      <div class="reveal layer-card config bg-white p-6">
+        <div class="flex items-center gap-3 mb-4">
+          <div class="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center"><svg class="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div>
+          <div><h3 class="font-bold text-lg font-display">Configuration</h3><p class="text-xs text-slate-400">Identity as specification</p></div>
+        </div>
+        <p class="text-slate-600 text-sm leading-relaxed">The agent is defined by its config file — system prompt, model, tools, environment variables. A commit hash uniquely identifies a configuration. <strong>Limitation:</strong> two agents with identical configs in different contexts behave differently.</p>
+      </div>
+      <div class="reveal layer-card behavior bg-white p-6">
+        <div class="flex items-center gap-3 mb-4">
+          <div class="w-10 h-10 bg-purple-100 rounded-lg flex items-center justify-center"><svg class="w-5 h-5 text-purple-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="3 17 9 11 13 15 21 7"/><polyline points="17 7 21 7 21 11"/></svg></div>
+          <div><h3 class="font-bold text-lg font-display">Behavioral</h3><p class="text-xs text-slate-400">Identity as interface</p></div>
+        </div>
+        <p class="text-slate-600 text-sm leading-relaxed">Two agents are "identical" if they produce the same outputs for the same inputs. Enables implementation swaps. <strong>Limitation:</strong> behavioral equivalence is nearly impossible to verify for general-purpose agents.</p>
+      </div>
+      <div class="reveal layer-card memory bg-white p-6">
+        <div class="flex items-center gap-3 mb-4">
+          <div class="w-10 h-10 bg-amber-100 rounded-lg flex items-center justify-center"><svg class="w-5 h-5 text-amber-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+          <div><h3 class="font-bold text-lg font-display">Memory</h3><p class="text-xs text-slate-400">Identity as continuity of experience</p></div>
+        </div>
+        <p class="text-slate-600 text-sm leading-relaxed">The agent persists its memory — conversation history, learned facts, episodic experiences. The most intuitive thread of continuity. <strong>Limitation:</strong> a memory fork creates two diverging agents. Restoring a backup breaks continuity.</p>
+      </div>
+      <div class="reveal layer-card sovereign bg-white p-6">
+        <div class="flex items-center gap-3 mb-4">
+          <div class="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center"><svg class="w-5 h-5 text-accent" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></div>
+          <div><h3 class="font-bold text-lg font-display">Sovereign</h3><p class="text-xs text-slate-400">Identity as dedicated machine</p></div>
+        </div>
+        <p class="text-slate-600 text-sm leading-relaxed"><strong>#OneComputerPerAgent.</strong> Identity is anchored in exclusive control of a compute resource. The machine becomes the agent's "body." Swap the model, prompt, memory — as long as the machine is the same, the agent persists. The ultimate anchor.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Solution: Cryptographic Identity -->
+<section id="solution" class="py-28 bg-white">
+  <div class="max-w-6xl mx-auto px-6">
+    <div class="reveal text-center mb-16">
+      <p class="text-accent font-semibold tracking-widest uppercase text-xs mb-3">The Solution</p>
+      <h2 class="section-title text-foreground font-display">Cryptographic signature = identity</h2>
+      <p class="text-slate-600 max-w-2xl mx-auto mt-4">The emerging standard: each agent controls a private key. Identity is proven by signature, not by declaration.</p>
+    </div>
+    <div class="max-w-4xl mx-auto">
+      <div class="reveal code-block mb-8">
+        <span class="comment">// ❌ The naive approach — anyone can impersonate</span><br>
+        <span class="keyword">const</span> agent = { <span class="string">name</span>: <span class="string">"TrustedAgent"</span> };<br><br>
+        <span class="comment">// ✅ The cryptographic approach — verifiable identity</span><br>
+        <span class="keyword">const</span> <span class="func">identity</span> = <span class="func">sign</span>({ <span class="string">name</span>: <span class="string">"TrustedAgent"</span>, <span class="string">pubkey</span>: <span class="string">"0x3fA..."</span> }, <span class="string">PRIVATE_KEY</span>);<br>
+        <span class="comment">// The recipient verifies:</span><br>
+        <span class="keyword">const</span> <span class="func">verified</span> = <span class="func">verify</span>(identity, <span class="string">PUBLIC_KEY</span>); <span class="comment">// true ✅</span>
+      </div>
+
+      <div class="grid sm:grid-cols-3 gap-6">
+        <div class="reveal agentic-card bg-white rounded-2xl p-6 border border-border text-center">
+          <div class="w-14 h-14 bg-blue-100 rounded-2xl flex items-center justify-center mx-auto mb-4"><span class="text-2xl">🔑</span></div>
+          <h4 class="font-bold mb-2 font-display">Private key</h4>
+          <p class="text-slate-600 text-sm">Each agent holds a unique private key, stored on its dedicated machine. The key never leaves the hardware.</p>
+        </div>
+        <div class="reveal agentic-card bg-white rounded-2xl p-6 border border-border text-center">
+          <div class="w-14 h-14 bg-green-100 rounded-2xl flex items-center justify-center mx-auto mb-4"><span class="text-2xl">✍️</span></div>
+          <h4 class="font-bold mb-2 font-display">Signature</h4>
+          <p class="text-slate-600 text-sm">Every message, action, or attestation is signed with the private key. The signature is unforgeable.</p>
+        </div>
+        <div class="reveal agentic-card bg-white rounded-2xl p-6 border border-border text-center">
+          <div class="w-14 h-14 bg-purple-100 rounded-2xl flex items-center justify-center mx-auto mb-4"><span class="text-2xl">✅</span></div>
+          <h4 class="font-bold mb-2 font-display">Verification</h4>
+          <p class="text-slate-600 text-sm">Any third party can verify the signature with the public key. No central authority required.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SOUL.md + Self-Model -->
+<section class="py-28 bg-muted">
+  <div class="max-w-6xl mx-auto px-6">
+    <div class="reveal text-center mb-16">
+      <p class="text-purple-500 font-semibold tracking-widest uppercase text-xs mb-3">Emerging Standard</p>
+      <h2 class="section-title text-foreground font-display">SOUL.md: declared identity</h2>
+      <p class="text-slate-600 max-w-2xl mx-auto mt-4">A portable markdown file that defines who the agent is — name, goals, values, guidelines, history. Versioned. Timestamped. Signed.</p>
+    </div>
+    <div class="grid lg:grid-cols-2 gap-12 max-w-5xl mx-auto items-center">
+      <div class="reveal">
+        <div class="code-block text-sm">
+          <span class="comment"># SOUL.md — Agent Identity Self-Model</span><br>
+          <span class="keyword">name:</span> <span class="string">AtlasNexus/Validator-v3</span><br>
+          <span class="keyword">version:</span> <span class="string">3.2.1</span><br>
+          <span class="keyword">created:</span> <span class="string">2026-05-15T10:00:00Z</span><br>
+          <span class="keyword">pubkey:</span> <span class="string">0x7Bd9...a3F2</span><br>
+          <span class="keyword">signature:</span> <span class="string">0x8f3a...c21d</span><br><br>
+          <span class="comment">## Core Purpose</span><br>
+          <span class="string">I verify agent identities on-chain using</span><br>
+          <span class="string">ERC-8004 attestations. I am NOT a</span><br>
+          <span class="string">marketplace. I am a verification oracle.</span><br><br>
+          <span class="comment">## Behavioral Boundaries</span><br>
+          <span class="string">- Never sign without human confirmation</span><br>
+          <span class="string">- Always log verification attempts</span><br>
+          <span class="string">- Reject unverifiable claims immediately</span>
+        </div>
+      </div>
+      <div class="reveal space-y-6">
+        <h3 class="text-2xl font-bold font-display">Why SOUL.md?</h3>
+        <ul class="space-y-4">
+          <li class="flex gap-3"><span class="check-icon font-bold shrink-0">🔏</span><div><p class="font-semibold">Cryptographically signed</p><p class="text-slate-500 text-sm">The file includes the private key signature. Any modification is detectable.</p></div></li>
+          <li class="flex gap-3"><span class="check-icon font-bold shrink-0">📦</span><div><p class="font-semibold">Portable</p><p class="text-slate-500 text-sm">The SOUL.md travels with the agent, regardless of infrastructure. Identity survives migrations.</p></div></li>
+          <li class="flex gap-3"><span class="check-icon font-bold shrink-0">📜</span><div><p class="font-semibold">Versioned</p><p class="text-slate-500 text-sm">Every identity evolution is tracked. The change history is auditable.</p></div></li>
+          <li class="flex gap-3"><span class="check-icon font-bold shrink-0">🔄</span><div><p class="font-semibold">Self-model</p><p class="text-slate-500 text-sm">The agent reads its SOUL.md at boot. It knows who it is, what it can do, and its boundaries.</p></div></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Web of Trust -->
+<section class="py-28 bg-white">
+  <div class="max-w-6xl mx-auto px-6">
+    <div class="reveal text-center mb-16">
+      <p class="text-accent font-semibold tracking-widest uppercase text-xs mb-3">Decentralized Trust</p>
+      <h2 class="section-title text-foreground font-display">Web of Trust for agents</h2>
+      <p class="text-slate-600 max-w-2xl mx-auto mt-4">Beyond signatures: a network of cross-attestations where agents certify each other.</p>
+    </div>
+    <div class="max-w-4xl mx-auto">
+      <div class="reveal flex flex-col sm:flex-row items-center justify-center gap-6 mb-12">
+        <div class="agentic-card bg-white rounded-2xl p-6 border border-border text-center w-full sm:w-48">
+          <div class="text-3xl mb-2">🤖</div>
+          <p class="font-bold font-display">Agent A</p>
+          <p class="text-xs text-slate-400 mt-1">"I certify this key belongs to Agent B"</p>
+          <div class="mt-3 text-xs bg-green-50 text-accent px-2 py-1 rounded-full inline-block">Attestation ✓</div>
+        </div>
+        <div class="text-2xl text-slate-300">→</div>
+        <div class="agentic-card bg-white rounded-2xl p-6 border border-border text-center w-full sm:w-48">
+          <div class="text-3xl mb-2">🤖</div>
+          <p class="font-bold font-display">Agent B</p>
+          <p class="text-xs text-slate-400 mt-1">"I confirm: Agent A is who they claim to be"</p>
+          <div class="mt-3 text-xs bg-green-50 text-accent px-2 py-1 rounded-full inline-block">Counter-attestation ✓</div>
+        </div>
+        <div class="text-2xl text-slate-300">→</div>
+        <div class="agentic-card bg-white rounded-2xl p-6 border border-border text-center w-full sm:w-48">
+          <div class="text-3xl mb-2">🔍</div>
+          <p class="font-bold font-display">Verifier</p>
+          <p class="text-xs text-slate-400 mt-1">Trust score: 0.94</p>
+          <div class="mt-3 text-xs bg-blue-50 text-primary px-2 py-1 rounded-full inline-block">Validated ✓</div>
+        </div>
+      </div>
+      <div class="grid sm:grid-cols-3 gap-6">
+        <div class="reveal bg-surface rounded-xl p-6 text-center">
+          <p class="font-bold mb-2 font-display">Cross-attestations</p>
+          <p class="text-slate-600 text-sm">Agents sign each other's public keys. The more an agent is attested by trusted peers, the stronger its identity.</p>
+        </div>
+        <div class="reveal bg-surface rounded-xl p-6 text-center">
+          <p class="font-bold mb-2 font-display">On-chain reputation</p>
+          <p class="text-slate-600 text-sm">Interaction history is recorded on-chain. An agent with a long history of honest behavior builds reputation capital.</p>
+        </div>
+        <div class="reveal bg-surface rounded-xl p-6 text-center">
+          <p class="font-bold mb-2 font-display">Anomaly detection</p>
+          <p class="text-slate-600 text-sm">Sudden behavior change, new IP, different tools → red flag. Identity isn't a snapshot — it's a continuous stream.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Verification Flow -->
+<section class="py-28 bg-muted">
+  <div class="max-w-6xl mx-auto px-6">
+    <div class="reveal text-center mb-16">
+      <p class="text-accent font-semibold tracking-widest uppercase text-xs mb-3">Process</p>
+      <h2 class="section-title text-foreground font-display">How to verify an agent's identity</h2>
+    </div>
+    <div class="max-w-3xl mx-auto">
+      <div class="space-y-8" style="counter-reset: step 0;">
+        <div class="reveal flow-step flex gap-5 items-start">
+          <div>
+            <h4 class="font-bold text-lg font-display">Registration</h4>
+            <p class="text-slate-600 text-sm">The agent generates a key pair (Ed25519/secp256k1) and registers its public key in an on-chain registry (ERC-8004). The SOUL.md is hashed and the hash is stored with the registration.</p>
+          </div>
+        </div>
+        <div class="reveal flow-step flex gap-5 items-start">
+          <div>
+            <h4 class="font-bold text-lg font-display">Message signing</h4>
+            <p class="text-slate-600 text-sm">Every outgoing message is signed with the private key. The recipient can verify the signature against the registered public key. Unsigned messages are rejected by peers.</p>
+          </div>
+        </div>
+        <div class="reveal flow-step flex gap-5 items-start">
+          <div>
+            <h4 class="font-bold text-lg font-display">Cross-verification</h4>
+            <p class="text-slate-600 text-sm">Before accepting an interaction, the receiving agent checks: (1) the signature, (2) the on-chain registry, (3) the reputation score, (4) the attestation history. Validation in < 500ms.</p>
+          </div>
+        </div>
+        <div class="reveal flow-step flex gap-5 items-start">
+          <div>
+            <h4 class="font-bold text-lg font-display">Key rotation</h4>
+            <p class="text-slate-600 text-sm">Keys are rotated periodically. The old key signs a "transition certificate" designating the new one. The signature chain proves identity continuity without a single point of failure.</p>
+          </div>
+        </div>
+        <div class="reveal flow-step flex gap-5 items-start">
+          <div>
+            <h4 class="font-bold text-lg font-display">Continuous audit</h4>
+            <p class="text-slate-600 text-sm">All interactions are logged. Any deviation from expected behavior triggers an alert. Identity is not a one-time event — it's a continuously maintained property.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- On-Chain Implementation -->
+<section class="py-28 bg-white">
+  <div class="max-w-6xl mx-auto px-6">
+    <div class="reveal text-center mb-16">
+      <p class="text-accent font-semibold tracking-widest uppercase text-xs mb-3">Implementation</p>
+      <h2 class="section-title text-foreground font-display">On-chain identity: ERC-8004</h2>
+      <p class="text-slate-600 max-w-2xl mx-auto mt-4">The ERC-8004 standard (an extension of ERC-721) on Celo enables registering an agent's identity as a soulbound NFT — non-transferable, verifiable, with rich metadata.</p>
+    </div>
+    <div class="grid lg:grid-cols-2 gap-12 max-w-5xl mx-auto">
+      <div class="reveal space-y-6">
+        <h3 class="text-2xl font-bold font-display">What the contract stores</h3>
+        <div class="space-y-3">
+          <div class="flex gap-3 items-start p-4 bg-surface rounded-xl"><span class="text-accent font-black text-lg shrink-0">🔗</span><div><p class="font-semibold text-sm">Public key</p><p class="text-slate-500 text-xs">The agent's Ed25519 public key, registered on-chain. Immutable, verifiable by anyone.</p></div></div>
+          <div class="flex gap-3 items-start p-4 bg-surface rounded-xl"><span class="text-accent font-black text-lg shrink-0">#️⃣</span><div><p class="font-semibold text-sm">SOUL.md hash</p><p class="text-slate-500 text-xs">The SHA-256 fingerprint of the identity file. Any SOUL.md modification is detectable.</p></div></div>
+          <div class="flex gap-3 items-start p-4 bg-surface rounded-xl"><span class="text-accent font-black text-lg shrink-0">📅</span><div><p class="font-semibold text-sm">Timestamp</p><p class="text-slate-500 text-xs">On-chain registration date. Proof of anteriority in case of identity disputes.</p></div></div>
+          <div class="flex gap-3 items-start p-4 bg-surface rounded-xl"><span class="text-accent font-black text-lg shrink-0">🔄</span><div><p class="font-semibold text-sm">Rotation chain</p><p class="text-slate-500 text-xs">History of key transitions. Each new key is signed by the previous one.</p></div></div>
+          <div class="flex gap-3 items-start p-4 bg-surface rounded-xl"><span class="text-accent font-black text-lg shrink-0">⭐</span><div><p class="font-semibold text-sm">Reputation score</p><p class="text-slate-500 text-xs">Aggregate of received attestations. Calculated on-chain, manipulation-resistant.</p></div></div>
+        </div>
+      </div>
+      <div class="reveal">
+        <div class="agentic-card bg-white rounded-2xl p-8 border border-border">
+          <div class="flex items-center gap-3 mb-6">
+            <div class="w-12 h-12 bg-gradient-to-br from-[#FCFF52] to-[#35D07F] rounded-xl flex items-center justify-center"><span class="text-white font-black text-sm">C</span></div>
+            <div>
+              <h4 class="font-bold font-display">Celo Mainnet</h4>
+              <p class="text-xs text-slate-400">Carbon-negative · EVM-compatible · Fees < $0.01</p>
+            </div>
+          </div>
+          <ul class="space-y-3 text-sm text-slate-600">
+            <li class="flex gap-2"><span class="check-icon">✓</span> Soulbound NFT ERC-8004: identity is tied to the agent, not a human wallet</li>
+            <li class="flex gap-2"><span class="check-icon">✓</span> On-chain metadata queryable by any smart contract</li>
+            <li class="flex gap-2"><span class="check-icon">✓</span> Compatible with EAS (Ethereum Attestation Service) attestations</li>
+            <li class="flex gap-2"><span class="check-icon">✓</span> Single-transaction verification — no dependency on a central server</li>
+            <li class="flex gap-2"><span class="check-icon">✓</span> Deployment cost: ~$0.01 CELO</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Portability -->
+<section class="py-28 bg-muted">
+  <div class="max-w-6xl mx-auto px-6">
+    <div class="reveal text-center mb-16">
+      <p class="text-purple-500 font-semibold tracking-widest uppercase text-xs mb-3">Portability</p>
+      <h2 class="section-title text-foreground font-display">Swap models without losing identity</h2>
+      <p class="text-slate-600 max-w-2xl mx-auto mt-4">GPT-4 → Claude → Llama: identity persists if 4 conditions are met.</p>
+    </div>
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-5xl mx-auto">
+      <div class="reveal bg-white rounded-xl p-6 text-center border border-border">
+        <div class="text-3xl mb-3">🔌</div>
+        <h4 class="font-bold mb-2 font-display">Stable interface</h4>
+        <p class="text-slate-500 text-sm">The agent exposes the same interfaces regardless of the internal model.</p>
+      </div>
+      <div class="reveal bg-white rounded-xl p-6 text-center border border-border">
+        <div class="text-3xl mb-3">🎯</div>
+        <h4 class="font-bold mb-2 font-display">Behavioral bounds</h4>
+        <p class="text-slate-500 text-sm">Behavior stays within acceptable limits, even if it varies across models.</p>
+      </div>
+      <div class="reveal bg-white rounded-xl p-6 text-center border border-border">
+        <div class="text-3xl mb-3">🧠</div>
+        <h4 class="font-bold mb-2 font-display">Memory continuity</h4>
+        <p class="text-slate-500 text-sm">Memory persists independently of the processing engine.</p>
+      </div>
+      <div class="reveal bg-white rounded-xl p-6 text-center border border-border">
+        <div class="text-3xl mb-3">🗺️</div>
+        <h4 class="font-bold mb-2 font-display">Goal preservation</h4>
+        <p class="text-slate-500 text-sm">Core goals remain constant, even as tactics evolve.</p>
+      </div>
+    </div>
+    <div class="reveal text-center mt-10">
+      <p class="text-slate-500 text-sm italic">"The model is infrastructure, not identity." — Agent portability principle</p>
+    </div>
+  </div>
+</section>
+
+<!-- Security -->
+<section class="py-28 bg-white">
+  <div class="max-w-6xl mx-auto px-6">
+    <div class="reveal text-center mb-16">
+      <p class="text-red-500 font-semibold tracking-widest uppercase text-xs mb-3">Security</p>
+      <h2 class="section-title text-foreground font-display">Defense against identity theft</h2>
+    </div>
+    <div class="grid sm:grid-cols-2 gap-6 max-w-5xl mx-auto">
+      <div class="reveal agentic-card bg-white rounded-2xl p-7 border border-border">
+        <h4 class="font-bold text-lg mb-3 font-display">🔐 Key security</h4>
+        <p class="text-slate-600 text-sm">Private keys stored in HSM or secure enclave. The dedicated machine (#OneComputerPerAgent) reduces attack surface: stealing the identity requires physical access.</p>
+      </div>
+      <div class="reveal agentic-card bg-white rounded-2xl p-7 border border-border">
+        <h4 class="font-bold text-lg mb-3 font-display">📊 Behavioral monitoring</h4>
+        <p class="text-slate-600 text-sm">Continuous anomaly detection. IP change, new tools, behavior deviation → immediate alert. Identity is verified continuously, not just at login.</p>
+      </div>
+      <div class="reveal agentic-card bg-white rounded-2xl p-7 border border-border">
+        <h4 class="font-bold text-lg mb-3 font-display">📝 Audit trail</h4>
+        <p class="text-slate-600 text-sm">Exhaustive logging of all actions. Every interaction is traced, signed, timestamped. In case of compromise, the audit trail reconstructs exactly what happened.</p>
+      </div>
+      <div class="reveal agentic-card bg-white rounded-2xl p-7 border border-border">
+        <h4 class="font-bold text-lg mb-3 font-display">🛡️ Multi-factor identity</h4>
+        <p class="text-slate-600 text-sm">Combination of: cryptographic signature + behavioral fingerprint + reputation score + Web of Trust attestations. Compromising one factor is not enough.</p>
+      </div>
+    </div>
+    <div class="reveal text-center mt-10">
+      <div class="inline-block bg-red-50 border border-red-200 rounded-xl px-6 py-4 max-w-2xl">
+        <p class="text-red-700 font-semibold text-sm">⚠ Core principle: make identity theft too expensive to be profitable. If stealing an agent's identity requires physical access to secure hardware, the cost/benefit ratio deters attackers.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Infrastructure -->
+<section class="py-28 bg-muted">
+  <div class="max-w-6xl mx-auto px-6">
+    <div class="reveal text-center mb-16">
+      <p class="text-accent font-semibold tracking-widest uppercase text-xs mb-3">Infrastructure</p>
+      <h2 class="section-title text-foreground font-display">The future: standardized protocols</h2>
+    </div>
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
+      <div class="reveal bg-white rounded-xl p-6 border border-border">
+        <h4 class="font-bold mb-2 font-display">🔖 Agent Identity Protocol</h4>
+        <p class="text-slate-600 text-sm">Standard agent identity format, like OAuth for humans but designed for agent-to-agent interaction.</p>
+      </div>
+      <div class="reveal bg-white rounded-xl p-6 border border-border">
+        <h4 class="font-bold mb-2 font-display">🏛️ Identity Providers</h4>
+        <p class="text-slate-600 text-sm">Services that issue and verify agent identities, like certificate authorities for SSL.</p>
+      </div>
+      <div class="reveal bg-white rounded-xl p-6 border border-border">
+        <h4 class="font-bold mb-2 font-display">🌐 Reputation networks</h4>
+        <p class="text-slate-600 text-sm">Cross-platform systems for tracking agent behavior and building trust.</p>
+      </div>
+      <div class="reveal bg-white rounded-xl p-6 border border-border">
+        <h4 class="font-bold mb-2 font-display">📦 Portable identity</h4>
+        <p class="text-slate-600 text-sm">Migrating agent identity across platforms, like porting a phone number.</p>
+      </div>
+      <div class="reveal bg-white rounded-xl p-6 border border-border">
+        <h4 class="font-bold mb-2 font-display">📋 Agent registry</h4>
+        <p class="text-slate-600 text-sm">Decentralized directory linking agent IDs to public keys, capabilities, and scores.</p>
+      </div>
+      <div class="reveal bg-white rounded-xl p-6 border border-border">
+        <h4 class="font-bold mb-2 font-display">⚖️ Regulatory framework</h4>
+        <p class="text-slate-600 text-sm">Legal structures defining the rights and responsibilities of autonomous agents.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Ephemeral vs Persistent -->
+<section class="py-28 bg-white">
+  <div class="max-w-6xl mx-auto px-6">
+    <div class="reveal text-center mb-16">
+      <p class="text-accent font-semibold tracking-widest uppercase text-xs mb-3">Architecture</p>
+      <h2 class="section-title text-foreground font-display">Ephemeral or persistent?</h2>
+      <p class="text-slate-600 max-w-2xl mx-auto mt-4">Not all agents need persistent identity. The infrastructure level should match the need.</p>
+    </div>
+    <div class="grid lg:grid-cols-2 gap-12 max-w-5xl mx-auto">
+      <div class="reveal bg-surface rounded-2xl p-8 border border-border">
+        <h3 class="text-xl font-bold font-display mb-4">🍃 Ephemeral agents</h3>
+        <p class="text-slate-600 text-sm mb-4">Temporary, stateless, fungible agents. A code completion, a one-shot scraper, a sandboxed test.</p>
+        <div class="space-y-2 text-sm">
+          <p class="flex gap-2"><span class="text-slate-400">→</span> Configuration identity is sufficient</p>
+          <p class="flex gap-2"><span class="text-slate-400">→</span> No memory persistence</p>
+          <p class="flex gap-2"><span class="text-slate-400">→</span> No cryptographic key</p>
+          <p class="flex gap-2"><span class="text-slate-400">→</span> Stateless, scalable, disposable</p>
+        </div>
+        <p class="text-slate-400 text-xs mt-4 italic">"The serverless functions of the agent world."</p>
+      </div>
+      <div class="reveal agentic-card bg-white rounded-2xl p-8 border border-border">
+        <h3 class="text-xl font-bold font-display mb-4">🏠 Persistent agents</h3>
+        <p class="text-slate-600 text-sm mb-4">Long-term agents with relationships, learning, reputation. A personal assistant, a codebase maintainer, a customer support agent.</p>
+        <div class="space-y-2 text-sm">
+          <p class="flex gap-2"><span class="check-icon font-bold">✓</span> Sovereign identity (dedicated machine)</p>
+          <p class="flex gap-2"><span class="check-icon font-bold">✓</span> Persistent memory (DB + logs)</p>
+          <p class="flex gap-2"><span class="check-icon font-bold">✓</span> Private key + on-chain registry</p>
+          <p class="flex gap-2"><span class="check-icon font-bold">✓</span> Signed & versioned SOUL.md</p>
+          <p class="flex gap-2"><span class="check-icon font-bold">✓</span> Web of Trust + reputation</p>
+          <p class="flex gap-2"><span class="check-icon font-bold">✓</span> Continuous behavioral monitoring</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Contact CTA -->
+<section id="contact" class="py-28 bg-muted">
+  <div class="max-w-3xl mx-auto px-6 text-center">
+    <div class="reveal">
+      <h2 class="section-title text-foreground mb-5 font-display">Building an agent ecosystem?</h2>
+      <p class="text-slate-600 text-lg mb-4 max-w-xl mx-auto">We deploy agent identity infrastructure for your project. Keys, on-chain registry, SOUL.md, Web of Trust — delivered in production.</p>
+      <p class="text-slate-500 text-sm mb-10">Stack: Celo (ERC-8004) · Ed25519 · EAS Attestations · Smart Contracts · SOUL.md</p>
+      <div class="flex flex-col gap-4 items-center">
+        <a href="mailto:laslyalexandre@gmail.com?subject=Agent%20Identity%20-%20Project" class="bg-primary text-white px-10 py-4 rounded-full text-lg font-semibold hover:bg-primary-dark font-display inline-flex items-center gap-2">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          laslyalexandre@gmail.com
+        </a>
+        <p class="text-slate-400 text-sm">Or via <a href="mailto:atlasnexus.ops@proton.me" class="text-primary hover:underline">atlasnexus.ops@proton.me</a></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="py-12 border-t border-border bg-white">
+  <div class="max-w-6xl mx-auto px-6 text-center">
+    <p class="text-slate-400 text-sm">&copy; 2026 Atlas Nexus — Alexandre Lasly</p>
+    <p class="text-slate-400 text-xs mt-2"><a href="https://atlasnexus.tech" class="hover:text-primary">← Back to main site</a></p>
+  </div>
+</footer>
+
+<!-- Scroll Reveal -->
+<script>
+(function() {
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    document.querySelectorAll('.reveal').forEach(el => el.classList.add('visible'));
+    return;
+  }
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+})();
+</script>
+</body>
+</html>
