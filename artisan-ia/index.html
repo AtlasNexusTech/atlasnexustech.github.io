@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Agent IA pour Artisans — Répondez à vos clients 24/7 | Atlas Nexus</title>
+<meta name="description" content="Un assistant IA qui répond à vos clients sur WhatsApp et Telegram, prend vos RDV, et qualifie vos leads. Pendant que vous êtes sur le chantier. À partir de 150€.">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config = {
+  darkMode: 'class',
+  theme: {
+    extend: {
+      fontFamily: {
+        display: ['Rubik', 'sans-serif'],
+        body: ['Nunito Sans', 'sans-serif'],
+      },
+      colors: {
+        primary: '#2563EB', 'primary-dark': '#1D4ED8',
+        accent: '#059669', 'accent-dark': '#047857',
+        surface: '#F8FAFC', foreground: '#0F172A',
+      }
+    }
+  }
+}
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700;800;900&family=Nunito+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  .gradient-text { background: linear-gradient(135deg, #2563EB 0%, #059669 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+  .section-title { font-size: clamp(1.8rem, 4.5vw, 2.8rem); font-weight: 800; letter-spacing: -0.03em; line-height: 1.15; }
+  .pricing-card { position: relative; overflow: hidden; border: 2px solid rgba(37,99,235,.15); border-radius: 16px; background: linear-gradient(145deg, #ffffff 0%, #f7fbff 52%, #eef8ff 100%); padding: 2rem; box-shadow: 0 18px 52px -34px rgba(37,99,235,.55); }
+  .pricing-card.featured { border-color: rgba(5,150,105,.35); box-shadow: 0 18px 60px -28px rgba(5,150,105,.50); background: linear-gradient(145deg, #ffffff 0%, #f0fdf6 52%, #ecfdf5 100%); }
+  .check-icon { color: #059669; }
+  .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.6s ease, transform 0.6s ease; }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+</style>
+<link rel="canonical" href="https://atlasnexus.tech/artisan-ia/">
+</head>
+<body class="bg-surface text-foreground font-body antialiased">
+
+<!-- Nav -->
+<nav class="fixed top-0 w-full z-50 bg-surface/85 backdrop-blur-lg border-b border-slate-200">
+  <div class="max-w-6xl mx-auto px-6 h-[72px] flex items-center justify-between">
+    <a href="https://atlasnexus.tech" class="flex items-center gap-3">
+      <div class="w-9 h-9 bg-primary rounded-lg flex items-center justify-center shadow-lg shadow-blue-500/20">
+        <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="6" r="2.5" fill="currentColor" stroke="none"/><circle cx="19" cy="13" r="2.5" fill="currentColor" stroke="none"/><circle cx="5" cy="13" r="2.5" fill="currentColor" stroke="none"/></svg>
+      </div>
+      <span class="font-display font-bold text-xl tracking-tight">Atlas Nexus</span>
+    </a>
+    <a href="#pricing" class="bg-primary text-white px-5 py-2.5 rounded-full text-sm font-semibold hover:bg-primary-dark font-display">Voir les offres</a>
+  </div>
+</nav>
+
+<!-- Hero -->
+<section class="min-h-screen flex items-center pt-24 pb-16 bg-white">
+  <div class="max-w-6xl mx-auto px-6 w-full">
+    <div class="max-w-3xl">
+      <p class="text-accent font-semibold tracking-widest uppercase text-xs mb-4">Agent IA pour Artisans</p>
+      <h1 class="text-5xl sm:text-6xl lg:text-7xl font-black tracking-tight leading-none mb-6 font-display">
+        Votre site répond<br>
+        <span class="gradient-text">à vos clients</span><br>
+        quand vous êtes sur le chantier
+      </h1>
+      <p class="text-xl sm:text-2xl text-slate-600 max-w-2xl mb-8 leading-relaxed">
+        Un assistant IA qui qualifie vos leads, prend vos rendez-vous et répond 24/7 sur WhatsApp et Telegram.
+      </p>
+      <div class="flex gap-4 flex-wrap">
+        <a href="#pricing" class="bg-primary text-white px-8 py-4 rounded-full text-lg font-semibold hover:bg-primary-dark font-display">Voir les offres</a>
+        <a href="#comment" class="border-2 border-slate-300 text-slate-700 px-8 py-4 rounded-full text-lg font-semibold hover:border-primary hover:text-primary font-display">Comment ça marche</a>
+      </div>
+      <div class="flex flex-wrap gap-6 mt-12 text-sm text-slate-400">
+        <span>✓ WhatsApp & Telegram</span>
+        <span>✓ Livré en 24-48h</span>
+        <span>✓ Aucune compétence technique requise</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Problem -->
+<section class="py-24 bg-surface">
+  <div class="max-w-6xl mx-auto px-6">
+    <div class="grid lg:grid-cols-2 gap-16 items-center">
+      <div class="reveal">
+        <p class="text-red-500 font-semibold tracking-widest uppercase text-xs mb-3">Le problème</p>
+        <h2 class="section-title text-foreground mb-6 font-display">Vous perdez des clients quand vous ne répondez pas</h2>
+        <ul class="space-y-4 text-slate-600 text-lg">
+          <li class="flex gap-3"><span class="text-red-400 font-bold">✗</span> Un prospect appelle pendant que vous êtes sur un chantier → pas de réponse → il appelle le concurrent</li>
+          <li class="flex gap-3"><span class="text-red-400 font-bold">✗</span> Vous passez vos soirées à répondre aux messages au lieu d'être en famille</li>
+          <li class="flex gap-3"><span class="text-red-400 font-bold">✗</span> Les demandes de devis s'accumulent sans suivi</li>
+        </ul>
+      </div>
+      <div class="reveal">
+        <p class="text-accent font-semibold tracking-widest uppercase text-xs mb-3">La solution</p>
+        <h2 class="section-title text-foreground mb-6 font-display">Un assistant qui ne dort jamais</h2>
+        <ul class="space-y-4 text-slate-600 text-lg">
+          <li class="flex gap-3"><span class="check-icon font-bold">✓</span> Répond automatiquement aux questions fréquentes : tarifs, délais, zones d'intervention</li>
+          <li class="flex gap-3"><span class="check-icon font-bold">✓</span> Qualifie vos leads : type de travaux, budget, urgence</li>
+          <li class="flex gap-3"><span class="check-icon font-bold">✓</span> Prend rendez-vous et vous notifie sur votre téléphone</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Use cases -->
+<section class="py-24 bg-white">
+  <div class="max-w-6xl mx-auto px-6">
+    <div class="reveal text-center mb-16">
+      <p class="text-accent font-semibold tracking-widest uppercase text-xs mb-3">Concrètement</p>
+      <h2 class="section-title text-foreground mb-5 font-display">Ce que votre assistant fait pour vous</h2>
+    </div>
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
+      <div class="reveal bg-white rounded-2xl p-6 border border-slate-200 shadow-sm">
+        <div class="text-3xl mb-3">💬</div>
+        <h3 class="font-bold text-lg mb-2 font-display">FAQ Automatique</h3>
+        <p class="text-slate-600 text-sm">Vos clients posent toujours les mêmes questions ? L'assistant y répond instantanément, 24/7.</p>
+      </div>
+      <div class="reveal bg-white rounded-2xl p-6 border border-slate-200 shadow-sm">
+        <div class="text-3xl mb-3">📋</div>
+        <h3 class="font-bold text-lg mb-2 font-display">Qualification Leads</h3>
+        <p class="text-slate-600 text-sm">L'assistant pose les bonnes questions : type de travaux, surface, budget. Vous recevez des leads qualifiés.</p>
+      </div>
+      <div class="reveal bg-white rounded-2xl p-6 border border-slate-200 shadow-sm">
+        <div class="text-3xl mb-3">📅</div>
+        <h3 class="font-bold text-lg mb-2 font-display">Prise de RDV</h3>
+        <p class="text-slate-600 text-sm">Le client choisit un créneau, vous recevez une notification. Fini les allers-retours de messages.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Pricing -->
+<section id="pricing" class="py-28 bg-surface">
+  <div class="max-w-6xl mx-auto px-6">
+    <div class="reveal text-center mb-16">
+      <p class="text-accent font-semibold tracking-widest uppercase text-xs mb-3">Offres</p>
+      <h2 class="section-title text-foreground mb-5 font-display">Un investissement qui se rentabilise au premier client</h2>
+      <p class="text-slate-600 max-w-xl mx-auto">Installation complète, testée et documentée. Vous n'avez rien à faire techniquement.</p>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-8 max-w-3xl mx-auto">
+      <!-- Starter -->
+      <div class="reveal pricing-card flex flex-col">
+        <p class="text-sm font-bold text-accent mb-2">STARTER</p>
+        <h3 class="text-2xl font-bold text-foreground mb-1 font-display">Assistant Essentiel</h3>
+        <p class="text-slate-500 text-sm mb-6">Pour indépendants et TPE</p>
+        <p class="text-4xl font-black text-foreground mb-1 font-display">150€</p>
+        <p class="text-sm text-slate-400 mb-8">One-shot · Livré en 24h</p>
+        <ul class="space-y-3 mb-8 text-sm text-slate-600 flex-1">
+          <li class="flex gap-2"><span class="check-icon">✓</span> Assistant sur WhatsApp ou Telegram</li>
+          <li class="flex gap-2"><span class="check-icon">✓</span> FAQ automatique personnalisée</li>
+          <li class="flex gap-2"><span class="check-icon">✓</span> Formulaire de qualification leads</li>
+          <li class="flex gap-2"><span class="check-icon">✓</span> Notification sur votre téléphone</li>
+          <li class="flex gap-2"><span class="check-icon">✓</span> 30 jours de support</li>
+        </ul>
+        <a href="https://buy.stripe.com/ARTISAN_STARTER_150" class="block text-center bg-accent text-white py-3 rounded-full font-semibold hover:bg-accent-dark font-display transition-all">Payer 150€</a>
+      </div>
+
+      <!-- Pro -->
+      <div class="reveal pricing-card featured flex flex-col">
+        <div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-accent text-white text-xs font-bold px-4 py-1 rounded-full">RECOMMANDÉ</div>
+        <p class="text-sm font-bold text-accent mb-2">PRO</p>
+        <h3 class="text-2xl font-bold text-foreground mb-1 font-display">Assistant Complet</h3>
+        <p class="text-slate-500 text-sm mb-6">Pour artisans établis</p>
+        <p class="text-4xl font-black text-foreground mb-1 font-display">350€</p>
+        <p class="text-sm text-slate-400 mb-8">One-shot · Livré en 48h</p>
+        <ul class="space-y-3 mb-8 text-sm text-slate-600 flex-1">
+          <li class="flex gap-2"><span class="check-icon">✓</span> Tout le plan Starter +</li>
+          <li class="flex gap-2"><span class="check-icon">✓</span> Multi-canal (WhatsApp + Telegram)</li>
+          <li class="flex gap-2"><span class="check-icon">✓</span> Prise de RDV automatique</li>
+          <li class="flex gap-2"><span class="check-icon">✓</span> Intégration avec votre site web</li>
+          <li class="flex gap-2"><span class="check-icon">✓</span> Dashboard de suivi des leads</li>
+          <li class="flex gap-2"><span class="check-icon">✓</span> 2 révisions incluses</li>
+        </ul>
+        <a href="https://buy.stripe.com/ARTISAN_PRO_350" class="block text-center bg-accent text-white py-3 rounded-full font-semibold hover:bg-accent-dark font-display transition-all">Payer 350€</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- How it works -->
+<section id="comment" class="py-28 bg-white">
+  <div class="max-w-4xl mx-auto px-6">
+    <div class="reveal text-center mb-16">
+      <p class="text-accent font-semibold tracking-widest uppercase text-xs mb-3">Simple</p>
+      <h2 class="section-title text-foreground mb-5 font-display">3 étapes, zéro technique</h2>
+    </div>
+    <div class="grid md:grid-cols-3 gap-10">
+      <div class="reveal text-center">
+        <div class="w-16 h-16 bg-primary text-white rounded-2xl flex items-center justify-center text-2xl font-black mx-auto mb-5">1</div>
+        <h3 class="font-bold text-xl mb-3 font-display">On en parle 30 min</h3>
+        <p class="text-slate-600 text-sm">Vous me décrivez votre activité, vos questions clients fréquentes, vos besoins.</p>
+      </div>
+      <div class="reveal text-center">
+        <div class="w-16 h-16 bg-primary text-white rounded-2xl flex items-center justify-center text-2xl font-black mx-auto mb-5">2</div>
+        <h3 class="font-bold text-xl mb-3 font-display">Je construis</h3>
+        <p class="text-slate-600 text-sm">Vous n'avez rien à faire. Je code, je teste, je documente. 24 à 48h.</p>
+      </div>
+      <div class="reveal text-center">
+        <div class="w-16 h-16 bg-accent text-white rounded-2xl flex items-center justify-center text-2xl font-black mx-auto mb-5">3</div>
+        <h3 class="font-bold text-xl mb-3 font-display">C'est en ligne</h3>
+        <p class="text-slate-600 text-sm">Votre assistant est opérationnel. Vous recevez un guide simple + 30 jours de support.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="py-20 bg-surface">
+  <div class="max-w-2xl mx-auto px-6 text-center">
+    <div class="reveal">
+      <h2 class="section-title text-foreground mb-5 font-display">Ne perdez plus un client</h2>
+      <p class="text-slate-600 text-lg mb-8">Le premier client que votre assistant vous fait gagner rembourse l'investissement.</p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a href="https://buy.stripe.com/ARTISAN_STARTER_150" class="bg-primary text-white px-8 py-4 rounded-full text-lg font-semibold hover:bg-primary-dark font-display">Starter 150€</a>
+        <a href="https://buy.stripe.com/ARTISAN_PRO_350" class="bg-accent text-white px-8 py-4 rounded-full text-lg font-semibold hover:bg-accent-dark font-display">Pro 350€</a>
+      </div>
+      <p class="text-slate-400 text-sm mt-6">Des questions ? <a href="mailto:laslyalexandre@gmail.com" class="text-primary hover:underline">laslyalexandre@gmail.com</a></p>
+    </div>
+  </div>
+</section>
+
+<footer class="py-12 border-t border-slate-200 bg-white">
+  <div class="max-w-6xl mx-auto px-6 text-center">
+    <p class="text-slate-400 text-sm">&copy; 2026 Atlas Nexus — Alexandre Lasly</p>
+    <p class="text-slate-400 text-xs mt-2"><a href="https://atlasnexus.tech" class="hover:text-primary">← Retour au site principal</a></p>
+  </div>
+</footer>
+
+<script>
+(function() {
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    document.querySelectorAll('.reveal').forEach(el => el.classList.add('visible'));
+    return;
+  }
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) { entry.target.classList.add('visible'); observer.unobserve(entry.target); }
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+})();
+</script>
+</body>
+</html>
