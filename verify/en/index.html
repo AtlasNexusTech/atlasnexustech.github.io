@@ -70,7 +70,15 @@ tailwind.config = {
   <div class="hero-orb"></div>
   <div class="max-w-6xl mx-auto px-6 w-full relative z-10">
     <div class="max-w-3xl">
-      <p class="text-accent font-semibold tracking-widest uppercase text-xs mb-4">Celo Mainnet · ERC-8004</p>
+      <p class="text-accent font-semibold tracking-widest uppercase text-xs mb-4" id="networkBadge">Celo · ERC-8004</p>
+      <div class="flex gap-2 mb-6 flex-wrap">
+        <button id="chain-celo" class="chain-opt bg-primary/10 font-bold px-3 py-1.5 rounded-full text-xs font-semibold border border-slate-200 hover:border-primary transition-colors" onclick="switchChain('celo')">🔶 Celo</button>
+        <button id="chain-base" class="chain-opt px-3 py-1.5 rounded-full text-xs font-semibold border border-slate-200 hover:border-primary transition-colors" onclick="switchChain('base')">🔵 Base</button>
+        <button id="chain-linea" class="chain-opt px-3 py-1.5 rounded-full text-xs font-semibold border border-slate-200 hover:border-primary transition-colors" onclick="switchChain('linea')">⬡ Linea</button>
+        <button id="chain-scroll" class="chain-opt px-3 py-1.5 rounded-full text-xs font-semibold border border-slate-200 hover:border-primary transition-colors" onclick="switchChain('scroll')">📜 Scroll</button>
+        <button id="chain-avalanche" class="chain-opt px-3 py-1.5 rounded-full text-xs font-semibold border border-slate-200 hover:border-primary transition-colors" onclick="switchChain('avalanche')">🔺 Avalanche</button>
+        <button id="chain-bsc" class="chain-opt px-3 py-1.5 rounded-full text-xs font-semibold border border-slate-200 hover:border-primary transition-colors" onclick="switchChain('bsc')">🟡 BSC</button>
+      </div>
       <h1 class="text-5xl sm:text-6xl lg:text-7xl font-black tracking-tight leading-none mb-6 font-display">
         <span class="glow-word">Verify</span><br>
         <span class="text-foreground">an AI agent's</span><br>
@@ -289,7 +297,15 @@ tailwind.config = {
 </footer>
 
 <script>
-const CELO_MAINNET = { chainId: 42220, name: 'celo', rpcUrl: 'https://forno.celo.org' };
+// ── Multi-Chain Support ──
+const CHAINS = {
+  celo:    { chainId: 42220,  name: 'Celo',      rpc: 'https://forno.celo.org',                                    hexId: '0xa4ec', explorer: 'https://celoscan.io' },
+  base:    { chainId: 8453,   name: 'Base',       rpc: 'https://mainnet.base.org',                                 hexId: '0x2105', explorer: 'https://basescan.org' },
+  linea:   { chainId: 59144,  name: 'Linea',      rpc: 'https://rpc.linea.build',                                  hexId: '0xe708', explorer: 'https://lineascan.build' },
+  scroll:  { chainId: 534352, name: 'Scroll',     rpc: 'https://rpc.scroll.io',                                    hexId: '0x82750', explorer: 'https://scrollscan.com' },
+  avalanche:{ chainId: 43114, name: 'Avalanche',  rpc: 'https://api.avax.network/ext/bc/C/rpc',                    hexId: '0xa86a', explorer: 'https://snowtrace.io' },
+  bsc:     { chainId: 56,     name: 'BSC',        rpc: 'https://bsc-dataseed.binance.org',                          hexId: '0x38',   explorer: 'https://bscscan.com' }
+};
 const IDENTITY_REGISTRY = '0x8004A169FB4a3325136EB29fA0ceB6D2e539a432';
 const REPUTATION_REGISTRY = '0x8004BAa17C55a88189AE136b182e5fdA19dE9b63';
 const IDENTITY_ABI = [
@@ -303,9 +319,16 @@ const IDENTITY_ABI = [
   'function symbol() view returns (string)'
 ];
 let provider, signer, userAddress, identityContract;
-function initProvider() {
-  provider = new ethers.providers.JsonRpcProvider(CELO_MAINNET.rpcUrl);
+let currentChain = 'celo';
+function initProvider() { switchChain(currentChain); loadStats(); }
+function switchChain(chainKey) {
+  currentChain = chainKey;
+  const chain = CHAINS[chainKey];
+  provider = new ethers.providers.JsonRpcProvider(chain.rpc);
   identityContract = new ethers.Contract(IDENTITY_REGISTRY, IDENTITY_ABI, provider);
+  document.getElementById('networkBadge').textContent = chain.name + ' · ERC-8004';
+  document.querySelectorAll('.chain-opt').forEach(o => o.classList.remove('bg-primary/10', 'font-bold'));
+  document.getElementById('chain-' + chainKey).classList.add('bg-primary/10', 'font-bold');
   loadStats();
 }
 async function connect() {
@@ -316,7 +339,8 @@ async function connect() {
     const web3Provider = new ethers.providers.Web3Provider(window.ethereum);
     signer = web3Provider.getSigner();
     identityContract = new ethers.Contract(IDENTITY_REGISTRY, IDENTITY_ABI, signer);
-    try { await window.ethereum.request({ method: 'wallet_switchEthereumChain', params: [{ chainId: '0xa4ec' }] }); } catch(e) {}
+    const chain = CHAINS[currentChain];
+    try { await window.ethereum.request({ method: 'wallet_switchEthereumChain', params: [{ chainId: chain.hexId }] }); } catch(e) {}
     document.getElementById('connectWallet').textContent = userAddress.slice(0,6) + '...' + userAddress.slice(-4);
     document.getElementById('connectWallet').classList.add('bg-accent');
     document.getElementById('reg-agent-address').value = userAddress;
