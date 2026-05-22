@@ -190,10 +190,14 @@ tailwind.config = {
   .dark a.border.border-border:hover { border-color: #3B82F6; }
   .dark a.border.border-border.hover\:text-primary:hover { color: #3B82F6; }
   .dark a.border.border-border.hover\:border-purple-500:hover { border-color: #8B5CF6; color: #A78BFA; }
+
+  /* ── Page-specific: no shadows on demo cards ── */
+  .demos-page .market-card { box-shadow: none !important; }
+  .demos-page .market-card:hover { box-shadow: none !important; border-color: rgba(37,99,235,.36) !important; }
 </style>
 
 </head>
-<body class="bg-surface dark:bg-dark-surface text-foreground dark:text-dark-foreground font-body antialiased">
+<body class="demos-page bg-surface dark:bg-dark-surface text-foreground dark:text-dark-foreground font-body antialiased">
 <!-- Nav -->
 <nav class="fixed top-0 w-full z-50 bg-surface/85 dark:bg-dark-surface/90 backdrop-blur-lg border-b border-border dark:border-dark-border">
   <div class="max-w-6xl mx-auto px-6 h-[72px] flex items-center justify-between">
@@ -288,10 +292,27 @@ tailwind.config = {
 
   <section class="py-12 bg-surface dark:bg-dark-elevated">
     <div class="max-w-6xl mx-auto px-6">
-      <div class="market-card rounded-2xl p-8 border border-border bg-white dark:bg-dark-card">
-        <p class="text-accent font-semibold tracking-widest uppercase text-xs mb-3">Why this slot exists</p>
+      <div class="rounded-2xl p-8 border border-border bg-white dark:bg-dark-card">
+        <p class="text-accent font-semibold tracking-widest uppercase text-xs mb-3">Proof &amp; partners</p>
         <h2 class="section-title text-foreground dark:text-dark-foreground mb-5 font-display">The demo becomes proof, not an exit from the site.</h2>
-        <p class="text-slate-600 dark:text-slate-300 leading-relaxed max-w-3xl">The prospect stays in the same AtlasNexus environment: navigation, style, cards, pricing and contact. The industry pages then serve as concrete examples before quoting.</p>
+        <p class="text-slate-600 dark:text-slate-300 leading-relaxed max-w-3xl mb-8">The prospect stays in the same AtlasNexus environment: navigation, style, cards, pricing and contact. The industry pages then serve as concrete examples before quoting.</p>
+        <div class="grid sm:grid-cols-3 gap-4">
+          <a href="https://stratea.solutions" target="_blank" rel="noopener" class="reveal card-hover rounded-xl p-5 border border-border bg-surface dark:bg-dark-elevated hover:border-accent transition-all">
+            <p class="font-display font-bold text-lg text-foreground dark:text-dark-foreground mb-1">Stratea</p>
+            <p class="text-xs text-accent font-mono mb-2">stratea.solutions</p>
+            <p class="text-sm text-slate-500 dark:text-slate-400">Custom digital solutions</p>
+          </a>
+          <a href="https://tad-agency.com" target="_blank" rel="noopener" class="reveal reveal-delay-1 card-hover rounded-xl p-5 border border-border bg-surface dark:bg-dark-elevated hover:border-accent transition-all">
+            <p class="font-display font-bold text-lg text-foreground dark:text-dark-foreground mb-1">TAD Agency</p>
+            <p class="text-xs text-accent font-mono mb-2">tad-agency.com</p>
+            <p class="text-sm text-slate-500 dark:text-slate-400">Creative &amp; digital agency</p>
+          </a>
+          <a href="/blueline-logistics/" class="reveal reveal-delay-2 card-hover rounded-xl p-5 border border-border bg-surface dark:bg-dark-elevated hover:border-accent transition-all">
+            <p class="font-display font-bold text-lg text-foreground dark:text-dark-foreground mb-1">Blueline Logistics</p>
+            <p class="text-xs text-accent font-mono mb-2">atlasnexus.tech/blueline-logistics</p>
+            <p class="text-sm text-slate-500 dark:text-slate-400">Logistics &amp; transport showcase</p>
+          </a>
+        </div>
       </div>
     </div>
   </section>
