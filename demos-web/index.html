@@ -191,9 +191,9 @@ tailwind.config = {
   .dark a.border.border-border.hover\:text-primary:hover { color: #3B82F6; }
   .dark a.border.border-border.hover\:border-purple-500:hover { border-color: #8B5CF6; color: #A78BFA; }
 
-  /* ── Page-specific: no shadows on demo cards ── */
-  .demos-page .market-card { box-shadow: none !important; }
-  .demos-page .market-card:hover { box-shadow: none !important; border-color: rgba(37,99,235,.36) !important; }
+  /* ── Page-specific: no shadows on demo grid cards ── */
+  .demo-grid .market-card { box-shadow: none !important; }
+  .demo-grid .market-card:hover { box-shadow: none !important; border-color: rgba(37,99,235,.36) !important; }
 </style>
 
 </head>
@@ -253,7 +253,7 @@ tailwind.config = {
         <h2 class="section-title text-foreground dark:text-dark-foreground mb-5 font-display">Catégories de refonte express</h2>
         <p class="text-slate-600 dark:text-slate-300 max-w-2xl leading-relaxed">Chaque carte reprend le langage visuel de la homepage : offre claire, bénéfices, prix léger, CTA contact ou démo live.</p>
       </div>
-      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+      <div class="demo-grid grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
         <a href="/ed-maconnerie/" class="reveal reveal-delay-1 card-hover market-card rounded-2xl overflow-hidden border border-border bg-white dark:bg-dark-card flex flex-col">
           <div class="h-40 bg-stone-200 overflow-hidden"><img src="/ed-maconnerie/images/hero.jpg" alt="E.D. Maçonnerie" class="w-full h-full object-cover"></div>
           <div class="p-4"><span class="font-bold text-foreground dark:text-dark-foreground">🧱 E.D. Maçonnerie</span><p class="text-slate-500 text-xs mt-1">Estissac, Aube — Eric DELIN</p></div>
