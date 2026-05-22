@@ -24,7 +24,7 @@ tailwind.config = {
   @keyframes agenticGlow { 0%,100% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } }
   .section-title { font-size: clamp(1.8rem, 4.5vw, 3rem); font-weight: 800; letter-spacing: -0.03em; line-height: 1.15; }
   .card-hover { transition: all 250ms ease; }
-  .card-hover:hover { transform: translateY(-4px); box-shadow: 0 12px 32px -6px rgba(27,42,74,0.12); border-color: #0F1F45; }
+  .card-hover:hover { transform: translateY(-4px); box-shadow: 0 16px 40px -10px rgba(15,31,69,0.15); border-color: #0F1F45; }
   a, button, .card-hover { transition: all 200ms ease; }
   *:focus-visible { outline: 2px solid #E8C547; outline-offset: 2px; border-radius: 4px; }
 
@@ -41,7 +41,7 @@ tailwind.config = {
   .hero-stagger > *:nth-child(4) { animation-delay: 0.55s; }
   @keyframes heroFadeIn { to { opacity: 1; transform: translateY(0); } }
 
-  .premium-card { position: relative; overflow: hidden; border-color: rgba(27,42,74,.15)!important; background: linear-gradient(145deg, #ffffff 0%, #f5f7fc 52%, #eef1f9 100%); }
+  .premium-card { position: relative; overflow: hidden; border-color: rgba(27,42,74,.2)!important; background: linear-gradient(145deg, #ffffff 0%, #f5f7fc 52%, #eef1f9 100%); box-shadow: 0 4px 24px -8px rgba(15,31,69,.08); }
   .premium-card::before { content: ""; position: absolute; inset: -1px; pointer-events: none; background: radial-gradient(circle at 15% 0%, rgba(27,42,74,.06), transparent 38%), radial-gradient(circle at 95% 20%, rgba(212,168,67,.08), transparent 34%); }
   .premium-card > * { position: relative; }
   .dark .premium-card { background: linear-gradient(145deg, #0A1628 0%, #0F1D33 52%, #0A1628 100%); border-color: rgba(74,111,165,.2)!important; }
@@ -68,8 +68,9 @@ tailwind.config = {
   .motion-strip { position: relative; overflow: hidden; }
   .motion-strip::after { content:""; position:absolute; inset:0; transform: translateX(-120%); background: linear-gradient(90deg, transparent, rgba(212,168,67,.1), transparent); animation: shimmer 3.2s ease-in-out infinite; }
   @keyframes shimmer { 55%,100% { transform: translateX(120%); } }
-  .metric-gradient { background: linear-gradient(135deg, #0F1F45, #1E3A8A, #E8C547, #1E3A8A, #0F1F45); background-size: 200% 100%; -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; animation: shimmerGradient 2.5s ease-in-out infinite; }
+  .metric-gradient { background: linear-gradient(135deg, #E8C547, #D4A830, #1E3A8A, #0F1F45); background-size: 200% 100%; -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; animation: shimmerGradient 2.5s ease-in-out infinite; }
   @keyframes shimmerGradient { 0%,100% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } }
+  .phase-gradient { background: linear-gradient(110deg, #E8C547, #D4A830, #1E3A8A, #0F1F45, #1E3A8A, #E8C547); background-size: 200% 100%; -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; animation: shimmerGradient 3s ease-in-out infinite; display: inline-block; }
 
   .dark .bg-white, .dark .bg-surface { background-color: #060D1A; }
   .dark .text-slate-600 { color: #CBD5E1; }
@@ -83,7 +84,7 @@ tailwind.config = {
 </head>
 <body class="font-body bg-white dark:bg-dark-surface text-foreground dark:text-dark-foreground antialiased overflow-x-hidden">
 <!-- Nav -->
-<nav class="fixed top-0 left-0 right-0 z-50 bg-white/90 dark:bg-dark-surface/90 backdrop-blur-xl border-b border-border dark:border-dark-border">
+<nav class="fixed top-0 left-0 right-0 z-50 bg-white/98 dark:bg-dark-surface/98 backdrop-blur-xl border-b-2 border-slate-200 dark:border-dark-border">
   <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
     <a href="#" class="flex items-center gap-2.5 font-display font-bold text-lg">
       <svg width="30" height="30" viewBox="0 0 32 32" fill="none"><rect width="32" height="32" rx="8" fill="#0F1F45"/><text x="16" y="22" text-anchor="middle" fill="#E8C547" font-family="system-ui" font-weight="900" font-size="16">S</text></svg>
@@ -135,7 +136,7 @@ tailwind.config = {
       </div>
     </div>
     <div class="flex flex-col items-end gap-4">
-      <div class="rounded-2xl overflow-hidden border-2 border-white/20 shadow-2xl shadow-blue-950/50 max-w-[240px] lg:max-w-[280px]">
+      <div class="rounded-2xl overflow-hidden max-w-[220px] lg:max-w-[260px]">
         <img src="/stratea/photo.jpg" alt="Elizabeth Dangas Poniatowski — STRATEA" class="w-full h-auto object-cover aspect-[3/4]" loading="eager">
       </div>
     </div>
@@ -158,7 +159,7 @@ tailwind.config = {
             <span class="text-2xl">🔍</span>
           </div>
           <div>
-            <h3 class="font-display font-bold text-xl mb-1">Phase 1 — Audit d'activité</h3>
+            <h3 class="font-display font-bold text-xl mb-1 phase-gradient">Phase 1 — Audit d'activité</h3>
             <p class="text-sm text-slate-500 dark:text-slate-400">Livrable principal</p>
           </div>
         </div>
@@ -177,7 +178,7 @@ tailwind.config = {
             <span class="text-2xl">🚀</span>
           </div>
           <div>
-            <h3 class="font-display font-bold text-xl mb-1">Phase 2 — Optimisation</h3>
+            <h3 class="font-display font-bold text-xl mb-1 phase-gradient">Phase 2 — Optimisation</h3>
             <p class="text-sm text-slate-500 dark:text-slate-400">Accompagnement opérationnel</p>
           </div>
         </div>
@@ -194,7 +195,7 @@ tailwind.config = {
 </section>
 
 <!-- Chiffres clés -->
-<section id="chiffres" class="py-12 md:py-14 bg-surface dark:bg-dark-elevated">
+<section id="chiffres" class="py-14 md:py-16 bg-slate-50 dark:bg-dark-elevated">
   <div class="max-w-7xl mx-auto px-6">
     <div class="mb-12 reveal">
       <p class="text-accent dark:text-yellow-300 font-display font-bold uppercase tracking-wide text-sm mb-3">Impact mesurable</p>
@@ -323,7 +324,7 @@ tailwind.config = {
 </section>
 
 <!-- Contact / CTA -->
-<section id="contact" class="py-12 md:py-14 bg-surface dark:bg-dark-elevated">
+<section id="contact" class="py-14 md:py-16 bg-gradient-to-b from-slate-50 to-white dark:from-dark-elevated dark:to-dark-surface">
   <div class="max-w-4xl mx-auto px-6 text-center">
     <div class="reveal">
       <p class="text-primary font-display font-bold uppercase tracking-wide text-sm mb-3">Contact</p>
@@ -347,7 +348,7 @@ tailwind.config = {
 
 </main>
 
-<footer class="py-10 border-t border-border dark:border-dark-border bg-white dark:bg-dark-surface">
+<footer class="py-10 border-t-2 border-slate-200 dark:border-dark-border bg-slate-50 dark:bg-dark-elevated">
   <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-slate-500 dark:text-slate-400">
     <div class="flex items-center gap-2">
       <svg width="20" height="20" viewBox="0 0 32 32" fill="none"><rect width="32" height="32" rx="8" fill="#0F1F45"/><text x="16" y="22" text-anchor="middle" fill="#E8C547" font-family="system-ui" font-weight="900" font-size="16">S</text></svg>
