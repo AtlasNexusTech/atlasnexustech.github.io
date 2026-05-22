@@ -70,8 +70,18 @@ tailwind.config = {
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16">
     <a href="/" class="font-display text-xl font-bold text-forest-700 hover:text-forest-500 transition-colors">🌿 TAD Agency</a>
     <div class="hidden md:flex items-center gap-8">
-      <a href="#services" class="text-forest-700 hover:text-forest-500 text-sm uppercase tracking-wider font-medium transition-colors">Services</a>
-      <a href="#equipe" class="text-forest-700 hover:text-forest-500 text-sm uppercase tracking-wider font-medium transition-colors">Équipe</a>
+      <div class="relative group">
+        <button class="text-forest-700 hover:text-forest-500 text-sm uppercase tracking-wider font-medium transition-colors flex items-center gap-1">
+          Séminaires & Événements ▾
+        </button>
+        <div class="absolute top-full left-0 mt-2 w-64 bg-white rounded-xl shadow-xl border border-forest-100 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+          <a href="#services" class="block px-4 py-3 text-sm text-forest-700 hover:bg-forest-50 rounded-t-xl transition-colors">🌳 Séminaires Durables</a>
+          <a href="#services" class="block px-4 py-3 text-sm text-forest-700 hover:bg-forest-50 transition-colors">👥 Team Building Nature</a>
+          <a href="#services" class="block px-4 py-3 text-sm text-forest-700 hover:bg-forest-50 transition-colors">✨ Ateliers RSE & Bien-être</a>
+          <a href="#services" class="block px-4 py-3 text-sm text-forest-700 hover:bg-forest-50 rounded-b-xl transition-colors">⭐ Offres Premium</a>
+        </div>
+      </div>
+      <a href="#equipe" class="text-forest-700 hover:text-forest-500 text-sm uppercase tracking-wider font-medium transition-colors">Qui sommes-nous</a>
       <a href="#devis" class="text-forest-700 hover:text-forest-500 text-sm uppercase tracking-wider font-medium transition-colors">Devis</a>
       <a href="https://calendly.com/tad-agency/30min" target="_blank" class="bg-forest-500 text-white px-5 py-2 rounded-lg font-semibold text-sm hover:bg-forest-700 transition-colors shadow-lg">Réserver</a>
     </div>
