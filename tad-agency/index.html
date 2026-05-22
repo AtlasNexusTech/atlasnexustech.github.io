@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<title>TAD Agency — Tourisme d'Affaires Durable | Atlas Nexus</title>
+<link rel="canonical" href="https://atlasnexus.tech/tad-agency/">
+<meta name="description" content="Agence de tourisme d'affaires durable. Séminaires, team building et événements écoresponsables sur le Bassin d'Arcachon et le Val de Leyre.">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config = {
+  theme: {
+    extend: {
+      fontFamily: {
+        display: ['Georgia', 'serif'],
+        body: ['Inter', 'system-ui', 'sans-serif'],
+      },
+      colors: {
+        forest: { 50:'#f2f7f4',100:'#dff0e5',500:'#2d5856',700:'#1a3b3a',900:'#0d2423' },
+        sand: { 50:'#fdf9f3',100:'#faf0e0',200:'#f5e6d0',300:'#e8d5b7',500:'#c4a97d' },
+        ocean: { 400:'#5b9bd5',700:'#2e5a88' },
+      }
+    }
+  }
+}
+</script>
+<style>
+  /* ── Atlas Nexus animation system ── */
+  .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.7s cubic-bezier(0.22,1,0.36,1), transform 0.7s cubic-bezier(0.22,1,0.36,1); }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+  .hero-stagger > * { opacity: 0; transform: translateY(30px); animation: heroFadeIn 0.7s cubic-bezier(0.22,1,0.36,1) forwards; }
+  .hero-stagger > *:nth-child(1) { animation-delay: 0.1s; }
+  .hero-stagger > *:nth-child(2) { animation-delay: 0.25s; }
+  .hero-stagger > *:nth-child(3) { animation-delay: 0.40s; }
+  .hero-stagger > *:nth-child(4) { animation-delay: 0.55s; }
+  @keyframes heroFadeIn { to { opacity: 1; transform: translateY(0); } }
+
+  .card-hover { transition: all 300ms cubic-bezier(0.22,1,0.36,1); }
+  .card-hover:hover { transform: translateY(-6px); box-shadow: 0 20px 40px -12px rgba(45,88,86,0.18); }
+
+  .gesture-card { transform-style: preserve-3d; transition: all 350ms cubic-bezier(0.22,1,0.36,1); }
+  .gesture-card:hover { transform: translateY(-6px) rotateX(2deg) rotateY(-2deg); box-shadow: 0 24px 48px -14px rgba(45,88,86,0.22); }
+
+  .float-card { animation: floatCard 5s ease-in-out infinite; }
+  .float-card:nth-child(2) { animation-delay: .4s; }
+  .float-card:nth-child(3) { animation-delay: .8s; }
+  .float-card:nth-child(4) { animation-delay: 1.2s; }
+  @keyframes floatCard { 0%,100% { transform: translateY(0) scale(1); } 50% { transform: translateY(-10px) scale(1.02); } }
+
+  .gradient-text { background: linear-gradient(135deg, #2d5856 0%, #c4a97d 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+  .glow-word { position: relative; display: inline-block; padding: .03em .02em .1em .02em; margin: -.03em -.02em -.06em -.02em; background: linear-gradient(110deg, #0d2423 0%, #2d5856 30%, #c4a97d 60%, #0d2423 100%); background-size: 240% 100%; -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; animation: forestGlow 3.8s ease-in-out infinite; }
+  @keyframes forestGlow { 0%,100% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } }
+
+  .section-title { font-size: clamp(1.8rem, 4.5vw, 3rem); font-weight: 800; letter-spacing: -0.03em; line-height: 1.15; position: relative; padding-bottom: 0.6rem; }
+  .section-title::after { content: ""; position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: 3.5rem; height: 3px; border-radius: 2px; background: linear-gradient(90deg, #2d5856, #c4a97d); }
+
+  .metric-number { font-variant-numeric: tabular-nums; letter-spacing: -.04em; }
+  .pulse-dot { width: .7rem; height: .7rem; border-radius: 999px; background: linear-gradient(135deg,#2d5856,#c4a97d); box-shadow: 0 0 0 8px rgba(45,88,86,.1); animation: pulse 2s ease-in-out infinite; }
+  @keyframes pulse { 0%,100% { box-shadow: 0 0 0 8px rgba(45,88,86,.1); } 50% { box-shadow: 0 0 0 16px rgba(45,88,86,.04); } }
+
+  a, button, .card-hover, .gesture-card { transition: all 250ms cubic-bezier(0.22,1,0.36,1); }
+  *:focus-visible { outline: 2px solid #2d5856; outline-offset: 2px; border-radius: 4px; }
+</style>
+</head>
+<body class="bg-sand-50 text-forest-900 font-body">
+
+<!-- NAV -->
+<nav class="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-forest-100">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16">
+    <a href="/" class="font-display text-xl font-bold text-forest-700 hover:text-forest-500 transition-colors">🌿 TAD Agency</a>
+    <div class="hidden md:flex items-center gap-8">
+      <a href="#services" class="text-forest-700 hover:text-forest-500 text-sm uppercase tracking-wider font-medium transition-colors">Services</a>
+      <a href="#equipe" class="text-forest-700 hover:text-forest-500 text-sm uppercase tracking-wider font-medium transition-colors">Équipe</a>
+      <a href="#devis" class="text-forest-700 hover:text-forest-500 text-sm uppercase tracking-wider font-medium transition-colors">Devis</a>
+      <a href="https://calendly.com/tad-agency/30min" target="_blank" class="bg-forest-500 text-white px-5 py-2 rounded-lg font-semibold text-sm hover:bg-forest-700 transition-colors shadow-lg">Réserver</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="relative min-h-screen flex items-center overflow-hidden">
+  <img src="images/hero.jpg" alt="Bassin d'Arcachon" class="absolute inset-0 w-full h-full object-cover">
+  <div class="absolute inset-0 bg-gradient-to-r from-forest-900/92 via-forest-900/65 to-transparent"></div>
+  <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
+    <div class="max-w-2xl hero-stagger">
+      <div class="inline-flex items-center gap-2 bg-sand-300/20 backdrop-blur-md rounded-full px-4 py-1.5 text-sm text-sand-200 mb-6">
+        <span class="pulse-dot"></span> Bassin d'Arcachon & Val de Leyre
+      </div>
+      <h1 class="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-display font-black leading-[1.05] mb-6 text-white tracking-tight">
+        Changeons le monde<br><span class="glow-word">du séminaire</span>
+      </h1>
+      <p class="text-lg sm:text-xl text-sand-200 mb-8 max-w-lg leading-relaxed">
+        Agence de tourisme d'affaires durable. Expériences immersives et responsables qui renforcent la cohésion des équipes tout en valorisant le patrimoine naturel local.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4">
+        <a href="#devis" class="gesture-card inline-flex items-center gap-2 bg-sand-500 text-forest-900 px-8 py-4 rounded-xl font-bold text-lg hover:bg-sand-300 transition-colors shadow-xl">
+          Demander un devis <span class="text-xl">→</span>
+        </a>
+        <a href="#services" class="inline-flex items-center gap-2 border-2 border-white/30 text-white px-8 py-4 rounded-xl font-semibold text-lg hover:bg-white/10 transition-colors">
+          Découvrir nos offres
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<section class="bg-white border-b border-forest-100">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+      <div class="reveal"><p class="text-4xl font-display font-black text-forest-500 metric-number">175K€</p><p class="text-forest-700 text-sm mt-2">CA Année 1 prévisionnel</p></div>
+      <div class="reveal"><p class="text-4xl font-display font-black text-forest-500 metric-number">100%</p><p class="text-forest-700 text-sm mt-2">Écoresponsable</p></div>
+      <div class="reveal"><p class="text-4xl font-display font-black text-forest-500 metric-number">56%</p><p class="text-forest-700 text-sm mt-2">Des entreprises cherchent des événements durables</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- VISION -->
+<section class="py-20 md:py-28 bg-sand-50">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid md:grid-cols-2 gap-12 items-center">
+      <div class="reveal">
+        <span class="text-forest-500 font-semibold uppercase tracking-wider text-sm">Notre vision</span>
+        <h2 class="text-3xl sm:text-4xl font-display font-extrabold text-forest-900 mt-3 mb-6 leading-tight">Devenir la référence du tourisme d'affaires durable en Nouvelle-Aquitaine</h2>
+        <p class="text-forest-700 leading-relaxed mb-4">Nous accompagnons les entreprises dans l'organisation de séminaires, team building et événements sur mesure, 100 % durables, en collaborant exclusivement avec des artisans et prestataires locaux.</p>
+        <p class="text-forest-700 leading-relaxed">Notre mission : créer des expériences uniques, respectueuses de l'environnement et génératrices de valeur pour tous les acteurs du territoire.</p>
+      </div>
+      <div class="reveal gesture-card rounded-2xl overflow-hidden shadow-xl">
+        <img src="images/vision.jpg" alt="Vision TAD Agency" class="w-full h-auto">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services" class="py-20 md:py-28 bg-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-14">
+      <span class="text-forest-500 font-semibold uppercase tracking-wider text-sm">Nos services</span>
+      <h2 class="section-title font-display mt-3">Des expériences sur mesure, 100% durables</h2>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div class="float-card card-hover bg-sand-50 rounded-2xl p-6 border border-transparent hover:border-forest-200"><div class="w-12 h-12 bg-forest-100 rounded-xl flex items-center justify-center mb-4 text-2xl">🌳</div><h3 class="font-display font-bold text-forest-900 mb-2">Séminaires Durables</h3><p class="text-forest-700 text-sm leading-relaxed">1 à 2 jours d'immersion nature. Hébergement local, zéro plastique.</p></div>
+      <div class="float-card card-hover bg-sand-50 rounded-2xl p-6 border border-transparent hover:border-forest-200"><div class="w-12 h-12 bg-forest-100 rounded-xl flex items-center justify-center mb-4 text-2xl">👥</div><h3 class="font-display font-bold text-forest-900 mb-2">Team Building Nature</h3><p class="text-forest-700 text-sm leading-relaxed">Canoë, équicoaching, gemmage. Cohésion d'équipe garantie.</p></div>
+      <div class="float-card card-hover bg-sand-50 rounded-2xl p-6 border border-transparent hover:border-forest-200"><div class="w-12 h-12 bg-forest-100 rounded-xl flex items-center justify-center mb-4 text-2xl">✨</div><h3 class="font-display font-bold text-forest-900 mb-2">Ateliers RSE</h3><p class="text-forest-700 text-sm leading-relaxed">Fresque du climat, coaching bien-être. Formats courts et impactants.</p></div>
+      <div class="float-card card-hover bg-sand-50 rounded-2xl p-6 border border-transparent hover:border-forest-200"><div class="w-12 h-12 bg-forest-100 rounded-xl flex items-center justify-center mb-4 text-2xl">⭐</div><h3 class="font-display font-bold text-forest-900 mb-2">Offres Premium</h3><p class="text-forest-700 text-sm leading-relaxed">Séminaire sans voiture, retraite slow leadership. Expériences exclusives.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- TERRITOIRE -->
+<section class="relative py-24 overflow-hidden">
+  <img src="images/bassin-hero.jpg" alt="Bassin" class="absolute inset-0 w-full h-full object-cover">
+  <div class="absolute inset-0 bg-forest-900/85"></div>
+  <div class="relative z-10 max-w-3xl mx-auto text-center px-4">
+    <h2 class="text-3xl sm:text-4xl font-display font-extrabold text-white mb-6">Un territoire à fort potentiel</h2>
+    <p class="text-sand-300 text-lg leading-relaxed">Le Bassin d'Arcachon et le Val de Leyre : forêts, océan, delta. Proximité de Bordeaux et sa LGV (2h de Paris). Un cadre privilégié pour des séminaires à taille humaine.</p>
+  </div>
+</section>
+
+<!-- ÉQUIPE -->
+<section id="equipe" class="py-20 md:py-28 bg-sand-50">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-14">
+      <span class="text-forest-500 font-semibold uppercase tracking-wider text-sm">L'équipe</span>
+      <h2 class="section-title font-display mt-3">Une équipe passionnée et engagée</h2>
+    </div>
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+      <div class="reveal card-hover bg-white rounded-xl overflow-hidden shadow-sm border border-forest-50">
+        <img src="images/team-elizabeth.jpg" alt="Elizabeth" class="w-full aspect-square object-cover bg-forest-100">
+        <div class="p-3 text-center"><h3 class="font-display font-bold text-sm text-forest-900">Elizabeth</h3><p class="text-forest-500 text-xs font-semibold uppercase">Fondatrice & CEO</p></div></div>
+      <div class="reveal card-hover bg-white rounded-xl overflow-hidden shadow-sm border border-forest-50">
+        <img src="images/team-prescillia.jpg" alt="Prescillia" class="w-full aspect-square object-cover bg-forest-100">
+        <div class="p-3 text-center"><h3 class="font-display font-bold text-sm text-forest-900">Prescillia</h3><p class="text-forest-500 text-xs font-semibold uppercase">Marketing</p></div></div>
+      <div class="reveal card-hover bg-white rounded-xl overflow-hidden shadow-sm border border-forest-50">
+        <img src="images/team-jeremie.jpg" alt="Jérémie" class="w-full aspect-square object-cover bg-forest-100">
+        <div class="p-3 text-center"><h3 class="font-display font-bold text-sm text-forest-900">Jérémie</h3><p class="text-forest-500 text-xs font-semibold uppercase">Commercial</p></div></div>
+      <div class="reveal card-hover bg-white rounded-xl overflow-hidden shadow-sm border border-forest-50">
+        <img src="images/team-alexandre.jpg" alt="Alexandre" class="w-full aspect-square object-cover bg-forest-100">
+        <div class="p-3 text-center"><h3 class="font-display font-bold text-sm text-forest-900">Alexandre</h3><p class="text-forest-500 text-xs font-semibold uppercase">DAF</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- DEVIS -->
+<section id="devis" class="py-20 md:py-28 bg-white">
+  <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-12">
+      <span class="text-forest-500 font-semibold uppercase tracking-wider text-sm">Devis</span>
+      <h2 class="section-title font-display mt-3">Demander un devis personnalisé</h2>
+      <p class="text-forest-700 mt-2">Remplissez le formulaire. Réponse garantie sous 24h.</p>
+    </div>
+    <form id="devisForm" class="space-y-5" onsubmit="event.preventDefault(); document.getElementById('formArea').classList.add('hidden'); document.getElementById('successMsg').classList.remove('hidden'); fillSummary()">
+      <div id="formArea">
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <input type="text" required id="company" placeholder="Entreprise *" class="w-full px-4 py-3 rounded-xl border border-forest-200 focus:border-forest-500 focus:ring-2 focus:ring-forest-100 outline-none transition-all bg-white">
+          <input type="text" required id="name" placeholder="Votre nom *" class="w-full px-4 py-3 rounded-xl border border-forest-200 focus:border-forest-500 focus:ring-2 focus:ring-forest-100 outline-none transition-all bg-white">
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <input type="email" required id="email" placeholder="Email *" class="w-full px-4 py-3 rounded-xl border border-forest-200 focus:border-forest-500 focus:ring-2 focus:ring-forest-100 outline-none transition-all bg-white">
+          <input type="tel" id="phone" placeholder="Téléphone" class="w-full px-4 py-3 rounded-xl border border-forest-200 focus:border-forest-500 focus:ring-2 focus:ring-forest-100 outline-none transition-all bg-white">
+        </div>
+        <div class="bg-sand-50 rounded-2xl p-5 space-y-4">
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <select required id="eventType" class="w-full px-4 py-3 rounded-xl border border-forest-200 focus:border-forest-500 outline-none bg-white"><option value="">Type d'événement</option><option>Séminaire</option><option>Team building</option><option>Atelier RSE</option><option>Premium</option><option>Autre</option></select>
+            <input type="number" required id="guests" placeholder="Participants *" min="5" class="w-full px-4 py-3 rounded-xl border border-forest-200 focus:border-forest-500 outline-none bg-white">
+          </div>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <input type="date" id="date" class="w-full px-4 py-3 rounded-xl border border-forest-200 focus:border-forest-500 outline-none bg-white">
+            <select id="duration" class="w-full px-4 py-3 rounded-xl border border-forest-200 focus:border-forest-500 outline-none bg-white"><option value="">Durée</option><option>½ journée</option><option>1 journée</option><option>2 jours</option><option>3 jours</option></select>
+          </div>
+          <select id="budget" class="w-full px-4 py-3 rounded-xl border border-forest-200 focus:border-forest-500 outline-none bg-white"><option value="">Budget</option><option>< 3 000€</option><option>3-6K€</option><option>6-12K€</option><option>12-25K€</option><option>> 25K€</option></select>
+          <textarea id="message" rows="3" placeholder="Votre message / besoins spécifiques..." class="w-full px-4 py-3 rounded-xl border border-forest-200 focus:border-forest-500 outline-none bg-white resize-y"></textarea>
+        </div>
+        <button type="submit" class="gesture-card w-full bg-forest-500 text-white py-4 rounded-xl font-bold text-lg hover:bg-forest-700 transition-colors shadow-lg">📨 Envoyer la demande de devis</button>
+      </div>
+      <div id="successMsg" class="hidden text-center py-12">
+        <div class="text-5xl mb-4">✅</div>
+        <h3 class="text-2xl font-display font-bold text-forest-900 mb-3">Devis généré !</h3>
+        <p class="text-forest-700 mb-6">Envoyez ce résumé à <strong>contact@tad-agency.fr</strong>. Réponse sous 24h.</p>
+        <div id="summaryBox" class="bg-sand-50 rounded-xl p-4 text-left text-sm text-forest-700 leading-relaxed mb-6"></div>
+        <div class="flex flex-col sm:flex-row gap-3 justify-center">
+          <a href="https://calendly.com/tad-agency/30min" target="_blank" class="bg-forest-500 text-white px-6 py-3 rounded-xl font-semibold hover:bg-forest-700 transition-colors">📅 Prendre un RDV</a>
+          <button onclick="sendEmail()" class="border-2 border-forest-500 text-forest-500 px-6 py-3 rounded-xl font-semibold hover:bg-forest-500 hover:text-white transition-colors">📧 Envoyer par email</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="bg-gradient-to-br from-forest-500 to-forest-700 text-white py-20 text-center">
+  <div class="max-w-3xl mx-auto px-4">
+    <h2 class="text-3xl sm:text-4xl font-display font-extrabold mb-4">Prêt à organiser votre prochain séminaire durable ?</h2>
+    <p class="text-sand-200 text-lg mb-8">Contactez-nous pour un devis personnalisé.</p>
+    <div class="flex flex-col sm:flex-row gap-4 justify-center">
+      <a href="#devis" class="gesture-card inline-flex bg-sand-500 text-forest-900 px-8 py-4 rounded-xl font-bold text-lg hover:bg-sand-300 transition-colors shadow-xl">Demander un devis</a>
+      <a href="https://calendly.com/tad-agency/30min" target="_blank" class="inline-flex border-2 border-white/30 text-white px-8 py-4 rounded-xl font-semibold text-lg hover:bg-white/10 transition-colors">Prendre rendez-vous</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="bg-forest-900 text-sand-100 py-12">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div>
+        <div class="font-display text-lg font-bold mb-3">🌿 TAD Agency</div>
+        <p class="text-sand-300 text-sm leading-relaxed">Agence de tourisme d'affaires durable. Séminaires écoresponsables, team building nature au cœur du Bassin d'Arcachon.</p>
+      </div>
+      <div>
+        <h4 class="font-bold text-white mb-3">Liens</h4>
+        <a href="#services" class="block text-sand-300 text-sm hover:text-white mb-1 transition-colors">Services</a>
+        <a href="#equipe" class="block text-sand-300 text-sm hover:text-white mb-1 transition-colors">Équipe</a>
+        <a href="#devis" class="block text-sand-300 text-sm hover:text-white mb-1 transition-colors">Devis</a>
+        <a href="https://calendly.com/tad-agency/30min" target="_blank" class="block text-sand-300 text-sm hover:text-white mb-1 transition-colors">Rendez-vous</a>
+      </div>
+      <div>
+        <h4 class="font-bold text-white mb-3">Contact</h4>
+        <p class="text-sand-300 text-sm mb-1">📍 Bassin d'Arcachon — Val de Leyre</p>
+        <p class="text-sand-300 text-sm mb-1">📧 contact@tad-agency.fr</p>
+      </div>
+    </div>
+    <div class="border-t border-forest-700 mt-8 pt-6 text-center text-xs text-sand-300">© 2026 TAD Agency — Tourisme d'Affaires Durable. Propulsé par <a href="/" class="hover:text-white transition-colors">Atlas Nexus</a>.</div>
+  </div>
+</footer>
+
+<script>
+// Scroll reveal
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+}, { threshold: 0.15 });
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+// Devis
+function fillSummary() {
+  var s = '';
+  s += '<b>Entreprise :</b> ' + document.getElementById('company').value + '<br>';
+  s += '<b>Contact :</b> ' + document.getElementById('name').value + '<br>';
+  s += '<b>Email :</b> ' + document.getElementById('email').value + '<br>';
+  if (document.getElementById('phone').value) s += '<b>Tél :</b> ' + document.getElementById('phone').value + '<br>';
+  s += '<br><b>Événement :</b> ' + document.getElementById('eventType').value + ' — ' + document.getElementById('guests').value + ' pers.';
+  if (document.getElementById('duration').value) s += ' — ' + document.getElementById('duration').value;
+  if (document.getElementById('date').value) s += '<br><b>Date :</b> ' + document.getElementById('date').value;
+  s += '<br><b>Budget :</b> ' + document.getElementById('budget').value;
+  if (document.getElementById('message').value) s += '<br><br><b>Message :</b> ' + document.getElementById('message').value;
+  document.getElementById('summaryBox').innerHTML = s;
+}
+function sendEmail() {
+  var body = document.getElementById('summaryBox').innerText;
+  window.location.href = 'mailto:contact@tad-agency.fr?subject=Devis ' + document.getElementById('company').value + '&body=' + encodeURIComponent(body);
+}
+</script>
+
+</body>
+</html>
