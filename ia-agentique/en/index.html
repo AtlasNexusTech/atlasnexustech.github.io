@@ -294,14 +294,30 @@ tailwind.config = {
   <div class="max-w-3xl mx-auto px-6 text-center">
     <div class="reveal">
       <h2 class="section-title text-foreground mb-5 font-display">Ready to automate?</h2>
-      <p class="text-slate-600 text-lg mb-10 max-w-xl mx-auto">Décrivez votre besoin en 2 phrases et je vous réponds avec un scope concret sous 24h.</p>
-      <div class="flex flex-col gap-4 items-center">
-        <a href="mailto:laslyalexandre@gmail.com?subject=AI%20Agent%20-%20Project" class="bg-primary text-white px-10 py-4 rounded-full text-lg font-semibold hover:bg-primary-dark font-display inline-flex items-center gap-2">
-          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+      <p class="text-slate-600 text-lg mb-6 max-w-xl mx-auto">Describe your need in 2 sentences and I'll get back to you with a concrete scope within 24h.</p>
+
+      <!-- Tally order form -->
+      <div class="agentic-card bg-white rounded-2xl p-8 border border-border mb-10 max-w-xl mx-auto text-left">
+        <h3 class="font-bold text-xl mb-6 font-display text-center">✨ Order your agent</h3>
+        <iframe data-tally-src="https://tally.so/r/kdkyXd" width="100%" height="400" frameborder="0" marginheight="0" marginwidth="0" title="Order an AI agent" style="border-radius:12px"></iframe>
+        <p class="text-slate-400 text-xs text-center mt-4">Secure form. Response within 24h.</p>
+      </div>
+
+      <!-- Direct payment -->
+      <div class="grid sm:grid-cols-3 gap-4 max-w-lg mx-auto mb-8">
+        <a href="https://buy.stripe.com/9B6cN4frC936cb17Yr1Fe00" class="bg-accent text-white py-3 px-4 rounded-full font-semibold hover:bg-accent-dark font-display text-sm transition-all">Starter 150€</a>
+        <a href="https://buy.stripe.com/6oU28qcfq0wA6QHbaD1Fe01" class="bg-accent text-white py-3 px-4 rounded-full font-semibold hover:bg-accent-dark font-display text-sm transition-all">Pro 350€</a>
+        <a href="https://buy.stripe.com/FORMATION_50" class="bg-accent text-white py-3 px-4 rounded-full font-semibold hover:bg-accent-dark font-display text-sm transition-all">Training 50€/h</a>
+      </div>
+
+      <div class="flex flex-col gap-3 items-center">
+        <p class="text-slate-400 text-sm">Or write to me directly:</p>
+        <a href="mailto:laslyalexandre@gmail.com?subject=AI%20Agent%20-%20Project" class="text-primary hover:underline font-semibold">
           laslyalexandre@gmail.com
         </a>
-        <p class="text-slate-400 text-sm">Or via <a href="mailto:atlasnexus.ops@proton.me" class="text-primary hover:underline">atlasnexus.ops@proton.me</a></p>
-        <p class="text-purple-500 font-semibold tracking-widest uppercase text-xs mt-6">Your mission, our priority</p>
+        <a href="mailto:atlasnexus.ops@proton.me" class="text-slate-400 text-sm hover:text-primary">
+          atlasnexus.ops@proton.me
+        </a>
       </div>
     </div>
   </div>
@@ -345,6 +361,9 @@ tailwind.config = {
   document.querySelectorAll('.step-fall').forEach(el => stepObserver.observe(el));
 })();
 </script>
+
+<!-- Tally Form Loader -->
+<script async src="https://tally.so/widgets/embed.js"></script>
 
 </body>
 </html>
