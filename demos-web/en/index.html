@@ -192,7 +192,11 @@ tailwind.config = {
   .dark a.border.border-border.hover\:text-primary:hover { color: #3B82F6; }
   .dark a.border.border-border.hover\:border-purple-500:hover { border-color: #8B5CF6; color: #A78BFA; }
 
-  /* ── Page-specific: no shadows on demo grid cards ── */
+  /* ── Page-specific: no glow on hero word ── */
+  .demos-page .glow-word { filter: none !important; animation: none !important; }
+  .demos-page .glow-word::after { display: none !important; }
+
+  /* ── No shadows on demo grid cards ── */
   .demo-grid .market-card { box-shadow: none !important; }
   .demo-grid .market-card:hover { box-shadow: none !important; border-color: rgba(37,99,235,.36) !important; }
 </style>
