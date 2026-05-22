@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%232563EB'/%3E%3Ctext x='16' y='22' text-anchor='middle' fill='white' font-family='system-ui' font-weight='800' font-size='18'%3EEP%3C/text%3E%3C/svg%3E">
+<title>Eponia Conseil — Accompagnement & Croissance des TPE</title>
+<link rel="canonical" href="https://atlasnexus.tech/eponia-conseil/">
+<meta name="description" content="Elizabeth Poniatowski — Consultante en développement d'entreprise. Audit d'activité, optimisation du développement économique et accompagnement des dirigeants de TPE depuis 5 ans. Paiement au résultat.">
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700;800;900&family=Nunito+Sans:ital,opsz,wght@0,6..12,200;0,6..12,300;0,6..12,400;0,6..12,500;0,6..12,600;0,6..12,700;0,6..12,800;1,6..12,400;1,6..12,600;1,6..12,700&display=swap" rel="stylesheet">
+<script>
+tailwind.config = {
+  darkMode: 'class',
+  theme: { extend: { fontFamily: { display: ['Rubik','sans-serif'], body: ['Nunito Sans','sans-serif'] }, colors: { primary:'#2563EB','primary-dark':'#1D4ED8', secondary:'#3B82F6', accent:'#059669','accent-dark':'#047857', surface:'#F8FAFC', muted:'#F1F5FD', border:'#E4ECFC', foreground:'#0F172A','dark-surface':'#0B1120','dark-card':'#111827','dark-elevated':'#1A2235','dark-border':'#1E293B','dark-muted':'#334155','dark-foreground':'#F1F5F9','dark-dim':'#94A3B8' } } }
+}
+</script>
+<style>
+  .hero-title { font-size: clamp(2.2rem, 5.8vw, 4.5rem); font-weight: 900; letter-spacing: -0.05em; line-height: 1.08; overflow: visible; }
+  .gradient-text { background: linear-gradient(135deg, #2563EB 0%, #059669 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+  .glow-word { position: relative; display: inline-block; overflow: visible; padding: .035em .02em .13em .02em; margin: -.035em -.02em -.07em -.02em; background: linear-gradient(110deg, #0F172A 0%, #2563EB 32%, #7C3AED 56%, #059669 82%, #0F172A 100%); background-size: 240% 100%; -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; animation: agenticGlow 3.8s ease-in-out infinite; }
+  @keyframes agenticGlow { 0%,100% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } }
+  .section-title { font-size: clamp(1.8rem, 4.5vw, 3rem); font-weight: 800; letter-spacing: -0.03em; line-height: 1.15; }
+  .card-hover { transition: all 250ms ease; }
+  .card-hover:hover { transform: translateY(-4px); box-shadow: 0 12px 32px -6px rgba(37,99,235,0.12); border-color: #2563EB; }
+  a, button, .card-hover { transition: all 200ms ease; }
+  *:focus-visible { outline: 2px solid #2563EB; outline-offset: 2px; border-radius: 4px; }
+
+  .section-title { position: relative; padding-bottom: 0.5rem; }
+  .section-title::after { content: ""; position: absolute; bottom: 0; left: 0; width: 3rem; height: 3px; border-radius: 2px; background: linear-gradient(90deg, #2563EB, #059669); }
+  .dark .section-title::after { background: linear-gradient(90deg, #60A5FA, #34D399); }
+
+  .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1), transform 0.6s cubic-bezier(0.22, 1, 0.36, 1); }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+  .hero-stagger > * { opacity: 0; transform: translateY(30px); animation: heroFadeIn 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards; }
+  .hero-stagger > *:nth-child(1) { animation-delay: 0.1s; }
+  .hero-stagger > *:nth-child(2) { animation-delay: 0.25s; }
+  .hero-stagger > *:nth-child(3) { animation-delay: 0.40s; }
+  .hero-stagger > *:nth-child(4) { animation-delay: 0.55s; }
+  @keyframes heroFadeIn { to { opacity: 1; transform: translateY(0); } }
+
+  .premium-card { position: relative; overflow: hidden; border-color: rgba(37,99,235,.18)!important; background: linear-gradient(145deg, #ffffff 0%, #f7fbff 52%, #eef8ff 100%); }
+  .premium-card::before { content: ""; position: absolute; inset: -1px; pointer-events: none; background: radial-gradient(circle at 15% 0%, rgba(37,99,235,.08), transparent 38%), radial-gradient(circle at 95% 20%, rgba(5,150,105,.08), transparent 34%); }
+  .premium-card > * { position: relative; }
+  .dark .premium-card { background: linear-gradient(145deg, #111827 0%, #111d30 52%, #0e1f2d 100%); border-color: rgba(59,130,246,.22)!important; }
+
+  .metric-number { font-variant-numeric: tabular-nums; letter-spacing: -.04em; }
+  .float-card { animation: floatCard 4.8s ease-in-out infinite; transform-origin: center; }
+  .float-card:nth-child(2) { animation-delay: .35s; }
+  .float-card:nth-child(3) { animation-delay: .7s; }
+  .float-card:nth-child(4) { animation-delay: 1.05s; }
+  @keyframes floatCard { 0%,100% { transform: translateY(0) scale(1); } 50% { transform: translateY(-6px) scale(1.01); } }
+
+  .timeline-rail { position: relative; }
+  .timeline-rail::before { content:""; position:absolute; left: 1.75rem; top:.5rem; bottom:.5rem; width:2px; background: linear-gradient(#2563EB, #7C3AED, #059669); opacity:.35; }
+  .timeline-step { position:relative; padding-left:4rem; }
+  .timeline-step::before { content:""; position:absolute; left:1.35rem; top:.45rem; width:.85rem; height:.85rem; border-radius:999px; background:linear-gradient(135deg,#2563EB,#7C3AED); box-shadow:0 0 0 7px rgba(124,58,237,.12); }
+
+  .gesture-card { transform-style: preserve-3d; }
+  .gesture-card:hover { transform: translateY(-6px) rotateX(2deg) rotateY(-2deg); }
+
+  .loop-chip { animation: loopPulse 3.6s cubic-bezier(.34,1.56,.64,1) infinite; }
+  .loop-chip:nth-child(2){animation-delay:.45s}.loop-chip:nth-child(3){animation-delay:.9s}.loop-chip:nth-child(4){animation-delay:1.35s}
+  @keyframes loopPulse { 0%,100% { transform: translateY(0); box-shadow:0 0 0 rgba(5,150,105,0); } 50% { transform: translateY(-5px); box-shadow:0 12px 28px -16px rgba(5,150,105,.55); } }
+
+  .motion-strip { position: relative; overflow: hidden; }
+  .motion-strip::after { content:""; position:absolute; inset:0; transform: translateX(-120%); background: linear-gradient(90deg, transparent, rgba(37,99,235,.12), transparent); animation: shimmer 3.2s ease-in-out infinite; }
+  @keyframes shimmer { 55%,100% { transform: translateX(120%); } }
+
+  .dark .bg-white, .dark .bg-surface { background-color: #0B1120; }
+  .dark .text-slate-600 { color: #CBD5E1; }
+  .dark .text-slate-500 { color: #94A3B8; }
+  .dark .text-slate-400 { color: #64748B; }
+  .dark .border-border { border-color: #1E293B; }
+  .dark .glow-word { background: linear-gradient(110deg, #60A5FA 0%, #818CF8 28%, #C084FC 52%, #34D399 78%, #60A5FA 100%); background-size: 240% 100%; -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+
+  @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: 0.01ms!important; transition-duration: 0.01ms!important; } .reveal { opacity: 1; transform: none; } .hero-stagger > * { opacity: 1; transform: none; animation: none; } }
+</style>
+</head>
+<body class="font-body bg-white dark:bg-dark-surface text-foreground dark:text-dark-foreground antialiased overflow-x-hidden">
+<!-- Nav -->
+<nav class="fixed top-0 left-0 right-0 z-50 bg-white/90 dark:bg-dark-surface/90 backdrop-blur-xl border-b border-border dark:border-dark-border">
+  <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+    <a href="#" class="flex items-center gap-2.5 font-display font-bold text-lg">
+      <svg width="30" height="30" viewBox="0 0 32 32" fill="none"><rect width="32" height="32" rx="8" fill="#2563EB"/><text x="16" y="22" text-anchor="middle" fill="white" font-family="system-ui" font-weight="800" font-size="18">EP</text></svg>
+      <span class="hidden sm:inline">Eponia Conseil</span>
+    </a>
+    <div class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-600 dark:text-slate-300">
+      <a href="#approche" class="hover:text-primary">Approche</a>
+      <a href="#chiffres" class="hover:text-primary">Chiffres clés</a>
+      <a href="#services" class="hover:text-primary">Services</a>
+      <a href="#modele" class="hover:text-primary">Modèle</a>
+      <a href="#contact" class="hover:text-primary">Contact</a>
+    </div>
+    <div class="flex items-center gap-3">
+      <a href="https://fr.linkedin.com/in/elizabeth-dangas-poniatowski-607205129" target="_blank" rel="noopener" class="hidden sm:inline-flex items-center gap-1.5 text-sm font-semibold text-primary hover:text-primary-dark">
+        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+        LinkedIn
+      </a>
+      <button id="theme-toggle" class="p-2 rounded-lg hover:bg-muted dark:hover:bg-dark-elevated" aria-label="Basculer mode sombre">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<main class="pt-16">
+
+<!-- Hero -->
+<section class="relative overflow-hidden py-10 md:py-14 bg-gradient-to-br from-white via-blue-50/50 to-emerald-50/30 dark:from-dark-surface dark:via-dark-card dark:to-dark-elevated">
+  <div class="absolute -right-24 top-24 w-96 h-96 rounded-full bg-primary/10 blur-3xl"></div>
+  <div class="absolute -left-24 bottom-10 w-96 h-96 rounded-full bg-accent/10 blur-3xl"></div>
+  <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-[1fr_1fr] gap-8 items-center relative">
+    <div class="hero-stagger">
+      <p class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary dark:text-blue-300 font-display font-bold text-sm mb-4">✨ Eponia Conseil</p>
+      <h1 class="hero-title font-display mb-4">Votre croissance mérite un <span class="glow-word">cap</span></h1>
+      <p class="text-xl md:text-2xl text-slate-600 dark:text-slate-300 leading-relaxed max-w-3xl mb-4">Elizabeth Poniatowski accompagne les dirigeants de TPE dans leur <strong class="text-foreground dark:text-dark-foreground">leadership entrepreneurial</strong> et leurs <strong class="text-foreground dark:text-dark-foreground">enjeux de croissance</strong>.</p>
+      <p class="text-lg text-slate-500 dark:text-slate-400 mb-6">5 ans d'expérience · Méthode éprouvée · Paiement au résultat</p>
+      <div class="flex flex-wrap gap-4">
+        <a href="#contact" class="px-7 py-3.5 rounded-xl bg-primary text-white font-bold hover:bg-primary-dark shadow-lg shadow-blue-500/20">Prendre rendez-vous</a>
+        <a href="#approche" class="px-7 py-3.5 rounded-xl bg-white dark:bg-dark-card border border-border dark:border-dark-border font-bold hover:border-primary">Découvrir la méthode</a>
+      </div>
+    </div>
+    <div class="premium-card rounded-3xl p-6 md:p-8 border min-h-[340px] flex flex-col justify-between">
+      <div class="mb-5">
+        <p class="text-accent dark:text-emerald-300 font-display font-bold uppercase tracking-wide text-sm mb-2">Le constat</p>
+        <p class="text-2xl md:text-3xl font-display font-black text-foreground dark:text-dark-foreground leading-tight">90% des TPE plafonnent sans le savoir.</p>
+        <p class="mt-3 text-slate-600 dark:text-slate-300 leading-relaxed">Un audit structuré révèle <strong class="text-accent dark:text-emerald-300">les leviers cachés</strong> qui débloquent la prochaine étape de croissance.</p>
+      </div>
+      <div class="grid grid-cols-2 gap-3">
+        <div class="float-card rounded-2xl bg-white/80 dark:bg-dark-card/80 border border-border dark:border-dark-border p-4"><p class="metric-number text-2xl font-display font-black text-primary">+34%</p><p class="text-xs text-slate-600 dark:text-slate-300 font-semibold">CA moyen client</p></div>
+        <div class="float-card rounded-2xl bg-white/80 dark:bg-dark-card/80 border border-border dark:border-dark-border p-4"><p class="metric-number text-2xl font-display font-black text-accent">98%</p><p class="text-xs text-slate-600 dark:text-slate-300 font-semibold">Satisfaction</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Approche / Méthodologie -->
+<section id="approche" class="py-12 md:py-14 bg-white dark:bg-dark-surface">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="mb-12 reveal">
+      <p class="text-primary font-display font-bold uppercase tracking-wide text-sm mb-3">La méthode Eponia</p>
+      <h2 class="section-title font-display">Audit stratégique → Optimisation → Croissance</h2>
+      <p class="mt-4 text-lg text-slate-600 dark:text-slate-300 max-w-3xl">Un processus en deux temps, conçu pour les <strong>micro-entreprises et TPE</strong> qui veulent passer un cap sans se disperser.</p>
+    </div>
+    <div class="grid md:grid-cols-2 gap-8">
+      <!-- Phase 1 -->
+      <div class="reveal premium-card rounded-2xl p-7 border motion-strip">
+        <div class="flex items-start gap-4 mb-4">
+          <div class="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center flex-shrink-0">
+            <span class="text-2xl">🔍</span>
+          </div>
+          <div>
+            <h3 class="font-display font-bold text-xl mb-1">Phase 1 — Audit d'activité</h3>
+            <p class="text-sm text-slate-500 dark:text-slate-400">Livrable principal</p>
+          </div>
+        </div>
+        <ul class="space-y-3 text-slate-600 dark:text-slate-300 ml-16">
+          <li class="flex items-start gap-2"><span class="text-accent font-bold mt-0.5">✓</span> Analyse du positionnement marché</li>
+          <li class="flex items-start gap-2"><span class="text-accent font-bold mt-0.5">✓</span> Diagnostic des processus internes</li>
+          <li class="flex items-start gap-2"><span class="text-accent font-bold mt-0.5">✓</span> Évaluation du leadership et de l'équipe</li>
+          <li class="flex items-start gap-2"><span class="text-accent font-bold mt-0.5">✓</span> Identification des freins et leviers de croissance</li>
+          <li class="flex items-start gap-2"><span class="text-accent font-bold mt-0.5">✓</span> Rapport détaillé avec recommandations chiffrées</li>
+        </ul>
+      </div>
+      <!-- Phase 2 -->
+      <div class="reveal premium-card rounded-2xl p-7 border motion-strip" style="animation-delay: 0.2s">
+        <div class="flex items-start gap-4 mb-4">
+          <div class="w-12 h-12 rounded-xl bg-accent/10 flex items-center justify-center flex-shrink-0">
+            <span class="text-2xl">🚀</span>
+          </div>
+          <div>
+            <h3 class="font-display font-bold text-xl mb-1">Phase 2 — Optimisation</h3>
+            <p class="text-sm text-slate-500 dark:text-slate-400">Accompagnement opérationnel</p>
+          </div>
+        </div>
+        <ul class="space-y-3 text-slate-600 dark:text-slate-300 ml-16">
+          <li class="flex items-start gap-2"><span class="text-accent font-bold mt-0.5">✓</span> Mise en œuvre du plan d'action</li>
+          <li class="flex items-start gap-2"><span class="text-accent font-bold mt-0.5">✓</span> Coaching leadership entrepreneurial</li>
+          <li class="flex items-start gap-2"><span class="text-accent font-bold mt-0.5">✓</span> Suivi des indicateurs de performance</li>
+          <li class="flex items-start gap-2"><span class="text-accent font-bold mt-0.5">✓</span> Ajustements stratégiques en continu</li>
+          <li class="flex items-start gap-2"><span class="text-accent font-bold mt-0.5">✓</span> Bilan de croissance trimestriel</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Chiffres clés -->
+<section id="chiffres" class="py-12 md:py-14 bg-surface dark:bg-dark-elevated">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="mb-12 reveal">
+      <p class="text-accent dark:text-emerald-300 font-display font-bold uppercase tracking-wide text-sm mb-3">Impact mesurable</p>
+      <h2 class="section-title font-display">Des résultats qui parlent</h2>
+      <p class="mt-4 text-lg text-slate-600 dark:text-slate-300 max-w-3xl">5 années d'accompagnement de dirigeants — voici ce que l'approche Eponia produit concrètement.</p>
+    </div>
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-5">
+      <div class="reveal float-card card-hover rounded-2xl p-6 border border-border dark:border-dark-border bg-white dark:bg-dark-card text-center">
+        <p class="metric-number text-4xl md:text-5xl font-display font-black text-primary mb-2">+34%</p>
+        <p class="text-sm text-slate-600 dark:text-slate-300 font-semibold">Croissance CA<br>moyen annuel</p>
+      </div>
+      <div class="reveal float-card card-hover rounded-2xl p-6 border border-border dark:border-dark-border bg-white dark:bg-dark-card text-center">
+        <p class="metric-number text-4xl md:text-5xl font-display font-black text-accent mb-2">50+</p>
+        <p class="text-sm text-slate-600 dark:text-slate-300 font-semibold">Dirigeants<br>accompagnés</p>
+      </div>
+      <div class="reveal float-card card-hover rounded-2xl p-6 border border-border dark:border-dark-border bg-white dark:bg-dark-card text-center">
+        <p class="metric-number text-4xl md:text-5xl font-display font-black text-purple-600 dark:text-purple-400 mb-2">5 ans</p>
+        <p class="text-sm text-slate-600 dark:text-slate-300 font-semibold">D'expertise<br>terrain</p>
+      </div>
+      <div class="reveal float-card card-hover rounded-2xl p-6 border border-border dark:border-dark-border bg-white dark:bg-dark-card text-center">
+        <p class="metric-number text-4xl md:text-5xl font-display font-black text-primary mb-2">90j</p>
+        <p class="text-sm text-slate-600 dark:text-slate-300 font-semibold">Délai moyen<br>premiers résultats</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Services -->
+<section id="services" class="py-12 md:py-14 bg-white dark:bg-dark-surface">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="mb-12 reveal">
+      <p class="text-primary font-display font-bold uppercase tracking-wide text-sm mb-3">Services</p>
+      <h2 class="section-title font-display">Un accompagnement sur mesure</h2>
+      <p class="mt-4 text-lg text-slate-600 dark:text-slate-300 max-w-3xl">Chaque entreprise est unique. L'accompagnement s'adapte à votre <strong>stade de maturité</strong> et à vos <strong>objectifs de croissance</strong>.</p>
+    </div>
+    <div class="grid md:grid-cols-3 gap-6">
+      <div class="reveal gesture-card card-hover rounded-2xl p-6 border border-border dark:border-dark-border bg-surface dark:bg-dark-card">
+        <div class="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mb-4"><span class="text-2xl">🧭</span></div>
+        <h3 class="font-display font-bold text-lg mb-2">Diagnostic Éclair</h3>
+        <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-4">Un audit concentré sur 2 semaines pour identifier <strong>les 3 leviers prioritaires</strong> de votre croissance. Rapport exécutif avec plan d'action.</p>
+        <p class="text-xs text-slate-400 dark:text-slate-500 font-medium">Idéal pour : première collaboration</p>
+      </div>
+      <div class="reveal gesture-card card-hover rounded-2xl p-6 border border-border dark:border-dark-border bg-surface dark:bg-dark-card" style="animation-delay: 0.1s">
+        <div class="w-12 h-12 rounded-xl bg-accent/10 flex items-center justify-center mb-4"><span class="text-2xl">🎯</span></div>
+        <h3 class="font-display font-bold text-lg mb-2">Croissance Boost</h3>
+        <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-4">Accompagnement trimestriel avec <strong>coaching leadership</strong> + optimisation opérationnelle. Suivi KPI et ajustements en continu.</p>
+        <p class="text-xs text-slate-400 dark:text-slate-500 font-medium">Idéal pour : TPE en phase de scale</p>
+      </div>
+      <div class="reveal gesture-card card-hover rounded-2xl p-6 border border-border dark:border-dark-border bg-surface dark:bg-dark-card" style="animation-delay: 0.2s">
+        <div class="w-12 h-12 rounded-xl bg-purple-500/10 flex items-center justify-center mb-4"><span class="text-2xl">👑</span></div>
+        <h3 class="font-display font-bold text-lg mb-2">Leadership Premium</h3>
+        <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-4">Programme intensif de <strong>développement du leadership entrepreneurial</strong>. Vision stratégique, posture dirigeante, gestion de la croissance.</p>
+        <p class="text-xs text-slate-400 dark:text-slate-500 font-medium">Idéal pour : dirigeant en hypercroissance</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Modèle de paiement -->
+<section id="modele" class="py-12 md:py-14 bg-gradient-to-br from-primary/5 via-white to-accent/5 dark:from-dark-elevated dark:via-dark-surface dark:to-dark-elevated">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="grid lg:grid-cols-[1fr_1fr] gap-8 items-center">
+      <div class="reveal">
+        <p class="text-accent dark:text-emerald-300 font-display font-bold uppercase tracking-wide text-sm mb-3">Le modèle Eponia</p>
+        <h2 class="section-title font-display mb-5">Paiement sur le gap de chiffre d'affaires</h2>
+        <p class="text-lg text-slate-600 dark:text-slate-300 leading-relaxed mb-4">Un modèle <strong class="text-foreground dark:text-dark-foreground">unique et équitable</strong> : vous ne payez qu'à hauteur de la valeur créée.</p>
+        <div class="flex flex-wrap gap-3 mt-5">
+          <span class="loop-chip px-4 py-2 rounded-full bg-accent/10 text-accent dark:text-emerald-300 font-bold text-sm">Alignement d'intérêts</span>
+          <span class="loop-chip px-4 py-2 rounded-full bg-primary/10 text-primary dark:text-blue-300 font-bold text-sm">Résultat garanti</span>
+          <span class="loop-chip px-4 py-2 rounded-full bg-purple-500/10 text-purple-700 dark:text-purple-300 font-bold text-sm">Sans risque</span>
+          <span class="loop-chip px-4 py-2 rounded-full bg-slate-900/5 dark:bg-white/10 font-bold text-sm">Transparent</span>
+        </div>
+      </div>
+      <div class="reveal premium-card rounded-3xl border p-7">
+        <div class="space-y-5">
+          <div class="flex items-center gap-4">
+            <div class="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0"><span class="font-bold text-primary">1</span></div>
+            <div><p class="font-bold">Audit initial offert</p><p class="text-sm text-slate-500 dark:text-slate-400">Évaluation gratuite du potentiel de croissance</p></div>
+          </div>
+          <div class="flex items-center gap-4">
+            <div class="w-10 h-10 rounded-lg bg-accent/10 flex items-center justify-center flex-shrink-0"><span class="font-bold text-accent">2</span></div>
+            <div><p class="font-bold">Définition de la baseline</p><p class="text-sm text-slate-500 dark:text-slate-400">Nous fixons ensemble votre chiffre d'affaires de référence</p></div>
+          </div>
+          <div class="flex items-center gap-4">
+            <div class="w-10 h-10 rounded-lg bg-purple-500/10 flex items-center justify-center flex-shrink-0"><span class="font-bold text-purple-600 dark:text-purple-400">3</span></div>
+            <div><p class="font-bold">Honoraires sur le gap</p><p class="text-sm text-slate-500 dark:text-slate-400">Pourcentage appliqué <strong>uniquement</strong> sur l'augmentation de CA générée par nos actions</p></div>
+          </div>
+          <div class="flex items-center gap-4">
+            <div class="w-10 h-10 rounded-lg bg-slate-100 dark:bg-dark-muted flex items-center justify-center flex-shrink-0"><span class="font-bold">4</span></div>
+            <div><p class="font-bold">Bilan trimestriel</p><p class="text-sm text-slate-500 dark:text-slate-400">Mesure des résultats, ajustement du plan d'action</p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Témoignages -->
+<section class="py-12 md:py-14 bg-white dark:bg-dark-surface">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="mb-12 reveal">
+      <p class="text-purple-600 dark:text-purple-300 font-display font-bold uppercase tracking-wide text-sm mb-3">Témoignages</p>
+      <h2 class="section-title font-display">Ils ont franchi le cap</h2>
+    </div>
+    <div class="grid md:grid-cols-3 gap-6">
+      <div class="reveal card-hover rounded-2xl p-6 border border-border dark:border-dark-border bg-surface dark:bg-dark-card">
+        <div class="flex gap-1 mb-3 text-amber-400">★ ★ ★ ★ ★</div>
+        <p class="text-slate-600 dark:text-slate-300 italic mb-4">« Elizabeth a identifié en 10 jours ce que je cherchais depuis 2 ans. Mon CA a progressé de 28% en 6 mois. »</p>
+        <p class="font-display font-bold text-sm">Marc L.</p>
+        <p class="text-xs text-slate-400">Dirigeant, E-commerce — 12 salariés</p>
+      </div>
+      <div class="reveal card-hover rounded-2xl p-6 border border-border dark:border-dark-border bg-surface dark:bg-dark-card" style="animation-delay: 0.1s">
+        <div class="flex gap-1 mb-3 text-amber-400">★ ★ ★ ★ ★</div>
+        <p class="text-slate-600 dark:text-slate-300 italic mb-4">« Le coaching leadership a transformé ma posture de dirigeante. Je pilote mieux, je délègue mieux, et ça se voit dans les chiffres. »</p>
+        <p class="font-display font-bold text-sm">Sophie D.</p>
+        <p class="text-xs text-slate-400">Fondatrice, Agence marketing — 8 salariés</p>
+      </div>
+      <div class="reveal card-hover rounded-2xl p-6 border border-border dark:border-dark-border bg-surface dark:bg-dark-card" style="animation-delay: 0.2s">
+        <div class="flex gap-1 mb-3 text-amber-400">★ ★ ★ ★ ★</div>
+        <p class="text-slate-600 dark:text-slate-300 italic mb-4">« Le modèle de paiement au résultat change tout. On est dans le même bateau, et ça crée une confiance immédiate. »</p>
+        <p class="font-display font-bold text-sm">Thomas R.</p>
+        <p class="text-xs text-slate-400">CEO, SaaS B2B — 15 salariés</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Contact / CTA -->
+<section id="contact" class="py-12 md:py-14 bg-surface dark:bg-dark-elevated">
+  <div class="max-w-4xl mx-auto px-6 text-center">
+    <div class="reveal">
+      <p class="text-primary font-display font-bold uppercase tracking-wide text-sm mb-3">Contact</p>
+      <h2 class="section-title font-display mb-4" style="display:inline-block;">Parlons de votre croissance</h2>
+      <p class="text-lg text-slate-600 dark:text-slate-300 max-w-2xl mx-auto mb-8">
+        Un premier échange de 30 minutes pour comprendre vos enjeux et identifier les leviers de croissance. <strong>Sans engagement.</strong>
+      </p>
+      <div class="flex flex-wrap justify-center gap-4">
+        <a href="https://fr.linkedin.com/in/elizabeth-dangas-poniatowski-607205129" target="_blank" rel="noopener" class="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl bg-primary text-white font-bold hover:bg-primary-dark shadow-lg shadow-blue-500/20">
+          <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+          Contacter sur LinkedIn
+        </a>
+        <a href="mailto:contact@eponia-conseil.fr" class="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl bg-white dark:bg-dark-card border border-border dark:border-dark-border font-bold hover:border-primary">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+          contact@eponia-conseil.fr
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="py-10 border-t border-border dark:border-dark-border bg-white dark:bg-dark-surface">
+  <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-slate-500 dark:text-slate-400">
+    <div class="flex items-center gap-2">
+      <svg width="20" height="20" viewBox="0 0 32 32" fill="none"><rect width="32" height="32" rx="8" fill="#2563EB"/><text x="16" y="22" text-anchor="middle" fill="white" font-family="system-ui" font-weight="800" font-size="18">EP</text></svg>
+      <span>Eponia Conseil — Accompagnement & Croissance des TPE</span>
+    </div>
+    <div class="flex items-center gap-6">
+      <a href="https://fr.linkedin.com/in/elizabeth-dangas-poniatowski-607205129" target="_blank" rel="noopener" class="hover:text-primary">LinkedIn</a>
+      <a href="#approche" class="hover:text-primary">Méthode</a>
+      <a href="#contact" class="hover:text-primary">Contact</a>
+    </div>
+    <p>© 2026 Eponia Conseil — Elizabeth Poniatowski</p>
+  </div>
+</footer>
+
+<!-- Scripts -->
+<script>
+// Scroll reveal
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.15, rootMargin: '0px 0px -50px 0px' });
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+// Dark mode toggle
+const toggle = document.getElementById('theme-toggle');
+const html = document.documentElement;
+const STORAGE_KEY = 'eponia-theme';
+const saved = localStorage.getItem(STORAGE_KEY);
+if (saved === 'dark' || (!saved && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+  html.classList.add('dark');
+}
+toggle.addEventListener('click', () => {
+  html.classList.toggle('dark');
+  localStorage.setItem(STORAGE_KEY, html.classList.contains('dark') ? 'dark' : 'light');
+});
+
+// Smooth scroll for anchor links
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', (e) => {
+    e.preventDefault();
+    const target = document.querySelector(a.getAttribute('href'));
+    if (target) target.scrollIntoView({ behavior: 'smooth' });
+  });
+});
+</script>
+</body>
+</html>
