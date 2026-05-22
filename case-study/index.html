@@ -4,241 +4,412 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="icon" type="image/svg+xml" href="../favicon.svg">
-<title>ai2work Case Study — Atlas Nexus</title>
+<title>AI2Work Case Study — Atlas Nexus</title>
 <meta name="description" content="On-chain freelancer marketplace built on Celo — full-stack case study: Solidity smart contracts, Next.js PWA, native Android wallet.">
 <link rel="canonical" href="https://atlasnexus.tech/case-study/">
 <script src="https://cdn.tailwindcss.com"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700;800;900&family=Nunito+Sans:ital,opsz,wght@0,6..12,200;0,6..12,300;0,6..12,400;0,6..12,500;0,6..12,600;0,6..12,700;0,6..12,800;1,6..12,200;1,6..12,300;1,6..12,400;1,6..12,500;1,6..12,600;1,6..12,700&display=swap" rel="stylesheet">
+<script>
+tailwind.config = {
+  darkMode: 'class',
+  theme: {
+    extend: {
+      fontFamily: {
+        display: ['Rubik', 'sans-serif'],
+        body: ['Nunito Sans', 'sans-serif'],
+      },
+      colors: {
+        primary: '#2563EB',
+        'primary-dark': '#1D4ED8',
+        secondary: '#3B82F6',
+        accent: '#059669',
+        'accent-dark': '#047857',
+        surface: '#F8FAFC',
+        muted: '#F1F5FD',
+        border: '#E4ECFC',
+        foreground: '#0F172A',
+        'dark-surface': '#0B1120',
+        'dark-card': '#111827',
+        'dark-elevated': '#1A2235',
+        'dark-border': '#1E293B',
+        'dark-muted': '#334155',
+        'dark-foreground': '#F1F5F9',
+        'dark-dim': '#94A3B8',
+      }
+    }
+  }
+}
+</script>
 <style>
-  :root {
-    --bg: #fafafa; --text: #1a1a1a; --text2: #555; --accent: #0ea5e9;
-    --card-bg: #fff; --card-border: #e5e5e5; --code-bg: #f0f0f0;
-  }
-  [data-theme="dark"] {
-    --bg: #0a0a0a; --text: #f0f0f0; --text2: #999; --accent: #38bdf8;
-    --card-bg: #141414; --card-border: #2a2a2a; --code-bg: #1a1a1a;
-  }
-  body { background: var(--bg); color: var(--text); transition: background 0.4s, color 0.4s; font-family: system-ui, -apple-system, sans-serif; }
-  .card { background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 12px; padding: 24px; transition: background 0.4s, border 0.4s; }
-  .code { background: var(--code-bg); border: 1px solid var(--card-border); border-radius: 8px; padding: 16px; font-family: 'SF Mono', 'Fira Code', monospace; font-size: 13px; overflow-x: auto; }
-  .accent { color: var(--accent); }
-  .stat { font-size: 28px; font-weight: 700; color: var(--accent); }
-  .tag { display: inline-block; padding: 4px 10px; border-radius: 20px; font-size: 12px; font-weight: 500; border: 1px solid var(--card-border); }
-  .hero-gradient { background: linear-gradient(135deg, #0ea5e9 0%, #8b5cf6 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
-  a { color: var(--accent); text-decoration: none; }
-  a:hover { text-decoration: underline; }
+  /* ── Core ── */
+  .gradient-text { background: linear-gradient(135deg, #2563EB 0%, #059669 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+  .section-title { font-size: clamp(1.8rem, 4.5vw, 3rem); font-weight: 800; letter-spacing: -0.03em; line-height: 1.1; position: relative; padding-bottom: 0.5rem; }
+  .section-title::after { content: ""; position: absolute; bottom: 0; left: 0; width: 3rem; height: 3px; border-radius: 2px; background: linear-gradient(90deg, #2563EB, #059669); }
+  .dark .section-title::after { background: linear-gradient(90deg, #60A5FA, #34D399); }
+  .card-hover { transition: all 250ms ease; }
+  .card-hover:hover { transform: translateY(-4px); box-shadow: 0 12px 32px -6px rgba(37,99,235,0.1); border-color: #2563EB; }
+  a, button, .card-hover { transition: all 200ms ease; }
+  *:focus-visible { outline: 2px solid #2563EB; outline-offset: 2px; border-radius: 4px; }
+
+  .case-stat { font-size: clamp(2rem, 4vw, 3rem); font-weight: 900; background: linear-gradient(135deg, #2563EB 0%, #059669 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+
+  .tag { display: inline-block; padding: 4px 12px; border-radius: 999px; font-size: 0.75rem; font-weight: 600; border: 1px solid rgba(37,99,235,.22); background: linear-gradient(135deg, rgba(37,99,235,.06), rgba(5,150,105,.04)); color: #1e40af; }
+  .dark .tag { border-color: rgba(96,165,250,.22); background: linear-gradient(135deg, rgba(37,99,235,.12), rgba(5,150,105,.08)); color: #93C5FD; }
+
+  .code-block { background: #0F172A; color: #E2E8F0; border: 1px solid #1E293B; border-radius: 12px; padding: 20px 24px; font-family: 'SF Mono', 'Fira Code', 'Cascadia Code', monospace; font-size: 0.82rem; line-height: 1.7; overflow-x: auto; }
+  .dark .code-block { background: #020617; border-color: #1E293B; }
+  .code-block .kw { color: #7C3AED; }
+  .code-block .fn { color: #38BDF8; }
+  .code-block .cm { color: #64748B; }
+
+  .spec-row { display: flex; justify-content: space-between; align-items: center; padding: 12px 0; border-bottom: 1px solid #E4ECFC; }
+  .dark .spec-row { border-bottom-color: #1E293B; }
+  .spec-row:last-child { border-bottom: none; }
+
+  .highlight-card { position: relative; overflow: hidden; border-color: rgba(37,99,235,.22)!important; box-shadow: 0 18px 52px -34px rgba(37,99,235,.55); background: linear-gradient(145deg, #ffffff 0%, #f7fbff 52%, #eef8ff 100%); }
+  .highlight-card::before { content: ""; position: absolute; inset: -1px; background: radial-gradient(circle at 15% 0%, rgba(37,99,235,.10), transparent 38%), radial-gradient(circle at 95% 20%, rgba(5,150,105,.07), transparent 34%); pointer-events: none; }
+  .highlight-card > * { position: relative; }
+  .dark .highlight-card { background: linear-gradient(145deg, #111827 0%, #141e30 52%, #111c2e 100%); }
+
+  /* ── Scroll Reveal ── */
+  .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1), transform 0.6s cubic-bezier(0.22, 1, 0.36, 1); }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+  .reveal-delay-1 { transition-delay: 0.05s; }
+  .reveal-delay-2 { transition-delay: 0.12s; }
+  .reveal-delay-3 { transition-delay: 0.19s; }
+
+  /* ── Dark overrides ── */
+  .dark .border.border-border { border-color: #334155; }
+  .dark .card-hover:hover { border-color: #3B82F6; box-shadow: 0 12px 32px -6px rgba(59,130,246,0.15); }
+
+  .hero-case { font-size: clamp(2.5rem, 6vw, 4.5rem); font-weight: 900; letter-spacing: -0.04em; line-height: 1.08; }
 </style>
 </head>
-<body>
-<script>
-(function(){
-  const KEY = 'atlasnexus.theme';
-  const saved = localStorage.getItem(KEY) || 'light';
-  document.documentElement.setAttribute('data-theme', saved);
-})();
-</script>
+<body class="bg-surface dark:bg-dark-surface text-foreground dark:text-dark-foreground font-body antialiased">
 
-<nav style="max-width:1100px;margin:0 auto;padding:24px 20px;display:flex;justify-content:space-between;align-items:center;">
-  <a href="/" style="font-weight:700;font-size:18px;color:var(--text);text-decoration:none;">← Atlas Nexus</a>
-  <button onclick="(function(){const t=document.documentElement;const c=t.getAttribute('data-theme')==='dark'?'light':'dark';t.setAttribute('data-theme',c);localStorage.setItem('atlasnexus.theme',c);})()" style="background:var(--card-bg);border:1px solid var(--card-border);border-radius:8px;padding:8px 16px;cursor:pointer;color:var(--text);">🌓</button>
+<!-- Nav -->
+<nav class="fixed top-0 w-full z-50 bg-surface/85 dark:bg-dark-surface/90 backdrop-blur-lg border-b border-border dark:border-dark-border">
+  <div class="max-w-6xl mx-auto px-6 h-[72px] flex items-center justify-between">
+    <a href="/" class="flex items-center gap-3 group" aria-label="Atlas Nexus home">
+      <div class="w-9 h-9 bg-primary rounded-lg flex items-center justify-center shadow-lg shadow-blue-500/20 group-hover:scale-105 transition-transform">
+        <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" aria-hidden="true">
+          <circle cx="12" cy="6" r="2.5" fill="currentColor" stroke="none"/>
+          <circle cx="19" cy="13" r="2.5" fill="currentColor" stroke="none"/>
+          <circle cx="5" cy="13" r="2.5" fill="currentColor" stroke="none"/>
+          <line x1="12" y1="8.5" x2="17.5" y2="11.5"/>
+          <line x1="6.5" y1="11.5" x2="12" y2="8.5"/>
+        </svg>
+      </div>
+      <span class="font-display font-bold text-xl text-foreground dark:text-dark-foreground tracking-tight">Atlas Nexus</span>
+    </a>
+    <div class="flex items-center gap-3">
+      <button id="theme-toggle" class="w-10 h-10 rounded-full border border-black/10 dark:border-white/10 bg-white/70 dark:bg-white/5 backdrop-blur-xl flex items-center justify-center hover:bg-white dark:hover:bg-white/10 transition-all shadow-sm shadow-black/5 dark:shadow-lg dark:shadow-black/20 text-slate-500 dark:text-slate-300" aria-label="Toggle dark mode">
+        <svg class="w-4 h-4 rotate-0 scale-100 transition-transform duration-300 dark:-rotate-90 dark:scale-0" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+        <svg class="absolute w-4 h-4 rotate-90 scale-0 transition-transform duration-300 dark:rotate-0 dark:scale-100" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
+      </button>
+      <a href="/#contact" class="cursor-pointer bg-primary text-white px-5 py-2.5 rounded-full text-sm font-semibold hover:bg-primary-dark transition-colors">Contact</a>
+    </div>
+  </div>
 </nav>
 
-<main style="max-width:800px;margin:0 auto;padding:0 20px 80px;">
-
 <!-- Hero -->
-<section style="text-align:center;margin-bottom:48px;">
-  <h1 style="font-size:40px;font-weight:800;margin-bottom:16px;"><span class="hero-gradient">ai2work</span></h1>
-  <p style="font-size:18px;color:var(--text2);max-width:600px;margin:0 auto;">On-chain freelancer marketplace — smart contracts on Celo, Next.js PWA, native Android wallet with ECDSA signing.</p>
-  <div style="margin-top:24px;display:flex;gap:8px;justify-content:center;flex-wrap:wrap;">
-    <span class="tag">Solidity</span><span class="tag">Next.js 15</span><span class="tag">Celo</span><span class="tag">Kotlin</span><span class="tag">Capacitor</span><span class="tag">ECDSA</span><span class="tag">TypeScript</span>
-  </div>
-  <div style="margin-top:20px;display:flex;gap:8px;justify-content:center;">
-    <a href="https://github.com/AtlasNexusTech/ai2work" style="background:var(--card-bg);border:1px solid var(--card-border);padding:10px 20px;border-radius:8px;color:var(--text);text-decoration:none;">📂 GitHub</a>
-    <a href="https://ai2work.onrender.com" style="background:var(--accent);color:#fff;padding:10px 20px;border-radius:8px;text-decoration:none;">🔗 Live Demo</a>
+<section class="pt-40 pb-16 md:pt-48 md:pb-20">
+  <div class="max-w-4xl mx-auto px-6 text-center">
+    <p class="text-purple-500 font-semibold tracking-widest uppercase text-xs mb-4 reveal">Case Study</p>
+    <h1 class="hero-case mb-6 reveal reveal-delay-1"><span class="gradient-text">AI2Work</span></h1>
+    <p class="text-lg md:text-xl text-slate-600 dark:text-dark-dim max-w-2xl mx-auto leading-relaxed mb-8 reveal reveal-delay-2">On-chain freelancer marketplace — smart contracts on Celo, Next.js PWA, native Android wallet with ECDSA signing.</p>
+    <div class="flex flex-wrap gap-2 justify-center mb-8 reveal reveal-delay-2">
+      <span class="tag">Solidity</span><span class="tag">Next.js 15</span><span class="tag">Celo</span><span class="tag">Kotlin</span><span class="tag">Capacitor</span><span class="tag">ECDSA</span><span class="tag">TypeScript</span>
+    </div>
+    <div class="flex gap-3 justify-center reveal reveal-delay-3">
+      <a href="https://github.com/AtlasNexusTech/ai2work" class="inline-flex items-center gap-2 px-6 py-3 rounded-lg border border-border dark:border-dark-border bg-white dark:bg-dark-card text-foreground dark:text-dark-foreground font-semibold hover:border-primary dark:hover:border-blue-400 transition-colors">
+        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+        GitHub
+      </a>
+      <a href="https://ai2work.onrender.com" class="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-primary text-white font-semibold hover:bg-primary-dark transition-colors shadow-lg shadow-blue-500/20">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+        Live Demo
+      </a>
+    </div>
   </div>
 </section>
 
 <!-- Stats -->
-<section style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:16px;margin-bottom:48px;">
-  <div class="card" style="text-align:center;">
-    <div class="stat">20+</div>
-    <div style="color:var(--text2);font-size:14px;">smart contract functions</div>
-  </div>
-  <div class="card" style="text-align:center;">
-    <div class="stat">3</div>
-    <div style="color:var(--text2);font-size:14px;">ERC-20 tokens supported</div>
-  </div>
-  <div class="card" style="text-align:center;">
-    <div class="stat">4</div>
-    <div style="color:var(--text2);font-size:14px;">platforms (Web + Android)</div>
-  </div>
-  <div class="card" style="text-align:center;">
-    <div class="stat">100%</div>
-    <div style="color:var(--text2);font-size:14px;">on-chain settlement</div>
-  </div>
-</section>
-
-<!-- Problem -->
-<section style="margin-bottom:48px;">
-  <h2 style="font-size:24px;font-weight:700;margin-bottom:16px;">The Problem</h2>
-  <div class="card">
-    <p style="color:var(--text2);line-height:1.8;">
-      Freelancers lose <strong>5-20% in platform fees</strong> on traditional marketplaces.
-      Payment disputes take days. Cross-border payments add 3-5% forex and 2-3 business days.
-      Smart contract escrow eliminates intermediaries, but existing Web3 freelance platforms
-      are desktop-only and require MetaMask — inaccessible to the 70% of global users on mobile.
-    </p>
+<section class="py-12 bg-white dark:bg-dark-card border-y border-border dark:border-dark-border">
+  <div class="max-w-4xl mx-auto px-6">
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+      <div class="reveal text-center">
+        <div class="case-stat">20+</div>
+        <div class="text-sm text-slate-500 dark:text-dark-dim mt-1">smart contract functions</div>
+      </div>
+      <div class="reveal reveal-delay-1 text-center">
+        <div class="case-stat">3</div>
+        <div class="text-sm text-slate-500 dark:text-dark-dim mt-1">ERC-20 tokens supported</div>
+      </div>
+      <div class="reveal reveal-delay-2 text-center">
+        <div class="case-stat">4</div>
+        <div class="text-sm text-slate-500 dark:text-dark-dim mt-1">platforms (Web + Android)</div>
+      </div>
+      <div class="reveal reveal-delay-3 text-center">
+        <div class="case-stat">100%</div>
+        <div class="text-sm text-slate-500 dark:text-dark-dim mt-1">on-chain settlement</div>
+      </div>
+    </div>
   </div>
 </section>
 
-<!-- Solution -->
-<section style="margin-bottom:48px;">
-  <h2 style="font-size:24px;font-weight:700;margin-bottom:16px;">The Solution</h2>
-  <div class="card">
-    <p style="color:var(--text2);line-height:1.8;margin-bottom:16px;">
-      <strong>ai2work</strong> is a mobile-first Web3 freelancer marketplace deployed on Celo —
-      a carbon-negative, mobile-optimized L1. Freelancers post bounties in cUSD, CELO, or USDC.
-      Funds are held in an auditable smart contract escrow. Dispute resolution is on-chain.
-    </p>
-    <p style="color:var(--text2);line-height:1.8;">
-      Fees: <strong>2% protocol fee</strong> (vs 5-20% on Web2 platforms). Settlement: <strong>instant on-chain</strong>.
-      No KYC. No bank dependency. Works on any Android device with the native APK.
-    </p>
+<!-- Problem + Solution -->
+<section class="py-20 md:py-28">
+  <div class="max-w-4xl mx-auto px-6">
+    <div class="grid md:grid-cols-2 gap-8">
+      <div class="reveal">
+        <p class="text-purple-500 font-semibold tracking-widest uppercase text-xs mb-3">Challenge</p>
+        <h2 class="section-title text-foreground dark:text-dark-foreground mb-6 font-display">The Problem</h2>
+        <div class="bg-white dark:bg-dark-card rounded-xl p-6 border border-border dark:border-dark-border">
+          <p class="text-slate-600 dark:text-dark-dim leading-relaxed">
+            Freelancers lose <strong class="text-foreground dark:text-dark-foreground">5-20% in platform fees</strong> on traditional marketplaces. Payment disputes take days. Cross-border payments add 3-5% forex and 2-3 business days. Existing Web3 freelance platforms are desktop-only and require MetaMask — inaccessible to the 70% of global users on mobile.
+          </p>
+        </div>
+      </div>
+      <div class="reveal reveal-delay-1">
+        <p class="text-accent font-semibold tracking-widest uppercase text-xs mb-3">Approach</p>
+        <h2 class="section-title text-foreground dark:text-dark-foreground mb-6 font-display">The Solution</h2>
+        <div class="bg-white dark:bg-dark-card rounded-xl p-6 border border-border dark:border-dark-border">
+          <p class="text-slate-600 dark:text-dark-dim leading-relaxed">
+            <strong class="text-foreground dark:text-dark-foreground">AI2Work</strong> is a mobile-first Web3 freelancer marketplace on Celo — carbon-negative, mobile-optimized L1. Freelancers post bounties in cUSD, CELO, or USDC. Funds held in auditable smart contract escrow. <strong>2% protocol fee</strong> (vs 5-20%). Settlement: <strong>instant on-chain</strong>. No KYC. No bank. Works on any Android device.
+          </p>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
 <!-- Architecture -->
-<section style="margin-bottom:48px;">
-  <h2 style="font-size:24px;font-weight:700;margin-bottom:16px;">Architecture</h2>
-  <div class="card">
-    <div style="color:var(--text2);line-height:1.8;">
+<section class="py-20 md:py-28 bg-muted dark:bg-dark-elevated">
+  <div class="max-w-4xl mx-auto px-6">
+    <div class="reveal text-center mb-12">
+      <p class="text-purple-500 font-semibold tracking-widest uppercase text-xs mb-3">Stack</p>
+      <h2 class="section-title text-foreground dark:text-dark-foreground font-display inline-block" style="position:relative;padding-bottom:0.5rem;">Architecture</h2>
+    </div>
 
-<strong style="color:var(--text);">Smart Contracts</strong> (Solidity, Foundry)
-<div style="margin:8px 0 16px 0;color:var(--text2);">
-• ClaudelanceCore.sol — escrow, dispute resolution, stake settlement<br>
-• ReentrancyGuard + Ownable2Step + Pausable (OpenZeppelin v5)<br>
-• 20+ mutating functions, tested with forge test<br>
-• Deployed on Celo Mainnet (chain 42220), verified on Celoscan
-</div>
+    <!-- Smart Contracts -->
+    <div class="reveal reveal-delay-1 bg-white dark:bg-dark-card rounded-xl p-6 border border-border dark:border-dark-border mb-4">
+      <div class="flex items-start gap-4">
+        <div class="w-10 h-10 bg-blue-100 dark:bg-blue-900/30 rounded-lg flex items-center justify-center shrink-0 mt-0.5">
+          <svg class="w-5 h-5 text-blue-600 dark:text-blue-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="4"/><path d="M10 9l4 4-4 4"/></svg>
+        </div>
+        <div>
+          <h3 class="font-bold text-lg text-foreground dark:text-dark-foreground font-display mb-2">Smart Contracts</h3>
+          <p class="text-sm text-slate-500 dark:text-dark-dim mb-2">Solidity · Foundry · OpenZeppelin v5</p>
+          <ul class="text-slate-600 dark:text-dark-dim text-sm space-y-1">
+            <li>• ClaudelanceCore.sol — escrow, dispute resolution, stake settlement</li>
+            <li>• ReentrancyGuard + Ownable2Step + Pausable</li>
+            <li>• 20+ mutating functions, tested with <code class="text-primary text-xs bg-blue-50 dark:bg-blue-900/20 px-1.5 py-0.5 rounded">forge test</code></li>
+            <li>• Deployed on Celo Mainnet (chain 42220), verified on Celoscan</li>
+          </ul>
+        </div>
+      </div>
+    </div>
 
-<strong style="color:var(--text);">Web PWA</strong> (Next.js 15, TypeScript, Tailwind)
-<div style="margin:8px 0 16px 0;color:var(--text2);">
-• Server-side rendering with App Router<br>
-• WalletConnect v2 integration<br>
-• PWA with offline support, installable on mobile<br>
-• Hosted on Render.com, CI/CD via GitHub Actions
-</div>
+    <!-- Web PWA -->
+    <div class="reveal reveal-delay-2 bg-white dark:bg-dark-card rounded-xl p-6 border border-border dark:border-dark-border mb-4">
+      <div class="flex items-start gap-4">
+        <div class="w-10 h-10 bg-purple-100 dark:bg-purple-900/30 rounded-lg flex items-center justify-center shrink-0 mt-0.5">
+          <svg class="w-5 h-5 text-purple-600 dark:text-purple-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+        </div>
+        <div>
+          <h3 class="font-bold text-lg text-foreground dark:text-dark-foreground font-display mb-2">Web PWA</h3>
+          <p class="text-sm text-slate-500 dark:text-dark-dim mb-2">Next.js 15 · TypeScript · Tailwind · WalletConnect v2</p>
+          <ul class="text-slate-600 dark:text-dark-dim text-sm space-y-1">
+            <li>• Server-side rendering with App Router</li>
+            <li>• PWA with offline support, installable on mobile</li>
+            <li>• Hosted on Render.com, CI/CD via GitHub Actions</li>
+          </ul>
+        </div>
+      </div>
+    </div>
 
-<strong style="color:var(--text);">Native Android</strong> (Kotlin, Capacitor)
-<div style="margin:8px 0 16px 0;color:var(--text2);">
-• Custom Capacitor plugin for ECDSA signing<br>
-• Android Keystore for private key storage (hardware-backed)<br>
-• Keccak256 implemented from scratch in Kotlin (no external crypto libs)<br>
-• EIP-1559 transaction signing + RLP encoding<br>
-• WebView bridge injecting window.ethereum
-</div>
+    <!-- Native Android -->
+    <div class="reveal reveal-delay-2 bg-white dark:bg-dark-card rounded-xl p-6 border border-border dark:border-dark-border mb-4">
+      <div class="flex items-start gap-4">
+        <div class="w-10 h-10 bg-green-100 dark:bg-green-900/30 rounded-lg flex items-center justify-center shrink-0 mt-0.5">
+          <svg class="w-5 h-5 text-green-600 dark:text-green-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+        </div>
+        <div>
+          <h3 class="font-bold text-lg text-foreground dark:text-dark-foreground font-display mb-2">Native Android</h3>
+          <p class="text-sm text-slate-500 dark:text-dark-dim mb-2">Kotlin · Capacitor · Android Keystore</p>
+          <ul class="text-slate-600 dark:text-dark-dim text-sm space-y-1">
+            <li>• Custom Capacitor plugin for ECDSA signing</li>
+            <li>• Android Keystore for private key storage (hardware-backed)</li>
+            <li>• Keccak256 implemented from scratch in Kotlin</li>
+            <li>• EIP-1559 transaction signing + RLP encoding</li>
+            <li>• WebView bridge injecting <code class="text-primary text-xs bg-blue-50 dark:bg-blue-900/20 px-1.5 py-0.5 rounded">window.ethereum</code></li>
+          </ul>
+        </div>
+      </div>
+    </div>
 
-<strong style="color:var(--text);">SDK & Types</strong> (npm packages)
-<div style="margin:8px 0 0 0;color:var(--text2);">
-• @yeheskieltame/claudelance-sdk — typed client for the smart contract<br>
-• @yeheskieltame/claudelance-types — shared ABI + TypeScript types<br>
-• Published on npm + GitHub Packages
-</div>
-
+    <!-- SDK -->
+    <div class="reveal reveal-delay-3 bg-white dark:bg-dark-card rounded-xl p-6 border border-border dark:border-dark-border">
+      <div class="flex items-start gap-4">
+        <div class="w-10 h-10 bg-orange-100 dark:bg-orange-900/30 rounded-lg flex items-center justify-center shrink-0 mt-0.5">
+          <svg class="w-5 h-5 text-orange-600 dark:text-orange-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20 14.66V20a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h5.34"/><polygon points="18 2 22 6 12 16 8 16 8 12 18 2"/></svg>
+        </div>
+        <div>
+          <h3 class="font-bold text-lg text-foreground dark:text-dark-foreground font-display mb-2">SDK & Types</h3>
+          <p class="text-sm text-slate-500 dark:text-dark-dim mb-2">npm packages · typed client</p>
+          <ul class="text-slate-600 dark:text-dark-dim text-sm space-y-1">
+            <li>• <code class="text-primary text-xs bg-blue-50 dark:bg-blue-900/20 px-1.5 py-0.5 rounded">@yeheskieltame/claudelance-sdk</code> — typed contract client</li>
+            <li>• <code class="text-primary text-xs bg-blue-50 dark:bg-blue-900/20 px-1.5 py-0.5 rounded">@yeheskieltame/claudelance-types</code> — shared ABI + TypeScript types</li>
+            <li>• Published on npm + GitHub Packages</li>
+          </ul>
+        </div>
+      </div>
     </div>
   </div>
 </section>
 
 <!-- Technical Deep Dive -->
-<section style="margin-bottom:48px;">
-  <h2 style="font-size:24px;font-weight:700;margin-bottom:16px;">Technical Deep Dive: Native ECDSA on Android</h2>
-  <div class="card">
-    <p style="color:var(--text2);line-height:1.8;margin-bottom:16px;">
-      The core innovation is a <strong>custom Capacitor plugin</strong> that implements Ethereum transaction
-      signing natively in Kotlin — no Web3 wallet required. This eliminates the MetaMask dependency
-      that blocks mobile Web3 adoption.
-    </p>
-
-    <div style="color:var(--text2);line-height:1.8;margin-bottom:16px;">
-      <strong style="color:var(--text);">Key decisions:</strong>
-      <ul style="margin:8px 0;padding-left:20px;">
-        <li>secp256k1 via BouncyCastle (SpongyCastle on Android)</li>
-        <li>Keccak256 implemented manually — no extra dependency</li>
-        <li>RLP encoding for transaction serialization</li>
-        <li>Android Keystore for key generation (hardware-backed when available)</li>
-        <li>Bridge.js injected into WebView — dapps see a standard <code>window.ethereum</code> object</li>
-      </ul>
+<section class="py-20 md:py-28">
+  <div class="max-w-4xl mx-auto px-6">
+    <div class="reveal mb-12">
+      <p class="text-purple-500 font-semibold tracking-widest uppercase text-xs mb-3">Deep Dive</p>
+      <h2 class="section-title text-foreground dark:text-dark-foreground font-display">Native ECDSA on Android</h2>
     </div>
+    <div class="reveal reveal-delay-1 highlight-card rounded-xl p-6 md:p-8 border border-border dark:border-dark-border">
+      <p class="text-slate-600 dark:text-dark-dim leading-relaxed mb-5">
+        The core innovation is a <strong class="text-foreground dark:text-dark-foreground">custom Capacitor plugin</strong> that implements Ethereum transaction signing natively in Kotlin — no Web3 wallet required. This eliminates the MetaMask dependency that blocks mobile Web3 adoption.
+      </p>
+      <div class="mb-5">
+        <h4 class="font-bold text-foreground dark:text-dark-foreground mb-3 font-display">Key decisions</h4>
+        <ul class="text-slate-600 dark:text-dark-dim text-sm space-y-1.5 ml-4">
+          <li>• secp256k1 via BouncyCastle (SpongyCastle on Android)</li>
+          <li>• Keccak256 implemented manually — no extra dependency</li>
+          <li>• RLP encoding for transaction serialization</li>
+          <li>• Android Keystore for key generation (hardware-backed when available)</li>
+          <li>• Bridge.js injected into WebView — dapps see a standard <code class="text-primary text-xs bg-blue-50 dark:bg-blue-900/20 px-1.5 py-0.5 rounded">window.ethereum</code></li>
+        </ul>
+      </div>
+      <div class="code-block">
+<span class="cm">// EthWalletHelper.kt — Keccak256 core</span>
+<span class="kw">fun</span> <span class="fn">keccak256</span>(data: ByteArray): ByteArray {
+    <span class="kw">val</span> digest = Keccak(<span class="fn">256</span>)
+    <span class="kw">return</span> digest.digest(data)
+}
 
-    <div class="code" style="color:var(--text2);">
-<span style="color:var(--accent);">// EthWalletHelper.kt — Keccak256 core</span>
-<span style="color:var(--text2);">fun keccak256(data: ByteArray): ByteArray {</span>
-<span style="color:var(--text2);">    val digest = Keccak(256)</span>
-<span style="color:var(--text2);">    return digest.digest(data)</span>
-<span style="color:var(--text2);">}</span>
-<br>
-<span style="color:var(--accent);">// EIP-1559 transaction signing</span>
-<span style="color:var(--text2);">fun signTransaction(tx: EthTransaction, key: PrivateKey): ByteArray {</span>
-<span style="color:var(--text2);">    val encoded = rlpEncode(tx.toList())</span>
-<span style="color:var(--text2);">    val hash = keccak256(encoded)</span>
-<span style="color:var(--text2);">    return signECDSA(hash, key) // secp256k1 deterministic</span>
-<span style="color:var(--text2);">}</span>
+<span class="cm">// EIP-1559 transaction signing</span>
+<span class="kw">fun</span> <span class="fn">signTransaction</span>(tx: EthTransaction, key: PrivateKey): ByteArray {
+    <span class="kw">val</span> encoded = rlpEncode(tx.toList())
+    <span class="kw">val</span> hash = keccak256(encoded)
+    <span class="kw">return</span> signECDSA(hash, key) <span class="cm">// secp256k1 deterministic</span>
+}
+      </div>
     </div>
   </div>
 </section>
 
 <!-- Results -->
-<section style="margin-bottom:48px;">
-  <h2 style="font-size:24px;font-weight:700;margin-bottom:16px;">Results & Impact</h2>
-  <div class="card">
-    <table style="width:100%;color:var(--text2);border-collapse:collapse;">
-      <tr style="border-bottom:1px solid var(--card-border);">
-        <td style="padding:12px 0;"><strong style="color:var(--text);">Gas cost per bounty</strong></td>
-        <td style="padding:12px 0;text-align:right;">~$0.01 (Celo)</td>
-      </tr>
-      <tr style="border-bottom:1px solid var(--card-border);">
-        <td style="padding:12px 0;"><strong style="color:var(--text);">Protocol fee</strong></td>
-        <td style="padding:12px 0;text-align:right;">2%</td>
-      </tr>
-      <tr style="border-bottom:1px solid var(--card-border);">
-        <td style="padding:12px 0;"><strong style="color:var(--text);">APK size</strong></td>
-        <td style="padding:12px 0;text-align:right;">4.2 MB</td>
-      </tr>
-      <tr style="border-bottom:1px solid var(--card-border);">
-        <td style="padding:12px 0;"><strong style="color:var(--text);">Android API</strong></td>
-        <td style="padding:12px 0;text-align:right;">24+ (99.1% devices)</td>
-      </tr>
-      <tr>
-        <td style="padding:12px 0;"><strong style="color:var(--text);">Transaction signing</strong></td>
-        <td style="padding:12px 0;text-align:right;">No external wallet needed</td>
-      </tr>
-    </table>
+<section class="py-20 md:py-28 bg-muted dark:bg-dark-elevated">
+  <div class="max-w-4xl mx-auto px-6">
+    <div class="reveal mb-12">
+      <p class="text-purple-500 font-semibold tracking-widest uppercase text-xs mb-3">Metrics</p>
+      <h2 class="section-title text-foreground dark:text-dark-foreground font-display">Results & Impact</h2>
+    </div>
+    <div class="reveal reveal-delay-1 bg-white dark:bg-dark-card rounded-xl p-6 border border-border dark:border-dark-border">
+      <div class="spec-row"><span class="font-semibold text-foreground dark:text-dark-foreground">Gas cost per bounty</span><span class="text-slate-500 dark:text-dark-dim">~$0.01 (Celo)</span></div>
+      <div class="spec-row"><span class="font-semibold text-foreground dark:text-dark-foreground">Protocol fee</span><span class="text-slate-500 dark:text-dark-dim">2%</span></div>
+      <div class="spec-row"><span class="font-semibold text-foreground dark:text-dark-foreground">APK size</span><span class="text-slate-500 dark:text-dark-dim">4.2 MB</span></div>
+      <div class="spec-row"><span class="font-semibold text-foreground dark:text-dark-foreground">Android API</span><span class="text-slate-500 dark:text-dark-dim">24+ (99.1% devices)</span></div>
+      <div class="spec-row"><span class="font-semibold text-foreground dark:text-dark-foreground">Transaction signing</span><span class="text-slate-500 dark:text-dark-dim">No external wallet needed</span></div>
+    </div>
   </div>
 </section>
 
 <!-- Lessons -->
-<section style="margin-bottom:48px;">
-  <h2 style="font-size:24px;font-weight:700;margin-bottom:16px;">Lessons Learned</h2>
-  <div class="card">
-    <div style="color:var(--text2);line-height:1.8;">
-      <p style="margin-bottom:12px;"><strong>1.</strong> Capacitor plugins are the right abstraction for Web3 mobile — they bridge the gap between web UX and native crypto without forcing users into a separate wallet app.</p>
-      <p style="margin-bottom:12px;"><strong>2.</strong> Celo's sub-cent gas fees make on-chain freelancing viable. On Ethereum mainnet, a single bounty posting would cost $5-20 in gas. On Celo: $0.01.</p>
-      <p style="margin-bottom:12px;"><strong>3.</strong> The hardest part of Web3 mobile is key management. Android Keystore + hardware backing is the only acceptable solution — no plaintext keys in SharedPreferences.</p>
-      <p><strong>4.</strong> The Celo ecosystem's focus on mobile-first and real-world assets (cUSD, USDC) aligns perfectly with freelancer payments — stablecoins are non-negotiable for professional use.</p>
+<section class="py-20 md:py-28">
+  <div class="max-w-4xl mx-auto px-6">
+    <div class="reveal mb-12">
+      <p class="text-purple-500 font-semibold tracking-widest uppercase text-xs mb-3">Retro</p>
+      <h2 class="section-title text-foreground dark:text-dark-foreground font-display">Lessons Learned</h2>
+    </div>
+    <div class="reveal reveal-delay-1 bg-white dark:bg-dark-card rounded-xl p-6 md:p-8 border border-border dark:border-dark-border">
+      <div class="space-y-5 text-slate-600 dark:text-dark-dim leading-relaxed">
+        <div class="flex gap-4">
+          <div class="w-8 h-8 bg-blue-100 dark:bg-blue-900/30 rounded-lg flex items-center justify-center shrink-0 mt-0.5"><span class="text-blue-600 dark:text-blue-400 font-bold text-sm">1</span></div>
+          <p>Capacitor plugins are the right abstraction for Web3 mobile — they bridge the gap between web UX and native crypto without forcing users into a separate wallet app.</p>
+        </div>
+        <div class="flex gap-4">
+          <div class="w-8 h-8 bg-purple-100 dark:bg-purple-900/30 rounded-lg flex items-center justify-center shrink-0 mt-0.5"><span class="text-purple-600 dark:text-purple-400 font-bold text-sm">2</span></div>
+          <p>Celo's sub-cent gas fees make on-chain freelancing viable. On Ethereum mainnet, a single bounty posting would cost $5-20 in gas. On Celo: $0.01.</p>
+        </div>
+        <div class="flex gap-4">
+          <div class="w-8 h-8 bg-green-100 dark:bg-green-900/30 rounded-lg flex items-center justify-center shrink-0 mt-0.5"><span class="text-green-600 dark:text-green-400 font-bold text-sm">3</span></div>
+          <p>The hardest part of Web3 mobile is key management. Android Keystore + hardware backing is the only acceptable solution — no plaintext keys in SharedPreferences.</p>
+        </div>
+        <div class="flex gap-4">
+          <div class="w-8 h-8 bg-orange-100 dark:bg-orange-900/30 rounded-lg flex items-center justify-center shrink-0 mt-0.5"><span class="text-orange-600 dark:text-orange-400 font-bold text-sm">4</span></div>
+          <p>The Celo ecosystem's focus on mobile-first and real-world assets (cUSD, USDC) aligns perfectly with freelancer payments — stablecoins are non-negotiable for professional use.</p>
+        </div>
+      </div>
     </div>
   </div>
 </section>
 
 <!-- CTA -->
-<section style="text-align:center;margin-top:64px;">
-  <h2 style="font-size:24px;font-weight:700;margin-bottom:16px;">Want something like this?</h2>
-  <p style="color:var(--text2);margin-bottom:24px;">I build full-stack Web3 products — smart contracts, mobile apps, agent orchestration.</p>
-  <a href="/#contact" style="background:var(--accent);color:#fff;padding:14px 32px;border-radius:8px;text-decoration:none;font-weight:600;">Get in touch →</a>
+<section class="py-20 md:py-28 bg-white dark:bg-dark-card border-t border-border dark:border-dark-border">
+  <div class="max-w-2xl mx-auto px-6 text-center">
+    <h2 class="text-3xl md:text-4xl font-extrabold font-display text-foreground dark:text-dark-foreground mb-4 reveal">Want something like this?</h2>
+    <p class="text-slate-600 dark:text-dark-dim text-lg mb-8 reveal reveal-delay-1">I build full-stack Web3 products — smart contracts, mobile apps, agent orchestration.</p>
+    <a href="/#contact" class="reveal reveal-delay-2 inline-flex items-center gap-2 bg-primary text-white px-8 py-4 rounded-full text-base font-semibold hover:bg-primary-dark transition-colors shadow-lg shadow-blue-500/20">
+      Get in touch
+      <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+    </a>
+  </div>
 </section>
 
-</main>
-
-<footer style="text-align:center;padding:40px 20px;color:var(--text2);font-size:14px;border-top:1px solid var(--card-border);">
-  atlasnexus.tech — © 2026
+<!-- Footer -->
+<footer class="py-10 bg-surface dark:bg-dark-surface border-t border-border dark:border-dark-border">
+  <div class="max-w-6xl mx-auto px-6 text-center text-sm text-slate-400 dark:text-dark-dim">
+    atlasnexus.tech — © 2026
+  </div>
 </footer>
+
+<!-- Reveal Animation -->
+<script>
+(function() {
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+})();
+</script>
+
+<!-- Dark mode toggle -->
+<script>
+(function() {
+  const html = document.documentElement;
+  const toggle = document.getElementById('theme-toggle');
+  function apply(isDark) {
+    if (isDark) html.classList.add('dark');
+    else html.classList.remove('dark');
+  }
+  const saved = localStorage.getItem('atlasnexus.theme');
+  if (saved) apply(saved === 'dark');
+  else apply(window.matchMedia('(prefers-color-scheme: dark)').matches);
+  toggle.addEventListener('click', () => {
+    const next = !html.classList.contains('dark');
+    apply(next);
+    localStorage.setItem('atlasnexus.theme', next ? 'dark' : 'light');
+  });
+})();
+</script>
+
 </body>
 </html>
