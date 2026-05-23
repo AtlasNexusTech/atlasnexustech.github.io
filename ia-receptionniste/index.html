@@ -524,35 +524,78 @@ tailwind.config = {
 
 <!-- ═══════════════ CHAT WIDGET JS ═══════════════ -->
 <script>
-const chatState = { step: 0, data: {}, isOpen: false };
-
-const flow = [
-  { bot: "Bonjour ! 👋 Je suis l'assistant IA de Gamma Plan. Comment puis-je vous aider aujourd'hui ?", 
-    replies: ["Un devis pour des travaux", "Une question sur vos services", "Prendre rendez-vous"] },
-  { bot: "Parfait ! Quel type de travaux vous intéresse ?", 
-    replies: ["Peinture industrielle", "Peinture bâtiment", "Revêtement de sol", "Traitement anti-corrosion"] },
-  { bot: "Sur quelle surface environ ?", 
-    replies: ["Moins de 100m²", "100 à 500m²", "500 à 1000m²", "Plus de 1000m²"] },
-  { bot: "Où se situe le chantier ? (ville ou code postal)", replies: [] },
-  { bot: "Quel est votre délai souhaité ?", 
-    replies: ["Urgent (< 1 semaine)", "Ce mois-ci", "Dans 1-3 mois", "Pas pressé"] },
-  { bot: "Quel budget approximatif avez-vous prévu ?", 
-    replies: ["< 5.000€", "5.000€ - 20.000€", "20.000€ - 50.000€", "> 50.000€", "Je ne sais pas"] },
-];
+const API_URL = 'https://chat-backend.onrender.com/chat';
+const chatState = { isOpen: false, sessionId: 'demo-' + Date.now() };
 
 function toggleChat() {
   const win = document.getElementById('chat-widget-window');
   chatState.isOpen = !chatState.isOpen;
   win.classList.toggle('open', chatState.isOpen);
-  if (chatState.isOpen && chatState.step === 0) startConversation();
+  if (chatState.isOpen) {
+    const msgs = document.getElementById('chat-messages');
+    if (msgs.children.length === 0) startConversation();
+  }
 }
 
-function startConversation() {
-  const msgs = document.getElementById('chat-messages');
-  if (msgs.children.length === 0) {
-    showTyping();
-    setTimeout(() => { hideTyping(); addBotMsg(flow[0].bot); showReplies(flow[0].replies); chatState.step = 1; }, 800);
+async function startConversation() {
+  showTyping();
+  try {
+    const resp = await callAPI("Bonjour, je visite votre site et je cherche des informations.");
+    hideTyping();
+    addBotMsg(resp);
+  } catch(e) {
+    hideTyping();
+    addBotMsg("Bonjour ! 👋 Je suis l'assistant IA de Gamma Plan. Comment puis-je vous aider ?");
   }
+}
+
+async function sendMessage() {
+  const input = document.getElementById('chat-input');
+  const text = input.value.trim();
+  if (!text) return;
+  
+  addUserMsg(text);
+  input.value = '';
+  hideReplies();
+  
+  // Booking trigger words
+  if (/\b(rendez-vous|rdv|créneau|agenda|disponibilité)\b/i.test(text)) {
+    showTyping();
+    try {
+      const resp = await callAPI(text);
+      hideTyping();
+      addBotMsg(resp);
+      // If the LLM agreed to book, show the calendar
+      if (/\b(choisissez|créneau|rendez-vous|voici|propose)\b/i.test(resp)) {
+        setTimeout(() => openBooking(), 500);
+      }
+    } catch(e) {
+      hideTyping();
+      openBooking();
+    }
+    return;
+  }
+  
+  showTyping();
+  try {
+    const resp = await callAPI(text);
+    hideTyping();
+    addBotMsg(resp);
+  } catch(e) {
+    hideTyping();
+    addBotMsg("Je suis désolé, je rencontre une difficulté technique. Pouvez-vous me contacter au <b>04 123 45 67</b> ou réessayer dans un instant ?");
+  }
+}
+
+async function callAPI(message) {
+  const resp = await fetch(API_URL, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ message, session_id: chatState.sessionId })
+  });
+  if (!resp.ok) throw new Error('API error');
+  const data = await resp.json();
+  return data.response;
 }
 
 function addBotMsg(text) {
@@ -572,8 +615,13 @@ function addUserMsg(text) {
 function showReplies(replies) {
   document.getElementById('chat-quick').innerHTML = replies.map(r => `<button onclick="handleReply('${r.replace(/'/g, "\\'")}')">${r}</button>`).join('');
 }
-
 function hideReplies() { document.getElementById('chat-quick').innerHTML = ''; }
+
+function handleReply(text) {
+  const input = document.getElementById('chat-input');
+  input.value = text;
+  sendMessage();
+}
 
 function showTyping() {
   document.getElementById('chat-typing').classList.add('show');
@@ -585,60 +633,6 @@ function hideTyping() {
   document.getElementById('chat-typing').classList.remove('show');
   document.getElementById('chat-input-area').style.opacity = '1';
   document.getElementById('chat-input').disabled = false;
-}
-
-function handleReply(text) {
-  addUserMsg(text); hideReplies();
-  if (chatState.step === 1) chatState.data.type = text;
-  else if (chatState.step === 2) chatState.data.surface = text;
-  else if (chatState.step === 4) chatState.data.delai = text;
-  else if (chatState.step === 5) {
-    chatState.data.budget = text; showTyping();
-    setTimeout(() => {
-      hideTyping();
-      addBotMsg("Merci ! Voici un récapitulatif :<br><br>🔹 <b>Type :</b> " + chatState.data.type + "<br>🔹 <b>Surface :</b> " + chatState.data.surface + "<br>🔹 <b>Localisation :</b> " + (chatState.data.localisation || '—') + "<br>🔹 <b>Délai :</b> " + chatState.data.delai + "<br>🔹 <b>Budget :</b> " + chatState.data.budget + "<br><br>Souhaitez-vous <b>fixer un rendez-vous</b> avec un expert ?");
-      showReplies(["📅 Oui, prendre RDV", "✉️ Envoyez-moi un email plutôt"]);
-      chatState.step = 6;
-    }, 1000);
-    return;
-  }
-  const next = flow[chatState.step];
-  if (!next) return;
-  showTyping();
-  setTimeout(() => {
-    hideTyping();
-    if (chatState.step === 3) { addBotMsg(next.bot); hideReplies(); document.getElementById('chat-input').placeholder = 'Ex: Grivegnée, Liège...'; chatState.step = 4; }
-    else { addBotMsg(next.bot); showReplies(next.replies); chatState.step++; }
-  }, 900 + Math.random() * 600);
-}
-
-function sendMessage() {
-  const input = document.getElementById('chat-input');
-  const text = input.value.trim();
-  if (!text) return;
-  addUserMsg(text); input.value = '';
-  if (chatState.step === 4) {
-    chatState.data.localisation = text; hideReplies(); showTyping();
-    setTimeout(() => { hideTyping(); addBotMsg(flow[4].bot); showReplies(flow[4].replies); chatState.step = 5; }, 900);
-  } else if (chatState.step === 6) {
-    showTyping();
-    setTimeout(() => {
-      hideTyping();
-      if (text.toLowerCase().includes('rdv') || text.includes('📅')) openBooking();
-      else {
-        addBotMsg("Parfait ! Un devis détaillé vous sera envoyé par email dans les 24h. Vous pouvez aussi nous appeler au <b>04 123 45 67</b>.<br><br>Avez-vous d'autres questions ?");
-        showReplies(["Non merci, au revoir", "Quels sont vos délais ?"]);
-        chatState.step = 7;
-      }
-    }, 800);
-  } else {
-    showTyping();
-    setTimeout(() => {
-      hideTyping();
-      addBotMsg("Merci pour votre message ! Un expert Gamma Plan vous répondra dans les plus brefs délais. En attendant, puis-je vous aider à fixer un rendez-vous ?");
-      showReplies(["📅 Prendre RDV", "Non merci"]);
-    }, 800);
-  }
 }
 
 function openBooking() {
