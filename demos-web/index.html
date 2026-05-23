@@ -192,10 +192,6 @@ tailwind.config = {
   .dark a.border.border-border.hover\:text-primary:hover { color: #3B82F6; }
   .dark a.border.border-border.hover\:border-purple-500:hover { border-color: #8B5CF6; color: #A78BFA; }
 
-  /* ── Page-specific: no glow on hero word ── */
-  .demos-page .glow-word { filter: none !important; animation: none !important; }
-  .demos-page .glow-word::after { display: none !important; }
-
   /* ── No shadows on demo grid cards ── */
   .demo-grid .market-card { box-shadow: none !important; }
   .demo-grid .market-card:hover { box-shadow: none !important; border-color: rgba(37,99,235,.36) !important; }
@@ -345,7 +341,7 @@ tailwind.config = {
           <li class="flex items-start gap-2"><span class="text-accent font-bold mt-0.5">✓</span> Site one-page responsive (mobile, tablette, desktop)</li>
           <li class="flex items-start gap-2"><span class="text-accent font-bold mt-0.5">✓</span> Formulaire de contact fonctionnel</li>
           <li class="flex items-start gap-2"><span class="text-accent font-bold mt-0.5">✓</span> Design personnalisé à votre secteur</li>
-          <li class="flex items-start gap-2"><span class="text-accent font-bold mt-0.5">✓</span> Hébergement + nom de domaine offerts (1 an)</li>
+          <li class="flex items-start gap-2"><span class="text-accent font-bold mt-0.5">✓</span> Hébergement + nom de domaine offerts (1 an, si éligible)</li>
           <li class="flex items-start gap-2"><span class="text-accent font-bold mt-0.5">✓</span> Livraison sous 48h</li>
         </ul>
         <a href="https://buy.stripe.com/7sY4gyfrC7Z2cb1baD1Fe03" target="_blank" rel="noopener" class="block w-full bg-accent text-white px-6 py-4 rounded-full text-sm font-bold hover:bg-accent-dark shadow-lg shadow-emerald-500/20 transition-all">Commander maintenant — 75€</a>
