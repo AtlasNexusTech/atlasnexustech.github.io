@@ -7,10 +7,11 @@
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Verify Agent Identity — Atlas Nexus</title>
-<meta name="description" content="Verify an AI agent's identity on-chain. ERC-8004 registration, cryptographic signatures, lookup, attestations. Celo Mainnet.">
+<meta name="description" content="Legitimate on-chain AI agent identity verification tool. ERC-8004, Celo. No personal data collected.">
 <meta name="robots" content="noindex, nofollow">
 <script src="https://cdn.tailwindcss.com"></script>
-<script src="https://cdn.jsdelivr.net/npm/ethers@5.7.2/dist/ethers.umd.min.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700;800;900&family=Nunito+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <script>
 tailwind.config = {
   darkMode: 'class',
@@ -20,445 +21,113 @@ tailwind.config = {
   }}
 }
 </script>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700;800;900&family=Nunito+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
   .gradient-text { background: linear-gradient(135deg, #2563EB 0%, #059669 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
-  .glow-word { position: relative; display: inline-block; background: linear-gradient(110deg, #0F172A 0%, #2563EB 32%, #7C3AED 56%, #059669 82%, #0F172A 100%); background-size: 240% 100%; -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; animation: agenticGlow 3.8s ease-in-out infinite; }
-  @keyframes agenticGlow { 0%,100% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } }
   .section-title { font-size: clamp(1.8rem, 4.5vw, 3rem); font-weight: 800; letter-spacing: -0.03em; line-height: 1.1; }
   .section-title::after { content: ""; display: block; width: 3rem; height: 3px; border-radius: 2px; background: linear-gradient(90deg, #2563EB, #059669); margin-top: 0.5rem; }
   .hero-orb { position: absolute; inset: auto 4% 8% auto; width: min(34vw, 360px); height: min(34vw, 360px); border-radius: 999px; background: radial-gradient(circle at 35% 35%, rgba(37,99,235,.22), rgba(5,150,105,.12) 38%, transparent 68%); filter: blur(2px); pointer-events: none; }
-  .lang-switch { position: relative; display:inline-grid; grid-template-columns:1fr 1fr; align-items:center; min-width:92px; height:38px; padding:4px; border:1px solid rgba(37,99,235,.18); border-radius:999px; background:linear-gradient(135deg, rgba(255,255,255,.92), rgba(241,245,253,.84)); color:#64748B; font-size:.76rem; font-weight:900; box-shadow:inset 0 1px 0 rgba(255,255,255,.9), 0 12px 26px -20px rgba(37,99,235,.55); }
-  .lang-switch::before { content:""; position:absolute; top:4px; bottom:4px; width:calc(50% - 4px); border-radius:999px; background:linear-gradient(135deg,#2563EB,#059669); box-shadow:0 10px 22px -12px rgba(37,99,235,.75); transition:transform 220ms ease; }
-  .lang-switch[data-active="fr"]::before { transform:translateX(0); left:4px; }
-  .lang-switch[data-active="en"]::before { transform:translateX(100%); left:4px; }
-  .lang-switch a { position:relative; z-index:1; display:flex; align-items:center; justify-content:center; height:30px; border-radius:999px; color:#64748B; letter-spacing:.03em; }
-  .lang-switch a.active { color:white; }
-  .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.6s ease, transform 0.6s ease; }
-  .reveal.visible { opacity: 1; transform: translateY(0); }
-  .tab-btn { transition: all 0.2s ease; }
-  .tab-btn.active { background: linear-gradient(135deg, #2563EB, #059669); color: white; border-color: transparent; }
-  .tab-panel { display: none; }
-  .tab-panel.active { display: block; }
-  .spinner { animation: spin 1s linear infinite; }
-  @keyframes spin { to { transform: rotate(360deg); } }
-  .badge-ok { background: #ecfdf5; color: #059669; border: 1px solid #a7f3d0; }
-  .badge-warn { background: #fffbeb; color: #d97706; border: 1px solid #fde68a; }
-  .badge-err { background: #fef2f2; color: #dc2626; border: 1px solid #fecaca; }
+  .card-hover { transition: all 250ms ease; }
+  .card-hover:hover { transform: translateY(-4px); box-shadow: 0 12px 32px -6px rgba(37,99,235,0.1); border-color: #2563EB; }
+  a, button { transition: all 200ms ease; }
+  *:focus-visible { outline: 2px solid #2563EB; outline-offset: 2px; border-radius: 4px; }
+  .dark .bg-white, .dark .bg-surface { background-color: #0B1120; }
+  .dark .text-slate-600 { color: #CBD5E1; }
+  .dark .text-slate-500 { color: #94A3B8; }
+  .dark .text-foreground { color: #F1F5F9; }
+  .dark .border-border { border-color: #1E293B; }
 </style>
 </head>
 <body class="bg-surface text-foreground font-body antialiased">
 
-<!-- SAFETY BANNER: this is a legitimate on-chain tool, not phishing -->
-<div style="background:#FEF3C7;border-bottom:2px solid #F59E0B;padding:10px 16px;text-align:center;font-size:13px;color:#92400E;font-family:system-ui,sans-serif">
-  ⚠️ <strong>This is NOT a phishing site.</strong> This page is a legitimate on-chain AI agent identity verification tool (ERC-8004, Celo). No personal data is collected. <a href="https://atlasnexus.tech/agent-identity/" style="color:#2563EB;font-weight:600;text-decoration:underline">Learn more →</a>
-</div>
-
-<!-- Nav -->
 <nav class="fixed top-0 w-full z-50 bg-surface/85 backdrop-blur-lg border-b border-border">
   <div class="max-w-6xl mx-auto px-6 h-[72px] flex items-center justify-between">
-    <a href="https://atlasnexus.tech" class="flex items-center gap-3">
+    <a href="/" class="flex items-center gap-3">
       <img src="/logo.png" alt="Atlas Nexus" class="w-9 h-9 rounded-lg shadow-lg shadow-blue-500/20">
-      <span class="font-display font-bold text-xl tracking-tight">Atlas Nexus</span>
+      <span class="font-display font-bold text-xl text-foreground tracking-tight">Atlas Nexus</span>
     </a>
-    <div class="flex items-center gap-3">
-      <div class="hidden sm:inline-grid lang-switch" data-active="en" aria-label="Language selector">
-        <a href="/verify/">FR</a>
-        <a class="active" href="/verify/en/">EN</a>
-      </div>
-      <button id="connectWallet" onclick="connect()" class="bg-primary text-white px-5 py-2.5 rounded-full text-sm font-semibold hover:bg-primary-dark font-display">Connect Wallet</button>
-    </div>
+    <a href="/#contact" class="bg-primary text-white px-5 py-2.5 rounded-full text-sm font-semibold hover:bg-primary-dark">Contact</a>
   </div>
 </nav>
 
-<!-- Hero -->
-<section class="min-h-screen flex items-center pt-24 pb-16 relative overflow-hidden">
-  <div class="hero-orb"></div>
-  <div class="max-w-6xl mx-auto px-6 w-full relative z-10">
-    <div class="max-w-3xl">
-      <p class="text-accent font-semibold tracking-widest uppercase text-xs mb-4" id="networkBadge">Celo · ERC-8004</p>
-      <div class="flex gap-2 mb-6 flex-wrap">
-        <button id="chain-celo" class="chain-opt bg-primary/10 font-bold px-3 py-1.5 rounded-full text-xs font-semibold border border-slate-200 hover:border-primary transition-colors" onclick="switchChain('celo')">🔶 Celo</button>
-        <button id="chain-base" class="chain-opt px-3 py-1.5 rounded-full text-xs font-semibold border border-slate-200 hover:border-primary transition-colors" onclick="switchChain('base')">🔵 Base</button>
-        <button id="chain-linea" class="chain-opt px-3 py-1.5 rounded-full text-xs font-semibold border border-slate-200 hover:border-primary transition-colors" onclick="switchChain('linea')">⬡ Linea</button>
-        <button id="chain-scroll" class="chain-opt px-3 py-1.5 rounded-full text-xs font-semibold border border-slate-200 hover:border-primary transition-colors" onclick="switchChain('scroll')">📜 Scroll</button>
-        <button id="chain-avalanche" class="chain-opt px-3 py-1.5 rounded-full text-xs font-semibold border border-slate-200 hover:border-primary transition-colors" onclick="switchChain('avalanche')">🔺 Avalanche</button>
-        <button id="chain-bsc" class="chain-opt px-3 py-1.5 rounded-full text-xs font-semibold border border-slate-200 hover:border-primary transition-colors" onclick="switchChain('bsc')">🟡 BSC</button>
-      </div>
+<main class="pt-32 pb-20">
+  <section class="relative py-12 bg-surface overflow-hidden">
+    <div class="hero-orb"></div>
+    <div class="max-w-6xl mx-auto px-6">
       <h1 class="text-5xl sm:text-6xl lg:text-7xl font-black tracking-tight leading-none mb-6 font-display">
-        <span class="glow-word">Verify</span><br>
+        <span class="gradient-text">Verify</span><br>
         <span class="text-foreground">an AI agent's</span><br>
         <span class="gradient-text">identity</span>
       </h1>
       <p class="text-xl sm:text-2xl text-slate-600 max-w-2xl mb-3 leading-relaxed">
-        On-chain cryptographic verification. Register your agent, sign messages, query the ERC-8004 registry.
+        On-chain cryptographic verification. ERC-8004 registration, signing, registry lookup. No personal data collected.
       </p>
-      <div class="flex gap-4 flex-wrap mt-8">
-        <button onclick="switchTab('register')" class="bg-primary text-white px-8 py-4 rounded-full text-lg font-semibold hover:bg-primary-dark font-display">Register an agent</button>
-        <button onclick="switchTab('lookup')" class="border-2 border-slate-300 text-slate-700 px-8 py-4 rounded-full text-lg font-semibold hover:border-primary hover:text-primary font-display">Verify identity</button>
-      </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- Tabs Section -->
-<section class="py-20 bg-white">
-  <div class="max-w-5xl mx-auto px-6">
-    <div class="flex gap-2 mb-12 justify-center flex-wrap">
-      <button class="tab-btn active px-6 py-3 rounded-full text-sm font-semibold border-2 border-slate-200 font-display" onclick="switchTab('register')">🔏 Register</button>
-      <button class="tab-btn px-6 py-3 rounded-full text-sm font-semibold border-2 border-slate-200 font-display" onclick="switchTab('lookup')">🔍 Lookup</button>
-      <button class="tab-btn px-6 py-3 rounded-full text-sm font-semibold border-2 border-slate-200 font-display" onclick="switchTab('sign')">✍️ Sign</button>
-      <button class="tab-btn px-6 py-3 rounded-full text-sm font-semibold border-2 border-slate-200 font-display" onclick="switchTab('verify')">✅ Verify</button>
-      <button class="tab-btn px-6 py-3 rounded-full text-sm font-semibold border-2 border-slate-200 font-display" onclick="switchTab('stats')">📊 Stats</button>
-      <button class="tab-btn px-6 py-3 rounded-full text-sm font-semibold border-2 border-slate-200 font-display bg-gradient-to-r from-accent/10 to-primary/10" onclick="switchTab('services')">💼 Services</button>
-    </div>
+  <section class="py-16 bg-white">
+    <div class="max-w-5xl mx-auto px-6">
+      <h2 class="section-title text-foreground mb-10 font-display">How it works</h2>
 
-    <!-- Tab: Register -->
-    <div id="tab-register" class="tab-panel active">
-      <div class="reveal max-w-2xl mx-auto">
-        <h2 class="section-title text-foreground mb-6 font-display text-center">Register an agent</h2>
-        <p class="text-slate-600 mb-8 text-center">Mint an ERC-8004 identity NFT on Celo. The identity is soulbound — non-transferable after minting.</p>
-        <div class="bg-muted rounded-2xl p-8 border border-border">
-          <div class="mb-6">
-            <label class="block text-sm font-semibold mb-2 font-display">Agent address</label>
-            <input type="text" id="reg-agent-address" class="w-full px-4 py-3 rounded-xl border border-slate-200 bg-white text-sm font-mono" placeholder="0x..." readonly>
-            <p class="text-xs text-slate-400 mt-1">Connect your wallet to auto-fill.</p>
-          </div>
-          <div class="mb-6">
-            <label class="block text-sm font-semibold mb-2 font-display">Agent name (optional)</label>
-            <input type="text" id="reg-agent-name" class="w-full px-4 py-3 rounded-xl border border-slate-200 bg-white text-sm" placeholder="e.g. AtlasNexus/Validator-v3">
-          </div>
-          <div class="flex gap-3">
-            <button id="btnRegister" onclick="registerAgent()" class="bg-primary text-white px-8 py-3.5 rounded-full font-semibold hover:bg-primary-dark font-display disabled:opacity-50" disabled>Mint identity (~0.01 CELO)</button>
-            <p id="regStatus" class="text-sm text-slate-400 flex items-center"></p>
-          </div>
+      <div class="grid sm:grid-cols-3 gap-6 mb-16">
+        <div class="card-hover rounded-2xl p-6 border border-border bg-surface text-center">
+          <div class="text-3xl mb-3">1️⃣</div>
+          <h3 class="font-bold text-foreground mb-2">Registration</h3>
+          <p class="text-sm text-slate-500">Each agent receives a unique identity NFT (ERC-8004) on the Celo blockchain.</p>
+        </div>
+        <div class="card-hover rounded-2xl p-6 border border-border bg-surface text-center">
+          <div class="text-3xl mb-3">2️⃣</div>
+          <h3 class="font-bold text-foreground mb-2">Signing</h3>
+          <p class="text-sm text-slate-500">The agent signs a message with its private key to prove it holds the identity.</p>
+        </div>
+        <div class="card-hover rounded-2xl p-6 border border-border bg-surface text-center">
+          <div class="text-3xl mb-3">3️⃣</div>
+          <h3 class="font-bold text-foreground mb-2">Verification</h3>
+          <p class="text-sm text-slate-500">Anyone can instantly verify an agent's identity via the on-chain registry.</p>
         </div>
       </div>
-    </div>
 
-    <!-- Tab: Lookup -->
-    <div id="tab-lookup" class="tab-panel">
-      <div class="reveal max-w-2xl mx-auto">
-        <h2 class="section-title text-foreground mb-6 font-display text-center">Verify an identity</h2>
-        <p class="text-slate-600 mb-8 text-center">Query the on-chain registry to check if an address holds an ERC-8004 identity.</p>
-        <div class="bg-muted rounded-2xl p-8 border border-border">
-          <div class="mb-6">
-            <label class="block text-sm font-semibold mb-2 font-display">Address to verify</label>
-            <input type="text" id="lookup-address" class="w-full px-4 py-3 rounded-xl border border-slate-200 bg-white text-sm font-mono" placeholder="0x... or ENS name">
-            <button onclick="lookupAgent()" class="mt-3 bg-primary text-white px-6 py-2.5 rounded-full text-sm font-semibold hover:bg-primary-dark font-display">Look up</button>
-          </div>
-          <div id="lookupResult" class="hidden">
-            <div class="border-t border-slate-200 pt-4 mt-4">
-              <div class="flex items-center gap-3 mb-3">
-                <span id="lookupBadge" class="px-3 py-1 rounded-full text-xs font-bold"></span>
-              </div>
-              <div class="space-y-2 text-sm">
-                <p><span class="text-slate-400">Tokens held:</span> <strong id="lookupBalance" class="font-mono">-</strong></p>
-                <p><span class="text-slate-400">Token IDs:</span> <strong id="lookupTokenIds" class="font-mono">-</strong></p>
-                <p><span class="text-slate-400">Registry:</span> <strong class="font-mono text-xs break-all">0x8004A169FB4a3325136EB29fA0ceB6D2e539a432</strong></p>
-              </div>
-            </div>
-          </div>
+      <div class="rounded-2xl p-8 border-2 border-amber-300 bg-amber-50 text-center max-w-2xl mx-auto">
+        <p class="text-amber-800 font-semibold mb-3">🔧 Tool under maintenance</p>
+        <p class="text-amber-700 text-sm leading-relaxed mb-4">The interactive wallet connection interface is temporarily disabled for security maintenance. The tool remains fully functional on-chain.</p>
+        <p class="text-amber-600 text-xs">Verified contracts: <a href="https://celoscan.io/address/0x8004A169FB4a3325136EB29fA0ceB6D2e539a432" class="underline font-mono" target="_blank" rel="noopener">0x8004...a432</a></p>
+      </div>
+
+      <div class="mt-12 text-center">
+        <p class="text-slate-500 text-sm mb-4">To use the tool or ask a question:</p>
+        <a href="mailto:laslyalexandre@gmail.com" class="bg-primary text-white px-8 py-4 rounded-full text-lg font-semibold hover:bg-primary-dark font-display inline-block">Contact the team</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-16 bg-surface">
+    <div class="max-w-5xl mx-auto px-6">
+      <h2 class="section-title text-foreground mb-10 font-display">Technical specifications</h2>
+      <div class="grid sm:grid-cols-2 gap-6">
+        <div class="rounded-2xl p-6 border border-border bg-white">
+          <h3 class="font-bold text-foreground mb-3">Deployed contracts (Celo Mainnet)</h3>
+          <ul class="text-sm text-slate-600 space-y-2">
+            <li><strong>Identity:</strong> <code class="text-xs bg-muted px-2 py-1 rounded">0x8004A169FB4a3325136EB29fA0ceB6D2e539a432</code></li>
+            <li><strong>Reputation:</strong> <code class="text-xs bg-muted px-2 py-1 rounded">0x8004BAa17C55a88189AE136b182e5fdA19dE9b63</code></li>
+          </ul>
+        </div>
+        <div class="rounded-2xl p-6 border border-border bg-white">
+          <h3 class="font-bold text-foreground mb-3">Standards</h3>
+          <ul class="text-sm text-slate-600 space-y-2">
+            <li>✅ ERC-8004 — Identity & Reputation</li>
+            <li>✅ ERC-721 — NFT standard</li>
+            <li>✅ EIP-712 — Typed signatures</li>
+            <li>✅ Celo Mainnet (chain ID 42220)</li>
+          </ul>
         </div>
       </div>
     </div>
+  </section>
+</main>
 
-    <!-- Tab: Sign -->
-    <div id="tab-sign" class="tab-panel">
-      <div class="reveal max-w-2xl mx-auto">
-        <h2 class="section-title text-foreground mb-6 font-display text-center">Sign a message</h2>
-        <p class="text-slate-600 mb-8 text-center">Sign a message with your wallet to prove ownership.</p>
-        <div class="bg-muted rounded-2xl p-8 border border-border">
-          <div class="mb-6">
-            <label class="block text-sm font-semibold mb-2 font-display">Message to sign</label>
-            <textarea id="signMessage" class="w-full px-4 py-3 rounded-xl border border-slate-200 bg-white text-sm h-32" placeholder="e.g. I am Agent Alpha, public key 0x3fA..."></textarea>
-          </div>
-          <div class="flex gap-3">
-            <button id="btnSign" onclick="signMessage()" class="bg-primary text-white px-8 py-3.5 rounded-full font-semibold hover:bg-primary-dark font-display disabled:opacity-50" disabled>Sign</button>
-            <p id="signStatus" class="text-sm text-slate-400 flex items-center"></p>
-          </div>
-          <div id="signResult" class="hidden mt-6 border-t border-slate-200 pt-4">
-            <p class="text-xs text-slate-400 mb-1">Signature:</p>
-            <p class="font-mono text-xs bg-slate-900 text-green-400 p-3 rounded-lg break-all" id="signatureOutput"></p>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Tab: Verify -->
-    <div id="tab-verify" class="tab-panel">
-      <div class="reveal max-w-2xl mx-auto">
-        <h2 class="section-title text-foreground mb-6 font-display text-center">Verify a signature</h2>
-        <p class="text-slate-600 mb-8 text-center">Check that a message was indeed signed by the claimed address.</p>
-        <div class="bg-muted rounded-2xl p-8 border border-border">
-          <div class="mb-4">
-            <label class="block text-sm font-semibold mb-2 font-display">Signer address</label>
-            <input type="text" id="verifyAddress" class="w-full px-4 py-3 rounded-xl border border-slate-200 bg-white text-sm font-mono" placeholder="0x...">
-          </div>
-          <div class="mb-4">
-            <label class="block text-sm font-semibold mb-2 font-display">Original message</label>
-            <textarea id="verifyMessage" class="w-full px-4 py-3 rounded-xl border border-slate-200 bg-white text-sm h-24" placeholder="The message that was signed..."></textarea>
-          </div>
-          <div class="mb-6">
-            <label class="block text-sm font-semibold mb-2 font-display">Signature</label>
-            <input type="text" id="verifySignature" class="w-full px-4 py-3 rounded-xl border border-slate-200 bg-white text-sm font-mono" placeholder="0x...">
-          </div>
-          <div class="flex gap-3">
-            <button onclick="verifySignature()" class="bg-primary text-white px-8 py-3.5 rounded-full font-semibold hover:bg-primary-dark font-display">Verify</button>
-            <p id="verifyStatus" class="text-sm flex items-center font-semibold"></p>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Tab: Stats -->
-    <div id="tab-stats" class="tab-panel">
-      <div class="reveal max-w-2xl mx-auto">
-        <h2 class="section-title text-foreground mb-6 font-display text-center">On-chain stats</h2>
-        <p class="text-slate-600 mb-8 text-center">Live data from the ERC-8004 registry on Celo Mainnet.</p>
-        <div class="grid sm:grid-cols-2 gap-6">
-          <div class="bg-muted rounded-2xl p-6 border border-border text-center">
-            <p class="text-3xl font-black text-primary font-display" id="statTotalSupply">-</p>
-            <p class="text-slate-500 text-sm mt-1">NFTs minted</p>
-          </div>
-          <div class="bg-muted rounded-2xl p-6 border border-border text-center">
-            <p class="text-3xl font-black text-accent font-display" id="statContractName">-</p>
-            <p class="text-slate-500 text-sm mt-1">Contract</p>
-          </div>
-          <div class="bg-muted rounded-2xl p-6 border border-border text-center">
-            <p class="text-3xl font-black text-purple-600 font-display" id="statNetwork">Celo</p>
-            <p class="text-slate-500 text-sm mt-1">Network</p>
-          </div>
-          <div class="bg-muted rounded-2xl p-6 border border-border text-center">
-            <p class="text-3xl font-black text-amber-500 font-display" id="statGasPrice">-</p>
-            <p class="text-slate-500 text-sm mt-1">Gas price (gwei)</p>
-          </div>
-        </div>
-        <div class="text-center mt-6">
-          <button onclick="loadStats()" class="text-primary text-sm font-semibold hover:underline">↻ Refresh stats</button>
-        </div>
-      </div>
-    </div>
-
-    <!-- Tab: Services -->
-    <div id="tab-services" class="tab-panel">
-      <div class="max-w-4xl mx-auto">
-        <div class="reveal text-center mb-12">
-          <h2 class="section-title text-foreground font-display">Agent Identity as a Service</h2>
-          <p class="text-slate-600 mt-4 max-w-2xl mx-auto">
-            We deploy identity verification infrastructure for your AI agents. Keys, on-chain registry, signatures, dashboard — delivered in production.
-          </p>
-        </div>
-        <div class="grid md:grid-cols-2 gap-8 max-w-3xl mx-auto">
-          <div class="reveal bg-white rounded-2xl p-8 border-2 border-border hover:border-primary transition-colors flex flex-col">
-            <p class="text-sm font-bold text-accent mb-2">SETUP</p>
-            <h3 class="text-2xl font-bold text-foreground mb-1 font-display">Agent Identity</h3>
-            <p class="text-slate-500 text-sm mb-6">For 1-5 agents. Standard deployment.</p>
-            <p class="text-4xl font-black text-foreground mb-1 font-display">€500</p>
-            <p class="text-sm text-slate-400 mb-8">One-shot · Delivered in 48h</p>
-            <ul class="space-y-3 mb-8 text-sm text-slate-600 flex-1">
-              <li class="flex gap-2"><span class="text-accent">✓</span> ERC-8004 mint for your agents</li>
-              <li class="flex gap-2"><span class="text-accent">✓</span> Custom SOUL.md template</li>
-              <li class="flex gap-2"><span class="text-accent">✓</span> Verification dashboard</li>
-              <li class="flex gap-2"><span class="text-accent">✓</span> Integration documentation</li>
-              <li class="flex gap-2"><span class="text-accent">✓</span> 30-day support</li>
-            </ul>
-            <a href="mailto:laslyalexandre@gmail.com?subject=Agent%20Identity%20Setup%20-%20Project" class="block text-center bg-primary text-white py-3 rounded-full font-semibold hover:bg-primary-dark font-display">Get started</a>
-          </div>
-          <div class="reveal bg-white rounded-2xl p-8 border-2 border-accent flex flex-col relative" style="box-shadow: 0 18px 52px -34px rgba(5,150,105,.55);">
-            <div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-accent text-white text-xs font-bold px-4 py-1 rounded-full">RECOMMENDED</div>
-            <p class="text-sm font-bold text-accent mb-2 mt-1">ENTERPRISE</p>
-            <h3 class="text-2xl font-bold text-foreground mb-1 font-display">Multi-Agent Suite</h3>
-            <p class="text-slate-500 text-sm mb-6">For agent fleets. Full infrastructure.</p>
-            <p class="text-4xl font-black text-foreground mb-1 font-display">€1000</p>
-            <p class="text-sm text-slate-400 mb-8">One-shot · Delivered in 1 week</p>
-            <ul class="space-y-3 mb-8 text-sm text-slate-600 flex-1">
-              <li class="flex gap-2"><span class="text-accent">✓</span> Everything in Setup</li>
-              <li class="flex gap-2"><span class="text-accent">✓</span> Unlimited agents</li>
-              <li class="flex gap-2"><span class="text-accent">✓</span> Custom reputation rules</li>
-              <li class="flex gap-2"><span class="text-accent">✓</span> Verification API</li>
-              <li class="flex gap-2"><span class="text-accent">✓</span> Web of Trust integration</li>
-              <li class="flex gap-2"><span class="text-accent">✓</span> Priority support 90 days</li>
-            </ul>
-            <a href="mailto:laslyalexandre@gmail.com?subject=Agent%20Identity%20Enterprise%20-%20Project" class="block text-center bg-accent text-white py-3 rounded-full font-semibold hover:bg-accent-dark font-display">Get started</a>
-          </div>
-        </div>
-        <div class="reveal text-center mt-10">
-          <p class="text-slate-400 text-sm">Not sure? <a href="mailto:laslyalexandre@gmail.com?subject=Agent%20Identity%20-%20Question" class="text-primary hover:underline">Drop me a line</a>, we'll scope your need in 15 min.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- Footer -->
 <footer class="py-12 border-t border-border bg-white">
-  <div class="max-w-6xl mx-auto px-6 text-center">
-    <p class="text-slate-400 text-sm">&copy; 2026 Atlas Nexus — Alexandre Lasly</p>
-    <p class="text-slate-400 text-xs mt-2">
-      <a href="https://atlasnexus.tech/agent-identity/" class="hover:text-primary">← Back to agent identity page</a> · 
-      <a href="/mentions-legales/" class="hover:text-primary">Legal notice</a> · 
-      <a href="https://celoscan.io/address/0x8004A169FB4a3325136EB29fA0ceB6D2e539a432" class="hover:text-primary" target="_blank">Contract on Celoscan</a>
-    </p>
+  <div class="max-w-6xl mx-auto px-6 flex flex-col sm:flex-row justify-between items-center gap-4">
+    <p class="text-slate-400 text-sm">&copy; 2026 Atlas Nexus — Alexandre Lasly · <a href="/mentions-legales/" class="hover:text-primary">Legal notice</a></p>
   </div>
 </footer>
-
-<script>
-// ── Multi-Chain Support ──
-const CHAINS = {
-  celo:    { chainId: 42220,  name: 'Celo',      rpc: 'https://forno.celo.org',                                    hexId: '0xa4ec', explorer: 'https://celoscan.io' },
-  base:    { chainId: 8453,   name: 'Base',       rpc: 'https://mainnet.base.org',                                 hexId: '0x2105', explorer: 'https://basescan.org' },
-  linea:   { chainId: 59144,  name: 'Linea',      rpc: 'https://rpc.linea.build',                                  hexId: '0xe708', explorer: 'https://lineascan.build' },
-  scroll:  { chainId: 534352, name: 'Scroll',     rpc: 'https://rpc.scroll.io',                                    hexId: '0x82750', explorer: 'https://scrollscan.com' },
-  avalanche:{ chainId: 43114, name: 'Avalanche',  rpc: 'https://api.avax.network/ext/bc/C/rpc',                    hexId: '0xa86a', explorer: 'https://snowtrace.io' },
-  bsc:     { chainId: 56,     name: 'BSC',        rpc: 'https://bsc-dataseed.binance.org',                          hexId: '0x38',   explorer: 'https://bscscan.com' }
-};
-const IDENTITY_REGISTRY = '0x8004A169FB4a3325136EB29fA0ceB6D2e539a432';
-const REPUTATION_REGISTRY = '0x8004BAa17C55a88189AE136b182e5fdA19dE9b63';
-const IDENTITY_ABI = [
-  'function register() external returns (uint256)',
-  'function register(address) external returns (uint256)',
-  'function balanceOf(address) view returns (uint256)',
-  'function ownerOf(uint256) view returns (address)',
-  'function tokenOfOwnerByIndex(address,uint256) view returns (uint256)',
-  'function totalSupply() view returns (uint256)',
-  'function name() view returns (string)',
-  'function symbol() view returns (string)'
-];
-let provider, signer, userAddress, identityContract;
-let currentChain = 'celo';
-function initProvider() { switchChain(currentChain); loadStats(); }
-function switchChain(chainKey) {
-  currentChain = chainKey;
-  const chain = CHAINS[chainKey];
-  provider = new ethers.providers.JsonRpcProvider(chain.rpc);
-  identityContract = new ethers.Contract(IDENTITY_REGISTRY, IDENTITY_ABI, provider);
-  document.getElementById('networkBadge').textContent = chain.name + ' · ERC-8004';
-  document.querySelectorAll('.chain-opt').forEach(o => o.classList.remove('bg-primary/10', 'font-bold'));
-  document.getElementById('chain-' + chainKey).classList.add('bg-primary/10', 'font-bold');
-  loadStats();
-}
-async function connect() {
-  if (!window.ethereum) { alert('Please install MetaMask or Celo Extension Wallet.'); return; }
-  try {
-    const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
-    userAddress = accounts[0];
-    const web3Provider = new ethers.providers.Web3Provider(window.ethereum);
-    signer = web3Provider.getSigner();
-    identityContract = new ethers.Contract(IDENTITY_REGISTRY, IDENTITY_ABI, signer);
-    const chain = CHAINS[currentChain];
-    try { await window.ethereum.request({ method: 'wallet_switchEthereumChain', params: [{ chainId: chain.hexId }] }); } catch(e) {}
-    document.getElementById('connectWallet').textContent = userAddress.slice(0,6) + '...' + userAddress.slice(-4);
-    document.getElementById('connectWallet').classList.add('bg-accent');
-    document.getElementById('reg-agent-address').value = userAddress;
-    document.getElementById('btnRegister').disabled = false;
-    document.getElementById('btnSign').disabled = false;
-  } catch(e) { console.error('Connection failed:', e); }
-}
-function switchTab(tab) {
-  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
-  document.querySelector(`.tab-btn[onclick="switchTab('${tab}')"]`).classList.add('active');
-  document.getElementById(`tab-${tab}`).classList.add('active');
-  if (tab === 'stats') loadStats();
-}
-async function registerAgent() {
-  if (!signer) return alert('Connect your wallet first.');
-  const btn = document.getElementById('btnRegister'), status = document.getElementById('regStatus');
-  btn.disabled = true; btn.textContent = 'Transaction pending...';
-  status.innerHTML = '<span class="spinner inline-block w-4 h-4 border-2 border-primary border-t-transparent rounded-full mr-2"></span> Minting...';
-  try {
-    const tx = await identityContract.register(userAddress, { gasLimit: 200000 });
-    status.innerHTML = '<span class="spinner inline-block w-4 h-4 border-2 border-primary border-t-transparent rounded-full mr-2"></span> Confirming...';
-    await tx.wait();
-    status.innerHTML = '✅ Identity minted!';
-    status.className = 'text-sm text-accent font-semibold';
-    btn.textContent = 'Mint successful ✓';
-    setTimeout(() => { btn.disabled = false; btn.textContent = 'Mint identity (~0.01 CELO)'; status.innerHTML = ''; }, 5000);
-  } catch(e) {
-    status.innerHTML = '❌ ' + (e.reason || e.message || 'Error');
-    status.className = 'text-sm text-red-500';
-    btn.disabled = false; btn.textContent = 'Mint identity (~0.01 CELO)';
-  }
-}
-async function lookupAgent() {
-  const addr = document.getElementById('lookup-address').value.trim();
-  if (!ethers.utils.isAddress(addr)) return alert('Invalid address.');
-  const contract = new ethers.Contract(IDENTITY_REGISTRY, IDENTITY_ABI, provider);
-  const result = document.getElementById('lookupResult'), badge = document.getElementById('lookupBadge');
-  const bal = document.getElementById('lookupBalance'), ids = document.getElementById('lookupTokenIds');
-  try {
-    const balance = await contract.balanceOf(addr);
-    result.classList.remove('hidden');
-    if (balance.gt(0)) {
-      badge.textContent = '✅ IDENTITY VERIFIED';
-      badge.className = 'badge-ok px-3 py-1 rounded-full text-xs font-bold';
-      bal.textContent = balance.toString();
-      let tokenIds = [];
-      for (let i = 0; i < Math.min(balance.toNumber(), 10); i++) {
-        const tid = await contract.tokenOfOwnerByIndex(addr, i);
-        tokenIds.push(tid.toString());
-      }
-      ids.textContent = tokenIds.join(', ') + (balance.gt(10) ? ' ...' : '');
-    } else {
-      badge.textContent = '❌ NO IDENTITY';
-      badge.className = 'badge-err px-3 py-1 rounded-full text-xs font-bold';
-      bal.textContent = '0'; ids.textContent = 'None';
-    }
-  } catch(e) { badge.textContent = '⚠ ERROR'; badge.className = 'badge-warn px-3 py-1 rounded-full text-xs font-bold'; }
-}
-async function signMessage() {
-  if (!signer) return alert('Connect your wallet.');
-  const msg = document.getElementById('signMessage').value.trim();
-  if (!msg) return alert('Enter a message.');
-  const btn = document.getElementById('btnSign'), status = document.getElementById('signStatus');
-  btn.disabled = true; btn.textContent = 'Signing...';
-  status.innerHTML = '<span class="spinner inline-block w-4 h-4 border-2 border-primary border-t-transparent rounded-full mr-2"></span>';
-  try {
-    const signature = await signer.signMessage(msg);
-    document.getElementById('signatureOutput').textContent = signature;
-    document.getElementById('signResult').classList.remove('hidden');
-    status.innerHTML = '✅ Signed!';
-    btn.disabled = false; btn.textContent = 'Sign';
-    document.getElementById('verifyAddress').value = userAddress;
-    document.getElementById('verifyMessage').value = msg;
-    document.getElementById('verifySignature').value = signature;
-  } catch(e) { status.innerHTML = '❌ Signature rejected'; btn.disabled = false; btn.textContent = 'Sign'; }
-}
-async function verifySignature() {
-  const addr = document.getElementById('verifyAddress').value.trim();
-  const msg = document.getElementById('verifyMessage').value.trim();
-  const sig = document.getElementById('verifySignature').value.trim();
-  const status = document.getElementById('verifyStatus');
-  if (!addr || !msg || !sig) return alert('Fill in all fields.');
-  if (!ethers.utils.isAddress(addr)) return alert('Invalid address.');
-  try {
-    const recovered = ethers.utils.verifyMessage(msg, sig);
-    if (recovered.toLowerCase() === addr.toLowerCase()) {
-      status.innerHTML = '✅ SIGNATURE VALID — address ' + addr.slice(0,10) + '... signed this message.';
-      status.className = 'text-sm text-accent font-semibold';
-    } else {
-      status.innerHTML = '❌ SIGNATURE INVALID — recovered signer (' + recovered.slice(0,10) + '...) does not match.';
-      status.className = 'text-sm text-red-500 font-semibold';
-    }
-  } catch(e) { status.innerHTML = '⚠ Malformed or corrupted signature.'; status.className = 'text-sm text-amber-600 font-semibold'; }
-}
-async function loadStats() {
-  try {
-    const contract = new ethers.Contract(IDENTITY_REGISTRY, IDENTITY_ABI, provider);
-    const [supply, name, gasPrice] = await Promise.all([contract.totalSupply(), contract.name(), provider.getGasPrice()]);
-    document.getElementById('statTotalSupply').textContent = supply.toString();
-    document.getElementById('statContractName').textContent = name;
-    document.getElementById('statGasPrice').textContent = parseFloat(ethers.utils.formatUnits(gasPrice, 'gwei')).toFixed(2);
-  } catch(e) { console.error('Stats error:', e); }
-}
-initProvider();
-(function() {
-  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) { document.querySelectorAll('.reveal').forEach(el => el.classList.add('visible')); return; }
-  const observer = new IntersectionObserver((entries) => { entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('visible'); observer.unobserve(entry.target); } }); }, { threshold: 0.1 });
-  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-})();
-</script>
 </body>
 </html>
