@@ -1,0 +1,749 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/png" href="/favicon.png">
+<link rel="shortcut icon" href="/favicon.ico">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<title>Agent IA Réceptionniste 24/7 — Atlas Nexus</title>
+<link rel="canonical" href="https://atlasnexus.tech/ia-receptionniste/">
+<meta name="description" content="Widget IA qui répond à vos clients 24h/24, qualifie les demandes et fixe des rendez-vous automatiquement. Démo live gratuite.">
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700;800;900&family=Nunito+Sans:ital,opsz,wght@0,6..12,200;0,6..12,300;0,6..12,400;0,6..12,500;0,6..12,600;0,6..12,700;0,6..12,800;1,6..12,200;1,6..12,300;1,6..12,400;1,6..12,500;1,6..12,600;1,6..12,700&display=swap" rel="stylesheet">
+<script>
+tailwind.config = {
+  darkMode: 'class',
+  theme: {
+    extend: {
+      fontFamily: {
+        display: ['Rubik', 'sans-serif'],
+        body: ['Nunito Sans', 'sans-serif'],
+      },
+      colors: {
+        primary: '#2563EB',
+        'primary-dark': '#1D4ED8',
+        secondary: '#3B82F6',
+        accent: '#059669',
+        'dark-surface': '#0B1120',
+        'dark-card': '#111827',
+        'dark-elevated': '#1A2235',
+        'dark-border': '#1E293B',
+        'dark-muted': '#334155',
+        'dark-foreground': '#F1F5F9',
+      }
+    }
+  }
+}
+</script>
+<style>
+  .dark body { background: #0B1120; color: #F1F5F9; font-family: 'Nunito Sans', sans-serif; }
+  body { font-family: 'Nunito Sans', sans-serif; }
+  h1, h2, h3, .font-display { font-family: 'Rubik', sans-serif; }
+
+  /* Animated glow pulse */
+  @keyframes agenticGlow {
+    0%, 100% { box-shadow: 0 0 20px rgba(37,99,235,0.3), 0 0 60px rgba(37,99,235,0.1); }
+    50% { box-shadow: 0 0 30px rgba(37,99,235,0.5), 0 0 80px rgba(37,99,235,0.2); }
+  }
+
+  /* Smooth scrollbar */
+  .scrollbar-thin::-webkit-scrollbar { width: 4px; }
+  .scrollbar-thin::-webkit-scrollbar-track { background: transparent; }
+  .scrollbar-thin::-webkit-scrollbar-thumb { background: #334155; border-radius: 2px; }
+
+  /* Chat bubble pulse */
+  @keyframes bubblePulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+  }
+  .chat-bubble:hover { animation: bubblePulse 1.5s ease-in-out infinite; }
+
+  /* Typewriter dots */
+  @keyframes typingDot {
+    0%, 60%, 100% { opacity: 0.3; transform: translateY(0); }
+    30% { opacity: 1; transform: translateY(-4px); }
+  }
+  .typing-dot { animation: typingDot 1.4s ease-in-out infinite; }
+  .typing-dot:nth-child(2) { animation-delay: 0.2s; }
+  .typing-dot:nth-child(3) { animation-delay: 0.4s; }
+</style>
+</head>
+<body class="dark bg-dark-surface text-dark-foreground">
+<!-- Navigation -->
+<nav class="fixed top-0 inset-x-0 z-40 bg-dark-surface/80 backdrop-blur-xl border-b border-dark-border">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between h-16">
+      <a href="/" class="text-xl font-bold font-display text-white">Atlas<span class="text-primary">Nexus</span></a>
+      <a href="/demos-web/" class="text-sm text-dark-foreground/60 hover:text-primary transition-colors">← Démo</a>
+    </div>
+  </div>
+</nav>
+
+<!-- Hero -->
+<section class="pt-24 pb-12 px-4">
+  <div class="max-w-4xl mx-auto text-center">
+    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary text-sm font-medium mb-6">
+      <span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+      Démo live — Essayez le widget ci-dessous
+    </div>
+    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold font-display mb-6 leading-tight">
+      Agent IA Réceptionniste<br>
+      <span class="text-primary">24h/24 · 7j/7</span>
+    </h1>
+    <p class="text-lg sm:text-xl text-dark-foreground/60 max-w-2xl mx-auto mb-8">
+      Un widget IA qui répond instantanément à vos clients, qualifie leurs demandes et fixe des rendez-vous automatiquement. Fonctionne sur WordPress, HTML ou n'importe quel site.
+    </p>
+    <div class="flex flex-wrap justify-center gap-4">
+      <a href="#try" class="px-6 py-3 bg-primary hover:bg-primary-dark text-white font-semibold rounded-xl transition-all shadow-lg shadow-primary/20 flex items-center gap-2">
+        Essayer la démo ↓
+      </a>
+      <span class="px-6 py-3 bg-dark-elevated border border-dark-border rounded-xl text-dark-foreground/60 font-medium">
+        À partir de 79€/mois
+      </span>
+    </div>
+  </div>
+</section>
+
+<!-- Features Grid -->
+<section class="py-16 px-4">
+  <div class="max-w-6xl mx-auto grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+    <div class="bg-dark-card border border-dark-border rounded-2xl p-6 hover:border-primary/30 transition-colors">
+      <div class="w-10 h-10 bg-primary/10 rounded-xl flex items-center justify-center text-primary mb-4">⚡</div>
+      <h3 class="font-display font-semibold text-lg mb-2">Réponse en 3 secondes</h3>
+      <p class="text-dark-foreground/50 text-sm">Le visiteur pose une question. L'agent répond instantanément, 24h/24, même la nuit.</p>
+    </div>
+    <div class="bg-dark-card border border-dark-border rounded-2xl p-6 hover:border-primary/30 transition-colors">
+      <div class="w-10 h-10 bg-accent/10 rounded-xl flex items-center justify-center text-accent mb-4">🎯</div>
+      <h3 class="font-display font-semibold text-lg mb-2">Qualification automatique</h3>
+      <p class="text-dark-foreground/50 text-sm">Type de travaux, surface, délai, budget. Le lead arrive qualifié avant le premier appel.</p>
+    </div>
+    <div class="bg-dark-card border border-dark-border rounded-2xl p-6 hover:border-primary/30 transition-colors">
+      <div class="w-10 h-10 bg-purple-500/10 rounded-xl flex items-center justify-center text-purple-400 mb-4">📅</div>
+      <h3 class="font-display font-semibold text-lg mb-2">Prise de rendez-vous</h3>
+      <p class="text-dark-foreground/50 text-sm">Connexion Google Calendar. L'agent propose des créneaux et confirme par email + SMS.</p>
+    </div>
+    <div class="bg-dark-card border border-dark-border rounded-2xl p-6 hover:border-primary/30 transition-colors">
+      <div class="w-10 h-10 bg-orange-500/10 rounded-xl flex items-center justify-center text-orange-400 mb-4">🚨</div>
+      <h3 class="font-display font-semibold text-lg mb-2">Escalade intelligente</h3>
+      <p class="text-dark-foreground/50 text-sm">Demande urgente ? L'agent alerte immédiatement par WhatsApp ou SMS. Rien ne se perd.</p>
+    </div>
+    <div class="bg-dark-card border border-dark-border rounded-2xl p-6 hover:border-primary/30 transition-colors">
+      <div class="w-10 h-10 bg-pink-500/10 rounded-xl flex items-center justify-center text-pink-400 mb-4">🧠</div>
+      <h3 class="font-display font-semibold text-lg mb-2">Mémoire des conversations</h3>
+      <p class="text-dark-foreground/50 text-sm">Chaque échange enregistré dans un tableau de bord. Relancez vos leads depuis l'interface.</p>
+    </div>
+    <div class="bg-dark-card border border-dark-border rounded-2xl p-6 hover:border-primary/30 transition-colors">
+      <div class="w-10 h-10 bg-cyan-500/10 rounded-xl flex items-center justify-center text-cyan-400 mb-4">🔌</div>
+      <h3 class="font-display font-semibold text-lg mb-2">Intégration 5 minutes</h3>
+      <p class="text-dark-foreground/50 text-sm">Une ligne de code. Compatible WordPress, Shopify, site HTML. Aucune compétence technique requise.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Pricing -->
+<section class="py-16 px-4">
+  <div class="max-w-5xl mx-auto">
+    <h2 class="text-3xl font-bold font-display text-center mb-12">Tarifs simples, sans engagement</h2>
+    <div class="grid sm:grid-cols-3 gap-6">
+      <!-- Starter -->
+      <div class="bg-dark-card border border-dark-border rounded-2xl p-8 flex flex-col">
+        <h3 class="font-display font-semibold text-xl mb-2">Starter</h3>
+        <div class="text-4xl font-bold font-display mb-1">79€<span class="text-lg font-normal text-dark-foreground/40">/mois</span></div>
+        <p class="text-dark-foreground/40 text-sm mb-6">Pour démarrer avec l'IA</p>
+        <ul class="space-y-3 mb-8 flex-1 text-sm">
+          <li class="flex items-start gap-2"><span class="text-accent mt-0.5">✓</span> Agent IA sur le site 24/7</li>
+          <li class="flex items-start gap-2"><span class="text-accent mt-0.5">✓</span> Réponses en français</li>
+          <li class="flex items-start gap-2"><span class="text-accent mt-0.5">✓</span> Tableau de bord basique</li>
+          <li class="flex items-start gap-2"><span class="text-accent mt-0.5">✓</span> Jusqu'à 200 conversations/mois</li>
+        </ul>
+        <a href="#try" class="w-full py-2.5 bg-dark-elevated border border-dark-border hover:border-primary/50 text-center rounded-xl font-medium transition-all text-sm">
+          Essayer la démo
+        </a>
+      </div>
+      <!-- Pro (highlighted) -->
+      <div class="bg-dark-card border-2 border-primary rounded-2xl p-8 flex flex-col relative">
+        <div class="absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-1 bg-primary text-white text-xs font-semibold rounded-full">Recommandé</div>
+        <h3 class="font-display font-semibold text-xl mb-2">Pro</h3>
+        <div class="text-4xl font-bold font-display mb-1">129€<span class="text-lg font-normal text-dark-foreground/40">/mois</span></div>
+        <p class="text-dark-foreground/40 text-sm mb-6">Le plus populaire</p>
+        <ul class="space-y-3 mb-8 flex-1 text-sm">
+          <li class="flex items-start gap-2"><span class="text-accent mt-0.5">✓</span> Tout Starter +</li>
+          <li class="flex items-start gap-2"><span class="text-accent mt-0.5">✓</span> Prise de RDV automatique</li>
+          <li class="flex items-start gap-2"><span class="text-accent mt-0.5">✓</span> Alertes WhatsApp/SMS</li>
+          <li class="flex items-start gap-2"><span class="text-accent mt-0.5">✓</span> Rapport mensuel</li>
+          <li class="flex items-start gap-2"><span class="text-accent mt-0.5">✓</span> Conversations illimitées</li>
+        </ul>
+        <a href="https://buy.stripe.com/7sY4gyfrC7Z2cb1baD1Fe03" class="w-full py-2.5 bg-primary hover:bg-primary-dark text-white text-center rounded-xl font-semibold transition-all text-sm">
+          Commencer maintenant
+        </a>
+      </div>
+      <!-- Business -->
+      <div class="bg-dark-card border border-dark-border rounded-2xl p-8 flex flex-col">
+        <h3 class="font-display font-semibold text-xl mb-2">Business</h3>
+        <div class="text-4xl font-bold font-display mb-1">Sur devis</div>
+        <p class="text-dark-foreground/40 text-sm mb-6">Pour les équipes</p>
+        <ul class="space-y-3 mb-8 flex-1 text-sm">
+          <li class="flex items-start gap-2"><span class="text-accent mt-0.5">✓</span> Tout Pro +</li>
+          <li class="flex items-start gap-2"><span class="text-accent mt-0.5">✓</span> Personnalisation avancée</li>
+          <li class="flex items-start gap-2"><span class="text-accent mt-0.5">✓</span> Intégration CRM existant</li>
+          <li class="flex items-start gap-2"><span class="text-accent mt-0.5">✓</span> Support prioritaire</li>
+        </ul>
+        <a href="mailto:laslyalexandre@gmail.com" class="w-full py-2.5 bg-dark-elevated border border-dark-border hover:border-primary/50 text-center rounded-xl font-medium transition-all text-sm">
+          Nous contacter
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Demo Section -->
+<section id="try" class="py-16 px-4 border-t border-dark-border">
+  <div class="max-w-4xl mx-auto text-center">
+    <h2 class="text-3xl font-bold font-display mb-4">Testez le widget en direct</h2>
+    <p class="text-dark-foreground/50 mb-8">Cliquez sur la bulle en bas à droite pour simuler une conversation avec un prospect</p>
+    
+    <!-- Embedded demo: website mockup -->
+    <div class="bg-dark-card border border-dark-border rounded-2xl overflow-hidden shadow-2xl">
+      <div class="bg-dark-elevated border-b border-dark-border px-4 py-2 flex items-center gap-2">
+        <div class="flex gap-1.5">
+          <div class="w-3 h-3 rounded-full bg-red-500/60"></div>
+          <div class="w-3 h-3 rounded-full bg-yellow-500/60"></div>
+          <div class="w-3 h-3 rounded-full bg-green-500/60"></div>
+        </div>
+        <div class="flex-1 text-center">
+          <span class="text-xs text-dark-foreground/30 bg-dark-muted/50 px-3 py-0.5 rounded-full">gammaplan.be — Site vitrine (exemple)</span>
+        </div>
+      </div>
+      <div class="p-8 sm:p-16 min-h-[400px] relative bg-gradient-to-b from-dark-surface to-dark-card">
+        <div class="text-left max-w-lg">
+          <span class="text-accent text-sm font-semibold">Entreprise Peinture Industrielle</span>
+          <h3 class="text-3xl font-bold font-display mt-2 mb-4">Gamma Plan S.A.</h3>
+          <p class="text-dark-foreground/50 mb-6">Peinture industrielle et bâtiment depuis 1976. Devis gratuit en 24h.</p>
+          <div class="flex gap-3">
+            <span class="px-4 py-2 bg-dark-elevated border border-dark-border rounded-lg text-sm">Peinture industrielle</span>
+            <span class="px-4 py-2 bg-dark-elevated border border-dark-border rounded-lg text-sm">Bâtiment</span>
+            <span class="px-4 py-2 bg-dark-elevated border border-dark-border rounded-lg text-sm">Grivegnée</span>
+          </div>
+        </div>
+        <div class="absolute bottom-8 right-8 text-center">
+          <p class="text-dark-foreground/40 text-xs mb-2">Le widget ↓</p>
+          <div class="w-14 h-14 bg-primary rounded-full flex items-center justify-center text-2xl shadow-lg shadow-primary/30 chat-bubble cursor-pointer" onclick="document.getElementById('chat-widget-btn').click()">
+            💬
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="py-16 px-4">
+  <div class="max-w-3xl mx-auto text-center bg-dark-card border border-dark-border rounded-2xl p-10 sm:p-16" style="animation: agenticGlow 3s ease-in-out infinite;">
+    <h2 class="text-3xl font-bold font-display mb-4">Prêt à ne plus perdre un seul client ?</h2>
+    <p class="text-dark-foreground/50 mb-8 max-w-lg mx-auto">
+      80% des clients choisissent l'artisan qui répond en premier. Installez votre agent IA en 5 minutes.
+    </p>
+    <div class="flex flex-wrap justify-center gap-4">
+      <a href="https://buy.stripe.com/7sY4gyfrC7Z2cb1baD1Fe03" class="px-6 py-3 bg-primary hover:bg-primary-dark text-white font-semibold rounded-xl transition-all shadow-lg shadow-primary/20">
+        Commencer — 79€/mois
+      </a>
+      <a href="mailto:laslyalexandre@gmail.com" class="px-6 py-3 bg-dark-elevated border border-dark-border hover:border-primary/50 rounded-xl font-medium transition-all text-sm flex items-center gap-2">
+        Demander une démo personnalisée
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="border-t border-dark-border py-8 px-4">
+  <div class="max-w-7xl mx-auto text-center text-dark-foreground/30 text-sm">
+    Atlas Nexus · <a href="/mentions-legales/" class="hover:text-dark-foreground/50">Mentions légales</a>
+  </div>
+</footer>
+
+<!-- ════════════════════════════════════════════════════════════════
+     WIDGET CHAT IA — EMBEDDABLE
+     ════════════════════════════════════════════════════════════════ -->
+<style>
+#chat-widget-bubble {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 9999;
+}
+#chat-widget-btn {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: #2563EB;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  box-shadow: 0 4px 24px rgba(37,99,235,0.4);
+  transition: transform 0.2s, box-shadow 0.2s;
+  color: white;
+  position: relative;
+}
+#chat-widget-btn:hover { transform: scale(1.08); }
+#chat-widget-btn .badge {
+  position: absolute;
+  top: -4px;
+  right: -4px;
+  width: 10px;
+  height: 10px;
+  background: #22c55e;
+  border-radius: 50%;
+  border: 2px solid #0B1120;
+  animation: pulse 2s infinite;
+}
+@keyframes pulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(34,197,94,0.7); }
+  50% { box-shadow: 0 0 0 8px rgba(34,197,94,0); }
+}
+
+#chat-widget-window {
+  position: fixed;
+  bottom: 96px;
+  right: 24px;
+  width: 380px;
+  max-width: calc(100vw - 48px);
+  height: 520px;
+  max-height: calc(100vh - 140px);
+  background: #111827;
+  border: 1px solid #1E293B;
+  border-radius: 16px;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+  display: none;
+  flex-direction: column;
+  z-index: 9998;
+  overflow: hidden;
+}
+#chat-widget-window.open { display: flex; }
+
+.chat-header {
+  background: #1A2235;
+  padding: 16px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border-bottom: 1px solid #1E293B;
+}
+.chat-header .avatar {
+  width: 36px;
+  height: 36px;
+  background: #2563EB;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+}
+.chat-header .info { flex: 1; }
+.chat-header .name { font-weight: 600; font-size: 14px; font-family: 'Rubik', sans-serif; }
+.chat-header .status { font-size: 11px; color: #22c55e; display: flex; align-items: center; gap: 4px; }
+.chat-header .status::before { content: ''; width: 6px; height: 6px; background: #22c55e; border-radius: 50%; }
+.chat-header .close {
+  width: 28px; height: 28px; border-radius: 50%;
+  background: transparent; border: none; color: #94a3b8; cursor: pointer;
+  font-size: 18px; display: flex; align-items: center; justify-content: center;
+}
+.chat-header .close:hover { background: #334155; color: white; }
+
+.chat-messages {
+  flex: 1;
+  overflow-y: auto;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.chat-messages .msg {
+  max-width: 85%;
+  padding: 10px 14px;
+  border-radius: 12px;
+  font-size: 13px;
+  line-height: 1.5;
+  animation: slideUp 0.3s ease-out;
+}
+@keyframes slideUp { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+.msg.bot {
+  background: #1A2235;
+  color: #F1F5F9;
+  align-self: flex-start;
+  border-bottom-left-radius: 4px;
+}
+.msg.user {
+  background: #2563EB;
+  color: white;
+  align-self: flex-end;
+  border-bottom-right-radius: 4px;
+}
+.msg .time { font-size: 10px; opacity: 0.5; margin-top: 4px; }
+
+.chat-typing {
+  display: none;
+  align-items: center;
+  gap: 4px;
+  padding: 10px 14px;
+  background: #1A2235;
+  border-radius: 12px;
+  align-self: flex-start;
+  border-bottom-left-radius: 4px;
+}
+.chat-typing.show { display: flex; }
+.chat-typing .dot { width: 6px; height: 6px; background: #94a3b8; border-radius: 50%; animation: typingDot 1.4s infinite; }
+.chat-typing .dot:nth-child(2) { animation-delay: 0.2s; }
+.chat-typing .dot:nth-child(3) { animation-delay: 0.4s; }
+
+.chat-quick-replies {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  padding: 4px 16px 12px;
+}
+.chat-quick-replies button {
+  background: #1A2235;
+  border: 1px solid #1E293B;
+  color: #93c5fd;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  cursor: pointer;
+  transition: all 0.15s;
+  white-space: nowrap;
+}
+.chat-quick-replies button:hover { background: #2563EB; border-color: #2563EB; color: white; }
+
+.chat-input-area {
+  padding: 12px 16px;
+  border-top: 1px solid #1E293B;
+  display: flex;
+  gap: 8px;
+}
+.chat-input-area input {
+  flex: 1;
+  background: #0B1120;
+  border: 1px solid #1E293B;
+  border-radius: 24px;
+  padding: 10px 16px;
+  color: #F1F5F9;
+  font-size: 13px;
+  outline: none;
+  font-family: 'Nunito Sans', sans-serif;
+}
+.chat-input-area input:focus { border-color: #2563EB; }
+.chat-input-area input::placeholder { color: #475569; }
+.chat-input-area button.send {
+  width: 40px; height: 40px;
+  border-radius: 50%;
+  background: #2563EB;
+  border: none;
+  color: white;
+  cursor: pointer;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s;
+  flex-shrink: 0;
+}
+.chat-input-area button.send:hover { background: #1D4ED8; }
+.chat-input-area button.send:disabled { background: #334155; cursor: not-allowed; }
+
+/* Booking overlay */
+.booking-overlay {
+  position: absolute;
+  inset: 0;
+  background: #111827;
+  display: none;
+  flex-direction: column;
+  z-index: 10;
+  border-radius: 16px;
+}
+.booking-overlay.show { display: flex; }
+.booking-overlay .bo-header {
+  padding: 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border-bottom: 1px solid #1E293B;
+}
+.booking-overlay .bo-header button {
+  background: none; border: none; color: #94a3b8; cursor: pointer; font-size: 18px;
+}
+.booking-overlay .bo-body {
+  flex: 1;
+  overflow-y: auto;
+  padding: 16px;
+}
+</style>
+
+<div id="chat-widget-bubble">
+  <button id="chat-widget-btn" onclick="toggleChat()" aria-label="Ouvrir le chat">
+    💬<span class="badge"></span>
+  </button>
+</div>
+
+<div id="chat-widget-window">
+  <div class="chat-header">
+    <div class="avatar">🤖</div>
+    <div class="info">
+      <div class="name">Assistant IA</div>
+      <div class="status">En ligne — répond en 3s</div>
+    </div>
+    <button class="close" onclick="toggleChat()">✕</button>
+  </div>
+  
+  <div class="chat-messages" id="chat-messages"></div>
+  <div class="chat-typing" id="chat-typing">
+    <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+  </div>
+  <div class="chat-quick-replies" id="chat-quick"></div>
+  
+  <div class="chat-input-area" id="chat-input-area">
+    <input type="text" id="chat-input" placeholder="Écrivez votre message..." onkeydown="if(event.key==='Enter')sendMessage()">
+    <button class="send" onclick="sendMessage()">→</button>
+  </div>
+
+  <!-- Booking overlay -->
+  <div class="booking-overlay" id="booking-overlay">
+    <div class="bo-header">
+      <button onclick="closeBooking()">←</button>
+      <span class="font-display font-semibold text-sm">Prendre rendez-vous</span>
+    </div>
+    <div class="bo-body" id="booking-body"></div>
+  </div>
+</div>
+
+<script>
+// ── Chat state ──
+const chatState = {
+  step: 0,
+  data: {},
+  isOpen: false
+};
+
+const flow = [
+  { bot: "Bonjour ! 👋 Je suis l'assistant IA de Gamma Plan. Comment puis-je vous aider aujourd'hui ?", 
+    replies: ["Un devis pour des travaux", "Une question sur vos services", "Prendre rendez-vous"] },
+  { bot: "Parfait ! Quel type de travaux vous intéresse ?", 
+    replies: ["Peinture industrielle", "Peinture bâtiment", "Revêtement de sol", "Traitement anti-corrosion"] },
+  { bot: "Sur quelle surface environ ?", 
+    replies: ["Moins de 100m²", "100 à 500m²", "500 à 1000m²", "Plus de 1000m²"] },
+  { bot: "Où se situe le chantier ? (ville ou code postal)", replies: [] },
+  { bot: "Quel est votre délai souhaité ?", 
+    replies: ["Urgent (< 1 semaine)", "Ce mois-ci", "Dans 1-3 mois", "Pas pressé"] },
+  { bot: "Quel budget approximatif avez-vous prévu ?", 
+    replies: ["< 5.000€", "5.000€ - 20.000€", "20.000€ - 50.000€", "> 50.000€", "Je ne sais pas"] },
+];
+
+function toggleChat() {
+  const win = document.getElementById('chat-widget-window');
+  chatState.isOpen = !chatState.isOpen;
+  if (chatState.isOpen) {
+    win.classList.add('open');
+    if (chatState.step === 0) startConversation();
+  } else {
+    win.classList.remove('open');
+  }
+}
+
+function startConversation() {
+  const msgs = document.getElementById('chat-messages');
+  if (msgs.children.length === 0) {
+    showTyping();
+    setTimeout(() => {
+      hideTyping();
+      addBotMsg(flow[0].bot);
+      showReplies(flow[0].replies);
+      chatState.step = 1;
+    }, 800);
+  }
+}
+
+function addBotMsg(text) {
+  const msgs = document.getElementById('chat-messages');
+  const now = new Date().toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' });
+  msgs.innerHTML += `<div class="msg bot">${text}<div class="time">${now}</div></div>`;
+  msgs.scrollTop = msgs.scrollHeight;
+}
+
+function addUserMsg(text) {
+  const msgs = document.getElementById('chat-messages');
+  const now = new Date().toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' });
+  msgs.innerHTML += `<div class="msg user">${text}<div class="time">${now}</div></div>`;
+  msgs.scrollTop = msgs.scrollHeight;
+}
+
+function showReplies(replies) {
+  const qr = document.getElementById('chat-quick');
+  qr.innerHTML = replies.map(r => `<button onclick="handleReply('${r}')">${r}</button>`).join('');
+}
+
+function hideReplies() {
+  document.getElementById('chat-quick').innerHTML = '';
+}
+
+function showTyping() {
+  document.getElementById('chat-typing').classList.add('show');
+  document.getElementById('chat-input-area').style.opacity = '0.5';
+  document.getElementById('chat-input').disabled = true;
+}
+
+function hideTyping() {
+  document.getElementById('chat-typing').classList.remove('show');
+  document.getElementById('chat-input-area').style.opacity = '1';
+  document.getElementById('chat-input').disabled = false;
+}
+
+function handleReply(text) {
+  addUserMsg(text);
+  hideReplies();
+  
+  // Store data based on step
+  if (chatState.step === 1) chatState.data.type = text;
+  else if (chatState.step === 2) chatState.data.surface = text;
+  else if (chatState.step === 4) chatState.data.delai = text;
+  else if (chatState.step === 5) {
+    chatState.data.budget = text;
+    // Final step: show booking
+    showTyping();
+    setTimeout(() => {
+      hideTyping();
+      addBotMsg("Merci ! Voici un récapitulatif :<br><br>🔹 <b>Type :</b> " + chatState.data.type + "<br>🔹 <b>Surface :</b> " + chatState.data.surface + "<br>🔹 <b>Localisation :</b> " + (chatState.data.localisation || '—') + "<br>🔹 <b>Délai :</b> " + chatState.data.delai + "<br>🔹 <b>Budget :</b> " + chatState.data.budget + "<br><br>Souhaitez-vous <b>fixer un rendez-vous</b> avec un expert ?");
+      showReplies(["📅 Oui, prendre RDV", "✉️ Envoyez-moi un email plutôt"]);
+      chatState.step = 6;
+    }, 1000);
+    return;
+  }
+
+  // Next step
+  const next = flow[chatState.step];
+  if (!next) return;
+
+  showTyping();
+  setTimeout(() => {
+    hideTyping();
+    if (chatState.step === 3) {
+      // Location step - free text
+      addBotMsg(next.bot);
+      hideReplies();
+      document.getElementById('chat-input').placeholder = 'Ex: Grivegnée, Liège...';
+      chatState.step = 4;
+    } else {
+      addBotMsg(next.bot);
+      showReplies(next.replies);
+      chatState.step++;
+    }
+  }, 900 + Math.random() * 600);
+}
+
+function sendMessage() {
+  const input = document.getElementById('chat-input');
+  const text = input.value.trim();
+  if (!text) return;
+
+  addUserMsg(text);
+  input.value = '';
+
+  if (chatState.step === 4) {
+    // Location
+    chatState.data.localisation = text;
+    hideReplies();
+    showTyping();
+    setTimeout(() => {
+      hideTyping();
+      addBotMsg(flow[4].bot);
+      showReplies(flow[4].replies);
+      chatState.step = 5;
+    }, 900);
+  } else if (chatState.step === 6) {
+    // Post-qualification follow-up
+    showTyping();
+    setTimeout(() => {
+      hideTyping();
+      if (text.toLowerCase().includes('rdv') || text.includes('📅')) {
+        openBooking();
+      } else {
+        addBotMsg("Parfait ! Un devis détaillé vous sera envoyé par email dans les 24h. Vous pouvez aussi nous appeler au <b>04 123 45 67</b>.<br><br>Avez-vous d'autres questions ?");
+        showReplies(["Non merci, au revoir", "Quels sont vos délais ?"]);
+        chatState.step = 7;
+      }
+    }, 800);
+  } else {
+    // Generic fallback
+    showTyping();
+    setTimeout(() => {
+      hideTyping();
+      addBotMsg("Merci pour votre message ! Un expert Gamma Plan vous répondra dans les plus brefs délais. En attendant, puis-je vous aider à fixer un rendez-vous ?");
+      showReplies(["📅 Prendre RDV", "Non merci"]);
+    }, 800);
+  }
+}
+
+// ── Booking ──
+function openBooking() {
+  const overlay = document.getElementById('booking-overlay');
+  const body = document.getElementById('booking-body');
+  
+  const today = new Date();
+  const days = [];
+  for (let i = 1; i <= 7; i++) {
+    const d = new Date(today);
+    d.setDate(d.getDate() + i);
+    if (d.getDay() !== 0 && d.getDay() !== 6) { // No weekends
+      days.push(d);
+    }
+  }
+
+  const slots = ["08:00 - 09:00", "09:30 - 10:30", "11:00 - 12:00", "14:00 - 15:00", "15:30 - 16:30"];
+
+  let html = '<p class="text-sm text-dark-foreground/50 mb-4">Choisissez un créneau :</p>';
+  
+  days.forEach(d => {
+    const label = d.toLocaleDateString('fr-FR', { weekday: 'long', day: 'numeric', month: 'long' });
+    html += `<p class="text-xs text-dark-foreground/30 mt-4 mb-2">${label}</p>`;
+    slots.forEach(s => {
+      html += `<button onclick="confirmBooking('${label} à ${s}')" class="w-full text-left p-3 mb-2 rounded-xl bg-dark-elevated border border-dark-border hover:border-primary/50 transition-all text-sm">${s}</button>`;
+    });
+  });
+
+  body.innerHTML = html;
+  overlay.classList.add('show');
+}
+
+function confirmBooking(slot) {
+  const overlay = document.getElementById('booking-overlay');
+  const body = document.getElementById('booking-body');
+  body.innerHTML = `
+    <div class="text-center py-8">
+      <div class="text-5xl mb-4">✅</div>
+      <h3 class="font-display font-semibold text-lg mb-2">Rendez-vous confirmé !</h3>
+      <p class="text-dark-foreground/50 text-sm mb-4">${slot}</p>
+      <p class="text-xs text-dark-foreground/30">Un email de confirmation a été envoyé.<br>À bientôt chez Gamma Plan !</p>
+      <button onclick="closeBooking();addBotMsg('Votre rendez-vous est confirmé pour <b>${slot}</b>. Un email de confirmation vous a été envoyé. À bientôt ! 👋')" class="mt-6 px-6 py-2 bg-primary text-white rounded-xl text-sm font-semibold">Fermer</button>
+    </div>
+  `;
+}
+
+function closeBooking() {
+  document.getElementById('booking-overlay').classList.remove('show');
+}
+
+// ── Initialization ──
+document.addEventListener('DOMContentLoaded', () => {
+  // Close chat on escape
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && chatState.isOpen) toggleChat();
+  });
+});
+</script>
+
+</body>
+</html>
