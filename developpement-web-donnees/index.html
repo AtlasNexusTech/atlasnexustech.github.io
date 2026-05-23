@@ -98,9 +98,15 @@ tailwind.config = {
   .dark .agentic-card::before { background: radial-gradient(circle at 15% 0%, rgba(59,130,246,.15), transparent 38%), radial-gradient(circle at 95% 20%, rgba(5,150,105,.12), transparent 34%); }
   .dark .bg-primary { box-shadow: 0 0 18px -4px rgba(37,99,235,.45); }
   .dark .bg-primary:hover { box-shadow: 0 0 28px -4px rgba(37,99,235,.65); }
-  .dark .hover\:text-primary:hover { color: #60A5FA; }
+  .dark .hover\\:text-primary:hover { color: #60A5FA; }
+
+  /* ── Page-specific: gradient animation only, no shadow ── */
+  .glow-word { filter: none !important; }
+  .glow-word::after { display: none !important; }
 </style>
+
 </head>
+
 <body class="bg-surface dark:bg-dark-surface text-foreground dark:text-dark-foreground font-body antialiased">
 
 <nav class="fixed top-0 w-full z-50 bg-surface/85 dark:bg-dark-surface/90 backdrop-blur-lg border-b border-border dark:border-dark-border">
