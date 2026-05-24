@@ -592,7 +592,7 @@ tailwind.config = {
     <h2 class="section-title text-foreground dark:text-dark-foreground mb-6 font-display mx-auto inline-block">Parlons de votre projet</h2>
     <p class="text-slate-600 dark:text-slate-300 text-lg mb-10 max-w-xl mx-auto">Un besoin, une question, un devis ? Écrivez-moi directement ou appelez-moi.</p>
     <div class="grid sm:grid-cols-3 gap-6 mb-10">
-      <a href="mailto:laslyalexandre@gmail.com" class="reveal reveal-delay-1 card-hover bg-white dark:bg-dark-card rounded-xl p-6 border border-border dark:border-dark-border flex flex-col items-center gap-3">
+      <a data-obfuscate data-type="email" data-encoded="bGFzbHlhbGV4YW5kcmVAZ21haWwuY29t" class="reveal reveal-delay-1 card-hover bg-white dark:bg-dark-card rounded-xl p-6 border border-border dark:border-dark-border flex flex-col items-center gap-3">
         <svg class="w-8 h-8 text-primary" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 4L12 13 2 4"/></svg>
         <span class="font-bold text-foreground dark:text-dark-foreground">Email</span>
         <span class="text-sm text-slate-500 dark:text-slate-400">laslyalexandre@gmail.com</span>
@@ -698,5 +698,22 @@ tailwind.config = {
 })();
 </script>
 
+
+<!-- Email/Phone obfuscation -->
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const contactLinks = document.querySelectorAll("[data-obfuscate]");
+  contactLinks.forEach(link => {
+    const type = link.getAttribute("data-type");
+    const encoded = link.getAttribute("data-encoded");
+    const decoded = atob(encoded);
+    link.addEventListener("click", (e) => {
+      if (type === "email") window.location.href = "mailto:" + decoded;
+      else if (type === "phone") window.location.href = "tel:" + decoded;
+    });
+    link.style.cursor = "pointer";
+  });
+});
+</script>
 </body>
 </html>
