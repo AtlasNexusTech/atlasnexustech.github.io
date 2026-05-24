@@ -179,7 +179,7 @@ tailwind.config = {
 
 <!-- ════════════ HERO ════════════ -->
 <section class="py-16 sm:py-24 relative overflow-hidden" aria-label="Markets overview">
-  <canvas id="antigravity-canvas" class="absolute inset-0 w-full h-full z-0 pointer-events-none" aria-hidden="true"></canvas>
+  <canvas id="antigravity-canvas" class="absolute inset-0 w-full h-full z-0" aria-hidden="true"></canvas>
   <div class="hero-orb"></div>
   <div class="relative z-10">
     <div class="max-w-4xl hero-stagger mb-12">
@@ -327,7 +327,7 @@ tailwind.config = {
 
   <div class="legend mt-4">
     <span>0-39 Weak</span><span>40-59 Watch</span><span>60-74 Active</span><span>75-89 Strong</span><span>90-100 Extreme</span>
-    <span class="!bg-amber-100 dark:!bg-amber-500/10 !text-amber-800 dark:!text-amber-300 !border-amber-200 dark:!border-amber-500/20">Updated 20/05/2026 07:32 CEST</span>
+    <span class="!bg-amber-100 dark:!bg-amber-500/10 !text-amber-800 dark:!text-amber-300 !border-amber-200 dark:!border-amber-500/20">Data refreshed periodically</span>
   </div>
 </section>
 
@@ -517,7 +517,7 @@ tailwind.config = {
 
 <!-- ════════════ JS: Yahoo Index Widgets ════════════ -->
 <script>
-(function(){const B='https://api.allorigins.win/raw?url='+encodeURIComponent('https://query1.finance.yahoo.com/v8/finance/chart/');async function F(s){try{const r=await fetch(B+encodeURIComponent(s+'?interval=1d&range=2d')),d=await r.json(),m=d.chart.result[0].meta,p=m.regularMarketPrice,c=m.previousClose||m.chartPreviousClose,h=p-c;return{price:p,change:h,changePct:(h/c)*100,time:new Date(m.regularMarketTime*1e3)}}catch(e){return null}}function P(p){return p>=1e3?p.toLocaleString('en-US',{maximumFractionDigits:0}):p.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2})}function U(iP,iC,iT,d){if(!d){document.getElementById(iP).textContent='Error';return}document.getElementById(iP).textContent=P(d.price);const s=d.change>=0?'+':'',c=d.change>=0?'text-accent dark:text-green-400':'text-red-500 dark:text-red-400',el=document.getElementById(iC);el.textContent=s+d.change.toFixed(2)+' ('+s+d.changePct.toFixed(2)+'%)';el.className='text-sm font-bold mt-0.5 '+c;document.getElementById(iT).textContent='Updated: '+d.time.toLocaleTimeString('en-US',{hour:'2-digit',minute:'2-digit'})}async function R(){const[a,b]=await Promise.all([F('%5EGSPC'),F('%5EIXIC')]);U('spx-price','spx-change','spx-time',a);U('ndx-price','ndx-change','ndx-time',b)}R();setInterval(R,6e4)})();
+(function(){const B='https://corsproxy.io/?';async function F(s){const url='https://query1.finance.yahoo.com/v8/finance/chart/'+s+'?interval=1d&range=2d';try{const r=await fetch(B+encodeURIComponent(url)),d=await r.json(),m=d.chart.result[0].meta,p=m.regularMarketPrice,c=m.previousClose||m.chartPreviousClose,h=p-c;return{price:p,change:h,changePct:(h/c)*100,time:new Date(m.regularMarketTime*1e3)}}catch(e){return null}}function P(p){return p>=1e3?p.toLocaleString('en-US',{maximumFractionDigits:0}):p.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2})}function U(iP,iC,iT,d){if(!d){document.getElementById(iP).textContent='Error';return}document.getElementById(iP).textContent=P(d.price);const s=d.change>=0?'+':'',c=d.change>=0?'text-accent dark:text-green-400':'text-red-500 dark:text-red-400',el=document.getElementById(iC);el.textContent=s+d.change.toFixed(2)+' ('+s+d.changePct.toFixed(2)+'%)';el.className='text-sm font-bold mt-0.5 '+c;document.getElementById(iT).textContent='Updated: '+d.time.toLocaleTimeString('en-US',{hour:'2-digit',minute:'2-digit'})}async function R(){const[a,b]=await Promise.all([F('%5EGSPC'),F('%5EIXIC')]);U('spx-price','spx-change','spx-time',a);U('ndx-price','ndx-change','ndx-time',b)}R();setInterval(R,6e4)})();
 </script>
 
 <!-- ════════════ JS: Fear & Greed Index ════════════ -->
