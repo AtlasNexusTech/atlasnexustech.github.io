@@ -80,7 +80,7 @@ tailwind.config = {
   .signal-row:hover { background: rgba(0,0,0,.02); border-radius: 16px; padding-inline: 10px; }
   .dark .signal-row:hover { background: rgba(255,255,255,.035); }
 
-  .score-pill { min-width: 64px; height: 32px; border-radius: 999px; display: inline-flex; align-items: center; justify-content: center; font-size: .82em; font-weight: 850; }
+  .score-pill { min-width: 54px; height: 26px; border-radius: 999px; display: inline-flex; align-items: center; justify-content: center; font-size: .74em; font-weight: 850; }
   .score-hot { background: rgba(22,163,74,.12); color: #16a34a; border: 1px solid rgba(22,163,74,.18); }
   .score-warm { background: rgba(217,119,6,.10); color: #d97706; border: 1px solid rgba(217,119,6,.16); }
   .dark .score-warm { background: rgba(217,119,6,.10); color: #f59e0b; border-color: rgba(217,119,6,.16); }
@@ -89,12 +89,12 @@ tailwind.config = {
   .chip { padding: 8px 12px; border: 1px solid rgba(148,163,184,.16); background: rgba(0,0,0,.04); border-radius: 999px; font-size: .8em; font-weight: 850; color: #1e40af; }
   .dark .chip { background: rgba(255,255,255,.045); color: #dbeafe; border-color: rgba(148,163,184,.16); }
 
-  .tv-link { display: inline-flex; align-items: center; gap: 5px; padding: 5px 10px; border-radius: 999px; border: 1px solid rgba(37,99,235,.22); background: linear-gradient(135deg, rgba(37,99,235,.08), rgba(124,92,255,.06)); color: #1e40af!important; text-decoration: none; font-size: .76rem; font-weight: 950; white-space: nowrap; transition: all .16s; }
+  .tv-link { display: inline-flex; align-items: center; gap: 3px; padding: 3px 7px; border-radius: 999px; border: 1px solid rgba(37,99,235,.22); background: linear-gradient(135deg, rgba(37,99,235,.08), rgba(124,92,255,.06)); color: #1e40af!important; text-decoration: none; font-size: .68rem; font-weight: 900; white-space: nowrap; transition: all .16s; }
   .tv-link:hover { background: linear-gradient(135deg, rgba(37,99,235,.16), rgba(124,92,255,.12)); color: #1e3a8a!important; border-color: rgba(37,99,235,.4); transform: translateY(-1px); }
   .dark .tv-link { color: #d9f3ff!important; background: linear-gradient(135deg, rgba(56,189,248,.14), rgba(124,92,255,.12)); border-color: rgba(56,189,248,.32); box-shadow: inset 0 1px 0 rgba(255,255,255,.06); }
   .dark .tv-link:hover { background: linear-gradient(135deg, rgba(56,189,248,.24), rgba(124,92,255,.20)); border-color: rgba(56,189,248,.58); box-shadow: 0 8px 24px rgba(56,189,248,.12), inset 0 1px 0 rgba(255,255,255,.10); }
 
-  .market-state { display: inline-flex; align-items: center; gap: 5px; padding: 4px 7px; border-radius: 999px; border: 1px solid rgba(0,0,0,.12); background: rgba(241,245,249,.9); font-size: .72rem; font-weight: 950; text-transform: uppercase; letter-spacing: .035em; white-space: nowrap; color: #475569; }
+  .market-state { display: inline-flex; align-items: center; gap: 3px; padding: 2px 5px; border-radius: 999px; border: 1px solid rgba(0,0,0,.12); background: rgba(241,245,249,.9); font-size: .66rem; font-weight: 900; text-transform: uppercase; letter-spacing: .025em; white-space: nowrap; color: #475569; }
   .market-state:before { content: ""; width: 6px; height: 6px; border-radius: 999px; background: #94a3b8; box-shadow: 0 0 8px rgba(148,163,184,.4); }
   .market-state-open { color: #16a34a!important; border-color: rgba(22,163,74,.22)!important; background: rgba(22,163,74,.06)!important; }
   .market-state-open:before { background: #16a34a!important; box-shadow: 0 0 10px rgba(22,163,74,.6)!important; }
@@ -107,7 +107,7 @@ tailwind.config = {
   .dark .market-state-closed { color: #fecaca!important; border-color: rgba(251,113,133,.26)!important; background: rgba(251,113,133,.09)!important; }
   .dark .market-state-closed:before { background: #fb7185!important; box-shadow: 0 0 14px rgba(251,113,133,.85)!important; }
 
-  .session-led { display: inline-flex; align-items: center; gap: 7px; padding: 6px 10px; border-radius: 999px; font-size: .72em; font-weight: 850; text-transform: uppercase; letter-spacing: .055em; border: 1px solid rgba(0,0,0,.08); background: rgba(0,0,0,.03); color: #64748b; }
+  .session-led { display: inline-flex; align-items: center; gap: 4px; padding: 4px 8px; border-radius: 999px; font-size: .65em; font-weight: 850; text-transform: uppercase; letter-spacing: .04em; border: 1px solid rgba(0,0,0,.08); background: rgba(0,0,0,.03); color: #64748b; }
   .session-led:before { content: ""; width: 7px; height: 7px; border-radius: 999px; background: #94a3b8; }
   .session-led.open { color: #16a34a; border-color: rgba(22,163,74,.18); background: rgba(22,163,74,.05); }
   .session-led.open:before { background: #22c55e; box-shadow: 0 0 12px rgba(34,197,94,.6); }
@@ -160,8 +160,8 @@ tailwind.config = {
 <nav class="sticky top-0 z-30 bg-white/80 dark:bg-dark-card/80 backdrop-blur-xl border-b border-border dark:border-dark-border">
   <div class="max-w-6xl mx-auto px-4 sm:px-6 flex items-center justify-between h-16">
     <a href="/" class="flex items-center gap-2.5 font-display font-bold text-lg text-foreground dark:text-dark-foreground no-underline">
-      <span class="w-8 h-8 rounded-lg bg-gradient-to-br from-primary to-accent flex items-center justify-center text-white text-sm font-black">AN</span>
-      <span class="hidden sm:inline">Atlas Nexus</span>
+      <svg class="w-7 h-7" viewBox="0 0 32 32" fill="none"><defs><linearGradient id="logo-grad" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#7C3AED"/><stop offset="100%" stop-color="#6366F1"/></linearGradient></defs><circle cx="16" cy="16" r="14" fill="url(#logo-grad)" opacity=".15"/><path d="M10 22V10l6 8 6-8v12" stroke="url(#logo-grad)" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <span>Atlas Nexus</span>
     </a>
     <div class="flex items-center gap-1 sm:gap-3 text-sm font-semibold">
       <a href="#scanner" class="text-slate-600 dark:text-dark-dim hover:text-primary dark:hover:text-white px-2 sm:px-3 py-1.5 rounded-full transition-colors">Scanner</a>
@@ -179,6 +179,7 @@ tailwind.config = {
 
 <!-- ════════════ HERO ════════════ -->
 <section class="py-16 sm:py-24 relative overflow-hidden" aria-label="Markets overview">
+  <canvas id="antigravity-canvas" class="absolute inset-0 w-full h-full z-0 pointer-events-none" aria-hidden="true"></canvas>
   <div class="hero-orb"></div>
   <div class="relative z-10">
     <div class="max-w-4xl hero-stagger mb-12">
@@ -369,8 +370,8 @@ tailwind.config = {
   <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
     <!-- Crypto -->
     <a href="/markets-dashboard/crypto_dashboard.html" class="reveal reveal-delay-1 card-hover market-card rounded-2xl p-8 border border-border flex flex-col" data-market="crypto">
-      <div class="w-12 h-12 bg-accent/10 rounded-xl flex items-center justify-center mb-6">
-        <svg class="w-6 h-6 text-accent" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>
+      <div class="w-12 h-12 bg-accent/10 rounded-xl flex items-center justify-center mb-6 text-2xl">
+        🪙
       </div>
       <h3 class="text-xl font-bold text-foreground dark:text-dark-foreground mb-2 font-display">Crypto</h3>
       <p class="text-slate-600 dark:text-dark-dim text-sm leading-relaxed mb-4">BTC, ETH, SOL & liquid majors · 24/7 momentum</p>
@@ -385,8 +386,8 @@ tailwind.config = {
     </a>
     <!-- Commodities -->
     <a href="/markets-dashboard/commodities_dashboard.html" class="reveal reveal-delay-1 card-hover bg-white dark:bg-dark-card rounded-2xl p-8 border border-border dark:border-dark-border flex flex-col" data-market="commodities" style="border-color:rgba(245,158,11,.28)!important;box-shadow:0 18px 52px -34px rgba(245,158,11,.45);">
-      <div class="w-12 h-12 bg-amber-500/10 rounded-xl flex items-center justify-center mb-6">
-        <svg class="w-6 h-6 text-amber-600 dark:text-amber-400" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="M12 5v14"/><circle cx="12" cy="12" r="3"/></svg>
+      <div class="w-12 h-12 bg-amber-500/10 rounded-xl flex items-center justify-center mb-6 text-2xl">
+        🛢️
       </div>
       <h3 class="text-xl font-bold text-foreground dark:text-dark-foreground mb-2 font-display">Commodities</h3>
       <p class="text-slate-600 dark:text-dark-dim text-sm leading-relaxed mb-4">Gold, Silver, Oil, Copper, Grains · CFD/extended context</p>
@@ -400,8 +401,8 @@ tailwind.config = {
     </a>
     <!-- Indices -->
     <a href="/markets-dashboard/indices_dashboard.html" class="reveal reveal-delay-2 card-hover bg-white dark:bg-dark-card rounded-2xl p-8 border border-border dark:border-dark-border flex flex-col" data-market="indices" style="border-color:rgba(124,58,237,.28)!important;box-shadow:0 18px 52px -34px rgba(124,58,237,.45);">
-      <div class="w-12 h-12 bg-purple-500/10 rounded-xl flex items-center justify-center mb-6">
-        <svg class="w-6 h-6 text-purple-600 dark:text-purple-400" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="1"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10"/><path d="M12 2a15.3 15.3 0 0 0-4 10 15.3 15.3 0 0 0 4 10"/></svg>
+      <div class="w-12 h-12 bg-purple-500/10 rounded-xl flex items-center justify-center mb-6 text-2xl">
+        🌍
       </div>
       <h3 class="text-xl font-bold text-foreground dark:text-dark-foreground mb-2 font-display">Indices</h3>
       <p class="text-slate-600 dark:text-dark-dim text-sm leading-relaxed mb-4">S&P 500, Nasdaq, DAX, CAC, Nikkei · global risk pulse</p>
@@ -415,8 +416,8 @@ tailwind.config = {
     </a>
     <!-- Forex -->
     <a href="/markets-dashboard/forex_dashboard.html" class="reveal reveal-delay-2 card-hover bg-white dark:bg-dark-card rounded-2xl p-8 border border-border dark:border-dark-border flex flex-col" data-market="forex" style="border-color:rgba(14,165,233,.28)!important;box-shadow:0 18px 52px -34px rgba(14,165,233,.45);">
-      <div class="w-12 h-12 bg-sky-500/10 rounded-xl flex items-center justify-center mb-6">
-        <svg class="w-6 h-6 text-sky-600 dark:text-sky-400" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" viewBox="0 0 24 24"><path d="M8 3L4 7l4 4"/><path d="M4 7h16"/><path d="m16 21 4-4-4-4"/><path d="M20 17H4"/></svg>
+      <div class="w-12 h-12 bg-sky-500/10 rounded-xl flex items-center justify-center mb-6 text-2xl">
+        💱
       </div>
       <h3 class="text-xl font-bold text-foreground dark:text-dark-foreground mb-2 font-display">Forex</h3>
       <p class="text-slate-600 dark:text-dark-dim text-sm leading-relaxed mb-4">EURUSD, GBPJPY, AUDUSD · majors, crosses and exotics</p>
@@ -430,8 +431,8 @@ tailwind.config = {
     </a>
     <!-- Stocks -->
     <a href="/markets-dashboard/actions_dashboard.html" class="reveal reveal-delay-3 card-hover bg-white dark:bg-dark-card rounded-2xl p-8 border border-border dark:border-dark-border flex flex-col" data-market="stocks" style="border-color:rgba(16,185,129,.28)!important;box-shadow:0 18px 52px -34px rgba(16,185,129,.45);">
-      <div class="w-12 h-12 bg-emerald-500/10 rounded-xl flex items-center justify-center mb-6">
-        <svg class="w-6 h-6 text-emerald-600 dark:text-emerald-400" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="10" rx="2"/><line x1="12" y1="7" x2="12" y2="17"/></svg>
+      <div class="w-12 h-12 bg-emerald-500/10 rounded-xl flex items-center justify-center mb-6 text-2xl">
+        🏛️
       </div>
       <h3 class="text-xl font-bold text-foreground dark:text-dark-foreground mb-2 font-display">Stocks</h3>
       <p class="text-slate-600 dark:text-dark-dim text-sm leading-relaxed mb-4">Mega-cap tech, luxury, banks, defensives · equity momentum</p>
@@ -445,8 +446,8 @@ tailwind.config = {
     </a>
     <!-- ETF -->
     <a href="/markets-dashboard/etf_dashboard.html" class="reveal reveal-delay-3 card-hover bg-white dark:bg-dark-card rounded-2xl p-8 border border-border dark:border-dark-border flex flex-col" data-market="etf" style="border-color:rgba(236,72,153,.28)!important;box-shadow:0 18px 52px -34px rgba(236,72,153,.45);">
-      <div class="w-12 h-12 bg-pink-500/10 rounded-xl flex items-center justify-center mb-6">
-        <svg class="w-6 h-6 text-pink-600 dark:text-pink-400" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>
+      <div class="w-12 h-12 bg-pink-500/10 rounded-xl flex items-center justify-center mb-6 text-2xl">
+        💼
       </div>
       <h3 class="text-xl font-bold text-foreground dark:text-dark-foreground mb-2 font-display">ETF</h3>
       <p class="text-slate-600 dark:text-dark-dim text-sm leading-relaxed mb-4">SPY, QQQ, IWM, sector & thematic · institutional flow mapping</p>
@@ -467,6 +468,11 @@ tailwind.config = {
 </footer>
 
 </main>
+
+<!-- ════════════ Antigravity Canvas JS ════════════ -->
+<script>
+(function(){const c=document.getElementById("antigravity-canvas");if(!c)return;const x=c.getContext("2d");if(window.matchMedia("(prefers-reduced-motion:reduce)").matches)return;let W,H,P=[];const N=55,D=140,R=200,F=.015,S=["circle","triangle","diamond","hexagon"],L=[{r:37,g:99,b:235},{r:5,g:150,b:105},{r:124,g:58,b:237}],M={x:-1e3,y:-1e3,tx:-1e3,ty:-1e3};function rz(){const r=c.parentElement.getBoundingClientRect(),d=Math.min(devicePixelRatio||1,2);W=r.width;H=r.height;c.width=W*d;c.height=H*d;c.style.width=W+"px";c.style.height=H+"px";x.setTransform(d,0,0,d,0,0)}function cp(){const l=L[Math.floor(Math.random()*L.length)];return{x:Math.random()*W,y:Math.random()*H,vx:(Math.random()-.5)*.35,vy:(Math.random()-.5)*.35,size:3+Math.random()*9,opacity:.08+Math.random()*.14,shape:S[Math.floor(Math.random()*S.length)],color:l,phase:Math.random()*Math.PI*2,speed:.003+Math.random()*.007,amplitude:.2+Math.random()*.8,rotation:Math.random()*Math.PI*2,rotSpeed:(Math.random()-.5)*.004}}function ds(p){const{x,y,size:s,shape:h,color:l,opacity:o,rotation:r}=p;x.save();x.translate(x,y);x.rotate(r);x.globalAlpha=o;x.fillStyle=`rgba(${l.r},${l.g},${l.b},1)`;x.strokeStyle=`rgba(${l.r},${l.g},${l.b},1)`;x.lineWidth=.6;switch(h){case"circle":x.beginPath();x.arc(0,0,s/2,0,Math.PI*2);x.fill();break;case"triangle":x.beginPath();x.moveTo(0,-s/1.8);x.lineTo(s/2,s/2.5);x.lineTo(-s/2,s/2.5);x.closePath();x.fill();break;case"diamond":x.beginPath();x.moveTo(0,-s/1.8);x.lineTo(s/2.2,0);x.lineTo(0,s/1.8);x.lineTo(-s/2.2,0);x.closePath();x.fill();break;case"hexagon":x.beginPath();for(let i=0;i<6;i++){const a=Math.PI/3*i-Math.PI/6,k=s/2.2;i===0?x.moveTo(Math.cos(a)*k,Math.sin(a)*k):x.lineTo(Math.cos(a)*k,Math.sin(a)*k)}x.closePath();x.fill()}x.restore()}function dc(){for(let i=0;i<P.length;i++)for(let j=i+1;j<P.length;j++){const a=P[i],b=P[j],dx=a.x-b.x,dy=a.y-b.y,dist=Math.sqrt(dx*dx+dy*dy);if(dist<D){const dA=Math.hypot(a.x-M.x,a.y-M.y),dB=Math.hypot(b.x-M.x,b.y-M.y),nm=Math.max(0,1-Math.min(dA,dB)/160),alpha=(1-dist/D)*.15*(1+nm*.6);x.beginPath();x.moveTo(a.x,a.y);x.lineTo(b.x,b.y);x.strokeStyle=`rgba(${a.color.r},${a.color.g},${a.color.b},${alpha})`;x.stroke()}}}function anim(t){x.clearRect(0,0,W,H);M.x+=(M.tx-M.x)*.06;M.y+=(M.ty-M.y)*.06;for(let p of P){p.vy+=Math.sin(t*p.speed+p.phase)*p.amplitude*.006;p.x+=p.vx;p.y+=p.vy;p.rotation+=p.rotSpeed;if(M.x>-500){const dx=M.x-p.x,dy=M.y-p.y,dist=Math.sqrt(dx*dx+dy*dy);if(dist<R){const force=(1-dist/R)*F;p.vx-=dx/dist*force;p.vy-=dy/dist*force}}if(p.x<-20)p.x=W+10;if(p.x>W+20)p.x=-10;if(p.y<-20)p.y=H+10;if(p.y>H+20)p.y=-10}dc();for(let p of P)ds(p);requestAnimationFrame(anim)}c.addEventListener("mousemove",e=>{const r=c.getBoundingClientRect();M.tx=e.clientX-r.left;M.ty=e.clientY-r.top});c.addEventListener("mouseleave",()=>{M.tx=-1e3;M.ty=-1e3});c.addEventListener("touchmove",e=>{const r=c.getBoundingClientRect(),t=e.touches[0];M.tx=t.clientX-r.left;M.ty=t.clientY-r.top},{passive:true});c.addEventListener("touchend",()=>{M.tx=-1e3;M.ty=-1e3});rz();window.addEventListener("resize",rz);for(let i=0;i<N;i++)P.push(cp());requestAnimationFrame(anim)})();
+</script>
 
 <!-- ════════════ JS: Market Sessions ════════════ -->
 <script>
