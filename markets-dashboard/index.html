@@ -180,7 +180,7 @@ tailwind.config = {
 
 <!-- ════════════ HERO ════════════ -->
 <section class="py-16 sm:py-24 relative overflow-hidden" aria-label="Markets overview">
-  <canvas id="antigravity-canvas" class="absolute inset-0 w-full h-full z-0" aria-hidden="true"></canvas>
+  <canvas id="antigravity-canvas" class="absolute inset-0 w-full h-full z-0 pointer-events-none" aria-hidden="true"></canvas>
   <div class="hero-orb"></div>
   <div class="relative z-10">
     <div class="max-w-4xl hero-stagger mb-12">
@@ -474,7 +474,6 @@ tailwind.config = {
 <script>
 (function(){
 const c=document.getElementById("antigravity-canvas");if(!c)return;console.log('Canvas initialized',c.width,c.height);
-  if(!c)return;
   const ctx=c.getContext("2d");
   let W,H,P=[];
   const N=55,D=140,R=200,F=.015;
@@ -486,10 +485,10 @@ const c=document.getElementById("antigravity-canvas");if(!c)return;console.log('
   function ds(p){const px=p.x,py=p.y,s=p.size,h=p.shape,l=p.color,o=p.opacity,r=p.rotation;ctx.save();ctx.translate(px,py);ctx.rotate(r);ctx.globalAlpha=o;ctx.fillStyle="rgba("+l.r+","+l.g+","+l.b+",1)";ctx.strokeStyle="rgba("+l.r+","+l.g+","+l.b+",1)";ctx.lineWidth=.6;switch(h){case"circle":ctx.beginPath();ctx.arc(0,0,s/2,0,Math.PI*2);ctx.fill();break;case"triangle":ctx.beginPath();ctx.moveTo(0,-s/1.8);ctx.lineTo(s/2,s/2.5);ctx.lineTo(-s/2,s/2.5);ctx.closePath();ctx.fill();break;case"diamond":ctx.beginPath();ctx.moveTo(0,-s/1.8);ctx.lineTo(s/2.2,0);ctx.lineTo(0,s/1.8);ctx.lineTo(-s/2.2,0);ctx.closePath();ctx.fill();break;case"hexagon":ctx.beginPath();for(let i=0;i<6;i++){const a=Math.PI/3*i-Math.PI/6,k=s/2.2;i===0?ctx.moveTo(Math.cos(a)*k,Math.sin(a)*k):ctx.lineTo(Math.cos(a)*k,Math.sin(a)*k)}ctx.closePath();ctx.fill()}ctx.restore()}
   function dc(){for(let i=0;i<P.length;i++)for(let j=i+1;j<P.length;j++){const a=P[i],b=P[j],dx=a.x-b.x,dy=a.y-b.y,dist=Math.sqrt(dx*dx+dy*dy);if(dist<D){const dA=Math.hypot(a.x-M.x,a.y-M.y),dB=Math.hypot(b.x-M.x,b.y-M.y),nm=Math.max(0,1-Math.min(dA,dB)/160),alpha=(1-dist/D)*.15*(1+nm*.6);ctx.beginPath();ctx.moveTo(a.x,a.y);ctx.lineTo(b.x,b.y);ctx.strokeStyle="rgba("+a.color.r+","+a.color.g+","+a.color.b+","+alpha+")";ctx.stroke()}}}
   function anim(t){ctx.clearRect(0,0,W,H);M.x+=(M.tx-M.x)*.06;M.y+=(M.ty-M.y)*.06;for(let p of P){p.vy+=Math.sin(t*p.speed+p.phase)*p.amplitude*.006;p.x+=p.vx;p.y+=p.vy;p.rotation+=p.rotSpeed;if(M.x>-500){const dx=M.x-p.x,dy=M.y-p.y,dist=Math.sqrt(dx*dx+dy*dy);if(dist<R){const force=(1-dist/R)*F;p.vx-=dx/dist*force;p.vy-=dy/dist*force}}if(p.x<-20)p.x=W+10;if(p.x>W+20)p.x=-10;if(p.y<-20)p.y=H+10;if(p.y>H+20)p.y=-10}dc();for(let p of P)ds(p);requestAnimationFrame(anim)}
-  c.addEventListener("mousemove",e=>{const r=c.getBoundingClientRect();M.tx=e.clientX-r.left;M.ty=e.clientY-r.top});
-  c.addEventListener("mouseleave",()=>{M.tx=-1e3;M.ty=-1e3});
-  c.addEventListener("touchmove",e=>{const r=c.getBoundingClientRect(),t=e.touches[0];M.tx=t.clientX-r.left;M.ty=t.clientY-r.top},{passive:true});
-  c.addEventListener("touchend",()=>{M.tx=-1e3;M.ty=-1e3});
+  c.parentElement.addEventListener("mousemove",e=>{const r=c.getBoundingClientRect();M.tx=e.clientX-r.left;M.ty=e.clientY-r.top});
+  c.parentElement.addEventListener("mouseleave",()=>{M.tx=-1e3;M.ty=-1e3});
+  c.parentElement.addEventListener("touchmove",e=>{const r=c.getBoundingClientRect(),t=e.touches[0];M.tx=t.clientX-r.left;M.ty=t.clientY-r.top},{passive:true});
+  c.parentElement.addEventListener("touchend",()=>{M.tx=-1e3;M.ty=-1e3});
   rz();window.addEventListener("resize",rz);new ResizeObserver(rz).observe(c.parentElement);
   for(let i=0;i<N;i++)P.push(cp());
   requestAnimationFrame(anim);
@@ -504,6 +503,8 @@ const c=document.getElementById("antigravity-canvas");if(!c)return;console.log('
 <!-- ════════════ JS: Count-up ════════════ -->
 <script>
 (()=>{const e=t=>1-Math.pow(1-t,3);document.querySelectorAll('.count-up[data-target]').forEach(el=>{const t=Number(el.dataset.target||0),d=950,s=performance.now();(function n(r){const o=Math.min((r-s)/d,1);el.textContent=Math.round(e(o)*t).toLocaleString('en-US');if(o<1)requestAnimationFrame(n)})(s)})})();
+// Update data timestamp
+(function(){var d=new Date();var el=document.getElementById('data-timestamp');if(el)el.textContent='Updated: '+d.toLocaleDateString('en-US',{month:'short',day:'numeric'})+' '+d.toLocaleTimeString('en-US',{hour:'2-digit',minute:'2-digit'})+' CEST';})();
 </script>
 
 <!-- ════════════ JS: Dark mode toggle ════════════ -->
@@ -518,7 +519,7 @@ const c=document.getElementById("antigravity-canvas");if(!c)return;console.log('
 
 <!-- ════════════ JS: Yahoo Index Widgets ════════════ -->
 <script>
-(function(){const B='https://api.allorigins.win/raw?url=';async function F(s){const url='https://query1.finance.yahoo.com/v8/finance/chart/'+s+'?interval=1d&range=2d';try{const r=await fetch(B+encodeURIComponent(url)),d=await r.json(),m=d.chart.result[0].meta,p=m.regularMarketPrice,c=m.previousClose||m.chartPreviousClose,h=p-c;return{price:p,change:h,changePct:(h/c)*100,time:new Date(m.regularMarketTime*1e3)}}catch(e){return null}}function P(p){return p>=1e3?p.toLocaleString('en-US',{maximumFractionDigits:0}):p.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2})}function U(iP,iC,iT,d){if(!d){document.getElementById(iP).textContent='Error';return}document.getElementById(iP).textContent=P(d.price);const s=d.change>=0?'+':'',c=d.change>=0?'text-accent dark:text-green-400':'text-red-500 dark:text-red-400',el=document.getElementById(iC);el.textContent=s+d.change.toFixed(2)+' ('+s+d.changePct.toFixed(2)+'%)';el.className='text-sm font-bold mt-0.5 '+c;document.getElementById(iT).textContent='Updated: '+d.time.toLocaleTimeString('en-US',{hour:'2-digit',minute:'2-digit'})}async function R(){const[a,b]=await Promise.all([F('%5EGSPC'),F('%5EIXIC')]);U('spx-price','spx-change','spx-time',a);U('ndx-price','ndx-change','ndx-time',b)}R();setInterval(R,6e4)})();
+(function(){async function F(s){try{const r=await fetch('https://query1.finance.yahoo.com/v8/finance/chart/'+s+'?interval=1d&range=2d'),d=await r.json(),m=d.chart.result[0].meta,p=m.regularMarketPrice,c=m.previousClose||m.chartPreviousClose,h=p-c;return{price:p,change:h,changePct:(h/c)*100,time:new Date(m.regularMarketTime*1e3)}}catch(e){return null}}function P(p){return p>=1e3?p.toLocaleString('en-US',{maximumFractionDigits:0}):p.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2})}function U(iP,iC,iT,d){if(!d){document.getElementById(iP).textContent='See ticker ↑';return}document.getElementById(iP).textContent=P(d.price);const s=d.change>=0?'+':'',c=d.change>=0?'text-accent dark:text-green-400':'text-red-500 dark:text-red-400',el=document.getElementById(iC);el.textContent=s+d.change.toFixed(2)+' ('+s+d.changePct.toFixed(2)+'%)';el.className='text-sm font-bold mt-0.5 '+c;document.getElementById(iT).textContent='Updated: '+d.time.toLocaleTimeString('en-US',{hour:'2-digit',minute:'2-digit'})}async function R(){const[a,b]=await Promise.all([F('%5EGSPC'),F('%5EIXIC')]);U('spx-price','spx-change','spx-time',a);U('ndx-price','ndx-change','ndx-time',b)}R();setInterval(R,6e4)})();
 </script>
 
 <!-- ════════════ JS: Fear & Greed Index ════════════ -->
