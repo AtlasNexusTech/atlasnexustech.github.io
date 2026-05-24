@@ -53,7 +53,7 @@
   <url><loc>https://atlasnexus.tech/tony-zanirato/</loc><changefreq>monthly</changefreq><priority>0.4</priority></url>
 
   <!-- TOOLS -->
-  <url><loc>https://atlasnexus.tech/dashboard.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://atlasnexus.tech/markets-dashboard/</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://atlasnexus.tech/datatoolkit/</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://atlasnexus.tech/pwa-template/</loc><changefreq>monthly</changefreq><priority>0.3</priority></url>
   <url><loc>https://atlasnexus.tech/template-artisan/</loc><changefreq>monthly</changefreq><priority>0.3</priority></url>
