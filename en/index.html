@@ -717,7 +717,7 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 </script>
 <script>
-/* ── Antigravity Canvas ── Floating geometric particles with connection lines */
+/* ── Antigravity Canvas ── Mouse-reactive floating geometric particles */
 (function(){
   const canvas = document.getElementById('antigravity-canvas');
   if (!canvas) return;
@@ -727,12 +727,17 @@ document.addEventListener("DOMContentLoaded", () => {
   let W, H, particles = [];
   const PARTICLE_COUNT = 55;
   const CONNECTION_DIST = 140;
+  const MOUSE_RADIUS = 200;       // max distance particles feel the cursor
+  const MOUSE_FORCE = 0.015;      // attraction strength
   const SHAPES = ['circle','triangle','diamond','hexagon'];
   const COLORS = [
     { r: 37,  g: 99,  b: 235 }, // blue
     { r: 5,   g: 150, b: 105 }, // green
     { r: 124, g: 58,  b: 237 }, // purple
   ];
+
+  // Smoothed mouse position (-1000 = off-screen / no mouse)
+  const mouse = { x: -1000, y: -1000, tx: -1000, ty: -1000 };
 
   function resize() {
     const rect = canvas.parentElement.getBoundingClientRect();
@@ -807,22 +812,53 @@ document.addEventListener("DOMContentLoaded", () => {
         const dx = a.x - b.x, dy = a.y - b.y;
         const dist = Math.sqrt(dx*dx + dy*dy);
         if (dist < CONNECTION_DIST) {
-          const alpha = (1 - dist/CONNECTION_DIST) * 0.07;
+          // Boost alpha for connections near the mouse
+          const dA = Math.hypot(a.x - mouse.x, a.y - mouse.y);
+          const dB = Math.hypot(b.x - mouse.x, b.y - mouse.y);
+          const nearMouse = Math.max(0, 1 - Math.min(dA, dB) / 160);
+          const alpha = ((1 - dist/CONNECTION_DIST) * 0.07) + nearMouse * 0.12;
           ctx.beginPath();
           ctx.moveTo(a.x, a.y);
           ctx.lineTo(b.x, b.y);
-          ctx.strokeStyle = `rgba(37,99,235,${alpha})`;
-          ctx.lineWidth = 0.4;
+          ctx.strokeStyle = `rgba(37,99,235,${alpha.toFixed(3)})`;
+          ctx.lineWidth = 0.4 + nearMouse * 0.6;
           ctx.stroke();
         }
       }
     }
   }
 
+  function drawCursorGlow() {
+    if (mouse.x < 0) return;
+    const grad = ctx.createRadialGradient(mouse.x, mouse.y, 0, mouse.x, mouse.y, 100);
+    grad.addColorStop(0, 'rgba(37,99,235,0.06)');
+    grad.addColorStop(0.5, 'rgba(5,150,105,0.03)');
+    grad.addColorStop(1, 'rgba(37,99,235,0)');
+    ctx.fillStyle = grad;
+    ctx.beginPath(); ctx.arc(mouse.x, mouse.y, 100, 0, Math.PI*2); ctx.fill();
+  }
+
   function animate() {
     ctx.clearRect(0, 0, W, H);
     
+    // Smooth mouse lerp
+    mouse.x += (mouse.tx - mouse.x) * 0.08;
+    mouse.y += (mouse.ty - mouse.y) * 0.08;
+    
+    drawCursorGlow();
+    
     for (const p of particles) {
+      // Mouse attraction — particles drift gently toward cursor
+      if (mouse.x > 0) {
+        const dx = mouse.x - p.x, dy = mouse.y - p.y;
+        const dist = Math.sqrt(dx*dx + dy*dy);
+        if (dist < MOUSE_RADIUS && dist > 1) {
+          const force = (1 - dist/MOUSE_RADIUS) * MOUSE_FORCE;
+          p.x += (dx / dist) * force;
+          p.y += (dy / dist) * force;
+        }
+      }
+      
       // Sinusoidal floating
       const floatX = Math.sin(p.phase) * p.amplitude;
       const floatY = Math.cos(p.phase * 0.7) * p.amplitude * 0.8;
@@ -831,13 +867,25 @@ document.addEventListener("DOMContentLoaded", () => {
       p.phase += p.speed;
       p.rotation += p.rotSpeed;
       
+      // Boost opacity near mouse
+      if (mouse.x > 0) {
+        const d = Math.hypot(p.x - mouse.x, p.y - mouse.y);
+        p.currentOpacity = p.opacity + Math.max(0, 1 - d/130) * 0.13;
+      } else {
+        p.currentOpacity = p.opacity;
+      }
+      
       // Wrap around
       if (p.x < -20) p.x = W + 20;
       if (p.x > W + 20) p.x = -20;
       if (p.y < -20) p.y = H + 20;
       if (p.y > H + 20) p.y = -20;
       
+      // Temporarily swap opacity for this frame
+      const saved = p.opacity;
+      p.opacity = p.currentOpacity || p.opacity;
       drawShape(p);
+      p.opacity = saved;
     }
     
     drawConnections();
@@ -847,6 +895,26 @@ document.addEventListener("DOMContentLoaded", () => {
   function init() {
     resize();
     particles = Array.from({ length: PARTICLE_COUNT }, createParticle);
+    
+    // Mouse tracking
+    canvas.parentElement.addEventListener('mousemove', function(e) {
+      const rect = canvas.getBoundingClientRect();
+      mouse.tx = e.clientX - rect.left;
+      mouse.ty = e.clientY - rect.top;
+    });
+    canvas.parentElement.addEventListener('mouseleave', function() {
+      mouse.tx = -1000; mouse.ty = -1000;
+    });
+    // Touch support
+    canvas.parentElement.addEventListener('touchmove', function(e) {
+      const rect = canvas.getBoundingClientRect();
+      mouse.tx = e.touches[0].clientX - rect.left;
+      mouse.ty = e.touches[0].clientY - rect.top;
+    }, {passive: true});
+    canvas.parentElement.addEventListener('touchend', function() {
+      mouse.tx = -1000; mouse.ty = -1000;
+    });
+    
     if (!prefersReduced) animate();
   }
 
