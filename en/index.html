@@ -18,15 +18,18 @@
 (function(){
   try {
     const KEY = 'atlasnexus.lang';
+    const path = window.location.pathname;
+    const isEn = path.startsWith('/en/') || path === '/en';
     const params = new URLSearchParams(window.location.search);
     const explicit = params.get('lang');
     if (explicit === 'fr' || explicit === 'en') localStorage.setItem(KEY, explicit);
     const saved = localStorage.getItem(KEY);
-    if (saved === 'fr') return;
-    if (saved === 'en') { window.location.replace('/en/' + window.location.hash); return; }
+    // Only redirect if we're not already on the target page
+    if (saved === 'fr' && isEn) { window.location.replace('/' + window.location.hash); return; }
+    if (saved === 'en' && !isEn) { window.location.replace('/en/' + window.location.hash); return; }
     const langs = (navigator.languages && navigator.languages.length ? navigator.languages : [navigator.language || '']).map(x => String(x).toLowerCase());
     const isFrancophone = langs.some(x => x === 'fr' || x.startsWith('fr-'));
-    if (!isFrancophone) window.location.replace('/en/' + window.location.hash);
+    if (!isFrancophone && !isEn) window.location.replace('/en/' + window.location.hash);
   } catch(e) {}
 })();
 </script>
