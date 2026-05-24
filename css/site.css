@@ -20,3 +20,15 @@
   background: rgba(255, 255, 255, 0.05);
   border-color: rgba(255, 255, 255, 0.06);
 }
+/* Fixed nav centering (Tailwind pre-built doesn't include left-1/2 or translate) */
+.nav-fixed-center {
+  position: fixed;
+  top: 1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 50;
+  width: calc(100% - 2rem);
+  max-width: 72rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
