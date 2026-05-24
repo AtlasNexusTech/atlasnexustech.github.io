@@ -68,6 +68,13 @@ tailwind.config = {
   .hero-stagger > *:nth-child(1) { animation-delay: 0.1s; } .hero-stagger > *:nth-child(2) { animation-delay: 0.25s; } .hero-stagger > *:nth-child(3) { animation-delay: 0.40s; } .hero-stagger > *:nth-child(4) { animation-delay: 0.55s; }
   @keyframes heroFadeIn { to { opacity: 1; transform: translateY(0); } }
 
+  /* ── Glass nav (AI2Work style) ── */
+  .glass-nav { background: rgba(255,255,255,.55); border: 1px solid rgba(255,255,255,.6); backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px); box-shadow: 0 8px 32px 0 rgba(31,38,135,.08); }
+  .dark .glass-nav { background: rgba(15,23,42,.75); border: 1px solid rgba(255,255,255,.08); box-shadow: 0 8px 32px 0 rgba(0,0,0,.35); }
+  .glass-nav-btn { background: transparent; border: 1px solid transparent; backdrop-filter: none; }
+  .glass-nav-btn:hover { background: rgba(0,0,0,.05); }
+  .dark .glass-nav-btn:hover { background: rgba(255,255,255,.08); }
+
   /* ── Dashboard-specific ── */
   .live-dot { width: 8px; height: 8px; background: #22c55e; border-radius: 50%; display: inline-block; box-shadow: 0 0 18px rgba(34,197,94,.9); animation: pulse 2s infinite; }
   @keyframes pulse { 0%,100% { opacity: 1; transform: scale(1); } 50% { opacity: .55; transform: scale(.82); } }
@@ -158,23 +165,29 @@ tailwind.config = {
 </svg>
 
 <!-- ════════════ NAV ════════════ -->
-<nav class="sticky top-0 z-30 bg-white/80 dark:bg-dark-card/80 backdrop-blur-xl border-b border-border dark:border-dark-border">
-  <div class="max-w-6xl mx-auto px-4 sm:px-6 flex items-center justify-between h-16">
-    <a href="/" class="flex items-center gap-3" aria-label="Atlas Nexus home">
-      <img src="/logo.png" alt="Atlas Nexus" class="w-9 h-9 rounded-lg shadow-lg shadow-blue-500/20">
-      <span class="font-display font-bold text-xl text-foreground dark:text-dark-foreground tracking-tight">Atlas Nexus</span>
+<header class="sticky top-4 z-40 mx-auto w-full max-w-6xl px-4">
+  <nav class="glass-nav flex h-14 items-center justify-between rounded-full px-4 sm:h-16 sm:px-6">
+    <a href="/" class="flex items-center gap-2.5 no-underline" aria-label="Atlas Nexus home">
+      <img src="/logo.png" alt="Atlas Nexus" class="h-8 w-8 rounded-lg">
+      <span class="hidden sm:inline-flex items-center text-sm font-semibold tracking-tight text-foreground dark:text-dark-foreground">Atlas Nexus</span>
+      <span class="inline-flex rounded-full bg-accent/15 px-2 py-0.5 text-[10px] font-medium text-accent dark:text-green-400 items-center gap-1">
+        <svg class="h-3 w-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+        Live
+      </span>
     </a>
-    <div class="flex items-center gap-1 sm:gap-3 text-sm font-semibold">
-      <a href="#scanner" class="text-slate-600 dark:text-dark-dim hover:text-primary dark:hover:text-white px-2 sm:px-3 py-1.5 rounded-full transition-colors">Scanner</a>
-      <a href="#dashboards" class="text-slate-600 dark:text-dark-dim hover:text-primary dark:hover:text-white px-2 sm:px-3 py-1.5 rounded-full transition-colors">Markets</a>
-      <a href="https://github.com/AtlasNexusTech/markets-dashboard" class="text-slate-600 dark:text-dark-dim hover:text-primary dark:hover:text-white px-2 sm:px-3 py-1.5 rounded-full transition-colors hidden sm:inline">GitHub</a>
-      <button id="theme-toggle" class="w-10 h-10 rounded-full border border-black/10 dark:border-white/10 bg-white/70 dark:bg-white/5 backdrop-blur-xl flex items-center justify-center hover:bg-white dark:hover:bg-white/10 transition-all shadow-sm shadow-black/5 dark:shadow-lg dark:shadow-black/20 text-slate-500 dark:text-slate-300 ml-1" aria-label="Toggle dark mode">
+    <ul class="hidden items-center gap-1 text-sm font-medium text-slate-500 dark:text-dark-dim md:flex">
+      <li><a href="#scanner" class="relative rounded-full px-3 py-1.5 hover:text-foreground dark:hover:text-white transition-colors">Scanner</a></li>
+      <li><a href="#dashboards" class="relative rounded-full px-3 py-1.5 hover:text-foreground dark:hover:text-white transition-colors">Markets</a></li>
+      <li><a href="https://github.com/AtlasNexusTech/markets-dashboard" class="relative rounded-full px-3 py-1.5 hover:text-foreground dark:hover:text-white transition-colors">GitHub</a></li>
+    </ul>
+    <div class="flex items-center gap-2">
+      <button id="theme-toggle" class="glass-nav-btn inline-flex items-center justify-center w-10 h-10 rounded-full text-foreground dark:text-dark-foreground hover:bg-white/20 dark:hover:bg-white/5 transition-all" aria-label="Toggle dark mode">
         <svg class="w-4 h-4 rotate-0 scale-100 transition-transform duration-300 dark:-rotate-90 dark:scale-0" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
         <svg class="absolute w-4 h-4 rotate-90 scale-0 transition-transform duration-300 dark:rotate-0 dark:scale-100" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
       </button>
     </div>
-  </div>
-</nav>
+  </nav>
+</header>
 
 <main class="max-w-6xl mx-auto px-4 sm:px-6">
 
