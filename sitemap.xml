@@ -1,25 +1,67 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:xhtml="http://www.w3.org/1999/xhtml">
-  <url>
-    <loc>https://atlasnexus.tech/</loc>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://atlasnexus.tech/"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://atlasnexus.tech/en/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://atlasnexus.tech/en/"/>
-    <changefreq>weekly</changefreq>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>https://atlasnexus.tech/en/</loc>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://atlasnexus.tech/"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://atlasnexus.tech/en/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://atlasnexus.tech/en/"/>
-    <changefreq>weekly</changefreq>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>https://atlasnexus.tech/atlas-studio/</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
+
+  <!-- HOME -->
+  <url><loc>https://atlasnexus.tech/</loc><xhtml:link rel="alternate" hreflang="fr" href="https://atlasnexus.tech/"/><xhtml:link rel="alternate" hreflang="en" href="https://atlasnexus.tech/en/"/><xhtml:link rel="alternate" hreflang="x-default" href="https://atlasnexus.tech/en/"/><changefreq>weekly</changefreq><priority>1.0</priority></url>
+  <url><loc>https://atlasnexus.tech/en/</loc><xhtml:link rel="alternate" hreflang="fr" href="https://atlasnexus.tech/"/><xhtml:link rel="alternate" hreflang="en" href="https://atlasnexus.tech/en/"/><xhtml:link rel="alternate" hreflang="x-default" href="https://atlasnexus.tech/en/"/><changefreq>weekly</changefreq><priority>1.0</priority></url>
+
+  <!-- PRODUCTS -->
+  <url><loc>https://atlasnexus.tech/ia-agentique/</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://atlasnexus.tech/ia-agentique/en/</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://atlasnexus.tech/developpement-web-donnees/</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://atlasnexus.tech/framer-motion-ui/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://atlasnexus.tech/atlas-studio/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+
+  <!-- AI / WEB3 PROJECTS -->
+  <url><loc>https://atlasnexus.tech/ai-studio/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://atlasnexus.tech/agent-identity/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://atlasnexus.tech/agent-identity/en/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://atlasnexus.tech/verify/</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://atlasnexus.tech/verify/en/</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://atlasnexus.tech/oobe-ace-agent/</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://atlasnexus.tech/oobe-ace-agent-en/</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+
+  <!-- CASE STUDY -->
+  <url><loc>https://atlasnexus.tech/case-study/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://atlasnexus.tech/case-study/en/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+
+  <!-- PORTFOLIO DEMOS (web) -->
+  <url><loc>https://atlasnexus.tech/demos-web/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://atlasnexus.tech/demos-web/en/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://atlasnexus.tech/demo-refonte-artisan/</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://atlasnexus.tech/demo-refonte-consultant/</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://atlasnexus.tech/demo-refonte-restaurant/</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://atlasnexus.tech/demo-refonte-sante/</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
+
+  <!-- CLIENT SITES -->
+  <url><loc>https://atlasnexus.tech/tad-agency/</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://atlasnexus.tech/stratea/</loc><changefreq>monthly</changefreq><priority>0.4</priority></url>
+  <url><loc>https://atlasnexus.tech/artisan-demo/</loc><changefreq>monthly</changefreq><priority>0.4</priority></url>
+  <url><loc>https://atlasnexus.tech/artisan-ia/</loc><changefreq>monthly</changefreq><priority>0.4</priority></url>
+  <url><loc>https://atlasnexus.tech/artisan-metallier/</loc><changefreq>monthly</changefreq><priority>0.4</priority></url>
+  <url><loc>https://atlasnexus.tech/augelle-deco/</loc><changefreq>monthly</changefreq><priority>0.4</priority></url>
+  <url><loc>https://atlasnexus.tech/az-bois/</loc><changefreq>monthly</changefreq><priority>0.4</priority></url>
+  <url><loc>https://atlasnexus.tech/blueline-logistics/</loc><changefreq>monthly</changefreq><priority>0.4</priority></url>
+  <url><loc>https://atlasnexus.tech/demo-menuiserie.fr/</loc><changefreq>monthly</changefreq><priority>0.4</priority></url>
+  <url><loc>https://atlasnexus.tech/duault-anatole/</loc><changefreq>monthly</changefreq><priority>0.4</priority></url>
+  <url><loc>https://atlasnexus.tech/ed-maconnerie/</loc><changefreq>monthly</changefreq><priority>0.4</priority></url>
+  <url><loc>https://atlasnexus.tech/eponia-conseil/</loc><changefreq>monthly</changefreq><priority>0.4</priority></url>
+  <url><loc>https://atlasnexus.tech/ia-receptionniste/</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://atlasnexus.tech/menuiserie-devarenne/</loc><changefreq>monthly</changefreq><priority>0.4</priority></url>
+  <url><loc>https://atlasnexus.tech/peintre-95/</loc><changefreq>monthly</changefreq><priority>0.4</priority></url>
+  <url><loc>https://atlasnexus.tech/tony-zanirato/</loc><changefreq>monthly</changefreq><priority>0.4</priority></url>
+
+  <!-- TOOLS -->
+  <url><loc>https://atlasnexus.tech/dashboard.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://atlasnexus.tech/datatoolkit/</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://atlasnexus.tech/pwa-template/</loc><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://atlasnexus.tech/template-artisan/</loc><changefreq>monthly</changefreq><priority>0.3</priority></url>
+
+  <!-- OTHER -->
+  <url><loc>https://atlasnexus.tech/install/</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://atlasnexus.tech/growth/</loc><changefreq>monthly</changefreq><priority>0.4</priority></url>
+  <url><loc>https://atlasnexus.tech/mentions-legales/</loc><changefreq>yearly</changefreq><priority>0.2</priority></url>
+  <url><loc>https://atlasnexus.tech/wallet-architecture.html</loc><changefreq>monthly</changefreq><priority>0.4</priority></url>
+
 </urlset>
