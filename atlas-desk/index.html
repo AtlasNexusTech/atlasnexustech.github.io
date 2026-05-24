@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Atlas Desk — Contrôle PC distant P2P open source</title>
+<meta name="description" content="Atlas Desk est une alternative open source à AnyDesk. Contrôle PC distant P2P via WebRTC, streaming, transfert fichiers, clipboard sync. Gratuit.">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config = {
+  darkMode: 'class',
+  theme: {
+    extend: {
+      fontFamily: {
+        display: ['Rubik', 'sans-serif'],
+        body: ['Nunito Sans', 'sans-serif'],
+      },
+      colors: {
+        primary: '#3B82F6', 'primary-dark': '#2563EB',
+        secondary: '#6366F1',
+        accent: '#059669', 'accent-dark': '#047857',
+        surface: '#F8FAFC', muted: '#F1F5FD',
+        border: '#E4ECFC', foreground: '#0F172A',
+        desk: {
+          bg: '#0a0a12',
+          card: '#141423',
+          glow: '#3B82F6',
+        }
+      }
+    }
+  }
+}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700;800;900&family=Nunito+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  *, ::before, ::after { transition: background-color 0.4s ease, border-color 0.4s ease, color 0.4s ease; }
+
+  .gradient-text { background: linear-gradient(135deg, #3B82F6 0%, #059669 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+  .glow-word { position: relative; display: inline-block; background: linear-gradient(110deg, #0F172A 0%, #3B82F6 32%, #6366F1 56%, #059669 82%, #0F172A 100%); background-size: 240% 100%; -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; animation: deskGlow 4s ease-in-out infinite; }
+  @keyframes deskGlow { 0%,100% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } }
+
+  .desk-card { position: relative; overflow: hidden; border-color: rgba(59,130,246,.24)!important; box-shadow: 0 18px 60px -28px rgba(59,130,246,.45); background: linear-gradient(145deg, #ffffff 0%, #f7fbff 52%, #eef5ff 100%); }
+  .desk-card::before { content: ""; position: absolute; inset: -1px; background: radial-gradient(circle at 15% 0%, rgba(59,130,246,.12), transparent 38%), radial-gradient(circle at 95% 20%, rgba(5,150,105,.08), transparent 34%); pointer-events: none; }
+  .desk-card > * { position: relative; }
+  .desk-card:hover { box-shadow: 0 22px 70px -32px rgba(59,130,246,.60); transform: translateY(-4px); transition: all 250ms ease; }
+
+  .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.6s ease, transform 0.6s ease; }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+  .section-title { font-size: clamp(1.8rem, 4.5vw, 3rem); font-weight: 800; letter-spacing: -0.03em; line-height: 1.1; }
+  .section-title::after { content: ""; display: block; width: 3rem; height: 3px; border-radius: 2px; background: linear-gradient(90deg, #3B82F6, #059669); margin-top: 0.5rem; }
+
+  .stat-card { background: white; border: 1px solid rgba(59,130,246,.14); border-radius: 1rem; padding: 1.5rem; text-align: center; box-shadow: 0 8px 32px -16px rgba(59,130,246,.18); }
+  .stat-num { font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 900; font-family: 'Rubik', sans-serif; background: linear-gradient(135deg, #3B82F6, #6366F1); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+  .stat-label { font-size: 0.85rem; color: #64748b; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; margin-top: 0.25rem; }
+
+  .feature-icon { width: 44px; height: 44px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 20px; }
+  .feature-blue { background: linear-gradient(135deg, rgba(59,130,246,.15), rgba(37,99,235,.08)); color: #3B82F6; }
+  .feature-green { background: linear-gradient(135deg, rgba(5,150,105,.15), rgba(4,120,87,.08)); color: #059669; }
+  .feature-purple { background: linear-gradient(135deg, rgba(99,102,241,.15), rgba(124,58,237,.08)); color: #6366F1; }
+
+  .hero-orb { position: absolute; inset: auto 4% 8% auto; width: min(34vw, 360px); height: min(34vw, 360px); border-radius: 999px; background: radial-gradient(circle at 35% 35%, rgba(59,130,246,.22), rgba(99,102,241,.12) 38%, transparent 68%); filter: blur(2px); pointer-events: none; }
+  .hero-orb2 { position: absolute; inset: 8% auto auto 2%; width: min(20vw, 200px); height: min(20vw, 200px); border-radius: 999px; background: radial-gradient(circle at 50% 50%, rgba(5,150,105,.15), transparent 65%); filter: blur(4px); pointer-events: none; }
+
+  .code-block { background: linear-gradient(145deg, #1e1e2e, #141423); border: 1px solid rgba(59,130,246,.18); border-radius: 12px; padding: 1.25rem 1.5rem; color: #e2e8f0; font-family: 'Fira Code', 'Cascadia Code', monospace; font-size: 0.82rem; overflow-x: auto; white-space: pre; }
+
+  .dark .desk-card { background: linear-gradient(145deg, #1a1a2e 0%, #141423 52%, #0f0f1f 100%); border-color: rgba(59,130,246,.16)!important; }
+  .dark .stat-card { background: #1a1a2e; border-color: rgba(59,130,246,.12); }
+  .dark .code-block { background: linear-gradient(145deg, #0f0f1f, #0a0a12); }
+  .dark .glow-word { background: linear-gradient(110deg, #e2e8f0 0%, #3B82F6 32%, #6366F1 56%, #059669 82%, #e2e8f0 100%); background-size: 240% 100%; -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+
+  /* ── Dark mode toggle ── */
+  .theme-toggle { width: 42px; height: 42px; border-radius: 12px; border: 1px solid rgba(59,130,246,.18); background: transparent; cursor: pointer; font-size: 18px; display: flex; align-items: center; justify-content: center; }
+</style>
+<link rel="canonical" href="https://atlasnexus.tech/atlas-desk/">
+</head>
+<body class="bg-surface text-foreground font-body antialiased">
+
+<!-- Nav -->
+<nav class="fixed top-0 w-full z-50 bg-surface/85 backdrop-blur-lg border-b border-border">
+  <div class="max-w-6xl mx-auto px-6 h-[72px] flex items-center justify-between">
+    <a href="https://atlasnexus.tech" class="flex items-center gap-3">
+      <div class="w-9 h-9 bg-primary rounded-lg flex items-center justify-center shadow-lg shadow-blue-500/20">
+        <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="6" r="2.5" fill="currentColor" stroke="none"/><circle cx="19" cy="13" r="2.5" fill="currentColor" stroke="none"/><circle cx="5" cy="13" r="2.5" fill="currentColor" stroke="none"/><line x1="12" y1="8.5" x2="17.5" y2="11.5"/><line x1="6.5" y1="11.5" x2="12" y2="8.5"/></svg>
+      </div>
+      <span class="font-display font-bold text-xl tracking-tight">Atlas Nexus</span>
+    </a>
+    <div class="flex items-center gap-3">
+      <button class="theme-toggle" onclick="toggleTheme()" aria-label="Theme">🌓</button>
+      <a href="#download" class="bg-primary text-white px-5 py-2.5 rounded-full text-sm font-semibold hover:bg-primary-dark font-display">Télécharger</a>
+      <a href="https://github.com/AtlasNexusTech/atlas-desk" class="hidden sm:inline-flex items-center gap-2 px-4 py-2.5 rounded-full text-sm font-semibold border border-slate-300 hover:border-primary hover:text-primary font-display">
+        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+        GitHub
+      </a>
+    </div>
+  </div>
+</nav>
+
+<!-- Hero -->
+<section class="min-h-screen flex items-center pt-24 pb-16 relative overflow-hidden">
+  <div class="hero-orb"></div>
+  <div class="hero-orb2"></div>
+  <div class="max-w-6xl mx-auto px-6 w-full relative z-10">
+    <div class="max-w-4xl">
+      <p class="text-accent font-semibold tracking-widest uppercase text-xs mb-4">Open Source · P2P · WebRTC</p>
+      <h1 class="text-6xl sm:text-7xl lg:text-8xl font-black tracking-tight leading-none mb-6 font-display">
+        <span class="glow-word">Votre PC,</span><br>
+        <span class="text-foreground">partout.</span><br>
+        <span class="gradient-text">Gratuit.</span>
+      </h1>
+      <p class="text-xl sm:text-2xl text-slate-600 max-w-2xl mb-3 leading-relaxed">
+        Une alternative open source à AnyDesk. Contrôle PC distant en P2P avec WebRTC — aucun serveur ne voit votre écran.
+      </p>
+      <p class="text-lg text-slate-500 max-w-xl mb-10">
+        🖥️ Streaming · 🖱️ Contrôle souris/clavier · 📁 Transfert fichiers · 📋 Clipboard sync · 🔒 Password
+      </p>
+      <div class="flex gap-4 flex-wrap">
+        <a href="#download" class="bg-primary text-white px-8 py-4 rounded-full text-lg font-semibold hover:bg-primary-dark font-display shadow-xl shadow-blue-500/20">Télécharger (gratuit)</a>
+        <a href="https://github.com/AtlasNexusTech/atlas-desk" class="border-2 border-slate-300 text-slate-700 px-8 py-4 rounded-full text-lg font-semibold hover:border-primary hover:text-primary font-display">GitHub →</a>
+      </div>
+      <div class="flex gap-6 mt-12 text-sm text-slate-400">
+        <span>✓ Open source (MIT)</span>
+        <span>✓ Linux + Windows</span>
+        <span>✓ Zero install client web</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Stats -->
+<section class="py-16 bg-white/50 dark:bg-transparent border-y border-border/50">
+  <div class="max-w-5xl mx-auto px-6">
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+      <div class="stat-card reveal">
+        <div class="stat-num">P2P</div>
+        <div class="stat-label">Architecture</div>
+      </div>
+      <div class="stat-card reveal">
+        <div class="stat-num">2</div>
+        <div class="stat-label">Plateformes</div>
+      </div>
+      <div class="stat-card reveal">
+        <div class="stat-num">15</div>
+        <div class="stat-label">FPS</div>
+      </div>
+      <div class="stat-card reveal">
+        <div class="stat-num">MIT</div>
+        <div class="stat-label">Licence</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Features -->
+<section class="py-24">
+  <div class="max-w-6xl mx-auto px-6">
+    <div class="text-center mb-16 reveal">
+      <h2 class="section-title mx-auto text-center">Tout ce que vous attendez<br>d'un remote desktop</h2>
+      <p class="text-slate-500 mt-4 max-w-xl mx-auto">Fonctionnalités complètes, sans compromis. Et 100% open source.</p>
+    </div>
+    <div class="grid md:grid-cols-3 gap-8">
+      <div class="desk-card rounded-2xl p-8 reveal">
+        <div class="feature-icon feature-blue mb-5">🖥️</div>
+        <h3 class="font-display font-bold text-xl mb-2">Streaming P2P</h3>
+        <p class="text-slate-500 text-sm leading-relaxed">Connexion directe entre vos machines via WebRTC. Aucun serveur intermédiaire ne voit votre écran. Streaming JPEG 15 FPS avec latence minimale.</p>
+      </div>
+      <div class="desk-card rounded-2xl p-8 reveal">
+        <div class="feature-icon feature-green mb-5">🔒</div>
+        <h3 class="font-display font-bold text-xl mb-2">Sécurisé par défaut</h3>
+        <p class="text-slate-500 text-sm leading-relaxed">Chiffrement DTLS natif WebRTC. Mot de passe SHA-256 avec challenge-response. ID numérique 9 chiffres ou alias personnalisé.</p>
+      </div>
+      <div class="desk-card rounded-2xl p-8 reveal">
+        <div class="feature-icon feature-purple mb-5">📁</div>
+        <h3 class="font-display font-bold text-xl mb-2">Transfert fichiers</h3>
+        <p class="text-slate-500 text-sm leading-relaxed">Envoyez et recevez des fichiers en P2P entre vos machines. Glissez-déposez dans l'app web. Chunks 16KB avec reprise.</p>
+      </div>
+      <div class="desk-card rounded-2xl p-8 reveal">
+        <div class="feature-icon feature-blue mb-5">📋</div>
+        <h3 class="font-display font-bold text-xl mb-2">Clipboard sync</h3>
+        <p class="text-slate-500 text-sm leading-relaxed">Copiez sur une machine, collez sur l'autre. Synchronisation automatique du presse-papiers dans les deux sens. Aucune configuration nécessaire.</p>
+      </div>
+      <div class="desk-card rounded-2xl p-8 reveal">
+        <div class="feature-icon feature-green mb-5">🔄</div>
+        <h3 class="font-display font-bold text-xl mb-2">TURN + Auto-reconnect</h3>
+        <p class="text-slate-500 text-sm leading-relaxed">Traverse les NATs stricts avec TURN configurable. Reconnexion automatique en cas de perte de connexion. Ne perdez jamais votre session.</p>
+      </div>
+      <div class="desk-card rounded-2xl p-8 reveal">
+        <div class="feature-icon feature-purple mb-5">⚡</div>
+        <h3 class="font-display font-bold text-xl mb-2">App desktop native</h3>
+        <p class="text-slate-500 text-sm leading-relaxed">Application Tauri avec tray icon et minimize to tray. Pas de navigateur requis. Disponible sur Linux (.deb) et Windows (.exe).</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Architecture -->
+<section class="py-24 bg-white/50 dark:bg-transparent">
+  <div class="max-w-6xl mx-auto px-6">
+    <div class="text-center mb-16 reveal">
+      <h2 class="section-title mx-auto text-center">Comment ça marche</h2>
+      <p class="text-slate-500 mt-4 max-w-xl mx-auto">Architecture P2P simple. Le signaling server ne fait que mettre en relation — vos données restent privées.</p>
+    </div>
+    <div class="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto reveal">
+      <div class="text-center">
+        <div class="w-16 h-16 rounded-2xl bg-blue-50 dark:bg-blue-900/20 flex items-center justify-center mx-auto mb-4 text-2xl">🖥️</div>
+        <div class="font-display font-bold text-lg mb-1">Agent</div>
+        <p class="text-slate-500 text-sm">Installé sur le PC distant. Capture l'écran, reçoit les inputs. Go binaire ~10 MB.</p>
+      </div>
+      <div class="text-center">
+        <div class="w-16 h-16 rounded-2xl bg-green-50 dark:bg-green-900/20 flex items-center justify-center mx-auto mb-4 text-2xl">🔗</div>
+        <div class="font-display font-bold text-lg mb-1">Signaling</div>
+        <p class="text-slate-500 text-sm">Serveur léger qui met en relation agent et client. Relay SDP/ICE uniquement. Go ~5 MB.</p>
+      </div>
+      <div class="text-center">
+        <div class="w-16 h-16 rounded-2xl bg-purple-50 dark:bg-purple-900/20 flex items-center justify-center mx-auto mb-4 text-2xl">🌐</div>
+        <div class="font-display font-bold text-lg mb-1">Client</div>
+        <p class="text-slate-500 text-sm">Navigateur web ou app Tauri. Aucune installation nécessaire. Connectez-vous avec un ID ou alias.</p>
+      </div>
+    </div>
+    <div class="max-w-2xl mx-auto mt-12 reveal">
+      <div class="code-block">
+<span style="color:#64748b"># 1. Lancer le signaling server (une fois)</span>
+./atlas-desk-signaling
+
+<span style="color:#64748b"># 2. Installer l'agent sur le PC distant</span>
+./atlas-desk-agent -alias <span style="color:#059669">"PC Bureau"</span> -pass <span style="color:#059669">"secret"</span>
+<span style="color:#64748b"># → ID: 437 192 805</span>
+
+<span style="color:#64748b"># 3. Ouvrir le client → entrer "PC Bureau" → Connect</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Download -->
+<section id="download" class="py-24">
+  <div class="max-w-6xl mx-auto px-6">
+    <div class="text-center mb-16 reveal">
+      <h2 class="section-title mx-auto text-center">Télécharger Atlas Desk</h2>
+      <p class="text-slate-500 mt-4 max-w-xl mx-auto">Gratuit, open source, MIT. Pas de compte, pas de limite, pas de pub.</p>
+    </div>
+    <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+      <div class="desk-card rounded-2xl p-10 reveal text-center">
+        <div class="text-5xl mb-4">🐧</div>
+        <h3 class="font-display font-bold text-2xl mb-2">Linux</h3>
+        <p class="text-slate-500 text-sm mb-6">Agent + Signaling binaires. Client web ou app Tauri.</p>
+        <div class="space-y-3">
+          <a href="https://github.com/AtlasNexusTech/atlas-desk/releases" class="block w-full bg-primary text-white py-3 rounded-full font-semibold hover:bg-primary-dark font-display">.deb / binaire</a>
+          <a href="https://github.com/AtlasNexusTech/atlas-desk" class="block w-full border border-slate-300 text-slate-700 py-3 rounded-full font-semibold hover:border-primary hover:text-primary font-display">Compiler depuis les sources</a>
+        </div>
+      </div>
+      <div class="desk-card rounded-2xl p-10 reveal text-center">
+        <div class="text-5xl mb-4">🪟</div>
+        <h3 class="font-display font-bold text-2xl mb-2">Windows</h3>
+        <p class="text-slate-500 text-sm mb-6">Agent .exe + App desktop. Client web compatible.</p>
+        <div class="space-y-3">
+          <a href="https://github.com/AtlasNexusTech/atlas-desk/releases" class="block w-full bg-primary text-white py-3 rounded-full font-semibold hover:bg-primary-dark font-display">.exe (installer)</a>
+          <a href="https://github.com/AtlasNexusTech/atlas-desk/actions" class="block w-full border border-slate-300 text-slate-700 py-3 rounded-full font-semibold hover:border-primary hover:text-primary font-display">CI Builds (latest)</a>
+        </div>
+      </div>
+    </div>
+    <div class="text-center mt-12 reveal">
+      <p class="text-slate-400 text-sm mb-4">Ou utilisez le client web sans rien installer :</p>
+      <div class="code-block max-w-lg mx-auto text-center">
+<span style="color:#64748b"># Clonez le repo et ouvrez :</span>
+git clone https://github.com/AtlasNexusTech/atlas-desk
+cd atlas-desk/client
+<span style="color:#64748b"># Ouvrez index.html dans votre navigateur</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="py-24 bg-gradient-to-br from-blue-50 via-white to-green-50 dark:from-slate-900 dark:via-slate-900 dark:to-slate-800">
+  <div class="max-w-4xl mx-auto px-6 text-center">
+    <h2 class="text-4xl md:text-5xl font-black font-display mb-6 reveal">Prêt à contrôler vos PCs<br><span class="gradient-text">sans intermédiaire ?</span></h2>
+    <p class="text-slate-500 text-lg max-w-xl mx-auto mb-10 reveal">Open source. P2P. Gratuit. Aucun serveur ne voit votre écran.</p>
+    <div class="flex gap-4 justify-center flex-wrap reveal">
+      <a href="https://github.com/AtlasNexusTech/atlas-desk" class="bg-primary text-white px-10 py-5 rounded-full text-lg font-semibold hover:bg-primary-dark font-display shadow-xl shadow-blue-500/20">⭐ Star on GitHub</a>
+      <a href="https://github.com/AtlasNexusTech/atlas-desk/fork" class="border-2 border-slate-300 text-slate-700 px-10 py-5 rounded-full text-lg font-semibold hover:border-primary hover:text-primary font-display">🔱 Fork & Contribuer</a>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="py-12 border-t border-border">
+  <div class="max-w-6xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-4">
+    <div class="flex items-center gap-3">
+      <div class="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
+        <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="6" r="2.5" fill="currentColor" stroke="none"/><circle cx="19" cy="13" r="2.5" fill="currentColor" stroke="none"/><circle cx="5" cy="13" r="2.5" fill="currentColor" stroke="none"/><line x1="12" y1="8.5" x2="17.5" y2="11.5"/><line x1="6.5" y1="11.5" x2="12" y2="8.5"/></svg>
+      </div>
+      <span class="font-display font-bold text-sm tracking-tight">Atlas Nexus</span>
+    </div>
+    <p class="text-slate-400 text-sm">Atlas Desk — MIT License · <a href="https://github.com/AtlasNexusTech/atlas-desk" class="hover:text-primary">GitHub</a></p>
+  </div>
+</footer>
+
+<script>
+// Dark mode
+(function() {
+  const saved = localStorage.getItem('atlasnexus.theme');
+  if (saved === 'dark' || (!saved && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+    document.documentElement.classList.add('dark');
+  }
+})();
+function toggleTheme() {
+  document.documentElement.classList.toggle('dark');
+  localStorage.setItem('atlasnexus.theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light');
+}
+
+// Scroll reveal
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.15 });
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
