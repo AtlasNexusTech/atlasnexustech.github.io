@@ -248,13 +248,13 @@ tailwind.config = {
             <div class="w-3 h-3 rounded-full bg-green-400/60"></div>
           </div>
           <div class="flex-1 text-center">
-            <span class="text-xs text-slate-400 dark:text-dark-dim bg-white/50 dark:bg-dark-muted/50 px-3 py-0.5 rounded-full">gammaplan.be — Site vitrine (exemple)</span>
+            <span class="text-xs text-slate-400 dark:text-dark-dim bg-white/50 dark:bg-dark-muted/50 px-3 py-0.5 rounded-full">reve tex.be — Site vitrine (exemple)</span>
           </div>
         </div>
         <div class="p-8 sm:p-16 min-h-[380px] relative bg-gradient-to-b from-white to-surface dark:from-dark-card dark:to-dark-surface">
           <div class="text-left max-w-lg">
             <span class="text-accent text-sm font-semibold">Entreprise Peinture Industrielle</span>
-            <h3 class="text-3xl font-extrabold font-display text-foreground dark:text-dark-foreground mt-2 mb-4">Gamma Plan S.A.</h3>
+            <h3 class="text-3xl font-extrabold font-display text-foreground dark:text-dark-foreground mt-2 mb-4">Revêtex S.A.</h3>
             <p class="text-slate-500 dark:text-slate-400 mb-6">Peinture industrielle et bâtiment depuis 1976. Devis gratuit en 24h.</p>
             <div class="flex flex-wrap gap-2">
               <span class="px-3 py-1.5 bg-slate-100 dark:bg-dark-elevated border border-border dark:border-dark-border rounded-lg text-sm text-slate-600 dark:text-slate-300">Peinture industrielle</span>
@@ -568,7 +568,7 @@ async function startConversation() {
     addBotMsg(resp);
   } catch(e) {
     hideTyping();
-    addBotMsg("Bonjour ! 👋 Je suis l'assistant IA de Gamma Plan. Comment puis-je vous aider ?");
+    addBotMsg("Bonjour ! 👋 Je suis l'assistant IA de Revêtex. Comment puis-je vous aider ?");
   }
 }
 
@@ -679,7 +679,7 @@ function openBooking() {
 
 function confirmBooking(slot) {
   const body = document.getElementById('booking-body');
-  body.innerHTML = `<div style="text-align:center;padding:32px 0"><div style="font-size:48px;margin-bottom:16px">✅</div><h3 style="font-family:Rubik,sans-serif;font-weight:600;font-size:18px;color:#F1F5F9;margin-bottom:8px">Rendez-vous confirmé !</h3><p style="color:#94A3B8;font-size:13px;margin-bottom:16px">${slot}</p><p style="color:#64748B;font-size:11px">Un email de confirmation a été envoyé.<br>À bientôt chez Gamma Plan !</p><button onclick="closeBooking();addBotMsg('Votre rendez-vous est confirmé pour <b>${slot}</b>. Un email de confirmation vous a été envoyé. À bientôt ! 👋')" style="margin-top:24px;padding:8px 24px;background:#2563EB;color:white;border:none;border-radius:12px;font-size:14px;font-weight:600;cursor:pointer">Fermer</button></div>`;
+  body.innerHTML = `<div style="text-align:center;padding:32px 0"><div style="font-size:48px;margin-bottom:16px">✅</div><h3 style="font-family:Rubik,sans-serif;font-weight:600;font-size:18px;color:#F1F5F9;margin-bottom:8px">Rendez-vous confirmé !</h3><p style="color:#94A3B8;font-size:13px;margin-bottom:16px">${slot}</p><p style="color:#64748B;font-size:11px">Un email de confirmation a été envoyé.<br>À bientôt chez Revêtex !</p><button onclick="closeBooking();addBotMsg('Votre rendez-vous est confirmé pour <b>${slot}</b>. Un email de confirmation vous a été envoyé. À bientôt ! 👋')" style="margin-top:24px;padding:8px 24px;background:#2563EB;color:white;border:none;border-radius:12px;font-size:14px;font-weight:600;cursor:pointer">Fermer</button></div>`;
 }
 
 function closeBooking() { document.getElementById('booking-overlay').classList.remove('show'); }
