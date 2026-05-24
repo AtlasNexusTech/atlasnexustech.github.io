@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <!--
+      `viewport-fit=cover` is required so iOS Safari / Capacitor expose
+      `env(safe-area-inset-*)` (notch + home indicator) — without it those
+      env vars all resolve to 0px and our mobile layout draws under the
+      Dynamic Island / home bar. The other flags are retained from the
+      previous tag to keep the existing keyboard / pinch behaviour.
+    -->
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, viewport-fit=cover"
+    />
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, max-age=0, must-revalidate" />
+    <title>Atlas Nexus Studio — IA Agentique</title>
+    <meta
+      name="description"
+      content="Atlas Nexus Studio — Plateforme IA agentique multi-modèle. Générez images, musique, vidéos et automatisez vos workflows avec GPT, Claude, Gemini, DeepSeek, Midjourney, Flux, Suno, Luma & Sora."
+    />
+    <meta
+      name="keywords"
+      content="Atlas Nexus,IA Agentique,AI Studio,Midjourney,Suno,Flux,Luma,Sora,GPT,Claude,Gemini,DeepSeek"
+    />
+    <!-- Canonical and og:url set dynamically from current origin -->
+    <script>
+      (function () {
+        try {
+          var origin = window.location.origin;
+          var path = window.location.pathname || '/';
+          var canonical = document.createElement('link');
+          canonical.setAttribute('rel', 'canonical');
+          canonical.setAttribute('href', origin + path);
+          document.head.appendChild(canonical);
+          var ogUrl = document.createElement('meta');
+          ogUrl.setAttribute('property', 'og:url');
+          ogUrl.setAttribute('content', origin + path);
+          document.head.appendChild(ogUrl);
+        } catch (e) {
+          /* no-op */
+        }
+      })();
+    </script>
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Atlas Nexus" />
+    <meta property="og:title" content="Atlas Nexus Studio — IA Agentique" />
+    <meta
+      property="og:description"
+      content="Atlas Nexus Studio — Plateforme IA agentique multi-modèle. Générez images, musique, vidéos et automatisez vos workflows avec GPT, Claude, Gemini, DeepSeek, Midjourney, Flux, Suno, Luma & Sora."
+    />
+    <meta property="og:image" content="https://atlasnexus.tech/logo.png" />
+    <!-- Twitter Cards -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Atlas Nexus Studio — IA Agentique" />
+    <meta
+      name="twitter:description"
+      content="Atlas Nexus Studio — Plateforme IA agentique multi-modèle. Générez images, musique, vidéos et automatisez vos workflows avec GPT, Claude, Gemini, DeepSeek, Midjourney, Flux, Suno, Luma & Sora."
+    />
+    <meta name="twitter:image" content="https://atlasnexus.tech/logo.png" />
+    <link rel="icon" href="/src/images/favicon.ico" />
+    <!-- Inter font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <!--
+      Load Inter without blocking first paint: request via `media="print"` so
+      the browser does not block render on the stylesheet, then swap to `all`
+      once it loads. Falls back to a synchronous `<link>` for clients without JS.
+    -->
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      media="print"
+      onload="this.media = 'all'"
+    />
+    <noscript>
+      <link
+        rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      />
+    </noscript>
+    <script>
+      // Resolve the user's chosen theme BEFORE first paint and toggle
+      // `html.dark` accordingly. Without this, users who picked dark mode
+      // (or fall through to Nexior's `dark` cookie default — see
+      // `src/utils/initializer.ts` `initializeTheme`) get a white-flash
+      // boot screen until the Vue app boots and re-applies the cookie.
+      // Mirrors the pattern used in PlatformFrontend's index.html.
+      (() => {
+        try {
+          const normalizeTheme = (value) => {
+            if (!value) return null;
+            const lower = String(value).trim().toLowerCase();
+            if (lower === 'dark') return 'dark';
+            if (lower === 'light') return 'light';
+            return null;
+          };
+
+          const query = new URLSearchParams(window.location.search);
+          const queryTheme = normalizeTheme(query.get('theme'));
+          const cookieMatch = document.cookie.match(/(?:^|;\s*)THEME=([^;]+)/);
+          const cookieTheme = normalizeTheme(cookieMatch ? decodeURIComponent(cookieMatch[1]) : null);
+          const localTheme = normalizeTheme(localStorage.getItem('vueuse-color-scheme'));
+
+          // Priority: query > cookie > localStorage > Nexior default (`dark`).
+          // We do NOT fall back to OS preference here, because Nexior's app-
+          // level `initializeTheme` defaults missing cookies to `dark`; if we
+          // honored the OS we'd flicker from light → dark on first boot for
+          // light-OS users.
+          const resolvedTheme = queryTheme || cookieTheme || localTheme || 'dark';
+          document.documentElement.classList.toggle('dark', resolvedTheme === 'dark');
+          document.documentElement.style.colorScheme = resolvedTheme === 'dark' ? 'dark' : 'light';
+        } catch (e) {
+          /* no-op */
+        }
+      })();
+    </script>
+    
+    <link rel="modulepreload" crossorigin href="/atlas-studio/assets/vendor-vue-NSDaktjZ.js">
+    <link rel="modulepreload" crossorigin href="/atlas-studio/assets/vendor-axios-B8_nURbH.js">
+    <link rel="modulepreload" crossorigin href="/atlas-studio/assets/vendor-dayjs-v0j1UNZp.js">
+    <link rel="modulepreload" crossorigin href="/atlas-studio/assets/vendor-vue-router-Df5ITouH.js">
+    <link rel="stylesheet" crossorigin href="/atlas-studio/assets/index-B721S6IB.css">
+  </head>
+  <body>
+    <div id="app">
+      <div class="boot" aria-label="Loading" role="status">
+        <div class="boot__content">
+          <div class="boot__loader" aria-hidden="true"></div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
