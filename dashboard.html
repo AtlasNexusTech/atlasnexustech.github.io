@@ -23,22 +23,11 @@ tailwind.config = {
         body: ['Nunito Sans', 'sans-serif'],
       },
       colors: {
-        primary: '#2563EB',
-        'primary-dark': '#1D4ED8',
-        secondary: '#3B82F6',
-        accent: '#059669',
-        'accent-dark': '#047857',
-        surface: '#F8FAFC',
-        muted: '#F1F5FD',
-        border: '#E4ECFC',
-        foreground: '#0F172A',
-        'dark-surface': '#0B1120',
-        'dark-card': '#111827',
-        'dark-elevated': '#1A2235',
-        'dark-border': '#1E293B',
-        'dark-muted': '#334155',
-        'dark-foreground': '#F1F5F9',
-        'dark-dim': '#94A3B8',
+        primary: '#2563EB', 'primary-dark': '#1D4ED8', secondary: '#3B82F6',
+        accent: '#059669', 'accent-dark': '#047857',
+        surface: '#F8FAFC', muted: '#F1F5FD', border: '#E4ECFC', foreground: '#0F172A',
+        'dark-surface': '#0B1120', 'dark-card': '#111827', 'dark-elevated': '#1A2235',
+        'dark-border': '#1E293B', 'dark-muted': '#334155', 'dark-foreground': '#F1F5F9', 'dark-dim': '#94A3B8',
       }
     }
   }
@@ -46,21 +35,24 @@ tailwind.config = {
 </script>
 
 <style>
-  /* ── Core ── */
-  .hero-title { font-size: clamp(2.8rem, 6vw, 5.5rem); font-weight: 900; letter-spacing: -0.06em; line-height: 0.95; }
+  /* ── Core design system (matching index.html) ── */
+  .hero-title { font-size: clamp(3.2rem, 9vw, 5.5rem); font-weight: 900; letter-spacing: -0.055em; line-height: 1.05; overflow: visible; }
   .gradient-text { background: linear-gradient(135deg, #2563EB 0%, #059669 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
-  .section-title { font-size: clamp(1.8rem, 4.5vw, 3rem); font-weight: 800; letter-spacing: -0.03em; line-height: 1.1; position: relative; padding-bottom: 0.5rem; }
+  .glow-word { position: relative; display: inline-block; overflow: visible; padding: .035em .02em .13em .02em; margin: -.035em -.02em -.07em -.02em; background: linear-gradient(110deg, #0F172A 0%, #2563EB 32%, #7C3AED 56%, #059669 82%, #0F172A 100%); background-size: 240% 100%; -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; animation: agenticGlow 3.8s ease-in-out infinite; }
+  @keyframes agenticGlow { 0%,100% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } }
+  .dark .glow-word { background: linear-gradient(110deg, #60A5FA 0%, #818CF8 28%, #C084FC 52%, #34D399 78%, #60A5FA 100%); background-size: 240% 100%; -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; animation-name: agenticGlowDark; }
+  @keyframes agenticGlowDark { 0%,100% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } }
+  .hero-orb { position: absolute; inset: auto 4% 8% auto; width: min(34vw, 360px); height: min(34vw, 360px); border-radius: 999px; background: radial-gradient(circle at 35% 35%, rgba(37,99,235,.22), rgba(5,150,105,.12) 38%, transparent 68%); filter: blur(2px); pointer-events: none; }
+  .section-title { font-size: clamp(1.8rem, 4.5vw, 2.5rem); font-weight: 800; letter-spacing: -0.03em; line-height: 1.1; position: relative; padding-bottom: 0.5rem; }
   .section-title::after { content: ""; position: absolute; bottom: 0; left: 0; width: 3rem; height: 3px; border-radius: 2px; background: linear-gradient(90deg, #2563EB, #059669); }
   .dark .section-title::after { background: linear-gradient(90deg, #60A5FA, #34D399); }
 
   /* ── Cards ── */
   .card-hover { transition: all 250ms ease; }
   .card-hover:hover { transform: translateY(-4px); box-shadow: 0 12px 32px -6px rgba(37,99,235,0.1); border-color: #2563EB; }
-
   .market-card { background: linear-gradient(145deg, #ffffff 0%, #f7fbff 52%, #eef8ff 100%); border-color: rgba(37,99,235,.22)!important; box-shadow: 0 18px 52px -34px rgba(37,99,235,.55); }
   .market-card:hover { box-shadow: 0 22px 70px -32px rgba(37,99,235,.65); }
   .dark .market-card { background: #111827!important; border-color: rgba(37,99,235,.28)!important; box-shadow: 0 18px 52px -34px rgba(37,99,235,.45); }
-
   .agentic-card { position: relative; overflow: hidden; border-color: rgba(37,99,235,.28)!important; box-shadow: 0 18px 60px -28px rgba(37,99,235,.55); }
   .agentic-card::before { content: ""; position: absolute; inset: -1px; background: radial-gradient(circle at 15% 0%, rgba(37,99,235,.13), transparent 38%), radial-gradient(circle at 95% 20%, rgba(5,150,105,.10), transparent 34%); pointer-events: none; }
   .agentic-card > * { position: relative; }
@@ -68,216 +60,213 @@ tailwind.config = {
   /* ── Scroll Reveal ── */
   .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1), transform 0.6s cubic-bezier(0.22, 1, 0.36, 1); }
   .reveal.visible { opacity: 1; transform: translateY(0); }
-  .reveal-delay-1 { transition-delay: 0.05s; }
-  .reveal-delay-2 { transition-delay: 0.12s; }
-  .reveal-delay-3 { transition-delay: 0.19s; }
-  .reveal-delay-4 { transition-delay: 0.26s; }
+  .reveal-delay-1 { transition-delay: 0.05s; } .reveal-delay-2 { transition-delay: 0.12s; } .reveal-delay-3 { transition-delay: 0.19s; } .reveal-delay-4 { transition-delay: 0.26s; }
+
+  /* ── Hero stagger ── */
+  .hero-stagger > * { opacity: 0; transform: translateY(30px); animation: heroFadeIn 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards; }
+  .hero-stagger > *:nth-child(1) { animation-delay: 0.1s; } .hero-stagger > *:nth-child(2) { animation-delay: 0.25s; } .hero-stagger > *:nth-child(3) { animation-delay: 0.40s; } .hero-stagger > *:nth-child(4) { animation-delay: 0.55s; }
+  @keyframes heroFadeIn { to { opacity: 1; transform: translateY(0); } }
 
   /* ── Dashboard-specific ── */
-  .metric-value { font-size: 2em; font-weight: 780; letter-spacing: -0.045em; font-variant-numeric: tabular-nums; }
   .live-dot { width: 8px; height: 8px; background: #22c55e; border-radius: 50%; display: inline-block; box-shadow: 0 0 18px rgba(34,197,94,.9); animation: pulse 2s infinite; }
   @keyframes pulse { 0%,100% { opacity: 1; transform: scale(1); } 50% { opacity: .55; transform: scale(.82); } }
+  .metric-value { font-size: 2em; font-weight: 780; letter-spacing: -0.045em; font-variant-numeric: tabular-nums; }
 
-  .signal-card { background: rgba(255,255,255,.055); border: 1px solid rgba(148,163,184,.14); border-radius: 22px; padding: 18px; overflow: hidden; transition: all .2s; }
-  .dark .signal-card { background: linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.04)); border-color: rgba(148,163,184,.14); }
-  [data-theme="light"] .signal-card { background: rgba(0,0,0,.02)!important; border-color: rgba(0,0,0,.08)!important; }
-  .signal-row { padding: 14px 0; display: flex; justify-content: space-between; align-items: flex-start; gap: 14px; transition: background .16s, border-color .16s; border-bottom: 1px solid rgba(255,255,255,.05); }
-  [data-theme="light"] .signal-row { border-bottom-color: rgba(0,0,0,.05); }
+  /* Signal cards */
+  .signal-card { border-radius: 22px; padding: 18px; transition: all .2s; }
+  .signal-row { padding: 14px 0; display: flex; justify-content: space-between; align-items: flex-start; gap: 14px; transition: .16s; border-bottom: 1px solid rgba(0,0,0,.05); }
+  .dark .signal-row { border-bottom-color: rgba(255,255,255,.05); }
   .signal-row:last-child { border-bottom: none; }
-  .signal-row:hover { background: rgba(255,255,255,.035); border-radius: 16px; padding-inline: 10px; }
-  [data-theme="light"] .signal-row:hover { background: rgba(0,0,0,.03)!important; }
+  .signal-row:hover { background: rgba(0,0,0,.02); border-radius: 16px; padding-inline: 10px; }
+  .dark .signal-row:hover { background: rgba(255,255,255,.035); }
 
   .score-pill { min-width: 64px; height: 32px; border-radius: 999px; display: inline-flex; align-items: center; justify-content: center; font-size: .82em; font-weight: 850; }
-  .score-hot { background: rgba(22,163,74,.12); color: #22c55e; border: 1px solid rgba(22,163,74,.18); }
-  .score-warm { background: rgba(217,119,6,.10); color: #f59e0b; border: 1px solid rgba(217,119,6,.16); }
-  .score-risk { background: rgba(225,29,72,.10); color: #fb7185; border: 1px solid rgba(225,29,72,.16); }
-  .score-muted { background: rgba(71,85,105,.08); color: #94a3b8; border: 1px solid rgba(71,85,105,.14); }
-  [data-theme="light"] .score-hot { background: rgba(22,163,74,.12)!important; color: #16a34a!important; border-color: rgba(22,163,74,.18)!important; }
-  [data-theme="light"] .score-warm { background: rgba(217,119,6,.10)!important; color: #b45309!important; border-color: rgba(217,119,6,.16)!important; }
-  [data-theme="light"] .score-risk { background: rgba(225,29,72,.10)!important; color: #e11d48!important; border-color: rgba(225,29,72,.16)!important; }
-  [data-theme="light"] .score-muted { background: rgba(71,85,105,.08)!important; color: #475569!important; border-color: rgba(71,85,105,.14)!important; }
+  .score-hot { background: rgba(22,163,74,.12); color: #16a34a; border: 1px solid rgba(22,163,74,.18); }
+  .score-warm { background: rgba(217,119,6,.10); color: #d97706; border: 1px solid rgba(217,119,6,.16); }
+  .dark .score-warm { background: rgba(217,119,6,.10); color: #f59e0b; border-color: rgba(217,119,6,.16); }
+  .dark .score-hot { background: rgba(22,163,74,.12); color: #22c55e; border-color: rgba(22,163,74,.18); }
 
-  .chip { padding: 8px 12px; border: 1px solid rgba(148,163,184,.16); background: rgba(255,255,255,.045); border-radius: 999px; font-size: .8em; font-weight: 850; color: #dbeafe; }
-  [data-theme="light"] .chip { background: rgba(0,0,0,.04)!important; color: #1e40af!important; border-color: rgba(0,0,0,.1)!important; }
+  .chip { padding: 8px 12px; border: 1px solid rgba(148,163,184,.16); background: rgba(0,0,0,.04); border-radius: 999px; font-size: .8em; font-weight: 850; color: #1e40af; }
+  .dark .chip { background: rgba(255,255,255,.045); color: #dbeafe; border-color: rgba(148,163,184,.16); }
 
-  .tv-link { display: inline-flex; align-items: center; justify-content: center; gap: 5px; padding: 5px 10px; border-radius: 999px; border: 1px solid rgba(56,189,248,.32); background: linear-gradient(135deg, rgba(56,189,248,.14), rgba(124,92,255,.12)); color: #d9f3ff!important; text-decoration: none; font-size: .76rem; font-weight: 950; white-space: nowrap; transition: all .16s; box-shadow: inset 0 1px 0 rgba(255,255,255,.06); }
-  .tv-link:hover { background: linear-gradient(135deg, rgba(56,189,248,.24), rgba(124,92,255,.20)); border-color: rgba(56,189,248,.58); transform: translateY(-1px); box-shadow: 0 8px 24px rgba(56,189,248,.12), inset 0 1px 0 rgba(255,255,255,.10); }
-  [data-theme="light"] .tv-link { color: #1e40af!important; background: linear-gradient(135deg, rgba(56,189,248,.08), rgba(124,92,255,.06))!important; border-color: rgba(56,189,248,.22)!important; }
-  [data-theme="light"] .tv-link:hover { background: linear-gradient(135deg, rgba(56,189,248,.16), rgba(124,92,255,.12))!important; color: #1e3a8a!important; }
+  .tv-link { display: inline-flex; align-items: center; gap: 5px; padding: 5px 10px; border-radius: 999px; border: 1px solid rgba(37,99,235,.22); background: linear-gradient(135deg, rgba(37,99,235,.08), rgba(124,92,255,.06)); color: #1e40af!important; text-decoration: none; font-size: .76rem; font-weight: 950; white-space: nowrap; transition: all .16s; }
+  .tv-link:hover { background: linear-gradient(135deg, rgba(37,99,235,.16), rgba(124,92,255,.12)); color: #1e3a8a!important; border-color: rgba(37,99,235,.4); transform: translateY(-1px); }
+  .dark .tv-link { color: #d9f3ff!important; background: linear-gradient(135deg, rgba(56,189,248,.14), rgba(124,92,255,.12)); border-color: rgba(56,189,248,.32); box-shadow: inset 0 1px 0 rgba(255,255,255,.06); }
+  .dark .tv-link:hover { background: linear-gradient(135deg, rgba(56,189,248,.24), rgba(124,92,255,.20)); border-color: rgba(56,189,248,.58); box-shadow: 0 8px 24px rgba(56,189,248,.12), inset 0 1px 0 rgba(255,255,255,.10); }
 
-  .market-state { display: inline-flex; align-items: center; gap: 5px; padding: 4px 7px; border-radius: 999px; border: 1px solid rgba(148,163,184,.18); background: rgba(15,23,42,.56); font-size: .72rem; font-weight: 950; text-transform: uppercase; letter-spacing: .035em; white-space: nowrap; }
-  .market-state:before { content: ""; width: 6px; height: 6px; border-radius: 999px; background: #94a3b8; box-shadow: 0 0 12px rgba(148,163,184,.65); }
-  .market-state-open { color: #bbf7d0; border-color: rgba(34,197,94,.24); background: rgba(34,197,94,.09); }
-  .market-state-open:before { background: #22c55e; box-shadow: 0 0 14px rgba(34,197,94,.9); }
-  .market-state-pre-market { color: #fde68a; border-color: rgba(245,158,11,.26); background: rgba(245,158,11,.09); }
-  .market-state-pre-market:before { background: #f59e0b; box-shadow: 0 0 14px rgba(245,158,11,.85); }
-  .market-state-closed { color: #fecaca; border-color: rgba(251,113,133,.26); background: rgba(251,113,133,.09); }
-  .market-state-closed:before { background: #fb7185; box-shadow: 0 0 14px rgba(251,113,133,.85); }
-  [data-theme="light"] .market-state { background: rgba(241,245,249,.9)!important; border-color: rgba(0,0,0,.12)!important; color: #475569!important; }
-  [data-theme="light"] .market-state:before { background: #94a3b8!important; box-shadow: 0 0 8px rgba(148,163,184,.4)!important; }
-  [data-theme="light"] .market-state-open { color: #16a34a!important; border-color: rgba(22,163,74,.22)!important; background: rgba(22,163,74,.06)!important; }
-  [data-theme="light"] .market-state-open:before { background: #16a34a!important; box-shadow: 0 0 10px rgba(22,163,74,.6)!important; }
-  [data-theme="light"] .market-state-pre-market { color: #b45309!important; border-color: rgba(217,119,6,.18)!important; background: rgba(217,119,6,.06)!important; }
-  [data-theme="light"] .market-state-pre-market:before { background: #d97706!important; box-shadow: 0 0 10px rgba(217,119,6,.6)!important; }
-  [data-theme="light"] .market-state-closed { color: #e11d48!important; border-color: rgba(225,29,72,.18)!important; background: rgba(225,29,72,.06)!important; }
-  [data-theme="light"] .market-state-closed:before { background: #e11d48!important; box-shadow: 0 0 10px rgba(225,29,72,.6)!important; }
+  .market-state { display: inline-flex; align-items: center; gap: 5px; padding: 4px 7px; border-radius: 999px; border: 1px solid rgba(0,0,0,.12); background: rgba(241,245,249,.9); font-size: .72rem; font-weight: 950; text-transform: uppercase; letter-spacing: .035em; white-space: nowrap; color: #475569; }
+  .market-state:before { content: ""; width: 6px; height: 6px; border-radius: 999px; background: #94a3b8; box-shadow: 0 0 8px rgba(148,163,184,.4); }
+  .market-state-open { color: #16a34a!important; border-color: rgba(22,163,74,.22)!important; background: rgba(22,163,74,.06)!important; }
+  .market-state-open:before { background: #16a34a!important; box-shadow: 0 0 10px rgba(22,163,74,.6)!important; }
+  .market-state-closed { color: #e11d48!important; border-color: rgba(225,29,72,.18)!important; background: rgba(225,29,72,.06)!important; }
+  .market-state-closed:before { background: #e11d48!important; box-shadow: 0 0 10px rgba(225,29,72,.6)!important; }
+  .dark .market-state { background: rgba(15,23,42,.56)!important; border-color: rgba(148,163,184,.18)!important; color: #94a3b8!important; }
+  .dark .market-state:before { background: #94a3b8!important; box-shadow: 0 0 12px rgba(148,163,184,.65)!important; }
+  .dark .market-state-open { color: #bbf7d0!important; border-color: rgba(34,197,94,.24)!important; background: rgba(34,197,94,.09)!important; }
+  .dark .market-state-open:before { background: #22c55e!important; box-shadow: 0 0 14px rgba(34,197,94,.9)!important; }
+  .dark .market-state-closed { color: #fecaca!important; border-color: rgba(251,113,133,.26)!important; background: rgba(251,113,133,.09)!important; }
+  .dark .market-state-closed:before { background: #fb7185!important; box-shadow: 0 0 14px rgba(251,113,133,.85)!important; }
 
-  .session-led { display: inline-flex; align-items: center; gap: 7px; padding: 6px 10px; border-radius: 999px; font-size: .72em; font-weight: 850; text-transform: uppercase; letter-spacing: .055em; border: 1px solid rgba(148,163,184,.18); background: rgba(255,255,255,.045); color: #94a3b8; }
+  .session-led { display: inline-flex; align-items: center; gap: 7px; padding: 6px 10px; border-radius: 999px; font-size: .72em; font-weight: 850; text-transform: uppercase; letter-spacing: .055em; border: 1px solid rgba(0,0,0,.08); background: rgba(0,0,0,.03); color: #64748b; }
   .session-led:before { content: ""; width: 7px; height: 7px; border-radius: 999px; background: #94a3b8; }
-  .session-led.open { color: #bbf7d0; border-color: rgba(34,197,94,.24); background: rgba(34,197,94,.09); }
-  .session-led.open:before { background: #22c55e; box-shadow: 0 0 18px rgba(34,197,94,.95); }
-  .session-led.closed { color: #fecaca; border-color: rgba(251,113,133,.24); background: rgba(251,113,133,.09); }
-  .session-led.closed:before { background: #fb7185; box-shadow: 0 0 18px rgba(251,113,133,.95); }
-  .session-led.soon { color: #fde68a; border-color: rgba(245,158,11,.24); background: rgba(245,158,11,.09); }
-  .session-led.soon:before { background: #f59e0b; box-shadow: 0 0 18px rgba(245,158,11,.95); }
+  .session-led.open { color: #16a34a; border-color: rgba(22,163,74,.18); background: rgba(22,163,74,.05); }
+  .session-led.open:before { background: #22c55e; box-shadow: 0 0 12px rgba(34,197,94,.6); }
+  .session-led.closed { color: #e11d48; border-color: rgba(225,29,72,.18); background: rgba(225,29,72,.05); }
+  .session-led.closed:before { background: #fb7185; box-shadow: 0 0 12px rgba(251,113,133,.6); }
+  .session-led.soon { color: #b45309; border-color: rgba(217,119,6,.18); background: rgba(217,119,6,.05); }
+  .session-led.soon:before { background: #f59e0b; box-shadow: 0 0 12px rgba(245,158,11,.6); }
+  .dark .session-led { background: rgba(255,255,255,.045)!important; border-color: rgba(148,163,184,.18)!important; color: #94a3b8!important; }
+  .dark .session-led.open { color: #bbf7d0!important; border-color: rgba(34,197,94,.24)!important; background: rgba(34,197,94,.09)!important; }
+  .dark .session-led.open:before { background: #22c55e!important; box-shadow: 0 0 18px rgba(34,197,94,.95)!important; }
+  .dark .session-led.closed { color: #fecaca!important; border-color: rgba(251,113,133,.24)!important; background: rgba(251,113,133,.09)!important; }
+  .dark .session-led.closed:before { background: #fb7185!important; box-shadow: 0 0 18px rgba(251,113,133,.95)!important; }
+  .dark .session-led.soon { color: #fde68a!important; border-color: rgba(245,158,11,.24)!important; background: rgba(245,158,11,.09)!important; }
+  .dark .session-led.soon:before { background: #f59e0b!important; box-shadow: 0 0 18px rgba(245,158,11,.95)!important; }
 
-  .legend { margin-top: 18px; padding-top: 12px; border-top: 1px solid rgba(255,255,255,.07); display: flex; flex-wrap: wrap; gap: 10px; }
-  .legend span { padding: 6px 10px; border-radius: 999px; background: rgba(255,255,255,.045); border: 1px solid rgba(148,163,184,.12); color: #d4deee; font-size: .76em; font-weight: 850; }
-  [data-theme="light"] .legend { border-top-color: rgba(0,0,0,.06)!important; }
-  [data-theme="light"] .legend span { color: #475569!important; background: rgba(0,0,0,.03)!important; border-color: rgba(0,0,0,.08)!important; }
-
-  /* ── Dark mode overrides ── */
-  .dark .card-hover:hover { box-shadow: 0 12px 32px -6px rgba(37,99,235,0.2); }
-  .dark a.border.border-border.rounded-xl { border-color: #334155; }
-  .dark a.border.border-border.rounded-xl:hover { border-color: #3B82F6; }
+  .legend { margin-top: 18px; padding-top: 12px; border-top: 1px solid rgba(0,0,0,.06); display: flex; flex-wrap: wrap; gap: 10px; }
+  .legend span { padding: 6px 10px; border-radius: 999px; background: rgba(0,0,0,.03); border: 1px solid rgba(0,0,0,.08); color: #475569; font-size: .76em; font-weight: 850; }
+  .dark .legend { border-top-color: rgba(255,255,255,.07); }
+  .dark .legend span { color: #d4deee; background: rgba(255,255,255,.045); border-color: rgba(148,163,184,.12); }
 
   *,*::before,*::after{transition:background-color .4s ease,border-color .4s ease,color .4s ease,box-shadow .4s ease}
 
-  @keyframes accelerateGlow { 0%{transform:translateY(0) scale(1)} 45%{transform:translateY(-1px) scale(1.025)} 100%{transform:translateY(0) scale(1)} }
-  @keyframes scoreSweep { 0%{background-position:0% 50%} 100%{background-position:220% 50%} }
-  @keyframes countPulse { 0% { transform: scale(0.6); opacity: 0; } 60% { transform: scale(1.15); } 100% { transform: scale(1); opacity: 1; } }
-
-  @media(max-width: 768px) {
-    .scanner-board, .grid-dash { grid-template-columns: 1fr!important; }
-    .hero-grid { grid-template-columns: 1fr!important; }
+  @media(max-width:768px){
+    .scanner-board{grid-template-columns:1fr!important}
+    .hero-grid{grid-template-columns:1fr!important}
   }
 </style>
 </head>
 <body class="bg-surface dark:bg-dark-surface text-foreground dark:text-dark-foreground font-body antialiased">
 
-<!-- SVG defs for icons -->
+<!-- SVG defs — chain logos + market icons -->
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
   <defs>
-    <linearGradient id="icon-grad" x1="0" y1="0" x2="24" y2="24" gradientUnits="userSpaceOnUse">
-      <stop stop-color="#2563EB"/><stop offset="1" stop-color="#059669"/>
+    <linearGradient id="sol-grad-top" x1="374" y1="329.9" x2="99.1" y2="194.3" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#00FFA3"/><stop offset="1" stop-color="#DC1FFF"/>
+    </linearGradient>
+    <linearGradient id="sol-grad-mid" x1="374" y1="95.8" x2="99.1" y2="-39.9" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#00FFA3"/><stop offset="1" stop-color="#DC1FFF"/>
+    </linearGradient>
+    <linearGradient id="sol-grad-bot" x1="374" y1="213.3" x2="99.1" y2="77.6" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#00FFA3"/><stop offset="1" stop-color="#DC1FFF"/>
+    </linearGradient>
+    <linearGradient id="celo-gold" x1="0" y1="0" x2="24" y2="24" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FCFF52"/><stop offset="1" stop-color="#E5C800"/>
     </linearGradient>
   </defs>
 </svg>
 
-<main class="max-w-6xl mx-auto px-4 sm:px-6 py-5 sm:py-8">
-
 <!-- ════════════ NAV ════════════ -->
-<nav class="sticky top-4 z-20 flex items-center justify-between gap-3 mb-6 px-4 py-3 bg-white/80 dark:bg-white/5 backdrop-blur-xl border border-border dark:border-dark-border rounded-2xl shadow-sm">
-  <a href="/" class="flex items-center gap-2.5 font-display font-bold text-lg text-foreground dark:text-dark-foreground no-underline">
-    <span class="w-8 h-8 rounded-lg bg-gradient-to-br from-primary to-accent flex items-center justify-center text-white text-sm font-black">AN</span>
-    Atlas Nexus
-  </a>
-  <div class="flex items-center gap-2">
-    <a href="#scanner" class="text-sm font-semibold text-slate-600 dark:text-dark-dim hover:text-primary dark:hover:text-white px-3 py-1.5 rounded-full transition-colors">Scanner</a>
-    <a href="#dashboards" class="text-sm font-semibold text-slate-600 dark:text-dark-dim hover:text-primary dark:hover:text-white px-3 py-1.5 rounded-full transition-colors">Markets</a>
-    <a href="https://github.com/AtlasNexusTech/markets-dashboard" class="text-sm font-semibold text-slate-600 dark:text-dark-dim hover:text-primary dark:hover:text-white px-3 py-1.5 rounded-full transition-colors">GitHub</a>
-    <button id="themeToggle" class="ml-2 w-9 h-9 rounded-full bg-white/70 dark:bg-white/5 backdrop-blur-xl border border-white/10 flex items-center justify-center text-sm transition-all hover:scale-110" title="Toggle theme" aria-label="Toggle dark/light theme">
-      <span id="themeIcon">🌙</span>
-    </button>
+<nav class="sticky top-0 z-30 bg-white/80 dark:bg-dark-card/80 backdrop-blur-xl border-b border-border dark:border-dark-border">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 flex items-center justify-between h-16">
+    <a href="/" class="flex items-center gap-2.5 font-display font-bold text-lg text-foreground dark:text-dark-foreground no-underline">
+      <span class="w-8 h-8 rounded-lg bg-gradient-to-br from-primary to-accent flex items-center justify-center text-white text-sm font-black">AN</span>
+      <span class="hidden sm:inline">Atlas Nexus</span>
+    </a>
+    <div class="flex items-center gap-1 sm:gap-3 text-sm font-semibold">
+      <a href="#scanner" class="text-slate-600 dark:text-dark-dim hover:text-primary dark:hover:text-white px-2 sm:px-3 py-1.5 rounded-full transition-colors">Scanner</a>
+      <a href="#dashboards" class="text-slate-600 dark:text-dark-dim hover:text-primary dark:hover:text-white px-2 sm:px-3 py-1.5 rounded-full transition-colors">Markets</a>
+      <a href="https://github.com/AtlasNexusTech/markets-dashboard" class="text-slate-600 dark:text-dark-dim hover:text-primary dark:hover:text-white px-2 sm:px-3 py-1.5 rounded-full transition-colors hidden sm:inline">GitHub</a>
+      <button id="theme-toggle" class="w-10 h-10 rounded-full border border-black/10 dark:border-white/10 bg-white/70 dark:bg-white/5 backdrop-blur-xl flex items-center justify-center hover:bg-white dark:hover:bg-white/10 transition-all shadow-sm shadow-black/5 dark:shadow-lg dark:shadow-black/20 text-slate-500 dark:text-slate-300 ml-1" aria-label="Toggle dark mode">
+        <svg class="w-4 h-4 rotate-0 scale-100 transition-transform duration-300 dark:-rotate-90 dark:scale-0" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+        <svg class="absolute w-4 h-4 rotate-90 scale-0 transition-transform duration-300 dark:rotate-0 dark:scale-100" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
+      </button>
+    </div>
   </div>
 </nav>
 
-<!-- ════════════ HERO ════════════ -->
-<section class="hero-grid grid grid-cols-[1.12fr_0.88fr] gap-5 mb-6" aria-label="Markets overview">
-  <!-- Main -->
-  <div class="agentic-card bg-white dark:bg-dark-card rounded-3xl p-6 sm:p-10 border border-border dark:border-dark-border relative overflow-hidden">
-    <div class="absolute -right-24 -top-28 w-80 h-80 rounded-full bg-gradient-radial from-primary/20 via-accent/10 to-transparent blur-2xl pointer-events-none"></div>
-    <div class="relative z-10">
-      <span class="inline-flex items-center gap-2 px-3 py-1.5 bg-primary/10 dark:bg-primary/20 border border-primary/20 dark:border-primary/30 rounded-full text-xs font-extrabold text-primary dark:text-blue-300 uppercase tracking-widest">
-        <span class="live-dot"></span> Live multi-asset intelligence
-      </span>
-      <h1 class="hero-title font-display mt-5 mb-3">
-        <span class="gradient-text">Markets</span><br>
-        <span class="gradient-text">Command Deck</span>
-      </h1>
-      <p class="text-slate-600 dark:text-dark-dim text-base leading-relaxed max-w-2xl mb-6">
-        A client-facing market intelligence cockpit for crypto, stocks, ETFs, indices, forex and commodities — live widgets, generated dashboards, and a technical scanner built for fast signal reading.
-      </p>
-      <div class="flex gap-3 flex-wrap">
-        <a href="#scanner" class="inline-flex items-center gap-2 px-5 py-2.5 bg-primary text-white rounded-xl font-semibold text-sm hover:bg-primary-dark transition-colors shadow-lg shadow-primary/25">Open Live Scanner</a>
-        <a href="#dashboards" class="inline-flex items-center gap-2 px-5 py-2.5 border border-border dark:border-dark-border rounded-xl font-semibold text-sm text-slate-700 dark:text-dark-foreground hover:border-primary transition-colors">Browse dashboards</a>
-      </div>
-    </div>
-  </div>
+<main class="max-w-6xl mx-auto px-4 sm:px-6">
 
-  <!-- Side metrics -->
-  <aside class="grid grid-cols-1 gap-3">
-    <div class="market-card rounded-2xl p-5 border">
-      <p class="text-xs font-extrabold uppercase tracking-widest text-slate-400 dark:text-dark-dim mb-1">Scanner Coverage</p>
-      <div class="metric-value font-display text-foreground dark:text-dark-foreground">
-        <span class="count-up gradient-text" data-target="100">100</span> assets
+<!-- ════════════ HERO ════════════ -->
+<section class="py-16 sm:py-24 relative overflow-hidden" aria-label="Markets overview">
+  <div class="hero-orb"></div>
+  <div class="relative z-10">
+    <div class="max-w-4xl hero-stagger mb-12">
+      <p class="text-accent dark:text-green-400 font-semibold tracking-widest uppercase text-xs mb-3">Live Market Intelligence</p>
+      <h1 class="hero-title text-foreground dark:text-dark-foreground mb-8">
+        <span class="glow-word">Markets</span><br><span class="glow-word">Command</span><br><span class="glow-word">Deck</span>
+      </h1>
+      <p class="text-lg sm:text-xl text-slate-600 dark:text-slate-300 max-w-2xl leading-relaxed">
+        Multi-asset intelligence cockpit for crypto, stocks, ETFs, indices, forex and commodities — live widgets, generated dashboards, and a technical scanner built for fast signal reading.
+      </p>
+      <div class="flex gap-3 flex-wrap mt-8">
+        <a href="#scanner" class="bg-primary text-white px-7 py-3.5 rounded-full text-base font-semibold hover:bg-primary-dark inline-flex items-center gap-2 font-display">
+          Open Live Scanner
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+        </a>
+        <a href="#dashboards" class="border-2 border-border dark:border-dark-border text-slate-700 dark:text-dark-foreground px-7 py-3.5 rounded-full text-base font-semibold hover:border-primary dark:hover:border-blue-500 font-display">
+          Browse Dashboards
+        </a>
       </div>
-      <div class="flex items-center gap-2 mt-2 text-xs font-semibold text-accent dark:text-green-400">
-        <span class="live-dot"></span> Yahoo Finance OHLCV · live scoring
+    </div>
+
+    <!-- Metrics row -->
+    <div class="grid sm:grid-cols-3 gap-5 mb-6">
+      <div class="reveal reveal-delay-1 market-card rounded-2xl p-6 border">
+        <p class="text-xs font-extrabold uppercase tracking-widest text-slate-400 dark:text-dark-dim mb-1">Scanner Coverage</p>
+        <div class="metric-value font-display text-foreground dark:text-dark-foreground">
+          <span class="count-up gradient-text" data-target="100">100</span> assets
+        </div>
+        <div class="flex items-center gap-2 mt-2 text-xs font-bold text-accent dark:text-green-400">
+          <span class="live-dot"></span> Yahoo Finance · live scoring
+        </div>
+      </div>
+      <div class="reveal reveal-delay-2 bg-white dark:bg-dark-card rounded-2xl p-6 border border-border dark:border-dark-border flex flex-col justify-between">
+        <p class="text-xs font-extrabold uppercase tracking-widest text-slate-400 dark:text-dark-dim">Markets Covered</p>
+        <div class="metric-value font-display text-foreground dark:text-dark-foreground mt-1">6</div>
+        <p class="text-sm text-slate-500 dark:text-dark-dim mt-1">Crypto · Stocks · ETF · Indices · FX · Commodities</p>
+      </div>
+      <div class="reveal reveal-delay-3 bg-white dark:bg-dark-card rounded-2xl p-6 border border-border dark:border-dark-border flex flex-col justify-between">
+        <p class="text-xs font-extrabold uppercase tracking-widest text-slate-400 dark:text-dark-dim">Scoring Engine</p>
+        <div class="metric-value font-display text-foreground dark:text-dark-foreground mt-1">Hawkeye V4</div>
+        <p class="text-sm text-slate-500 dark:text-dark-dim mt-1">Pressure · Regime · Momentum · Extension</p>
       </div>
     </div>
-    <div class="bg-white dark:bg-dark-card rounded-2xl p-5 border border-border dark:border-dark-border flex flex-col justify-between min-h-[90px]">
-      <p class="text-xs font-extrabold uppercase tracking-widest text-slate-400 dark:text-dark-dim">Markets</p>
-      <div class="metric-value font-display text-foreground dark:text-dark-foreground">6</div>
-      <p class="text-sm text-slate-500 dark:text-dark-dim">Crypto · Stocks · ETF · Indices · FX · Commodities</p>
-    </div>
-    <div class="bg-white dark:bg-dark-card rounded-2xl p-5 border border-border dark:border-dark-border flex flex-col justify-between min-h-[90px]">
-      <p class="text-xs font-extrabold uppercase tracking-widest text-slate-400 dark:text-dark-dim">Scoring Engine</p>
-      <div class="metric-value font-display text-foreground dark:text-dark-foreground">Hawkeye V4</div>
-      <p class="text-sm text-slate-500 dark:text-dark-dim">Pressure · Regime · Momentum · Extension</p>
-    </div>
-    <!-- S&P 500 / Nasdaq widgets -->
-    <div class="grid grid-cols-2 gap-2">
-      <div class="bg-white dark:bg-dark-card rounded-2xl p-4 border border-border dark:border-dark-border">
+
+    <!-- S&P 500 + Nasdaq widgets -->
+    <div class="grid grid-cols-2 sm:grid-cols-3 gap-4 mb-6">
+      <div class="reveal reveal-delay-1 bg-white dark:bg-dark-card rounded-2xl p-5 border border-border dark:border-dark-border">
         <p class="text-xs font-extrabold uppercase tracking-widest text-slate-400 dark:text-dark-dim">S&P 500</p>
-        <div class="text-lg font-extrabold font-display text-foreground dark:text-dark-foreground mt-1" id="spx-price">--</div>
-        <div class="text-xs font-bold mt-0.5" id="spx-change">--</div>
+        <div class="text-2xl font-extrabold font-display text-foreground dark:text-dark-foreground mt-2" id="spx-price">--</div>
+        <div class="text-sm font-bold mt-0.5" id="spx-change">--</div>
         <div class="text-[10px] text-slate-400 dark:text-dark-dim mt-1" id="spx-time">Fetching...</div>
       </div>
-      <div class="bg-white dark:bg-dark-card rounded-2xl p-4 border border-border dark:border-dark-border">
+      <div class="reveal reveal-delay-2 bg-white dark:bg-dark-card rounded-2xl p-5 border border-border dark:border-dark-border">
         <p class="text-xs font-extrabold uppercase tracking-widest text-slate-400 dark:text-dark-dim">Nasdaq</p>
-        <div class="text-lg font-extrabold font-display text-foreground dark:text-dark-foreground mt-1" id="ndx-price">--</div>
-        <div class="text-xs font-bold mt-0.5" id="ndx-change">--</div>
+        <div class="text-2xl font-extrabold font-display text-foreground dark:text-dark-foreground mt-2" id="ndx-price">--</div>
+        <div class="text-sm font-bold mt-0.5" id="ndx-change">--</div>
         <div class="text-[10px] text-slate-400 dark:text-dark-dim mt-1" id="ndx-time">Fetching...</div>
       </div>
-    </div>
-  </aside>
-</section>
-
-<!-- ════════════ FEAR & GREED ════════════ -->
-<section class="reveal reveal-delay-1 mb-6 p-5 sm:p-6 bg-white dark:bg-dark-card border border-border dark:border-dark-border rounded-2xl relative overflow-hidden" aria-label="Crypto Fear & Greed Index">
-  <div class="absolute inset-0 bg-gradient-radial from-amber-500/5 via-transparent to-transparent pointer-events-none"></div>
-  <div class="relative flex items-center gap-5 flex-wrap">
-    <div class="relative w-[90px] h-[90px] shrink-0">
-      <svg viewBox="0 0 100 100" class="w-full h-full -rotate-90">
-        <circle cx="50" cy="50" r="42" fill="none" stroke="rgba(255,255,255,.08)" stroke-width="8"/>
-        <circle cx="50" cy="50" r="42" fill="none" stroke-width="8" stroke-linecap="round" id="fng-gauge-fill"/>
-      </svg>
-      <div class="absolute inset-0 flex flex-col items-center justify-center">
-        <div class="text-xl font-extrabold font-display" id="fng-value">--</div>
-        <div class="text-[9px] text-slate-400 dark:text-dark-dim mt-0.5 uppercase tracking-wider">Fear & Greed</div>
-      </div>
-    </div>
-    <div class="flex-1 min-w-[200px]">
-      <h3 class="font-display font-bold text-foreground dark:text-dark-foreground text-lg flex items-center gap-2 mb-1">
-        <span id="fng-classification">Loading...</span>
-      </h3>
-      <p class="text-sm text-slate-500 dark:text-dark-dim" id="fng-text">Fetching Crypto Fear & Greed Index...</p>
-      <p class="text-[11px] text-slate-400 dark:text-dark-dim mt-1" id="fng-timestamp">Updated: --</p>
-    </div>
-    <div class="flex-1 min-w-[150px]">
-      <div class="h-2 rounded-full bg-slate-100 dark:bg-white/5 overflow-hidden">
-        <div class="h-full rounded-full transition-all duration-500" id="fng-meter-fill" style="width:50%"></div>
-      </div>
-      <div class="flex justify-between text-[10px] text-slate-400 dark:text-dark-dim mt-1 uppercase tracking-wider">
-        <span>Extreme Fear</span><span>Fear</span><span>Neutral</span><span>Greed</span><span>Extreme Greed</span>
+      <!-- Fear & Greed inline -->
+      <div class="reveal reveal-delay-3 sm:col-span-1 col-span-2 bg-white dark:bg-dark-card rounded-2xl p-5 border border-border dark:border-dark-border relative overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-radial from-amber-500/5 via-transparent to-transparent pointer-events-none"></div>
+        <p class="text-xs font-extrabold uppercase tracking-widest text-slate-400 dark:text-dark-dim mb-3 relative">Crypto Fear & Greed</p>
+        <div class="relative flex items-center gap-4">
+          <div class="relative w-[72px] h-[72px] shrink-0">
+            <svg viewBox="0 0 100 100" class="w-full h-full -rotate-90">
+              <circle cx="50" cy="50" r="42" fill="none" stroke="rgba(0,0,0,.06)" stroke-width="8"/>
+              <circle cx="50" cy="50" r="42" fill="none" stroke-width="8" stroke-linecap="round" id="fng-gauge-fill"/>
+            </svg>
+            <div class="absolute inset-0 flex flex-col items-center justify-center">
+              <div class="text-lg font-extrabold font-display" id="fng-value">--</div>
+            </div>
+          </div>
+          <div class="min-w-0 flex-1">
+            <div class="font-display font-bold text-foreground dark:text-dark-foreground text-sm" id="fng-classification">Loading...</div>
+            <div class="text-[10px] text-slate-400 dark:text-dark-dim mt-0.5" id="fng-timestamp">Updated: --</div>
+            <div class="h-1.5 rounded-full bg-slate-100 dark:bg-white/5 mt-2 overflow-hidden">
+              <div class="h-full rounded-full transition-all duration-500" id="fng-meter-fill" style="width:50%"></div>
+            </div>
+            <div class="flex justify-between text-[9px] text-slate-400 dark:text-dark-dim mt-0.5"><span>Fear</span><span>Neutral</span><span>Greed</span></div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
 <!-- ════════════ MARKET TICKER ════════════ -->
-<section class="reveal reveal-delay-1 mb-6 rounded-2xl overflow-hidden border border-border dark:border-dark-border bg-white dark:bg-dark-card">
+<section class="reveal reveal-delay-1 mb-12 rounded-2xl overflow-hidden border border-border dark:border-dark-border bg-white dark:bg-dark-card">
   <div class="tradingview-widget-container h-[54px]">
     <div class="tradingview-widget-container__widget"></div>
     <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js" async>
@@ -286,10 +275,67 @@ tailwind.config = {
   </div>
 </section>
 
+<!-- ════════════ SCANNER ════════════ -->
+<section id="scanner" class="reveal reveal-delay-1 mb-12">
+  <div class="reveal">
+    <p class="text-accent dark:text-green-400 font-semibold tracking-widest uppercase text-xs mb-3">Live Scanner</p>
+    <h2 class="section-title text-foreground dark:text-dark-foreground mb-2 font-display">Hawkeye V4 — Market Pressure Radar</h2>
+    <p class="text-slate-500 dark:text-dark-dim text-sm max-w-2xl mb-8">Top bullish and bearish assets ranked by composite pressure score — built for quick manual chart inspection. Each slot shows indicative market state.</p>
+  </div>
+
+  <div class="flex gap-2 flex-wrap mb-6">
+    <span class="chip">60–74 Active</span><span class="chip">75+ Strong</span><span class="chip">90+ Extreme</span><span class="chip">Chart ↗ TradingView</span>
+    <span class="chip !bg-primary/10 dark:!bg-primary/20 !text-primary dark:!text-blue-300 !border-primary/20">100 assets scanned</span>
+  </div>
+
+  <div class="scanner-board grid grid-cols-2 gap-5">
+    <!-- BULLISH -->
+    <div class="reveal reveal-delay-1 signal-card bg-white dark:bg-dark-card border border-border dark:border-dark-border rounded-2xl">
+      <h3 class="font-display font-bold text-foreground dark:text-dark-foreground text-base flex items-center justify-between gap-2 mb-1 px-4 pt-4">
+        Bullish pressure
+        <span class="text-xs font-bold text-accent dark:text-green-400 bg-accent/10 dark:bg-green-400/10 px-2 py-0.5 rounded-full">7 assets</span>
+      </h3>
+      <div class="px-4 pb-4">
+        <div class="signal-row" data-market="commodities"><div><span class="font-extrabold text-foreground dark:text-dark-foreground text-sm">Soybeans</span> <span class="text-[10px] font-bold text-accent dark:text-green-400 bg-accent/10 px-1.5 py-0.5 rounded-full ml-1">Bullish</span> <span class="block text-[11px] text-slate-400 dark:text-dark-dim mt-1">commodities · uptrend</span><span class="block text-[11px] mt-0.5"><span class="text-blue-600 dark:text-blue-300">$1,207.75</span> <span class="market-state market-state-open">Open · Futures</span> <a class="tv-link ml-1" href="https://www.tradingview.com/chart/?symbol=CBOT%3AZS1%21" target="_blank">Chart ↗</a></span></div><div class="text-right min-w-[80px]"><span class="score-pill score-warm">70/100</span><div class="text-[11px] text-slate-400 dark:text-dark-dim mt-1">Net +46</div><div class="text-[10px] font-bold text-amber-500 mt-0.5">Active</div></div></div>
+        <div class="signal-row" data-market="etf"><div><span class="font-extrabold text-foreground dark:text-dark-foreground text-sm">SPDR Dow Jones</span> <span class="text-[10px] font-bold text-accent dark:text-green-400 bg-accent/10 px-1.5 py-0.5 rounded-full ml-1">Bullish</span> <span class="block text-[11px] text-slate-400 dark:text-dark-dim mt-1">etf · uptrend</span><span class="block text-[11px] mt-0.5"><span class="text-blue-600 dark:text-blue-300">$493.98</span> <span class="market-state market-state-closed">Closed</span> <a class="tv-link ml-1" href="https://www.tradingview.com/chart/?symbol=AMEX%3ADIA" target="_blank">Chart ↗</a></span></div><div class="text-right min-w-[80px]"><span class="score-pill score-warm">69/100</span><div class="text-[11px] text-slate-400 dark:text-dark-dim mt-1">Net +42</div><div class="text-[10px] font-bold text-amber-500 mt-0.5">Active</div></div></div>
+        <div class="signal-row" data-market="etf"><div><span class="font-extrabold text-foreground dark:text-dark-foreground text-sm">Invesco QQQ</span> <span class="text-[10px] font-bold text-accent dark:text-green-400 bg-accent/10 px-1.5 py-0.5 rounded-full ml-1">Bullish</span> <span class="block text-[11px] text-slate-400 dark:text-dark-dim mt-1">etf · uptrend</span><span class="block text-[11px] mt-0.5"><span class="text-blue-600 dark:text-blue-300">$701.53</span> <span class="market-state market-state-closed">Closed</span> <a class="tv-link ml-1" href="https://www.tradingview.com/chart/?symbol=NASDAQ%3AQQQ" target="_blank">Chart ↗</a></span></div><div class="text-right min-w-[80px]"><span class="score-pill score-warm">68/100</span><div class="text-[11px] text-slate-400 dark:text-dark-dim mt-1">Net +41</div><div class="text-[10px] font-bold text-amber-500 mt-0.5">Active</div></div></div>
+        <div class="signal-row" data-market="etf"><div><span class="font-extrabold text-foreground dark:text-dark-foreground text-sm">Technology Select</span> <span class="text-[10px] font-bold text-accent dark:text-green-400 bg-accent/10 px-1.5 py-0.5 rounded-full ml-1">Bullish</span> <span class="block text-[11px] text-slate-400 dark:text-dark-dim mt-1">etf · uptrend</span><span class="block text-[11px] mt-0.5"><span class="text-blue-600 dark:text-blue-300">$173.24</span> <span class="market-state market-state-closed">Closed</span> <a class="tv-link ml-1" href="https://www.tradingview.com/chart/?symbol=AMEX%3AXLK" target="_blank">Chart ↗</a></span></div><div class="text-right min-w-[80px]"><span class="score-pill score-warm">68/100</span><div class="text-[11px] text-slate-400 dark:text-dark-dim mt-1">Net +41</div><div class="text-[10px] font-bold text-amber-500 mt-0.5">Active</div></div></div>
+        <div class="signal-row" data-market="indices"><div><span class="font-extrabold text-foreground dark:text-dark-foreground text-sm">Shanghai Comp</span> <span class="text-[10px] font-bold text-accent dark:text-green-400 bg-accent/10 px-1.5 py-0.5 rounded-full ml-1">Bullish</span> <span class="block text-[11px] text-slate-400 dark:text-dark-dim mt-1">indices · uptrend</span><span class="block text-[11px] mt-0.5"><span class="text-blue-600 dark:text-blue-300">4,167.46 pts</span> <span class="market-state market-state-open">Open</span> <a class="tv-link ml-1" href="https://www.tradingview.com/chart/?symbol=000001.SS" target="_blank">Chart ↗</a></span></div><div class="text-right min-w-[80px]"><span class="score-pill score-warm">67/100</span><div class="text-[11px] text-slate-400 dark:text-dark-dim mt-1">Net +42</div><div class="text-[10px] font-bold text-amber-500 mt-0.5">Active</div></div></div>
+        <div class="signal-row" data-market="stocks"><div><span class="font-extrabold text-foreground dark:text-dark-foreground text-sm">NVIDIA</span> <span class="text-[10px] font-bold text-accent dark:text-green-400 bg-accent/10 px-1.5 py-0.5 rounded-full ml-1">Bullish</span> <span class="block text-[11px] text-slate-400 dark:text-dark-dim mt-1">actions · uptrend</span><span class="block text-[11px] mt-0.5"><span class="text-blue-600 dark:text-blue-300">$220.61</span> <span class="market-state market-state-closed">Closed</span> <a class="tv-link ml-1" href="https://www.tradingview.com/chart/?symbol=NASDAQ%3ANVDA" target="_blank">Chart ↗</a></span></div><div class="text-right min-w-[80px]"><span class="score-pill score-warm">67/100</span><div class="text-[11px] text-slate-400 dark:text-dark-dim mt-1">Net +46</div><div class="text-[10px] font-bold text-amber-500 mt-0.5">Active</div></div></div>
+        <div class="signal-row" data-market="etf"><div><span class="font-extrabold text-foreground dark:text-dark-foreground text-sm">Vanguard Total Market</span> <span class="text-[10px] font-bold text-accent dark:text-green-400 bg-accent/10 px-1.5 py-0.5 rounded-full ml-1">Bullish</span> <span class="block text-[11px] text-slate-400 dark:text-dark-dim mt-1">etf · uptrend</span><span class="block text-[11px] mt-0.5"><span class="text-blue-600 dark:text-blue-300">$360.06</span> <span class="market-state market-state-closed">Closed</span> <a class="tv-link ml-1" href="https://www.tradingview.com/chart/?symbol=VTI" target="_blank">Chart ↗</a></span></div><div class="text-right min-w-[80px]"><span class="score-pill score-warm">67/100</span><div class="text-[11px] text-slate-400 dark:text-dark-dim mt-1">Net +46</div><div class="text-[10px] font-bold text-amber-500 mt-0.5">Active</div></div></div>
+      </div>
+    </div>
+
+    <!-- BEARISH -->
+    <div class="reveal reveal-delay-2 signal-card bg-white dark:bg-dark-card border border-border dark:border-dark-border rounded-2xl">
+      <h3 class="font-display font-bold text-foreground dark:text-dark-foreground text-base flex items-center justify-between gap-2 mb-1 px-4 pt-4">
+        Bearish pressure
+        <span class="text-xs font-bold text-red-500 bg-red-500/10 px-2 py-0.5 rounded-full">7 assets</span>
+      </h3>
+      <div class="px-4 pb-4">
+        <div class="signal-row" data-market="indices"><div><span class="font-extrabold text-foreground dark:text-dark-foreground text-sm">CAC 40</span> <span class="text-[10px] font-bold text-red-400 bg-red-400/10 px-1.5 py-0.5 rounded-full ml-1">Bearish</span> <span class="block text-[11px] text-slate-400 dark:text-dark-dim mt-1">indices · downtrend</span><span class="block text-[11px] mt-0.5"><span class="text-blue-600 dark:text-blue-300">7,981.76 pts</span> <span class="market-state market-state-open">Open</span> <a class="tv-link ml-1" href="https://www.tradingview.com/chart/?symbol=EURONEXT%3APX1" target="_blank">Chart ↗</a></span></div><div class="text-right min-w-[80px]"><span class="score-pill score-warm">67/100</span><div class="text-[11px] text-slate-400 dark:text-dark-dim mt-1">Net -46</div><div class="text-[10px] font-bold text-amber-500 mt-0.5">Active</div></div></div>
+        <div class="signal-row" data-market="stocks"><div><span class="font-extrabold text-foreground dark:text-dark-foreground text-sm">McDonald's</span> <span class="text-[10px] font-bold text-red-400 bg-red-400/10 px-1.5 py-0.5 rounded-full ml-1">Bearish</span> <span class="block text-[11px] text-slate-400 dark:text-dark-dim mt-1">actions · downtrend</span><span class="block text-[11px] mt-0.5"><span class="text-blue-600 dark:text-blue-300">$280.80</span> <span class="market-state market-state-closed">Closed</span> <a class="tv-link ml-1" href="https://www.tradingview.com/chart/?symbol=NYSE%3AMCD" target="_blank">Chart ↗</a></span></div><div class="text-right min-w-[80px]"><span class="score-pill score-warm">67/100</span><div class="text-[11px] text-slate-400 dark:text-dark-dim mt-1">Net -46</div><div class="text-[10px] font-bold text-amber-500 mt-0.5">Active</div></div></div>
+        <div class="signal-row" data-market="etf"><div><span class="font-extrabold text-foreground dark:text-dark-foreground text-sm">iShares High Yield</span> <span class="text-[10px] font-bold text-red-400 bg-red-400/10 px-1.5 py-0.5 rounded-full ml-1">Bearish</span> <span class="block text-[11px] text-slate-400 dark:text-dark-dim mt-1">etf · breakdown</span><span class="block text-[11px] mt-0.5"><span class="text-blue-600 dark:text-blue-300">$79.35</span> <span class="market-state market-state-closed">Closed</span> <a class="tv-link ml-1" href="https://www.tradingview.com/chart/?symbol=HYG" target="_blank">Chart ↗</a></span></div><div class="text-right min-w-[80px]"><span class="score-pill score-warm">67/100</span><div class="text-[11px] text-slate-400 dark:text-dark-dim mt-1">Net -47</div><div class="text-[10px] font-bold text-amber-500 mt-0.5">Active</div></div></div>
+        <div class="signal-row" data-market="stocks"><div><span class="font-extrabold text-foreground dark:text-dark-foreground text-sm">Nike</span> <span class="text-[10px] font-bold text-red-400 bg-red-400/10 px-1.5 py-0.5 rounded-full ml-1">Bearish</span> <span class="block text-[11px] text-slate-400 dark:text-dark-dim mt-1">actions · downtrend</span><span class="block text-[11px] mt-0.5"><span class="text-blue-600 dark:text-blue-300">$42.42</span> <span class="market-state market-state-closed">Closed</span> <a class="tv-link ml-1" href="https://www.tradingview.com/chart/?symbol=NYSE%3ANKE" target="_blank">Chart ↗</a></span></div><div class="text-right min-w-[80px]"><span class="score-pill score-warm">66/100</span><div class="text-[11px] text-slate-400 dark:text-dark-dim mt-1">Net -39</div><div class="text-[10px] font-bold text-amber-500 mt-0.5">Active</div></div></div>
+        <div class="signal-row" data-market="stocks"><div><span class="font-extrabold text-foreground dark:text-dark-foreground text-sm">Bank of America</span> <span class="text-[10px] font-bold text-red-400 bg-red-400/10 px-1.5 py-0.5 rounded-full ml-1">Bearish</span> <span class="block text-[11px] text-slate-400 dark:text-dark-dim mt-1">actions · mixed</span><span class="block text-[11px] mt-0.5"><span class="text-blue-600 dark:text-blue-300">$50.70</span> <span class="market-state market-state-closed">Closed</span> <a class="tv-link ml-1" href="https://www.tradingview.com/chart/?symbol=NYSE%3ABAC" target="_blank">Chart ↗</a></span></div><div class="text-right min-w-[80px]"><span class="score-pill score-warm">64/100</span><div class="text-[11px] text-slate-400 dark:text-dark-dim mt-1">Net -32</div><div class="text-[10px] font-bold text-amber-500 mt-0.5">Active</div></div></div>
+        <div class="signal-row" data-market="stocks"><div><span class="font-extrabold text-foreground dark:text-dark-foreground text-sm">Mastercard</span> <span class="text-[10px] font-bold text-red-400 bg-red-400/10 px-1.5 py-0.5 rounded-full ml-1">Bearish</span> <span class="block text-[11px] text-slate-400 dark:text-dark-dim mt-1">actions · downtrend</span><span class="block text-[11px] mt-0.5"><span class="text-blue-600 dark:text-blue-300">$499.70</span> <span class="market-state market-state-closed">Closed</span> <a class="tv-link ml-1" href="https://www.tradingview.com/chart/?symbol=NYSE%3AMA" target="_blank">Chart ↗</a></span></div><div class="text-right min-w-[80px]"><span class="score-pill score-warm">63/100</span><div class="text-[11px] text-slate-400 dark:text-dark-dim mt-1">Net -42</div><div class="text-[10px] font-bold text-amber-500 mt-0.5">Active</div></div></div>
+        <div class="signal-row" data-market="etf"><div><span class="font-extrabold text-foreground dark:text-dark-foreground text-sm">SPDR Gold</span> <span class="text-[10px] font-bold text-red-400 bg-red-400/10 px-1.5 py-0.5 rounded-full ml-1">Bearish</span> <span class="block text-[11px] text-slate-400 dark:text-dark-dim mt-1">etf · breakdown</span><span class="block text-[11px] mt-0.5"><span class="text-blue-600 dark:text-blue-300">$411.50</span> <span class="market-state market-state-closed">Closed</span> <a class="tv-link ml-1" href="https://www.tradingview.com/chart/?symbol=AMEX%3AGLD" target="_blank">Chart ↗</a></span></div><div class="text-right min-w-[80px]"><span class="score-pill score-warm">63/100</span><div class="text-[11px] text-slate-400 dark:text-dark-dim mt-1">Net -49</div><div class="text-[10px] font-bold text-amber-500 mt-0.5">Active</div></div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="legend mt-4">
+    <span>0-39 Weak</span><span>40-59 Watch</span><span>60-74 Active</span><span>75-89 Strong</span><span>90-100 Extreme</span>
+    <span class="!bg-amber-100 dark:!bg-amber-500/10 !text-amber-800 dark:!text-amber-300 !border-amber-200 dark:!border-amber-500/20">Updated 20/05/2026 07:32 CEST</span>
+  </div>
+</section>
+
 <!-- ════════════ HEATMAP ════════════ -->
-<section class="reveal reveal-delay-1 mb-6 p-5 sm:p-6 bg-white dark:bg-dark-card border border-border dark:border-dark-border rounded-2xl" aria-label="Stock Market Heatmap">
-  <h3 class="section-title font-display text-foreground dark:text-dark-foreground mb-4">Stock Market Heatmap</h3>
-  <div class="rounded-xl overflow-hidden min-h-[400px]">
+<section class="reveal reveal-delay-1 mb-12">
+  <div class="reveal mb-6">
+    <h2 class="section-title text-foreground dark:text-dark-foreground font-display">Stock Market Heatmap</h2>
+  </div>
+  <div class="bg-white dark:bg-dark-card rounded-2xl border border-border dark:border-dark-border overflow-hidden min-h-[400px]">
     <div class="tradingview-widget-container">
       <div class="tradingview-widget-container__widget"></div>
       <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-stock-heatmap.js" async>
@@ -299,67 +345,12 @@ tailwind.config = {
   </div>
 </section>
 
-<!-- ════════════ SCANNER ════════════ -->
-<section id="scanner" class="reveal reveal-delay-2 mb-6 p-5 sm:p-7 bg-white dark:bg-dark-card border border-border dark:border-dark-border rounded-2xl relative overflow-hidden" aria-label="Hawkeye V4 Scanner">
-  <div class="absolute inset-0 bg-gradient-radial from-primary/5 via-transparent to-transparent pointer-events-none"></div>
-  <div class="relative">
-    <div class="flex justify-between items-start gap-4 flex-wrap mb-5">
-      <div>
-        <h2 class="section-title font-display text-foreground dark:text-dark-foreground">Hawkeye V4 — Market Pressure Radar</h2>
-        <p class="text-slate-500 dark:text-dark-dim text-sm mt-2 max-w-2xl">Top bullish and bearish assets ranked by composite pressure score — built for quick manual chart inspection. Each slot shows indicative market state: Open, Closed, or Pre-market.</p>
-        <div class="flex gap-2 flex-wrap mt-3">
-          <span class="chip">60–74 Active</span><span class="chip">75+ Strong</span><span class="chip">90+ Extreme</span><span class="chip">Chart ↗ TradingView</span>
-        </div>
-      </div>
-      <div class="bg-slate-50 dark:bg-dark-elevated rounded-2xl p-4 text-center border border-border dark:border-dark-border min-w-[140px]">
-        <div class="text-3xl font-extrabold font-display text-primary dark:text-blue-400">100</div>
-        <div class="text-xs text-slate-500 dark:text-dark-dim uppercase tracking-wider font-bold mt-1">assets scanned</div>
-      </div>
-    </div>
-
-    <div class="scanner-board grid grid-cols-2 gap-4">
-      <!-- BULLISH -->
-      <div class="signal-card">
-        <h3 class="font-display font-bold text-foreground dark:text-dark-foreground text-base flex items-center justify-between gap-2 mb-3">
-          Bullish pressure
-          <span class="text-xs font-bold text-accent dark:text-green-400 bg-accent/10 dark:bg-green-400/10 px-2 py-0.5 rounded-full">7 assets</span>
-        </h3>
-        <div class="signal-row" data-market="commodities"><div><span class="font-extrabold text-foreground dark:text-dark-foreground text-sm">Soybeans</span> <span class="text-[10px] font-bold text-accent dark:text-green-400 bg-accent/10 px-1.5 py-0.5 rounded-full ml-1">Bullish</span> <span class="block text-[11px] text-slate-400 dark:text-dark-dim mt-1">commodities · uptrend</span><span class="block text-[11px] mt-0.5"><span class="text-blue-600 dark:text-blue-300">$1,207.75/USD/bushel</span> <span class="market-state market-state-open">Open · Futures/CFD</span> <a class="tv-link ml-1" href="https://www.tradingview.com/chart/?symbol=CBOT%3AZS1%21" target="_blank">Chart ↗</a></span></div><div class="text-right min-w-[80px]"><span class="score-pill score-warm">70/100</span><div class="text-[11px] text-slate-400 dark:text-dark-dim mt-1">Net +46 · ZS=F</div><div class="text-[10px] font-bold text-amber-500 mt-0.5">Active</div></div></div>
-        <div class="signal-row" data-market="etf"><div><span class="font-extrabold text-foreground dark:text-dark-foreground text-sm">SPDR Dow Jones</span> <span class="text-[10px] font-bold text-accent dark:text-green-400 bg-accent/10 px-1.5 py-0.5 rounded-full ml-1">Bullish</span> <span class="block text-[11px] text-slate-400 dark:text-dark-dim mt-1">etf · uptrend</span><span class="block text-[11px] mt-0.5"><span class="text-blue-600 dark:text-blue-300">$493.98</span> <span class="market-state market-state-closed">Closed · listed</span> <a class="tv-link ml-1" href="https://www.tradingview.com/chart/?symbol=AMEX%3ADIA" target="_blank">Chart ↗</a></span></div><div class="text-right min-w-[80px]"><span class="score-pill score-warm">69/100</span><div class="text-[11px] text-slate-400 dark:text-dark-dim mt-1">Net +42 · DIA</div><div class="text-[10px] font-bold text-amber-500 mt-0.5">Active</div></div></div>
-        <div class="signal-row" data-market="etf"><div><span class="font-extrabold text-foreground dark:text-dark-foreground text-sm">Invesco QQQ</span> <span class="text-[10px] font-bold text-accent dark:text-green-400 bg-accent/10 px-1.5 py-0.5 rounded-full ml-1">Bullish</span> <span class="block text-[11px] text-slate-400 dark:text-dark-dim mt-1">etf · uptrend</span><span class="block text-[11px] mt-0.5"><span class="text-blue-600 dark:text-blue-300">$701.53</span> <span class="market-state market-state-closed">Closed · listed</span> <a class="tv-link ml-1" href="https://www.tradingview.com/chart/?symbol=NASDAQ%3AQQQ" target="_blank">Chart ↗</a></span></div><div class="text-right min-w-[80px]"><span class="score-pill score-warm">68/100</span><div class="text-[11px] text-slate-400 dark:text-dark-dim mt-1">Net +41 · QQQ</div><div class="text-[10px] font-bold text-amber-500 mt-0.5">Active</div></div></div>
-        <div class="signal-row" data-market="etf"><div><span class="font-extrabold text-foreground dark:text-dark-foreground text-sm">Technology Select</span> <span class="text-[10px] font-bold text-accent dark:text-green-400 bg-accent/10 px-1.5 py-0.5 rounded-full ml-1">Bullish</span> <span class="block text-[11px] text-slate-400 dark:text-dark-dim mt-1">etf · uptrend</span><span class="block text-[11px] mt-0.5"><span class="text-blue-600 dark:text-blue-300">$173.24</span> <span class="market-state market-state-closed">Closed · listed</span> <a class="tv-link ml-1" href="https://www.tradingview.com/chart/?symbol=AMEX%3AXLK" target="_blank">Chart ↗</a></span></div><div class="text-right min-w-[80px]"><span class="score-pill score-warm">68/100</span><div class="text-[11px] text-slate-400 dark:text-dark-dim mt-1">Net +41 · XLK</div><div class="text-[10px] font-bold text-amber-500 mt-0.5">Active</div></div></div>
-        <div class="signal-row" data-market="indices"><div><span class="font-extrabold text-foreground dark:text-dark-foreground text-sm">Shanghai Comp</span> <span class="text-[10px] font-bold text-accent dark:text-green-400 bg-accent/10 px-1.5 py-0.5 rounded-full ml-1">Bullish</span> <span class="block text-[11px] text-slate-400 dark:text-dark-dim mt-1">indices · uptrend</span><span class="block text-[11px] mt-0.5"><span class="text-blue-600 dark:text-blue-300">4,167.46 pts</span> <span class="market-state market-state-open">Open · global</span> <a class="tv-link ml-1" href="https://www.tradingview.com/chart/?symbol=000001.SS" target="_blank">Chart ↗</a></span></div><div class="text-right min-w-[80px]"><span class="score-pill score-warm">67/100</span><div class="text-[11px] text-slate-400 dark:text-dark-dim mt-1">Net +42 · 000001.SS</div><div class="text-[10px] font-bold text-amber-500 mt-0.5">Active</div></div></div>
-        <div class="signal-row" data-market="stocks"><div><span class="font-extrabold text-foreground dark:text-dark-foreground text-sm">NVIDIA</span> <span class="text-[10px] font-bold text-accent dark:text-green-400 bg-accent/10 px-1.5 py-0.5 rounded-full ml-1">Bullish</span> <span class="block text-[11px] text-slate-400 dark:text-dark-dim mt-1">actions · uptrend</span><span class="block text-[11px] mt-0.5"><span class="text-blue-600 dark:text-blue-300">$220.61</span> <span class="market-state market-state-closed">Closed · listed</span> <a class="tv-link ml-1" href="https://www.tradingview.com/chart/?symbol=NASDAQ%3ANVDA" target="_blank">Chart ↗</a></span></div><div class="text-right min-w-[80px]"><span class="score-pill score-warm">67/100</span><div class="text-[11px] text-slate-400 dark:text-dark-dim mt-1">Net +46 · NVDA</div><div class="text-[10px] font-bold text-amber-500 mt-0.5">Active</div></div></div>
-        <div class="signal-row" data-market="etf"><div><span class="font-extrabold text-foreground dark:text-dark-foreground text-sm">Vanguard Total Market</span> <span class="text-[10px] font-bold text-accent dark:text-green-400 bg-accent/10 px-1.5 py-0.5 rounded-full ml-1">Bullish</span> <span class="block text-[11px] text-slate-400 dark:text-dark-dim mt-1">etf · uptrend</span><span class="block text-[11px] mt-0.5"><span class="text-blue-600 dark:text-blue-300">$360.06</span> <span class="market-state market-state-closed">Closed · listed</span> <a class="tv-link ml-1" href="https://www.tradingview.com/chart/?symbol=VTI" target="_blank">Chart ↗</a></span></div><div class="text-right min-w-[80px]"><span class="score-pill score-warm">67/100</span><div class="text-[11px] text-slate-400 dark:text-dark-dim mt-1">Net +46 · VTI</div><div class="text-[10px] font-bold text-amber-500 mt-0.5">Active</div></div></div>
-      </div>
-
-      <!-- BEARISH -->
-      <div class="signal-card">
-        <h3 class="font-display font-bold text-foreground dark:text-dark-foreground text-base flex items-center justify-between gap-2 mb-3">
-          Bearish pressure
-          <span class="text-xs font-bold text-red-500 bg-red-500/10 px-2 py-0.5 rounded-full">7 assets</span>
-        </h3>
-        <div class="signal-row" data-market="indices"><div><span class="font-extrabold text-foreground dark:text-dark-foreground text-sm">CAC 40</span> <span class="text-[10px] font-bold text-red-400 bg-red-400/10 px-1.5 py-0.5 rounded-full ml-1">Bearish</span> <span class="block text-[11px] text-slate-400 dark:text-dark-dim mt-1">indices · downtrend</span><span class="block text-[11px] mt-0.5"><span class="text-blue-600 dark:text-blue-300">7,981.76 pts</span> <span class="market-state market-state-open">Open · global</span> <a class="tv-link ml-1" href="https://www.tradingview.com/chart/?symbol=EURONEXT%3APX1" target="_blank">Chart ↗</a></span></div><div class="text-right min-w-[80px]"><span class="score-pill score-warm">67/100</span><div class="text-[11px] text-slate-400 dark:text-dark-dim mt-1">Net -46 · ^FCHI</div><div class="text-[10px] font-bold text-amber-500 mt-0.5">Active</div></div></div>
-        <div class="signal-row" data-market="stocks"><div><span class="font-extrabold text-foreground dark:text-dark-foreground text-sm">McDonald's</span> <span class="text-[10px] font-bold text-red-400 bg-red-400/10 px-1.5 py-0.5 rounded-full ml-1">Bearish</span> <span class="block text-[11px] text-slate-400 dark:text-dark-dim mt-1">actions · downtrend</span><span class="block text-[11px] mt-0.5"><span class="text-blue-600 dark:text-blue-300">$280.80</span> <span class="market-state market-state-closed">Closed · listed</span> <a class="tv-link ml-1" href="https://www.tradingview.com/chart/?symbol=NYSE%3AMCD" target="_blank">Chart ↗</a></span></div><div class="text-right min-w-[80px]"><span class="score-pill score-warm">67/100</span><div class="text-[11px] text-slate-400 dark:text-dark-dim mt-1">Net -46 · MCD</div><div class="text-[10px] font-bold text-amber-500 mt-0.5">Active</div></div></div>
-        <div class="signal-row" data-market="etf"><div><span class="font-extrabold text-foreground dark:text-dark-foreground text-sm">iShares High Yield</span> <span class="text-[10px] font-bold text-red-400 bg-red-400/10 px-1.5 py-0.5 rounded-full ml-1">Bearish</span> <span class="block text-[11px] text-slate-400 dark:text-dark-dim mt-1">etf · breakdown</span><span class="block text-[11px] mt-0.5"><span class="text-blue-600 dark:text-blue-300">$79.35</span> <span class="market-state market-state-closed">Closed · listed</span> <a class="tv-link ml-1" href="https://www.tradingview.com/chart/?symbol=HYG" target="_blank">Chart ↗</a></span></div><div class="text-right min-w-[80px]"><span class="score-pill score-warm">67/100</span><div class="text-[11px] text-slate-400 dark:text-dark-dim mt-1">Net -47 · HYG</div><div class="text-[10px] font-bold text-amber-500 mt-0.5">Active</div></div></div>
-        <div class="signal-row" data-market="stocks"><div><span class="font-extrabold text-foreground dark:text-dark-foreground text-sm">Nike</span> <span class="text-[10px] font-bold text-red-400 bg-red-400/10 px-1.5 py-0.5 rounded-full ml-1">Bearish</span> <span class="block text-[11px] text-slate-400 dark:text-dark-dim mt-1">actions · downtrend</span><span class="block text-[11px] mt-0.5"><span class="text-blue-600 dark:text-blue-300">$42.42</span> <span class="market-state market-state-closed">Closed · listed</span> <a class="tv-link ml-1" href="https://www.tradingview.com/chart/?symbol=NYSE%3ANKE" target="_blank">Chart ↗</a></span></div><div class="text-right min-w-[80px]"><span class="score-pill score-warm">66/100</span><div class="text-[11px] text-slate-400 dark:text-dark-dim mt-1">Net -39 · NKE</div><div class="text-[10px] font-bold text-amber-500 mt-0.5">Active</div></div></div>
-        <div class="signal-row" data-market="stocks"><div><span class="font-extrabold text-foreground dark:text-dark-foreground text-sm">Bank of America</span> <span class="text-[10px] font-bold text-red-400 bg-red-400/10 px-1.5 py-0.5 rounded-full ml-1">Bearish</span> <span class="block text-[11px] text-slate-400 dark:text-dark-dim mt-1">actions · mixed</span><span class="block text-[11px] mt-0.5"><span class="text-blue-600 dark:text-blue-300">$50.70</span> <span class="market-state market-state-closed">Closed · listed</span> <a class="tv-link ml-1" href="https://www.tradingview.com/chart/?symbol=NYSE%3ABAC" target="_blank">Chart ↗</a></span></div><div class="text-right min-w-[80px]"><span class="score-pill score-warm">64/100</span><div class="text-[11px] text-slate-400 dark:text-dark-dim mt-1">Net -32 · BAC</div><div class="text-[10px] font-bold text-amber-500 mt-0.5">Active</div></div></div>
-        <div class="signal-row" data-market="stocks"><div><span class="font-extrabold text-foreground dark:text-dark-foreground text-sm">Mastercard</span> <span class="text-[10px] font-bold text-red-400 bg-red-400/10 px-1.5 py-0.5 rounded-full ml-1">Bearish</span> <span class="block text-[11px] text-slate-400 dark:text-dark-dim mt-1">actions · downtrend</span><span class="block text-[11px] mt-0.5"><span class="text-blue-600 dark:text-blue-300">$499.70</span> <span class="market-state market-state-closed">Closed · listed</span> <a class="tv-link ml-1" href="https://www.tradingview.com/chart/?symbol=NYSE%3AMA" target="_blank">Chart ↗</a></span></div><div class="text-right min-w-[80px]"><span class="score-pill score-warm">63/100</span><div class="text-[11px] text-slate-400 dark:text-dark-dim mt-1">Net -42 · MA</div><div class="text-[10px] font-bold text-amber-500 mt-0.5">Active</div></div></div>
-        <div class="signal-row" data-market="etf"><div><span class="font-extrabold text-foreground dark:text-dark-foreground text-sm">SPDR Gold</span> <span class="text-[10px] font-bold text-red-400 bg-red-400/10 px-1.5 py-0.5 rounded-full ml-1">Bearish</span> <span class="block text-[11px] text-slate-400 dark:text-dark-dim mt-1">etf · breakdown</span><span class="block text-[11px] mt-0.5"><span class="text-blue-600 dark:text-blue-300">$411.50</span> <span class="market-state market-state-closed">Closed · listed</span> <a class="tv-link ml-1" href="https://www.tradingview.com/chart/?symbol=AMEX%3AGLD" target="_blank">Chart ↗</a></span></div><div class="text-right min-w-[80px]"><span class="score-pill score-warm">63/100</span><div class="text-[11px] text-slate-400 dark:text-dark-dim mt-1">Net -49 · GLD</div><div class="text-[10px] font-bold text-amber-500 mt-0.5">Active</div></div></div>
-      </div>
-    </div>
-
-    <div class="legend">
-      <span>0-39 Weak</span><span>40-59 Watch</span><span>60-74 Active</span><span>75-89 Strong</span><span>90-100 Extreme</span>
-      <span class="bg-amber-100 dark:bg-amber-500/10 text-amber-800 dark:text-amber-300 border-amber-200 dark:border-amber-500/20">Updated 20/05/2026 07:32 CEST</span>
-    </div>
-  </div>
-</section>
-
 <!-- ════════════ ECONOMIC CALENDAR ════════════ -->
-<section class="reveal reveal-delay-2 mb-6 p-5 sm:p-6 bg-white dark:bg-dark-card border border-border dark:border-dark-border rounded-2xl" aria-label="Economic Calendar">
-  <h3 class="section-title font-display text-foreground dark:text-dark-foreground mb-4">Economic Calendar</h3>
-  <div class="rounded-xl overflow-hidden min-h-[500px]">
+<section class="reveal reveal-delay-2 mb-12">
+  <div class="reveal mb-6">
+    <h2 class="section-title text-foreground dark:text-dark-foreground font-display">Economic Calendar</h2>
+  </div>
+  <div class="bg-white dark:bg-dark-card rounded-2xl border border-border dark:border-dark-border overflow-hidden min-h-[500px]">
     <div class="tradingview-widget-container">
       <div class="tradingview-widget-container__widget"></div>
       <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-events.js" async>
@@ -370,298 +361,141 @@ tailwind.config = {
 </section>
 
 <!-- ════════════ LIVE DASHBOARDS ════════════ -->
-<section id="dashboards" class="reveal reveal-delay-3 mb-6" aria-label="Live dashboards">
-  <h2 class="section-title font-display text-foreground dark:text-dark-foreground mb-1">Live Dashboards</h2>
-  <p class="text-slate-500 dark:text-dark-dim text-sm mb-5">Six live boards, refreshed for the current market context.</p>
-  <div class="grid-dash grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+<section id="dashboards" class="py-12 sm:py-20" aria-label="Live dashboards">
+  <div class="reveal">
+    <p class="text-accent dark:text-green-400 font-semibold tracking-widest uppercase text-xs mb-3">Live Dashboards</p>
+    <h2 class="section-title text-foreground dark:text-dark-foreground mb-12 font-display">Six markets, one cockpit</h2>
+  </div>
+  <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
     <!-- Crypto -->
-    <a href="/markets-dashboard/crypto_dashboard.html" class="card-hover bg-white dark:bg-dark-card rounded-2xl p-5 border border-border dark:border-dark-border flex flex-col min-h-[180px] relative overflow-hidden group">
-      <div class="absolute -right-8 -bottom-10 w-32 h-32 rounded-full bg-accent/10 dark:bg-accent/20 blur-xl group-hover:scale-125 transition-transform"></div>
-      <span class="text-2xl mb-3 relative">🪙</span>
-      <h3 class="font-display font-bold text-foreground dark:text-dark-foreground relative">Crypto</h3>
-      <p class="text-sm text-slate-500 dark:text-dark-dim mt-1 relative">BTC, ETH, SOL & liquid majors · 24/7 momentum</p>
-      <div class="mt-auto pt-4 flex items-center gap-2 relative">
-        <span class="session-led open">OPEN · 24/7</span>
-        <span class="text-[11px] font-bold text-slate-400 dark:text-dark-dim ml-auto">→ Open board</span>
+    <a href="/markets-dashboard/crypto_dashboard.html" class="reveal reveal-delay-1 card-hover market-card rounded-2xl p-8 border border-border flex flex-col" data-market="crypto">
+      <div class="w-12 h-12 bg-accent/10 rounded-xl flex items-center justify-center mb-6">
+        <svg class="w-6 h-6 text-accent" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>
+      </div>
+      <h3 class="text-xl font-bold text-foreground dark:text-dark-foreground mb-2 font-display">Crypto</h3>
+      <p class="text-slate-600 dark:text-dark-dim text-sm leading-relaxed mb-4">BTC, ETH, SOL & liquid majors · 24/7 momentum</p>
+      <div class="flex flex-wrap gap-2 mb-4">
+        <span class="px-3 py-1 bg-accent/5 text-accent text-xs font-medium rounded-full">24/7</span>
+        <span class="px-3 py-1 bg-accent/5 text-accent text-xs font-medium rounded-full">Top 15</span>
+      </div>
+      <div class="flex gap-2 mt-auto">
+        <span class="text-primary dark:text-blue-400 text-sm font-semibold">Live dashboard →</span>
+        <span class="session-led open ml-auto" data-session-label>OPEN</span>
       </div>
     </a>
     <!-- Commodities -->
-    <a href="/markets-dashboard/commodities_dashboard.html" class="card-hover bg-white dark:bg-dark-card rounded-2xl p-5 border border-border dark:border-dark-border flex flex-col min-h-[180px] relative overflow-hidden group">
-      <div class="absolute -right-8 -bottom-10 w-32 h-32 rounded-full bg-amber-500/10 dark:bg-amber-500/15 blur-xl group-hover:scale-125 transition-transform"></div>
-      <span class="text-2xl mb-3 relative">🛢️</span>
-      <h3 class="font-display font-bold text-foreground dark:text-dark-foreground relative">Commodities</h3>
-      <p class="text-sm text-slate-500 dark:text-dark-dim mt-1 relative">Gold, Silver, Oil, Copper, Grains · CFD</p>
-      <div class="mt-auto pt-4 flex items-center gap-2 relative">
-        <span class="session-led soon">SESSION</span>
-        <span class="text-[11px] font-bold text-slate-400 dark:text-dark-dim ml-auto">15 assets →</span>
+    <a href="/markets-dashboard/commodities_dashboard.html" class="reveal reveal-delay-1 card-hover bg-white dark:bg-dark-card rounded-2xl p-8 border border-border dark:border-dark-border flex flex-col" data-market="commodities" style="border-color:rgba(245,158,11,.28)!important;box-shadow:0 18px 52px -34px rgba(245,158,11,.45);">
+      <div class="w-12 h-12 bg-amber-500/10 rounded-xl flex items-center justify-center mb-6">
+        <svg class="w-6 h-6 text-amber-600 dark:text-amber-400" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="M12 5v14"/><circle cx="12" cy="12" r="3"/></svg>
+      </div>
+      <h3 class="text-xl font-bold text-foreground dark:text-dark-foreground mb-2 font-display">Commodities</h3>
+      <p class="text-slate-600 dark:text-dark-dim text-sm leading-relaxed mb-4">Gold, Silver, Oil, Copper, Grains · CFD/extended context</p>
+      <div class="flex flex-wrap gap-2 mb-4">
+        <span class="px-3 py-1 bg-amber-500/5 text-amber-700 dark:text-amber-300 text-xs font-medium rounded-full">15 assets</span>
+      </div>
+      <div class="flex gap-2 mt-auto">
+        <span class="text-primary dark:text-blue-400 text-sm font-semibold">Live dashboard →</span>
+        <span class="session-led soon ml-auto" data-session-label>SESSION</span>
       </div>
     </a>
     <!-- Indices -->
-    <a href="/markets-dashboard/indices_dashboard.html" class="card-hover bg-white dark:bg-dark-card rounded-2xl p-5 border border-border dark:border-dark-border flex flex-col min-h-[180px] relative overflow-hidden group">
-      <div class="absolute -right-8 -bottom-10 w-32 h-32 rounded-full bg-purple-500/10 dark:bg-purple-500/15 blur-xl group-hover:scale-125 transition-transform"></div>
-      <span class="text-2xl mb-3 relative">🌍</span>
-      <h3 class="font-display font-bold text-foreground dark:text-dark-foreground relative">Indices</h3>
-      <p class="text-sm text-slate-500 dark:text-dark-dim mt-1 relative">S&P 500, Nasdaq, DAX, CAC, Nikkei</p>
-      <div class="mt-auto pt-4 flex items-center gap-2 relative">
-        <span class="session-led soon">SESSION</span>
-        <span class="text-[11px] font-bold text-slate-400 dark:text-dark-dim ml-auto">16 indices →</span>
+    <a href="/markets-dashboard/indices_dashboard.html" class="reveal reveal-delay-2 card-hover bg-white dark:bg-dark-card rounded-2xl p-8 border border-border dark:border-dark-border flex flex-col" data-market="indices" style="border-color:rgba(124,58,237,.28)!important;box-shadow:0 18px 52px -34px rgba(124,58,237,.45);">
+      <div class="w-12 h-12 bg-purple-500/10 rounded-xl flex items-center justify-center mb-6">
+        <svg class="w-6 h-6 text-purple-600 dark:text-purple-400" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="1"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10"/><path d="M12 2a15.3 15.3 0 0 0-4 10 15.3 15.3 0 0 0 4 10"/></svg>
+      </div>
+      <h3 class="text-xl font-bold text-foreground dark:text-dark-foreground mb-2 font-display">Indices</h3>
+      <p class="text-slate-600 dark:text-dark-dim text-sm leading-relaxed mb-4">S&P 500, Nasdaq, DAX, CAC, Nikkei · global risk pulse</p>
+      <div class="flex flex-wrap gap-2 mb-4">
+        <span class="px-3 py-1 bg-purple-500/5 text-purple-700 dark:text-purple-300 text-xs font-medium rounded-full">16 indices</span>
+      </div>
+      <div class="flex gap-2 mt-auto">
+        <span class="text-primary dark:text-blue-400 text-sm font-semibold">Live dashboard →</span>
+        <span class="session-led soon ml-auto" data-session-label>SESSION</span>
       </div>
     </a>
     <!-- Forex -->
-    <a href="/markets-dashboard/forex_dashboard.html" class="card-hover bg-white dark:bg-dark-card rounded-2xl p-5 border border-border dark:border-dark-border flex flex-col min-h-[180px] relative overflow-hidden group">
-      <div class="absolute -right-8 -bottom-10 w-32 h-32 rounded-full bg-sky-500/10 dark:bg-sky-500/15 blur-xl group-hover:scale-125 transition-transform"></div>
-      <span class="text-2xl mb-3 relative">💱</span>
-      <h3 class="font-display font-bold text-foreground dark:text-dark-foreground relative">Forex</h3>
-      <p class="text-sm text-slate-500 dark:text-dark-dim mt-1 relative">EURUSD, GBPJPY, AUDUSD · majors & crosses</p>
-      <div class="mt-auto pt-4 flex items-center gap-2 relative">
-        <span class="session-led soon">SESSION</span>
-        <span class="text-[11px] font-bold text-slate-400 dark:text-dark-dim ml-auto">19 pairs →</span>
+    <a href="/markets-dashboard/forex_dashboard.html" class="reveal reveal-delay-2 card-hover bg-white dark:bg-dark-card rounded-2xl p-8 border border-border dark:border-dark-border flex flex-col" data-market="forex" style="border-color:rgba(14,165,233,.28)!important;box-shadow:0 18px 52px -34px rgba(14,165,233,.45);">
+      <div class="w-12 h-12 bg-sky-500/10 rounded-xl flex items-center justify-center mb-6">
+        <svg class="w-6 h-6 text-sky-600 dark:text-sky-400" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" viewBox="0 0 24 24"><path d="M8 3L4 7l4 4"/><path d="M4 7h16"/><path d="m16 21 4-4-4-4"/><path d="M20 17H4"/></svg>
+      </div>
+      <h3 class="text-xl font-bold text-foreground dark:text-dark-foreground mb-2 font-display">Forex</h3>
+      <p class="text-slate-600 dark:text-dark-dim text-sm leading-relaxed mb-4">EURUSD, GBPJPY, AUDUSD · majors, crosses and exotics</p>
+      <div class="flex flex-wrap gap-2 mb-4">
+        <span class="px-3 py-1 bg-sky-500/5 text-sky-700 dark:text-sky-300 text-xs font-medium rounded-full">19 pairs</span>
+      </div>
+      <div class="flex gap-2 mt-auto">
+        <span class="text-primary dark:text-blue-400 text-sm font-semibold">Live dashboard →</span>
+        <span class="session-led soon ml-auto" data-session-label>SESSION</span>
       </div>
     </a>
     <!-- Stocks -->
-    <a href="/markets-dashboard/actions_dashboard.html" class="card-hover bg-white dark:bg-dark-card rounded-2xl p-5 border border-border dark:border-dark-border flex flex-col min-h-[180px] relative overflow-hidden group">
-      <div class="absolute -right-8 -bottom-10 w-32 h-32 rounded-full bg-emerald-500/10 dark:bg-emerald-500/15 blur-xl group-hover:scale-125 transition-transform"></div>
-      <span class="text-2xl mb-3 relative">🏛️</span>
-      <h3 class="font-display font-bold text-foreground dark:text-dark-foreground relative">Stocks</h3>
-      <p class="text-sm text-slate-500 dark:text-dark-dim mt-1 relative">Mega-cap tech, luxury, banks · equity momentum</p>
-      <div class="mt-auto pt-4 flex items-center gap-2 relative">
-        <span class="session-led soon">SESSION</span>
-        <span class="text-[11px] font-bold text-slate-400 dark:text-dark-dim ml-auto">30 stocks →</span>
+    <a href="/markets-dashboard/actions_dashboard.html" class="reveal reveal-delay-3 card-hover bg-white dark:bg-dark-card rounded-2xl p-8 border border-border dark:border-dark-border flex flex-col" data-market="stocks" style="border-color:rgba(16,185,129,.28)!important;box-shadow:0 18px 52px -34px rgba(16,185,129,.45);">
+      <div class="w-12 h-12 bg-emerald-500/10 rounded-xl flex items-center justify-center mb-6">
+        <svg class="w-6 h-6 text-emerald-600 dark:text-emerald-400" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="10" rx="2"/><line x1="12" y1="7" x2="12" y2="17"/></svg>
+      </div>
+      <h3 class="text-xl font-bold text-foreground dark:text-dark-foreground mb-2 font-display">Stocks</h3>
+      <p class="text-slate-600 dark:text-dark-dim text-sm leading-relaxed mb-4">Mega-cap tech, luxury, banks, defensives · equity momentum</p>
+      <div class="flex flex-wrap gap-2 mb-4">
+        <span class="px-3 py-1 bg-emerald-500/5 text-emerald-700 dark:text-emerald-300 text-xs font-medium rounded-full">30 stocks</span>
+      </div>
+      <div class="flex gap-2 mt-auto">
+        <span class="text-primary dark:text-blue-400 text-sm font-semibold">Live dashboard →</span>
+        <span class="session-led soon ml-auto" data-session-label>SESSION</span>
       </div>
     </a>
     <!-- ETF -->
-    <a href="/markets-dashboard/etf_dashboard.html" class="card-hover bg-white dark:bg-dark-card rounded-2xl p-5 border border-border dark:border-dark-border flex flex-col min-h-[180px] relative overflow-hidden group">
-      <div class="absolute -right-8 -bottom-10 w-32 h-32 rounded-full bg-pink-500/10 dark:bg-pink-500/15 blur-xl group-hover:scale-125 transition-transform"></div>
-      <span class="text-2xl mb-3 relative">💼</span>
-      <h3 class="font-display font-bold text-foreground dark:text-dark-foreground relative">ETF</h3>
-      <p class="text-sm text-slate-500 dark:text-dark-dim mt-1 relative">SPY, QQQ, IWM, sector & thematic flows</p>
-      <div class="mt-auto pt-4 flex items-center gap-2 relative">
-        <span class="session-led soon">SESSION</span>
-        <span class="text-[11px] font-bold text-slate-400 dark:text-dark-dim ml-auto">18 ETFs →</span>
+    <a href="/markets-dashboard/etf_dashboard.html" class="reveal reveal-delay-3 card-hover bg-white dark:bg-dark-card rounded-2xl p-8 border border-border dark:border-dark-border flex flex-col" data-market="etf" style="border-color:rgba(236,72,153,.28)!important;box-shadow:0 18px 52px -34px rgba(236,72,153,.45);">
+      <div class="w-12 h-12 bg-pink-500/10 rounded-xl flex items-center justify-center mb-6">
+        <svg class="w-6 h-6 text-pink-600 dark:text-pink-400" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>
+      </div>
+      <h3 class="text-xl font-bold text-foreground dark:text-dark-foreground mb-2 font-display">ETF</h3>
+      <p class="text-slate-600 dark:text-dark-dim text-sm leading-relaxed mb-4">SPY, QQQ, IWM, sector & thematic · institutional flow mapping</p>
+      <div class="flex flex-wrap gap-2 mb-4">
+        <span class="px-3 py-1 bg-pink-500/5 text-pink-700 dark:text-pink-300 text-xs font-medium rounded-full">18 ETFs</span>
+      </div>
+      <div class="flex gap-2 mt-auto">
+        <span class="text-primary dark:text-blue-400 text-sm font-semibold">Live dashboard →</span>
+        <span class="session-led soon ml-auto" data-session-label>SESSION</span>
       </div>
     </a>
   </div>
 </section>
 
 <!-- ════════════ FOOTER ════════════ -->
-<footer class="text-center text-sm text-slate-500 dark:text-dark-dim py-6 border-t border-border dark:border-dark-border mt-8">
-  <p>Atlas Nexus — <a href="/" class="text-primary dark:text-blue-400 font-semibold hover:underline">atlasnexus.tech</a> · <a href="https://github.com/AtlasNexusTech/markets-dashboard" class="text-primary dark:text-blue-400 font-semibold hover:underline">GitHub</a></p>
+<footer class="text-center text-sm text-slate-500 dark:text-dark-dim py-8 border-t border-border dark:border-dark-border">
+  <p><a href="/" class="text-primary dark:text-blue-400 font-semibold hover:underline">Atlas Nexus</a> · <a href="https://github.com/AtlasNexusTech/markets-dashboard" class="text-primary dark:text-blue-400 font-semibold hover:underline">GitHub</a> · Built with TradingView & Yahoo Finance</p>
 </footer>
 
 </main>
 
 <!-- ════════════ JS: Market Sessions ════════════ -->
 <script>
-(() => {
-  const minutesUtc = d => d.getUTCHours() * 60 + d.getUTCMinutes();
-  const inRange = (m, start, end) => m >= start && m < end;
-  const weekday = d => d.getUTCDay() >= 1 && d.getUTCDay() <= 5;
-  const isForexOpen = d => {
-    const day = d.getUTCDay();
-    const m = minutesUtc(d);
-    return (day > 1 && day < 5) || (day === 1) || (day === 5 && m < 22 * 60) || (day === 0 && m >= 22 * 60);
-  };
-  const sessionState = (market, now = new Date()) => {
-    const m = minutesUtc(now);
-    const isWeekday = weekday(now);
-    if (market === 'crypto') return {state:'open', label:'OPEN \u00b7 24/7'};
-    if (market === 'forex') return isForexOpen(now) ? {state:'open', label:'OPEN \u00b7 FX'} : {state:'closed', label:'CLOSED \u00b7 FX'};
-    if (market === 'stocks' || market === 'etf') {
-      if (isWeekday && inRange(m, 14 * 60 + 30, 21 * 60)) return {state:'open', label:'OPEN \u00b7 LISTED MARKETS'};
-      if (isWeekday && inRange(m, 9 * 60, 14 * 60 + 30)) return {state:'soon', label:'PRE-MARKET \u00b7 LISTED MARKETS'};
-      return {state:'closed', label:'CLOSED \u00b7 LISTED MARKETS'};
-    }
-    if (market === 'indices') {
-      if (isWeekday || now.getUTCDay() === 0) return {state:'open', label:'OPEN \u00b7 global/futures'};
-      return {state:'closed', label:'CLOSED \u00b7 weekend'};
-    }
-    if (market === 'commodities') {
-      if (isForexOpen(now)) return {state:'soon', label:'EXTENDED \u00b7 CFD'};
-      return {state:'closed', label:'CLOSED \u00b7 CFD'};
-    }
-    return {state:'closed', label:'CLOSED'};
-  };
-  const applyMarketSessions = () => {
-    document.querySelectorAll('[data-market]').forEach(card => {
-      const led = card.querySelector('[data-session-label]');
-      if (!led) return;
-      const {state, label} = sessionState(card.dataset.market);
-      led.classList.remove('open', 'closed', 'soon');
-      led.classList.add(state);
-      led.textContent = label;
-      led.title = 'Approximate market session based on UTC exchange hours';
-    });
-  };
-  applyMarketSessions();
-  setInterval(applyMarketSessions, 60000);
-})();
+(()=>{const A=d=>d.getUTCHours()*60+d.getUTCMinutes(),B=(d,s,e)=>d>=s&&d<e,C=d=>d.getUTCDay()>=1&&d.getUTCDay()<=5,D=d=>{const e=d.getUTCDay(),m=A(d);return(e>1&&e<5)||e===1||(e===5&&m<1320)||(e===0&&m>=1320)},E=(m,n=new Date)=>{const u=A(n),w=C(n);if(m==='crypto')return{state:'open',label:'OPEN \u00b7 24/7'};if(m==='forex')return D(n)?{state:'open',label:'OPEN \u00b7 FX'}:{state:'closed',label:'CLOSED \u00b7 FX'};if(m==='stocks'||m==='etf'){if(w&&B(u,870,1260))return{state:'open',label:'OPEN \u00b7 LISTED'};if(w&&B(u,540,870))return{state:'soon',label:'PRE-MARKET'};return{state:'closed',label:'CLOSED'}}if(m==='indices')return(w||n.getUTCDay()===0)?{state:'open',label:'OPEN \u00b7 global'}:{state:'closed',label:'CLOSED'};if(m==='commodities')return D(n)?{state:'soon',label:'EXTENDED'}:{state:'closed',label:'CLOSED'};return{state:'closed',label:'CLOSED'}};const F=()=>{document.querySelectorAll('[data-market]').forEach(c=>{const l=c.querySelector('[data-session-label]');if(!l)return;const{state:s,label:b}=E(c.dataset.market);l.classList.remove('open','closed','soon');l.classList.add(s);l.textContent=b;l.title='Approximate market session (UTC exchange hours)'})};F();setInterval(F,6e4)})();
 </script>
 
-<!-- ════════════ JS: Count-up animation ════════════ -->
+<!-- ════════════ JS: Count-up ════════════ -->
 <script>
-(() => {
-  const easeOutCubic = t => 1 - Math.pow(1 - t, 3);
-  document.querySelectorAll('.count-up[data-target]').forEach(el => {
-    const target = Number(el.dataset.target || 0);
-    const duration = 950;
-    const start = performance.now();
-    const tick = now => {
-      const progress = Math.min((now - start) / duration, 1);
-      el.textContent = Math.round(easeOutCubic(progress) * target).toLocaleString('en-US');
-      if (progress < 1) requestAnimationFrame(tick);
-    };
-    requestAnimationFrame(tick);
-  });
-})();
+(()=>{const e=t=>1-Math.pow(1-t,3);document.querySelectorAll('.count-up[data-target]').forEach(el=>{const t=Number(el.dataset.target||0),d=950,s=performance.now();(function n(r){const o=Math.min((r-s)/d,1);el.textContent=Math.round(e(o)*t).toLocaleString('en-US');if(o<1)requestAnimationFrame(n)})(s)})})();
 </script>
 
 <!-- ════════════ JS: Dark mode toggle ════════════ -->
 <script>
-(function(){
-  const html = document.documentElement;
-  const btn = document.getElementById('themeToggle');
-  const icon = document.getElementById('themeIcon');
-  const saved = localStorage.getItem('atlasnexus-theme') || 'dark';
-  if (saved === 'light') {
-    html.classList.remove('dark');
-    html.setAttribute('data-theme', 'light');
-    icon.textContent = '☀️';
-  } else {
-    html.classList.add('dark');
-    html.setAttribute('data-theme', 'dark');
-    icon.textContent = '🌙';
-  }
-  btn.addEventListener('click', () => {
-    if (html.classList.contains('dark')) {
-      html.classList.remove('dark');
-      html.setAttribute('data-theme', 'light');
-      icon.textContent = '☀️';
-      localStorage.setItem('atlasnexus-theme', 'light');
-    } else {
-      html.classList.add('dark');
-      html.setAttribute('data-theme', 'dark');
-      icon.textContent = '🌙';
-      localStorage.setItem('atlasnexus-theme', 'dark');
-    }
-  });
-})();
+(()=>{const h=document.documentElement,t=document.getElementById('theme-toggle'),s=localStorage.getItem('atlasnexus-theme')||'light';if(s==='dark')h.classList.add('dark');h.setAttribute('data-theme',h.classList.contains('dark')?'dark':'light');t.addEventListener('click',()=>{h.classList.toggle('dark');const n=h.classList.contains('dark')?'dark':'light';h.setAttribute('data-theme',n);localStorage.setItem('atlasnexus-theme',n)})})();
 </script>
 
 <!-- ════════════ JS: Scroll reveal ════════════ -->
 <script>
-(function(){
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-        observer.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.1 });
-  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-})();
+(()=>{new IntersectionObserver(e=>{e.forEach(n=>{if(n.isIntersecting){n.target.classList.add('visible');n.target.style.opacity='';n.target.style.transform=''}})},{threshold:0.1}).observe(document.querySelector('.reveal'));document.querySelectorAll('.reveal').forEach(el=>{new IntersectionObserver(e=>{e.forEach(n=>{if(n.isIntersecting){n.target.classList.add('visible')}})},{threshold:0.1}).observe(el)})})();
 </script>
 
 <!-- ════════════ JS: Yahoo Index Widgets ════════════ -->
 <script>
-(function() {
-  const YAHOO_BASE = 'https://query1.finance.yahoo.com/v8/finance/chart/';
-  async function fetchYahooIndex(symbol) {
-    try {
-      const resp = await fetch(YAHOO_BASE + symbol + '?interval=1d&range=2d');
-      const data = await resp.json();
-      const result = data.chart.result[0];
-      const meta = result.meta;
-      const price = meta.regularMarketPrice;
-      const prevClose = meta.previousClose || meta.chartPreviousClose;
-      const change = price - prevClose;
-      const changePct = (change / prevClose) * 100;
-      const time = new Date(meta.regularMarketTime * 1000);
-      return { price, change, changePct, time };
-    } catch(e) { console.error('Yahoo fetch error for', symbol, e); return null; }
-  }
-  function formatPrice(p) {
-    if (p >= 1000) return p.toLocaleString('en-US', {minimumFractionDigits: 0, maximumFractionDigits: 0});
-    return p.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
-  }
-  function updateWidget(idPrice, idChange, idTime, data) {
-    if (!data) {
-      document.getElementById(idPrice).textContent = 'Error';
-      document.getElementById(idChange).textContent = '--';
-      return;
-    }
-    document.getElementById(idPrice).textContent = formatPrice(data.price);
-    const sign = data.change >= 0 ? '+' : '';
-    const cls = data.change >= 0 ? 'text-accent dark:text-green-400' : 'text-red-500 dark:text-red-400';
-    const el = document.getElementById(idChange);
-    el.textContent = sign + data.change.toFixed(2) + ' (' + sign + data.changePct.toFixed(2) + '%)';
-    el.className = 'text-xs font-bold mt-0.5 ' + cls;
-    document.getElementById(idTime).textContent = 'Updated: ' + data.time.toLocaleTimeString('en-US', {hour:'2-digit',minute:'2-digit'});
-  }
-  async function refreshIndices() {
-    const [spx, ndx] = await Promise.all([
-      fetchYahooIndex('%5EGSPC'),
-      fetchYahooIndex('%5EIXIC')
-    ]);
-    updateWidget('spx-price', 'spx-change', 'spx-time', spx);
-    updateWidget('ndx-price', 'ndx-change', 'ndx-time', ndx);
-  }
-  refreshIndices();
-  setInterval(refreshIndices, 60000);
-})();
+(function(){const B='https://query1.finance.yahoo.com/v8/finance/chart/';async function F(s){try{const r=await fetch(B+s+'?interval=1d&range=2d'),d=await r.json(),m=d.chart.result[0].meta,p=m.regularMarketPrice,c=m.previousClose||m.chartPreviousClose,h=p-c;return{price:p,change:h,changePct:(h/c)*100,time:new Date(m.regularMarketTime*1e3)}}catch(e){return null}}function P(p){return p>=1e3?p.toLocaleString('en-US',{maximumFractionDigits:0}):p.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2})}function U(iP,iC,iT,d){if(!d){document.getElementById(iP).textContent='Error';return}document.getElementById(iP).textContent=P(d.price);const s=d.change>=0?'+':'',c=d.change>=0?'text-accent dark:text-green-400':'text-red-500 dark:text-red-400',el=document.getElementById(iC);el.textContent=s+d.change.toFixed(2)+' ('+s+d.changePct.toFixed(2)+'%)';el.className='text-sm font-bold mt-0.5 '+c;document.getElementById(iT).textContent='Updated: '+d.time.toLocaleTimeString('en-US',{hour:'2-digit',minute:'2-digit'})}async function R(){const[a,b]=await Promise.all([F('%5EGSPC'),F('%5EIXIC')]);U('spx-price','spx-change','spx-time',a);U('ndx-price','ndx-change','ndx-time',b)}R();setInterval(R,6e4)})();
 </script>
 
 <!-- ════════════ JS: Fear & Greed Index ════════════ -->
 <script>
-(function() {
-  const FNG_API = 'https://api.alternative.me/fng/?limit=1';
-  const classifications = {
-    'Extreme Fear': { color: '#e11d48', range: [0, 25] },
-    'Fear': { color: '#f97316', range: [25, 45] },
-    'Neutral': { color: '#eab308', range: [45, 55] },
-    'Greed': { color: '#84cc16', range: [55, 75] },
-    'Extreme Greed': { color: '#22c55e', range: [75, 100] }
-  };
-  const circumference = 2 * Math.PI * 42;
-  async function fetchFNG() {
-    try {
-      const resp = await fetch(FNG_API);
-      const data = await resp.json();
-      const entry = data.data[0];
-      return { value: parseInt(entry.value), classification: entry.value_classification, timestamp: new Date(parseInt(entry.timestamp) * 1000) };
-    } catch(e) { console.error('FNG fetch error:', e); return null; }
-  }
-  function updateFNG(data) {
-    const gaugeFill = document.getElementById('fng-gauge-fill');
-    const valueEl = document.getElementById('fng-value');
-    const classEl = document.getElementById('fng-classification');
-    const textEl = document.getElementById('fng-text');
-    const timeEl = document.getElementById('fng-timestamp');
-    const meterFill = document.getElementById('fng-meter-fill');
-    if (!data) {
-      if (valueEl) valueEl.textContent = 'Error';
-      if (classEl) classEl.textContent = 'API Error';
-      return;
-    }
-    const pct = data.value / 100;
-    const offset = circumference * (1 - pct);
-    const info = classifications[data.classification] || classifications['Neutral'];
-    if (gaugeFill) {
-      gaugeFill.setAttribute('stroke-dasharray', circumference);
-      gaugeFill.setAttribute('stroke-dashoffset', offset);
-      gaugeFill.setAttribute('stroke', info.color);
-    }
-    if (valueEl) { valueEl.textContent = data.value; valueEl.style.color = info.color; }
-    if (classEl) { classEl.textContent = data.classification; classEl.style.color = info.color; }
-    if (textEl) textEl.textContent = 'Crypto Fear & Greed Index \u2014 value out of 100';
-    if (meterFill) { meterFill.style.width = data.value + '%'; meterFill.style.background = info.color; }
-    if (timeEl) {
-      timeEl.textContent = 'Updated: ' + data.timestamp.toLocaleDateString('en-US', { month:'short', day:'numeric', hour:'2-digit', minute:'2-digit' });
-    }
-  }
-  fetchFNG().then(updateFNG);
-  setInterval(() => fetchFNG().then(updateFNG), 15 * 60 * 1000);
-})();
+(function(){const A='https://api.alternative.me/fng/?limit=1',K={'Extreme Fear':{color:'#e11d48'},Fear:{color:'#f97316'},Neutral:{color:'#eab308'},Greed:{color:'#84cc16'},'Extreme Greed':{color:'#22c55e'}},C=2*Math.PI*42;async function F(){try{const r=await fetch(A),d=await r.json(),e=d.data[0];return{value:parseInt(e.value),classification:e.value_classification,timestamp:new Date(parseInt(e.timestamp)*1e3)}}catch(e){return null}}function U(d){const g=document.getElementById('fng-gauge-fill'),v=document.getElementById('fng-value'),cl=document.getElementById('fng-classification'),t=document.getElementById('fng-timestamp'),m=document.getElementById('fng-meter-fill');if(!d){if(v)v.textContent='Error';return}const p=d.value/100,o=C*(1-p),i=K[d.classification]||K['Neutral'];if(g){g.setAttribute('stroke-dasharray',C);g.setAttribute('stroke-dashoffset',o);g.setAttribute('stroke',i.color)}if(v){v.textContent=d.value;v.style.color=i.color}if(cl){cl.textContent=d.classification;cl.style.color=i.color}if(m){m.style.width=d.value+'%';m.style.background=i.color}if(t)t.textContent='Updated: '+d.timestamp.toLocaleDateString('en-US',{month:'short',day:'numeric',hour:'2-digit',minute:'2-digit'})}F().then(U);setInterval(()=>F().then(U),9e5)})();
 </script>
 </body>
 </html>
