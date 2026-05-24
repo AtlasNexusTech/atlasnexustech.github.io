@@ -3,7 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="icon" type="image/png" href="/favicon.png">
+<link rel="shortcut icon" href="/favicon.ico">
 <title>Markets Dashboard — Atlas Nexus</title>
 <link rel="canonical" href="https://atlasnexus.tech/markets-dashboard/">
 <meta name="description" content="Live multi-asset market intelligence cockpit — crypto, stocks, ETFs, indices, forex, commodities. Hawkeye V4 scanner, TradingView widgets, Fear & Greed Index.">
@@ -159,9 +160,9 @@ tailwind.config = {
 <!-- ════════════ NAV ════════════ -->
 <nav class="sticky top-0 z-30 bg-white/80 dark:bg-dark-card/80 backdrop-blur-xl border-b border-border dark:border-dark-border">
   <div class="max-w-6xl mx-auto px-4 sm:px-6 flex items-center justify-between h-16">
-    <a href="/" class="flex items-center gap-2.5 font-display font-bold text-lg text-foreground dark:text-dark-foreground no-underline">
-      <svg class="w-7 h-7" viewBox="0 0 32 32" fill="none"><defs><linearGradient id="logo-grad" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#7C3AED"/><stop offset="100%" stop-color="#6366F1"/></linearGradient></defs><circle cx="16" cy="16" r="14" fill="url(#logo-grad)" opacity=".15"/><path d="M10 22V10l6 8 6-8v12" stroke="url(#logo-grad)" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      <span>Atlas Nexus</span>
+    <a href="/" class="flex items-center gap-3" aria-label="Atlas Nexus home">
+      <img src="/logo.png" alt="Atlas Nexus" class="w-9 h-9 rounded-lg shadow-lg shadow-blue-500/20">
+      <span class="font-display font-bold text-xl text-foreground dark:text-dark-foreground tracking-tight">Atlas Nexus</span>
     </a>
     <div class="flex items-center gap-1 sm:gap-3 text-sm font-semibold">
       <a href="#scanner" class="text-slate-600 dark:text-dark-dim hover:text-primary dark:hover:text-white px-2 sm:px-3 py-1.5 rounded-full transition-colors">Scanner</a>
@@ -327,7 +328,7 @@ tailwind.config = {
 
   <div class="legend mt-4">
     <span>0-39 Weak</span><span>40-59 Watch</span><span>60-74 Active</span><span>75-89 Strong</span><span>90-100 Extreme</span>
-    <span class="!bg-amber-100 dark:!bg-amber-500/10 !text-amber-800 dark:!text-amber-300 !border-amber-200 dark:!border-amber-500/20">Data refreshed periodically</span>
+    <span class="!bg-amber-100 dark:!bg-amber-500/10 !text-amber-800 dark:!text-amber-300 !border-amber-200 dark:!border-amber-500/20" id="data-timestamp">Loading data...</span>
   </div>
 </section>
 
@@ -472,7 +473,7 @@ tailwind.config = {
 <!-- ════════════ Antigravity Canvas JS ════════════ -->
 <script>
 (function(){
-  const c=document.getElementById("antigravity-canvas");
+const c=document.getElementById("antigravity-canvas");if(!c)return;console.log('Canvas initialized',c.width,c.height);
   if(!c)return;
   const ctx=c.getContext("2d");
   let W,H,P=[];
@@ -517,7 +518,7 @@ tailwind.config = {
 
 <!-- ════════════ JS: Yahoo Index Widgets ════════════ -->
 <script>
-(function(){const B='https://corsproxy.io/?';async function F(s){const url='https://query1.finance.yahoo.com/v8/finance/chart/'+s+'?interval=1d&range=2d';try{const r=await fetch(B+encodeURIComponent(url)),d=await r.json(),m=d.chart.result[0].meta,p=m.regularMarketPrice,c=m.previousClose||m.chartPreviousClose,h=p-c;return{price:p,change:h,changePct:(h/c)*100,time:new Date(m.regularMarketTime*1e3)}}catch(e){return null}}function P(p){return p>=1e3?p.toLocaleString('en-US',{maximumFractionDigits:0}):p.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2})}function U(iP,iC,iT,d){if(!d){document.getElementById(iP).textContent='Error';return}document.getElementById(iP).textContent=P(d.price);const s=d.change>=0?'+':'',c=d.change>=0?'text-accent dark:text-green-400':'text-red-500 dark:text-red-400',el=document.getElementById(iC);el.textContent=s+d.change.toFixed(2)+' ('+s+d.changePct.toFixed(2)+'%)';el.className='text-sm font-bold mt-0.5 '+c;document.getElementById(iT).textContent='Updated: '+d.time.toLocaleTimeString('en-US',{hour:'2-digit',minute:'2-digit'})}async function R(){const[a,b]=await Promise.all([F('%5EGSPC'),F('%5EIXIC')]);U('spx-price','spx-change','spx-time',a);U('ndx-price','ndx-change','ndx-time',b)}R();setInterval(R,6e4)})();
+(function(){const B='https://api.allorigins.win/raw?url=';async function F(s){const url='https://query1.finance.yahoo.com/v8/finance/chart/'+s+'?interval=1d&range=2d';try{const r=await fetch(B+encodeURIComponent(url)),d=await r.json(),m=d.chart.result[0].meta,p=m.regularMarketPrice,c=m.previousClose||m.chartPreviousClose,h=p-c;return{price:p,change:h,changePct:(h/c)*100,time:new Date(m.regularMarketTime*1e3)}}catch(e){return null}}function P(p){return p>=1e3?p.toLocaleString('en-US',{maximumFractionDigits:0}):p.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2})}function U(iP,iC,iT,d){if(!d){document.getElementById(iP).textContent='Error';return}document.getElementById(iP).textContent=P(d.price);const s=d.change>=0?'+':'',c=d.change>=0?'text-accent dark:text-green-400':'text-red-500 dark:text-red-400',el=document.getElementById(iC);el.textContent=s+d.change.toFixed(2)+' ('+s+d.changePct.toFixed(2)+'%)';el.className='text-sm font-bold mt-0.5 '+c;document.getElementById(iT).textContent='Updated: '+d.time.toLocaleTimeString('en-US',{hour:'2-digit',minute:'2-digit'})}async function R(){const[a,b]=await Promise.all([F('%5EGSPC'),F('%5EIXIC')]);U('spx-price','spx-change','spx-time',a);U('ndx-price','ndx-change','ndx-time',b)}R();setInterval(R,6e4)})();
 </script>
 
 <!-- ════════════ JS: Fear & Greed Index ════════════ -->
