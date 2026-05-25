@@ -52,10 +52,6 @@
   <url><loc>https://atlasnexus.tech/peintre-95/</loc><changefreq>monthly</changefreq><priority>0.4</priority></url>
   <url><loc>https://atlasnexus.tech/tony-zanirato/</loc><changefreq>monthly</changefreq><priority>0.4</priority></url>
 
-  <!-- OPEN SOURCE -->
-  <url><loc>https://atlasnexus.tech/atlas-desk/</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://atlasnexus.tech/atlas-desk/en/</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
-
   <!-- TOOLS -->
   <url><loc>https://atlasnexus.tech/markets-dashboard/</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://atlasnexus.tech/datatoolkit/</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>

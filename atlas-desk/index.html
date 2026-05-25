@@ -1,449 +1,387 @@
 <!DOCTYPE html>
-<html lang="fr" class="scroll-smooth">
+<html lang="fr">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="icon" type="image/png" href="/favicon.png">
-<link rel="shortcut icon" href="/favicon.ico">
-<link rel="apple-touch-icon" href="/apple-touch-icon.png">
-<title>Atlas Desk — Remote Desktop Open Source P2P</title>
-<meta name="description" content="Contrôle PC distant open source. P2P via WebRTC, chiffré, zéro installation côté client. Alternative à AnyDesk. Linux & Windows.">
+<meta name="description" content="Atlas Desk — Contrôle PC distant open source. P2P via WebRTC, chiffré, zéro installation côté client. Linux & Windows.">
+<meta name="keywords" content="contrôle PC distant, open source, WebRTC, P2P, AnyDesk alternative, remote desktop, Atlas Desk">
+<meta name="author" content="Atlas Nexus">
+<meta name="robots" content="index, follow">
 <link rel="canonical" href="https://atlasnexus.tech/atlas-desk/">
 
-<meta property="og:title" content="Atlas Desk — Remote Desktop Open Source P2P">
-<meta property="og:description" content="P2P, chiffré, zéro installation. Votre PC, partout. Gratuit. Open source.">
+<meta property="og:title" content="Atlas Desk — Contrôle PC distant open source">
+<meta property="og:description" content="P2P, chiffré, zéro installation. Votre PC, partout. Gratuit.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://atlasnexus.tech/atlas-desk/">
 <meta property="og:locale" content="fr_FR">
 
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Atlas Desk — Remote Desktop Open Source">
-<meta name="twitter:description" content="P2P, chiffré, zéro installation. Votre PC, partout.">
+<meta name="twitter:description" content="P2P, chiffré, zéro installation. Votre PC, partout. Gratuit.">
 
-<script src="https://cdn.tailwindcss.com"></script>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700;800;900&family=Nunito+Sans:ital,opsz,wght@0,6..12,200;0,6..12,300;0,6..12,400;0,6..12,500;0,6..12,600;0,6..12,700;0,6..12,800;1,6..12,200;1,6..12,300;1,6..12,400;1,6..12,500;1,6..12,600;1,6..12,700&display=swap" rel="stylesheet">
-<script>
-tailwind.config = {
-  darkMode: 'class',
-  theme: {
-    extend: {
-      fontFamily: {
-        display: ['Rubik', 'sans-serif'],
-        body: ['Nunito Sans', 'sans-serif'],
-      },
-      colors: {
-        primary: '#2563EB',
-        'primary-dark': '#1D4ED8',
-        secondary: '#3B82F6',
-        accent: '#059669',
-        'accent-dark': '#047857',
-        surface: '#F8FAFC',
-        muted: '#F1F5FD',
-        border: '#E4ECFC',
-        foreground: '#0F172A',
-        'dark-surface': '#0B1120',
-        'dark-card': '#111827',
-        'dark-elevated': '#1A2235',
-        'dark-border': '#1E293B',
-        'dark-muted': '#334155',
-        'dark-foreground': '#F1F5F9',
-        'dark-dim': '#94A3B8',
-      }
-    }
-  }
-}
-</script>
+<title>Atlas Desk — Contrôle PC distant open source</title>
 <style>
-  /* ── Core ── */
-  .gradient-text { background: linear-gradient(135deg, #2563EB 0%, #059669 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
-  .glow-word { position: relative; display: inline-block; background: linear-gradient(110deg, #0F172A 0%, #2563EB 32%, #7C3AED 56%, #059669 82%, #0F172A 100%); background-size: 240% 100%; -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; animation: agenticGlow 3.8s ease-in-out infinite; }
-  .dark .glow-word { background: linear-gradient(110deg, #F1F5F9 0%, #60A5FA 32%, #A78BFA 56%, #34D399 82%, #F1F5F9 100%); background-size: 240% 100%; -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
-  @keyframes agenticGlow { 0%,100% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } }
-  .section-title { font-size: clamp(1.8rem, 4.5vw, 3rem); font-weight: 800; letter-spacing: -0.03em; line-height: 1.1; position: relative; padding-bottom: 0.5rem; }
-  .section-title::after { content: ""; position: absolute; bottom: 0; left: 0; width: 3rem; height: 3px; border-radius: 2px; background: linear-gradient(90deg, #2563EB, #059669); }
-  .dark .section-title::after { background: linear-gradient(90deg, #60A5FA, #34D399); }
+  :root {
+    --bg: #f8fafc;
+    --fg: #0f172a;
+    --muted: #64748b;
+    --accent: #7c3aed;
+    --accent-glow: rgba(124, 58, 237, 0.15);
+    --card: #ffffff;
+    --border: #e2e8f0;
+    --green: #10b981;
+    --amber: #f59e0b;
+  }
 
-  /* ── Cards ── */
-  .highlight-card { position: relative; overflow: hidden; border-color: rgba(37,99,235,.22)!important; box-shadow: 0 18px 52px -34px rgba(37,99,235,.55); background: linear-gradient(145deg, #ffffff 0%, #f7fbff 52%, #eef8ff 100%); }
-  .highlight-card::before { content: ""; position: absolute; inset: -1px; background: radial-gradient(circle at 15% 0%, rgba(37,99,235,.10), transparent 38%), radial-gradient(circle at 95% 20%, rgba(5,150,105,.07), transparent 34%); pointer-events: none; }
-  .highlight-card > * { position: relative; }
-  .dark .highlight-card { background: linear-gradient(145deg, #111827 0%, #141e30 52%, #111c2e 100%); }
-  .card-hover { transition: all 250ms ease; }
-  .card-hover:hover { transform: translateY(-4px); box-shadow: 0 12px 32px -6px rgba(37,99,235,0.1); border-color: #2563EB; }
+  [data-theme="dark"] {
+    --bg: #0f172a;
+    --fg: #f1f5f9;
+    --muted: #94a3b8;
+    --accent: #a78bfa;
+    --accent-glow: rgba(167, 139, 250, 0.2);
+    --card: #1e293b;
+    --border: #334155;
+  }
 
-  .tag { display: inline-block; padding: 4px 12px; border-radius: 999px; font-size: 0.75rem; font-weight: 600; border: 1px solid rgba(37,99,235,.22); background: linear-gradient(135deg, rgba(37,99,235,.06), rgba(5,150,105,.04)); color: #1e40af; }
-  .dark .tag { border-color: rgba(96,165,250,.22); background: linear-gradient(135deg, rgba(37,99,235,.12), rgba(5,150,105,.08)); color: #93C5FD; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  
+  body {
+    font-family: -apple-system, 'Segoe UI', system-ui, sans-serif;
+    background: var(--bg);
+    color: var(--fg);
+    line-height: 1.6;
+    transition: background 0.3s, color 0.3s;
+  }
 
-  .code-block { background: #0F172A; color: #E2E8F0; border: 1px solid #1E293B; border-radius: 12px; padding: 20px 24px; font-family: 'SF Mono', 'Fira Code', 'Cascadia Code', monospace; font-size: 0.82rem; line-height: 1.7; overflow-x: auto; }
-  .dark .code-block { background: #020617; border-color: #1E293B; }
-  .code-block .kw { color: #7C3AED; }
-  .code-block .fn { color: #38BDF8; }
-  .code-block .cm { color: #64748B; }
+  .container { max-width: 800px; margin: 0 auto; padding: 60px 24px; }
 
-  .case-stat { font-size: clamp(2rem, 4vw, 3rem); font-weight: 900; background: linear-gradient(135deg, #2563EB 0%, #059669 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+  /* Theme toggle */
+  .theme-toggle {
+    position: fixed; top: 20px; right: 20px;
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 50%; width: 40px; height: 40px;
+    cursor: pointer; font-size: 18px; display: flex;
+    align-items: center; justify-content: center;
+    transition: transform 0.2s; z-index: 100;
+  }
+  .theme-toggle:hover { transform: scale(1.1); }
 
-  /* ── Scroll Reveal ── */
-  .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1), transform 0.6s cubic-bezier(0.22, 1, 0.36, 1); }
-  .reveal.visible { opacity: 1; transform: translateY(0); }
-  .reveal-delay-1 { transition-delay: 0.05s; }
-  .reveal-delay-2 { transition-delay: 0.12s; }
-  .reveal-delay-3 { transition-delay: 0.19s; }
+  /* Hero */
+  .hero { text-align: center; margin-bottom: 60px; position: relative; }
+  .hero-glow {
+    position: absolute; top: -60px; left: 50%; transform: translateX(-50%);
+    width: 300px; height: 300px; background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%);
+    pointer-events: none; z-index: 0;
+  }
+  .hero h1 { 
+    font-size: 42px; font-weight: 800; letter-spacing: -1px;
+    position: relative; z-index: 1; margin-bottom: 12px;
+  }
+  .hero h1 span { color: var(--accent); }
+  .hero .tagline {
+    font-size: 18px; color: var(--muted); margin-bottom: 32px;
+    position: relative; z-index: 1;
+  }
+  .hero .badge-row {
+    display: flex; gap: 10px; justify-content: center; flex-wrap: wrap;
+    margin-bottom: 32px; position: relative; z-index: 1;
+  }
+  .badge {
+    display: inline-block; padding: 4px 14px; border-radius: 20px;
+    font-size: 13px; font-weight: 600;
+    border: 1px solid var(--border); background: var(--card);
+  }
+  .badge.green { color: var(--green); border-color: var(--green); }
+  .badge.amber { color: var(--amber); border-color: var(--amber); }
 
-  .hero-case { font-size: clamp(2.5rem, 6vw, 4.5rem); font-weight: 900; letter-spacing: -0.04em; line-height: 1.08; }
+  .cta-group { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; position: relative; z-index: 1; }
+  .btn {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 12px 28px; border-radius: 8px; text-decoration: none;
+    font-weight: 600; font-size: 15px; transition: opacity 0.2s, transform 0.2s;
+  }
+  .btn:hover { opacity: 0.9; transform: translateY(-1px); }
+  .btn-primary { background: var(--accent); color: white; }
+  .btn-outline { 
+    background: transparent; color: var(--accent);
+    border: 1.5px solid var(--accent);
+  }
 
-  a, button, .card-hover { transition: all 200ms ease; }
-  *:focus-visible { outline: 2px solid #2563EB; outline-offset: 2px; border-radius: 4px; }
+  /* Stats */
+  .stats {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px;
+    margin-bottom: 60px;
+  }
+  .stat { text-align: center; padding: 20px 12px; }
+  .stat .num { font-size: 32px; font-weight: 800; color: var(--accent); }
+  .stat .label { font-size: 12px; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; margin-top: 4px; }
 
-  @media (prefers-reduced-motion: reduce) {
-    *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
-    .reveal { opacity: 1; transform: none; }
+  /* Sections */
+  .section { margin-bottom: 60px; }
+  .section h2 { font-size: 24px; margin-bottom: 12px; letter-spacing: -0.5px; }
+  .section .intro { color: var(--muted); font-size: 15px; margin-bottom: 28px; }
+
+  /* Feature cards */
+  .features {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
+  }
+  .feature-card {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 10px; padding: 20px; transition: border-color 0.2s, box-shadow 0.2s;
+  }
+  .feature-card:hover { border-color: var(--accent); box-shadow: 0 0 20px var(--accent-glow); }
+  .feature-card .icon { font-size: 24px; margin-bottom: 10px; }
+  .feature-card h3 { font-size: 15px; margin-bottom: 6px; }
+  .feature-card p { font-size: 13px; color: var(--muted); }
+
+  /* Architecture */
+  .arch-flow {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 12px; padding: 28px; margin-bottom: 28px;
+  }
+  .arch-steps {
+    display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px;
+  }
+  .arch-step { text-align: center; position: relative; }
+  .arch-step .step-num {
+    width: 40px; height: 40px; border-radius: 50%;
+    background: var(--accent); color: white; font-weight: 800;
+    font-size: 16px; display: flex; align-items: center; justify-content: center;
+    margin: 0 auto 12px;
+  }
+  .arch-step h4 { font-size: 14px; margin-bottom: 4px; }
+  .arch-step p { font-size: 12px; color: var(--muted); }
+
+  /* Code block */
+  .code-block {
+    background: #1e293b; color: #e2e8f0; border-radius: 10px;
+    padding: 20px 24px; font-family: 'SF Mono', 'Fira Code', monospace;
+    font-size: 13px; line-height: 1.7; overflow-x: auto;
+  }
+  .code-block .comment { color: #64748b; }
+  .code-block .cmd { color: #a78bfa; }
+  .code-block .flag { color: #f59e0b; }
+
+  /* Download cards */
+  .download-cards {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
+  }
+  .download-card {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 10px; padding: 24px; text-align: center;
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+  .download-card:hover { border-color: var(--accent); box-shadow: 0 0 20px var(--accent-glow); }
+  .download-card .os-icon { font-size: 32px; margin-bottom: 10px; }
+  .download-card h4 { font-size: 16px; margin-bottom: 4px; }
+  .download-card .version { font-size: 12px; color: var(--muted); margin-bottom: 16px; }
+  .download-card .size { font-size: 12px; color: var(--muted); }
+
+  /* CTA section */
+  .cta-bottom {
+    text-align: center; padding: 40px;
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 12px;
+  }
+  .cta-bottom h2 { margin-bottom: 8px; }
+  .cta-bottom p { color: var(--muted); font-size: 14px; margin-bottom: 24px; }
+
+  /* Footer */
+  .footer {
+    margin-top: 60px; padding-top: 24px;
+    border-top: 1px solid var(--border);
+    font-size: 13px; color: var(--muted); text-align: center;
+  }
+  .footer a { color: var(--accent); text-decoration: none; }
+
+  .divider { border: none; border-top: 1px solid var(--border); margin: 40px 0; }
+
+  @media (max-width: 600px) {
+    .hero h1 { font-size: 28px; }
+    .stats { grid-template-columns: 1fr 1fr; }
+    .features { grid-template-columns: 1fr; }
+    .arch-steps { grid-template-columns: 1fr; }
+    .download-cards { grid-template-columns: 1fr; }
   }
 </style>
 </head>
-<body class="bg-surface dark:bg-dark-surface text-foreground dark:text-dark-foreground font-body antialiased">
+<body>
 
-<!-- Nav -->
-<nav class="fixed top-0 w-full z-50 bg-surface/85 dark:bg-dark-surface/90 backdrop-blur-lg border-b border-border dark:border-dark-border">
-  <div class="max-w-6xl mx-auto px-6 h-[72px] flex items-center justify-between">
-    <a href="/" class="flex items-center gap-3 group" aria-label="Atlas Nexus accueil">
-      <img src="/logo.png" alt="Atlas Nexus" class="w-9 h-9 rounded-lg shadow-lg shadow-blue-500/20">
-      <span class="font-display font-bold text-xl text-foreground dark:text-dark-foreground tracking-tight">Atlas Nexus</span>
-    </a>
-    <div class="flex items-center gap-3">
-      <button id="theme-toggle" class="w-10 h-10 rounded-full border border-black/10 dark:border-white/10 bg-white/70 dark:bg-white/5 backdrop-blur-xl flex items-center justify-center hover:bg-white dark:hover:bg-white/10 transition-all shadow-sm shadow-black/5 dark:shadow-lg dark:shadow-black/20 text-slate-500 dark:text-slate-300" aria-label="Basculer mode sombre">
-        <svg class="w-4 h-4 rotate-0 scale-100 transition-transform duration-300 dark:-rotate-90 dark:scale-0" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
-        <svg class="absolute w-4 h-4 rotate-90 scale-0 transition-transform duration-300 dark:rotate-0 dark:scale-100" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
-      </button>
-      <a href="https://github.com/AtlasNexusTech/atlas-desk" class="cursor-pointer bg-primary text-white px-5 py-2.5 rounded-full text-sm font-semibold hover:bg-primary-dark transition-colors">⭐ GitHub</a>
+<button class="theme-toggle" onclick="toggleTheme()" aria-label="Basculer thème">🌙</button>
+
+<div class="container">
+
+  <!-- Hero -->
+  <div class="hero">
+    <div class="hero-glow"></div>
+    <h1>Atlas <span>Desk</span></h1>
+    <p class="tagline">Contrôle PC distant open source. P2P, chiffré, zéro installation.</p>
+    <div class="badge-row">
+      <span class="badge green">Open Source</span>
+      <span class="badge">MIT</span>
+      <span class="badge">WebRTC</span>
+      <span class="badge amber">P2P</span>
+    </div>
+    <div class="cta-group">
+      <a href="https://github.com/AtlasNexusTech/atlas-desk" class="btn btn-primary">⭐ Star on GitHub</a>
+      <a href="#download" class="btn btn-outline">📥 Télécharger</a>
     </div>
   </div>
-</nav>
 
-<!-- Hero -->
-<section class="pt-40 pb-16 md:pt-48 md:pb-20">
-  <div class="max-w-4xl mx-auto px-6 text-center">
-    <p class="text-accent font-semibold tracking-widest uppercase text-xs mb-4 reveal">Open Source — MIT</p>
-    <h1 class="hero-case mb-6 reveal reveal-delay-1">
-      <span class="glow-word">Atlas Desk</span>
-    </h1>
-    <p class="text-lg md:text-xl text-slate-600 dark:text-dark-dim max-w-2xl mx-auto leading-relaxed mb-8 reveal reveal-delay-2">
-      Remote desktop open source. P2P via WebRTC, chiffré bout-en-bout, zéro installation côté client.
-      Votre PC, partout. Gratuit.
-    </p>
-    <div class="flex flex-wrap gap-2 justify-center mb-8 reveal reveal-delay-2">
-      <span class="tag">WebRTC</span><span class="tag">P2P</span><span class="tag">Go</span><span class="tag">DTLS</span><span class="tag">Linux</span><span class="tag">Windows</span>
+  <!-- Stats -->
+  <div class="stats">
+    <div class="stat">
+      <div class="num">P2P</div>
+      <div class="label">Zero serveur</div>
     </div>
-    <div class="flex gap-3 justify-center reveal reveal-delay-3">
-      <a href="https://github.com/AtlasNexusTech/atlas-desk" class="inline-flex items-center gap-2 px-6 py-3 rounded-lg border border-border dark:border-dark-border bg-white dark:bg-dark-card text-foreground dark:text-dark-foreground font-semibold hover:border-primary dark:hover:border-blue-400 transition-colors">
-        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
-        Voir sur GitHub
-      </a>
-      <a href="#quickstart" class="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-primary text-white font-semibold hover:bg-primary-dark transition-colors shadow-lg shadow-blue-500/20">
-        <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
-        Quick Start
-      </a>
+    <div class="stat">
+      <div class="num">2</div>
+      <div class="label">Plateformes</div>
+    </div>
+    <div class="stat">
+      <div class="num">15 FPS</div>
+      <div class="label">Streaming</div>
+    </div>
+    <div class="stat">
+      <div class="num">MIT</div>
+      <div class="label">Licence</div>
     </div>
   </div>
-</section>
 
-<!-- Stats Bar -->
-<section class="py-16 bg-white dark:bg-dark-card border-y border-border dark:border-dark-border">
-  <div class="max-w-4xl mx-auto px-6">
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-      <div class="reveal">
-        <div class="case-stat">P2P</div>
-        <p class="text-xs text-slate-500 dark:text-dark-dim uppercase tracking-widest mt-2 font-semibold">Zéro serveur</p>
+  <!-- Features -->
+  <div class="section">
+    <h2>Ce qui rend Atlas Desk différent</h2>
+    <p class="intro">Pas de cloud propriétaire, pas de compte, pas de limite de temps. Du P2P pur sur WebRTC.</p>
+    <div class="features">
+      <div class="feature-card">
+        <div class="icon">🔐</div>
+        <h3>Chiffrement bout-en-bout</h3>
+        <p>WebRTC impose DTLS-SRTP. Même le signaling ne voit pas vos données.</p>
       </div>
-      <div class="reveal reveal-delay-1">
-        <div class="case-stat">2</div>
-        <p class="text-xs text-slate-500 dark:text-dark-dim uppercase tracking-widest mt-2 font-semibold">Plateformes</p>
+      <div class="feature-card">
+        <div class="icon">🖥️</div>
+        <h3>Client web zéro installation</h3>
+        <p>Un navigateur suffit pour contrôler un PC distant. Pas de .exe, pas de plugin.</p>
       </div>
-      <div class="reveal reveal-delay-2">
-        <div class="case-stat">15 FPS</div>
-        <p class="text-xs text-slate-500 dark:text-dark-dim uppercase tracking-widest mt-2 font-semibold">Streaming</p>
+      <div class="feature-card">
+        <div class="icon">⚡</div>
+        <h3>Agent léger en Go</h3>
+        <p>Binaire statique de ~15 MB. Démarre en <1s. 15 FPS en streaming.</p>
       </div>
-      <div class="reveal reveal-delay-3">
-        <div class="case-stat">Go</div>
-        <p class="text-xs text-slate-500 dark:text-dark-dim uppercase tracking-widest mt-2 font-semibold">Agent léger</p>
+      <div class="feature-card">
+        <div class="icon">📋</div>
+        <h3>Clipboard synchronisé</h3>
+        <p>Copiez sur votre PC, collez sur le remote. Fonctionne dans les deux sens.</p>
       </div>
-    </div>
-  </div>
-</section>
-
-<!-- Features -->
-<section class="py-20 md:py-28 bg-surface dark:bg-dark-surface">
-  <div class="max-w-6xl mx-auto px-6">
-    <div class="reveal text-center mb-16">
-      <p class="text-accent font-semibold tracking-widest uppercase text-xs mb-3">Fonctionnalités</p>
-      <h2 class="section-title text-foreground dark:text-dark-foreground mb-5 font-display max-w-2xl mx-auto">Ce qui rend Atlas Desk différent</h2>
-      <p class="text-slate-600 dark:text-dark-dim max-w-xl mx-auto">Pas de cloud propriétaire, pas de compte, pas de limite de temps. Du P2P pur sur WebRTC.</p>
-    </div>
-    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-      <div class="reveal highlight-card bg-white dark:bg-dark-card rounded-2xl p-6 border border-border dark:border-dark-border">
-        <div class="w-12 h-12 bg-blue-100 dark:bg-blue-900/30 rounded-xl flex items-center justify-center mb-4">
-          <svg class="w-6 h-6 text-primary dark:text-blue-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-        </div>
-        <h3 class="font-bold text-lg mb-2 font-display text-foreground dark:text-dark-foreground">Chiffrement bout-en-bout</h3>
-        <p class="text-slate-600 dark:text-dark-dim text-sm">WebRTC impose DTLS-SRTP. Même le signaling ne voit pas vos données.</p>
+      <div class="feature-card">
+        <div class="icon">📁</div>
+        <h3>Transfert de fichiers</h3>
+        <p>Envoyez et recevez des fichiers directement via le canal P2P. Sans intermédiaire.</p>
       </div>
-      <div class="reveal reveal-delay-1 highlight-card bg-white dark:bg-dark-card rounded-2xl p-6 border border-border dark:border-dark-border">
-        <div class="w-12 h-12 bg-green-100 dark:bg-green-900/30 rounded-xl flex items-center justify-center mb-4">
-          <svg class="w-6 h-6 text-accent dark:text-green-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
-        </div>
-        <h3 class="font-bold text-lg mb-2 font-display text-foreground dark:text-dark-foreground">Client web zéro installation</h3>
-        <p class="text-slate-600 dark:text-dark-dim text-sm">Un navigateur suffit pour contrôler un PC distant. Pas de .exe, pas de plugin.</p>
-      </div>
-      <div class="reveal reveal-delay-2 highlight-card bg-white dark:bg-dark-card rounded-2xl p-6 border border-border dark:border-dark-border">
-        <div class="w-12 h-12 bg-purple-100 dark:bg-purple-900/30 rounded-xl flex items-center justify-center mb-4">
-          <svg class="w-6 h-6 text-purple-600 dark:text-purple-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
-        </div>
-        <h3 class="font-bold text-lg mb-2 font-display text-foreground dark:text-dark-foreground">Agent léger en Go</h3>
-        <p class="text-slate-600 dark:text-dark-dim text-sm">Binaire statique de ~15 MB. Démarre en moins d'une seconde. 15 FPS en streaming.</p>
-      </div>
-      <div class="reveal highlight-card bg-white dark:bg-dark-card rounded-2xl p-6 border border-border dark:border-dark-border">
-        <div class="w-12 h-12 bg-amber-100 dark:bg-amber-900/30 rounded-xl flex items-center justify-center mb-4">
-          <svg class="w-6 h-6 text-amber-600 dark:text-amber-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
-        </div>
-        <h3 class="font-bold text-lg mb-2 font-display text-foreground dark:text-dark-foreground">Clipboard synchronisé</h3>
-        <p class="text-slate-600 dark:text-dark-dim text-sm">Copiez sur votre PC, collez sur le remote. Fonctionne dans les deux sens.</p>
-      </div>
-      <div class="reveal reveal-delay-1 highlight-card bg-white dark:bg-dark-card rounded-2xl p-6 border border-border dark:border-dark-border">
-        <div class="w-12 h-12 bg-orange-100 dark:bg-orange-900/30 rounded-xl flex items-center justify-center mb-4">
-          <svg class="w-6 h-6 text-orange-600 dark:text-orange-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
-        </div>
-        <h3 class="font-bold text-lg mb-2 font-display text-foreground dark:text-dark-foreground">Transfert de fichiers</h3>
-        <p class="text-slate-600 dark:text-dark-dim text-sm">Envoyez et recevez des fichiers directement via le canal P2P. Sans intermédiaire.</p>
-      </div>
-      <div class="reveal reveal-delay-2 highlight-card bg-white dark:bg-dark-card rounded-2xl p-6 border border-border dark:border-dark-border">
-        <div class="w-12 h-12 bg-teal-100 dark:bg-teal-900/30 rounded-xl flex items-center justify-center mb-4">
-          <svg class="w-6 h-6 text-teal-600 dark:text-teal-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
-        </div>
-        <h3 class="font-bold text-lg mb-2 font-display text-foreground dark:text-dark-foreground">Auth par mot de passe</h3>
-        <p class="text-slate-600 dark:text-dark-dim text-sm">Challenge SHA-256. Votre PC, votre mot de passe. Pas de compte cloud.</p>
+      <div class="feature-card">
+        <div class="icon">🔑</div>
+        <h3>Auth par mot de passe</h3>
+        <p>Challenge SHA-256. Votre PC, votre mot de passe. Pas de compte cloud.</p>
       </div>
     </div>
   </div>
-</section>
 
-<!-- Architecture -->
-<section class="py-20 md:py-28 bg-white dark:bg-dark-card">
-  <div class="max-w-6xl mx-auto px-6">
-    <div class="reveal text-center mb-16">
-      <p class="text-purple-500 font-semibold tracking-widest uppercase text-xs mb-3">Architecture</p>
-      <h2 class="section-title text-foreground dark:text-dark-foreground mb-5 font-display">Comment ça marche</h2>
-      <p class="text-slate-600 dark:text-dark-dim max-w-xl mx-auto">Trois composants. Aucun abonnement. Le signaling est auto-hébergeable.</p>
+  <hr class="divider">
+
+  <!-- Architecture -->
+  <div class="section">
+    <h2>Comment ça marche</h2>
+    <p class="intro">Trois composants. Aucun abonnement. Le signaling est auto-hébergeable.</p>
+    <div class="arch-flow">
+      <div class="arch-steps">
+        <div class="arch-step">
+          <div class="step-num">1</div>
+          <h4>Agent sur votre PC</h4>
+          <p>Binaire Go. Capture l'écran, stream via WebRTC.</p>
+        </div>
+        <div class="arch-step">
+          <div class="step-num">2</div>
+          <h4>Signaling server</h4>
+          <p>Échange les offres SDP. Ne voit jamais vos données.</p>
+        </div>
+        <div class="arch-step">
+          <div class="step-num">3</div>
+          <h4>Client web</h4>
+          <p>Votre navigateur. Contrôle clavier/souris en direct.</p>
+        </div>
+      </div>
     </div>
-    <div class="grid md:grid-cols-3 gap-10 max-w-4xl mx-auto">
-      <div class="reveal text-center">
-        <div class="w-16 h-16 bg-primary text-white rounded-2xl flex items-center justify-center text-2xl font-black mx-auto mb-5">1</div>
-        <h3 class="font-bold text-xl mb-3 font-display text-foreground dark:text-dark-foreground">Agent sur votre PC</h3>
-        <p class="text-slate-600 dark:text-dark-dim text-sm leading-relaxed">Binaire Go. Capture l'écran, stream via WebRTC. ID 9 chiffres unique.</p>
+    <div class="code-block">
+<span class="comment"># Démarrez l'agent sur le PC à contrôler</span>
+<span class="cmd">$</span> ./atlas-desk-agent <span class="flag">-password</span> monmotdepasse
+
+<span class="comment"># Ouvrez le client web et connectez-vous avec l'ID 9 chiffres</span>
+<span class="cmd">→</span> https://atlasnexus.tech/atlas-desk/client
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- Download -->
+  <div class="section" id="download">
+    <h2>Télécharger</h2>
+    <p class="intro">Binaires statiques. Pas d'installateur, pas de dépendances.</p>
+    <div class="download-cards">
+      <div class="download-card">
+        <div class="os-icon">🐧</div>
+        <h4>Linux</h4>
+        <div class="version">v0.1.0</div>
+        <div class="size">~15 MB</div>
+        <br>
+        <a href="https://github.com/AtlasNexusTech/atlas-desk/releases" class="btn btn-primary">Télécharger .deb</a>
       </div>
-      <div class="reveal reveal-delay-1 text-center">
-        <div class="w-16 h-16 bg-primary text-white rounded-2xl flex items-center justify-center text-2xl font-black mx-auto mb-5">2</div>
-        <h3 class="font-bold text-xl mb-3 font-display text-foreground dark:text-dark-foreground">Signaling server</h3>
-        <p class="text-slate-600 dark:text-dark-dim text-sm leading-relaxed">Échange les offres SDP/ICE. Ne voit jamais vos données. Go + WebSocket.</p>
-      </div>
-      <div class="reveal reveal-delay-2 text-center">
-        <div class="w-16 h-16 bg-accent text-white rounded-2xl flex items-center justify-center text-2xl font-black mx-auto mb-5">3</div>
-        <h3 class="font-bold text-xl mb-3 font-display text-foreground dark:text-dark-foreground">Client web</h3>
-        <p class="text-slate-600 dark:text-dark-dim text-sm leading-relaxed">Votre navigateur. Contrôle clavier/souris en direct. Zéro installation.</p>
+      <div class="download-card">
+        <div class="os-icon">🪟</div>
+        <h4>Windows</h4>
+        <div class="version">v0.1.0</div>
+        <div class="size">~16 MB</div>
+        <br>
+        <a href="https://github.com/AtlasNexusTech/atlas-desk/releases" class="btn btn-primary">Télécharger .exe</a>
       </div>
     </div>
   </div>
-</section>
 
-<!-- Architecture Diagram -->
-<section class="py-12 md:py-16 bg-surface dark:bg-dark-surface">
-  <div class="max-w-3xl mx-auto px-6">
-    <div class="highlight-card bg-white dark:bg-dark-card rounded-2xl p-8 border border-border dark:border-dark-border reveal">
-      <div class="flex flex-col md:flex-row items-center justify-center gap-4 md:gap-8 text-center">
-        <div class="bg-blue-50 dark:bg-blue-900/20 rounded-xl px-6 py-4 border border-blue-200 dark:border-blue-800">
-          <p class="font-bold text-primary dark:text-blue-400 font-display">Agent (Go)</p>
-          <p class="text-xs text-slate-500 dark:text-dark-dim mt-1">Linux / Windows</p>
-        </div>
-        <div class="flex flex-col items-center gap-1">
-          <span class="text-2xl">⟷</span>
-          <span class="text-xs font-bold text-accent dark:text-green-400">WebRTC P2P</span>
-          <span class="text-xs text-slate-400 dark:text-dark-dim">screen · input · files</span>
-        </div>
-        <div class="bg-green-50 dark:bg-green-900/20 rounded-xl px-6 py-4 border border-green-200 dark:border-green-800">
-          <p class="font-bold text-accent dark:text-green-400 font-display">Client (Web)</p>
-          <p class="text-xs text-slate-500 dark:text-dark-dim mt-1">Zéro installation</p>
-        </div>
-      </div>
-      <div class="flex justify-center mt-6">
-        <div class="bg-purple-50 dark:bg-purple-900/20 rounded-xl px-6 py-3 border border-purple-200 dark:border-purple-800 text-center">
-          <p class="font-bold text-purple-600 dark:text-purple-400 font-display text-sm">Signaling (Go + WS)</p>
-          <p class="text-xs text-slate-500 dark:text-dark-dim mt-1">Relais SDP/ICE uniquement</p>
-        </div>
-      </div>
+  <hr class="divider">
+
+  <!-- CTA -->
+  <div class="cta-bottom">
+    <h2>Open source, gratuit, transparent</h2>
+    <p>Pas de compte. Pas de limite de temps. Pas de télémétrie. Du code que vous pouvez lire.</p>
+    <div class="cta-group">
+      <a href="https://github.com/AtlasNexusTech/atlas-desk" class="btn btn-primary">⭐ Star on GitHub</a>
+      <a href="https://github.com/AtlasNexusTech/atlas-desk/fork" class="btn btn-outline">🔱 Fork</a>
     </div>
   </div>
-</section>
 
-<!-- Quick Start -->
-<section id="quickstart" class="py-20 md:py-28 bg-white dark:bg-dark-card">
-  <div class="max-w-4xl mx-auto px-6">
-    <div class="reveal text-center mb-16">
-      <p class="text-accent font-semibold tracking-widest uppercase text-xs mb-3">Démarrage</p>
-      <h2 class="section-title text-foreground dark:text-dark-foreground mb-5 font-display">Quick Start</h2>
-      <p class="text-slate-600 dark:text-dark-dim max-w-xl mx-auto">Trois commandes pour prendre le contrôle de votre PC à distance.</p>
-    </div>
-    <div class="space-y-8">
-      <div class="reveal">
-        <h3 class="font-bold text-lg mb-3 font-display text-foreground dark:text-dark-foreground flex items-center gap-2">
-          <span class="w-8 h-8 bg-primary text-white rounded-lg flex items-center justify-center text-sm font-black">1</span>
-          Signaling Server
-        </h3>
-        <div class="code-block"><span class="cm"># Lancez le serveur de signaling (Go)</span>
-<span class="kw">cd</span> signaling
-<span class="kw">go run</span> main.go <span class="fn">-addr</span> :8800</div>
-      </div>
-      <div class="reveal reveal-delay-1">
-        <h3 class="font-bold text-lg mb-3 font-display text-foreground dark:text-dark-foreground flex items-center gap-2">
-          <span class="w-8 h-8 bg-primary text-white rounded-lg flex items-center justify-center text-sm font-black">2</span>
-          Agent (sur le PC distant)
-        </h3>
-        <div class="code-block"><span class="cm"># Démarrez l'agent sur le PC à contrôler</span>
-<span class="kw">cd</span> agent
-<span class="kw">go run</span> . <span class="fn">-signal</span> ws://YOUR_SIGNAL_IP:8800/ws
-<span class="cm"># Affiche un ID 9 chiffres unique</span></div>
-      </div>
-      <div class="reveal reveal-delay-2">
-        <h3 class="font-bold text-lg mb-3 font-display text-foreground dark:text-dark-foreground flex items-center gap-2">
-          <span class="w-8 h-8 bg-accent text-white rounded-lg flex items-center justify-center text-sm font-black">3</span>
-          Client (votre navigateur)
-        </h3>
-        <div class="code-block"><span class="cm"># Ouvrez le client web et entrez l'ID 9 chiffres</span>
-<span class="kw">→</span> https://atlasnexus.tech/atlas-desk/client</div>
-      </div>
-    </div>
+  <div class="footer">
+    <a href="https://atlasnexus.tech">Atlas Nexus</a> · 
+    <a href="https://github.com/AtlasNexusTech">GitHub</a> · 
+    Licence MIT
   </div>
-</section>
 
-<!-- Features Checklist -->
-<section class="py-20 md:py-28 bg-muted dark:bg-dark-elevated">
-  <div class="max-w-4xl mx-auto px-6">
-    <div class="reveal text-center mb-16">
-      <p class="text-accent font-semibold tracking-widest uppercase text-xs mb-3">Roadmap</p>
-      <h2 class="section-title text-foreground dark:text-dark-foreground mb-5 font-display">Ce qui est déjà là</h2>
-    </div>
-    <div class="grid sm:grid-cols-2 gap-4 max-w-3xl mx-auto">
-      <div class="reveal flex items-start gap-3 bg-white dark:bg-dark-card rounded-xl p-4 border border-border dark:border-dark-border">
-        <span class="text-accent dark:text-green-400 font-bold shrink-0 mt-0.5">✓</span>
-        <div>
-          <p class="font-semibold text-foreground dark:text-dark-foreground text-sm">P2P WebRTC (STUN/TURN)</p>
-          <p class="text-slate-500 dark:text-dark-dim text-xs">Connexion directe, TURN pour les NAT restrictifs</p>
-        </div>
-      </div>
-      <div class="reveal flex items-start gap-3 bg-white dark:bg-dark-card rounded-xl p-4 border border-border dark:border-dark-border">
-        <span class="text-accent dark:text-green-400 font-bold shrink-0 mt-0.5">✓</span>
-        <div>
-          <p class="font-semibold text-foreground dark:text-dark-foreground text-sm">Diff encoding (v0.7)</p>
-          <p class="text-slate-500 dark:text-dark-dim text-xs">Blocs 32×32, 50-80% d'économie de bande passante</p>
-        </div>
-      </div>
-      <div class="reveal reveal-delay-1 flex items-start gap-3 bg-white dark:bg-dark-card rounded-xl p-4 border border-border dark:border-dark-border">
-        <span class="text-accent dark:text-green-400 font-bold shrink-0 mt-0.5">✓</span>
-        <div>
-          <p class="font-semibold text-foreground dark:text-dark-foreground text-sm">IDs numériques 9 chiffres</p>
-          <p class="text-slate-500 dark:text-dark-dim text-xs">Style AnyDesk + alias personnalisables</p>
-        </div>
-      </div>
-      <div class="reveal reveal-delay-1 flex items-start gap-3 bg-white dark:bg-dark-card rounded-xl p-4 border border-border dark:border-dark-border">
-        <span class="text-accent dark:text-green-400 font-bold shrink-0 mt-0.5">✓</span>
-        <div>
-          <p class="font-semibold text-foreground dark:text-dark-foreground text-sm">Password + clipboard sync</p>
-          <p class="text-slate-500 dark:text-dark-dim text-xs">Auth SHA-256, copier-coller bidirectionnel</p>
-        </div>
-      </div>
-      <div class="reveal reveal-delay-2 flex items-start gap-3 bg-white dark:bg-dark-card rounded-xl p-4 border border-border dark:border-dark-border">
-        <span class="text-accent dark:text-green-400 font-bold shrink-0 mt-0.5">✓</span>
-        <div>
-          <p class="font-semibold text-foreground dark:text-dark-foreground text-sm">Transfert de fichiers</p>
-          <p class="text-slate-500 dark:text-dark-dim text-xs">Bidirectionnel via le canal P2P</p>
-        </div>
-      </div>
-      <div class="reveal reveal-delay-2 flex items-start gap-3 bg-white dark:bg-dark-card rounded-xl p-4 border border-border dark:border-dark-border">
-        <span class="text-accent dark:text-green-400 font-bold shrink-0 mt-0.5">✓</span>
-        <div>
-          <p class="font-semibold text-foreground dark:text-dark-foreground text-sm">Auto-start Linux (systemd)</p>
-          <p class="text-slate-500 dark:text-dark-dim text-xs">Service utilisateur, démarrage automatique</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+</div>
 
-<!-- CTA -->
-<section class="py-20 md:py-28 bg-surface dark:bg-dark-surface">
-  <div class="max-w-3xl mx-auto px-6 text-center">
-    <div class="reveal">
-      <h2 class="section-title text-foreground dark:text-dark-foreground mb-5 font-display">Open source, gratuit, transparent</h2>
-      <p class="text-slate-600 dark:text-dark-dim text-lg mb-8 max-w-xl mx-auto">
-        Pas de compte. Pas de limite de temps. Pas de télémétrie. Du code que vous pouvez lire.
-      </p>
-      <div class="flex gap-4 justify-center flex-wrap">
-        <a href="https://github.com/AtlasNexusTech/atlas-desk" class="inline-flex items-center gap-2 px-7 py-3.5 rounded-full bg-primary text-white font-semibold hover:bg-primary-dark transition-colors shadow-lg shadow-blue-500/20 font-display">
-          <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
-          ⭐ Star on GitHub
-        </a>
-        <a href="https://github.com/AtlasNexusTech/atlas-desk/fork" class="inline-flex items-center gap-2 px-7 py-3.5 rounded-full border-2 border-border dark:border-dark-border text-foreground dark:text-dark-foreground font-semibold hover:border-primary dark:hover:border-blue-400 transition-colors font-display">
-          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M6 6h12M6 12h12M6 18h6"/></svg>
-          Fork
-        </a>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- Footer -->
-<footer class="py-10 bg-white dark:bg-dark-card border-t border-border dark:border-dark-border">
-  <div class="max-w-6xl mx-auto px-6 text-center text-sm text-slate-400 dark:text-dark-dim">
-    <p>&copy; 2026 Atlas Nexus — Alexandre Lasly · <a href="/mentions-legales/" class="hover:text-primary dark:hover:text-blue-400">Mentions légales</a></p>
-    <p class="text-xs mt-2"><a href="https://atlasnexus.tech" class="hover:text-primary dark:hover:text-blue-400">← Retour au site principal</a></p>
-  </div>
-</footer>
-
-<!-- Reveal Animation -->
 <script>
-(function() {
-  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-    document.querySelectorAll('.reveal').forEach(el => el.classList.add('visible'));
-    return;
-  }
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-        observer.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
-  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-})();
-</script>
-
-<!-- Dark mode toggle -->
-<script>
-(function() {
+function toggleTheme() {
   const html = document.documentElement;
-  const toggle = document.getElementById('theme-toggle');
-  function apply(isDark) {
-    if (isDark) html.classList.add('dark');
-    else html.classList.remove('dark');
+  const current = html.getAttribute('data-theme');
+  const next = current === 'dark' ? '' : 'dark';
+  html.setAttribute('data-theme', next);
+  localStorage.setItem('theme', next);
+  document.querySelector('.theme-toggle').textContent = next === 'dark' ? '☀️' : '🌙';
+}
+// Init
+(function() {
+  const saved = localStorage.getItem('theme');
+  if (saved === 'dark') {
+    document.documentElement.setAttribute('data-theme', 'dark');
+    document.querySelector('.theme-toggle').textContent = '☀️';
   }
-  const saved = localStorage.getItem('atlasnexus.theme');
-  if (saved) apply(saved === 'dark');
-  else apply(window.matchMedia('(prefers-color-scheme: dark)').matches);
-  toggle.addEventListener('click', () => {
-    const next = !html.classList.contains('dark');
-    apply(next);
-    localStorage.setItem('atlasnexus.theme', next ? 'dark' : 'light');
-  });
 })();
 </script>
 
