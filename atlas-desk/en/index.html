@@ -1,24 +1,24 @@
 <!DOCTYPE html>
-<html lang="fr" class="scroll-smooth">
+<html lang="en" class="scroll-smooth">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="icon" type="image/png" href="/favicon.png">
 <link rel="shortcut icon" href="/favicon.ico">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
-<title>Atlas Desk — Remote Desktop Open Source P2P</title>
-<meta name="description" content="Contrôle PC distant open source. P2P via WebRTC, chiffré, zéro installation côté client. Alternative à AnyDesk. Linux & Windows.">
-<link rel="canonical" href="https://atlasnexus.tech/atlas-desk/">
+<title>Atlas Desk — Open-Source P2P Remote Desktop</title>
+<meta name="description" content="Open-source remote desktop. P2P via WebRTC, encrypted, zero client installation. AnyDesk alternative. Linux & Windows.">
+<link rel="canonical" href="https://atlasnexus.tech/atlas-desk/en/">
 
-<meta property="og:title" content="Atlas Desk — Remote Desktop Open Source P2P">
-<meta property="og:description" content="P2P, chiffré, zéro installation. Votre PC, partout. Gratuit. Open source.">
+<meta property="og:title" content="Atlas Desk — Open-Source P2P Remote Desktop">
+<meta property="og:description" content="P2P, encrypted, zero install. Your PC, anywhere. Free. Open source.">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://atlasnexus.tech/atlas-desk/">
-<meta property="og:locale" content="fr_FR">
+<meta property="og:url" content="https://atlasnexus.tech/atlas-desk/en/">
+<meta property="og:locale" content="en_US">
 
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Atlas Desk — Remote Desktop Open Source">
-<meta name="twitter:description" content="P2P, chiffré, zéro installation. Votre PC, partout.">
+<meta name="twitter:title" content="Atlas Desk — Open-Source Remote Desktop">
+<meta name="twitter:description" content="P2P, encrypted, zero install. Your PC, anywhere.">
 
 <script src="https://cdn.tailwindcss.com"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -100,12 +100,12 @@ tailwind.config = {
 <!-- Nav -->
 <nav class="fixed top-0 w-full z-50 bg-surface/85 dark:bg-dark-surface/90 backdrop-blur-lg border-b border-border dark:border-dark-border">
   <div class="max-w-6xl mx-auto px-6 h-[72px] flex items-center justify-between">
-    <a href="/" class="flex items-center gap-3 group" aria-label="Atlas Nexus accueil">
+    <a href="/" class="flex items-center gap-3 group" aria-label="Atlas Nexus home">
       <img src="/logo.png" alt="Atlas Nexus" class="w-9 h-9 rounded-lg shadow-lg shadow-blue-500/20">
       <span class="font-display font-bold text-xl text-foreground dark:text-dark-foreground tracking-tight">Atlas Nexus</span>
     </a>
     <div class="flex items-center gap-3">
-      <button id="theme-toggle" class="w-10 h-10 rounded-full border border-black/10 dark:border-white/10 bg-white/70 dark:bg-white/5 backdrop-blur-xl flex items-center justify-center hover:bg-white dark:hover:bg-white/10 transition-all shadow-sm text-slate-500 dark:text-slate-300" aria-label="Basculer mode sombre">
+      <button id="theme-toggle" class="w-10 h-10 rounded-full border border-black/10 dark:border-white/10 bg-white/70 dark:bg-white/5 backdrop-blur-xl flex items-center justify-center hover:bg-white dark:hover:bg-white/10 transition-all shadow-sm text-slate-500 dark:text-slate-300" aria-label="Toggle dark mode">
         <svg class="w-4 h-4 rotate-0 scale-100 transition-transform duration-300 dark:-rotate-90 dark:scale-0" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
         <svg class="absolute w-4 h-4 rotate-90 scale-0 transition-transform duration-300 dark:rotate-0 dark:scale-100" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
       </button>
@@ -122,8 +122,8 @@ tailwind.config = {
       <span class="glow-word">Atlas Desk</span>
     </h1>
     <p class="text-lg md:text-xl text-slate-600 dark:text-dark-dim max-w-2xl mx-auto leading-relaxed mb-8 reveal reveal-delay-2">
-      Remote desktop open source. P2P via WebRTC, chiffré bout-en-bout, zéro installation côté client.
-      Votre PC, partout. Gratuit.
+      Open-source remote desktop. P2P via WebRTC, end-to-end encrypted, zero client installation.
+      Your PC, anywhere. Free.
     </p>
     <div class="flex flex-wrap gap-2 justify-center mb-8 reveal reveal-delay-2">
       <span class="tag">WebRTC</span><span class="tag">P2P</span><span class="tag">Go</span><span class="tag">DTLS</span><span class="tag">Linux</span><span class="tag">Windows</span>
@@ -131,7 +131,7 @@ tailwind.config = {
     <div class="flex gap-3 justify-center reveal reveal-delay-3">
       <a href="https://github.com/AtlasNexusTech/atlas-desk" class="inline-flex items-center gap-2 px-6 py-3 rounded-lg border border-border dark:border-dark-border bg-white dark:bg-dark-card text-foreground dark:text-dark-foreground font-semibold hover:border-primary dark:hover:border-blue-400 transition-colors">
         <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
-        Voir sur GitHub
+        View on GitHub
       </a>
       <a href="#quickstart" class="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-primary text-white font-semibold hover:bg-primary-dark transition-colors shadow-lg shadow-blue-500/20">
         <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
@@ -147,11 +147,11 @@ tailwind.config = {
     <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
       <div class="reveal">
         <div class="case-stat">P2P</div>
-        <p class="text-xs text-slate-500 dark:text-dark-dim uppercase tracking-widest mt-2 font-semibold">Zéro serveur</p>
+        <p class="text-xs text-slate-500 dark:text-dark-dim uppercase tracking-widest mt-2 font-semibold">Zero server</p>
       </div>
       <div class="reveal reveal-delay-1">
         <div class="case-stat">2</div>
-        <p class="text-xs text-slate-500 dark:text-dark-dim uppercase tracking-widest mt-2 font-semibold">Plateformes</p>
+        <p class="text-xs text-slate-500 dark:text-dark-dim uppercase tracking-widest mt-2 font-semibold">Platforms</p>
       </div>
       <div class="reveal reveal-delay-2">
         <div class="case-stat">15 FPS</div>
@@ -159,7 +159,7 @@ tailwind.config = {
       </div>
       <div class="reveal reveal-delay-3">
         <div class="case-stat">Go</div>
-        <p class="text-xs text-slate-500 dark:text-dark-dim uppercase tracking-widest mt-2 font-semibold">Agent léger</p>
+        <p class="text-xs text-slate-500 dark:text-dark-dim uppercase tracking-widest mt-2 font-semibold">Light agent</p>
       </div>
     </div>
   </div>
@@ -169,52 +169,52 @@ tailwind.config = {
 <section class="py-20 md:py-28 bg-surface dark:bg-dark-surface">
   <div class="max-w-6xl mx-auto px-6">
     <div class="reveal text-center mb-16">
-      <p class="text-accent font-semibold tracking-widest uppercase text-xs mb-3">Fonctionnalités</p>
-      <h2 class="section-title text-foreground dark:text-dark-foreground mb-5 font-display max-w-2xl mx-auto">Ce qui rend Atlas Desk différent</h2>
-      <p class="text-slate-600 dark:text-dark-dim max-w-xl mx-auto">Pas de cloud propriétaire, pas de compte, pas de limite de temps. Du P2P pur sur WebRTC.</p>
+      <p class="text-accent font-semibold tracking-widest uppercase text-xs mb-3">Features</p>
+      <h2 class="section-title text-foreground dark:text-dark-foreground mb-5 font-display max-w-2xl mx-auto">What makes Atlas Desk different</h2>
+      <p class="text-slate-600 dark:text-dark-dim max-w-xl mx-auto">No proprietary cloud, no account, no time limit. Pure P2P over WebRTC.</p>
     </div>
     <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
       <div class="reveal highlight-card bg-white dark:bg-dark-card rounded-2xl p-6 border border-border dark:border-dark-border">
         <div class="w-12 h-12 bg-blue-100 dark:bg-blue-900/30 rounded-xl flex items-center justify-center mb-4">
           <svg class="w-6 h-6 text-primary dark:text-blue-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
         </div>
-        <h3 class="font-bold text-lg mb-2 font-display">Chiffrement bout-en-bout</h3>
-        <p class="text-slate-600 dark:text-dark-dim text-sm">WebRTC impose DTLS-SRTP. Même le signaling ne voit pas vos données.</p>
+        <h3 class="font-bold text-lg mb-2 font-display">End-to-end encryption</h3>
+        <p class="text-slate-600 dark:text-dark-dim text-sm">WebRTC enforces DTLS-SRTP. Even the signaling server can't see your data.</p>
       </div>
       <div class="reveal reveal-delay-1 highlight-card bg-white dark:bg-dark-card rounded-2xl p-6 border border-border dark:border-dark-border">
         <div class="w-12 h-12 bg-green-100 dark:bg-green-900/30 rounded-xl flex items-center justify-center mb-4">
           <svg class="w-6 h-6 text-accent dark:text-green-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
         </div>
-        <h3 class="font-bold text-lg mb-2 font-display">Client web zéro installation</h3>
-        <p class="text-slate-600 dark:text-dark-dim text-sm">Un navigateur suffit pour contrôler un PC distant. Pas de .exe, pas de plugin.</p>
+        <h3 class="font-bold text-lg mb-2 font-display">Zero-install web client</h3>
+        <p class="text-slate-600 dark:text-dark-dim text-sm">A browser is all you need to control a remote PC. No .exe, no plugin.</p>
       </div>
       <div class="reveal reveal-delay-2 highlight-card bg-white dark:bg-dark-card rounded-2xl p-6 border border-border dark:border-dark-border">
         <div class="w-12 h-12 bg-purple-100 dark:bg-purple-900/30 rounded-xl flex items-center justify-center mb-4">
           <svg class="w-6 h-6 text-purple-600 dark:text-purple-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
         </div>
-        <h3 class="font-bold text-lg mb-2 font-display">Agent léger en Go</h3>
-        <p class="text-slate-600 dark:text-dark-dim text-sm">Binaire statique de ~15 MB. Démarre en moins d'une seconde. 15 FPS en streaming.</p>
+        <h3 class="font-bold text-lg mb-2 font-display">Lightweight Go agent</h3>
+        <p class="text-slate-600 dark:text-dark-dim text-sm">Static binary, ~15 MB. Starts in under a second. 15 FPS streaming.</p>
       </div>
       <div class="reveal highlight-card bg-white dark:bg-dark-card rounded-2xl p-6 border border-border dark:border-dark-border">
         <div class="w-12 h-12 bg-amber-100 dark:bg-amber-900/30 rounded-xl flex items-center justify-center mb-4">
           <svg class="w-6 h-6 text-amber-600 dark:text-amber-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
         </div>
-        <h3 class="font-bold text-lg mb-2 font-display">Clipboard synchronisé</h3>
-        <p class="text-slate-600 dark:text-dark-dim text-sm">Copiez sur votre PC, collez sur le remote. Fonctionne dans les deux sens.</p>
+        <h3 class="font-bold text-lg mb-2 font-display">Synced clipboard</h3>
+        <p class="text-slate-600 dark:text-dark-dim text-sm">Copy on your PC, paste on the remote. Works both ways.</p>
       </div>
       <div class="reveal reveal-delay-1 highlight-card bg-white dark:bg-dark-card rounded-2xl p-6 border border-border dark:border-dark-border">
         <div class="w-12 h-12 bg-orange-100 dark:bg-orange-900/30 rounded-xl flex items-center justify-center mb-4">
           <svg class="w-6 h-6 text-orange-600 dark:text-orange-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
         </div>
-        <h3 class="font-bold text-lg mb-2 font-display">Transfert de fichiers</h3>
-        <p class="text-slate-600 dark:text-dark-dim text-sm">Envoyez et recevez des fichiers directement via le canal P2P. Sans intermédiaire.</p>
+        <h3 class="font-bold text-lg mb-2 font-display">File transfer</h3>
+        <p class="text-slate-600 dark:text-dark-dim text-sm">Send and receive files directly over the P2P channel. No middleman.</p>
       </div>
       <div class="reveal reveal-delay-2 highlight-card bg-white dark:bg-dark-card rounded-2xl p-6 border border-border dark:border-dark-border">
         <div class="w-12 h-12 bg-teal-100 dark:bg-teal-900/30 rounded-xl flex items-center justify-center mb-4">
           <svg class="w-6 h-6 text-teal-600 dark:text-teal-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
         </div>
-        <h3 class="font-bold text-lg mb-2 font-display">Auth par mot de passe</h3>
-        <p class="text-slate-600 dark:text-dark-dim text-sm">Challenge SHA-256. Votre PC, votre mot de passe. Pas de compte cloud.</p>
+        <h3 class="font-bold text-lg mb-2 font-display">Password auth</h3>
+        <p class="text-slate-600 dark:text-dark-dim text-sm">SHA-256 challenge. Your PC, your password. No cloud account.</p>
       </div>
     </div>
   </div>
@@ -225,24 +225,24 @@ tailwind.config = {
   <div class="max-w-6xl mx-auto px-6">
     <div class="reveal text-center mb-16">
       <p class="text-purple-500 font-semibold tracking-widest uppercase text-xs mb-3">Architecture</p>
-      <h2 class="section-title text-foreground dark:text-dark-foreground mb-5 font-display">Comment ça marche</h2>
-      <p class="text-slate-600 dark:text-dark-dim max-w-xl mx-auto">Trois composants. Aucun abonnement. Le signaling est auto-hébergeable.</p>
+      <h2 class="section-title text-foreground dark:text-dark-foreground mb-5 font-display">How it works</h2>
+      <p class="text-slate-600 dark:text-dark-dim max-w-xl mx-auto">Three components. No subscription. Self-host the signaling server.</p>
     </div>
     <div class="grid md:grid-cols-3 gap-10 max-w-4xl mx-auto">
       <div class="reveal text-center">
         <div class="w-16 h-16 bg-primary text-white rounded-2xl flex items-center justify-center text-2xl font-black mx-auto mb-5">1</div>
-        <h3 class="font-bold text-xl mb-3 font-display">Agent sur votre PC</h3>
-        <p class="text-slate-600 dark:text-dark-dim text-sm leading-relaxed">Binaire Go. Capture l'écran, stream via WebRTC. ID 9 chiffres unique.</p>
+        <h3 class="font-bold text-xl mb-3 font-display">Agent on your PC</h3>
+        <p class="text-slate-600 dark:text-dark-dim text-sm leading-relaxed">Go binary. Captures the screen, streams via WebRTC. Unique 9-digit ID.</p>
       </div>
       <div class="reveal reveal-delay-1 text-center">
         <div class="w-16 h-16 bg-primary text-white rounded-2xl flex items-center justify-center text-2xl font-black mx-auto mb-5">2</div>
         <h3 class="font-bold text-xl mb-3 font-display">Signaling server</h3>
-        <p class="text-slate-600 dark:text-dark-dim text-sm leading-relaxed">Échange les offres SDP/ICE. Ne voit jamais vos données. Go + WebSocket.</p>
+        <p class="text-slate-600 dark:text-dark-dim text-sm leading-relaxed">Exchanges SDP/ICE offers. Never sees your data. Go + WebSocket.</p>
       </div>
       <div class="reveal reveal-delay-2 text-center">
         <div class="w-16 h-16 bg-accent text-white rounded-2xl flex items-center justify-center text-2xl font-black mx-auto mb-5">3</div>
-        <h3 class="font-bold text-xl mb-3 font-display">Client web</h3>
-        <p class="text-slate-600 dark:text-dark-dim text-sm leading-relaxed">Votre navigateur. Contrôle clavier/souris en direct. Zéro installation.</p>
+        <h3 class="font-bold text-xl mb-3 font-display">Web client</h3>
+        <p class="text-slate-600 dark:text-dark-dim text-sm leading-relaxed">Your browser. Live keyboard/mouse control. Zero installation.</p>
       </div>
     </div>
   </div>
@@ -264,13 +264,13 @@ tailwind.config = {
         </div>
         <div class="bg-green-50 dark:bg-green-900/20 rounded-xl px-6 py-4 border border-green-200 dark:border-green-800">
           <p class="font-bold text-accent dark:text-green-400 font-display">Client (Web)</p>
-          <p class="text-xs text-slate-500 dark:text-dark-dim mt-1">Zéro installation</p>
+          <p class="text-xs text-slate-500 dark:text-dark-dim mt-1">Zero install</p>
         </div>
       </div>
       <div class="flex justify-center mt-6">
         <div class="bg-purple-50 dark:bg-purple-900/20 rounded-xl px-6 py-3 border border-purple-200 dark:border-purple-800 text-center">
           <p class="font-bold text-purple-600 dark:text-purple-400 font-display text-sm">Signaling (Go + WS)</p>
-          <p class="text-xs text-slate-500 dark:text-dark-dim mt-1">Relais SDP/ICE uniquement</p>
+          <p class="text-xs text-slate-500 dark:text-dark-dim mt-1">SDP/ICE relay only</p>
         </div>
       </div>
     </div>
@@ -281,9 +281,9 @@ tailwind.config = {
 <section id="quickstart" class="py-20 md:py-28 bg-white dark:bg-dark-card">
   <div class="max-w-4xl mx-auto px-6">
     <div class="reveal text-center mb-16">
-      <p class="text-accent font-semibold tracking-widest uppercase text-xs mb-3">Démarrage</p>
+      <p class="text-accent font-semibold tracking-widest uppercase text-xs mb-3">Getting Started</p>
       <h2 class="section-title text-foreground dark:text-dark-foreground mb-5 font-display">Quick Start</h2>
-      <p class="text-slate-600 dark:text-dark-dim max-w-xl mx-auto">Trois commandes pour prendre le contrôle de votre PC à distance.</p>
+      <p class="text-slate-600 dark:text-dark-dim max-w-xl mx-auto">Three commands to take control of your PC remotely.</p>
     </div>
     <div class="space-y-8">
       <div class="reveal">
@@ -291,26 +291,26 @@ tailwind.config = {
           <span class="w-8 h-8 bg-primary text-white rounded-lg flex items-center justify-center text-sm font-black">1</span>
           Signaling Server
         </h3>
-        <div class="code-block"><span class="cm"># Lancez le serveur de signaling (Go)</span>
+        <div class="code-block"><span class="cm"># Start the signaling server (Go)</span>
 <span class="kw">cd</span> signaling
 <span class="kw">go run</span> main.go <span class="fn">-addr</span> :8800</div>
       </div>
       <div class="reveal reveal-delay-1">
         <h3 class="font-bold text-lg mb-3 font-display flex items-center gap-2">
           <span class="w-8 h-8 bg-primary text-white rounded-lg flex items-center justify-center text-sm font-black">2</span>
-          Agent (sur le PC distant)
+          Agent (on the remote PC)
         </h3>
-        <div class="code-block"><span class="cm"># Démarrez l'agent sur le PC à contrôler</span>
+        <div class="code-block"><span class="cm"># Start the agent on the PC you want to control</span>
 <span class="kw">cd</span> agent
 <span class="kw">go run</span> . <span class="fn">-signal</span> ws://YOUR_SIGNAL_IP:8800/ws
-<span class="cm"># Affiche un ID 9 chiffres unique</span></div>
+<span class="cm"># Displays a unique 9-digit ID</span></div>
       </div>
       <div class="reveal reveal-delay-2">
         <h3 class="font-bold text-lg mb-3 font-display flex items-center gap-2">
           <span class="w-8 h-8 bg-accent text-white rounded-lg flex items-center justify-center text-sm font-black">3</span>
-          Client (votre navigateur)
+          Client (your browser)
         </h3>
-        <div class="code-block"><span class="cm"># Ouvrez le client web et entrez l'ID 9 chiffres</span>
+        <div class="code-block"><span class="cm"># Open the web client and enter the 9-digit ID</span>
 <span class="kw">→</span> https://atlasnexus.tech/atlas-desk/client</div>
       </div>
     </div>
@@ -322,49 +322,49 @@ tailwind.config = {
   <div class="max-w-4xl mx-auto px-6">
     <div class="reveal text-center mb-16">
       <p class="text-accent font-semibold tracking-widest uppercase text-xs mb-3">Roadmap</p>
-      <h2 class="section-title text-foreground dark:text-dark-foreground mb-5 font-display">Ce qui est déjà là</h2>
+      <h2 class="section-title text-foreground dark:text-dark-foreground mb-5 font-display">What's already here</h2>
     </div>
     <div class="grid sm:grid-cols-2 gap-4 max-w-3xl mx-auto">
       <div class="reveal flex items-start gap-3 bg-white dark:bg-dark-card rounded-xl p-4 border border-border dark:border-dark-border">
         <span class="text-accent dark:text-green-400 font-bold shrink-0 mt-0.5">✓</span>
         <div>
           <p class="font-semibold text-sm">P2P WebRTC (STUN/TURN)</p>
-          <p class="text-slate-500 dark:text-dark-dim text-xs">Connexion directe, TURN pour les NAT restrictifs</p>
+          <p class="text-slate-500 dark:text-dark-dim text-xs">Direct connection, TURN for restrictive NATs</p>
         </div>
       </div>
       <div class="reveal flex items-start gap-3 bg-white dark:bg-dark-card rounded-xl p-4 border border-border dark:border-dark-border">
         <span class="text-accent dark:text-green-400 font-bold shrink-0 mt-0.5">✓</span>
         <div>
           <p class="font-semibold text-sm">Diff encoding (v0.7)</p>
-          <p class="text-slate-500 dark:text-dark-dim text-xs">Blocs 32×32, 50-80% d'économie de bande passante</p>
+          <p class="text-slate-500 dark:text-dark-dim text-xs">32×32 blocks, 50-80% bandwidth savings</p>
         </div>
       </div>
       <div class="reveal reveal-delay-1 flex items-start gap-3 bg-white dark:bg-dark-card rounded-xl p-4 border border-border dark:border-dark-border">
         <span class="text-accent dark:text-green-400 font-bold shrink-0 mt-0.5">✓</span>
         <div>
-          <p class="font-semibold text-sm">IDs numériques 9 chiffres</p>
-          <p class="text-slate-500 dark:text-dark-dim text-xs">Style AnyDesk + alias personnalisables</p>
+          <p class="font-semibold text-sm">9-digit numeric IDs</p>
+          <p class="text-slate-500 dark:text-dark-dim text-xs">AnyDesk-style + custom aliases</p>
         </div>
       </div>
       <div class="reveal reveal-delay-1 flex items-start gap-3 bg-white dark:bg-dark-card rounded-xl p-4 border border-border dark:border-dark-border">
         <span class="text-accent dark:text-green-400 font-bold shrink-0 mt-0.5">✓</span>
         <div>
           <p class="font-semibold text-sm">Password + clipboard sync</p>
-          <p class="text-slate-500 dark:text-dark-dim text-xs">Auth SHA-256, copier-coller bidirectionnel</p>
+          <p class="text-slate-500 dark:text-dark-dim text-xs">SHA-256 auth, bidirectional copy-paste</p>
         </div>
       </div>
       <div class="reveal reveal-delay-2 flex items-start gap-3 bg-white dark:bg-dark-card rounded-xl p-4 border border-border dark:border-dark-border">
         <span class="text-accent dark:text-green-400 font-bold shrink-0 mt-0.5">✓</span>
         <div>
-          <p class="font-semibold text-sm">Transfert de fichiers</p>
-          <p class="text-slate-500 dark:text-dark-dim text-xs">Bidirectionnel via le canal P2P</p>
+          <p class="font-semibold text-sm">File transfer</p>
+          <p class="text-slate-500 dark:text-dark-dim text-xs">Bidirectional over P2P channel</p>
         </div>
       </div>
       <div class="reveal reveal-delay-2 flex items-start gap-3 bg-white dark:bg-dark-card rounded-xl p-4 border border-border dark:border-dark-border">
         <span class="text-accent dark:text-green-400 font-bold shrink-0 mt-0.5">✓</span>
         <div>
-          <p class="font-semibold text-sm">Auto-start Linux (systemd)</p>
-          <p class="text-slate-500 dark:text-dark-dim text-xs">Service utilisateur, démarrage automatique</p>
+          <p class="font-semibold text-sm">Linux auto-start (systemd)</p>
+          <p class="text-slate-500 dark:text-dark-dim text-xs">User service, automatic startup</p>
         </div>
       </div>
     </div>
@@ -375,9 +375,9 @@ tailwind.config = {
 <section class="py-20 md:py-28 bg-surface dark:bg-dark-surface">
   <div class="max-w-3xl mx-auto px-6 text-center">
     <div class="reveal">
-      <h2 class="section-title text-foreground dark:text-dark-foreground mb-5 font-display">Open source, gratuit, transparent</h2>
+      <h2 class="section-title text-foreground dark:text-dark-foreground mb-5 font-display">Open source, free, transparent</h2>
       <p class="text-slate-600 dark:text-dark-dim text-lg mb-8 max-w-xl mx-auto">
-        Pas de compte. Pas de limite de temps. Pas de télémétrie. Du code que vous pouvez lire.
+        No account. No time limit. No telemetry. Code you can read.
       </p>
       <div class="flex gap-4 justify-center flex-wrap">
         <a href="https://github.com/AtlasNexusTech/atlas-desk" class="inline-flex items-center gap-2 px-7 py-3.5 rounded-full bg-primary text-white font-semibold hover:bg-primary-dark transition-colors shadow-lg shadow-blue-500/20 font-display">
@@ -396,8 +396,8 @@ tailwind.config = {
 <!-- Footer -->
 <footer class="py-10 bg-white dark:bg-dark-card border-t border-border dark:border-dark-border">
   <div class="max-w-6xl mx-auto px-6 text-center text-sm text-slate-400 dark:text-dark-dim">
-    <p>&copy; 2026 Atlas Nexus — Alexandre Lasly · <a href="/mentions-legales/" class="hover:text-primary dark:hover:text-blue-400">Mentions légales</a></p>
-    <p class="text-xs mt-2"><a href="https://atlasnexus.tech" class="hover:text-primary dark:hover:text-blue-400">← Retour au site principal</a></p>
+    <p>&copy; 2026 Atlas Nexus — Alexandre Lasly · <a href="/mentions-legales/" class="hover:text-primary dark:hover:text-blue-400">Legal notice</a></p>
+    <p class="text-xs mt-2"><a href="https://atlasnexus.tech" class="hover:text-primary dark:hover:text-blue-400">← Back to main site</a></p>
   </div>
 </footer>
 
