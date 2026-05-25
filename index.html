@@ -1,244 +1,801 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="fr" class="scroll-smooth">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Alexandre Lasly — Consultant en architecture agentique. Agents IA autonomes (LLM, mémoire persistante, multi-modèle). Déploiement en 3 jours. DeepSeek, Claude, GPT. Pas de no-code.">
-<meta name="keywords" content="agent IA, agent autonome, architecture agentique, LLM, DeepSeek, Claude, GPT, Hermes, OpenClaw, déploiement IA, consultant IA, Atlas Nexus">
-<meta name="author" content="Alexandre Lasly">
-<meta name="robots" content="index, follow">
-<link rel="canonical" href="https://atlasnexusops.github.io/">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta name="google-site-verification" content="googled09a8983058eb9e1.html" />
+<link rel="icon" type="image/png" href="/favicon.png">
+<link rel="shortcut icon" href="/favicon.ico">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<title>Atlas Nexus — Conseil Opérations & IA Agentique</title>
+<link rel="canonical" href="https://atlasnexus.tech/">
+<link rel="alternate" hreflang="fr" href="https://atlasnexus.tech/">
+<link rel="alternate" hreflang="en" href="https://atlasnexus.tech/en/">
+<link rel="alternate" hreflang="x-default" href="https://atlasnexus.tech/en/">
+<script>
+(function(){
+  try {
+    const KEY = 'atlasnexus.lang';
+    const path = window.location.pathname;
+    const isEn = path.startsWith('/en/') || path === '/en';
+    const params = new URLSearchParams(window.location.search);
+    const explicit = params.get('lang');
+    if (explicit === 'fr' || explicit === 'en') localStorage.setItem(KEY, explicit);
+    const saved = localStorage.getItem(KEY);
+    // Only redirect if we're not already on the target page
+    if (saved === 'fr' && isEn) { window.location.replace('/' + window.location.hash); return; }
+    if (saved === 'en' && !isEn) { window.location.replace('/en/' + window.location.hash); return; }
+    const langs = (navigator.languages && navigator.languages.length ? navigator.languages : [navigator.language || '']).map(x => String(x).toLowerCase());
+    const isFrancophone = langs.some(x => x === 'fr' || x.startsWith('fr-'));
+    if (!isFrancophone && !isEn) window.location.replace('/en/' + window.location.hash);
+  } catch(e) {}
+})();
+</script>
 
-<!-- Open Graph -->
-<meta property="og:title" content="Alexandre Lasly — Consultant Architecture Agentique">
-<meta property="og:description" content="Agents IA autonomes qui réfléchissent, pas des workflows no-code. Déploiement en 3 jours. 85€.">
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://atlasnexusops.github.io/">
-<meta property="og:locale" content="fr_FR">
-
-<!-- Twitter Card -->
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Alexandre Lasly — Agents IA autonomes">
-<meta name="twitter:description" content="Agents IA qui réfléchissent. DeepSeek, Claude, GPT. Livré en 3 jours. 85€.">
-
-<!-- Structured Data -->
+<meta name="description" content="Conseil opérationnel, dashboards live, pipelines data, animations web et IA agentique pour indépendants, équipes et PME. Builds rapides, code visible sur GitHub, documentation incluse.">
+<link rel="stylesheet" href="/css/site.css?v=2">
+<style>.nav-fixed-center{position:fixed;top:1rem;left:50%;transform:translateX(-50%);z-index:50;width:calc(100% - 2rem);max-width:72rem;padding-left:1rem;padding-right:1rem}</style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700;800;900&amp;family=Nunito+Sans:ital,opsz,wght@0,6..12,200;0,6..12,300;0,6..12,400;0,6..12,500;0,6..12,600;0,6..12,700;0,6..12,800;1,6..12,200;1,6..12,300;1,6..12,400;1,6..12,500;1,6..12,600;1,6..12,700&amp;display=swap" rel="stylesheet">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "ProfessionalService",
-  "name": "Alexandre Lasly — Consultant Architecture Agentique",
-  "description": "Déploiement d'agents IA autonomes avec LLM, mémoire persistante et skills métier sur mesure.",
-  "url": "https://atlasnexusops.github.io/",
-  "offers": [{
-    "@type": "Offer",
-    "price": "85.00",
-    "priceCurrency": "EUR",
-    "url": "https://comeup.com/fr/service/525386/deployer-vos-agents-ia-autonomes"
-  },{
-    "@type": "Offer",
-    "price": "29.00",
-    "priceCurrency": "EUR",
-    "name": "The Solana Agent Economy Playbook"
-  }],
-  "areaServed": { "@type": "Country", "name": "France" },
-  "availableLanguage": "fr"
+  "name": "Atlas Nexus",
+  "description": "Conseil opérationnel, dashboards live, pipelines data, animations web et IA agentique pour indépendants, équipes et PME.",
+  "url": "https://atlasnexus.tech",
+  "founder": {
+    "@type": "Person",
+    "name": "Alexandre Lasly",
+    "jobTitle": "AI Agent Architect",
+    "url": "https://www.malt.fr/profile/alexandrelasly"
+  },
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "10 rue de la Mégisserie",
+    "addressLocality": "Bagneux",
+    "postalCode": "92220",
+    "addressCountry": "FR"
+  },
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "contactType": "customer service",
+    "email": "laslyalexandre@gmail.com",
+    "telephone": "+33 7 50 50 45 95"
+  },
+  "sameAs": [
+    "https://github.com/AtlasNexusTech",
+    "https://www.malt.fr/profile/alexandrelasly"
+  ],
+  "knowsAbout": ["Agentic AI", "Data Pipelines", "Web Development", "React", "Smart Contracts", "Multi-Agent Systems"],
+  "areaServed": {
+    "@type": "Country",
+    "name": "France"
+  },
+  "priceRange": "€75 - €350"
 }
 </script>
-
-<title>Alexandre Lasly — Consultant Architecture Agentique | Agents IA Autonomes</title>
-<style>
-  :root {
-    --bg: #f8fafc;
-    --fg: #0f172a;
-    --muted: #64748b;
-    --accent: #7c3aed;
-    --card: #ffffff;
-    --border: #e2e8f0;
-  }
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  body { font-family: -apple-system, 'Segoe UI', system-ui, sans-serif; background: var(--bg); color: var(--fg); line-height: 1.6; }
-  .container { max-width: 680px; margin: 0 auto; padding: 60px 24px; }
-  h1 { font-size: 28px; font-weight: 700; margin-bottom: 8px; letter-spacing: -0.5px; }
-  h1 span { color: var(--accent); }
-  .subtitle { color: var(--muted); font-size: 16px; margin-bottom: 40px; }
-  .cta { 
-    display: inline-block; background: var(--accent); color: white; padding: 12px 28px; 
-    border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 15px;
-    margin-bottom: 48px; transition: opacity 0.2s;
-  }
-  .cta:hover { opacity: 0.9; }
-  .card { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 24px; margin-bottom: 20px; }
-  .card h3 { font-size: 16px; margin-bottom: 8px; color: var(--accent); }
-  .card p { font-size: 14px; color: var(--muted); }
-  .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 40px; }
-  @media (max-width: 500px) {
-    .grid { grid-template-columns: 1fr; }
-    .container { padding: 32px 16px; }
-    .subtitle { margin-bottom: 24px; }
-    h1 { font-size: 24px; }
-  }
-  .stat { text-align: center; padding: 16px; }
-  .stat .num { font-size: 32px; font-weight: 800; color: var(--accent); }
-  .stat .label { font-size: 12px; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; }
-  .footer { margin-top: 48px; padding-top: 24px; border-top: 1px solid var(--border); font-size: 13px; color: var(--muted); }
-  .footer a { color: var(--accent); text-decoration: none; }
-  .divider { border: none; border-top: 1px solid var(--border); margin: 40px 0; }
-  .playbook-btn {
-    display: inline-block; background: var(--accent); color: white; padding: 10px 24px;
-    border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 14px;
-    transition: opacity 0.2s;
-  }
-  .playbook-btn:hover { opacity: 0.9; }
-</style>
 </head>
-<body>
-<div class="container">
+<body class="bg-surface dark:bg-dark-surface text-foreground dark:text-dark-foreground font-body antialiased">
 
-  <h1>Alexandre <span>Lasly</span></h1>
-  <p class="subtitle">Consultant en architecture agentique — je déploie des agents IA qui réfléchissent, pas des workflows no-code.</p>
+<!-- Hidden SVG defs for Solana logo reuse -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs><linearGradient id="sol-grad-top" x1="374" y1="329.9" x2="99.1" y2="194.3" gradientUnits="userSpaceOnUse"><stop stop-color="#00FFA3"/><stop offset="1" stop-color="#DC1FFF"/></linearGradient><linearGradient id="sol-grad-mid" x1="374" y1="95.8" x2="99.1" y2="-39.9" gradientUnits="userSpaceOnUse"><stop stop-color="#00FFA3"/><stop offset="1" stop-color="#DC1FFF"/></linearGradient><linearGradient id="sol-grad-bot" x1="374" y1="213.3" x2="99.1" y2="77.6" gradientUnits="userSpaceOnUse"><stop stop-color="#00FFA3"/><stop offset="1" stop-color="#DC1FFF"/></linearGradient><linearGradient id="celo-gold" x1="0" y1="0" x2="24" y2="24" gradientUnits="userSpaceOnUse"><stop stop-color="#FCFF52"/><stop offset="1" stop-color="#E5C800"/></linearGradient></defs></svg>
 
-  <a href="https://comeup.com/fr/service/525386/deployer-vos-agents-ia-autonomes" class="cta">⚡ Commandez vos IA agentiques — 85€</a>
-
-  <div class="grid">
-    <div class="stat">
-      <div class="num">80+</div>
-      <div class="label">Skills en production</div>
+<!-- Nav -->
+<header class="nav-fixed-center">
+  <nav class="glass-nav flex h-20 items-center justify-between rounded-full px-5 sm:h-28 sm:px-8">
+    <a href="#top" class="flex items-center gap-2 no-underline shrink-0" aria-label="Atlas Nexus accueil">
+      <img src="/logo.png" alt="Atlas Nexus" class="h-12 w-12 rounded-xl">
+      <span class="hidden sm:inline-flex items-center text-lg font-semibold tracking-tight text-foreground dark:text-dark-foreground">Atlas Nexus</span>
+      <span class="hidden sm:inline-flex rounded-full bg-accent/15 px-2.5 py-1 text-[11px] font-medium text-accent dark:text-green-400 -ml-0.5">Live</span>
+    </a>
+    <ul class="hidden items-center gap-1 text-sm font-medium text-slate-500 dark:text-dark-dim md:flex">
+      <li><a href="#products" class="relative rounded-full px-3 py-1.5 hover:text-foreground dark:hover:text-white transition-colors">Produits</a></li>
+      <li><a href="#work" class="relative rounded-full px-3 py-1.5 hover:text-foreground dark:hover:text-white transition-colors">Réalisations</a></li>
+      <li><a href="#offers" class="relative rounded-full px-3 py-1.5 hover:text-foreground dark:hover:text-white transition-colors">Offres</a></li>
+      <li><a href="#why" class="relative rounded-full px-3 py-1.5 hover:text-foreground dark:hover:text-white transition-colors">Pourquoi</a></li>
+      <li><a href="#framework" class="relative rounded-full px-3 py-1.5 hover:text-foreground dark:hover:text-white transition-colors">Framework</a></li>
+      <li><a href="#projects" class="relative rounded-full px-3 py-1.5 hover:text-foreground dark:hover:text-white transition-colors">Projets</a></li>
+      <li><a href="https://github.com/AtlasNexusTech" class="relative rounded-full px-3 py-1.5 hover:text-foreground dark:hover:text-white transition-colors">GitHub</a></li>
+    </ul>
+    <div class="flex items-center gap-2">
+      <button id="theme-toggle" class="glass-nav-btn inline-flex items-center justify-center w-10 h-10 rounded-full text-foreground dark:text-dark-foreground hover:bg-white/20 dark:hover:bg-white/5 transition-all" aria-label="Toggle dark mode">
+        <svg class="w-4 h-4 rotate-0 scale-100 transition-transform duration-300 dark:-rotate-90 dark:scale-0" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+        <svg class="absolute w-4 h-4 rotate-90 scale-0 transition-transform duration-300 dark:rotate-0 dark:scale-100" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
+      </button>
+      <a href="#contact" class="cursor-pointer bg-primary text-white px-5 py-2 rounded-full text-[15px] font-semibold hover:bg-primary-dark transition-colors">
+        Contact
+      </a>
     </div>
-    <div class="stat">
-      <div class="num">24/7</div>
-      <div class="label">Infrastructure active</div>
-    </div>
-    <div class="stat">
-      <div class="num">8 ans</div>
-      <div class="label">Expérience business</div>
-    </div>
-    <div class="stat">
-      <div class="num">3 jours</div>
-      <div class="label">Délai de livraison</div>
-    </div>
-  </div>
+  </nav>
+</header>
 
-  <h2 style="font-size:20px;margin-bottom:16px;">Ce que je fais</h2>
-
-  <div class="card">
-    <h3>Installation d'agents IA autonomes</h3>
-    <p>Hermes + OpenClaw. Raisonnement LLM, mémoire persistante, 3 skills métier sur mesure. Livré en 3 jours via AnyDesk. Pas de boîte noire : vous repartez avec la documentation et la capacité de faire évoluer l'agent.</p>
-  </div>
-
-  <div class="card">
-    <h3>Pourquoi pas n8n ?</h3>
-    <p>n8n exécute un script. Mes agents réfléchissent. Si le plan A échoue, ils trouvent un plan B sans vous réveiller. La différence, c'est l'autonomie.</p>
-  </div>
-
-  <div class="card" style="border-left: 3px solid var(--accent);">
-    <h3>🖥️ Atlas Desk — Contrôle PC distant open source</h3>
-    <p>Alternative à AnyDesk, 100% open source (MIT). P2P via WebRTC, streaming JPEG, transfert fichiers, clipboard sync. Client web zero-install + app desktop Tauri. <a href="/atlas-desk/" style="color:var(--accent);font-weight:600;">Voir le site →</a></p>
-  </div>
-
-  <hr class="divider">
-
-  <h2 style="font-size:20px;margin-bottom:16px;">📖 The Solana Agent Economy Playbook</h2>
-  <p style="color:var(--muted);font-size:14px;margin-bottom:16px;">
-    60 pages. Construisez des outils x402 que les agents IA paient automatiquement. Code, pricing, déploiement — le blueprint complet.
-  </p>
-  <div style="text-align:center;margin-bottom:8px;">
-    <span style="font-size:36px;font-weight:800;color:var(--accent);">29€</span>
-    <span style="color:var(--muted);font-size:14px;"> — accès à vie</span>
-  </div>
-  <div style="text-align:center;margin-bottom:8px;">
-    <a href="mailto:laslyalexandre@gmail.com?subject=Playbook%20Solana%20Agent%20Economy%2029€&body=Bonjour%20Alexandre%2C%0A%0AJe%20souhaite%20acheter%20le%20Playbook%20Solana%20Agent%20Economy%20(29€).%0A%0AEmail%20pour%20l'envoi%20%3A%20%0A%0AMerci%20!" class="playbook-btn">🛒 Acheter le Playbook →</a>
-  </div>
-  <p style="text-align:center;font-size:11px;color:var(--muted);">
-    📦 10 chapitres • Code Python/FastAPI • Modèles de pricing • Guide SAP mainnet • Multi-provider
-  </p>
-
-  <hr class="divider">
-
-  <h2 style="font-size:20px;margin-bottom:16px;">🛠 API x402 — Outils pour Agents Autonomes</h2>
-  <p style="color:var(--muted);font-size:14px;margin-bottom:16px;">
-    API en production sur le protocole Solana SAP. Vos agents IA peuvent appeler ces outils via x402 (paiement on-chain). Zéro configuration côté client — le protocole gère la découverte, le paiement et l'exécution.
-  </p>
-  <p style="font-size:13px;color:var(--muted);margin-bottom:24px;">
-    📰 <a href="https://dev.to/athenaios/i-published-8-ai-tools-on-solanas-agent-protocol-agents-can-now-pay-each-other-522n" style="color:var(--accent);">Article #1</a> · 
-    <a href="https://dev.to/athenaios/i-built-an-on-chain-marketplace-where-ai-agents-solve-github-bounties-for-usdc" style="color:var(--accent);">Article #2</a> · 
-    <a href="https://dev.to/athenaios/i-built-a-revenue-generating-api-that-charges-ai-agents-per-call-67-100-margin-on-autopilot-3cpb" style="color:var(--accent);">Article #3</a>
-    — lus sur dev.to
-  </p>
-
-  <div class="grid" style="grid-template-columns: 1fr 1fr 1fr;">
-    <div class="card" style="text-align:center;">
-      <h3 style="font-size:14px;">Starter</h3>
-      <div class="num" style="font-size:36px;color:var(--accent);">49€</div>
-      <div class="label" style="margin-bottom:12px;">/mois</div>
-      <p style="font-size:12px;margin-bottom:4px;">✓ 3 outils (Search, Chat, Images)</p>
-      <p style="font-size:12px;margin-bottom:4px;">✓ 1000 appels/mois</p>
-      <p style="font-size:12px;margin-bottom:4px;">✓ Support email 48h</p>
-      <p style="font-size:12px;margin-bottom:16px;">✓ Accès x402 standard</p>
-      <a href="mailto:laslyalexandre@gmail.com?subject=Abonnement%20API%20x402%20Starter%2049€&body=Bonjour%20Alexandre%2C%0A%0AJe%20souhaite%20souscrire%20à%20l'offre%20Starter%2049€%2Fmois.%0A%0AMon%20agent%20ID%20SAP%20%3A%20%0AMes%20outils%20souhaités%20%3A%20%0A%0AMerci%20!" style="display:inline-block;background:var(--accent);color:white;padding:8px 20px;border-radius:6px;text-decoration:none;font-weight:600;font-size:13px;">S'abonner →</a>
-    </div>
-    <div class="card" style="text-align:center;border:2px solid var(--accent);">
-      <h3 style="font-size:14px;">Pro</h3>
-      <div class="num" style="font-size:36px;color:var(--accent);">99€</div>
-      <div class="label" style="margin-bottom:12px;">/mois</div>
-      <p style="font-size:12px;margin-bottom:4px;">✓ Tout Starter +</p>
-      <p style="font-size:12px;margin-bottom:4px;">✓ 10 000 appels/mois</p>
-      <p style="font-size:12px;margin-bottom:4px;">✓ Support prioritaire 4h</p>
-      <p style="font-size:12px;margin-bottom:16px;">✓ Custom tools sur demande</p>
-      <a href="mailto:laslyalexandre@gmail.com?subject=Abonnement%20API%20x402%20Pro%2099€&body=Bonjour%20Alexandre%2C%0A%0AJe%20souhaite%20souscrire%20à%20l'offre%20Pro%2099€%2Fmois.%0A%0AMon%20use%20case%20%3A%20%0AVolume%20estimé%20%3A%20%0A%0AMerci%20!" style="display:inline-block;background:var(--accent);color:white;padding:8px 20px;border-radius:6px;text-decoration:none;font-weight:600;font-size:13px;">S'abonner →</a>
-    </div>
-    <div class="card" style="text-align:center;">
-      <h3 style="font-size:14px;">Enterprise</h3>
-      <div class="num" style="font-size:36px;color:var(--accent);">Sur devis</div>
-      <div class="label" style="margin-bottom:12px;">/mois</div>
-      <p style="font-size:12px;margin-bottom:4px;">✓ Tout Pro +</p>
-      <p style="font-size:12px;margin-bottom:4px;">✓ Volume illimité</p>
-      <p style="font-size:12px;margin-bottom:4px;">✓ SLA garanti</p>
-      <p style="font-size:12px;margin-bottom:16px;">✓ Déploiement on-premise</p>
-      <a href="mailto:laslyalexandre@gmail.com?subject=Déploiement%20API%20x402%20Enterprise&body=Bonjour%20Alexandre%2C%0A%0AJe%20souhaite%20un%20déploiement%20Enterprise%20de%20l'API%20x402.%0A%0AVolume%20estimé%20%3A%20%0AUse%20case%20%3A%20%0A%0AMerci%20!" style="display:inline-block;background:var(--fg);color:white;padding:8px 20px;border-radius:6px;text-decoration:none;font-weight:600;font-size:13px;">Contact →</a>
+<!-- Hero -->
+<section id="top" class="min-h-screen flex items-center pt-24 relative overflow-hidden">
+  <canvas id="antigravity-canvas" class="absolute inset-0 w-full h-full z-0 pointer-events-none" aria-hidden="true"></canvas>
+  <div class="hero-orb"></div>
+  <div class="max-w-6xl mx-auto px-6 w-full relative z-10">
+    <div class="max-w-4xl hero-stagger">
+      <h1 class="hero-title text-foreground dark:text-dark-foreground mb-8">
+        <span class="glow-word">Conseil</span><br><span class="glow-word">Opérations &amp;</span><br><span class="glow-word">IA Agentique</span>
+      </h1>
+      <p class="text-2xl sm:text-3xl font-display font-extrabold text-foreground dark:text-dark-foreground max-w-3xl mb-5 leading-tight">
+        Pour indépendants, équipes et PME.
+      </p>
+      <p class="text-lg sm:text-xl text-slate-600 dark:text-slate-300 max-w-2xl mb-10 leading-relaxed">
+        Je vous aide pour vos opérations, votre automatisation, le déploiement d'IA agentiques et la création d'interfaces web.
+      </p>
+      <div class="flex gap-3 flex-wrap">
+        <a href="#work" class="bg-primary text-white px-7 py-3.5 rounded-full text-base font-semibold hover:bg-primary-dark inline-flex items-center gap-2 font-display">
+          Voir les réalisations
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+        </a>
+        <a href="https://ai2work.onrender.com" class="border-2 border-purple-200 dark:border-purple-800 text-purple-700 dark:text-purple-300 px-7 py-3.5 rounded-full text-base font-semibold hover:border-purple-500 hover:bg-purple-50 dark:hover:bg-purple-900/30 dark:hover:border-purple-500 font-display">
+          Identité Agentique
+        </a>
+      </div>
+      <p class="mt-5 text-sm text-slate-500 dark:text-slate-400">Builds courts, livrables vérifiables, code GitHub quand le projet le permet.</p>
     </div>
   </div>
+</section>
 
-  <hr class="divider">
-
-  <img src="data:image/png;base64,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" alt="AI2Work" style="width:48px;height:48px;border-radius:8px;margin-bottom:8px;display:block;">
-  <h2 style="font-size:20px;margin-bottom:16px;">🚀 Live Demo — AI2Work Marketplace</h2>
-  <p style="color:var(--muted);font-size:14px;margin-bottom:20px;">
-    Un marketplace on-chain où des agents IA résolvent des GitHub bounties. Smart contract vérifié sur Celo mainnet, frontend Next.js 15, app Android native.
-  </p>
-  <div class="grid" style="grid-template-columns: 1fr 1fr 1fr 1fr;">
-    <div class="stat">
-      <div class="num">Live</div>
-      <div class="label">Celo Mainnet</div>
+<!-- Products -->
+<section id="products" class="py-24 bg-surface dark:bg-dark-surface">
+  <div class="max-w-6xl mx-auto px-6">
+    <div class="reveal">
+      <p class="text-accent font-semibold tracking-widest uppercase text-xs mb-3">Produits</p>
+      <h2 class="section-title text-foreground dark:text-dark-foreground mb-12 font-display">Démonstrations utiles, pas seulement décoratives</h2>
     </div>
-    <div class="stat">
-      <div class="num">3</div>
-      <div class="label">Agent NFTs</div>
-    </div>
-    <div class="stat">
-      <div class="num">cUSD</div>
-      <div class="label">+CELO+USDC</div>
-    </div>
-    <div class="stat">
-      <div class="num">v2</div>
-      <div class="label">Contract</div>
+    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div class="reveal reveal-delay-1 card-hover market-card bg-surface rounded-2xl p-8 border border-border flex flex-col">
+        <div class="w-12 h-12 bg-accent/10 rounded-xl flex items-center justify-center mb-6"><svg class="w-6 h-6 text-accent" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><polyline points="3 17 9 11 13 15 21 7"/><polyline points="17 7 21 7 21 11"/></svg></div>
+        <h3 class="text-xl font-bold text-foreground dark:text-dark-foreground mb-2 font-display">Markets Dashboard</h3>
+        <p class="text-slate-600 dark:text-slate-300 text-sm leading-relaxed mb-4">Radar live multi-actifs : crypto, actions, ETF, indices, forex et commodities.</p>
+        <p class="text-sm font-semibold text-accent mb-4 font-display">GitHub Pages · Yahoo Finance · TradingView</p>
+        <div class="flex flex-wrap gap-2 mb-4">
+          <span class="px-3 py-1 bg-accent/5 text-accent text-xs font-medium rounded-full">Dashboard live</span>
+          <span class="px-3 py-1 bg-accent/5 text-accent text-xs font-medium rounded-full">Hawkeye V4</span>
+          <span class="px-3 py-1 bg-accent/5 text-accent text-xs font-medium rounded-full">100+ actifs</span>
+        </div>
+        <div class="flex gap-2 mt-auto">
+        <a href="/markets-dashboard/" class="text-primary dark:text-blue-400 text-sm font-semibold hover:text-primary-dark dark:hover:text-blue-300">Démo live →</a>
+        <a href="https://github.com/AtlasNexusTech/markets-dashboard" class="text-slate-400 dark:text-slate-500 text-sm hover:text-slate-600 dark:hover:text-slate-300 ml-3">GitHub</a>
+        </div>
+      </div>
+      <!-- Framer Motion UI -->
+      <div class="reveal reveal-delay-2 framer-purple-card rounded-2xl p-8 border border-border bg-white flex flex-col">
+        <div class="w-12 h-12 framer-icon-bg rounded-xl flex items-center justify-center mb-6"><svg class="w-6 h-6 framer-accent" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" viewBox="0 0 24 24"><path d="M3 18C5 6 19 18 21 6"/></svg></div>
+        <h3 class="text-xl font-bold text-foreground dark:text-dark-foreground mb-2 font-display">Framer Motion UI</h3>
+        <p class="text-slate-600 dark:text-slate-300 text-sm leading-relaxed mb-4">Landing page, transitions, scroll reveals, parallax, gestures et entrances.</p>
+        <p class="text-sm font-semibold framer-accent mb-4 font-display">Skill · Démo · GitHub Pages · Landing</p>
+        <div class="flex flex-wrap gap-2 mb-4">
+          <span class="px-3 py-1 framer-chip text-xs font-medium rounded-full">React</span>
+          <span class="px-3 py-1 framer-chip text-xs font-medium rounded-full">Framer Motion</span>
+          <span class="px-3 py-1 framer-chip text-xs font-medium rounded-full">11 patterns</span>
+          <span class="px-3 py-1 framer-chip text-xs font-medium rounded-full">Landing</span>
+        </div>
+        <div class="flex gap-2 mt-auto">
+        <a href="https://atlasnexus.tech/framer-motion-ui/" class="framer-accent text-sm font-semibold hover:text-primary-dark">Démo live →</a>
+        <a href="https://github.com/AtlasNexusTech/framer-motion-ui" class="text-slate-400 dark:text-slate-500 text-sm hover:text-slate-600 dark:hover:text-slate-300 ml-3">GitHub</a>
+        </div>
+      </div>
+      <!-- Identité Agentique -->
+      <div class="reveal reveal-delay-3 agentic-blue-card rounded-2xl p-8 border border-border bg-white flex flex-col">
+        <div class="w-12 h-12 agentic-icon-bg rounded-xl flex items-center justify-center mb-6"><svg class="w-7 h-7" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="url(#celo-gold)" stroke-width="2"/><circle cx="12" cy="7" r="2.3" fill="url(#celo-gold)"/><circle cx="7" cy="15.5" r="2.3" fill="url(#celo-gold)"/><circle cx="17" cy="15.5" r="2.3" fill="url(#celo-gold)"/></svg></div>
+        <h3 class="text-xl font-bold text-foreground dark:text-dark-foreground mb-2 font-display">Identité Agentique</h3>
+        <p class="text-slate-600 dark:text-slate-300 text-sm leading-relaxed mb-4">Marketplace de bounties IA on-chain pour le développement web3. Identité d'agent vérifiable on-chain (Celo Identity ERC-721 / ERC-8004). Déployée avec Next.js SSR.</p>
+        <p class="text-sm font-semibold agentic-accent mb-4 font-display">Agent Identity ERC-721 (ERC-8004) · Celo Mainnet · Next.js SSR</p>
+        <div class="flex flex-wrap gap-2 mb-4"><span class="px-3 py-1 agentic-chip text-xs font-medium rounded-full">Next.js 15</span><span class="px-3 py-1 agentic-chip text-xs font-medium rounded-full">React 19</span><span class="px-3 py-1 agentic-chip text-xs font-medium rounded-full">pnpm</span></div>
+        <div class="flex gap-2 mt-auto">
+        <a href="/verify/" class="agentic-accent text-sm font-semibold hover:text-primary-dark">Vérifier une identité →</a>
+        <a href="https://ai2work.onrender.com" class="text-slate-400 dark:text-slate-500 text-sm hover:text-slate-600 dark:hover:text-slate-300 ml-3">Démo live</a>
+        </div>
+      </div>
+      <!-- Atlas Toolkit -->
+      <div class="reveal reveal-delay-4 card-hover bg-surface dark:bg-dark-card rounded-2xl p-8 border border-border flex flex-col" style="border-color: rgba(5,150,105,.28)!important; box-shadow: 0 18px 52px -34px rgba(5,150,105,.55);">
+        <div class="w-12 h-12 bg-accent/10 rounded-xl flex items-center justify-center mb-6"><svg class="w-6 h-6 text-accent" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg></div>
+        <h3 class="text-xl font-bold text-foreground dark:text-dark-foreground mb-2 font-display">Atlas Toolkit</h3>
+        <p class="text-slate-600 dark:text-slate-300 text-sm leading-relaxed mb-4">Convertisseur de données universel : CSV, JSON, XML, YAML, Parquet. Conversion instantanée dans le navigateur.</p>
+        <p class="text-sm font-semibold text-accent mb-4 font-display">Python · PyPI · GitHub Pages · WebAssembly</p>
+        <div class="flex flex-wrap gap-2 mb-4">
+          <span class="px-3 py-1 bg-accent/5 text-accent text-xs font-medium rounded-full">5+ formats</span>
+          <span class="px-3 py-1 bg-accent/5 text-accent text-xs font-medium rounded-full">pip install</span>
+          <span class="px-3 py-1 bg-accent/5 text-accent text-xs font-medium rounded-full">v0.1.0</span>
+        </div>
+        <div class="flex gap-2 mt-auto">
+        <a href="/datatoolkit/" class="text-primary dark:text-blue-400 text-sm font-semibold hover:text-primary-dark dark:hover:text-blue-300">Démo live →</a>
+        <a href="https://github.com/AtlasNexusTech/datatoolkit" class="text-slate-400 dark:text-slate-500 text-sm hover:text-slate-600 dark:hover:text-slate-300 ml-3">GitHub</a>
+        </div>
+      </div>
     </div>
   </div>
-  <a href="https://ai2work.onrender.com" class="cta" style="margin-top:8px;">🔗 Voir le marketplace →</a>
+</section>
 
-  <hr class="divider">
-
-  <h2 style="font-size:20px;margin-bottom:16px;">ATLAS NEXUS</h2>
-  <p style="color:var(--muted);font-size:14px;margin-bottom:20px;">
-    L'infrastructure agentique que je maintiens en production — c'est la preuve que je sais de quoi je parle.
-    DeepSeek V4 Pro, Claude Sonnet 4.6, GPT-4o, Codex 5.4. Multi-modèle, mémoire persistante, isolation des credentials.
-  </p>
-
-  <div class="footer">
-    Alexandre Lasly · Paris · 
-    <a href="https://comeup.com/fr/service/525386/deployer-vos-agents-ia-autonomes">ComeUp</a> · 
-    <a href="https://atlasnexusops.github.io/">GitHub</a>
+<!-- Offers -->
+<section id="offers" class="py-28 bg-surface">
+  <div class="max-w-5xl mx-auto px-6">
+    <div class="reveal">
+      <p class="text-accent font-semibold tracking-widest uppercase text-xs mb-3">Offres</p>
+      <h2 class="section-title text-foreground mb-5 font-display">Micro-builds pour débloquer une opération concrète</h2>
+      <p class="text-slate-600 max-w-2xl mb-12 leading-relaxed">Chaque offre est pensée pour livrer un outil utilisable rapidement : scope court, sortie vérifiable, documentation minimale incluse.</p>
+    </div>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8 max-w-5xl mx-auto">
+      <article class="reveal reveal-delay-1 card-hover market-card offer-card rounded-2xl p-12 border border-border bg-white">
+        <p class="text-sm font-bold text-accent mb-2">A. Développement web</p>
+        <h3 class="text-2xl font-bold text-foreground mb-4 font-display">Développement web + données</h3>
+        <p class="text-slate-600 text-sm leading-relaxed mb-5"><strong>Livrable :</strong> dashboard, app web, données structurées.</p>
+        <p class="text-slate-600 text-sm leading-relaxed mb-5"><strong>Pour :</strong> indépendants, PME, SaaS, finance, veille, reporting.</p>
+        <div class="offer-spacer"></div>
+        <p class="offer-price text-xl font-extrabold text-foreground mb-6 font-display">À partir de 150€ <span class="offer-quote text-sm font-semibold text-slate-500">ou sur devis léger</span></p>
+        <div class="flex flex-col gap-2"><a href="/developpement-web-donnees/" class="inline-flex text-primary font-semibold hover:text-primary-dark">Voir l'offre →</a><a href="#contact" class="inline-flex text-slate-500 text-sm font-semibold hover:text-primary">Demander ce build</a></div>
+      </article>
+      <article class="reveal reveal-delay-2 card-hover agentic-blue-card offer-card rounded-2xl p-12 border border-border bg-white">
+        <p class="text-sm font-bold agentic-accent mb-2">B. Agent IA opérationnel</p>
+        <h3 class="text-2xl font-bold text-foreground mb-4 font-display">IA agentique</h3>
+        <p class="text-slate-600 text-sm leading-relaxed mb-5"><strong>Livrable :</strong> IA agentique professionnelle, workflow automatisé, reporting, intégration API, vrai copilote Telegram, Discord, CLI.</p>
+        <p class="text-slate-600 text-sm leading-relaxed mb-5"><strong>Pour :</strong> indépendants, équipes tech, PME, automatisation métier, support client.</p>
+        <div class="offer-spacer"></div>
+        <p class="offer-price text-xl font-extrabold text-foreground mb-6 font-display">À partir de 100€ <span class="offer-quote text-sm font-semibold text-slate-500">ou sur devis léger</span></p>
+        <div class="flex flex-col gap-2"><a href="https://atlasnexus.tech/ia-agentique/" class="inline-flex agentic-accent font-semibold hover:text-primary-dark">Voir les options →</a><a href="#contact" class="inline-flex text-slate-500 text-sm font-semibold hover:text-primary">Demander ce build</a></div>
+      </article>
+      <article class="reveal reveal-delay-3 framer-purple-card offer-card rounded-2xl p-12 border border-border bg-white">
+        <p class="text-sm font-bold framer-accent mb-2">C. UI Animée</p>
+        <h3 class="text-2xl font-bold text-foreground mb-4 font-display">Pages React · Framer Motion</h3>
+        <p class="text-slate-600 text-sm leading-relaxed mb-5"><strong>Livrable :</strong> landing page, composants animés, transitions, scroll reveals, gestures.</p>
+        <p class="text-slate-600 text-sm leading-relaxed mb-5"><strong>Pour :</strong> SaaS, portfolios, dashboards, pages de vente, onboarding.</p>
+        <div class="offer-spacer"></div>
+        <p class="offer-price text-xl font-extrabold text-foreground mb-6 font-display">À partir de 75€ <span class="offer-quote text-sm font-semibold text-slate-500">ou sur devis léger</span></p>
+        <div class="flex flex-col gap-2"><a href="/demos-web/" class="inline-flex framer-accent font-semibold hover:text-purple-700">Voir les démos web →</a><a href="#contact" class="inline-flex text-slate-500 text-sm font-semibold hover:text-primary">Demander ce build</a></div>
+      </article>
+    </div>
   </div>
+</section>
 
-</div>
+<!-- Why -->
+<section id="why" class="py-24 bg-white">
+  <div class="max-w-6xl mx-auto px-6">
+    <div class="grid lg:grid-cols-[0.9fr_1.1fr] gap-12 items-start">
+      <div class="reveal">
+        <p class="text-accent font-semibold tracking-widest uppercase text-xs mb-3">Pourquoi Atlas Nexus</p>
+        <h2 class="section-title text-foreground mb-5 font-display">Crédible parce que livrable.</h2>
+        <p class="text-slate-600 leading-relaxed">L'objectif n'est pas de vendre une promesse magique. C'est de construire un outil fonctionnel, visible, documenté et utilisable par votre activité.</p>
+      </div>
+      <div class="grid sm:grid-cols-2 gap-4">
+        <div class="reveal reveal-delay-1 bg-surface border border-border rounded-2xl p-5"><p class="font-bold mb-1">Livraison rapide</p><p class="text-sm text-slate-600">Scope court, priorisation claire, résultat vérifiable.</p></div>
+        <div class="reveal reveal-delay-1 bg-surface border border-border rounded-2xl p-5"><p class="font-bold mb-1">Code visible sur GitHub</p><p class="text-sm text-slate-600">Quand le projet le permet, le code reste inspectable.</p></div>
+        <div class="reveal reveal-delay-2 bg-surface border border-border rounded-2xl p-5"><p class="font-bold mb-1">Documentation incluse</p><p class="text-sm text-slate-600">README, commandes utiles, limites connues.</p></div>
+        <div class="reveal reveal-delay-2 bg-surface border border-border rounded-2xl p-5"><p class="font-bold mb-1">Déploiement simple</p><p class="text-sm text-slate-600">GitHub Pages, scripts Python, exports standards.</p></div>
+        <div class="reveal reveal-delay-3 bg-surface border border-border rounded-2xl p-5"><p class="font-bold mb-1">Data / IA / UI / automatisation</p><p class="text-sm text-slate-600">Même logique : transformer un flux en outil opérationnel.</p></div>
+        <div class="reveal reveal-delay-3 bg-surface border border-border rounded-2xl p-5"><p class="font-bold mb-1">Pas de promesse magique</p><p class="text-sm text-slate-600">Un outil fonctionnel livré, pas du storytelling IA.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Work -->
+<section id="work" class="py-28 bg-surface">
+  <div class="max-w-6xl mx-auto px-6">
+    <div class="reveal">
+      <p class="text-accent font-semibold tracking-widest uppercase text-xs mb-3">Réalisations</p>
+      <h2 class="section-title text-foreground mb-5 font-display">Mini études de cas</h2>
+      <p class="text-slate-600 max-w-2xl mb-12 leading-relaxed">Quelques builds récents montrant le type de sortie livrable : dashboard, pipeline, UI animée, intégration API, refonte express de sites datés.</p>
+    </div>
+    <div class="mt-8 grid md:grid-cols-3 gap-3">
+      <a href="/demos-web/" class="reveal reveal-delay-1 card-hover bg-white rounded-xl p-5 border border-border hover:border-primary transition-colors"><p class="font-bold text-foreground">Démos refonte web</p><p class="text-slate-500 text-sm">Artisan, restaurant, santé, consultant · pages orientées contact</p></a>
+      <a href="https://github.com/AtlasNexusTech/birdeye-sprint4" class="reveal reveal-delay-1 card-hover bg-white rounded-xl p-5 border border-border"><p class="font-bold text-foreground">Birdeye Sprint 4 + Hawkeye V4</p><p class="text-slate-500 text-sm">Pipeline crypto · pression marché</p></a>
+
+      <a href="/oobe-ace-agent/" class="reveal reveal-delay-2 card-hover bg-white dark:bg-dark-card rounded-xl p-5 border border-border flex items-start gap-2.5"><svg class="w-4 h-4 shrink-0 mt-1" viewBox="0 0 398 312" fill="none"><path d="M64.6 237.9c2.4-2.4 5.7-3.8 9.2-3.8h317.4c5.8 0 8.7 7 4.6 11.1l-62.7 62.7c-2.4 2.4-5.7 3.8-9.2 3.8H6.5c-5.8 0-8.7-7-4.6-11.1l62.7-62.7z" fill="url(#sol-grad-top)"/><path d="M64.6 3.8C67.1 1.4 70.4 0 73.8 0h317.4c5.8 0 8.7 7 4.6 11.1l-62.7 62.7c-2.4 2.4-5.7 3.8-9.2 3.8H6.5c-5.8 0-8.7-7-4.6-11.1L64.6 3.8z" fill="url(#sol-grad-mid)"/><path d="M333.1 120.1c-2.4-2.4-5.7-3.8-9.2-3.8H6.5c-5.8 0-8.7 7-4.6 11.1l62.7 62.7c2.4 2.4 5.7 3.8 9.2 3.8h317.4c5.8 0 8.7-7 4.6-11.1l-62.7-62.7z" fill="url(#sol-grad-bot)"/></svg><div><p class="font-bold text-foreground dark:text-dark-foreground">Nexus Scout SAP</p><p class="text-slate-500 dark:text-slate-400 text-sm">Agent SAP mainnet · 3 tools x402</p></div></a>
+      <a href="/case-study/" class="reveal reveal-delay-3 card-hover bg-white rounded-xl p-5 border border-border hover:border-primary transition-colors flex items-start gap-2.5"><div class="flex -space-x-1 shrink-0 mt-0.5"><div class="w-3 h-3 rounded-full bg-[#FCFF52] ring-1 ring-white dark:ring-dark-card"></div><div class="w-3 h-3 rounded-full bg-gradient-to-br from-[#00FFA3] to-[#DC1FFF] ring-1 ring-white dark:ring-dark-card"></div></div><div><p class="font-bold text-foreground">AI2Work — Bounty Marketplace</p><p class="text-slate-500 text-sm">On-chain · Celo · Smart contracts · Case study</p></div></a>
+      <a href="https://atlasnexusops.github.io/solana-pulse/" class="reveal reveal-delay-3 card-hover bg-white rounded-xl p-5 border border-border flex items-start gap-2.5"><svg class="w-4 h-4 shrink-0 mt-1" viewBox="0 0 398 312" fill="none"><path d="M64.6 237.9c2.4-2.4 5.7-3.8 9.2-3.8h317.4c5.8 0 8.7 7 4.6 11.1l-62.7 62.7c-2.4 2.4-5.7 3.8-9.2 3.8H6.5c-5.8 0-8.7-7-4.6-11.1l62.7-62.7z" fill="url(#sol-grad-top)"/><path d="M64.6 3.8C67.1 1.4 70.4 0 73.8 0h317.4c5.8 0 8.7 7 4.6 11.1l-62.7 62.7c-2.4 2.4-5.7 3.8-9.2 3.8H6.5c-5.8 0-8.7-7-4.6-11.1L64.6 3.8z" fill="url(#sol-grad-mid)"/><path d="M333.1 120.1c-2.4-2.4-5.7-3.8-9.2-3.8H6.5c-5.8 0-8.7 7-4.6 11.1l62.7 62.7c2.4 2.4 5.7 3.8 9.2 3.8h317.4c5.8 0 8.7-7 4.6-11.1l-62.7-62.7z" fill="url(#sol-grad-bot)"/></svg><div><p class="font-bold text-foreground">Solana Market Pulse</p><p class="text-slate-500 text-sm">SPL tokens · scoring automatisé</p></div></a>
+      <a href="/ui-design-system/" class="reveal reveal-delay-3 card-hover bg-white rounded-xl p-5 border border-border flex items-start gap-2.5" style="border-color: rgba(124,58,237,.28)!important; box-shadow: 0 14px 28px -22px rgba(124,58,237,.3);"><svg class="w-4 h-4 shrink-0 mt-1" viewBox="0 0 24 24" fill="none"><rect x="2" y="2" width="20" height="20" rx="4" stroke="url(#ui-purple)" stroke-width="2"/><circle cx="8.5" cy="8.5" r="1.5" fill="#C084FC"/><circle cx="15.5" cy="8.5" r="1.5" fill="#C084FC"/><circle cx="12" cy="15" r="1.5" fill="#C084FC"/><path d="M4 18l4-4 3 3 4-4 5 5" stroke="#A78BFA" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><defs><linearGradient id="ui-purple" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#7C3AED"/><stop offset="1" stop-color="#A78BFA"/></linearGradient></defs></svg><div><p class="font-bold text-foreground">UI Design System</p><p class="text-slate-500 text-sm">Skill multi-LLM · 5 modules · audit/UX/motion/prototypage/validation</p></div></a>
+    </div>
+  </div>
+</section>
+
+<!-- Process -->
+<section id="process" class="py-28 bg-muted dark:bg-dark-elevated text-foreground dark:text-white">
+  <div class="max-w-6xl mx-auto px-6">
+    <div class="reveal">
+      <p class="text-purple-500 font-semibold tracking-widest uppercase text-xs mb-3">Méthode</p>
+      <h2 class="section-title mb-16 font-display">Comment je travaille</h2>
+    </div>
+    <div class="grid md:grid-cols-3 gap-12">
+      <div class="reveal reveal-delay-1 flex gap-5 items-start"><span class="step-number shrink-0" data-step="01">01</span><div><h3 class="font-bold text-2xl mb-3 font-display">Brief</h3><p class="text-slate-600 dark:text-slate-300 text-base leading-relaxed">Vous définissez le besoin, les sources, le format et le délai. Je propose un scope concret.</p></div></div>
+      <div class="reveal reveal-delay-2 flex gap-5 items-start"><span class="step-number shrink-0" data-step="02">02</span><div><h3 class="font-bold text-2xl mb-3 font-display">Build</h3><p class="text-slate-600 dark:text-slate-300 text-base leading-relaxed">Je construis, teste, documente. Code propre, livré sur GitHub si possible.</p></div></div>
+      <div class="reveal reveal-delay-3 flex gap-5 items-start"><span class="step-number shrink-0" data-step="03">03</span><div><h3 class="font-bold text-2xl mb-3 font-display">Livraison</h3><p class="text-slate-600 dark:text-slate-300 text-base leading-relaxed">Vous recevez le livrable, les commandes utiles, les limites connues et les prochaines options.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- Framework -->
+<section id="framework" class="py-28 bg-white dark:bg-dark-surface">
+  <div class="max-w-6xl mx-auto px-6">
+    <div class="reveal text-center mb-16">
+      <p class="text-purple-500 font-semibold tracking-widest uppercase text-xs mb-3">Framework</p>
+      <h2 class="section-title text-foreground dark:text-dark-foreground mb-5 font-display">ATLAS — Architecture cognitive distribuée</h2>
+      <p class="text-slate-600 dark:text-slate-300 max-w-2xl mx-auto leading-relaxed">Un système de cognition distribuée conçu pour améliorer la qualité des décisions, la vitesse d'exécution et la continuité de la mémoire — construit comme une coalition d'agents complémentaires.</p>
+    </div>
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+      <div class="reveal reveal-delay-1 card-hover bg-surface dark:bg-dark-card rounded-xl p-6 border border-border dark:border-dark-border">
+        <div class="flex items-center gap-3 mb-3">
+          <div class="w-10 h-10 bg-blue-100 dark:bg-blue-900/30 rounded-lg flex items-center justify-center"><span class="text-blue-600 dark:text-blue-400 font-bold text-sm">H</span></div>
+          <h3 class="font-bold text-foreground dark:text-dark-foreground font-display">HERMES</h3>
+        </div>
+        <p class="text-slate-600 dark:text-slate-300 text-sm leading-relaxed">Coordination, priorisation, arbitrage. Transmission continue. Point d'entrée unique du système.</p>
+      </div>
+      <div class="reveal reveal-delay-1 card-hover bg-surface dark:bg-dark-card rounded-xl p-6 border border-border dark:border-dark-border">
+        <div class="flex items-center gap-3 mb-3">
+          <div class="w-10 h-10 bg-purple-100 dark:bg-purple-900/30 rounded-lg flex items-center justify-center"><span class="text-purple-600 dark:text-purple-400 font-bold text-sm">A</span></div>
+          <h3 class="font-bold text-foreground dark:text-dark-foreground font-display">ATHENA</h3>
+        </div>
+        <p class="text-slate-600 dark:text-slate-300 text-sm leading-relaxed">Gouvernance, standards, cohérence architecturale. Gardienne de la qualité.</p>
+      </div>
+      <div class="reveal reveal-delay-2 card-hover bg-surface dark:bg-dark-card rounded-xl p-6 border border-border dark:border-dark-border">
+        <div class="flex items-center gap-3 mb-3">
+          <div class="w-10 h-10 bg-red-100 dark:bg-red-900/30 rounded-lg flex items-center justify-center"><span class="text-red-600 dark:text-red-400 font-bold text-sm">Æ</span></div>
+          <h3 class="font-bold text-foreground dark:text-dark-foreground font-display">AEGIS</h3>
+        </div>
+        <p class="text-slate-600 dark:text-slate-300 text-sm leading-relaxed">Validation critique, stress tests, contre-arguments. L'adversaire qui renforce les décisions.</p>
+      </div>
+      <div class="reveal reveal-delay-2 card-hover bg-surface dark:bg-dark-card rounded-xl p-6 border border-border dark:border-dark-border">
+        <div class="flex items-center gap-3 mb-3">
+          <div class="w-10 h-10 bg-green-100 dark:bg-green-900/30 rounded-lg flex items-center justify-center"><span class="text-green-600 dark:text-green-400 font-bold text-sm">Δ</span></div>
+          <h3 class="font-bold text-foreground dark:text-dark-foreground font-display">DELPHI</h3>
+        </div>
+        <p class="text-slate-600 dark:text-slate-300 text-sm leading-relaxed">Synthèse profonde, modélisation, options. Transforme l'information en décisions actionnables.</p>
+      </div>
+      <div class="reveal reveal-delay-3 card-hover bg-surface dark:bg-dark-card rounded-xl p-6 border border-border dark:border-dark-border">
+        <div class="flex items-center gap-3 mb-3">
+          <div class="w-10 h-10 bg-orange-100 dark:bg-orange-900/30 rounded-lg flex items-center justify-center"><span class="text-orange-600 dark:text-orange-400 font-bold text-sm">Φ</span></div>
+          <h3 class="font-bold text-foreground dark:text-dark-foreground font-display">HEPHAESTUS</h3>
+        </div>
+        <p class="text-slate-600 dark:text-slate-300 text-sm leading-relaxed">Infrastructure, agents, automatisation. La forge qui fait tourner le système.</p>
+      </div>
+      <div class="reveal reveal-delay-3 card-hover bg-surface dark:bg-dark-card rounded-xl p-6 border border-border dark:border-dark-border">
+        <div class="flex items-center gap-3 mb-3">
+          <div class="w-10 h-10 bg-teal-100 dark:bg-teal-900/30 rounded-lg flex items-center justify-center"><span class="text-teal-600 dark:text-teal-400 font-bold text-sm">M</span></div>
+          <h3 class="font-bold text-foreground dark:text-dark-foreground font-display">MNEMOSYNE</h3>
+        </div>
+        <p class="text-slate-600 dark:text-slate-300 text-sm leading-relaxed">Mémoire persistante, apprentissages, logs. Ce qui survit aux sessions et aux resets.</p>
+      </div>
+    </div>
+    <div class="reveal reveal-delay-4 text-center mt-12">
+      <a href="https://github.com/AtlasNexusTech/atlas-nexus" class="bg-primary text-white px-7 py-3.5 rounded-full text-base font-semibold hover:bg-primary-dark inline-flex items-center gap-2 font-display">
+        Voir le framework sur GitHub
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+      </a>
+      <p class="text-slate-500 dark:text-slate-400 text-sm mt-4">Open-source · MIT · Construit par Atlas Nexus Operations</p>
+    </div>
+  </div>
+</section>
+
+<!-- Projects -->
+<section id="projects" class="py-28 bg-white dark:bg-dark-surface">
+  <div class="max-w-6xl mx-auto px-6">
+    <div class="reveal text-center mb-16">
+      <p class="text-accent font-semibold tracking-widest uppercase text-xs mb-3">Projets</p>
+      <h2 class="section-title text-foreground dark:text-dark-foreground mb-5 font-display">L'écosystème en construction</h2>
+      <p class="text-slate-600 dark:text-slate-300 max-w-2xl mx-auto leading-relaxed">Quatre projets complémentaires : infrastructure data, orchestration d'agents, marketplace on-chain, et remote desktop P2P.</p>
+    </div>
+    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
+      <!-- AI Studio -->
+      <a href="/ai-studio/" class="reveal reveal-delay-1 card-hover rounded-2xl p-8 border border-border flex flex-col bg-white dark:bg-dark-card" style="border-color: rgba(8,145,178,.28)!important; box-shadow: 0 18px 52px -34px rgba(8,145,178,.55);">
+        <div class="w-12 h-12 bg-cyan-100 dark:bg-cyan-900/30 rounded-xl flex items-center justify-center mb-6">
+          <svg class="w-6 h-6 text-cyan-600 dark:text-cyan-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="8" rx="2" fill="currentColor" stroke="none"/><rect x="2" y="14" width="20" height="8" rx="2" fill="currentColor" stroke="none" opacity="0.6"/></svg>
+        </div>
+        <h3 class="text-xl font-bold text-foreground dark:text-dark-foreground mb-2 font-display">AI Studio</h3>
+        <p class="text-slate-600 dark:text-slate-300 text-sm leading-relaxed mb-4">Hub créatif IA tout-en-un : images (Midjourney, Flux), vidéo (Luma, Sora), musique (Suno), chat (GPT, Claude, Gemini, DeepSeek). Propulsé par Ace Data Cloud.</p>
+        <div class="flex flex-wrap gap-2 mb-4">
+          <span class="px-3 py-1 bg-cyan-50 dark:bg-cyan-900/20 text-cyan-700 dark:text-cyan-300 text-xs font-medium rounded-full">Image</span>
+          <span class="px-3 py-1 bg-cyan-50 dark:bg-cyan-900/20 text-cyan-700 dark:text-cyan-300 text-xs font-medium rounded-full">Vidéo</span>
+          <span class="px-3 py-1 bg-cyan-50 dark:bg-cyan-900/20 text-cyan-700 dark:text-cyan-300 text-xs font-medium rounded-full">Musique</span>
+          <span class="px-3 py-1 bg-cyan-50 dark:bg-cyan-900/20 text-cyan-700 dark:text-cyan-300 text-xs font-medium rounded-full">Chat</span>
+        </div>
+        <div class="mt-auto flex gap-2 items-center">
+          <span class="text-cyan-600 dark:text-cyan-400 text-sm font-semibold">Découvrir →</span>
+        </div>
+      </a>
+      <!-- AI2Work -->
+      <a href="https://ai2work.atlasnexus.tech" class="reveal reveal-delay-2 card-hover agentic-blue-card rounded-2xl p-8 border border-border bg-white dark:bg-dark-card flex flex-col">
+        <div class="w-12 h-12 agentic-icon-bg rounded-xl flex items-center justify-center mb-6">
+          <img src="https://ai2work.atlasnexus.tech/icon.svg" alt="AI2Work" class="w-9 h-9 object-contain">
+        </div>
+        <h3 class="text-xl font-bold text-foreground dark:text-dark-foreground mb-2 font-display">AI2Work</h3>
+        <p class="text-slate-600 dark:text-slate-300 text-sm leading-relaxed mb-4">Marketplace on-chain où des agents IA résolvent des bounties GitHub et sont payés en stablecoins. Live sur Celo mainnet, Solana en cours.</p>
+        <div class="flex flex-wrap gap-2 mb-4">
+          <span class="px-3 py-1 agentic-chip text-xs font-medium rounded-full">Web3</span>
+          <span class="px-3 py-1 agentic-chip text-xs font-medium rounded-full">On-chain</span>
+          <span class="px-3 py-1 agentic-chip text-xs font-medium rounded-full">Celo</span>
+          <span class="px-3 py-1 agentic-chip text-xs font-medium rounded-full">Solana</span>
+        </div>
+        <div class="mt-auto flex gap-2 items-center">
+          <span class="agentic-accent text-sm font-semibold">Voir la démo →</span>
+        </div>
+      </a>
+      <!-- OOBE Ace Agent -->
+      <a href="/oobe-ace-agent/" class="reveal reveal-delay-3 card-hover rounded-2xl p-8 border border-border flex flex-col bg-white dark:bg-dark-card" style="border-color: rgba(5,150,105,.28)!important; box-shadow: 0 18px 52px -34px rgba(5,150,105,.55);">
+        <div class="w-12 h-12 bg-green-100 dark:bg-green-900/30 rounded-xl flex items-center justify-center mb-6">
+          <svg class="w-6 h-6 text-green-600 dark:text-green-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <h3 class="text-xl font-bold text-foreground dark:text-dark-foreground mb-2 font-display">OOBE × Ace Agent</h3>
+        <p class="text-slate-600 dark:text-slate-300 text-sm leading-relaxed mb-4">Spending guardrails Solana-natifs pour agents IA autonomes. Vault on-chain, caps quotidiens, allowlist d'endpoints, MCP natif.</p>
+        <div class="flex flex-wrap gap-2 mb-4">
+          <span class="px-3 py-1 bg-green-50 dark:bg-green-900/20 text-green-700 dark:text-green-300 text-xs font-medium rounded-full">Solana</span>
+          <span class="px-3 py-1 bg-green-50 dark:bg-green-900/20 text-green-700 dark:text-green-300 text-xs font-medium rounded-full">x402</span>
+          <span class="px-3 py-1 bg-green-50 dark:bg-green-900/20 text-green-700 dark:text-green-300 text-xs font-medium rounded-full">MCP</span>
+        </div>
+        <div class="mt-auto flex gap-2 items-center">
+          <span class="text-green-600 dark:text-green-400 text-sm font-semibold">Explorer →</span>
+        </div>
+      </a>
+      <!-- Atlas Desk -->
+      <a href="https://github.com/AtlasNexusTech/atlas-desk" class="reveal reveal-delay-4 card-hover rounded-2xl p-8 border border-border flex flex-col bg-white dark:bg-dark-card" style="border-color: rgba(245,158,11,.28)!important; box-shadow: 0 18px 52px -34px rgba(245,158,11,.55);">
+        <div class="w-12 h-12 bg-amber-100 dark:bg-amber-900/30 rounded-xl flex items-center justify-center mb-6">
+          <svg class="w-6 h-6 text-amber-600 dark:text-amber-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+        </div>
+        <h3 class="text-xl font-bold text-foreground dark:text-dark-foreground mb-2 font-display">Atlas Desk</h3>
+        <p class="text-slate-600 dark:text-slate-300 text-sm leading-relaxed mb-4">Remote desktop P2P open-source (alternative à AnyDesk). WebRTC, chiffré, transfert de fichiers, multi-plateforme.</p>
+        <div class="flex flex-wrap gap-2 mb-4">
+          <span class="px-3 py-1 bg-amber-50 dark:bg-amber-900/20 text-amber-700 dark:text-amber-300 text-xs font-medium rounded-full">P2P</span>
+          <span class="px-3 py-1 bg-amber-50 dark:bg-amber-900/20 text-amber-700 dark:text-amber-300 text-xs font-medium rounded-full">WebRTC</span>
+          <span class="px-3 py-1 bg-amber-50 dark:bg-amber-900/20 text-amber-700 dark:text-amber-300 text-xs font-medium rounded-full">Go</span>
+          <span class="px-3 py-1 bg-amber-50 dark:bg-amber-900/20 text-amber-700 dark:text-amber-300 text-xs font-medium rounded-full">Open Source</span>
+        </div>
+        <div class="mt-auto flex gap-2 items-center">
+          <span class="text-amber-600 dark:text-amber-400 text-sm font-semibold">GitHub →</span>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- Contact -->
+<section id="contact" class="py-28 bg-surface dark:bg-dark-surface">
+  <div class="max-w-3xl mx-auto px-6 text-center">
+    <p class="text-accent font-semibold tracking-widest uppercase text-xs mb-3">Contact</p>
+    <h2 class="section-title text-foreground dark:text-dark-foreground mb-6 font-display mx-auto inline-block">Parlons de votre projet</h2>
+    <p class="text-slate-600 dark:text-slate-300 text-lg mb-10 max-w-xl mx-auto">Un besoin, une question, un devis ? Écrivez-moi directement ou appelez-moi.</p>
+    <div class="grid sm:grid-cols-3 gap-6 mb-10">
+      <a data-obfuscate data-type="email" data-encoded="bGFzbHlhbGV4YW5kcmVAZ21haWwuY29t" class="reveal reveal-delay-1 card-hover bg-white dark:bg-dark-card rounded-xl p-6 border border-border dark:border-dark-border flex flex-col items-center gap-3">
+        <svg class="w-8 h-8 text-primary" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 4L12 13 2 4"/></svg>
+        <span class="font-bold text-foreground dark:text-dark-foreground">Email</span>
+        <span class="text-sm text-slate-500 dark:text-slate-400">laslyalexandre@gmail.com</span>
+        <span class="text-xs text-slate-400 dark:text-slate-500">atlasnexus.ops@proton.me</span>
+      </a>
+      <a data-obfuscate data-type="phone" data-encoded="KzMzNzUwNDU0NTk1" class="reveal reveal-delay-2 card-hover bg-white dark:bg-dark-card rounded-xl p-6 border border-border dark:border-dark-border flex flex-col items-center gap-3">
+        <svg class="w-8 h-8 text-accent" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
+        <span class="font-bold text-foreground dark:text-dark-foreground">Téléphone</span>
+        <span class="text-sm text-slate-500 dark:text-slate-400">+33 7 50 50 45 95</span>
+      </a>
+      <a href="https://www.malt.fr/profile/alexandrechahibalasly" class="reveal reveal-delay-3 card-hover bg-white dark:bg-dark-card rounded-xl p-6 border border-border dark:border-dark-border flex flex-col items-center gap-3">
+        <img src="/images/malt-logo.png" alt="Malt" class="h-10 w-auto object-contain">
+        <span class="font-bold text-foreground dark:text-dark-foreground">Malt</span>
+        <span class="text-sm text-slate-500 dark:text-slate-400">Profil vérifié</span>
+      </a>
+    </div>
+    <p class="text-sm text-slate-400 dark:text-slate-500">Réponse sous 24h · Devis gratuit</p>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="py-12 border-t border-border bg-white">
+  <div class="max-w-6xl mx-auto px-6 flex flex-col sm:flex-row justify-between items-center gap-4">
+    <p class="text-slate-400 text-sm">&copy; 2026 Atlas Nexus — Alexandre Lasly · <a href="/mentions-legales/" class="hover:text-primary dark:hover:text-blue-400">Mentions légales</a></p>
+  </div>
+</footer>
+
+<!-- Scroll Reveal Observer + Step Animation -->
+<script>
+(function() {
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    document.querySelectorAll('.reveal').forEach(el => el.classList.add('visible'));
+    document.querySelectorAll('.step-number').forEach(el => { el.classList.add('animate'); el.classList.add('final'); });
+    return;
+  }
+
+  // ── Step number animation: pulse when entering, lock when leaving ──
+  const processSection = document.querySelector('#process');
+  const stepNumbers = document.querySelectorAll('.step-number');
+
+  if (processSection && stepNumbers.length) {
+    const processObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          // Section is visible — restart pulse animation
+          stepNumbers.forEach(el => {
+            el.classList.remove('final');
+            el.classList.add('animate');
+            // Re-trigger animation
+            void el.offsetWidth;
+            el.classList.remove('animate');
+            void el.offsetWidth;
+            el.classList.add('animate');
+          });
+        } else if (entry.boundingClientRect.top < 0) {
+          // User scrolled past — lock all numbers in final state
+          stepNumbers.forEach(el => {
+            el.classList.add('final');
+            el.classList.remove('animate');
+          });
+        }
+      });
+    }, { threshold: 0 });
+
+    processObserver.observe(processSection);
+  }
+
+  // ── Scroll reveal ──
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+})();
+</script>
+
+<!-- Dark mode toggle -->
+<script>
+(function() {
+  const html = document.documentElement;
+  const toggle = document.getElementById('theme-toggle');
+
+  function apply(isDark) {
+    if (isDark) html.classList.add('dark');
+    else html.classList.remove('dark');
+  }
+
+  const stored = localStorage.getItem('theme');
+  if (stored === 'dark') apply(true);
+  else if (stored === 'light') apply(false);
+  else if (window.matchMedia('(prefers-color-scheme: dark)').matches) apply(true);
+
+  toggle.addEventListener('click', () => {
+    const isDark = !html.classList.contains('dark');
+    apply(isDark);
+    localStorage.setItem('theme', isDark ? 'dark' : 'light');
+  });
+})();
+</script>
+
+
+<!-- Email/Phone obfuscation -->
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const contactLinks = document.querySelectorAll("[data-obfuscate]");
+  contactLinks.forEach(link => {
+    const type = link.getAttribute("data-type");
+    const encoded = link.getAttribute("data-encoded");
+    const decoded = atob(encoded);
+    link.addEventListener("click", (e) => {
+      if (type === "email") window.location.href = "mailto:" + decoded;
+      else if (type === "phone") window.location.href = "tel:" + decoded;
+    });
+    link.style.cursor = "pointer";
+  });
+});
+</script>
+<script>
+/* ── Antigravity Canvas ── Mouse-reactive floating geometric particles */
+(function(){
+  const canvas = document.getElementById('antigravity-canvas');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  
+  let W, H, particles = [];
+  const PARTICLE_COUNT = 55;
+  const CONNECTION_DIST = 140;
+  const MOUSE_RADIUS = 200;       // max distance particles feel the cursor
+  const MOUSE_FORCE = 0.015;      // attraction strength
+  const SHAPES = ['circle','triangle','diamond','hexagon'];
+  const COLORS = [
+    { r: 37,  g: 99,  b: 235 }, // blue
+    { r: 5,   g: 150, b: 105 }, // green
+    { r: 124, g: 58,  b: 237 }, // purple
+  ];
+
+  // Smoothed mouse position (-1000 = off-screen / no mouse)
+  const mouse = { x: -1000, y: -1000, tx: -1000, ty: -1000 };
+
+  function resize() {
+    const rect = canvas.parentElement.getBoundingClientRect();
+    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    W = rect.width; H = rect.height;
+    canvas.width = W * dpr; canvas.height = H * dpr;
+    canvas.style.width = W + 'px'; canvas.style.height = H + 'px';
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  }
+
+  function createParticle() {
+    const color = COLORS[Math.floor(Math.random() * COLORS.length)];
+    return {
+      x: Math.random() * W,
+      y: Math.random() * H,
+      vx: (Math.random() - 0.5) * 0.35,
+      vy: (Math.random() - 0.5) * 0.35,
+      size: 3 + Math.random() * 9,
+      opacity: 0.08 + Math.random() * 0.14,
+      shape: SHAPES[Math.floor(Math.random() * SHAPES.length)],
+      color,
+      phase: Math.random() * Math.PI * 2,
+      speed: 0.003 + Math.random() * 0.007,
+      amplitude: 0.2 + Math.random() * 0.8,
+      rotation: Math.random() * Math.PI * 2,
+      rotSpeed: (Math.random() - 0.5) * 0.004,
+    };
+  }
+
+  function drawShape(p) {
+    const { x, y, size, shape, color: c, opacity, rotation } = p;
+    ctx.save();
+    ctx.translate(x, y);
+    ctx.rotate(rotation);
+    ctx.globalAlpha = opacity;
+    ctx.fillStyle = `rgba(${c.r},${c.g},${c.b},1)`;
+    ctx.strokeStyle = `rgba(${c.r},${c.g},${c.b},1)`;
+    ctx.lineWidth = 0.6;
+    
+    const s = size;
+    switch(shape) {
+      case 'circle':
+        ctx.beginPath(); ctx.arc(0, 0, s/2, 0, Math.PI*2); ctx.fill();
+        break;
+      case 'triangle':
+        ctx.beginPath();
+        ctx.moveTo(0, -s/1.8); ctx.lineTo(s/2, s/2.5); ctx.lineTo(-s/2, s/2.5); ctx.closePath();
+        ctx.fill();
+        break;
+      case 'diamond':
+        ctx.beginPath();
+        ctx.moveTo(0, -s/1.8); ctx.lineTo(s/2.2, 0); ctx.lineTo(0, s/1.8); ctx.lineTo(-s/2.2, 0); ctx.closePath();
+        ctx.fill();
+        break;
+      case 'hexagon':
+        ctx.beginPath();
+        for (let i=0; i<6; i++) {
+          const a = Math.PI/3 * i - Math.PI/6;
+          const r = s/2.2;
+          i===0 ? ctx.moveTo(Math.cos(a)*r, Math.sin(a)*r) : ctx.lineTo(Math.cos(a)*r, Math.sin(a)*r);
+        }
+        ctx.closePath(); ctx.fill();
+        break;
+    }
+    ctx.restore();
+  }
+
+  function drawConnections() {
+    for (let i=0; i<particles.length; i++) {
+      for (let j=i+1; j<particles.length; j++) {
+        const a = particles[i], b = particles[j];
+        const dx = a.x - b.x, dy = a.y - b.y;
+        const dist = Math.sqrt(dx*dx + dy*dy);
+        if (dist < CONNECTION_DIST) {
+          // Boost alpha for connections near the mouse
+          const dA = Math.hypot(a.x - mouse.x, a.y - mouse.y);
+          const dB = Math.hypot(b.x - mouse.x, b.y - mouse.y);
+          const nearMouse = Math.max(0, 1 - Math.min(dA, dB) / 160);
+          const alpha = ((1 - dist/CONNECTION_DIST) * 0.07) + nearMouse * 0.12;
+          ctx.beginPath();
+          ctx.moveTo(a.x, a.y);
+          ctx.lineTo(b.x, b.y);
+          ctx.strokeStyle = `rgba(37,99,235,${alpha.toFixed(3)})`;
+          ctx.lineWidth = 0.4 + nearMouse * 0.6;
+          ctx.stroke();
+        }
+      }
+    }
+  }
+
+  function drawCursorGlow() {
+    if (mouse.x < 0) return;
+    const grad = ctx.createRadialGradient(mouse.x, mouse.y, 0, mouse.x, mouse.y, 100);
+    grad.addColorStop(0, 'rgba(37,99,235,0.06)');
+    grad.addColorStop(0.5, 'rgba(5,150,105,0.03)');
+    grad.addColorStop(1, 'rgba(37,99,235,0)');
+    ctx.fillStyle = grad;
+    ctx.beginPath(); ctx.arc(mouse.x, mouse.y, 100, 0, Math.PI*2); ctx.fill();
+  }
+
+  function animate() {
+    ctx.clearRect(0, 0, W, H);
+    
+    // Smooth mouse lerp
+    mouse.x += (mouse.tx - mouse.x) * 0.08;
+    mouse.y += (mouse.ty - mouse.y) * 0.08;
+    
+    drawCursorGlow();
+    
+    for (const p of particles) {
+      // Mouse attraction — particles drift gently toward cursor
+      if (mouse.x > 0) {
+        const dx = mouse.x - p.x, dy = mouse.y - p.y;
+        const dist = Math.sqrt(dx*dx + dy*dy);
+        if (dist < MOUSE_RADIUS && dist > 1) {
+          const force = (1 - dist/MOUSE_RADIUS) * MOUSE_FORCE;
+          p.x += (dx / dist) * force;
+          p.y += (dy / dist) * force;
+        }
+      }
+      
+      // Sinusoidal floating
+      const floatX = Math.sin(p.phase) * p.amplitude;
+      const floatY = Math.cos(p.phase * 0.7) * p.amplitude * 0.8;
+      p.x += p.vx + floatX * 0.03;
+      p.y += p.vy + floatY * 0.03;
+      p.phase += p.speed;
+      p.rotation += p.rotSpeed;
+      
+      // Boost opacity near mouse
+      if (mouse.x > 0) {
+        const d = Math.hypot(p.x - mouse.x, p.y - mouse.y);
+        p.currentOpacity = p.opacity + Math.max(0, 1 - d/130) * 0.13;
+      } else {
+        p.currentOpacity = p.opacity;
+      }
+      
+      // Wrap around
+      if (p.x < -20) p.x = W + 20;
+      if (p.x > W + 20) p.x = -20;
+      if (p.y < -20) p.y = H + 20;
+      if (p.y > H + 20) p.y = -20;
+      
+      // Temporarily swap opacity for this frame
+      const saved = p.opacity;
+      p.opacity = p.currentOpacity || p.opacity;
+      drawShape(p);
+      p.opacity = saved;
+    }
+    
+    drawConnections();
+    requestAnimationFrame(animate);
+  }
+
+  function init() {
+    resize();
+    particles = Array.from({ length: PARTICLE_COUNT }, createParticle);
+    
+    // Mouse tracking
+    canvas.parentElement.addEventListener('mousemove', function(e) {
+      const rect = canvas.getBoundingClientRect();
+      mouse.tx = e.clientX - rect.left;
+      mouse.ty = e.clientY - rect.top;
+    });
+    canvas.parentElement.addEventListener('mouseleave', function() {
+      mouse.tx = -1000; mouse.ty = -1000;
+    });
+    // Touch support
+    canvas.parentElement.addEventListener('touchmove', function(e) {
+      const rect = canvas.getBoundingClientRect();
+      mouse.tx = e.touches[0].clientX - rect.left;
+      mouse.ty = e.touches[0].clientY - rect.top;
+    }, {passive: true});
+    canvas.parentElement.addEventListener('touchend', function() {
+      mouse.tx = -1000; mouse.ty = -1000;
+    });
+    
+    if (!prefersReduced) animate();
+  }
+
+  window.addEventListener('resize', () => { resize(); particles.forEach(p => { p.x = Math.random()*W; p.y = Math.random()*H; }); });
+  
+  // Start when hero section is visible
+  if ('IntersectionObserver' in window) {
+    const obs = new IntersectionObserver((entries) => {
+      if (entries[0].isIntersecting) { init(); obs.disconnect(); }
+    }, { threshold: 0.1 });
+    obs.observe(canvas.parentElement);
+  } else {
+    init();
+  }
+})();
+</script>
 </body>
 </html>
