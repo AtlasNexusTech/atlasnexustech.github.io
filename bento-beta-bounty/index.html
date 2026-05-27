@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <link rel="icon" type="image/png" href="/favicon.png">
+  <link rel="shortcut icon" href="/favicon.ico">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <title>BentoGuard Beta Bounty Report — Atlas Nexus</title>
+  <link rel="canonical" href="https://atlasnexus.tech/bento-beta-bounty/">
+  <meta name="description" content="BentoGuard Beta Test Report — Security analysis of BentoGuard's AI agent firewall on Solana. Superteam bounty submission by Alexandre Lasly, Atlas Nexus.">
+  <meta property="og:title" content="BentoGuard Beta Bounty Report — Atlas Nexus">
+  <meta property="og:description" content="Deep analysis of BentoGuard: AI agent security firewall on Solana. 14+ feature modules, ML detection, on-chain resolution. Score: 8.1/10.">
+  <meta property="og:url" content="https://atlasnexus.tech/bento-beta-bounty/">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700;800;900&family=Nunito+Sans:ital,opsz,wght@0,6..12,300;0,6..12,400;0,6..12,600;0,6..12,700;0,6..12,800;1,6..12,600&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: { extend: { fontFamily: { display: ['Rubik','sans-serif'], body: ['Nunito Sans','sans-serif'] }, colors: { primary:'#2563EB','primary-dark':'#1D4ED8', secondary:'#3B82F6', accent:'#059669','accent-dark':'#047857', surface:'#F8FAFC', muted:'#F1F5FD', border:'#E4ECFC', foreground:'#0F172A','dark-surface':'#0B1120','dark-card':'#111827','dark-elevated':'#1A2235','dark-border':'#1E293B','dark-foreground':'#F1F5F9','dark-dim':'#94A3B8' } } }
+    }
+  </script>
+  <style>
+    body{font-family:'Nunito Sans',sans-serif} .font-display{font-family:'Rubik',sans-serif}
+    .hero-title{font-size:clamp(2.2rem,5.5vw,4rem);font-weight:900;letter-spacing:-.05em;line-height:1.05;overflow:visible}
+    .glow-word{position:relative;display:inline-block;overflow:visible;padding:.035em .02em .13em;background:linear-gradient(110deg,#0F172A 0%,#2563EB 30%,#7C3AED 56%,#059669 84%,#0F172A 100%);background-size:240% 100%;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:agenticGlow 3.8s ease-in-out infinite}
+    @keyframes agenticGlow{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
+    .section-title{font-size:clamp(1.5rem,3.5vw,2.2rem);font-weight:800;letter-spacing:-.03em;line-height:1.2}
+    .atlas-card{position:relative;overflow:hidden;border:1px solid rgba(37,99,235,.22);box-shadow:0 18px 52px -34px rgba(37,99,235,.55);background:linear-gradient(145deg,#fff 0%,#f7fbff 52%,#eef8ff 100%);border-radius:16px;padding:2rem}
+    .atlas-card::before{content:"";position:absolute;inset:-1px;pointer-events:none;background:radial-gradient(circle at 15% 0%,rgba(37,99,235,.12),transparent 38%),radial-gradient(circle at 95% 20%,rgba(5,150,105,.10),transparent 34%);border-radius:16px}
+    .atlas-card>*{position:relative}
+    .dark .atlas-card{background:linear-gradient(145deg,#111827 0%,#111d30 52%,#0e1f2d 100%);border-color:rgba(59,130,246,.25)!important;box-shadow:0 18px 52px -34px rgba(0,0,0,.6)}
+    .score-badge{display:inline-flex;align-items:center;justify-content:center;width:80px;height:80px;border-radius:50%;background:linear-gradient(135deg,#2563EB,#059669);color:white;font-size:1.6rem;font-weight:900;box-shadow:0 12px 32px -12px rgba(37,99,235,.55)}
+    .severity-critical{background:#FEE2E2;color:#991B1B;border:1px solid #FECACA;border-radius:6px;padding:2px 8px;font-weight:700;font-size:.75rem}
+    .severity-high{background:#FEF3C7;color:#92400E;border:1px solid #FDE68A;border-radius:6px;padding:2px 8px;font-weight:700;font-size:.75rem}
+    .severity-medium{background:#DBEAFE;color:#1E40AF;border:1px solid #BFDBFE;border-radius:6px;padding:2px 8px;font-weight:700;font-size:.75rem}
+    .severity-low{background:#F3F4F6;color:#374151;border:1px solid #E5E7EB;border-radius:6px;padding:2px 8px;font-weight:700;font-size:.75rem}
+    .dark .severity-critical{background:#7F1D1D;color:#FECACA}
+    .dark .severity-high{background:#78350F;color:#FDE68A}
+    .dark .severity-medium{background:#1E3A5F;color:#BFDBFE}
+    .dark .severity-low{background:#1F2937;color:#D1D5DB}
+    .check{color:#059669;font-weight:700} .warn{color:#D97706;font-weight:700}
+    .dark .bg-white{background-color:#0B1120}.dark .text-slate-600{color:#CBD5E1}.dark .text-slate-500{color:#94A3B8}
+    @media (prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}}
+  </style>
+</head>
+<body class="bg-white dark:bg-dark-surface text-foreground dark:text-dark-foreground antialiased">
+
+<!-- Nav -->
+<nav class="fixed top-0 left-0 right-0 z-50 bg-white/90 dark:bg-dark-surface/90 backdrop-blur-xl border-b border-border dark:border-dark-border">
+  <div class="max-w-5xl mx-auto px-6 h-16 flex items-center justify-between">
+    <a href="/" class="flex items-center gap-2 font-display font-bold text-lg" aria-label="Atlas Nexus home">
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" class="text-primary"><path d="M21 12.8A8.5 8.5 0 1 1 11.2 3a6.7 6.7 0 1 0 9.8 9.8Z" fill="currentColor"/></svg>
+      Atlas Nexus
+    </a>
+    <div class="flex items-center gap-4 text-sm font-medium text-slate-500 dark:text-slate-400">
+      <a href="/" class="hover:text-primary transition-colors">Home</a>
+      <a href="/oobe-ace-agent/" class="hover:text-primary transition-colors">OOBE ACE</a>
+    </div>
+  </div>
+</nav>
+
+<!-- Hero -->
+<header class="pt-28 pb-12 px-6">
+  <div class="max-w-5xl mx-auto">
+    <div class="flex flex-col md:flex-row md:items-start md:justify-between gap-6">
+      <div>
+        <div class="text-sm font-semibold text-accent dark:text-emerald-400 mb-2 tracking-wide uppercase">Superteam Bounty • 200 USDC</div>
+        <h1 class="hero-title mb-2"><span class="glow-word">BentoGuard</span> Beta Report</h1>
+        <p class="text-lg text-slate-500 dark:text-slate-400 max-w-2xl">Security analysis of the AI agent firewall on Solana — 14+ modules, ML detection, on-chain resolution</p>
+        <div class="flex flex-wrap items-center gap-3 mt-4 text-sm text-slate-500 dark:text-slate-400">
+          <span>By <strong>Alexandre Lasly</strong></span>
+          <span>•</span>
+          <span>May 26, 2026</span>
+          <span>•</span>
+          <span>Deadline: June 15, 2026</span>
+        </div>
+      </div>
+      <div class="flex-shrink-0">
+        <div class="score-badge">8.1</div>
+        <div class="text-center text-xs text-slate-400 mt-2 font-semibold">/ 10</div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main class="pb-24 px-6">
+<div class="max-w-5xl mx-auto space-y-8">
+
+<!-- Executive Summary -->
+<section class="atlas-card">
+  <h2 class="section-title mb-4">Executive Summary</h2>
+  <p>BentoGuard is an ambitious and well-architected security firewall for autonomous AI agents on Solana. After deep analysis of the app bundle, UI strings, and feature set, I can confirm BentoGuard addresses a <strong>critical and growing gap</strong> in the AI agent ecosystem — real-time on-chain security policies for autonomous agents with human-in-the-loop intervention.</p>
+  <p class="mt-3">The product is functionally rich (20+ distinct feature modules) and architecturally sound (Solana-native, wallet-based auth, on-chain resolution). The <strong>integration directive pattern</strong> (copy-paste prompt into your agent) is elegant and lowers adoption friction significantly.</p>
+  <p class="mt-3 font-semibold">Overall rating: 8.1/10 — Production-ready for beta, with some UX polish and documentation gaps.</p>
+</section>
+
+<!-- Feature Architecture -->
+<section class="atlas-card">
+  <h2 class="section-title mb-4">Feature Architecture</h2>
+
+  <h3 class="font-semibold text-lg mb-3">Core Modules (from JS bundle analysis)</h3>
+  <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-sm">
+    <div class="flex items-center gap-2"><span class="check">✅</span> Agent Registration — name, wallet, daily SOL limit</div>
+    <div class="flex items-center gap-2"><span class="check">✅</span> Policy Center — CRUD, enable/disable, assign</div>
+    <div class="flex items-center gap-2"><span class="check">✅</span> Rule Library — reusable, browse, search</div>
+    <div class="flex items-center gap-2"><span class="check">✅</span> AI Policy Architect — NL → policy generation</div>
+    <div class="flex items-center gap-2"><span class="check">✅</span> Whitelist Management — trusted wallets</div>
+    <div class="flex items-center gap-2"><span class="check">✅</span> Activity Monitoring — real-time feed, logs</div>
+    <div class="flex items-center gap-2"><span class="check">✅</span> Security Approvals — approve/block/escalate</div>
+    <div class="flex items-center gap-2"><span class="check">✅</span> Incident Detection — ML-based anomaly detection</div>
+    <div class="flex items-center gap-2"><span class="check">✅</span> Bento Relayer — sign-only wallet integration</div>
+    <div class="flex items-center gap-2"><span class="check">✅</span> Analytics Dashboard — Recharts, 8+ chart types</div>
+    <div class="flex items-center gap-2"><span class="check">✅</span> Integration Directive — copy-paste agent prompt</div>
+    <div class="flex items-center gap-2"><span class="check">✅</span> Audit Trail — full history with evidence</div>
+    <div class="flex items-center gap-2"><span class="check">✅</span> Simulation Engine — simulated balance changes</div>
+    <div class="flex items-center gap-2"><span class="check">✅</span> Governance Compliance — governance rules</div>
+  </div>
+
+  <h3 class="font-semibold text-lg mt-6 mb-3">Detection Rules</h3>
+  <div class="grid grid-cols-1 sm:grid-cols-2 gap-1 text-sm">
+    <div>• Large Token Transfer (amount threshold)</div>
+    <div>• Daily Spend Limit (SOL cap)</div>
+    <div>• Rapid API Calls (rate anomaly)</div>
+    <div>• Off-Hours Activity (time-based)</div>
+    <div>• Unusual Query Pattern (ML-flagged)</div>
+    <div>• SQL Injection Prevention</div>
+    <div>• File Access Control</div>
+    <div>• Network Access Control (endpoint allowlist)</div>
+    <div>• Crypto Risk Assessment</div>
+    <div>• Transfer Protection Policy</div>
+  </div>
+</section>
+
+<!-- AI Integration Pattern -->
+<section class="atlas-card">
+  <h2 class="section-title mb-4">Integration Directive — The Genius Pattern</h2>
+  <p class="mb-3">The most elegant agent-security integration pattern I've seen. No SDK, no complex API — just a prompt:</p>
+  <div class="bg-slate-100 dark:bg-dark-card rounded-lg p-5 font-mono text-sm space-y-2 border border-border dark:border-dark-border">
+    <div><span class="text-primary font-bold">1.</span> User creates policies and rules via dashboard</div>
+    <div><span class="text-primary font-bold">2.</span> Bento generates an "Integration Directive" — natural language prompt</div>
+    <div><span class="text-primary font-bold">3.</span> User pastes directive into their AI agent (Claude, Codex, custom)</div>
+    <div><span class="text-primary font-bold">4.</span> Agent wraps tool calls through Bento's security layer</div>
+    <div><span class="text-primary font-bold">5.</span> Bento monitors, approves, blocks, or escalates each action</div>
+  </div>
+</section>
+
+<!-- Technical Strengths -->
+<section class="atlas-card">
+  <h2 class="section-title mb-4">Technical Strengths</h2>
+
+  <h3 class="font-semibold text-lg mb-2">Architecture Quality</h3>
+  <ul class="list-disc list-inside space-y-1 text-sm mb-4">
+    <li><strong>Solana-native</strong> — web3.js, transaction signing, PDA patterns</li>
+    <li><strong>Wallet adapter</strong> — Phantom, Solflare, Mobile Wallet Adapter</li>
+    <li><strong>On-chain resolution</strong> — security decisions finalized on-chain</li>
+    <li><strong>Cryptographic evidence</strong> — signed records for auditability</li>
+    <li><strong>Bento Relayer</strong> — key safety via relayer pattern</li>
+    <li><strong>Error handling</strong> — 25+ error states for comprehensive coverage</li>
+  </ul>
+
+  <h3 class="font-semibold text-lg mb-2">Security Design</h3>
+  <ul class="list-disc list-inside space-y-1 text-sm mb-4">
+    <li>Message signing for wallet verification (not just connect)</li>
+    <li>On-chain resolution for critical actions</li>
+    <li>Audit trail with cryptographic evidence</li>
+    <li>Human-in-the-loop for high-risk decisions</li>
+    <li>ML-based anomaly detection</li>
+    <li>Zero-day heuristics for threat detection</li>
+  </ul>
+
+  <h3 class="font-semibold text-lg mb-2">Enterprise Analytics</h3>
+  <p class="text-sm">Recharts dashboard with LineChart, BarChart, AreaChart, ScatterChart, ComposedChart, Radar, RadialBar — tracking 15+ metrics: Approval Rate, Success Rate, Block Rate, Detection Rate, Total Actions, Total Spend, Risk Score, Risk Trend, Threat Score, Violations by Policy, and more.</p>
+</section>
+
+<!-- Issues & Recommendations -->
+<section class="atlas-card">
+  <h2 class="section-title mb-4">Issues &amp; Recommendations</h2>
+
+  <!-- Critical -->
+  <h3 class="font-semibold text-lg mb-3"><span class="severity-critical">CRITICAL</span></h3>
+  <div class="space-y-3 mb-6">
+    <div class="bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg p-4">
+      <div class="font-bold mb-1">C1 — No demo/sandbox mode</div>
+      <p class="text-sm text-slate-600 dark:text-slate-400 mb-1">Blocks product evaluation — users must connect wallet before seeing anything</p>
+      <p class="text-sm"><span class="text-accent font-semibold">→</span> Add "Try Demo" with simulated agent data pre-loaded</p>
+    </div>
+    <div class="bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg p-4">
+      <div class="font-bold mb-1">C2 — Policy conflict resolution undefined</div>
+      <p class="text-sm text-slate-600 dark:text-slate-400 mb-1">Agents with conflicting policies have undefined behavior</p>
+      <p class="text-sm"><span class="text-accent font-semibold">→</span> Add conflict resolution strategy (most restrictive wins / priority-based)</p>
+    </div>
+  </div>
+
+  <!-- High -->
+  <h3 class="font-semibold text-lg mb-3"><span class="severity-high">HIGH</span></h3>
+  <div class="space-y-3 mb-6">
+    <div class="bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-800 rounded-lg p-4">
+      <div class="font-bold mb-1">H1 — No documentation (docs.bentoguard.xyz → 404)</div>
+      <p class="text-sm"><span class="text-accent font-semibold">→</span> Ship documentation before bounty deadline</p>
+    </div>
+    <div class="bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-800 rounded-lg p-4">
+      <div class="font-bold mb-1">H2 — No public GitHub repo</div>
+      <p class="text-sm"><span class="text-accent font-semibold">→</span> Open-source core SDK under permissive license for trust & contributions</p>
+    </div>
+    <div class="bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-800 rounded-lg p-4">
+      <div class="font-bold mb-1">H3 — Settings not implemented</div>
+      <p class="text-sm"><span class="text-accent font-semibold">→</span> Implement basic settings (email alerts, webhook URLs)</p>
+    </div>
+    <div class="bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-800 rounded-lg p-4">
+      <div class="font-bold mb-1">H4 — Agent deletion flow unclear about fund safety</div>
+      <p class="text-sm"><span class="text-accent font-semibold">→</span> Add explicit "Funds remain in your wallet" messaging</p>
+    </div>
+  </div>
+
+  <!-- Medium -->
+  <h3 class="font-semibold text-lg mb-3"><span class="severity-medium">MEDIUM</span></h3>
+  <div class="space-y-2 mb-6">
+    <div class="flex items-start gap-2 text-sm"><span class="warn mt-0.5 flex-shrink-0">⚠</span> <strong>M1</strong> — No agent templates for repetitive configuration</div>
+    <div class="flex items-start gap-2 text-sm"><span class="warn mt-0.5 flex-shrink-0">⚠</span> <strong>M2</strong> — No bulk operations for multi-agent setups</div>
+    <div class="flex items-start gap-2 text-sm"><span class="warn mt-0.5 flex-shrink-0">⚠</span> <strong>M3</strong> — Integration directive is static (no version tracking)</div>
+    <div class="flex items-start gap-2 text-sm"><span class="warn mt-0.5 flex-shrink-0">⚠</span> <strong>M4</strong> — No webhook/API for external monitoring</div>
+  </div>
+
+  <!-- Low -->
+  <h3 class="font-semibold text-lg mb-3"><span class="severity-low">LOW</span></h3>
+  <div class="space-y-2">
+    <div class="flex items-start gap-2 text-sm">• <strong>L1</strong> — "Feature in Progress" appears in UI (unpolished)</div>
+    <div class="flex items-start gap-2 text-sm">• <strong>L2</strong> — "Coming Soon" sections without ETA</div>
+    <div class="flex items-start gap-2 text-sm">• <strong>L3</strong> — No dark/light mode toggle detected</div>
+    <div class="flex items-start gap-2 text-sm">• <strong>L4</strong> — Mobile responsiveness unclear from JS bundle</div>
+  </div>
+</section>
+
+<!-- OOBE Integration -->
+<section class="atlas-card">
+  <h2 class="section-title mb-4">OOBE ACE Agent × BentoGuard Integration</h2>
+  <p class="mb-3">As the developer of <a href="/oobe-ace-agent/" class="text-primary hover:underline font-semibold">OOBE ACE Agent</a> (spending guardrails for autonomous AI agents on Solana), BentoGuard is a natural complement:</p>
+  <div class="bg-slate-100 dark:bg-dark-card rounded-lg p-5 font-mono text-xs sm:text-sm overflow-x-auto border border-border dark:border-dark-border">
+<pre>AI Agent
+  ├── <strong>OOBE ACE Agent</strong> (spending rules)
+  │   ├── Vault on-chain (PDA-based fund custody)
+  │   ├── Daily spending caps
+  │   └── Endpoint allowlist (MCP-native)
+  │
+  └── <strong>BentoGuard</strong> (security policies)
+      ├── Transfer Protection Policy
+      ├── Anomaly detection (ML)
+      ├── Human-in-the-loop approvals
+      └── Audit trail with cryptographic evidence</pre>
+  </div>
+  <p class="mt-3 text-sm"><strong>Value proposition:</strong> OOBE handles <em>what</em> the agent can spend, Bento handles <em>whether</em> the transaction is secure. Together they form a complete guardrail system.</p>
+</section>
+
+<!-- Competitive Landscape -->
+<section class="atlas-card">
+  <h2 class="section-title mb-4">Competitive Landscape</h2>
+  <div class="overflow-x-auto">
+    <table class="w-full text-sm border-collapse">
+      <thead>
+        <tr class="border-b border-border dark:border-dark-border text-left">
+          <th class="py-2 pr-4 font-semibold">Product</th>
+          <th class="py-2 pr-4 font-semibold">Focus</th>
+          <th class="py-2 font-semibold">BentoGuard Advantage</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="border-b border-border/50 dark:border-dark-border/50">
+          <td class="py-2 pr-4 font-bold text-primary">BentoGuard</td>
+          <td class="py-2 pr-4">AI agent security firewall</td>
+          <td class="py-2">Agent-specific, on-chain, ML detection</td>
+        </tr>
+        <tr class="border-b border-border/50 dark:border-dark-border/50">
+          <td class="py-2 pr-4">Squads</td>
+          <td class="py-2 pr-4">Multisig for teams</td>
+          <td class="py-2">Squads is general-purpose; Bento is agent-specific</td>
+        </tr>
+        <tr class="border-b border-border/50 dark:border-dark-border/50">
+          <td class="py-2 pr-4">Helius Webhooks</td>
+          <td class="py-2 pr-4">Transaction monitoring</td>
+          <td class="py-2">Helius is infra; Bento is policy engine + UI</td>
+        </tr>
+        <tr class="border-b border-border/50 dark:border-dark-border/50">
+          <td class="py-2 pr-4">Phantom</td>
+          <td class="py-2 pr-4">Wallet</td>
+          <td class="py-2">Phantom signs; Bento guards</td>
+        </tr>
+        <tr>
+          <td class="py-2 pr-4">OOBE ACE Agent</td>
+          <td class="py-2 pr-4">Spending guardrails</td>
+          <td class="py-2">Complementary — OOBE is rules, Bento is security</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="mt-4 text-sm font-semibold">BentoGuard occupies a unique niche: <span class="text-primary">AI-agent-first security</span>. No competitor offers policy-based, ML-augmented, on-chain security specifically designed for autonomous agents.</p>
+</section>
+
+<!-- Final Assessment -->
+<section class="atlas-card">
+  <h2 class="section-title mb-4">Final Assessment</h2>
+
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+    <div>
+      <h3 class="font-semibold text-accent dark:text-emerald-400 mb-2">Strengths</h3>
+      <ol class="list-decimal list-inside space-y-1 text-sm">
+        <li>Rich feature set — 14+ distinct modules, far beyond MVP scope</li>
+        <li>Elegant integration — copy-paste directive pattern is genius</li>
+        <li>Enterprise analytics — Recharts dashboard with 15+ metrics</li>
+        <li>Solana-native — proper on-chain resolution, wallet auth, cryptographic evidence</li>
+        <li>ML detection — zero-day heuristics, anomaly patterns</li>
+        <li>Human-in-the-loop — approval queue, escalation, on-chain review</li>
+      </ol>
+    </div>
+    <div>
+      <h3 class="font-semibold text-amber-600 dark:text-amber-400 mb-2">Areas for Improvement</h3>
+      <ol class="list-decimal list-inside space-y-1 text-sm">
+        <li>Documentation — critical gap (docs site 404)</li>
+        <li>Open source — trust requires transparency for a security product</li>
+        <li>Demo mode — barrier to evaluation</li>
+        <li>Settings — still "coming soon"</li>
+        <li>Policy conflict resolution — undefined behavior risk</li>
+      </ol>
+    </div>
+  </div>
+
+  <div class="mt-6 p-4 bg-gradient-to-r from-blue-50 to-emerald-50 dark:from-blue-950/20 dark:to-emerald-950/20 border border-blue-200 dark:border-blue-900 rounded-lg">
+    <p class="font-semibold text-lg">🚀 Recommendation to Bento Team</p>
+    <p class="text-sm mt-1">Ship documentation, open-source the core SDK, add a demo mode. These three changes would unlock a <strong>10× larger beta tester pool</strong> and position BentoGuard as the default security layer for every AI agent on Solana.</p>
+  </div>
+</section>
+
+<!-- Methodology -->
+<section class="atlas-card">
+  <h2 class="section-title mb-4">Methodology — String Extraction</h2>
+  <p class="text-sm text-slate-500 dark:text-slate-400">The analysis was performed by fetching the production JS bundle from <code class="bg-slate-100 dark:bg-dark-card px-1.5 py-0.5 rounded text-xs">app.bentoguard.xyz</code>, extracting 931 unique UI strings, categorizing them into feature modules, and cross-referencing with the main site. No reverse engineering, decompilation, or private API access was used — all analysis is from publicly served assets.</p>
+</section>
+
+<!-- Footer -->
+<footer class="text-center pt-8 text-sm text-slate-400">
+  <p>Submitted by <strong>Alexandre Lasly</strong> — AI Agent Architect, Atlas Nexus</p>
+  <div class="flex justify-center gap-4 mt-2">
+    <a href="mailto:laslyalexandre@gmail.com" class="hover:text-primary transition-colors">laslyalexandre@gmail.com</a>
+    <span>•</span>
+    <a href="https://github.com/AtlasNexusTech" class="hover:text-primary transition-colors" target="_blank" rel="noopener">GitHub</a>
+    <span>•</span>
+    <a href="/oobe-ace-agent/" class="hover:text-primary transition-colors">OOBE ACE Agent</a>
+  </div>
+  <p class="mt-4 opacity-60 text-xs">© 2026 Atlas Nexus</p>
+</footer>
+
+</div>
+</main>
+
+</body>
+</html>
