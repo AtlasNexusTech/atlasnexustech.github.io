@@ -273,6 +273,7 @@ tailwind.config = {
 
 <!-- Hero -->
 <section id="top" class="min-h-screen flex items-center pt-24 relative overflow-hidden">
+  <canvas id="antigravity-canvas" class="absolute inset-0 w-full h-full z-0 pointer-events-none" aria-hidden="true"></canvas>
   <div class="hero-orb"></div>
   <div class="max-w-6xl mx-auto px-6 w-full relative z-10">
     <div class="max-w-4xl hero-stagger">
@@ -739,5 +740,220 @@ tailwind.config = {
 })();
 </script>
 
+<script>
+/* ── Antigravity Canvas ── Mouse-reactive floating geometric particles */
+(function(){
+  const canvas = document.getElementById('antigravity-canvas');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  
+  let W, H, particles = [];
+  const PARTICLE_COUNT = 55;
+  const CONNECTION_DIST = 140;
+  const MOUSE_RADIUS = 200;       // max distance particles feel the cursor
+  const MOUSE_FORCE = 0.015;      // attraction strength
+  const SHAPES = ['circle','triangle','diamond','hexagon'];
+  const COLORS = [
+    { r: 37,  g: 99,  b: 235 }, // blue
+    { r: 5,   g: 150, b: 105 }, // green
+    { r: 124, g: 58,  b: 237 }, // purple
+  ];
+
+  // Smoothed mouse position (-1000 = off-screen / no mouse)
+  const mouse = { x: -1000, y: -1000, tx: -1000, ty: -1000 };
+
+  function resize() {
+    const rect = canvas.parentElement.getBoundingClientRect();
+    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    W = rect.width; H = rect.height;
+    canvas.width = W * dpr; canvas.height = H * dpr;
+    canvas.style.width = W + 'px'; canvas.style.height = H + 'px';
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  }
+
+  function createParticle() {
+    const color = COLORS[Math.floor(Math.random() * COLORS.length)];
+    return {
+      x: Math.random() * W,
+      y: Math.random() * H,
+      vx: (Math.random() - 0.5) * 0.35,
+      vy: (Math.random() - 0.5) * 0.35,
+      size: 3 + Math.random() * 9,
+      opacity: 0.08 + Math.random() * 0.14,
+      shape: SHAPES[Math.floor(Math.random() * SHAPES.length)],
+      color,
+      phase: Math.random() * Math.PI * 2,
+      speed: 0.003 + Math.random() * 0.007,
+      amplitude: 0.2 + Math.random() * 0.8,
+      rotation: Math.random() * Math.PI * 2,
+      rotSpeed: (Math.random() - 0.5) * 0.004,
+    };
+  }
+
+  function drawShape(p) {
+    const { x, y, size, shape, color: c, opacity, rotation } = p;
+    ctx.save();
+    ctx.translate(x, y);
+    ctx.rotate(rotation);
+    ctx.globalAlpha = opacity;
+    ctx.fillStyle = `rgba(${c.r},${c.g},${c.b},1)`;
+    ctx.strokeStyle = `rgba(${c.r},${c.g},${c.b},1)`;
+    ctx.lineWidth = 0.6;
+    
+    const s = size;
+    switch(shape) {
+      case 'circle':
+        ctx.beginPath(); ctx.arc(0, 0, s/2, 0, Math.PI*2); ctx.fill();
+        break;
+      case 'triangle':
+        ctx.beginPath();
+        ctx.moveTo(0, -s/1.8); ctx.lineTo(s/2, s/2.5); ctx.lineTo(-s/2, s/2.5); ctx.closePath();
+        ctx.fill();
+        break;
+      case 'diamond':
+        ctx.beginPath();
+        ctx.moveTo(0, -s/1.8); ctx.lineTo(s/2.2, 0); ctx.lineTo(0, s/1.8); ctx.lineTo(-s/2.2, 0); ctx.closePath();
+        ctx.fill();
+        break;
+      case 'hexagon':
+        ctx.beginPath();
+        for (let i=0; i<6; i++) {
+          const a = Math.PI/3 * i - Math.PI/6;
+          const r = s/2.2;
+          i===0 ? ctx.moveTo(Math.cos(a)*r, Math.sin(a)*r) : ctx.lineTo(Math.cos(a)*r, Math.sin(a)*r);
+        }
+        ctx.closePath(); ctx.fill();
+        break;
+    }
+    ctx.restore();
+  }
+
+  function drawConnections() {
+    for (let i=0; i<particles.length; i++) {
+      for (let j=i+1; j<particles.length; j++) {
+        const a = particles[i], b = particles[j];
+        const dx = a.x - b.x, dy = a.y - b.y;
+        const dist = Math.sqrt(dx*dx + dy*dy);
+        if (dist < CONNECTION_DIST) {
+          // Boost alpha for connections near the mouse
+          const dA = Math.hypot(a.x - mouse.x, a.y - mouse.y);
+          const dB = Math.hypot(b.x - mouse.x, b.y - mouse.y);
+          const nearMouse = Math.max(0, 1 - Math.min(dA, dB) / 160);
+          const alpha = ((1 - dist/CONNECTION_DIST) * 0.07) + nearMouse * 0.12;
+          ctx.beginPath();
+          ctx.moveTo(a.x, a.y);
+          ctx.lineTo(b.x, b.y);
+          ctx.strokeStyle = `rgba(37,99,235,${alpha.toFixed(3)})`;
+          ctx.lineWidth = 0.4 + nearMouse * 0.6;
+          ctx.stroke();
+        }
+      }
+    }
+  }
+
+  function drawCursorGlow() {
+    if (mouse.x < 0) return;
+    const grad = ctx.createRadialGradient(mouse.x, mouse.y, 0, mouse.x, mouse.y, 100);
+    grad.addColorStop(0, 'rgba(37,99,235,0.06)');
+    grad.addColorStop(0.5, 'rgba(5,150,105,0.03)');
+    grad.addColorStop(1, 'rgba(37,99,235,0)');
+    ctx.fillStyle = grad;
+    ctx.beginPath(); ctx.arc(mouse.x, mouse.y, 100, 0, Math.PI*2); ctx.fill();
+  }
+
+  function animate() {
+    ctx.clearRect(0, 0, W, H);
+    
+    // Smooth mouse lerp
+    mouse.x += (mouse.tx - mouse.x) * 0.08;
+    mouse.y += (mouse.ty - mouse.y) * 0.08;
+    
+    drawCursorGlow();
+    
+    for (const p of particles) {
+      // Mouse attraction — particles drift gently toward cursor
+      if (mouse.x > 0) {
+        const dx = mouse.x - p.x, dy = mouse.y - p.y;
+        const dist = Math.sqrt(dx*dx + dy*dy);
+        if (dist < MOUSE_RADIUS && dist > 1) {
+          const force = (1 - dist/MOUSE_RADIUS) * MOUSE_FORCE;
+          p.x += (dx / dist) * force;
+          p.y += (dy / dist) * force;
+        }
+      }
+      
+      // Sinusoidal floating
+      const floatX = Math.sin(p.phase) * p.amplitude;
+      const floatY = Math.cos(p.phase * 0.7) * p.amplitude * 0.8;
+      p.x += p.vx + floatX * 0.03;
+      p.y += p.vy + floatY * 0.03;
+      p.phase += p.speed;
+      p.rotation += p.rotSpeed;
+      
+      // Boost opacity near mouse
+      if (mouse.x > 0) {
+        const d = Math.hypot(p.x - mouse.x, p.y - mouse.y);
+        p.currentOpacity = p.opacity + Math.max(0, 1 - d/130) * 0.13;
+      } else {
+        p.currentOpacity = p.opacity;
+      }
+      
+      // Wrap around
+      if (p.x < -20) p.x = W + 20;
+      if (p.x > W + 20) p.x = -20;
+      if (p.y < -20) p.y = H + 20;
+      if (p.y > H + 20) p.y = -20;
+      
+      // Temporarily swap opacity for this frame
+      const saved = p.opacity;
+      p.opacity = p.currentOpacity || p.opacity;
+      drawShape(p);
+      p.opacity = saved;
+    }
+    
+    drawConnections();
+    requestAnimationFrame(animate);
+  }
+
+  function init() {
+    resize();
+    particles = Array.from({ length: PARTICLE_COUNT }, createParticle);
+    
+    // Mouse tracking
+    canvas.parentElement.addEventListener('mousemove', function(e) {
+      const rect = canvas.getBoundingClientRect();
+      mouse.tx = e.clientX - rect.left;
+      mouse.ty = e.clientY - rect.top;
+    });
+    canvas.parentElement.addEventListener('mouseleave', function() {
+      mouse.tx = -1000; mouse.ty = -1000;
+    });
+    // Touch support
+    canvas.parentElement.addEventListener('touchmove', function(e) {
+      const rect = canvas.getBoundingClientRect();
+      mouse.tx = e.touches[0].clientX - rect.left;
+      mouse.ty = e.touches[0].clientY - rect.top;
+    }, {passive: true});
+    canvas.parentElement.addEventListener('touchend', function() {
+      mouse.tx = -1000; mouse.ty = -1000;
+    });
+    
+    if (!prefersReduced) animate();
+  }
+
+  window.addEventListener('resize', () => { resize(); particles.forEach(p => { p.x = Math.random()*W; p.y = Math.random()*H; }); });
+  
+  // Start when hero section is visible
+  if ('IntersectionObserver' in window) {
+    const obs = new IntersectionObserver((entries) => {
+      if (entries[0].isIntersecting) { init(); obs.disconnect(); }
+    }, { threshold: 0.1 });
+    obs.observe(canvas.parentElement);
+  } else {
+    init();
+  }
+})();
+</script>
 </body>
 </html>
