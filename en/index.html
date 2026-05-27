@@ -102,6 +102,10 @@
       <li><a href="https://github.com/AtlasNexusTech" class="relative rounded-full px-3 py-1.5 hover:text-foreground dark:hover:text-white transition-colors">GitHub</a></li>
     </ul>
     <div class="flex items-center gap-2">
+      <div class="inline-grid lang-switch" data-active="en" aria-label="Language selector">
+        <a href="/?lang=fr" onclick="localStorage.setItem('atlasnexus.lang','fr')">FR</a>
+        <a class="active" href="/en/" onclick="localStorage.setItem('atlasnexus.lang','en')">EN</a>
+      </div>
       <button id="theme-toggle" class="glass-nav-btn inline-flex items-center justify-center w-10 h-10 rounded-full text-foreground dark:text-dark-foreground hover:bg-white/20 dark:hover:bg-white/5 transition-all" aria-label="Toggle dark mode">
         <svg class="w-4 h-4 rotate-0 scale-100 transition-transform duration-300 dark:-rotate-90 dark:scale-0" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
         <svg class="absolute w-4 h-4 rotate-90 scale-0 transition-transform duration-300 dark:rotate-0 dark:scale-100" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>

@@ -81,6 +81,11 @@ tailwind.config = {
   .market-card:hover { box-shadow: 0 22px 70px -32px rgba(37,99,235,.65); }
   .section-title { font-size: clamp(1.8rem, 4.5vw, 3rem); font-weight: 800; letter-spacing: -0.03em; line-height: 1.1; }
   .card-hover { transition: all 250ms ease; }
+  .glass-nav { background: rgba(255,255,255,.70); backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px); border: 1px solid rgba(255,255,255,.30); box-shadow: 0 4px 30px rgba(0,0,0,.05); }
+  .dark .glass-nav { background: rgba(15,23,42,.75); border-color: rgba(255,255,255,.08); box-shadow: 0 4px 30px rgba(0,0,0,.25); }
+  .glass-nav-btn { background: rgba(255,255,255,.50); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,.20); }
+  .dark .glass-nav-btn { background: rgba(255,255,255,.05); border-color: rgba(255,255,255,.06); }
+  .nav-fixed-center { position: fixed; top: 1rem; left: 50%; transform: translateX(-50%); z-index: 50; width: calc(100% - 2rem); max-width: 72rem; padding-left: 1rem; padding-right: 1rem; }
   .lang-switch { position: relative; display:inline-grid; grid-template-columns:1fr 1fr; align-items:center; min-width:92px; height:38px; padding:4px; border:1px solid rgba(37,99,235,.18); border-radius:999px; background:linear-gradient(135deg, rgba(255,255,255,.92), rgba(241,245,253,.84)); color:#64748B; font-size:.76rem; font-weight:900; box-shadow:inset 0 1px 0 rgba(255,255,255,.9), 0 12px 26px -20px rgba(37,99,235,.55); }
   .lang-switch::before { content:""; position:absolute; top:4px; bottom:4px; width:calc(50% - 4px); border-radius:999px; background:linear-gradient(135deg,#2563EB,#059669); box-shadow:0 10px 22px -12px rgba(37,99,235,.75); transition:transform 220ms ease; }
   .lang-switch[data-active="fr"]::before { transform:translateX(0); left:4px; }
@@ -234,36 +239,37 @@ tailwind.config = {
 <svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs><linearGradient id="sol-grad-top" x1="374" y1="329.9" x2="99.1" y2="194.3" gradientUnits="userSpaceOnUse"><stop stop-color="#00FFA3"/><stop offset="1" stop-color="#DC1FFF"/></linearGradient><linearGradient id="sol-grad-mid" x1="374" y1="95.8" x2="99.1" y2="-39.9" gradientUnits="userSpaceOnUse"><stop stop-color="#00FFA3"/><stop offset="1" stop-color="#DC1FFF"/></linearGradient><linearGradient id="sol-grad-bot" x1="374" y1="213.3" x2="99.1" y2="77.6" gradientUnits="userSpaceOnUse"><stop stop-color="#00FFA3"/><stop offset="1" stop-color="#DC1FFF"/></linearGradient><linearGradient id="celo-gold" x1="0" y1="0" x2="24" y2="24" gradientUnits="userSpaceOnUse"><stop stop-color="#FCFF52"/><stop offset="1" stop-color="#E5C800"/></linearGradient></defs></svg>
 
 <!-- Nav -->
-<nav class="fixed top-0 w-full z-50 bg-surface/85 dark:bg-dark-surface/90 backdrop-blur-lg border-b border-border dark:border-dark-border">
-  <div class="max-w-6xl mx-auto px-6 h-[72px] flex items-center justify-between">
-    <a href="#top" class="flex items-center gap-3" aria-label="Atlas Nexus accueil">
-      <img src="/atlas-logo.png?v=20260527" alt="Atlas Nexus" class="w-9 h-9 rounded-lg shadow-lg shadow-blue-500/20">
-      <span class="font-display font-bold text-xl text-foreground dark:text-dark-foreground tracking-tight">Atlas Nexus</span>
+<header class="nav-fixed-center">
+  <nav class="glass-nav flex h-20 items-center justify-between rounded-full px-5 sm:h-28 sm:px-8">
+    <a href="#top" class="flex items-center gap-2 no-underline shrink-0" aria-label="Atlas Nexus accueil">
+      <img src="/atlas-logo.png?v=20260527" alt="Atlas Nexus" class="h-12 w-12 rounded-xl">
+      <span class="hidden sm:inline-flex items-center text-lg font-semibold tracking-tight text-foreground dark:text-dark-foreground">Atlas Nexus</span>
+      <span class="hidden sm:inline-flex rounded-full bg-accent/15 px-2.5 py-1 text-[11px] font-medium text-accent dark:text-green-400 -ml-0.5">Live</span>
     </a>
-    <div class="hidden md:flex items-center gap-6 text-sm font-medium text-slate-600 dark:text-dark-dim">
-      <a href="#products" class="hover:text-primary dark:hover:text-blue-400">Produits</a>
-      <a href="#work" class="hover:text-primary dark:hover:text-blue-400">Réalisations</a>
-      <a href="#offers" class="hover:text-primary dark:hover:text-blue-400">Offres</a>
-      <a href="#why" class="hover:text-primary dark:hover:text-blue-400">Pourquoi</a>
-      <a href="#framework" class="hover:text-primary dark:hover:text-blue-400">Framework</a>
-      <a href="#projects" class="hover:text-primary dark:hover:text-blue-400">Projets</a>
-      <a href="https://github.com/AtlasNexusTech" class="hover:text-primary dark:hover:text-blue-400">GitHub</a>
-    </div>
-    <div class="flex items-center gap-3">
-      <div class="hidden sm:inline-grid lang-switch" data-active="fr" aria-label="Sélecteur de langue">
-      <a class="active" href="/?lang=fr" onclick="localStorage.setItem('atlasnexus.lang','fr')">FR</a>
-      <a href="/en/" onclick="localStorage.setItem('atlasnexus.lang','en')">EN</a>
-    </div>
-      <button id="theme-toggle" class="w-10 h-10 rounded-full border border-black/10 dark:border-white/10 bg-white/70 dark:bg-white/5 backdrop-blur-xl flex items-center justify-center hover:bg-white dark:hover:bg-white/10 dark:hover:bg-white/10 transition-all shadow-sm shadow-black/5 dark:shadow-lg dark:shadow-black/20 text-slate-500 dark:text-slate-300" aria-label="Toggle dark mode">
+    <ul class="hidden items-center gap-1 text-sm font-medium text-slate-500 dark:text-dark-dim md:flex">
+      <li><a href="#products" class="relative rounded-full px-3 py-1.5 hover:text-foreground dark:hover:text-white transition-colors">Produits</a></li>
+      <li><a href="#work" class="relative rounded-full px-3 py-1.5 hover:text-foreground dark:hover:text-white transition-colors">Réalisations</a></li>
+      <li><a href="#offers" class="relative rounded-full px-3 py-1.5 hover:text-foreground dark:hover:text-white transition-colors">Offres</a></li>
+      <li><a href="#why" class="relative rounded-full px-3 py-1.5 hover:text-foreground dark:hover:text-white transition-colors">Pourquoi</a></li>
+      <li><a href="#framework" class="relative rounded-full px-3 py-1.5 hover:text-foreground dark:hover:text-white transition-colors">Framework</a></li>
+      <li><a href="#projects" class="relative rounded-full px-3 py-1.5 hover:text-foreground dark:hover:text-white transition-colors">Projets</a></li>
+      <li><a href="https://github.com/AtlasNexusTech" class="relative rounded-full px-3 py-1.5 hover:text-foreground dark:hover:text-white transition-colors">GitHub</a></li>
+    </ul>
+    <div class="flex items-center gap-2">
+      <div class="inline-grid lang-switch" data-active="fr" aria-label="Sélecteur de langue">
+        <a class="active" href="/?lang=fr" onclick="localStorage.setItem('atlasnexus.lang','fr')">FR</a>
+        <a href="/en/" onclick="localStorage.setItem('atlasnexus.lang','en')">EN</a>
+      </div>
+      <button id="theme-toggle" class="glass-nav-btn inline-flex items-center justify-center w-10 h-10 rounded-full text-foreground dark:text-dark-foreground hover:bg-white/20 dark:hover:bg-white/5 transition-all" aria-label="Toggle dark mode">
         <svg class="w-4 h-4 rotate-0 scale-100 transition-transform duration-300 dark:-rotate-90 dark:scale-0" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
         <svg class="absolute w-4 h-4 rotate-90 scale-0 transition-transform duration-300 dark:rotate-0 dark:scale-100" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
       </button>
-      <a href="#contact" class="cursor-pointer bg-primary text-white px-5 py-2.5 rounded-full text-sm font-semibold hover:bg-primary-dark">
+      <a href="#contact" class="cursor-pointer bg-primary text-white px-5 py-2 rounded-full text-[15px] font-semibold hover:bg-primary-dark transition-colors">
         Contact
       </a>
     </div>
-  </div>
-</nav>
+  </nav>
+</header>
 
 <!-- Hero -->
 <section id="top" class="min-h-screen flex items-center pt-24 relative overflow-hidden">
