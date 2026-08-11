@@ -127,3 +127,33 @@ Playwright light/dark/mobile : 0 erreur JS.
 - **Interactions** : lift de la carte au survol, zoom lent de la capture (scale 1.045), flèche qui passe en pastille bleue dégradée et pivote à -45°.
 - **Pied de section** : note « livré documenté, code sur GitHub quand le client le souhaite » + CTA « Toutes les démos web ».
 - Dark mode complet, 0 erreur JS, vérifié desktop 1440px et mobile 390px.
+
+
+---
+
+# Itération 8 : Réalisations adossées aux preuves réelles + espace d'essai gratuit
+
+## A. Bande « Preuves vérifiables »
+Chiffres **extraits de la machine**, pas inventés (Damien : « un artefact ne vend pas, un avant/après vend ») :
+
+| Chiffre | Source |
+|---|---|
+| **65** pages livrées et en ligne | `find . -name index.html` sur le dépôt |
+| **24** démos sectorielles | dossiers métier du dépôt (az-bois, ed-maconnerie, peintre-95, menuiserie-devarenne, stratea, eponia-conseil…) |
+| **82** déploiements versionnés | `git log` du dépôt de production |
+| **33 645** lignes de code livrées | `git ls-files` + `wc -l` (html/css/js/py) |
+| **52** tests automatisés | suite pytest exécutée à chaque envoi |
+| **99,9 %** sur 1 000 exécutions d'agent | `~/.hermes/cron/executions.db` : 1 000 exécutions, 999 réussies, du 09/08 au 11/08 |
+
+Mention explicite sous la bande : « chiffres extraits du dépôt Git et des journaux d'exécution, pas des estimations ». Aucun résultat client n'est inventé.
+
+## B. Espace d'essai gratuit (nouvelle section du site)
+- **`/essai/`** : page de conversion dédiée. Promesse « Testez avant de payer quoi que ce soit », 4 bénéfices, formulaire (email + secteur + tâche chronophage).
+- **Jeton d'essai** `window.AtlasTrial` : code généré au format `ATLAS-XXXX-XXXX`, stocké en `localStorage`, **expiration automatique à 7 jours**, fonction de révocation.
+- **Capture de lead** : l'email, le secteur, la tâche et le code partent vers `formsubmit.co/ajax` en arrière-plan (l'accès n'est jamais bloqué si l'envoi échoue).
+- **`/essai/espace/`** : espace protégé. Portail affiché tant que le jeton est absent ou expiré (vérifié en test : jeton périmé = accès refusé), sinon accès à Atlas Toolkit, Markets Command Deck, les 24 démos et l'IA réceptionniste, plus l'offre « une tâche automatisée offerte ». Bandeau avec jours restants et bouton de fermeture d'accès. Page en `noindex`.
+- **Branchements** : CTA secondaire du hero, carte Étape 0, pied de la section Réalisations, footer. `/essai/` ajouté au sitemap (57 URLs).
+
+Honnêteté assumée : le jeton est un accès de démonstration côté navigateur (pas une authentification serveur), adapté à un site statique. Il remplit son rôle : capter le prospect et lui donner un accès réel, limité dans le temps.
+
+Vérifications Playwright : parcours complet (ouverture, code généré, espace débloqué, expiration), desktop + mobile, **0 erreur JS** sur les 3 pages.
