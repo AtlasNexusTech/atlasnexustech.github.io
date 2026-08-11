@@ -298,9 +298,12 @@
           <a href="https://github.com/AtlasNexusTech/atlas-desk/releases/download/v0.10.0/atlas-desk-agent-linux-amd64.tar.gz" class="flex items-center justify-center gap-2 rounded-xl border border-border dark:border-dark-border px-4 py-3 font-semibold text-sm hover:border-primary hover:text-primary transition-colors">Linux x86-64</a>
           <a href="https://github.com/AtlasNexusTech/atlas-desk/releases/download/v0.10.0/atlas-desk-agent-linux-arm64.tar.gz" class="flex items-center justify-center gap-2 rounded-xl border border-border dark:border-dark-border px-4 py-3 font-semibold text-sm hover:border-primary hover:text-primary transition-colors">Linux ARM64</a>
         </div>
-        <p class="text-xs text-slate-500 dark:text-dark-dim">Version v0.10.0 · Sous Linux, une ligne suffit :</p>
-        <div class="code-block"><span class="cm"># Télécharge, installe et démarre l'agent au login</span>
+        <p class="text-xs text-slate-500 dark:text-dark-dim mb-2">Version v0.10.0 · ou installez en une seule commande :</p>
+        <div class="code-block"><span class="cm"># Windows — PowerShell (installe, démarre au login, affiche l'identifiant)</span>
+irm https://atlasnexus.tech/atlas-desk/install.ps1 | iex</div>
+        <div class="code-block mt-3"><span class="cm"># Linux — bash</span>
 curl -fsSL https://atlasnexus.tech/atlas-desk/install.sh | bash</div>
+        <p class="text-xs text-slate-500 dark:text-dark-dim mt-3">macOS : support en cours de développement. L'agent n'est pas encore disponible sur Mac — le client web, lui, fonctionne depuis n'importe quel navigateur, Safari compris.</p>
       </div>
 
       <div class="reveal reveal-delay-1">

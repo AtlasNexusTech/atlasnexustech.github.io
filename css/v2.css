@@ -103,9 +103,12 @@ p a:not([class*="rounded-full"]):hover, .footer-links a:hover { background-size:
   padding: 1.15rem 1.5rem; border: 1px solid var(--atlas-logo-border); border-radius: 1.25rem; color: #fff;
   background: var(--atlas-logo-panel);
   box-shadow: 0 24px 55px -30px rgba(19,91,196,.72); }
-.ba-result p { margin: 0; font-weight: 800; font-size: 1.02rem; display: flex; align-items: center; gap: .65rem; }
-.ba-result p svg { width: 1.25rem; height: 1.25rem; flex: none; color: #9cc3ff; }
-.ba-result a { display: inline-flex; align-items: center; gap: .45rem; font-size: .88rem; font-weight: 800; color: #0f2a66 !important;
+.ba-result p { margin: 0; font-weight: 800; font-size: 1.02rem; display: flex; align-items: flex-start; gap: .7rem; }
+.ba-result p svg { width: 1.05rem; height: 1.05rem; flex: none; color: #fff; stroke-width: 2.6;
+  box-sizing: content-box; padding: .42rem; border-radius: 999px;
+  background: rgba(255,255,255,.18); border: 1px solid rgba(255,255,255,.34);
+  margin-top: -.16rem; }
+.ba-result a { display: inline-flex; align-items: center; gap: .45rem; font-size: .88rem; font-weight: 800; color: #0032A0 !important;
   background: #fff; padding: .55rem 1.15rem; border-radius: 999px; transition: transform .2s ease, box-shadow .2s ease; }
 .ba-result a:hover { transform: translateY(-1px); box-shadow: 0 12px 26px -12px rgba(0,0,0,.45); }
 .ba-result a svg { width: .9rem; height: .9rem; }
