@@ -3,6 +3,13 @@
    ══════════════════════════════════════════════════════════════ */
 
 /* ── Réglages globaux ─────────────────────────────────────────── */
+:root {
+  --atlas-logo-blue-deep: #082f78;
+  --atlas-logo-blue-core: #135bc4;
+  --atlas-logo-blue-bright: #216fd8;
+  --atlas-logo-panel: linear-gradient(120deg, var(--atlas-logo-blue-deep) 0%, var(--atlas-logo-blue-core) 55%, var(--atlas-logo-blue-bright) 100%);
+  --atlas-logo-border: rgba(80, 160, 248, .34);
+}
 section[id] { scroll-margin-top: 92px; }
 ::selection { background: #226CF3; color: #fff; }
 html { text-rendering: optimizeLegibility; }
@@ -95,9 +102,9 @@ p a:not([class*="rounded-full"]):hover, .footer-links a:hover { background-size:
 
 /* Ligne de résultat */
 .ba-result { margin-top: .9rem; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 1rem;
-  padding: 1.15rem 1.5rem; border-radius: 1.25rem; color: #fff;
-  background: linear-gradient(120deg, #0f2a66 0%, #226CF3 55%, #3886FC 100%);
-  box-shadow: 0 24px 55px -30px rgba(37,99,235,.9); }
+  padding: 1.15rem 1.5rem; border: 1px solid var(--atlas-logo-border); border-radius: 1.25rem; color: #fff;
+  background: var(--atlas-logo-panel);
+  box-shadow: 0 24px 55px -30px rgba(19,91,196,.72); }
 .ba-result p { margin: 0; font-weight: 800; font-size: 1.02rem; display: flex; align-items: center; gap: .65rem; }
 .ba-result p svg { width: 1.25rem; height: 1.25rem; flex: none; color: #9cc3ff; }
 .ba-result a { display: inline-flex; align-items: center; gap: .45rem; font-size: .88rem; font-weight: 800; color: #0f2a66 !important;
@@ -280,10 +287,10 @@ p a:not([class*="rounded-full"]):hover, .footer-links a:hover { background-size:
 .dark .work-arrow { border-color: #334155; color: #94a3b8; }
 
 /* ── PREUVES VÉRIFIABLES ───────────────────────────────────────── */
-.proof-band { margin-bottom: 3.25rem; border: 1px solid #e3e9f2; border-radius: 1.35rem; background: #fff;
-  box-shadow: 0 18px 50px -38px rgba(15,23,42,.45); overflow: hidden; }
+.proof-band { margin-bottom: 3.25rem; border: 1px solid var(--atlas-logo-border); border-radius: 1.35rem; background: #fff;
+  box-shadow: 0 18px 50px -38px rgba(19,91,196,.38); overflow: hidden; }
 .proof-head { display: flex; flex-wrap: wrap; align-items: center; gap: .65rem; padding: .95rem 1.4rem;
-  background: linear-gradient(120deg, #1e3a8a, #2563EB 55%, #60A5FA); color: #fff; }
+  background: var(--atlas-logo-panel); color: #fff; }
 .proof-head strong { font-size: .82rem; font-weight: 800; letter-spacing: .07em; text-transform: uppercase; }
 .proof-head span { font-size: .8rem; color: #cfe0ff; }
 .proof-grid { display: grid; grid-template-columns: repeat(6, 1fr); }
