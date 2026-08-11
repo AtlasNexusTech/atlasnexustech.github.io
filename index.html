@@ -20,7 +20,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;600;700;900&amp;family=Nunito+Sans:wght@400;600;700&amp;display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/css/home.css?v=4">
-<link rel="stylesheet" href="/css/v2.css?v=6">
+<link rel="stylesheet" href="/css/v2.css?v=7">
 <link rel="preload" as="image" href="/assets/atlasnexusfond.jpg" fetchpriority="high">
 
 <link rel="canonical" href="https://atlasnexus.tech/">
@@ -156,15 +156,6 @@
     </div>
   </div>
 </section>
-
-<div class="brand-motion-showcase" aria-hidden="true">
-  <div class="brand-motion-shell">
-    <video class="brand-motion-video" autoplay muted playsinline preload="metadata" poster="/assets/atlasnexus-hero-poster.webp" aria-hidden="true" tabindex="-1">
-      <source src="/assets/atlasnexus-hero-logo.webm" type="video/webm">
-      <source src="/assets/atlasnexus-hero-logo.mp4" type="video/mp4">
-    </video>
-  </div>
-</div>
 
 <!-- AvantApres -->
 <section id="avant-apres" class="py-24 bg-white">
@@ -603,15 +594,6 @@
 <script>
 (function() {
   const motionPreference = window.matchMedia('(prefers-reduced-motion: reduce)');
-  const heroVideo = document.querySelector('.brand-motion-video');
-  const syncHeroVideo = () => {
-    if (!heroVideo) return;
-    if (motionPreference.matches) heroVideo.pause();
-    else heroVideo.play().catch(() => {});
-  };
-  syncHeroVideo();
-  motionPreference.addEventListener('change', syncHeroVideo);
-
   if (motionPreference.matches) {
     document.querySelectorAll('.reveal').forEach(el => el.classList.add('visible'));
     document.querySelectorAll('.step-number').forEach(el => { el.classList.add('animate'); el.classList.add('final'); });

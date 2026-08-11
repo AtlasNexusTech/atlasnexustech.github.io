@@ -41,7 +41,6 @@ p a:not([class*="rounded-full"]):hover, .footer-links a:hover { background-size:
 }
 @keyframes heroDrift { from { transform: scale(1) translateY(0); } to { transform: scale(1.03) translateY(-0.8%); } }
 @media (prefers-reduced-motion: reduce) {
-  .brand-motion-video { display: none; }
   .hero-bg img { animation: none; }
 }
 /* voile de lisibilité côté texte */
@@ -55,21 +54,6 @@ p a:not([class*="rounded-full"]):hover, .footer-links a:hover { background-size:
   .hero-bg img { object-position: 68% center; opacity: .52; }
   .hero-bg::after { background: linear-gradient(90deg, var(--hero-veil, rgba(248,250,252,.96)) 0%, rgba(248,250,252,.80) 55%, rgba(248,250,252,.45) 100%); }
   .dark .hero-bg img { opacity: .22; }
-}
-
-/* Vidéo de marque : taille native, séparée du fond du hero. */
-.brand-motion-showcase { padding: 2.5rem 1.5rem 0; background: #fff; }
-.brand-motion-shell {
-  width: 100%; max-width: 848px; margin: 0 auto; overflow: hidden;
-  border: 1px solid #dbe6f5; border-radius: 1.5rem; background: #f8fafc;
-  box-shadow: 0 28px 60px -42px rgba(15,23,42,.38);
-}
-.brand-motion-video { width: 100%; height: auto; object-fit: contain; background: #f8fafc; }
-.dark .brand-motion-showcase { background: #0b1120; }
-.dark .brand-motion-shell { border-color: #1e293b; background: #111827; }
-@media (max-width: 640px) {
-  .brand-motion-showcase { padding: 1.5rem 1rem 0; }
-  .brand-motion-shell { border-radius: 1rem; }
 }
 
 /* puces de réassurance sous le CTA */
