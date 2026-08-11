@@ -4,8 +4,8 @@ import { QUALITY_SETTINGS } from '../src/lib/config'
 import { PRIMARY_CTA, SCENES, USE_CASES } from '../src/lib/content'
 
 describe('beta contract', () => {
-  it('keeps the cinematic sequence complete and ordered', () => {
-    expect(SCENES.map((scene) => scene.id)).toEqual(['core', 'deploy', 'automate', 'control', 'systems', 'contact'])
+  it('keeps the editorial sequence complete and ordered', () => {
+    expect(SCENES.map((scene) => scene.id)).toEqual(['top', 'approach', 'method', 'systems', 'contact'])
   })
 
   it('uses only real Atlas Nexus use cases and the production diagnostic CTA', () => {

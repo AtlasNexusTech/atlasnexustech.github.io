@@ -11,8 +11,8 @@ export function UseCaseSystems({ selected, onSelect }: UseCaseSystemsProps) {
   return (
     <section id="systems" className="systems" aria-labelledby="systems-title">
       <div className="systems-shell">
-        <div className="systems-heading scene-copy">
-          <p className="technical-label">SCENE 05 / SYSTEMS</p>
+        <div className="systems-heading" data-reveal>
+          <p className="technical-label">CAPABILITIES / 01–05</p>
           <h2 id="systems-title">Des capacités reliées à votre activité.</h2>
           <p>Explorez les stations du réseau. Chaque système correspond à un besoin déjà présent dans l’offre Atlas Nexus.</p>
         </div>

@@ -115,8 +115,8 @@ export function Network({ progressRef, profile, selectedStation, reducedMotion }
     if (signalMaterial.current) signalMaterial.current.opacity = activity * 0.85
 
     const endX = endCalm * (mobile ? 0 : -0.45)
-    const targetX = mobile || viewport.width < 7 ? 0 : 1.55 + endX
-    const targetY = mobile ? 1.35 - progress * 0.32 : 0.1
+    const targetX = mobile ? 0.85 : viewport.width < 7 ? 0 : 1.55 + endX
+    const targetY = mobile ? -1.1 : 0.1
     root.current.position.x = THREE.MathUtils.damp(root.current.position.x, targetX, 3.2, delta)
     root.current.position.y = THREE.MathUtils.damp(root.current.position.y, targetY, 3.2, delta)
     if (!reducedMotion) root.current.rotation.y += delta * 0.018

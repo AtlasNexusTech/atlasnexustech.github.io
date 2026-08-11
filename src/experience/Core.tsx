@@ -50,11 +50,11 @@ export function Core({ progressRef, profile, reducedMotion }: SceneSystemProps) 
     }
     if (group.current) {
       const endCalm = range(progress, 0.82, 1)
-      const targetX = mobile || viewport.width < 7 ? 0 : 1.55 - endCalm * 1.55
-      const targetY = mobile ? 1.35 - progress * 0.32 : 0.1 - endCalm * 0.1
+      const targetX = mobile ? 0.85 : viewport.width < 7 ? 0 : 1.55 - endCalm * 1.55
+      const targetY = mobile ? -1.1 : 0.1 - endCalm * 0.1
       group.current.position.x = THREE.MathUtils.damp(group.current.position.x, targetX, 3.2, delta)
       group.current.position.y = THREE.MathUtils.damp(group.current.position.y, targetY, 3.2, delta)
-      const scale = 0.84 + range(progress, 0.1, 0.42) * 0.28 - endCalm * 0.34
+      const scale = mobile ? 0.74 : 0.84 + range(progress, 0.1, 0.42) * 0.28 - endCalm * 0.34
       group.current.scale.setScalar(THREE.MathUtils.damp(group.current.scale.x, scale, 3, delta))
       if (!reducedMotion) group.current.rotation.y += delta * 0.035
     }

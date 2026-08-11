@@ -45,12 +45,11 @@ export const USE_CASES: UseCase[] = [
 ]
 
 export const SCENES = [
-  { id: 'core', label: 'SCENE 01 / CORE', title: 'ATLAS NEXUS' },
-  { id: 'deploy', label: 'SCENE 02 / DEPLOY', title: 'Vos agents, installés chez vous.' },
-  { id: 'automate', label: 'SCENE 03 / AUTOMATE', title: 'L’activité circule. Vous récupérez du temps.' },
-  { id: 'control', label: 'SCENE 04 / CONTROL', title: 'L’IA prépare et exécute. Vous gardez le contrôle.' },
-  { id: 'systems', label: 'SCENE 05 / SYSTEMS', title: 'Une infrastructure adaptée à vos opérations.' },
-  { id: 'contact', label: 'SCENE 06 / ACT', title: 'Commencez par trente minutes utiles.' },
+  { id: 'top', label: 'INTRO', title: 'ATLAS NEXUS' },
+  { id: 'approach', label: 'APPROACH', title: 'Une infrastructure, pas un SaaS.' },
+  { id: 'method', label: 'METHOD', title: 'Déployer. Connecter. Valider. Opérer.' },
+  { id: 'systems', label: 'SYSTEMS', title: 'Des capacités reliées à votre activité.' },
+  { id: 'contact', label: 'ACT', title: 'Commencez par trente minutes utiles.' },
 ] as const
 
 export const PRIMARY_CTA = {
