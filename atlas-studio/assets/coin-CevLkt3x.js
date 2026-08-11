@@ -1,0 +1,1 @@
+const n={"button.disconnect":{message:"Koppla bort",description:"Text på knappen för att koppla bort den anslutna plånboken."},"message.connectError":{message:"Misslyckades med att ansluta plånboken.",description:"Felmeddelande som visas när anslutningen till plånboken misslyckas."}};export{n as default};

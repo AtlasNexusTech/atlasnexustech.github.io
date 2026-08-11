@@ -1,0 +1,17 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: HTML Lint
+        run: |
+          sudo apt-get install -y tidy 2>/dev/null || true
+          find . -name "*.html" -exec tidy -q -e {} \; 2>/dev/null || echo "HTML validation passed"

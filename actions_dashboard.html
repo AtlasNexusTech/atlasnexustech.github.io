@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/png" href="/favicon.png">
+<link rel="shortcut icon" href="/favicon.ico">
+<title>Stocks Dashboard : Atlas Nexus</title>
+<link rel="canonical" href="https://atlasnexus.tech/actions_dashboard.html">
+<meta name="description" content="Atlas Nexus Stocks dashboard : Top 15 listed companies by market capitalization, Hawkeye V4 market pressure radar, and TradingView screener.">
+<link rel="stylesheet" href="/css/site.css?v=4">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;600;700;900&amp;family=Nunito+Sans:wght@400;600;700&amp;display=swap" rel="stylesheet">
+<style>:root{--accent:#10B981;}.hero-title{font-size:clamp(3rem,8vw,5.5rem);font-weight:900;letter-spacing:-.055em;line-height:1.03}.gradient-text{background:linear-gradient(110deg,var(--accent),#059669,#22c55e,var(--accent));background-size:260% 260%;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:atlas-gradient-flow 6s ease-in-out infinite}@keyframes atlas-gradient-flow{0%,100%{background-position:0% 50%;filter:saturate(1)}50%{background-position:100% 50%;filter:saturate(1.2)}}@media (prefers-reduced-motion:reduce){.gradient-text{animation:none}}.glass-nav{background:rgba(255,255,255,.62);border:1px solid rgba(255,255,255,.65);backdrop-filter:blur(24px);box-shadow:0 8px 32px rgba(31,38,135,.08)}.dark .glass-nav{background:rgba(15,23,42,.78);border-color:rgba(255,255,255,.08)}.panel{background:linear-gradient(145deg,rgba(255,255,255,.96),rgba(248,250,252,.92));border:1px solid rgba(148,163,184,.22);box-shadow:0 24px 70px -44px var(--accent)}.dark .panel{background:linear-gradient(145deg,rgba(17,24,39,.96),rgba(15,23,42,.94));border-color:rgba(148,163,184,.15)}.chip{display:inline-flex;align-items:center;gap:.4rem;border-radius:999px;padding:.5rem .75rem;font-size:.78rem;font-weight:800;border:1px solid color-mix(in srgb,var(--accent) 24%,transparent);background:color-mix(in srgb,var(--accent) 8%,transparent);color:var(--accent)}.section-title{font-size:clamp(1.7rem,4vw,2.4rem);font-weight:850;letter-spacing:-.035em;line-height:1.1}.rank-row,.hawk-row{transition:background .16s,transform .16s}.rank-row:hover,.hawk-row:hover{background:rgba(37,99,235,.04);transform:translateX(2px)}.dark .rank-row:hover,.dark .hawk-row:hover{background:rgba(255,255,255,.035)}.score-pill{min-width:58px;height:28px;border-radius:999px;display:inline-flex;align-items:center;justify-content:center;font-size:.74rem;font-weight:900}.score-hot{background:rgba(22,163,74,.12);color:#16a34a;border:1px solid rgba(22,163,74,.18)}.score-warm{background:rgba(217,119,6,.10);color:#d97706;border:1px solid rgba(217,119,6,.16)}.score-bear{background:rgba(225,29,72,.10);color:#e11d48;border:1px solid rgba(225,29,72,.16)}.dark .score-hot{color:#22c55e}.dark .score-warm{color:#f59e0b}.dark .score-bear{color:#fb7185}.live-dot{width:8px;height:8px;background:#22c55e;border-radius:50%;box-shadow:0 0 18px rgba(34,197,94,.85);animation:pulse 2s infinite}.top15-grid{display:grid;grid-template-columns:1fr;gap:0 .9rem}.daily-change{margin-top:.15rem;font-size:.68rem;font-weight:900;border-radius:999px;padding:.08rem .38rem;display:inline-flex}.daily-up{color:#16a34a;background:rgba(22,163,74,.09)}.daily-down{color:#e11d48;background:rgba(225,29,72,.09)}.daily-flat{color:#64748b;background:rgba(100,116,139,.10)}@media (min-width:768px){.top15-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.compact-rank:nth-child(14){border-bottom:0}}@media (min-width:1180px){.top15-grid{grid-template-columns:repeat(3,minmax(0,1fr))}.compact-rank:nth-child(n+13){border-bottom:0}}@keyframes pulse{50%{opacity:.55;transform:scale(.82)}}
+</style>
+</head>
+<body class="bg-surface dark:bg-dark-surface text-foreground dark:text-dark-foreground font-body antialiased">
+<header class="fixed top-4 left-1/2 -translate-x-1/2 z-50 w-[calc(100%-2rem)] max-w-6xl px-4">
+  <nav class="glass-nav flex h-16 items-center justify-between rounded-full px-4 sm:px-6">
+    <a href="/" class="flex items-center gap-1.5 no-underline shrink-0" aria-label="Atlas Nexus home"><img src="/atlas-logo.png?v=20260527" alt="Atlas Nexus" class="h-9 w-9 rounded-lg"><span class="hidden sm:inline-flex items-center text-sm font-semibold tracking-tight text-foreground dark:text-dark-foreground">Atlas Nexus</span><span class="hidden sm:inline-flex rounded-full bg-accent/15 px-2 py-0.5 text-[10px] font-medium text-accent dark:text-green-400 -ml-0.5">Live</span></a>
+    <ul class="hidden items-center gap-1 text-sm font-medium text-slate-500 dark:text-dark-dim md:flex"><li><a href="/dashboard.html#dashboards" class="rounded-full px-3 py-1.5 hover:text-foreground dark:hover:text-white transition-colors">All markets</a></li><li><a href="#hawkeye" class="rounded-full px-3 py-1.5 hover:text-foreground dark:hover:text-white transition-colors">Hawkeye</a></li><li><a href="#top15" class="rounded-full px-3 py-1.5 hover:text-foreground dark:hover:text-white transition-colors">Top 15</a></li></ul>
+    <button id="theme-toggle" class="inline-flex items-center justify-center w-9 h-9 rounded-full text-foreground dark:text-dark-foreground" aria-label="Toggle dark mode">◐</button>
+  </nav>
+</header>
+<main class="pt-28 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+  <section class="py-8 sm:py-12">
+    <div class="panel rounded-[2rem] p-8 sm:p-10 w-full">
+        <div class="inline-flex items-center gap-2 rounded-full px-4 py-2 text-xs font-black uppercase tracking-[.2em]" style="background:color-mix(in srgb,var(--accent) 10%,transparent);color:var(--accent)"><span class="live-dot"></span>Market cap rank</div>
+        <h1 class="hero-title mt-7 text-foreground dark:text-dark-foreground">🏛️ <span class="gradient-text">Stocks</span><br>Dashboard</h1>
+        <p class="mt-6 max-w-2xl text-lg leading-8 text-slate-600 dark:text-dark-dim">Mega-cap equities ranked by market capitalization, combined with Hawkeye pressure for manual single-name chart checks.</p>
+        <div class="mt-7 flex flex-wrap gap-3"><a href="#hawkeye" class="rounded-full px-5 py-3 text-sm font-black text-white no-underline" style="background:var(--accent)">Open Hawkeye →</a><a href="#top15" class="rounded-full border border-border dark:border-dark-border px-5 py-3 text-sm font-black no-underline text-foreground dark:text-dark-foreground">View compact Top 15</a></div>
+      </div>
+  </section>
+  <section id="hawkeye" class="pb-12">
+    <div class="mb-5"><p class="text-xs font-black uppercase tracking-[.22em]" style="color:var(--accent)">Hawkeye V4</p><h2 class="section-title text-foreground dark:text-dark-foreground">Stocks market pressure radar</h2><p class="mt-3 max-w-3xl text-sm text-slate-500 dark:text-dark-dim">Category-level pressure slots. This is not execution advice : each row is a manual chart-check candidate.</p></div>
+    <div class="grid lg:grid-cols-2 gap-5">
+      <div class="panel rounded-[1.5rem] p-5"><h3 class="font-display font-bold text-foreground dark:text-dark-foreground flex items-center justify-between mb-2">Bullish pressure <span class="text-xs font-bold text-accent dark:text-green-400 bg-accent/10 dark:bg-green-400/10 px-2 py-0.5 rounded-full">7 assets</span></h3>
+          <a class="hawk-row flex items-start justify-between gap-4 border-b border-border/70 dark:border-dark-border/70 py-3 no-underline last:border-b-0" href="https://www.tradingview.com/chart/?symbol=NVDA" target="_blank" rel="noopener">
+            <div>
+              <div class="flex flex-wrap items-center gap-2"><span class="font-extrabold text-foreground dark:text-dark-foreground text-sm">NVIDIA</span><span class="text-[10px] font-black uppercase tracking-wide text-accent dark:text-green-400 bg-accent/10 px-1.5 py-0.5 rounded-full">Bullish</span></div>
+              <div class="text-[11px] text-slate-400 dark:text-dark-dim mt-1">NVDA · uptrend · AI semiconductors</div>
+              <div class="text-[11px] mt-0.5" style="color:var(--accent)">Reference size: $5T+ · Manual chart check required</div>
+            </div>
+            <div class="shrink-0 text-right"><span class="score-pill score-hot">76/100</span><div class="text-[11px] text-slate-400 dark:text-dark-dim mt-1">Net +42</div></div>
+          </a>
+
+          <a class="hawk-row flex items-start justify-between gap-4 border-b border-border/70 dark:border-dark-border/70 py-3 no-underline last:border-b-0" href="https://www.tradingview.com/chart/?symbol=AAPL" target="_blank" rel="noopener">
+            <div>
+              <div class="flex flex-wrap items-center gap-2"><span class="font-extrabold text-foreground dark:text-dark-foreground text-sm">Apple</span><span class="text-[10px] font-black uppercase tracking-wide text-accent dark:text-green-400 bg-accent/10 px-1.5 py-0.5 rounded-full">Bullish</span></div>
+              <div class="text-[11px] text-slate-400 dark:text-dark-dim mt-1">AAPL · uptrend · Consumer hardware/services</div>
+              <div class="text-[11px] mt-0.5" style="color:var(--accent)">Reference size: $4T+ · Manual chart check required</div>
+            </div>
+            <div class="shrink-0 text-right"><span class="score-pill score-warm">74/100</span><div class="text-[11px] text-slate-400 dark:text-dark-dim mt-1">Net +40</div></div>
+          </a>
+
+          <a class="hawk-row flex items-start justify-between gap-4 border-b border-border/70 dark:border-dark-border/70 py-3 no-underline last:border-b-0" href="https://www.tradingview.com/chart/?symbol=MSFT" target="_blank" rel="noopener">
+            <div>
+              <div class="flex flex-wrap items-center gap-2"><span class="font-extrabold text-foreground dark:text-dark-foreground text-sm">Microsoft</span><span class="text-[10px] font-black uppercase tracking-wide text-accent dark:text-green-400 bg-accent/10 px-1.5 py-0.5 rounded-full">Bullish</span></div>
+              <div class="text-[11px] text-slate-400 dark:text-dark-dim mt-1">MSFT · uptrend · Cloud + AI software</div>
+              <div class="text-[11px] mt-0.5" style="color:var(--accent)">Reference size: $3T+ · Manual chart check required</div>
+            </div>
+            <div class="shrink-0 text-right"><span class="score-pill score-warm">72/100</span><div class="text-[11px] text-slate-400 dark:text-dark-dim mt-1">Net +38</div></div>
+          </a>
+
+          <a class="hawk-row flex items-start justify-between gap-4 border-b border-border/70 dark:border-dark-border/70 py-3 no-underline last:border-b-0" href="https://www.tradingview.com/chart/?symbol=GOOGL" target="_blank" rel="noopener">
+            <div>
+              <div class="flex flex-wrap items-center gap-2"><span class="font-extrabold text-foreground dark:text-dark-foreground text-sm">Alphabet</span><span class="text-[10px] font-black uppercase tracking-wide text-accent dark:text-green-400 bg-accent/10 px-1.5 py-0.5 rounded-full">Bullish</span></div>
+              <div class="text-[11px] text-slate-400 dark:text-dark-dim mt-1">GOOGL · uptrend · Search + AI + cloud</div>
+              <div class="text-[11px] mt-0.5" style="color:var(--accent)">Reference size: $3T · Manual chart check required</div>
+            </div>
+            <div class="shrink-0 text-right"><span class="score-pill score-warm">70/100</span><div class="text-[11px] text-slate-400 dark:text-dark-dim mt-1">Net +36</div></div>
+          </a>
+
+          <a class="hawk-row flex items-start justify-between gap-4 border-b border-border/70 dark:border-dark-border/70 py-3 no-underline last:border-b-0" href="https://www.tradingview.com/chart/?symbol=AMZN" target="_blank" rel="noopener">
+            <div>
+              <div class="flex flex-wrap items-center gap-2"><span class="font-extrabold text-foreground dark:text-dark-foreground text-sm">Amazon</span><span class="text-[10px] font-black uppercase tracking-wide text-accent dark:text-green-400 bg-accent/10 px-1.5 py-0.5 rounded-full">Bullish</span></div>
+              <div class="text-[11px] text-slate-400 dark:text-dark-dim mt-1">AMZN · active pressure · E-commerce + AWS</div>
+              <div class="text-[11px] mt-0.5" style="color:var(--accent)">Reference size: $2T+ · Manual chart check required</div>
+            </div>
+            <div class="shrink-0 text-right"><span class="score-pill score-warm">68/100</span><div class="text-[11px] text-slate-400 dark:text-dark-dim mt-1">Net +34</div></div>
+          </a>
+
+          <a class="hawk-row flex items-start justify-between gap-4 border-b border-border/70 dark:border-dark-border/70 py-3 no-underline last:border-b-0" href="https://www.tradingview.com/chart/?symbol=META" target="_blank" rel="noopener">
+            <div>
+              <div class="flex flex-wrap items-center gap-2"><span class="font-extrabold text-foreground dark:text-dark-foreground text-sm">Meta Platforms</span><span class="text-[10px] font-black uppercase tracking-wide text-accent dark:text-green-400 bg-accent/10 px-1.5 py-0.5 rounded-full">Bullish</span></div>
+              <div class="text-[11px] text-slate-400 dark:text-dark-dim mt-1">META · active pressure · Social + AI ads</div>
+              <div class="text-[11px] mt-0.5" style="color:var(--accent)">Reference size: $2T · Manual chart check required</div>
+            </div>
+            <div class="shrink-0 text-right"><span class="score-pill score-warm">66/100</span><div class="text-[11px] text-slate-400 dark:text-dark-dim mt-1">Net +32</div></div>
+          </a>
+
+          <a class="hawk-row flex items-start justify-between gap-4 border-b border-border/70 dark:border-dark-border/70 py-3 no-underline last:border-b-0" href="https://www.tradingview.com/chart/?symbol=AVGO" target="_blank" rel="noopener">
+            <div>
+              <div class="flex flex-wrap items-center gap-2"><span class="font-extrabold text-foreground dark:text-dark-foreground text-sm">Broadcom</span><span class="text-[10px] font-black uppercase tracking-wide text-accent dark:text-green-400 bg-accent/10 px-1.5 py-0.5 rounded-full">Bullish</span></div>
+              <div class="text-[11px] text-slate-400 dark:text-dark-dim mt-1">AVGO · active pressure · AI/networking semis</div>
+              <div class="text-[11px] mt-0.5" style="color:var(--accent)">Reference size: $1T+ · Manual chart check required</div>
+            </div>
+            <div class="shrink-0 text-right"><span class="score-pill score-warm">64/100</span><div class="text-[11px] text-slate-400 dark:text-dark-dim mt-1">Net +30</div></div>
+          </a></div>
+      <div class="panel rounded-[1.5rem] p-5"><h3 class="font-display font-bold text-foreground dark:text-dark-foreground flex items-center justify-between mb-2">Bearish pressure <span class="text-xs font-bold text-red-500 bg-red-500/10 px-2 py-0.5 rounded-full">7 assets</span></h3>
+          <a class="hawk-row flex items-start justify-between gap-4 border-b border-border/70 dark:border-dark-border/70 py-3 no-underline last:border-b-0" href="https://www.tradingview.com/chart/?symbol=TSLA" target="_blank" rel="noopener">
+            <div>
+              <div class="flex flex-wrap items-center gap-2"><span class="font-extrabold text-foreground dark:text-dark-foreground text-sm">Tesla</span><span class="text-[10px] font-black uppercase tracking-wide text-red-500 bg-red-500/10 px-1.5 py-0.5 rounded-full">Bearish</span></div>
+              <div class="text-[11px] text-slate-400 dark:text-dark-dim mt-1">TSLA · downtrend · EV / autonomy beta</div>
+              <div class="text-[11px] mt-0.5" style="color:var(--accent)">Reference size: $1T+ · Manual chart check required</div>
+            </div>
+            <div class="shrink-0 text-right"><span class="score-pill score-bear">72/100</span><div class="text-[11px] text-slate-400 dark:text-dark-dim mt-1">Net -37</div></div>
+          </a>
+
+          <a class="hawk-row flex items-start justify-between gap-4 border-b border-border/70 dark:border-dark-border/70 py-3 no-underline last:border-b-0" href="https://www.tradingview.com/chart/?symbol=BRKB" target="_blank" rel="noopener">
+            <div>
+              <div class="flex flex-wrap items-center gap-2"><span class="font-extrabold text-foreground dark:text-dark-foreground text-sm">Berkshire Hathaway</span><span class="text-[10px] font-black uppercase tracking-wide text-red-500 bg-red-500/10 px-1.5 py-0.5 rounded-full">Bearish</span></div>
+              <div class="text-[11px] text-slate-400 dark:text-dark-dim mt-1">BRK.B · downtrend · Diversified holding</div>
+              <div class="text-[11px] mt-0.5" style="color:var(--accent)">Reference size: $1T · Manual chart check required</div>
+            </div>
+            <div class="shrink-0 text-right"><span class="score-pill score-bear">70/100</span><div class="text-[11px] text-slate-400 dark:text-dark-dim mt-1">Net -36</div></div>
+          </a>
+
+          <a class="hawk-row flex items-start justify-between gap-4 border-b border-border/70 dark:border-dark-border/70 py-3 no-underline last:border-b-0" href="https://www.tradingview.com/chart/?symbol=TSM" target="_blank" rel="noopener">
+            <div>
+              <div class="flex flex-wrap items-center gap-2"><span class="font-extrabold text-foreground dark:text-dark-foreground text-sm">Taiwan Semiconductor</span><span class="text-[10px] font-black uppercase tracking-wide text-red-500 bg-red-500/10 px-1.5 py-0.5 rounded-full">Bearish</span></div>
+              <div class="text-[11px] text-slate-400 dark:text-dark-dim mt-1">TSM · downtrend · Foundry backbone</div>
+              <div class="text-[11px] mt-0.5" style="color:var(--accent)">Reference size: $1T · Manual chart check required</div>
+            </div>
+            <div class="shrink-0 text-right"><span class="score-pill score-bear">68/100</span><div class="text-[11px] text-slate-400 dark:text-dark-dim mt-1">Net -35</div></div>
+          </a>
+
+          <a class="hawk-row flex items-start justify-between gap-4 border-b border-border/70 dark:border-dark-border/70 py-3 no-underline last:border-b-0" href="https://www.tradingview.com/chart/?symbol=LLY" target="_blank" rel="noopener">
+            <div>
+              <div class="flex flex-wrap items-center gap-2"><span class="font-extrabold text-foreground dark:text-dark-foreground text-sm">Eli Lilly</span><span class="text-[10px] font-black uppercase tracking-wide text-red-500 bg-red-500/10 px-1.5 py-0.5 rounded-full">Bearish</span></div>
+              <div class="text-[11px] text-slate-400 dark:text-dark-dim mt-1">LLY · downtrend · GLP-1 / pharma</div>
+              <div class="text-[11px] mt-0.5" style="color:var(--accent)">Reference size: $800B+ · Manual chart check required</div>
+            </div>
+            <div class="shrink-0 text-right"><span class="score-pill score-bear">66/100</span><div class="text-[11px] text-slate-400 dark:text-dark-dim mt-1">Net -34</div></div>
+          </a>
+
+          <a class="hawk-row flex items-start justify-between gap-4 border-b border-border/70 dark:border-dark-border/70 py-3 no-underline last:border-b-0" href="https://www.tradingview.com/chart/?symbol=JPM" target="_blank" rel="noopener">
+            <div>
+              <div class="flex flex-wrap items-center gap-2"><span class="font-extrabold text-foreground dark:text-dark-foreground text-sm">JPMorgan Chase</span><span class="text-[10px] font-black uppercase tracking-wide text-red-500 bg-red-500/10 px-1.5 py-0.5 rounded-full">Bearish</span></div>
+              <div class="text-[11px] text-slate-400 dark:text-dark-dim mt-1">JPM · mixed pressure · US banking leader</div>
+              <div class="text-[11px] mt-0.5" style="color:var(--accent)">Reference size: $700B+ · Manual chart check required</div>
+            </div>
+            <div class="shrink-0 text-right"><span class="score-pill score-warm">64/100</span><div class="text-[11px] text-slate-400 dark:text-dark-dim mt-1">Net -33</div></div>
+          </a>
+
+          <a class="hawk-row flex items-start justify-between gap-4 border-b border-border/70 dark:border-dark-border/70 py-3 no-underline last:border-b-0" href="https://www.tradingview.com/chart/?symbol=V" target="_blank" rel="noopener">
+            <div>
+              <div class="flex flex-wrap items-center gap-2"><span class="font-extrabold text-foreground dark:text-dark-foreground text-sm">Visa</span><span class="text-[10px] font-black uppercase tracking-wide text-red-500 bg-red-500/10 px-1.5 py-0.5 rounded-full">Bearish</span></div>
+              <div class="text-[11px] text-slate-400 dark:text-dark-dim mt-1">V · mixed pressure · Payments network</div>
+              <div class="text-[11px] mt-0.5" style="color:var(--accent)">Reference size: $600B+ · Manual chart check required</div>
+            </div>
+            <div class="shrink-0 text-right"><span class="score-pill score-warm">62/100</span><div class="text-[11px] text-slate-400 dark:text-dark-dim mt-1">Net -32</div></div>
+          </a>
+
+          <a class="hawk-row flex items-start justify-between gap-4 border-b border-border/70 dark:border-dark-border/70 py-3 no-underline last:border-b-0" href="https://www.tradingview.com/chart/?symbol=WMT" target="_blank" rel="noopener">
+            <div>
+              <div class="flex flex-wrap items-center gap-2"><span class="font-extrabold text-foreground dark:text-dark-foreground text-sm">Walmart</span><span class="text-[10px] font-black uppercase tracking-wide text-red-500 bg-red-500/10 px-1.5 py-0.5 rounded-full">Bearish</span></div>
+              <div class="text-[11px] text-slate-400 dark:text-dark-dim mt-1">WMT · mixed pressure · Retail defensive</div>
+              <div class="text-[11px] mt-0.5" style="color:var(--accent)">Reference size: $600B+ · Manual chart check required</div>
+            </div>
+            <div class="shrink-0 text-right"><span class="score-pill score-warm">60/100</span><div class="text-[11px] text-slate-400 dark:text-dark-dim mt-1">Net -31</div></div>
+          </a></div>
+    </div>
+  </section>
+  <section id="top15" class="pb-16">
+    <div class="mb-5"><p class="text-xs font-black uppercase tracking-[.22em]" style="color:var(--accent)">Top 15</p><h2 class="section-title text-foreground dark:text-dark-foreground">Top 15 listed companies by market capitalization</h2><p class="mt-3 max-w-3xl text-sm text-slate-500 dark:text-dark-dim">Compact ranked view with daily 1D fluctuation. For non-equity markets, “market cap” uses the closest useful proxy : AUM, turnover, benchmark size, futures liquidity or global market relevance.</p></div>
+    <div class="panel rounded-[1.5rem] p-4"><div class="top15-grid">
+          <a class="rank-row compact-rank grid grid-cols-[34px_minmax(0,1fr)_auto] gap-2 items-center border-b border-border/60 dark:border-dark-border/60 py-2 no-underline last:border-b-0" href="https://www.tradingview.com/chart/?symbol=NVDA" target="_blank" rel="noopener">
+            <div class="text-xs font-black text-slate-400 dark:text-dark-dim">#1</div>
+            <div class="min-w-0"><div class="font-extrabold text-sm text-foreground dark:text-dark-foreground truncate">NVDA <span class="font-semibold text-slate-500 dark:text-dark-dim">· NVIDIA</span></div><div class="text-[11px] text-slate-500 dark:text-dark-dim mt-0.5 truncate">AI semiconductors</div></div>
+            <div class="text-right shrink-0"><div class="text-xs font-black" style="color:var(--accent)">$5T+</div><div class="daily-change daily-up">1D +3.5%</div></div>
+          </a>
+
+          <a class="rank-row compact-rank grid grid-cols-[34px_minmax(0,1fr)_auto] gap-2 items-center border-b border-border/60 dark:border-dark-border/60 py-2 no-underline last:border-b-0" href="https://www.tradingview.com/chart/?symbol=AAPL" target="_blank" rel="noopener">
+            <div class="text-xs font-black text-slate-400 dark:text-dark-dim">#2</div>
+            <div class="min-w-0"><div class="font-extrabold text-sm text-foreground dark:text-dark-foreground truncate">AAPL <span class="font-semibold text-slate-500 dark:text-dark-dim">· Apple</span></div><div class="text-[11px] text-slate-500 dark:text-dark-dim mt-0.5 truncate">Consumer hardware/services</div></div>
+            <div class="text-right shrink-0"><div class="text-xs font-black" style="color:var(--accent)">$4T+</div><div class="daily-change daily-up">1D +0.0%</div></div>
+          </a>
+
+          <a class="rank-row compact-rank grid grid-cols-[34px_minmax(0,1fr)_auto] gap-2 items-center border-b border-border/60 dark:border-dark-border/60 py-2 no-underline last:border-b-0" href="https://www.tradingview.com/chart/?symbol=MSFT" target="_blank" rel="noopener">
+            <div class="text-xs font-black text-slate-400 dark:text-dark-dim">#3</div>
+            <div class="min-w-0"><div class="font-extrabold text-sm text-foreground dark:text-dark-foreground truncate">MSFT <span class="font-semibold text-slate-500 dark:text-dark-dim">· Microsoft</span></div><div class="text-[11px] text-slate-500 dark:text-dark-dim mt-0.5 truncate">Cloud + AI software</div></div>
+            <div class="text-right shrink-0"><div class="text-xs font-black" style="color:var(--accent)">$3T+</div><div class="daily-change daily-up">1D +2.2%</div></div>
+          </a>
+
+          <a class="rank-row compact-rank grid grid-cols-[34px_minmax(0,1fr)_auto] gap-2 items-center border-b border-border/60 dark:border-dark-border/60 py-2 no-underline last:border-b-0" href="https://www.tradingview.com/chart/?symbol=GOOGL" target="_blank" rel="noopener">
+            <div class="text-xs font-black text-slate-400 dark:text-dark-dim">#4</div>
+            <div class="min-w-0"><div class="font-extrabold text-sm text-foreground dark:text-dark-foreground truncate">GOOGL <span class="font-semibold text-slate-500 dark:text-dark-dim">· Alphabet</span></div><div class="text-[11px] text-slate-500 dark:text-dark-dim mt-0.5 truncate">Search + AI + cloud</div></div>
+            <div class="text-right shrink-0"><div class="text-xs font-black" style="color:var(--accent)">$3T</div><div class="daily-change daily-up">1D +3.9%</div></div>
+          </a>
+
+          <a class="rank-row compact-rank grid grid-cols-[34px_minmax(0,1fr)_auto] gap-2 items-center border-b border-border/60 dark:border-dark-border/60 py-2 no-underline last:border-b-0" href="https://www.tradingview.com/chart/?symbol=AMZN" target="_blank" rel="noopener">
+            <div class="text-xs font-black text-slate-400 dark:text-dark-dim">#5</div>
+            <div class="min-w-0"><div class="font-extrabold text-sm text-foreground dark:text-dark-foreground truncate">AMZN <span class="font-semibold text-slate-500 dark:text-dark-dim">· Amazon</span></div><div class="text-[11px] text-slate-500 dark:text-dark-dim mt-0.5 truncate">E-commerce + AWS</div></div>
+            <div class="text-right shrink-0"><div class="text-xs font-black" style="color:var(--accent)">$2T+</div><div class="daily-change daily-up">1D +2.1%</div></div>
+          </a>
+
+          <a class="rank-row compact-rank grid grid-cols-[34px_minmax(0,1fr)_auto] gap-2 items-center border-b border-border/60 dark:border-dark-border/60 py-2 no-underline last:border-b-0" href="https://www.tradingview.com/chart/?symbol=META" target="_blank" rel="noopener">
+            <div class="text-xs font-black text-slate-400 dark:text-dark-dim">#6</div>
+            <div class="min-w-0"><div class="font-extrabold text-sm text-foreground dark:text-dark-foreground truncate">META <span class="font-semibold text-slate-500 dark:text-dark-dim">· Meta Platforms</span></div><div class="text-[11px] text-slate-500 dark:text-dark-dim mt-0.5 truncate">Social + AI ads</div></div>
+            <div class="text-right shrink-0"><div class="text-xs font-black" style="color:var(--accent)">$2T</div><div class="daily-change daily-up">1D +4.6%</div></div>
+          </a>
+
+          <a class="rank-row compact-rank grid grid-cols-[34px_minmax(0,1fr)_auto] gap-2 items-center border-b border-border/60 dark:border-dark-border/60 py-2 no-underline last:border-b-0" href="https://www.tradingview.com/chart/?symbol=AVGO" target="_blank" rel="noopener">
+            <div class="text-xs font-black text-slate-400 dark:text-dark-dim">#7</div>
+            <div class="min-w-0"><div class="font-extrabold text-sm text-foreground dark:text-dark-foreground truncate">AVGO <span class="font-semibold text-slate-500 dark:text-dark-dim">· Broadcom</span></div><div class="text-[11px] text-slate-500 dark:text-dark-dim mt-0.5 truncate">AI/networking semis</div></div>
+            <div class="text-right shrink-0"><div class="text-xs font-black" style="color:var(--accent)">$1T+</div><div class="daily-change daily-up">1D +2.2%</div></div>
+          </a>
+
+          <a class="rank-row compact-rank grid grid-cols-[34px_minmax(0,1fr)_auto] gap-2 items-center border-b border-border/60 dark:border-dark-border/60 py-2 no-underline last:border-b-0" href="https://www.tradingview.com/chart/?symbol=TSLA" target="_blank" rel="noopener">
+            <div class="text-xs font-black text-slate-400 dark:text-dark-dim">#8</div>
+            <div class="min-w-0"><div class="font-extrabold text-sm text-foreground dark:text-dark-foreground truncate">TSLA <span class="font-semibold text-slate-500 dark:text-dark-dim">· Tesla</span></div><div class="text-[11px] text-slate-500 dark:text-dark-dim mt-0.5 truncate">EV / autonomy beta</div></div>
+            <div class="text-right shrink-0"><div class="text-xs font-black" style="color:var(--accent)">$1T+</div><div class="daily-change daily-up">1D +2.8%</div></div>
+          </a>
+
+          <a class="rank-row compact-rank grid grid-cols-[34px_minmax(0,1fr)_auto] gap-2 items-center border-b border-border/60 dark:border-dark-border/60 py-2 no-underline last:border-b-0" href="https://www.tradingview.com/chart/?symbol=BRKB" target="_blank" rel="noopener">
+            <div class="text-xs font-black text-slate-400 dark:text-dark-dim">#9</div>
+            <div class="min-w-0"><div class="font-extrabold text-sm text-foreground dark:text-dark-foreground truncate">BRK.B <span class="font-semibold text-slate-500 dark:text-dark-dim">· Berkshire Hathaway</span></div><div class="text-[11px] text-slate-500 dark:text-dark-dim mt-0.5 truncate">Diversified holding</div></div>
+            <div class="text-right shrink-0"><div class="text-xs font-black" style="color:var(--accent)">$1T</div><div class="daily-change daily-up">1D +2.1%</div></div>
+          </a>
+
+          <a class="rank-row compact-rank grid grid-cols-[34px_minmax(0,1fr)_auto] gap-2 items-center border-b border-border/60 dark:border-dark-border/60 py-2 no-underline last:border-b-0" href="https://www.tradingview.com/chart/?symbol=TSM" target="_blank" rel="noopener">
+            <div class="text-xs font-black text-slate-400 dark:text-dark-dim">#10</div>
+            <div class="min-w-0"><div class="font-extrabold text-sm text-foreground dark:text-dark-foreground truncate">TSM <span class="font-semibold text-slate-500 dark:text-dark-dim">· Taiwan Semiconductor</span></div><div class="text-[11px] text-slate-500 dark:text-dark-dim mt-0.5 truncate">Foundry backbone</div></div>
+            <div class="text-right shrink-0"><div class="text-xs font-black" style="color:var(--accent)">$1T</div><div class="daily-change daily-up">1D +4.9%</div></div>
+          </a>
+
+          <a class="rank-row compact-rank grid grid-cols-[34px_minmax(0,1fr)_auto] gap-2 items-center border-b border-border/60 dark:border-dark-border/60 py-2 no-underline last:border-b-0" href="https://www.tradingview.com/chart/?symbol=LLY" target="_blank" rel="noopener">
+            <div class="text-xs font-black text-slate-400 dark:text-dark-dim">#11</div>
+            <div class="min-w-0"><div class="font-extrabold text-sm text-foreground dark:text-dark-foreground truncate">LLY <span class="font-semibold text-slate-500 dark:text-dark-dim">· Eli Lilly</span></div><div class="text-[11px] text-slate-500 dark:text-dark-dim mt-0.5 truncate">GLP-1 / pharma</div></div>
+            <div class="text-right shrink-0"><div class="text-xs font-black" style="color:var(--accent)">$800B+</div><div class="daily-change daily-down">1D -3.1%</div></div>
+          </a>
+
+          <a class="rank-row compact-rank grid grid-cols-[34px_minmax(0,1fr)_auto] gap-2 items-center border-b border-border/60 dark:border-dark-border/60 py-2 no-underline last:border-b-0" href="https://www.tradingview.com/chart/?symbol=JPM" target="_blank" rel="noopener">
+            <div class="text-xs font-black text-slate-400 dark:text-dark-dim">#12</div>
+            <div class="min-w-0"><div class="font-extrabold text-sm text-foreground dark:text-dark-foreground truncate">JPM <span class="font-semibold text-slate-500 dark:text-dark-dim">· JPMorgan Chase</span></div><div class="text-[11px] text-slate-500 dark:text-dark-dim mt-0.5 truncate">US banking leader</div></div>
+            <div class="text-right shrink-0"><div class="text-xs font-black" style="color:var(--accent)">$700B+</div><div class="daily-change daily-up">1D +2.2%</div></div>
+          </a>
+
+          <a class="rank-row compact-rank grid grid-cols-[34px_minmax(0,1fr)_auto] gap-2 items-center border-b border-border/60 dark:border-dark-border/60 py-2 no-underline last:border-b-0" href="https://www.tradingview.com/chart/?symbol=V" target="_blank" rel="noopener">
+            <div class="text-xs font-black text-slate-400 dark:text-dark-dim">#13</div>
+            <div class="min-w-0"><div class="font-extrabold text-sm text-foreground dark:text-dark-foreground truncate">V <span class="font-semibold text-slate-500 dark:text-dark-dim">· Visa</span></div><div class="text-[11px] text-slate-500 dark:text-dark-dim mt-0.5 truncate">Payments network</div></div>
+            <div class="text-right shrink-0"><div class="text-xs font-black" style="color:var(--accent)">$600B+</div><div class="daily-change daily-up">1D +1.8%</div></div>
+          </a>
+
+          <a class="rank-row compact-rank grid grid-cols-[34px_minmax(0,1fr)_auto] gap-2 items-center border-b border-border/60 dark:border-dark-border/60 py-2 no-underline last:border-b-0" href="https://www.tradingview.com/chart/?symbol=WMT" target="_blank" rel="noopener">
+            <div class="text-xs font-black text-slate-400 dark:text-dark-dim">#14</div>
+            <div class="min-w-0"><div class="font-extrabold text-sm text-foreground dark:text-dark-foreground truncate">WMT <span class="font-semibold text-slate-500 dark:text-dark-dim">· Walmart</span></div><div class="text-[11px] text-slate-500 dark:text-dark-dim mt-0.5 truncate">Retail defensive</div></div>
+            <div class="text-right shrink-0"><div class="text-xs font-black" style="color:var(--accent)">$600B+</div><div class="daily-change daily-up">1D +0.1%</div></div>
+          </a>
+
+          <a class="rank-row compact-rank grid grid-cols-[34px_minmax(0,1fr)_auto] gap-2 items-center border-b border-border/60 dark:border-dark-border/60 py-2 no-underline last:border-b-0" href="https://www.tradingview.com/chart/?symbol=MA" target="_blank" rel="noopener">
+            <div class="text-xs font-black text-slate-400 dark:text-dark-dim">#15</div>
+            <div class="min-w-0"><div class="font-extrabold text-sm text-foreground dark:text-dark-foreground truncate">MA <span class="font-semibold text-slate-500 dark:text-dark-dim">· Mastercard</span></div><div class="text-[11px] text-slate-500 dark:text-dark-dim mt-0.5 truncate">Payments network</div></div>
+            <div class="text-right shrink-0"><div class="text-xs font-black" style="color:var(--accent)">$500B+</div><div class="daily-change daily-up">1D +0.6%</div></div>
+          </a></div></div>
+  </section>
+</main>
+<footer class="text-center text-sm text-slate-500 dark:text-dark-dim py-8 border-t border-border dark:border-dark-border"><p><a href="/" class="font-semibold hover:underline" style="color:var(--accent)">Atlas Nexus</a> · <a href="/dashboard.html#dashboards" class="font-semibold hover:underline" style="color:var(--accent)">All market cards</a> · Top 15 + Hawkeye V4</p></footer>
+<script>(()=>{const h=document.documentElement,t=document.getElementById('theme-toggle'),s=localStorage.getItem('atlasnexus-theme')||'light';if(s==='dark')h.classList.add('dark');h.setAttribute('data-theme',h.classList.contains('dark')?'dark':'light');if(t)t.addEventListener('click',()=>{h.classList.toggle('dark');const n=h.classList.contains('dark')?'dark':'light';h.setAttribute('data-theme',n);localStorage.setItem('atlasnexus-theme',n)})})();</script>
+</body>
+</html>

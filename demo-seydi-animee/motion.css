@@ -1,0 +1,295 @@
+/* Motion layer for the confidential Seydi demo. The base page remains fully usable without JS. */
+.motion-page {
+  --motion-x: 50%;
+  --motion-y: 35%;
+  --scroll-progress: 0;
+  overflow-x: hidden;
+}
+
+.motion-progress {
+  position: fixed;
+  z-index: 220;
+  inset: 0 0 auto;
+  height: 3px;
+  pointer-events: none;
+}
+.motion-progress span {
+  display: block;
+  width: calc(var(--scroll-progress) * 100%);
+  height: 100%;
+  background: linear-gradient(90deg, #bd9b5d, #f4deb0, #bd9b5d);
+  box-shadow: 0 0 18px rgba(189, 155, 93, .7);
+  transform-origin: left center;
+}
+
+.motion-ambient {
+  position: fixed;
+  z-index: -1;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+.motion-ambient i {
+  position: absolute;
+  display: block;
+  border-radius: 999px;
+  filter: blur(3px);
+  opacity: .22;
+  animation: ambient-drift 18s ease-in-out infinite alternate;
+}
+.motion-ambient i:nth-child(1) {
+  width: 340px;
+  height: 340px;
+  top: 9%;
+  right: -100px;
+  background: radial-gradient(circle at 35% 35%, rgba(189,155,93,.8), rgba(189,155,93,0) 70%);
+}
+.motion-ambient i:nth-child(2) {
+  width: 220px;
+  height: 220px;
+  top: 45%;
+  left: -80px;
+  background: radial-gradient(circle at 50% 50%, rgba(42,103,170,.45), transparent 70%);
+  animation-delay: -7s;
+  animation-duration: 23s;
+}
+.motion-ambient i:nth-child(3) {
+  width: 280px;
+  height: 280px;
+  bottom: -90px;
+  right: 17%;
+  background: radial-gradient(circle at 50% 50%, rgba(189,155,93,.45), transparent 70%);
+  animation-delay: -12s;
+  animation-duration: 27s;
+}
+
+.motion-hero::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: -92px calc(50% - 50vw) 0;
+  background:
+    radial-gradient(circle 260px at var(--motion-x) var(--motion-y), rgba(189,155,93,.17), transparent 72%),
+    linear-gradient(120deg, rgba(255,255,255,.18), transparent 46%);
+  pointer-events: none;
+}
+.motion-hero .title-line {
+  display: inline-block;
+  will-change: transform, opacity;
+}
+.motion-ready .motion-hero .title-line {
+  opacity: 0;
+  transform: translateY(55px) skewY(3deg);
+}
+.motion-ready.motion-loaded .motion-hero .title-line {
+  animation: title-arrive 1.05s cubic-bezier(.16,1,.3,1) forwards;
+}
+.motion-ready.motion-loaded .motion-hero .title-line:nth-child(2) { animation-delay: .13s; }
+.motion-ready .kinetic-kicker {
+  opacity: 0;
+  letter-spacing: .28em;
+}
+.motion-ready.motion-loaded .kinetic-kicker {
+  animation: kicker-arrive .9s .08s ease forwards;
+}
+.motion-ready .motion-hero .lede,
+.motion-ready .motion-hero .advisor-card,
+.motion-ready .motion-hero .intro-actions {
+  opacity: 0;
+  transform: translateY(24px);
+}
+.motion-ready.motion-loaded .motion-hero .lede { animation: soft-arrive .85s .34s ease forwards; }
+.motion-ready.motion-loaded .motion-hero .intro-actions { animation: soft-arrive .85s .46s ease forwards; }
+.motion-ready.motion-loaded .motion-hero .advisor-card { animation: card-arrive 1s .42s cubic-bezier(.16,1,.3,1) forwards, advisor-float 6s 1.6s ease-in-out infinite; }
+
+.scroll-cue {
+  position: absolute;
+  left: 0;
+  bottom: 35px;
+  display: inline-flex;
+  align-items: center;
+  gap: .7rem;
+  color: #68758a;
+  text-decoration: none;
+  font-size: .66rem;
+  font-weight: 700;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+}
+.scroll-cue span {
+  width: 22px;
+  height: 34px;
+  border: 1px solid rgba(7,22,46,.35);
+  border-radius: 999px;
+  position: relative;
+}
+.scroll-cue span::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 7px;
+  width: 3px;
+  height: 7px;
+  border-radius: 3px;
+  background: #bd9b5d;
+  transform: translateX(-50%);
+  animation: scroll-dot 1.8s ease-in-out infinite;
+}
+
+.motion-ready [data-reveal] {
+  opacity: 0;
+  transform: translateY(46px);
+  transition: opacity .85s ease, transform 1s cubic-bezier(.16,1,.3,1);
+}
+.motion-ready [data-reveal].is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.motion-ready [data-stagger] > * {
+  opacity: 0;
+  transform: translateY(34px) scale(.96);
+  transition: opacity .65s ease, transform .8s cubic-bezier(.16,1,.3,1);
+  transition-delay: calc(var(--stagger-index, 0) * 55ms);
+}
+.motion-ready [data-stagger].is-visible > * {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+[data-motion-section] {
+  position: relative;
+  isolation: isolate;
+}
+[data-motion-section]::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  opacity: 0;
+  background: linear-gradient(115deg, rgba(189,155,93,.08), transparent 28%, transparent 72%, rgba(42,103,170,.05));
+  transition: opacity 1.2s ease;
+}
+[data-motion-section].section-visible::before { opacity: 1; }
+
+.motion-page .hero-photo {
+  transform: translateZ(0);
+  transition: box-shadow .5s ease;
+}
+.motion-page .hero-photo:hover { box-shadow: 0 36px 100px rgba(7,22,46,.24); }
+.motion-page .hero-photo img {
+  transform: scale(1.075) translate3d(0, var(--parallax-y, 0px), 0);
+  will-change: transform;
+}
+.motion-page .hero-photo:hover img {
+  transform: scale(1.1) translate3d(0, var(--parallax-y, 0px), 0);
+}
+.motion-page .facts strong {
+  --fact-color-start: var(--navy);
+  --fact-color-mid: #8a6324;
+  --fact-color-end: var(--navy);
+  color: var(--fact-color-start);
+}
+.motion-page .property-dark .facts strong {
+  --fact-color-start: #f4deb0;
+  --fact-color-mid: #d6ad62;
+  --fact-color-end: #bd9b5d;
+  color: var(--fact-color-start);
+}
+.motion-page .facts.is-visible strong { animation: number-shine 1.6s .2s ease forwards; }
+.motion-page .gallery .photo-button::after {
+  content: "↗";
+  position: absolute;
+  right: 12px;
+  top: 12px;
+  width: 34px;
+  height: 34px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  color: #fff;
+  background: rgba(7,22,46,.72);
+  opacity: 0;
+  transform: translateY(8px) rotate(-15deg);
+  transition: opacity .25s ease, transform .35s ease;
+  backdrop-filter: blur(8px);
+}
+.motion-page .gallery .photo-button:hover::after {
+  opacity: 1;
+  transform: translateY(0) rotate(0);
+}
+.motion-page .energy {
+  transition: transform .35s ease, filter .35s ease;
+}
+.motion-page .energy-row:hover .energy {
+  transform: translateX(6px) scale(1.08);
+  filter: saturate(1.2);
+}
+.motion-page .button { transition: transform .3s ease, box-shadow .3s ease, background .3s ease, border-color .3s ease; }
+.motion-page .advisor-monogram { animation: monogram-pulse 4.5s ease-in-out infinite; }
+
+@keyframes title-arrive {
+  to { opacity: 1; transform: translateY(0) skewY(0); }
+}
+@keyframes kicker-arrive {
+  to { opacity: 1; letter-spacing: .15em; }
+}
+@keyframes soft-arrive {
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes card-arrive {
+  from { opacity: 0; transform: translateY(36px) rotate(2deg) scale(.96); }
+  to { opacity: 1; transform: translateY(0) rotate(0) scale(1); }
+}
+@keyframes advisor-float {
+  0%, 100% { translate: 0 0; }
+  50% { translate: 0 -9px; }
+}
+@keyframes ambient-drift {
+  from { transform: translate3d(-18px,-12px,0) scale(.92); }
+  to { transform: translate3d(28px,22px,0) scale(1.08); }
+}
+@keyframes scroll-dot {
+  0% { opacity: 0; transform: translate(-50%,0); }
+  35% { opacity: 1; }
+  100% { opacity: 0; transform: translate(-50%,12px); }
+}
+@keyframes number-shine {
+  0% { color: var(--fact-color-start); }
+  55% { color: var(--fact-color-mid); }
+  100% { color: var(--fact-color-end); }
+}
+@keyframes monogram-pulse {
+  0%,100% { box-shadow: inset 0 0 0 7px rgba(255,255,255,.08), 0 0 0 0 rgba(189,155,93,0); }
+  50% { box-shadow: inset 0 0 0 7px rgba(255,255,255,.12), 0 0 0 12px rgba(189,155,93,.08); }
+}
+
+@media (max-width: 900px) {
+  .scroll-cue { display: none; }
+  .motion-page .hero-photo img { transform: scale(1.035); }
+  .motion-page .hero-photo:hover img { transform: scale(1.055); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .motion-progress, .motion-ambient, .scroll-cue { display: none !important; }
+  .motion-ready .motion-hero .title-line,
+  .motion-ready .kinetic-kicker,
+  .motion-ready .motion-hero .lede,
+  .motion-ready .motion-hero .advisor-card,
+  .motion-ready .motion-hero .intro-actions,
+  .motion-ready [data-reveal],
+  .motion-ready [data-stagger] > * {
+    opacity: 1 !important;
+    transform: none !important;
+    animation: none !important;
+    transition: none !important;
+  }
+  .motion-page .hero-photo img,
+  .motion-page .hero-photo:hover img {
+    transform: none !important;
+  }
+  .motion-page .facts strong {
+    color: var(--fact-color-end);
+    animation: none !important;
+  }
+  .motion-page .advisor-monogram { animation: none !important; }
+}

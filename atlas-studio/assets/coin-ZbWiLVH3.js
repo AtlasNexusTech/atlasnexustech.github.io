@@ -1,0 +1,1 @@
+const e={"button.disconnect":{message:"연결 끊기",description:"연결된 지갑을 끊는 버튼 문구입니다."},"message.connectError":{message:"지갑 연결에 실패했습니다.",description:"지갑 연결 실패 시 표시되는 오류 메시지입니다."}};export{e as default};

@@ -1,0 +1,1 @@
+const o={"button.disconnect":{message:"Disconnetti",description:"Testo del pulsante per disconnettere il portafoglio connesso."},"message.connectError":{message:"Errore di connessione del portafoglio.",description:"Messaggio di errore visualizzato quando la connessione al portafoglio fallisce."}};export{o as default};

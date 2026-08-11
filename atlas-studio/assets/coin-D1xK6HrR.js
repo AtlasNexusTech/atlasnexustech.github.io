@@ -1,0 +1,1 @@
+const e={"button.disconnect":{message:"Disconnect",description:"Text for the button to disconnect the connected wallet."},"message.connectError":{message:"Wallet connection failed.",description:"Error message displayed when the wallet connection fails."}};export{e as default};
