@@ -1,1 +1,0 @@
-const e={"button.disconnect":{message:"Отключить",description:"Кнопка для отключения подключенного кошелька."},"message.connectError":{message:"Ошибка подключения кошелька.",description:"Сообщение об ошибке, отображаемое при неудачном подключении кошелька."}};export{e as default};

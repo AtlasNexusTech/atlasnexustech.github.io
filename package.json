@@ -1,8 +1,32 @@
 {
+  "name": "atlas-nexus-immersive-beta",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
   "scripts": {
-    "build:css": "tailwindcss -c tailwind.config.js -i ./src/tailwind.css -o ./css/site.css --minify"
+    "dev": "vite --host 0.0.0.0",
+    "build": "tsc -b && vite build",
+    "typecheck": "tsc -b --pretty false",
+    "test": "vitest run tests/beta-contract.test.ts",
+    "preview": "vite preview --host 0.0.0.0",
+    "qa:browser": "playwright test"
+  },
+  "dependencies": {
+    "@react-three/drei": "^10.7.8",
+    "@react-three/fiber": "^9.7.0",
+    "react": "^19.2.8",
+    "react-dom": "^19.2.8",
+    "three": "^0.185.1"
   },
   "devDependencies": {
-    "tailwindcss": "^3.4.17"
+    "@playwright/test": "^1.58.2",
+    "@types/node": "^26.2.0",
+    "@types/react": "^19.2.18",
+    "@types/react-dom": "^19.2.4",
+    "@types/three": "^0.185.4",
+    "@vitejs/plugin-react": "^6.0.5",
+    "typescript": "^7.0.2",
+    "vite": "^8.2.1",
+    "vitest": "^4.1.10"
   }
 }

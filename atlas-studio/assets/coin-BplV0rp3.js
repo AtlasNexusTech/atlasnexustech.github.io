@@ -1,1 +1,0 @@
-const e={"button.disconnect":{message:"Trennen",description:"Text auf dem Button, um die Verbindung zur bereits verbundenen Brieftasche zu trennen."},"message.connectError":{message:"Fehler beim Verbinden der Brieftasche.",description:"Fehlermeldung, die angezeigt wird, wenn die Verbindung zur Brieftasche fehlschlägt."}};export{e as default};

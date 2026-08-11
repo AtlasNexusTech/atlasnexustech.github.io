@@ -1,1 +1,0 @@
-const e={"button.disconnect":{message:"Prekini vezu",description:"Dugme za prekid veze sa povezanim novčanikom."},"message.connectError":{message:"Povezivanje novčanika nije uspelo.",description:"Poruka o grešci koja se prikazuje kada povezivanje novčanika ne uspe."}};export{e as default};
