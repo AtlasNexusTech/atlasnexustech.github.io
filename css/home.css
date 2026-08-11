@@ -192,3 +192,19 @@
   .dark a.border.border-border:hover { border-color: #3B82F6; }
   .dark a.border.border-border.hover\:text-primary:hover { color: #3B82F6; }
   .dark a.border.border-border.hover\:border-purple-500:hover { border-color: #8B5CF6; color: #A78BFA; }
+
+/* ── Correctif clic : sur appareil tactile, on remplace le défilement auto par
+      un vrai défilement natif avec accroche. Les cartes ne bougent plus sous
+      le doigt, le tap est fiable à 100 %. ─────────────────────────────────── */
+@media (hover: none), (pointer: coarse) {
+  .lab-marquee { overflow-x: auto; overflow-y: hidden; scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch; scrollbar-width: none;
+    -webkit-mask-image: none; mask-image: none; padding-bottom: .25rem; }
+  .lab-marquee::-webkit-scrollbar { display: none; }
+  .lab-track { animation: none !important; transform: none !important; width: max-content; }
+  .lab-track [data-lab-clone] { display: none; }
+  .lab-card { scroll-snap-align: start; }
+  .lab-controls { display: none; }
+}
+/* Ceinture et bretelles côté pointeur fin : toute pression fige le ruban. */
+.lab-marquee.is-pressed .lab-track { animation-play-state: paused; }
