@@ -280,40 +280,51 @@
 <!-- Quick Start -->
 <section id="quickstart" class="py-20 md:py-28 bg-white dark:bg-dark-card">
   <div class="max-w-4xl mx-auto px-6">
-    <div class="reveal text-center mb-16">
+    <div class="reveal text-center mb-14">
       <p class="text-accent font-semibold tracking-widest uppercase text-xs mb-3">Démarrage</p>
-      <h2 class="section-title text-foreground dark:text-dark-foreground mb-5 font-display">Quick Start</h2>
-      <p class="text-slate-600 dark:text-dark-dim max-w-xl mx-auto">Trois commandes pour prendre le contrôle de votre PC à distance.</p>
+      <h2 class="section-title text-foreground dark:text-dark-foreground mb-5 font-display">Prendre le contrôle en 3 étapes</h2>
+      <p class="text-slate-600 dark:text-dark-dim max-w-xl mx-auto">Aucun serveur à installer : le service de mise en relation est hébergé par Atlas Nexus. Vous téléchargez l'agent, vous le lancez, vous vous connectez depuis un navigateur.</p>
     </div>
+
     <div class="space-y-8">
       <div class="reveal">
         <h3 class="font-bold text-lg mb-3 font-display flex items-center gap-2">
           <span class="w-8 h-8 bg-primary text-white rounded-lg flex items-center justify-center text-sm font-black">1</span>
-          Signaling Server
+          Installez l'agent sur le PC à contrôler
         </h3>
-        <div class="code-block"><span class="cm"># Lancez le serveur de signaling (Go)</span>
-<span class="kw">cd</span> signaling
-<span class="kw">go run</span> main.go <span class="fn">-addr</span>:8800</div>
+        <p class="text-sm text-slate-600 dark:text-dark-dim mb-4">Un seul binaire, sans dépendance. Choisissez votre système :</p>
+        <div class="grid sm:grid-cols-3 gap-3 mb-4">
+          <a href="https://github.com/AtlasNexusTech/atlas-desk/releases/download/v0.10.0/atlas-desk-agent-windows-amd64.zip" class="flex items-center justify-center gap-2 rounded-xl border border-border dark:border-dark-border px-4 py-3 font-semibold text-sm hover:border-primary hover:text-primary transition-colors">Windows 64 bits</a>
+          <a href="https://github.com/AtlasNexusTech/atlas-desk/releases/download/v0.10.0/atlas-desk-agent-linux-amd64.tar.gz" class="flex items-center justify-center gap-2 rounded-xl border border-border dark:border-dark-border px-4 py-3 font-semibold text-sm hover:border-primary hover:text-primary transition-colors">Linux x86-64</a>
+          <a href="https://github.com/AtlasNexusTech/atlas-desk/releases/download/v0.10.0/atlas-desk-agent-linux-arm64.tar.gz" class="flex items-center justify-center gap-2 rounded-xl border border-border dark:border-dark-border px-4 py-3 font-semibold text-sm hover:border-primary hover:text-primary transition-colors">Linux ARM64</a>
+        </div>
+        <p class="text-xs text-slate-500 dark:text-dark-dim">Version v0.10.0 · Sous Linux, une ligne suffit :</p>
+        <div class="code-block"><span class="cm"># Télécharge, installe et démarre l'agent au login</span>
+curl -fsSL https://atlasnexus.tech/atlas-desk/install.sh | bash</div>
       </div>
+
       <div class="reveal reveal-delay-1">
         <h3 class="font-bold text-lg mb-3 font-display flex items-center gap-2">
           <span class="w-8 h-8 bg-primary text-white rounded-lg flex items-center justify-center text-sm font-black">2</span>
-          Agent (sur le PC distant)
+          Lancez-le : il affiche un identifiant à 9 chiffres
         </h3>
-        <div class="code-block"><span class="cm"># Démarrez l'agent sur le PC à contrôler</span>
-<span class="kw">cd</span> agent
-<span class="kw">go run</span>. <span class="fn">-signal</span> ws://YOUR_SIGNAL_IP:8800/ws
-<span class="cm"># Affiche un ID 9 chiffres unique</span></div>
+        <p class="text-sm text-slate-600 dark:text-dark-dim mb-4">L'agent se connecte tout seul au service de mise en relation. Notez l'identifiant affiché, c'est l'adresse de ce PC.</p>
+        <div class="code-block"><span class="cm"># Windows : double-cliquez sur atlas-desk-agent.exe</span>
+<span class="cm"># Linux   : ./atlas-desk-agent</span>
+<span class="fn">→ Votre identifiant : 437 192 805</span></div>
       </div>
+
       <div class="reveal reveal-delay-2">
         <h3 class="font-bold text-lg mb-3 font-display flex items-center gap-2">
-          <span class="w-8 h-8 bg-accent text-white rounded-lg flex items-center justify-center text-sm font-black">3</span>
-          Client (votre navigateur)
+          <span class="w-8 h-8 bg-primary text-white rounded-lg flex items-center justify-center text-sm font-black">3</span>
+          Connectez-vous depuis n'importe quel navigateur
         </h3>
-        <div class="code-block"><span class="cm"># Ouvrez le client web et entrez l'ID 9 chiffres</span>
-<span class="kw">→</span> https://atlasnexus.tech/atlas-desk/client</div>
+        <p class="text-sm text-slate-600 dark:text-dark-dim mb-4">Rien à installer côté client. Ouvrez le client web, saisissez l'identifiant à 9 chiffres, vous prenez la main.</p>
+        <a href="/atlas-desk/client/" class="inline-flex items-center gap-2 rounded-full bg-primary px-6 py-3 font-bold text-white hover:bg-primary-dark transition-colors">Ouvrir le client web →</a>
       </div>
     </div>
+
+    <p class="reveal text-xs text-slate-500 dark:text-dark-dim mt-10 text-center max-w-2xl mx-auto">Le service de mise en relation ne transporte que les messages de connexion (SDP/ICE) : votre écran, vos frappes et vos fichiers circulent en direct entre les deux machines, chiffrés par WebRTC. Vous pouvez aussi héberger le vôtre — tout est open source.</p>
   </div>
 </section>
 
@@ -335,7 +346,7 @@
       <div class="reveal flex items-start gap-3 bg-white dark:bg-dark-card rounded-xl p-4 border border-border dark:border-dark-border">
         <span class="text-accent dark:text-green-400 font-bold shrink-0 mt-0.5">✓</span>
         <div>
-          <p class="font-semibold text-sm">Diff encoding (v0.7)</p>
+          <p class="font-semibold text-sm">Diff encoding (v0.10)</p>
           <p class="text-slate-500 dark:text-dark-dim text-xs">Blocs 32×32, 50-80% d'économie de bande passante</p>
         </div>
       </div>
