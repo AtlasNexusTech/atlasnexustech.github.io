@@ -1,12 +1,14 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="fr" data-theme="light">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<title>◆ Atlas Desk v0.9</title>
+<title>Atlas Desk — prise en main à distance</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@700;900&family=Nunito+Sans:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
 /* ── Premium UI Theme ── */
 :root {
@@ -18,17 +20,17 @@
   --accent2: hsl(220, 90%, 50%);
   --red: hsl(0, 84%, 60%);
   --green: hsl(140, 70%, 45%);
-  --border: rgba(255,255,255,0.07);
+  --border: rgba(255,255,255,0.07); --viewport-bg: #0b1120;
   --radius: 12px;
   --transition: 0.2s ease;
-  --font: "Inter", system-ui, -apple-system, sans-serif;
+  --font: 'Nunito Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
 }
 [data-theme="light"] {
   --bg: hsl(220, 20%, 96%);
   --surface: hsl(220, 20%, 100%);
   --text: hsl(220, 20%, 10%);
   --muted: hsl(220, 10%, 45%);
-  --border: rgba(0,0,0,0.08);
+  --border: rgba(0,0,0,0.08); --viewport-bg: #eef3fb;
 }
 *{margin:0;padding:0;box-sizing:border-box}
 body{
@@ -65,10 +67,7 @@ body{
   font-size:20px;padding:6px 12px;line-height:1;
 }
 #status{font-size:12px;color:var(--muted);white-space:nowrap}
-#viewport{
-  flex:1;display:flex;align-items:center;justify-content:center;
-  background:#000;position:relative;cursor:crosshair;
-}
+#viewport{flex:1;display:flex;align-items:center;justify-content:center;background:var(--viewport-bg,#0b1120);position:relative;cursor:crosshair;}
 #canvas,#remoteVideo{max-width:100%;max-height:100%}
 
 /* Overlay */
@@ -143,33 +142,33 @@ body{
 </head>
 <body>
 <div id="topbar">
-<span class="logo">◆ Atlas Desk <span style="font-size:11px;opacity:0.5;margin-left:4px">v0.9</span></span>
-<input id="agentId" placeholder="LOQ" maxlength="40" autocomplete="off" value="LOQ">
-<button class="btn-connect" id="connectBtn" onclick="connect()">Connect</button>
+<span class="logo">◆ Atlas Desk <span style="font-size:11px;opacity:0.5;margin-left:4px">v0.10</span></span>
+<input id="agentId" placeholder="123 456 789" maxlength="40" autocomplete="off">
+<button class="btn-connect" id="connectBtn" onclick="connect()">Connecter</button>
 <button class="btn-disconnect" id="disconnectBtn" onclick="disconnect()" style="display:none">✕</button>
-<button class="btn-file" id="fileBtn" onclick="toggleFiles()" style="display:none" title="File Transfer">📁</button>
+<button class="btn-file" id="fileBtn" onclick="toggleFiles()" style="display:none" title="Transfert de fichiers">📁</button>
 <button class="btn-file" id="termBtn" onclick="toggleTerminal()" style="display:none" title="Terminal (remote shell)">💻</button>
-<button class="btn-file" id="clipBtn" onclick="pasteToRemote()" style="display:none" title="Paste to Remote">📋</button>
-<button class="btn-file" id="settingsBtn" onclick="toggleSettings()" title="Settings">⚙️</button>
-<button class="btn-file" id="qrBtn" onclick="toggleQR()" title="QR Code for Android">📱</button>
-<button class="btn-file" id="themeToggle" onclick="toggleTheme()" title="Toggle theme">☀️</button>
-<span id="status">Idle</span>
+<button class="btn-file" id="clipBtn" onclick="pasteToRemote()" style="display:none" title="Coller sur le PC distant">📋</button>
+<button class="btn-file" id="settingsBtn" onclick="toggleSettings()" title="Réglages">⚙️</button>
+<button class="btn-file" id="qrBtn" onclick="toggleQR()" title="QR code pour Android">📱</button>
+<button class="btn-file" id="themeToggle" onclick="toggleTheme()" title="Changer de thème">☀️</button>
+<span id="status">En attente</span>
 </div>
 
 <!-- QR Panel -->
 <div id="qrPanel">
-<p style="font-size:12px;color:var(--muted);margin-bottom:8px">Scan with Atlas Desk Android</p>
+<p style="font-size:12px;color:var(--muted);margin-bottom:8px">Scannez avec Atlas Desk Android</p>
 <div id="qrcode" style="display:flex;gap:12px;justify-content:center"></div>
 <input id="qrAddr" style="width:220px;padding:6px;border-radius:6px;border:1px solid var(--border);background:rgba(255,255,255,0.04);color:var(--text);font-size:11px;text-align:center;margin-top:8px;font-family:monospace" readonly>
 </div>
 
-<div id="viewport"><canvas id="canvas"></canvas><video id="remoteVideo" autoplay playsinline muted style="display:none"></video></div>
+<div id="viewport"><div id="idleHint" style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;text-align:center;padding:24px;pointer-events:none;color:#64748b"><svg width="46" height="46" viewBox="0 0 24 24" fill="none" stroke="#226CF3" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg><p style="margin:0;font-size:15px;font-weight:700;color:#0f172a">Aucun poste connecté</p><p style="margin:0;font-size:13px;max-width:340px;line-height:1.5">Saisissez en haut l'identifiant à 9 chiffres affiché par l'agent sur le PC à contrôler, puis cliquez sur Connecter.</p></div><canvas id="canvas"></canvas><video id="remoteVideo" autoplay playsinline muted style="display:none"></video></div>
 
 <!-- Loading -->
 <div class="overlay" id="loadingOverlay">
 <div style="text-align:center">
 <div class="spinner"></div>
-<p style="margin-top:12px;color:var(--muted);font-size:13px" id="loadingText">P2P handshake...</p>
+<p style="margin-top:12px;color:var(--muted);font-size:13px" id="loadingText">Établissement de la connexion…</p>
 </div>
 </div>
 
@@ -177,10 +176,10 @@ body{
 <div class="dialog" id="passDialog">
 <div class="dialog-box">
 <h2>🔒 Password Required</h2>
-<p>This agent requires a password</p>
-<input type="password" id="passInput" placeholder="Enter password" autocomplete="off">
-<button onclick="submitPassword()">Connect</button>
-<p class="error" id="passError">Wrong password</p>
+<p>Ce poste est protégé par un mot de passe</p>
+<input type="password" id="passInput" placeholder="Mot de passe" autocomplete="off">
+<button onclick="submitPassword()">Connecter</button>
+<p class="error" id="passError">Mot de passe incorrect</p>
 </div>
 </div>
 
@@ -188,10 +187,10 @@ body{
 <div class="dialog" id="settingsDialog">
 <div class="dialog-box">
 <h2>⚙️ Settings</h2>
-<p style="font-size:12px;color:var(--muted);margin-bottom:8px">Signal Server URL</p>
+<p style="font-size:12px;color:var(--muted);margin-bottom:8px">Serveur de mise en relation</p>
 <input type="text" id="signalUrl" placeholder="wss://signal.atlasnexus.tech/ws" style="width:100%;padding:10px;border-radius:8px;border:1px solid var(--border);background:rgba(255,255,255,0.04);color:var(--text);font-size:13px;outline:none;margin-bottom:12px">
-<button onclick="saveSettings()" style="width:100%;padding:10px;border-radius:8px;border:none;font-size:14px;font-weight:600;cursor:pointer;background:var(--accent);color:#fff">Save</button>
-<button onclick="toggleSettings()" style="width:100%;padding:8px;border-radius:8px;border:none;font-size:12px;cursor:pointer;background:none;color:var(--muted);margin-top:6px">Cancel</button>
+<button onclick="saveSettings()" style="width:100%;padding:10px;border-radius:8px;border:none;font-size:14px;font-weight:600;cursor:pointer;background:var(--accent);color:#fff">Enregistrer</button>
+<button onclick="toggleSettings()" style="width:100%;padding:8px;border-radius:8px;border:none;font-size:12px;cursor:pointer;background:none;color:var(--muted);margin-top:6px">Annuler</button>
 </div>
 </div>
 
@@ -203,8 +202,8 @@ body{
   <div style="display:flex;align-items:center;justify-content:space-between;padding:6px 10px;background:#161b22;border-bottom:1px solid var(--border);font-size:11px;color:var(--muted)">
     <span>💻 Remote Terminal <span style="opacity:.6">(shell on target PC)</span></span>
     <span>
-      <button onclick="termRestart()" style="background:none;border:none;color:var(--muted);cursor:pointer;font-size:12px;margin-right:6px" title="Restart shell">↻</button>
-      <button onclick="toggleTerminal()" style="background:none;border:none;color:var(--muted);cursor:pointer;font-size:14px" title="Close">✕</button>
+      <button onclick="termRestart()" style="background:none;border:none;color:var(--muted);cursor:pointer;font-size:12px;margin-right:6px" title="Relancer le terminal">↻</button>
+      <button onclick="toggleTerminal()" style="background:none;border:none;color:var(--muted);cursor:pointer;font-size:14px" title="Fermer">✕</button>
     </span>
   </div>
   <div id="termContainer" style="flex:1;padding:4px;min-height:0"></div>
@@ -575,7 +574,7 @@ function toggleQR(){
   const size=140;
   $('qrcode').innerHTML=
     '<div style="text-align:center"><img src="https://api.qrserver.com/v1/create-qr-code/?size='+size+'x'+size+'&data='+encodeURIComponent(signalingUrl)+'" width="'+size+'" height="'+size+'"><p style="font-size:10px;color:var(--muted);margin-top:4px">Signal URL</p></div>'+
-    '<div style="text-align:center"><img src="https://api.qrserver.com/v1/create-qr-code/?size='+size+'x'+size+'&data='+encodeURIComponent(apkUrl)+'" width="'+size+'" height="'+size+'"><p style="font-size:10px;color:var(--muted);margin-top:4px">Download APK</p></div>';
+    '<div style="text-align:center"><img src="https://api.qrserver.com/v1/create-qr-code/?size='+size+'x'+size+'&data='+encodeURIComponent(apkUrl)+'" width="'+size+'" height="'+size+'"><p style="font-size:10px;color:var(--muted);margin-top:4px">Télécharger l'application Android</p></div>';
   panel.style.display='block';
 }
 
@@ -623,6 +622,14 @@ function disconnect(){
   if(statsUpdateTimer)clearInterval(statsUpdateTimer);
   $('statsBar').style.display='none';status('Idle');
 }
+</script>
+<script>
+(function(){
+  var h=document.getElementById('idleHint'); if(!h) return;
+  var cb=document.getElementById('connectBtn'), db=document.getElementById('disconnectBtn');
+  if(cb) cb.addEventListener('click', function(){ h.style.display='none'; });
+  if(db) db.addEventListener('click', function(){ h.style.display='flex'; });
+})();
 </script>
 </body>
 </html>
