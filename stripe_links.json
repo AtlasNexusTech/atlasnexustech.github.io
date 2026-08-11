@@ -1,0 +1,22 @@
+{
+ "Déploiement sur votre infrastructure": {
+  "price_id": "price_1U0VygArSHSdABwlNxyjeUJ6",
+  "url": "https://buy.stripe.com/3cI7sKenygvyej95Qj1Fe04",
+  "product": "Déploiement sur votre infrastructure"
+ },
+ "Déploiement clé en main": {
+  "price_id": "price_1U0VyiArSHSdABwlgMMMsFpZ",
+  "url": "https://buy.stripe.com/4gM6oGgvG9365MD2E71Fe05",
+  "product": "Déploiement clé en main"
+ },
+ "Maintenance essentielle": {
+  "price_id": "price_1U0VyjArSHSdABwlhTVK5Ml7",
+  "url": "https://buy.stripe.com/7sY5kC2EQ1AE7UL4Mf1Fe06",
+  "product": "Maintenance essentielle"
+ },
+ "Infogérance complète": {
+  "price_id": "price_1U0VylArSHSdABwlu5f5mBEu",
+  "url": "https://buy.stripe.com/6oU5kCa7i936grhdiL1Fe07",
+  "product": "Infogérance complète"
+ }
+}
