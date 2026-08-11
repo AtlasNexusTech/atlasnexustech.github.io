@@ -20,7 +20,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;600;700;900&amp;family=Nunito+Sans:wght@400;600;700&amp;display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/css/home.css?v=4">
-<link rel="stylesheet" href="/css/v2.css?v=4">
+<link rel="stylesheet" href="/css/v2.css?v=5">
 <link rel="preload" as="image" href="/assets/atlasnexusfond.jpg" fetchpriority="high">
 
 <link rel="canonical" href="https://atlasnexus.tech/en/">
@@ -128,7 +128,13 @@
 <!-- Hero -->
 <section id="top" class="min-h-screen flex items-center pt-24 relative overflow-hidden">
   <canvas id="antigravity-canvas" class="absolute inset-0 w-full h-full pointer-events-none" aria-hidden="true"></canvas>
-  <div class="hero-bg" aria-hidden="true"><img src="/assets/atlasnexusfond.jpg" alt="" loading="eager" decoding="async"></div>
+  <div class="hero-bg" aria-hidden="true">
+    <img src="/assets/atlasnexusfond.jpg" alt="" loading="eager" decoding="async">
+    <video class="hero-bg-video" autoplay muted loop playsinline preload="metadata" poster="/assets/atlasnexusfond.jpg" aria-hidden="true" tabindex="-1">
+      <source src="/assets/atlasnexus-hero-logo.webm" type="video/webm">
+      <source src="/assets/atlasnexus-hero-logo.mp4" type="video/mp4">
+    </video>
+  </div>
   <div class="max-w-6xl mx-auto px-6 w-full relative z-10">
     <div class="max-w-4xl hero-stagger" style="margin-left:-0.875rem">
       <div class="hero-badges">
@@ -593,7 +599,17 @@
 
 <script>
 (function() {
-  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+  const motionPreference = window.matchMedia('(prefers-reduced-motion: reduce)');
+  const heroVideo = document.querySelector('.hero-bg-video');
+  const syncHeroVideo = () => {
+    if (!heroVideo) return;
+    if (motionPreference.matches) heroVideo.pause();
+    else heroVideo.play().catch(() => {});
+  };
+  syncHeroVideo();
+  motionPreference.addEventListener('change', syncHeroVideo);
+
+  if (motionPreference.matches) {
     document.querySelectorAll('.reveal').forEach(el => el.classList.add('visible'));
     document.querySelectorAll('.step-number').forEach(el => { el.classList.add('animate'); el.classList.add('final'); });
     return;
