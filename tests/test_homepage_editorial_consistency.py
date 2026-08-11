@@ -8,6 +8,7 @@ TRAINING_FR = (ROOT / "training" / "index.html").read_text(encoding="utf-8")
 TRAINING_EN = (ROOT / "training" / "en" / "index.html").read_text(encoding="utf-8")
 DEMOS_EN = (ROOT / "demos-web" / "en" / "index.html").read_text(encoding="utf-8")
 LABS_EN = (ROOT / "labs" / "en" / "index.html").read_text(encoding="utf-8")
+V2_CSS = (ROOT / "css" / "v2.css").read_text(encoding="utf-8")
 
 
 def test_work_section_is_presented_as_work_and_demos_not_case_studies():
@@ -81,3 +82,22 @@ def test_linked_english_pages_keep_users_in_english():
                     r'target="_blank"[^>]*rel="noopener"',
                     html,
                 )
+
+
+def test_homepage_keeps_the_mouse_reactive_antigravity_canvas():
+    for html in (FR, EN):
+        assert html.count('id="antigravity-canvas"') == 1
+        assert "Antigravity Canvas" in html
+    assert re.search(
+        r"#antigravity-canvas\s*\{[^}]*z-index:\s*2\s*!important",
+        V2_CSS,
+        re.DOTALL,
+    )
+
+
+def test_result_and_proof_panels_match_the_featured_offer_gradient():
+    featured_gradient = "linear-gradient(135deg, #226CF3, #5BA2FC)"
+    for selector in (".offer-badge", ".ba-result", ".proof-head"):
+        rule = re.search(rf"{re.escape(selector)}\s*\{{([^}}]+)\}}", V2_CSS, re.DOTALL)
+        assert rule, f"Missing CSS rule for {selector}"
+        assert featured_gradient in rule.group(1)
