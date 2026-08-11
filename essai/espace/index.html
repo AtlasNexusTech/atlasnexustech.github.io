@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/png" href="/favicon.png">
+<link rel="stylesheet" href="/css/site.css?v=4">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;600;700;900&amp;family=Nunito+Sans:wght@400;600;700&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/home.css?v=4">
+<link rel="stylesheet" href="/css/v2.css?v=2">
+<link rel="stylesheet" href="/css/atlas-header.css?v=1">
+<title>Mon espace d'essai · Atlas Nexus</title>
+<meta name="robots" content="noindex,nofollow">
+<script>
+/* Atlas Nexus : jeton d'essai (démo, stockage local, 7 jours) */
+window.AtlasTrial = (function () {
+  var KEY = 'atlasnexus.trial';
+  var DAYS = 7;
+  function makeCode(email) {
+    var s = (email || '') + '|' + new Date().toISOString().slice(0, 10);
+    var h = 0;
+    for (var i = 0; i < s.length; i++) { h = ((h << 5) - h + s.charCodeAt(i)) | 0; }
+    var A = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
+    var out = '';
+    var x = Math.abs(h);
+    for (var j = 0; j < 8; j++) { out += A[(x + j * 7 + Math.floor(Math.random() * 32)) % 32]; }
+    return 'ATLAS-' + out.slice(0, 4) + '-' + out.slice(4, 8);
+  }
+  function save(email, secteur) {
+    var code = makeCode(email);
+    var data = { email: email, secteur: secteur || '', code: code,
+                 start: Date.now(), end: Date.now() + DAYS * 864e5 };
+    try { localStorage.setItem(KEY, JSON.stringify(data)); } catch (e) {}
+    return data;
+  }
+  function get() {
+    try {
+      var d = JSON.parse(localStorage.getItem(KEY) || 'null');
+      if (!d || !d.end || Date.now() > d.end) return null;
+      return d;
+    } catch (e) { return null; }
+  }
+  function daysLeft() {
+    var d = get();
+    return d ? Math.max(0, Math.ceil((d.end - Date.now()) / 864e5)) : 0;
+  }
+  function clear() { try { localStorage.removeItem(KEY); } catch (e) {} }
+  return { save: save, get: get, daysLeft: daysLeft, clear: clear };
+})();
+</script>
+</head>
+<body class="bg-surface dark:bg-dark-surface text-foreground dark:text-dark-foreground">
+
+<!-- Portail : visible tant que l'accès n'est pas validé -->
+<div id="gate" class="ws-gate">
+  <img src="/atlas-logo.png?v=20260527" alt="Atlas Nexus" style="width:56px;height:56px;border-radius:1rem;margin:0 auto 1.25rem;display:block">
+  <h1 class="font-display text-foreground dark:text-dark-foreground" style="font-size:1.5rem;font-weight:800;margin-bottom:.75rem">Accès réservé aux essais en cours</h1>
+  <p class="text-slate-600 dark:text-slate-300" style="margin-bottom:1.75rem">Votre accès d'essai n'est pas actif ou il a expiré. L'ouverture prend moins d'une minute.</p>
+  <a href="/essai/" class="trial-btn" style="display:inline-block;width:auto;padding:.85rem 1.8rem;text-decoration:none">Ouvrir un accès gratuit</a>
+  <p style="margin-top:1.5rem"><a href="/" class="text-sm text-slate-500 hover:text-primary">Retour à l'accueil</a></p>
+</div>
+
+<!-- Espace : révélé si le jeton est valide -->
+<div id="workspace" hidden>
+  <div class="ws-top">
+    <a href="/" class="brand"><img src="/atlas-logo.png?v=20260527" alt="">Atlas Nexus</a>
+    <span class="ws-chip"><span class="pulse-dot" style="width:.5rem;height:.5rem;border-radius:999px;background:#22c55e;display:inline-block"></span>Essai actif · <b id="ws-days">7</b> jours restants</span>
+    <button class="ws-out" id="ws-logout" type="button">Fermer l'accès</button>
+  </div>
+
+  <div class="ws-body">
+    <p class="text-accent font-semibold tracking-widest uppercase text-xs" style="margin-bottom:.75rem">Votre espace d'essai</p>
+    <h1 class="section-title font-display text-foreground dark:text-dark-foreground" style="margin-bottom:1rem">Bonjour, tout est ouvert.</h1>
+    <p class="text-slate-600 dark:text-slate-300" style="max-width:42rem;line-height:1.7">
+      Code d'accès <strong id="ws-code" style="font-family:Rubik,monospace;letter-spacing:.08em"></strong>. Les outils ci-dessous sont les versions réelles utilisées en production, pas des maquettes. Vos fichiers restent dans votre navigateur.
+    </p>
+
+    <div class="ws-tools">
+      <a class="ws-tool" href="/datatoolkit/">
+        <span class="ws-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg></span>
+        <h3>Atlas Toolkit, accès complet</h3>
+        <p>Convertissez vos fichiers CSV, JSON, XML, YAML et Parquet. Import, conversion, téléchargement : tout se passe dans votre navigateur.</p>
+      </a>
+      <a class="ws-tool" href="/markets-dashboard/">
+        <span class="ws-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M7 15l4-4 3 3 5-6"/></svg></span>
+        <h3>Markets Command Deck</h3>
+        <p>Le cockpit multi-actifs en conditions réelles : 100 actifs suivis, scoring technique, tableaux de bord générés.</p>
+      </a>
+      <a class="ws-tool" href="/demos-web/">
+        <span class="ws-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg></span>
+        <h3>Les 24 démos sectorielles</h3>
+        <p>Artisans, restauration, santé, conseil : ouvrez les pages, testez les formulaires, regardez les parcours de contact.</p>
+      </a>
+      <a class="ws-tool" href="/ia-receptionniste/">
+        <span class="ws-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span>
+        <h3>IA réceptionniste</h3>
+        <p>Le widget qui accueille vos clients, qualifie la demande et propose un créneau. Parlez-lui comme le ferait un prospect.</p>
+      </a>
+    </div>
+
+    <div class="guarantee-card" style="margin-top:2.75rem">
+      <span class="guarantee-seal">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>
+        Votre tâche offerte
+      </span>
+      <h2 class="font-display text-foreground dark:text-dark-foreground" style="font-size:1.35rem;font-weight:800;margin-bottom:.75rem">Une tâche automatisée, offerte pendant l'essai</h2>
+      <p class="text-slate-600 dark:text-slate-300" style="line-height:1.7;margin-bottom:1.25rem">Décrivez la tâche qui vous prend le plus de temps chaque semaine. Je construis l'agent qui la traite et je vous le renvoie installé, que vous continuiez ensuite ou non.</p>
+      <a href="/#contact" class="offer-cta offer-cta-primary" style="width:auto;display:inline-flex">Décrire ma tâche
+        <svg style="width:1rem;height:1rem;flex:none" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+      </a>
+    </div>
+  </div>
+</div>
+
+<script>
+(function () {
+  var d = window.AtlasTrial.get();
+  if (d) {
+    document.getElementById('gate').hidden = true;
+    var ws = document.getElementById('workspace');
+    ws.hidden = false;
+    document.getElementById('ws-code').textContent = d.code;
+    document.getElementById('ws-days').textContent = window.AtlasTrial.daysLeft();
+  }
+  var out = document.getElementById('ws-logout');
+  if (out) out.addEventListener('click', function () {
+    window.AtlasTrial.clear();
+    location.href = '/essai/';
+  });
+})();
+</script>
+</body>
+</html>

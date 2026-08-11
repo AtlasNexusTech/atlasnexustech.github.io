@@ -111,3 +111,19 @@ Playwright light/dark/mobile : 0 erreur JS.
    - Footer : « …pendant que vous retrouvez du temps libre. »
    - Placeholder formulaire : « Ex : les mails, les devis et les relances débordent sur mon temps personnel… »
 2. **Espacement puces de réassurance** (« Livré en 48 h · Code sur GitHub, à vous · … ») : gap vertical .55→.85rem, marge haute 1.9rem, **marge basse 1.5rem**, + padding bas de hero 4.5rem sur mobile pour dégager le CTA sticky.
+
+
+---
+
+# Itération 7 : refonte drastique de la section Réalisations
+
+**Avant** : 3 petites cartes texte avec une pastille ou une icône, aucune preuve visuelle.
+**Après** : un **bento portfolio** de 6 projets avec captures réelles.
+
+- **Captures automatisées** : screenshots Playwright 1280x800 de chaque projet, bandeaux « démo » et filigrane « DÉMO CONFIDENTIELLE » masqués à la capture (injection CSS `body::after{display:none}`), export JPEG q74-76 dans `assets/shots/` (43-99 Ko chacun). La capture AZ Bois est clippée à 1280x700 pour supprimer la bande blanche sous le hero.
+- **Grille bento** : carte vedette (Refontes web artisans) sur 2 colonnes x 2 lignes en grid interne `auto 1fr auto` (l'image remplit toute la hauteur, zéro espace mort), 5 cartes secondaires. Responsive : 2 colonnes sur tablette, 1 colonne sur mobile.
+- **Cadre navigateur** sur chaque carte : 3 pastilles + pilule d'URL (demos-web · atlasnexus.tech, markets-dashboard, framer-motion-ui, ia-receptionniste, datatoolkit, atlas-desk) : lecture immédiate « ce sont de vrais sites en ligne ».
+- **Badge catégorie** en bas à gauche de la capture (Refonte web, Dashboard temps réel, React · animations, Agent IA, Outil navigateur, Open source) avec pastille de couleur par univers.
+- **Interactions** : lift de la carte au survol, zoom lent de la capture (scale 1.045), flèche qui passe en pastille bleue dégradée et pivote à -45°.
+- **Pied de section** : note « livré documenté, code sur GitHub quand le client le souhaite » + CTA « Toutes les démos web ».
+- Dark mode complet, 0 erreur JS, vérifié desktop 1440px et mobile 390px.

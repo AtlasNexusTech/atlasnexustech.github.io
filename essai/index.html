@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/png" href="/favicon.png">
+<link rel="stylesheet" href="/css/site.css?v=4">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;600;700;900&amp;family=Nunito+Sans:wght@400;600;700&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/home.css?v=4">
+<link rel="stylesheet" href="/css/v2.css?v=2">
+<link rel="stylesheet" href="/css/atlas-header.css?v=1">
+<title>Essai gratuit 7 jours : testez un agent Atlas Nexus</title>
+<meta name="description" content="Ouvrez un accès d'essai gratuit de 7 jours : outils Atlas Nexus manipulables, démos sectorielles et une tâche automatisée offerte. Sans carte bancaire.">
+<link rel="canonical" href="https://atlasnexus.tech/essai/">
+<meta name="robots" content="index,follow">
+<script src="/js/atlas-header.js?v=1" defer></script>
+<script>
+/* Atlas Nexus : jeton d'essai (démo, stockage local, 7 jours) */
+window.AtlasTrial = (function () {
+  var KEY = 'atlasnexus.trial';
+  var DAYS = 7;
+  function makeCode(email) {
+    var s = (email || '') + '|' + new Date().toISOString().slice(0, 10);
+    var h = 0;
+    for (var i = 0; i < s.length; i++) { h = ((h << 5) - h + s.charCodeAt(i)) | 0; }
+    var A = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
+    var out = '';
+    var x = Math.abs(h);
+    for (var j = 0; j < 8; j++) { out += A[(x + j * 7 + Math.floor(Math.random() * 32)) % 32]; }
+    return 'ATLAS-' + out.slice(0, 4) + '-' + out.slice(4, 8);
+  }
+  function save(email, secteur) {
+    var code = makeCode(email);
+    var data = { email: email, secteur: secteur || '', code: code,
+                 start: Date.now(), end: Date.now() + DAYS * 864e5 };
+    try { localStorage.setItem(KEY, JSON.stringify(data)); } catch (e) {}
+    return data;
+  }
+  function get() {
+    try {
+      var d = JSON.parse(localStorage.getItem(KEY) || 'null');
+      if (!d || !d.end || Date.now() > d.end) return null;
+      return d;
+    } catch (e) { return null; }
+  }
+  function daysLeft() {
+    var d = get();
+    return d ? Math.max(0, Math.ceil((d.end - Date.now()) / 864e5)) : 0;
+  }
+  function clear() { try { localStorage.removeItem(KEY); } catch (e) {} }
+  return { save: save, get: get, daysLeft: daysLeft, clear: clear };
+})();
+</script>
+</head>
+<body class="bg-surface dark:bg-dark-surface text-foreground dark:text-dark-foreground">
+
+<div class="trial-wrap">
+  <div class="trial-grid">
+    <div>
+      <span class="trial-badge">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+        7 jours, sans carte bancaire
+      </span>
+      <h1 class="hero-title text-foreground dark:text-dark-foreground" style="margin:1.4rem 0 1.1rem">
+        Testez avant de payer quoi que ce soit.
+      </h1>
+      <p class="text-lg text-slate-600 dark:text-slate-300 leading-relaxed" style="max-width:34rem">
+        Ouvrez un accès d'essai et manipulez les outils réels, ceux qui tournent déjà en production. Vous voyez ce que ça donne chez vous avant d'engager le moindre euro.
+      </p>
+      <ul class="trial-list">
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg><span><strong>Atlas Toolkit en accès complet</strong> : convertissez vos fichiers CSV, JSON, XML, YAML ou Parquet directement dans le navigateur, vos données ne quittent pas votre machine.</span></li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg><span><strong>Toutes les démos sectorielles</strong> : 24 pages métier ouvertes, testez les formulaires et les parcours.</span></li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg><span><strong>Une tâche automatisée offerte</strong> : décrivez une tâche répétitive de votre semaine, je vous renvoie l'agent qui la traite.</span></li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg><span><strong>Aucun engagement</strong> : pas de carte, pas de reconduction, l'accès expire tout seul au bout de 7 jours.</span></li>
+      </ul>
+      <p class="trial-fine">Vos données restent chez vous : les outils tournent dans votre navigateur, rien n'est téléversé sur un serveur.</p>
+    </div>
+
+    <div class="trial-card">
+      <h2 style="margin:0;font-size:1.3rem;font-weight:800" class="font-display text-foreground dark:text-dark-foreground">Ouvrir mon accès</h2>
+      <p class="text-sm text-slate-500 dark:text-slate-400" style="margin:.5rem 0 0">Accès immédiat, code affiché à l'écran.</p>
+
+      <form id="trial-form" novalidate>
+        <label for="t-email">Votre email professionnel
+          <input id="t-email" name="email" type="email" required autocomplete="email" placeholder="vous@entreprise.fr">
+        </label>
+        <label for="t-secteur">Votre activité
+          <select id="t-secteur" name="secteur">
+            <option value="">Choisir…</option>
+            <option>Artisan / bâtiment</option>
+            <option>Conseil / freelance</option>
+            <option>Santé / bien-être</option>
+            <option>Commerce / restauration</option>
+            <option>Immobilier / courtage</option>
+            <option>Autre</option>
+          </select>
+        </label>
+        <label for="t-tache">La tâche qui vous mange le plus de temps
+          <input id="t-tache" name="tache" type="text" placeholder="Ex : relancer les devis en attente">
+        </label>
+        <button class="trial-btn" type="submit" id="t-submit">Ouvrir mon accès gratuit</button>
+        <p class="trial-fine">En ouvrant l'accès, vous acceptez d'être recontacté une fois pour savoir ce que vous en avez pensé. Aucune donnée n'est partagée avec des tiers.</p>
+      </form>
+
+      <div id="trial-done" hidden>
+        <div class="trial-code">
+          <span>Votre code d'accès</span>
+          <b id="t-code">ATLAS-0000-0000</b>
+        </div>
+        <p class="text-sm text-slate-600 dark:text-slate-300" style="margin-top:1rem;text-align:center">Accès actif pendant <strong id="t-days">7</strong> jours.</p>
+        <a href="/essai/espace/" class="trial-btn" style="display:block;text-align:center;text-decoration:none;margin-top:1.2rem">Entrer dans mon espace d'essai</a>
+      </div>
+    </div>
+  </div>
+
+  <p style="margin-top:3rem;text-align:center" class="text-sm text-slate-500 dark:text-slate-400">
+    <a href="/" class="text-primary font-semibold hover:text-primary-dark">Retour à l'accueil</a> · <a href="/#contact" class="text-primary font-semibold hover:text-primary-dark">Réserver un diagnostic de 30 min</a>
+  </p>
+</div>
+
+<script>
+(function () {
+  var form = document.getElementById('trial-form');
+  var done = document.getElementById('trial-done');
+  var btn = document.getElementById('t-submit');
+
+  // Déjà un essai actif : on propose directement l'espace
+  var existing = window.AtlasTrial.get();
+  if (existing) {
+    form.hidden = true; done.hidden = false;
+    document.getElementById('t-code').textContent = existing.code;
+    document.getElementById('t-days').textContent = window.AtlasTrial.daysLeft();
+  }
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var email = document.getElementById('t-email');
+    if (!email.value || email.value.indexOf('@') < 1) { email.focus(); email.style.borderColor = '#ef4444'; return; }
+    btn.disabled = true; btn.textContent = 'Ouverture…';
+
+    var secteur = document.getElementById('t-secteur').value;
+    var tache = document.getElementById('t-tache').value;
+    var data = window.AtlasTrial.save(email.value.trim(), secteur);
+
+    // Notification de la demande (lead) sans bloquer l'accès
+    try {
+      var fd = new FormData();
+      fd.append('email', email.value.trim());
+      fd.append('secteur', secteur);
+      fd.append('tache', tache);
+      fd.append('code', data.code);
+      fd.append('_subject', 'Essai gratuit ouvert · Atlas Nexus');
+      fd.append('_captcha', 'false');
+      fd.append('_template', 'table');
+      fetch('https://formsubmit.co/ajax/contact@atlasnexus.tech', { method: 'POST', body: fd }).catch(function () {});
+    } catch (err) {}
+
+    form.hidden = true; done.hidden = false;
+    document.getElementById('t-code').textContent = data.code;
+    document.getElementById('t-days').textContent = window.AtlasTrial.daysLeft();
+  });
+})();
+</script>
+</body>
+</html>
