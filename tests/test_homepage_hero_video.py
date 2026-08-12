@@ -1,4 +1,6 @@
+import json
 import re
+import subprocess
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -59,3 +61,28 @@ def test_video_assets_and_responsive_non_pixelated_rendering_contract_exist():
     assert reduced_motion
     assert re.search(r"\.hero-bg-video\s*\{[^}]*display:\s*none", reduced_motion.group("body"), re.DOTALL)
     assert re.search(r"@media\s*\(max-width:\s*900px\).*?\.hero-bg-video[^}]*object-position:\s*68% center", V2_CSS, re.DOTALL)
+
+
+def test_video_assets_use_a_smooth_forward_reverse_boomerang_loop():
+    for asset in (MP4, WEBM):
+        probe = subprocess.run(
+            [
+                "ffprobe",
+                "-v",
+                "error",
+                "-show_entries",
+                "format=duration:stream=nb_frames,r_frame_rate",
+                "-of",
+                "json",
+                str(asset),
+            ],
+            check=True,
+            capture_output=True,
+            text=True,
+        )
+        data = json.loads(probe.stdout)
+        duration = float(data["format"]["duration"])
+        assert 19.70 <= duration <= 19.75
+        assert data["streams"][0]["r_frame_rate"] == "30/1"
+        if asset.suffix == ".mp4":
+            assert int(data["streams"][0]["nb_frames"]) == 592
