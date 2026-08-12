@@ -150,12 +150,12 @@
   // ---- Bandeau de consentement --------------------------------------------
   var TXT = {
     fr: {
-      msg: 'Ce site utilise des cookies de mesure publicitaire.',
+      msg: 'Ce site utilise des cookies pour son bon fonctionnement.',
       yes: 'Accepter', no: 'Refuser', more: 'En savoir plus',
       href: '/mentions-legales/#cookies'
     },
     en: {
-      msg: 'This site uses advertising cookies.',
+      msg: 'This site uses cookies for its proper functioning.',
       yes: 'Accept', no: 'Decline', more: 'Learn more',
       href: '/mentions-legales/#cookies'
     }
