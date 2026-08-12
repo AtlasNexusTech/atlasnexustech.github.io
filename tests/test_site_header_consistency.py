@@ -13,7 +13,7 @@ INCLUDED_ROUTES = (
     "demos-web", "demos-web/en", "developpement-web-donnees", "en",
     "extracteur-donnees-publiques", "framer-motion-ui", "growth",
     "ia-agentique", "ia-agentique/en", "ia-receptionniste", "install",
-    "labs", "labs/en", "labs/atlas", "labs/atlas/en", "marketing-video",
+    "labs", "labs/en", "labs/atlas", "labs/atlas/en",
     "markets-dashboard", "mentions-legales", "merci", "oobe-ace-agent",
     "oobe-ace-agent-en", "revue-trimestrielle-powerpoint", "template-artisan",
     "training", "training/en", "verify", "verify/en",
@@ -24,7 +24,7 @@ EXCLUDED_ROUTES = (
     "demo-menuiserie.fr", "demo-refonte-artisan", "demo-refonte-consultant",
     "demo-refonte-restaurant", "demo-refonte-sante", "demo-seydi",
     "demo-seydi-animee", "duault-anatole", "ed-maconnerie", "en/archive",
-    "eponia-conseil", "menuiserie-devarenne", "peintre-95", "pwa-template",
+    "eponia-conseil", "menuiserie-devarenne", "peintre-95", "prime-agent", "pwa-template",
     "stratea", "tad-agency", "tony-zanirato",
 )
 
