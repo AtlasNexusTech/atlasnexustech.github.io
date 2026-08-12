@@ -17,15 +17,18 @@
 (function () {
   'use strict';
 
+  /* SUIVI EN SOMMEIL (site en beta, demande du proprietaire le 12/08).
+     Tous les identifiants sont vides : aucune balise n'est chargee, aucun
+     cookie n'est depose et AUCUN bandeau de consentement n'est affiche.
+     Pour reactiver plus tard : remettre googleAdsId a 'AW-801944061',
+     ajouter l'etiquette de conversion dans googleAdsLabel, et le bandeau
+     reapparaitra automatiquement (il est conditionne aux identifiants). */
   var CONFIG = {
-    ga4Id:            '',              // ex. 'G-XXXXXXXXXX'
-    googleAdsId:      'AW-801944061',  // identifiant de balise Google Ads
-    googleAdsLabel:   '',              // etiquette de conversion -- MANQUANTE :
-                                       // tant qu'elle est vide, les evenements
-                                       // remontent mais AUCUNE conversion n'est
-                                       // comptee dans Google Ads.
-    metaPixelId:      '',              // ex. '123456789012345'
-    debug:            false            // true => journalise chaque evenement
+    ga4Id:            '',   // ex. 'G-XXXXXXXXXX'
+    googleAdsId:      '',   // en attente : 'AW-801944061'
+    googleAdsLabel:   '',   // en attente : etiquette de conversion Google Ads
+    metaPixelId:      '',   // ex. '123456789012345'
+    debug:            false // true => journalise chaque evenement en console
   };
 
   var CONSENT_KEY   = 'atlas_consent';
@@ -287,8 +290,14 @@
 
   window.atlasTrack = track;              // appel manuel depuis une page
   window.atlasConsent = {                 // pilotage depuis un lien de pied de page
+    active: needsConsent(),               // false tant qu'aucun identifiant n'est saisi
     get: readConsent,
     set: function (c) { writeConsent(c); if (c === 'granted') grant(); },
-    ask: function () { try { localStorage.removeItem(CONSENT_KEY); } catch (e) {} banner(); }
+    ask: function () {
+      if (!needsConsent()) return false;  // rien a demander : pas de bandeau
+      try { localStorage.removeItem(CONSENT_KEY); } catch (e) {}
+      banner();
+      return true;
+    }
   };
 })();
