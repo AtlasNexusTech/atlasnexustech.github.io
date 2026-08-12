@@ -1,0 +1,102 @@
+[
+  {
+    "record_id": "SYN-001",
+    "title": "Lampe de bureau",
+    "category": "Bureau",
+    "city": "Lille",
+    "price_eur": "42.00",
+    "availability": "disponible",
+    "updated_at": "2026-07-28",
+    "source_url": "https://exemple.invalid/catalogue/syn-001/"
+  },
+  {
+    "record_id": "SYN-002",
+    "title": "Support écran",
+    "category": "Bureau",
+    "city": "Rennes",
+    "price_eur": "59.00",
+    "availability": "disponible",
+    "updated_at": "2026-07-29",
+    "source_url": "https://exemple.invalid/catalogue/syn-002/"
+  },
+  {
+    "record_id": "SYN-003",
+    "title": "Clavier compact",
+    "category": "Informatique",
+    "city": "Nantes",
+    "price_eur": "74.50",
+    "availability": "rupture",
+    "updated_at": "2026-07-29",
+    "source_url": "https://exemple.invalid/catalogue/syn-003/"
+  },
+  {
+    "record_id": "SYN-004",
+    "title": "Sacoche ordinateur",
+    "category": "Mobilité",
+    "city": "Lyon",
+    "price_eur": "38.90",
+    "availability": "disponible",
+    "updated_at": "2026-07-30",
+    "source_url": "https://exemple.invalid/catalogue/syn-004/"
+  },
+  {
+    "record_id": "SYN-005",
+    "title": "Hub USB-C",
+    "category": "Informatique",
+    "city": "Paris",
+    "price_eur": "49.90",
+    "availability": "disponible",
+    "updated_at": "2026-07-30",
+    "source_url": "https://exemple.invalid/catalogue/syn-005/"
+  },
+  {
+    "record_id": "SYN-006",
+    "title": "Carnet relié",
+    "category": "Papeterie",
+    "city": "Bordeaux",
+    "price_eur": "18.00",
+    "availability": "disponible",
+    "updated_at": "2026-07-30",
+    "source_url": "https://exemple.invalid/catalogue/syn-006/"
+  },
+  {
+    "record_id": "SYN-007",
+    "title": "Webcam HD",
+    "category": "Informatique",
+    "city": "Toulouse",
+    "price_eur": "69.00",
+    "availability": "précommande",
+    "updated_at": "2026-07-31",
+    "source_url": "https://exemple.invalid/catalogue/syn-007/"
+  },
+  {
+    "record_id": "SYN-008",
+    "title": "Gourde inox",
+    "category": "Mobilité",
+    "city": "Grenoble",
+    "price_eur": "24.90",
+    "availability": "disponible",
+    "updated_at": "2026-07-31",
+    "source_url": "https://exemple.invalid/catalogue/syn-008/"
+  },
+  {
+    "record_id": "SYN-009",
+    "title": "Repose-poignets",
+    "category": "Bureau",
+    "city": "Strasbourg",
+    "price_eur": "21.50",
+    "availability": "disponible",
+    "updated_at": "2026-07-31",
+    "source_url": "https://exemple.invalid/catalogue/syn-009/"
+  },
+  {
+    "record_id": "SYN-010",
+    "title": "Casque antibruit",
+    "category": "Bureau",
+    "city": "Marseille",
+    "price_eur": "84.00",
+    "availability": "rupture",
+    "updated_at": "2026-08-01",
+    "source_url": "https://exemple.invalid/catalogue/syn-010/"
+  }
+]

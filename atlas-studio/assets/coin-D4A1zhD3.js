@@ -1,0 +1,1 @@
+const o={"button.disconnect":{message:"Rozłącz",description:"Przycisk do rozłączenia podłączonego portfela."},"message.connectError":{message:"Nie udało się połączyć z portfelem.",description:"Komunikat o błędzie wyświetlany, gdy połączenie z portfelem nie powiodło się."}};export{o as default};

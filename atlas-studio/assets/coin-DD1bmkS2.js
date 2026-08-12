@@ -1,0 +1,1 @@
+const e={"button.disconnect":{message:"Αποσύνδεση",description:"Κείμενο κουμπιού για την αποσύνδεση του συνδεδεμένου πορτοφολιού."},"message.connectError":{message:"Αποτυχία σύνδεσης πορτοφολιού.",description:"Μήνυμα σφάλματος που εμφανίζεται όταν η σύνδεση με το πορτοφόλι αποτύχει."}};export{e as default};

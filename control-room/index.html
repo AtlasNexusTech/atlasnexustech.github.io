@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="robots" content="noindex, follow">
+  <meta name="description" content="Atlas Control Room : cockpit opérationnel local et publiable pour suivre livrables, blocages, offres et prochaines actions." />
+  <title>Atlas Control Room : Operations Dashboard</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Newsreader:opsz,wght@6..72,600;6..72,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+<link rel="stylesheet" href="/css/atlas-header.css?v=1">
+<script src="/js/atlas-header.js?v=1" defer></script>
+</head>
+<body class="atlas-unified-header">
+<header class="atlas-site-header" data-atlas-site-header>
+  <nav class="atlas-site-nav" aria-label="Atlas Nexus accueil">
+    <a href="/" class="atlas-site-brand" aria-label="Atlas Nexus accueil">
+      <img src="/atlas-logo.png?v=20260527" alt="" class="atlas-site-brand-logo" width="48" height="48">
+      <span class="atlas-site-brand-name">Atlas Nexus</span>
+    </a>
+    <ul class="atlas-site-links">
+      <li><a href="/#work">Réalisations</a></li>
+      <li><a href="/#offers">Offres</a></li>
+      <li><a href="/#why">Pourquoi</a></li>
+      <li><a href="https://github.com/AtlasNexusTech" target="_blank" rel="noopener">GitHub</a></li>
+    </ul>
+    <div class="atlas-site-actions">
+      <div class="atlas-site-language" data-active="fr" aria-label="Sélecteur de langue">
+        <a href="/" data-atlas-lang="fr" aria-current="page">FR</a>
+        <a href="/en/" data-atlas-lang="en">EN</a>
+      </div>
+      <button id="atlas-theme-toggle" class="atlas-theme-toggle" type="button" aria-label="Activer le thème sombre" aria-pressed="false">
+        <svg class="atlas-theme-icon-sun" aria-hidden="true" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l1.41 1.41"/></svg>
+        <svg class="atlas-theme-icon-moon" aria-hidden="true" viewBox="0 0 24 24"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
+      </button>
+      <a class="atlas-site-contact" href="/#contact">Contact</a>
+    </div>
+  </nav>
+</header>
+  <main class="app-shell">
+    <aside class="sidebar" aria-label="Navigation dashboard">
+      <a class="brand" href="#overview" aria-label="Retour overview">
+        <div class="brand-mark">Δ</div>
+        <div>
+          <p class="eyebrow">ATLAS</p>
+          <h1>Control Room</h1>
+        </div>
+      </a>
+      <nav data-atlas-legacy-nav aria-hidden="true" inert aria-label="Sections">
+        <a class="active" href="#overview">Overview</a>
+        <a href="#pipeline">Pipelines</a>
+        <a href="#deals">Opportunities</a>
+        <a href="#ship">Shipboard</a>
+      </nav>
+      <div class="sidebar-card">
+        <div class="sidebar-status"><span class="pulse"></span><span>Session live</span></div>
+        <strong id="sideStatus">Operational</strong>
+        <small id="sideUpdated">Synchronisation locale</small>
+      </div>
+    </aside>
+
+    <section class="content">
+      <header class="hero" id="overview">
+        <div class="hero-main">
+          <div class="hero-kicker">
+            <span class="live-dot"></span>
+            <p class="eyebrow">Dashboard opérationnel</p>
+          </div>
+          <h2>Un cockpit compact pour transformer l’activité en livrables monétisables.</h2>
+          <p class="hero-copy">Vision en une page : ce qui est prêt à publier, ce qui bloque, ce qui peut être vendu, et la prochaine action concrète. Données statiques, simples à versionner sur GitHub Pages.</p>
+          <div class="hero-actions" aria-label="Actions rapides">
+            <a class="primary-action" href="#ship">Voir la prochaine action</a>
+            <a class="secondary-action" href="#pipeline">Inspecter les chantiers</a>
+          </div>
+        </div>
+        <div class="hero-panel">
+          <span>Focus du jour</span>
+          <strong id="focusTitle">Monétisation & livraison</strong>
+          <small id="focusCopy">Prioriser ce qui peut être publié, vendu ou contacté maintenant.</small>
+          <div class="mini-stack" aria-label="Résumé focus">
+            <span>Push</span><span>Verify</span><span>Ship</span>
+          </div>
+        </div>
+      </header>
+
+      <section class="metrics-grid" aria-label="Indicateurs principaux">
+        <article class="metric-card accent-blue">
+          <span>Live projects</span>
+          <strong id="metric-projects">:</strong>
+          <small>surfaces suivies</small>
+        </article>
+        <article class="metric-card accent-green">
+          <span>Opportunités</span>
+          <strong id="metric-opportunities">:</strong>
+          <small>pistes priorisées</small>
+        </article>
+        <article class="metric-card accent-orange">
+          <span>Blocages</span>
+          <strong id="metric-blockers">:</strong>
+          <small>à lever maintenant</small>
+        </article>
+        <article class="metric-card accent-purple">
+          <span>Signal</span>
+          <strong id="metric-signal">:</strong>
+          <small>clarity score</small>
+        </article>
+      </section>
+
+      <section class="dashboard-grid">
+        <article class="panel wide" id="pipeline">
+          <div class="panel-header">
+            <div>
+              <p class="eyebrow">Execution lanes</p>
+              <h3>Pipelines prioritaires</h3>
+            </div>
+            <button class="ghost-button" id="sortBtn" type="button">Prioriser</button>
+          </div>
+          <div class="lane-list" id="laneList"></div>
+        </article>
+
+        <article class="panel health-panel">
+          <div class="panel-header">
+            <div>
+              <p class="eyebrow">Health</p>
+              <h3>État système</h3>
+            </div>
+          </div>
+          <div class="radial-wrap">
+            <div class="radial" id="radialScore" style="--score:0"><span>:</span></div>
+            <div>
+              <strong id="healthLabel">Calcul…</strong>
+              <p id="healthCopy">Agrégation automatique des chantiers prêts, en veille ou bloqués.</p>
+            </div>
+          </div>
+          <div class="health-legend">
+            <span><i class="legend-dot ready"></i>Ready</span>
+            <span><i class="legend-dot watch"></i>Watch</span>
+            <span><i class="legend-dot blocked"></i>Blocked</span>
+          </div>
+        </article>
+
+        <article class="panel" id="deals">
+          <div class="panel-header">
+            <div>
+              <p class="eyebrow">Deal flow</p>
+              <h3>Opportunités à qualifier</h3>
+            </div>
+          </div>
+          <div class="deal-list" id="dealList"></div>
+        </article>
+
+        <article class="panel wide" id="ship">
+          <div class="panel-header">
+            <div>
+              <p class="eyebrow">Shipboard</p>
+              <h3>À livrer / vérifier</h3>
+            </div>
+            <span class="badge" id="publishBadge">GitHub ready</span>
+          </div>
+          <div class="timeline" id="timeline"></div>
+        </article>
+      </section>
+    </section>
+  </main>
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+
+<a href="/#contact" class="fixed bottom-4 left-4 right-4 z-50 sm:hidden inline-flex items-center justify-center rounded-full bg-primary px-5 py-3 text-sm font-bold text-white shadow-2xl shadow-blue-900/20" aria-label="Demander un devis Atlas Nexus">Demander un devis →</a>
+</body>
+</html>

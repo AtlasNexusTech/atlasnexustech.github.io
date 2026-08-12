@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/png" href="/favicon.png">
+<link rel="shortcut icon" href="/favicon.ico">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<title>Atlas Nexus : Coaching : from Conversational AI to Agentic AI</title>
+<meta name="description" content="Understand the gap between conversational AI (LLM) and agentic AI : and the structural change for individuals and businesses. Hands-on coaching : from chatbot to your first autonomous agent.">
+<link rel="canonical" href="https://atlasnexus.tech/training/en/">
+<link rel="alternate" hreflang="fr" href="https://atlasnexus.tech/training/">
+<link rel="alternate" hreflang="en" href="https://atlasnexus.tech/training/en/">
+<link rel="alternate" hreflang="x-default" href="https://atlasnexus.tech/training/">
+<link rel="stylesheet" href="/css/site.css?v=4">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;600;700;900&amp;family=Nunito+Sans:wght@400;600;700&amp;display=swap" rel="stylesheet">
+<style>
+  .hero-title { font-size : clamp(2.2rem, 5.8vw, 4.2rem); font-weight: 900; letter-spacing: -0.045em; line-height: 1.08; }
+  .section-title { font-size : clamp(1.8rem, 4.5vw, 3rem); font-weight: 800; letter-spacing: -0.03em; line-height: 1.1; }
+  .gradient-text { background : linear-gradient(135deg, #2563EB 0%, #059669 100%); -webkit-background-clip : text; -webkit-text-fill-color : transparent; background-clip : text; }
+  .glow-word { position : relative; display : inline-block; padding: .035em .02em .13em .02em; margin: -.035em -.02em -.07em -.02em; background : linear-gradient(110deg, #0F172A 0%, #2563EB 32%, #7C3AED 56%, #059669 82%, #0F172A 100%); background-size: 240% 100%; -webkit-background-clip : text; -webkit-text-fill-color : transparent; background-clip : text; animation : agenticGlow 3.8s ease-in-out infinite; }
+  .glow-word::after { content: ""; position : absolute; left: 2%; right: 2%; bottom: .09em; height: .14em; border-radius: 999px; background : linear-gradient(90deg, rgba(37,99,235,.0), rgba(37,99,235,.42), rgba(5,150,105,.34), rgba(37,99,235,.0)); filter : blur(5px); z-index: -1; }
+  @keyframes agenticGlow { 0%,100% { background-position: 0% 50%; filter : drop-shadow(0 0 10px rgba(37,99,235,.16)); } 50% { background-position: 100% 50%; filter : drop-shadow(0 0 24px rgba(5,150,105,.26)); } }
+  .hero-orb { position : absolute; inset : auto 4% 8% auto; width : min(34vw, 360px); height : min(34vw, 360px); border-radius: 999px; background : radial-gradient(circle at 35% 35%, rgba(37,99,235,.22), rgba(5,150,105,.12) 38%, transparent 68%); filter : blur(2px); pointer-events : none; }
+  .gap-card { background : linear-gradient(145deg, #ffffff 0%, #f7fbff 52%, #eef8ff 100%); border-color : rgba(37,99,235,.22)!important; box-shadow: 0 18px 52px -34px rgba(37,99,235,.55); }
+  .gap-card:hover { box-shadow: 0 22px 70px -32px rgba(37,99,235,.65); }
+  .agentic-card { position : relative; overflow : hidden; border-color : rgba(37,99,235,.28)!important; box-shadow: 0 18px 60px -28px rgba(37,99,235,.55); }
+  .agentic-card::before { content: ""; position : absolute; inset: -1px; background : radial-gradient(circle at 15% 0%, rgba(37,99,235,.13), transparent 38%), radial-gradient(circle at 95% 20%, rgba(5,150,105,.10), transparent 34%); pointer-events : none; }
+  .agentic-card > * { position : relative; }
+  .shift-card { background : linear-gradient(145deg, #ffffff 0%, #fafcff 60%, #f4faff 100%); border-color : rgba(124,58,237,.18)!important; box-shadow: 0 16px 46px -30px rgba(124,58,237,.5); }
+  .shift-card:hover { box-shadow: 0 20px 62px -30px rgba(124,58,237,.62); }
+  .card-hover { transition : all 250ms ease; }
+  .card-hover:hover { transform : translateY(-4px); box-shadow: 0 12px 32px -6px rgba(37,99,235,0.1); border-color: #2563EB; }
+  .pricing-card { display:flex; flex-direction:column; gap:.9rem; }
+  .pricing-card .price { font-size : clamp(1.7rem, 3.4vw, 2.4rem); font-weight: 900; letter-spacing: -0.03em; }
+  .pricing-card.featured { border-color: #2563EB!important; box-shadow: 0 18px 60px -28px rgba(37,99,235,.6); }
+  .pricing-card.featured::before { content: "Most popular"; position:absolute; top:-12px; right:18px; background:linear-gradient(135deg,#2563EB,#059669); color:#fff; font-size:.68rem; font-weight:900; letter-spacing:.06em; text-transform:uppercase; padding:.28em .8em; border-radius:999px; }
+  a, button, .card-hover { transition : all 200ms ease; }
+  *:focus-visible { outline: 2px solid #2563EB; outline-offset: 2px; border-radius: 4px; }
+  .lang-switch { position : relative; display:inline-grid; grid-template-columns:1fr 1fr; align-items:center; min-width:92px; height:38px; padding:4px; border:1px solid rgba(37,99,235,.18); border-radius:999px; background:linear-gradient(135deg, rgba(255,255,255,.92), rgba(241,245,253,.84)); color:#64748B; font-size:.76rem; font-weight:900; box-shadow:inset 0 1px 0 rgba(255,255,255,.9), 0 12px 26px -20px rgba(37,99,235,.55); }
+  .lang-switch::before { content:""; position:absolute; top:4px; bottom:4px; width:calc(50% - 4px); border-radius:999px; background:linear-gradient(135deg,#2563EB,#059669); box-shadow:0 10px 22px -12px rgba(37,99,235,.75); transition:transform 220ms ease; }
+  .lang-switch[data-active="fr"]::before { transform:translateX(0); left:4px; }
+  .lang-switch[data-active="en"]::before { transform:translateX(100%); left:4px; }
+  .lang-switch a { position:relative; z-index:1; display:flex; align-items:center; justify-content:center; height:30px; border-radius:999px; color:#64748B; letter-spacing:.03em; }
+  .lang-switch a.active { color:white; }
+  .lang-switch:hover { border-color:rgba(37,99,235,.34); box-shadow:inset 0 1px 0 rgba(255,255,255,.9), 0 16px 34px -22px rgba(37,99,235,.72); }
+  .reveal { opacity: 0; transform : translateY(24px); transition : opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1), transform 0.6s cubic-bezier(0.22, 1, 0.36, 1); }
+  .reveal.visible { opacity: 1; transform : translateY(0); }
+  .reveal-delay-1 { transition-delay: 0.05s; }
+  .reveal-delay-2 { transition-delay: 0.12s; }
+  .reveal-delay-3 { transition-delay: 0.19s; }
+  .hero-stagger > * { opacity: 0; transform : translateY(30px); animation : heroFadeIn 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards; }
+  .hero-stagger > *:nth-child(1) { animation-delay: 0.1s; }
+  .hero-stagger > *:nth-child(2) { animation-delay: 0.25s; }
+  .hero-stagger > *:nth-child(3) { animation-delay: 0.40s; }
+  .hero-stagger > *:nth-child(4) { animation-delay: 0.55s; }
+  @keyframes heroFadeIn { to { opacity: 1; transform : translateY(0); } }
+  .tick { color:#059669; font-weight:900; }
+  .tick-no { color:#DC2626; font-weight:900; }
+  .muted-list li { margin-bottom:.45rem; }
+  /* ---- utilities missing from site.css, defined here ---- */
+  .hero-kicker { display:inline-flex; align-items:center; gap:.5rem; font-size:.72rem; font-weight:900; letter-spacing:.14em; text-transform:uppercase; color:#2563EB; background:rgba(37,99,235,.06); border:1px solid rgba(37,99,235,.16); border-radius:999px; padding:.55em 1.1em; }
+  .badge-agentic { display:inline-block; font-size:.7rem; font-weight:900; letter-spacing:.12em; text-transform:uppercase; color:#fff; background:linear-gradient(135deg,#2563EB,#059669); border-radius:999px; padding:.5em 1em; box-shadow:0 10px 24px -14px rgba(37,99,235,.7); }
+  .badge-violet { display:inline-block; font-size:.7rem; font-weight:900; letter-spacing:.12em; text-transform:uppercase; color:#6D28D9; background:#F5F3FF; border-radius:999px; padding:.5em 1em; }
+  .hover\:bg-primary-dark:hover { background-color:#1D4ED8; }
+  .hover\:border-primary:hover { border-color:#2563EB; }
+  .bg-white\/90 { background-color:rgba(255,255,255,.92); }
+  .dark .bg-dark-card { background-color:#101A30; }
+  .dark .text-dark-foreground { color:#F1F5F9; }
+  .dark .text-slate-300 { color:#CBD5E1; }
+  .dark .text-slate-400 { color:#64748B; }
+  .dark .bg-dark-surface\/90 { background-color:rgba(11,17,32,.92); }
+  .dark .text-blue-400 { color:#60A5FA; }
+  .dark .badge-violet { color:#C4B5FD; background:rgba(167,139,250,.12); }
+  .dark .pricing-card { background-color:#101A30; }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+    .reveal { opacity: 1; transform : none; }
+    .hero-stagger > * { opacity: 1; transform : none; animation : none; }
+  }.dark .bg-white, .dark .bg-surface { background-color: #0B1120; }
+  .dark .text-slate-600 { color: #CBD5E1; }
+  .dark .text-slate-500 { color: #94A3B8; }
+  .dark .text-slate-400 { color: #64748B; }
+  .dark .text-foreground, .dark strong.text-foreground { color: #F1F5F9; }
+  .dark .border-border { border-color: #1E293B; }
+  .dark .gradient-text { background : linear-gradient(135deg, #60A5FA 0%, #34D399 100%); -webkit-background-clip : text; -webkit-text-fill-color : transparent; background-clip : text; }
+  .dark .gap-card, .dark .shift-card { background : linear-gradient(145deg, #0B1120 0%, #101A30 55%, #0E1626 100%); border-color : rgba(96,165,250,.2)!important; }
+  .dark .agentic-card { border-color : rgba(96,165,250,.32)!important; }
+  .dark .pricing-card.featured { border-color: #3B82F6!important; }
+  .dark .muted-list .tick { color:#34D399; }
+  .dark .muted-list .tick-no { color:#F87171; }
+</style>
+<link rel="stylesheet" href="/css/atlas-header.css?v=1">
+<script src="/js/atlas-header.js?v=1" defer></script>
+</head>
+<body class="bg-white dark:bg-dark-surface text-slate-800 dark:text-dark-foreground font-sans antialiased atlas-unified-header">
+<header class="atlas-site-header" data-atlas-site-header>
+  <nav class="atlas-site-nav" aria-label="Atlas Nexus home">
+    <a href="/en/" class="atlas-site-brand" aria-label="Atlas Nexus home">
+      <img src="/atlas-logo.png?v=20260527" alt="" class="atlas-site-brand-logo" width="48" height="48">
+      <span class="atlas-site-brand-name">Atlas Nexus</span>
+    </a>
+    <ul class="atlas-site-links">
+      <li><a href="/en/#work">Work</a></li>
+      <li><a href="/en/#offers">Offers</a></li>
+      <li><a href="/en/#why">Why</a></li>
+      <li><a href="https://github.com/AtlasNexusTech" target="_blank" rel="noopener">GitHub</a></li>
+    </ul>
+    <div class="atlas-site-actions">
+      <div class="atlas-site-language" data-active="en" aria-label="Language selector">
+        <a href="/" data-atlas-lang="fr">FR</a>
+        <a href="/en/" data-atlas-lang="en" aria-current="page">EN</a>
+      </div>
+      <button id="atlas-theme-toggle" class="atlas-theme-toggle" type="button" aria-label="Toggle dark mode" aria-pressed="false">
+        <svg class="atlas-theme-icon-sun" aria-hidden="true" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l1.41 1.41"/></svg>
+        <svg class="atlas-theme-icon-moon" aria-hidden="true" viewBox="0 0 24 24"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
+      </button>
+      <a class="atlas-site-contact" href="/en/#contact">Contact</a>
+    </div>
+  </nav>
+</header>
+
+<!-- JSON-LD -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "@id": "https://atlasnexus.tech/training/en/#service",
+  "name": "Coaching : from Conversational AI to Agentic AI",
+  "url": "https://atlasnexus.tech/training/en/",
+  "description": "Hands-on coaching to understand the gap between conversational AI (LLM) and agentic AI, and take action : goals, tools, autonomy. For individuals and businesses.",
+  "provider": {
+    "@id": "https://atlasnexus.tech/#business"
+  },
+  "areaServed": {
+    "@type": "Country",
+    "name": "France"
+  },
+  "inLanguage": "en",
+  "offers": {
+    "@type": "AggregateOffer",
+    "priceCurrency": "EUR",
+    "lowPrice": "30",
+    "highPrice": "490",
+    "offerCount": "4",
+    "availability": "https://schema.org/InStock",
+    "url": "https://atlasnexus.tech/training/en/"
+  }
+}
+</script>
+
+<!-- Nav -->
+<nav data-atlas-legacy-nav aria-hidden="true" inert class="border-b border-border bg-white/90 dark:bg-dark-surface/90 backdrop-blur sticky top-0 z-50">
+  <div class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
+    <a href="/en/" class="flex items-center gap-2 font-bold text-foreground dark:text-dark-foreground">
+      <img src="/atlas-logo.png?v=20260527" width="32" height="32" alt="">
+      <span>Atlas Nexus</span>
+    </a>
+    <div class="flex items-center gap-3">
+      <div class="lang-switch" data-active="en" aria-label="Choose language">
+        <a href="/training/" lang="fr">FR</a>
+        <a href="/training/en/" class="active" lang="en">EN</a>
+      </div>
+      <a href="/en/#contact" class="inline-flex items-center gap-2 bg-primary text-white px-5 py-2.5 rounded-full text-sm font-bold hover:bg-primary-dark transition-colors">Book a session</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="relative overflow-hidden bg-surface dark:bg-dark-surface">
+  <div class="hero-orb"></div>
+  <div class="max-w-6xl mx-auto px-6 py-20 sm:py-28 text-center hero-stagger">
+    <p class="hero-kicker mb-6">Coaching · Training · Taking action</p>
+    <h1 class="hero-title text-foreground dark:text-dark-foreground mb-6">
+      From <span class="gradient-text">conversational AI</span> to <span class="glow-word">agentic AI</span> :<br>far more than a paradigm shift
+    </h1>
+    <p class="text-lg sm:text-xl text-slate-600 dark:text-slate-300 max-w-2xl mx-auto mb-10">
+      You use ChatGPT, Claude or Gemini every day? That is only the first step.
+      A paradigm shift, you understand. Agentic AI, you pilot it : it executes, decides and reports back under your supervision.
+      Atlas Nexus coaching takes you across the gap : from answers to autonomous action, for you and your business.
+    </p>
+    <div class="flex flex-wrap justify-center gap-4">
+      <a href="#pricing" class="inline-flex items-center gap-2 bg-primary text-white px-7 py-3.5 rounded-full font-bold hover:bg-primary-dark transition-colors">See the packages</a>
+      <a href="/en/#contact" class="inline-flex items-center gap-2 bg-white dark:bg-dark-card text-foreground dark:text-dark-foreground border border-border dark:border-dark-border px-7 py-3.5 rounded-full font-bold hover:border-primary transition-colors">Talk to me</a>
+    </div>
+  </div>
+</header>
+
+<!-- THE GAP -->
+<section class="py-20 sm:py-24 bg-white dark:bg-dark-surface">
+  <div class="max-w-6xl mx-auto px-6">
+    <div class="text-center mb-14 reveal">
+      <p class="text-accent font-semibold tracking-widest uppercase text-xs mb-3">The gap</p>
+      <h2 class="section-title text-foreground dark:text-dark-foreground mb-5">Conversational AI ≠ Agentic AI : two worlds</h2>
+      <p class="text-slate-600 dark:text-slate-300 max-w-2xl mx-auto text-lg">Conversational AI answers. An agent <strong>acts</strong>. That is the difference between an advisor and a teammate.</p>
+    </div>
+    <div class="grid md:grid-cols-2 gap-6">
+      <div class="gap-card border rounded-3xl p-8 card-hover reveal">
+        <p class="inline-block text-xs font-bold tracking-widest uppercase text-slate-400 bg-slate-100 dark:bg-slate-800 rounded-full px-3 py-1.5 mb-5">Conversational AI : today's level</p>
+        <h3 class="text-xl font-extrabold text-foreground dark:text-dark-foreground mb-4">A conversational brain, without hands</h3>
+        <ul class="muted-list text-slate-600 dark:text-slate-300 space-y-2.5">
+          <li><span class="tick tick-no">✕</span> Generates text, code, ideas, on request</li>
+          <li><span class="tick tick-no">✕</span> Does nothing by itself : it waits for your prompt</li>
+          <li><span class="tick tick-no">✕</span> No access to your tools, files or systems</li>
+          <li><span class="tick tick-no">✕</span> No durable working memory between tasks</li>
+          <li><span class="tick tick-no">✕</span> Quality depends on whoever asks the questions</li>
+        </ul>
+        <p class="text-sm text-slate-500 dark:text-slate-400 mt-5 leading-relaxed"><strong class="text-foreground dark:text-dark-foreground">The LLM you use :</strong> ChatGPT, Claude or Gemini are LLMs (Large Language Models), the engine behind conversational AI : a model trained on massive volumes of text that generates language by predicting what comes next.</p>
+      </div>
+      <div class="agentic-card border rounded-3xl p-8 card-hover reveal reveal-delay-1">
+        <p class="badge-agentic mb-5">Agentic AI : the next level</p>
+        <h3 class="text-xl font-extrabold text-foreground dark:text-dark-foreground mb-4">A teammate who takes initiative</h3>
+        <ul class="muted-list text-slate-600 dark:text-slate-300 space-y-2.5">
+          <li><span class="tick">✓</span> Receives a <strong>goal</strong>, not an instruction</li>
+          <li><span class="tick">✓</span> Plans, executes and iterates until the result</li>
+          <li><span class="tick">✓</span> Uses <strong>tools</strong>: web, files, APIs, software</li>
+          <li><span class="tick">✓</span> Remembers its context and reports back</li>
+          <li><span class="tick">✓</span> Works alone, in the background, while you supervise</li>
+        </ul>
+        <p class="text-sm text-slate-500 dark:text-slate-400 mt-5 leading-relaxed"><strong class="text-foreground dark:text-dark-foreground">What is an agentic AI?</strong> An agentic AI : an "agent" : is an AI that acts : it receives a goal, plans, uses tools (web, files, APIs, software) and works autonomously until the result, while reporting back. Where conversational AI waits for your questions, the agent takes initiative under your supervision.</p>
+      </div>
+    </div>
+    <p class="text-center text-slate-500 dark:text-slate-400 text-sm mt-8 reveal">The gap goes far beyond a technical tool : it is about embracing a paradigm shift for your business, through structured coaching tailored to your stakes.</p>
+  </div>
+</section>
+
+<!-- STRUCTURAL CHANGE -->
+<section class="py-20 sm:py-24 bg-surface dark:bg-dark-surface">
+  <div class="max-w-6xl mx-auto px-6">
+    <div class="text-center mb-14 reveal">
+      <p class="text-accent font-semibold tracking-widest uppercase text-xs mb-3">The structural change</p>
+      <h2 class="section-title text-foreground dark:text-dark-foreground mb-5">What really changes, for individuals and businesses</h2>
+    </div>
+    <div class="grid md:grid-cols-2 gap-6">
+      <div class="shift-card border rounded-3xl p-8 card-hover reveal">
+        <p class="badge-violet mb-5">For individuals</p>
+        <h3 class="text-xl font-extrabold text-foreground dark:text-dark-foreground mb-4">Your value will no longer be what you produce, but what you orchestrate</h3>
+        <ul class="muted-list text-slate-600 dark:text-slate-300 space-y-2.5">
+          <li><span class="tick">→</span> The conversational-AI prompter stays a user. The agent operator becomes a <strong>multiplier</strong>.</li>
+          <li><span class="tick">→</span> A "sales + AI agents" or "ops + AI agents" profile is worth twice as much.</li>
+          <li><span class="tick">→</span> New roles : agent designer, workflow supervisor, orchestration engineer.</li>
+          <li><span class="tick">→</span> The key skill: <strong>describe the outcome</strong>, not execute the task.</li>
+          <li><span class="tick">→</span> Those who cross the gap won't be replaced by AI : they'll work with it, in tandem.</li>
+        </ul>
+      </div>
+      <div class="shift-card border rounded-3xl p-8 card-hover reveal reveal-delay-1">
+        <p class="badge-violet mb-5">For businesses</p>
+        <h3 class="text-xl font-extrabold text-foreground dark:text-dark-foreground mb-4">From the individual tool to the organization that automates</h3>
+        <ul class="muted-list text-slate-600 dark:text-slate-300 space-y-2.5">
+          <li><span class="tick">→</span> Conversational AI in a chat = individual gains. Agents in your processes = <strong>structural gains</strong>.</li>
+          <li><span class="tick">→</span> Automation moves from the document to the <strong>end-to-end flow</strong>: quotes, follow-up, reminders, reporting.</li>
+          <li><span class="tick">→</span> Teams refocus on supervision, client relationships and strategy.</li>
+          <li><span class="tick">→</span> Competition will no longer be about headcount, but about <strong>orchestration capacity</strong>.</li>
+          <li><span class="tick">→</span> Marginal cost of a repetitive operation → near zero, available 24/7.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COACHING OFFER -->
+<section class="py-20 sm:py-24 bg-white dark:bg-dark-surface">
+  <div class="max-w-6xl mx-auto px-6">
+    <div class="text-center mb-14 reveal">
+      <p class="text-accent font-semibold tracking-widest uppercase text-xs mb-3">The coaching</p>
+      <h2 class="section-title text-foreground dark:text-dark-foreground mb-5">How you cross it, concretely</h2>
+      <p class="text-slate-600 dark:text-slate-300 max-w-2xl mx-auto text-lg">No theory in a vacuum : every session delivers a <strong>real, operational agent</strong>, connected to your tools.</p>
+    </div>
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div class="pricing-card bg-white dark:bg-dark-card border border-border dark:border-dark-border rounded-3xl p-7 card-hover reveal relative">
+        <p class="text-sm font-bold text-slate-500 dark:text-slate-400">Discovery</p>
+        <p class="price text-foreground dark:text-dark-foreground">€30</p>
+        <p class="text-sm text-slate-500 dark:text-slate-400">30 min · video call</p>
+        <ul class="muted-list text-sm text-slate-600 dark:text-slate-300 flex-1">
+          <li><span class="tick">✓</span> Audit of your current conversational-AI usage</li>
+          <li><span class="tick">✓</span> The gap explained on YOUR real cases</li>
+          <li><span class="tick">✓</span> Personalised roadmap</li>
+        </ul>
+        <a href="/en/#contact" class="mt-4 inline-flex items-center justify-center bg-white dark:bg-dark-card border border-border dark:border-dark-border text-foreground dark:text-dark-foreground px-5 py-2.5 rounded-full text-sm font-bold hover:border-primary transition-colors">Choose</a>
+      </div>
+      <div class="pricing-card featured bg-white dark:bg-dark-card border border-border dark:border-dark-border rounded-3xl p-7 card-hover reveal reveal-delay-1 relative">
+        <p class="text-sm font-bold text-slate-500 dark:text-slate-400">Coaching session</p>
+        <p class="price text-foreground dark:text-dark-foreground">€90</p>
+        <p class="text-sm text-slate-500 dark:text-slate-400">1 h 30 · video call or on site</p>
+        <ul class="muted-list text-sm text-slate-600 dark:text-slate-300 flex-1">
+          <li><span class="tick">✓</span> Frame a real goal to automate</li>
+          <li><span class="tick">✓</span> Build a first agent with you</li>
+          <li><span class="tick">✓</span> Tools, memory, autonomy : the right reflexes</li>
+          <li><span class="tick">✓</span> Leave with the agent operational</li>
+        </ul>
+        <a href="/en/#contact" class="mt-4 inline-flex items-center justify-center bg-primary text-white px-5 py-2.5 rounded-full text-sm font-bold hover:bg-primary-dark transition-colors">Choose</a>
+      </div>
+      <div class="pricing-card bg-white dark:bg-dark-card border border-border dark:border-dark-border rounded-3xl p-7 card-hover reveal reveal-delay-2 relative">
+        <p class="text-sm font-bold text-slate-500 dark:text-slate-400">Full programme</p>
+        <p class="price text-foreground dark:text-dark-foreground">€240</p>
+        <p class="text-sm text-slate-500 dark:text-slate-400">3 sessions · 1 month of support</p>
+        <ul class="muted-list text-sm text-slate-600 dark:text-slate-300 flex-1">
+          <li><span class="tick">✓</span> 3 coaching sessions (1 h 30)</li>
+          <li><span class="tick">✓</span> 2 agents deployed on your processes</li>
+          <li><span class="tick">✓</span> Support between sessions (messaging)</li>
+          <li><span class="tick">✓</span> Review : where agentic AI changes your daily life</li>
+        </ul>
+        <a href="/en/#contact" class="mt-4 inline-flex items-center justify-center bg-white dark:bg-dark-card border border-border dark:border-dark-border text-foreground dark:text-dark-foreground px-5 py-2.5 rounded-full text-sm font-bold hover:border-primary transition-colors">Choose</a>
+      </div>
+      <div class="pricing-card bg-white dark:bg-dark-card border border-border dark:border-dark-border rounded-3xl p-7 card-hover reveal reveal-delay-3 relative">
+        <p class="text-sm font-bold text-slate-500 dark:text-slate-400">Business workshop</p>
+        <p class="price text-foreground dark:text-dark-foreground">€490</p>
+        <p class="text-sm text-slate-500 dark:text-slate-400">Half day · up to 6 people</p>
+        <ul class="muted-list text-sm text-slate-600 dark:text-slate-300 flex-1">
+          <li><span class="tick">✓</span> The gap + structural change for your teams</li>
+          <li><span class="tick">✓</span> Map of your automatable processes</li>
+          <li><span class="tick">✓</span> Agents demoed on your real cases</li>
+          <li><span class="tick">✓</span> Prioritised deployment plan</li>
+        </ul>
+        <a href="/en/#contact" class="mt-4 inline-flex items-center justify-center bg-white dark:bg-dark-card border border-border dark:border-dark-border text-foreground dark:text-dark-foreground px-5 py-2.5 rounded-full text-sm font-bold hover:border-primary transition-colors">Choose</a>
+      </div>
+    </div>
+    <p class="text-center text-sm text-slate-400 dark:text-slate-500 mt-10 reveal">No commitment · Reply within 24 h · Sessions in English or French, video call or on site (Île-de-France)</p>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="py-20 sm:py-24 bg-surface dark:bg-dark-surface">
+  <div class="max-w-3xl mx-auto px-6 text-center reveal">
+    <p class="text-accent font-semibold tracking-widest uppercase text-xs mb-3">The time is now</p>
+    <h2 class="section-title text-foreground dark:text-dark-foreground mb-6">The gap is widening between those who ask an AI questions and those who delegate outcomes to it.</h2>
+    <p class="text-slate-600 dark:text-slate-300 text-lg mb-10 max-w-xl mx-auto">Choose your package, or simply write to me : I will build yours to measure.</p>
+    <div class="flex flex-wrap justify-center gap-4">
+      <a href="/en/#contact" class="inline-flex items-center gap-2 bg-primary text-white px-8 py-4 rounded-full font-bold hover:bg-primary-dark transition-colors">Open the contact form</a>
+      <a href="tel:+33750504595" class="inline-flex items-center gap-2 bg-white dark:bg-dark-card text-foreground dark:text-dark-foreground border border-border dark:border-dark-border px-8 py-4 rounded-full font-bold hover:border-primary transition-colors">📞 +33 7 50 50 45 95</a>
+    </div>
+    <p class="text-sm text-slate-400 dark:text-slate-500 mt-6">Free quote · Reply within 24 h</p>
+  </div>
+</section>
+
+<footer class="border-t border-border bg-white dark:bg-dark-surface py-10">
+  <div class="max-w-6xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-slate-500 dark:text-slate-400">
+    <p>© 2026 Atlas Nexus: <a href="/en/" class="hover:text-primary">atlasnexus.tech</a></p>
+    <div class="flex items-center gap-5">
+      <a href="/en/#contact" class="hover:text-primary">contact@atlasnexus.tech</a>
+      <a href="/ia-agentique/en/" class="hover:text-primary">Agentic AI</a>
+      <a href="/mentions-legales/" class="hover:text-primary">Legal notice</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Scroll reveal (same mechanic as the rest of the site)
+  (function () {
+    var els = document.querySelectorAll('.reveal');
+    if (!('IntersectionObserver' in window)) { els.forEach(function (e) { e.classList.add('visible'); }); return; }
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (en.isIntersecting) { en.target.classList.add('visible'); io.unobserve(en.target); }
+      });
+    }, { threshold: 0.12 });
+    els.forEach(function (e) { io.observe(e); });
+  })();
+</script>
+</body>
+</html>

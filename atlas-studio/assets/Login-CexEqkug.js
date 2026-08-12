@@ -1,0 +1,1 @@
+import{d as t}from"./vendor-vue-NSDaktjZ.js";const r=t({name:"AuthLogin",data(){return{redirect:this.$route.query.redirect?.toString()}},async mounted(){this.$store.state.token.access?this.$router.push(this.redirect||"/"):this.$store.dispatch("login")}});export{r as default};

@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<link rel="icon" type="image/png" href="/favicon.png">
+<link rel="shortcut icon" href="/favicon.ico">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Démo web indépendante : concept non officiel de site vitrine pour entreprise de peinture.">
+<title>Entreprise de peinture : Démo web indépendante | Atlas Nexus</title>
+<link rel="stylesheet" href="/css/site.css?v=4">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
+<style>
+html{scroll-behavior:smooth}
+body::after{content:"DÉMO : ATLASNEXUS";position:fixed;top:50%;left:50%;transform:translate(-50%,-50%) rotate(-25deg);font-size:4rem;font-weight:800;color:rgba(0,0,0,.04);pointer-events:none;z-index:9999;white-space:nowrap;letter-spacing:.4em}.card-hover{transition:transform.3s ease,box-shadow.3s ease}.card-hover:hover{transform:translateY(-4px);box-shadow:0 20px 40px -12px rgba(0,0,0,.15)}.gallery-item{position:relative;overflow:hidden;border-radius:1rem;aspect-ratio:4/3}.gallery-item img{width:100%;height:100%;object-fit:cover;transition:transform.5s ease}.gallery-item:hover img{transform:scale(1.06)}.gallery-item .overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.65) 0%,transparent 50%);opacity:1;display:flex;align-items:flex-end;padding:1rem}.gallery-item .overlay span{color:white;font-weight:600;font-size:.9rem}
+/* Slide-in animations */.gallery-slide{opacity:0;transition:opacity.7s ease,transform.7s cubic-bezier(.22,1,.36,1)}.gallery-slide.slide-right{transform:translateX(-80px)}.gallery-slide.slide-left{transform:translateX(80px)}.gallery-slide.visible{opacity:1;transform:translateX(0)}
+@media(prefers-reduced-motion:reduce){.gallery-slide{opacity:1;transform:none;transition:none}}
+</style>
+    <link rel="canonical" href="https://atlasnexus.tech/peintre-95/">
+
+<meta name="robots" content="noindex, nofollow">
+<link rel="stylesheet" href="/css/demo-showcase.css?v=2">
+<script src="/js/demo-showcase.js?v=2" defer></script>
+</head>
+<body data-demo-palette="purple" class="bg-stone-50 text-stone-800 antialiased" style="font-family:Inter,system-ui,sans-serif">
+<a class="skip-link" href="#demo-content">Aller au contenu</a>
+<aside class="atlas-demo-notice" data-demo-notice role="note" aria-label="Statut de cette page">
+  <div class="atlas-demo-notice__inner">
+    <div class="atlas-demo-notice__copy">
+      <strong>Démo web indépendante</strong>
+      <span>Concept non officiel, sans affiliation. Les noms, chiffres, visuels et contenus illustrent uniquement l’interface.</span>
+    </div>
+    <a href="/demos-web/">Voir toutes les démos</a>
+  </div>
+</aside>
+
+
+<!-- NAV -->
+<nav class="sticky top-0 z-50 bg-white/90 backdrop-blur-lg border-b border-stone-200">
+  <div class="max-w-6xl mx-auto px-4 h-16 flex items-center justify-between">
+    <a href="/demos-web/" class="flex items-center gap-2.5 group">
+      <div class="w-8 h-8 bg-gradient-to-br from-brand-600 to-brand-400 rounded-lg flex items-center justify-center text-white font-extrabold text-sm shadow-md shadow-brand-500/20 group-hover:shadow-brand-500/40 transition">AN</div>
+      <span class="font-bold text-stone-800 text-sm">AtlasNexus</span>
+    </a>
+    <div class="flex gap-6 text-sm font-medium">
+      <a href="#prestations" class="text-stone-500 hover:text-brand-600 transition">Prestations</a>
+      <a href="#realisations" class="text-stone-500 hover:text-brand-600 transition">Réalisations</a>
+      <a href="#contact" class="text-stone-500 hover:text-brand-600 transition">Devis</a>
+    </div>
+  </div>
+</nav>
+<main id="demo-content" tabindex="-1">
+
+<!-- HERO -->
+<section class="relative overflow-hidden" style="background:linear-gradient(160deg,#3b0764 0%,#581c87 30%,#7e22ce 60%,#9333ea 100%)">
+  <div class="max-w-6xl mx-auto px-4 py-20 md:py-28">
+    <div class="grid md:grid-cols-2 gap-10 items-center">
+      <div>
+        <span class="inline-block bg-white/15 text-white text-xs font-semibold px-3 py-1.5 rounded-full mb-5 tracking-wide">Val-d'Oise (95) : Interface de devis</span>
+        <h1 class="text-4xl sm:text-5xl md:text-6xl font-extrabold text-white mb-5 leading-[1.08] tracking-tight" style="font-family:'Playfair Display',Georgia,serif">
+          Entreprise de<br><span class="text-brand-300">Peinture</span>
+        </h1>
+        <p class="text-white/75 text-lg leading-relaxed mb-8 max-w-md">Peinture intérieure & extérieure, ravalement de façade, pose de papiers peints: <strong class="text-white">particuliers & professionnels</strong>.</p>
+        <div class="flex flex-wrap gap-3">
+          <a href="#contact" class="inline-flex items-center gap-2 bg-white text-brand-800 font-semibold px-6 py-3.5 rounded-xl hover:bg-brand-50 transition shadow-xl shadow-black/20 text-sm"> Tester le formulaire</a>
+          <a href="/#contact" class="inline-flex items-center gap-2 bg-white/10 text-white font-semibold px-6 py-3.5 rounded-xl border border-white/20 hover:bg-white/20 transition backdrop-blur text-sm">Parler de ce modèle à Atlas Nexus</a>
+        </div>
+      </div>
+      <div class="relative hidden md:block">
+        <img src="images/hero.jpg" alt="Peintre 95" class="rounded-2xl shadow-2xl w-full object-cover" style="aspect-ratio:4/3">
+        <div class="absolute -bottom-3 -right-3 bg-white text-brand-800 px-5 py-3.5 rounded-xl shadow-xl">
+          <div class="text-xl font-extrabold leading-none">DEVIS</div>
+          <div class="text-xs text-brand-500 font-semibold">interaction de démonstration</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="absolute bottom-0 left-0 right-0 h-12 bg-gradient-to-t from-stone-50 to-transparent"></div>
+</section>
+
+<!-- PRESTATIONS -->
+<section id="prestations" class="py-20 bg-stone-50">
+  <div class="max-w-6xl mx-auto px-4">
+    <div class="text-center mb-12">
+      <span class="text-brand-600 font-semibold text-xs tracking-widest uppercase">Ce que nous faisons</span>
+      <h2 class="text-3xl sm:text-4xl font-extrabold text-stone-900 mt-2 tracking-tight" style="font-family:'Playfair Display',Georgia,serif">Nos <span class="text-brand-600">Prestations</span></h2>
+    </div>
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-3">
+      <div class="bg-white rounded-xl p-5 flex items-center gap-4 card-hover shadow-sm border border-stone-100"><span class="text-2xl shrink-0" data-demo-icon aria-hidden="true">FIN</span><div><span class="font-semibold text-stone-800 block">Peinture intérieure</span><span class="text-xs text-stone-500">Murs, plafonds, boiseries</span></div></div>
+      <div class="bg-white rounded-xl p-5 flex items-center gap-4 card-hover shadow-sm border border-stone-100"><span class="text-2xl shrink-0" data-demo-icon aria-hidden="true">BÂTI</span><div><span class="font-semibold text-stone-800 block">Peinture extérieure</span><span class="text-xs text-stone-500">Façades, volets, portails</span></div></div>
+      <div class="bg-white rounded-xl p-5 flex items-center gap-4 card-hover shadow-sm border border-stone-100"><span class="text-2xl shrink-0"></span><div><span class="font-semibold text-stone-800 block">Ravalement</span><span class="text-xs text-stone-500">Nettoyage & traitement façade</span></div></div>
+      <div class="bg-white rounded-xl p-5 flex items-center gap-4 card-hover shadow-sm border border-stone-100"><span class="text-2xl shrink-0" data-demo-icon aria-hidden="true">MUR</span><div><span class="font-semibold text-stone-800 block">Papiers peints</span><span class="text-xs text-stone-500">Pose & dépose soignée</span></div></div>
+      <div class="bg-white rounded-xl p-5 flex items-center gap-4 card-hover shadow-sm border border-stone-100"><span class="text-2xl shrink-0"></span><div><span class="font-semibold text-stone-800 block">Peinture décorative</span><span class="text-xs text-stone-500">Effets, patines, stucs</span></div></div>
+      <div class="bg-white rounded-xl p-5 flex items-center gap-4 card-hover shadow-sm border border-stone-100"><span class="text-2xl shrink-0"></span><div><span class="font-semibold text-stone-800 block">Tous types de chantiers</span><span class="text-xs text-stone-500">Pros & particuliers</span></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- RÉALISATIONS -->
+<section id="realisations" class="py-20 bg-white">
+  <div class="max-w-6xl mx-auto px-4">
+    <div class="text-center mb-12">
+      <span class="text-brand-600 font-semibold text-xs tracking-widest uppercase">Galerie</span>
+      <h2 class="text-3xl sm:text-4xl font-extrabold text-stone-900 mt-2 tracking-tight" style="font-family:'Playfair Display',Georgia,serif">Galerie de démonstration</h2>
+      <p class="text-stone-500 mt-3 max-w-xl mx-auto">Images d’illustration pour évaluer la composition, les légendes et le responsive de la galerie.</p>
+    </div>
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+      <div class="gallery-item gallery-slide slide-right"><img src="images/stock-1.jpg" alt="Peinture intérieure Val-d'Oise" loading="lazy"><div class="overlay"><span>Visuel d’illustration</span></div></div>
+      <div class="gallery-item gallery-slide slide-right"><img src="images/stock-2.jpg" alt="Ravalement façade 95" loading="lazy"><div class="overlay"><span>Visuel d’illustration</span></div></div>
+      <div class="gallery-item gallery-slide slide-right"><img src="images/stock-3.jpg" alt="Chantier rénovation peinture" loading="lazy"><div class="overlay"><span>Visuel d’illustration</span></div></div>
+      <div class="gallery-item gallery-slide slide-left"><img src="images/stock-4.jpg" alt="Peinture décorative Val-d'Oise" loading="lazy"><div class="overlay"><span>Visuel d’illustration</span></div></div>
+      <div class="gallery-item gallery-slide slide-left"><img src="images/stock-5.jpg" alt="Peinture extérieure maison" loading="lazy"><div class="overlay"><span>Visuel d’illustration</span></div></div>
+      <div class="gallery-item gallery-slide slide-left"><img src="images/stock-7.jpg" alt="Appartement rénové peinture" loading="lazy"><div class="overlay"><span>Visuel d’illustration</span></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ZONES -->
+<section class="py-16 bg-stone-100">
+  <div class="max-w-6xl mx-auto px-4">
+    <h2 class="text-2xl sm:text-3xl font-extrabold text-center text-stone-900 mb-8 tracking-tight" style="font-family:'Playfair Display',Georgia,serif">Zones <span class="text-brand-600">d'intervention</span></h2>
+    <div class="flex flex-wrap justify-center gap-2 text-sm text-stone-600">
+      <span class="bg-white rounded-lg px-3.5 py-2 shadow-sm">Argenteuil 95100</span>
+      <span class="bg-white rounded-lg px-3.5 py-2 shadow-sm">Beauchamp 95250</span>
+      <span class="bg-white rounded-lg px-3.5 py-2 shadow-sm">Bezons 95870</span>
+      <span class="bg-white rounded-lg px-3.5 py-2 shadow-sm">Cergy 95800</span>
+      <span class="bg-white rounded-lg px-3.5 py-2 shadow-sm">Cormeilles 95240</span>
+      <span class="bg-white rounded-lg px-3.5 py-2 shadow-sm">Deuil-la-Barre 95170</span>
+      <span class="bg-white rounded-lg px-3.5 py-2 shadow-sm">Domont 95330</span>
+      <span class="bg-white rounded-lg px-3.5 py-2 shadow-sm">Eaubonne 95600</span>
+      <span class="bg-white rounded-lg px-3.5 py-2 shadow-sm">Enghien 95880</span>
+      <span class="bg-white rounded-lg px-3.5 py-2 shadow-sm">Eragny 95610</span>
+      <span class="bg-white rounded-lg px-3.5 py-2 shadow-sm">Ermont 95120</span>
+      <span class="bg-white rounded-lg px-3.5 py-2 shadow-sm">Franconville 95130</span>
+      <span class="bg-white rounded-lg px-3.5 py-2 shadow-sm">Gonesse 95500</span>
+      <span class="bg-white rounded-lg px-3.5 py-2 shadow-sm">Herblay 95220</span>
+      <span class="bg-white rounded-lg px-3.5 py-2 shadow-sm">Montmorency 95160</span>
+      <span class="bg-white rounded-lg px-3.5 py-2 shadow-sm">Osny 95520</span>
+      <span class="bg-white rounded-lg px-3.5 py-2 shadow-sm">Pontoise 95300</span>
+      <span class="bg-white rounded-lg px-3.5 py-2 shadow-sm">Saint-Gratien 95210</span>
+      <span class="bg-white rounded-lg px-3.5 py-2 shadow-sm">Sannois 95110</span>
+      <span class="bg-white rounded-lg px-3.5 py-2 shadow-sm">Sarcelles 95200</span>
+      <span class="bg-white rounded-lg px-3.5 py-2 shadow-sm">Taverny 95150</span>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="py-20 bg-stone-50">
+  <div class="max-w-5xl mx-auto px-4">
+    <div class="text-center mb-10">
+      <span class="text-brand-600 font-semibold text-xs tracking-widest uppercase">On en parle</span>
+      <h2 class="text-3xl sm:text-4xl font-extrabold text-stone-900 mt-2 tracking-tight" style="font-family:'Playfair Display',Georgia,serif">Contact & <span class="text-brand-600">Interface de devis</span></h2>
+    </div>
+    <div class="grid md:grid-cols-5 gap-6 max-w-3xl mx-auto">
+      <!-- Infos contact -->
+      <div class="md:col-span-2 bg-white rounded-2xl p-6 shadow-sm border border-stone-100 flex flex-col justify-center">
+        <h3 class="font-bold text-lg text-stone-800 mb-4"> Nous contacter</h3>
+        <div class="space-y-4 text-stone-600">
+          <div class="flex items-start gap-3">
+            <span class="text-xl shrink-0 mt-0.5" data-demo-icon aria-hidden="true">CONTACT</span>
+            <div><div class="font-semibold text-stone-800">Coordonnées non actives</div><div class="text-xs text-stone-400">Appel & SMS</div></div>
+          </div>
+          <div class="flex items-start gap-3">
+            <span class="text-xl shrink-0 mt-0.5" data-demo-icon aria-hidden="true">ZONE</span>
+            <div><div class="font-semibold text-stone-800">Val-d'Oise (95)</div><div class="text-xs text-stone-400">Intervention tout le département</div></div>
+          </div>
+          <div class="flex items-start gap-3">
+            <span class="text-xl shrink-0 mt-0.5" data-demo-icon aria-hidden="true">DÉLAI</span>
+            <div><div class="font-semibold text-stone-800">Lun-Ven 8h-18h</div><div class="text-xs text-stone-400">Samedi sur RDV</div></div>
+          </div>
+        </div>
+      </div>
+      <!-- Formulaire -->
+      <div class="md:col-span-3 bg-white rounded-2xl p-6 shadow-sm border border-stone-100">
+        <h3 class="font-bold text-lg text-stone-800 mb-4"> Demande de devis</h3>
+        <form class="space-y-3" data-demo-form novalidate>
+<div class="atlas-demo-form-note">Formulaire de démonstration. Aucune donnée n’est transmise. <a href="/#contact">Parler de ce modèle à Atlas Nexus</a>.</div>
+<p data-demo-status aria-live="polite" tabindex="-1"></p>
+          <div class="grid sm:grid-cols-2 gap-3">
+            <input type="text" placeholder="Votre nom *" class="w-full px-4 py-3 border border-stone-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-brand-400 focus:border-transparent transition" required aria-label="Votre nom *">
+            <input type="tel" placeholder="Téléphone *" class="w-full px-4 py-3 border border-stone-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-brand-400 focus:border-transparent transition" required aria-label="Téléphone *">
+          </div>
+          <label for="peintre-city" class="sr-only">Ville du projet</label>
+          <select id="peintre-city" name="city" aria-label="Ville du projet" class="w-full px-4 py-3 border border-stone-200 rounded-xl text-sm bg-white text-stone-600 focus:outline-none focus:ring-2 focus:ring-brand-400 focus:border-transparent transition appearance-none" style="background-image:url('data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2216%22 height=%2216%22 viewBox=%220 0 24 24%22 fill=%22none%22 stroke=%22%2394a3b8%22 stroke-width=%222%22><path d=%22M6 9l6 6 6-6%22/></svg>');background-repeat:no-repeat;background-position:right 12px center;padding-right:40px">
+            <option value="">Votre ville (Val-d'Oise)</option>
+            <option>Argenteuil 95100</option><option>Beauchamp 95250</option><option>Bezons 95870</option><option>Cergy 95800</option><option>Cormeilles 95240</option><option>Deuil-la-Barre 95170</option><option>Domont 95330</option><option>Eaubonne 95600</option><option>Enghien 95880</option><option>Ermont 95120</option><option>Franconville 95130</option><option>Herblay 95220</option><option>Pontoise 95300</option><option>Sannois 95110</option><option>Sarcelles 95200</option><option>Autre (95)</option>
+          </select>
+          <textarea rows="3" placeholder="Décrivez votre projet…" class="w-full px-4 py-3 border border-stone-200 rounded-xl text-sm resize-none focus:outline-none focus:ring-2 focus:ring-brand-400 focus:border-transparent transition" aria-label="Décrivez votre projet…"></textarea>
+          <button type="button" data-demo-submit class="w-full py-3.5 bg-brand-600 hover:bg-brand-700 text-white font-semibold rounded-xl transition shadow-lg shadow-brand-500/20 hover:shadow-brand-500/30 text-sm">Simuler l’envoi</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+</main>
+<footer class="bg-stone-900 text-stone-400 py-8">
+  <div class="max-w-6xl mx-auto px-4 text-center text-xs space-y-2">
+    <p class="text-white font-semibold text-sm">Entreprise de Peinture : Val-d'Oise (95)</p>
+    <p>Intervention sur tout le département : Interface de devis</p>
+    <p class="text-stone-500">Concept de démonstration par Atlas Nexus. </p>
+  </div>
+</footer>
+
+<!-- BADGE -->
+
+<a href="/#contact" class="fixed bottom-4 left-4 right-4 z-50 sm:hidden inline-flex items-center justify-center rounded-full bg-primary px-5 py-3 text-sm font-bold text-white shadow-2xl shadow-blue-900/20" aria-label="Parler de ce design à Atlas Nexus">Créer un site similaire →</a>
+</body>
+</html>

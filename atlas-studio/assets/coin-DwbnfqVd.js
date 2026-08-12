@@ -1,0 +1,1 @@
+const e={"button.disconnect":{message:"斷開連接",description:"斷開已連接錢包的按鈕文案。"},"message.connectError":{message:"錢包連接失敗。",description:"連接錢包失敗時顯示的錯誤提示。"}};export{e as default};

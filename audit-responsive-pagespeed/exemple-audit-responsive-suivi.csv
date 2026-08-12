@@ -1,0 +1,7 @@
+﻿id,page,contexte_test,priorite,constat,preuve_synthetique,recommandation,statut
+AR-01,Accueil,360 × 800,Critique,Débordement horizontal du bloc héros,Le titre et la capture dépassent de 24 px à droite,"Contraint la grille à minmax(0,1fr) et autoriser le retour du titre",À corriger
+AR-02,Contact,390 × 844,Importante,Cible tactile du bouton principal trop petite,Hauteur mesurée dans cet exemple : 36 px,Porter la hauteur minimale à 48 px et garder 8 px entre actions,À corriger
+AR-03,Accueil,Mobile Lighthouse,Importante,Image héros sans dimensions réservées,Décalage visuel illustratif lors du chargement,Définir width/height ou aspect-ratio et précharger uniquement l’image LCP,À corriger
+AR-04,Tarifs,Tablette 768 × 1024,Importante,Contraste secondaire insuffisant,"Texte gris illustratif sur fond violet : 3,1:1","Utiliser la teinte claire validée et viser au moins 4,5:1",À corriger
+AR-05,Portfolio,Desktop 1440 × 900,Mineure,Images sous la ligne de flottaison chargées immédiatement,Transfert initial inutile dans cet exemple,"Ajouter loading=""lazy"" hors image LCP et formats WebP/AVIF",Planifié
+AR-06,Global,Mobile Lighthouse,Importante,JavaScript non utilisé dans le premier écran,Bundle illustratif : 182 Ko dont 71 Ko évitables,Découper le bundle et retarder les widgets non critiques,Planifié

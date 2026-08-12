@@ -1,0 +1,47 @@
+{
+  "business": {
+    "name": "Mon Entreprise",
+    "shortName": "Entreprise",
+    "slogan": "Artisan de confiance",
+    "since": "Depuis 2010",
+    "description": "Entreprise artisanale à votre service. Devis gratuit, travail soigné, intervention rapide.",
+    "phone": "06 00 00 00 00",
+    "email": "contact@monentreprise.fr",
+    "address": "123 rue Example, 75000 Paris",
+    "zone": "Paris et Île-de-France",
+    "siret": "123 456 789 00000"
+  },
+  "design": {
+    "primary": "#7C3AED",
+    "primaryDark": "#5B21B6",
+    "accent": "#A855F7",
+    "fontHeading": "Playfair Display",
+    "fontBody": "Inter",
+    "heroImage": "images/hero.jpg",
+    "logoEmoji": "🔨"
+  },
+  "services": [
+    {"icon": "🏗️", "title": "Gros œuvre", "desc": "Construction neuve, rénovation, extension."},
+    {"icon": "🧱", "title": "Maçonnerie", "desc": "Murs, clôtures, dallage, chape."},
+    {"icon": "🏠", "title": "Aménagement", "desc": "Terrasses, allées, pavage."},
+    {"icon": "🎨", "title": "Finitions", "desc": "Enduits, peinture, carrelage."}
+  ],
+  "gallery": [
+    {"src": "images/work1.jpg", "alt": "Réalisation 1"},
+    {"src": "images/work2.jpg", "alt": "Réalisation 2"},
+    {"src": "images/work3.jpg", "alt": "Réalisation 3"},
+    {"src": "images/work4.jpg", "alt": "Réalisation 4"},
+    {"src": "images/work5.jpg", "alt": "Réalisation 5"},
+    {"src": "images/work6.jpg", "alt": "Réalisation 6"}
+  ],
+  "features": [
+    {"icon": "🎯", "title": "Travail soigné", "desc": "Finitions impeccables, règles de l'art."},
+    {"icon": "💰", "title": "Juste prix", "desc": "Devis gratuit, transparent, détaillé."},
+    {"icon": "🤝", "title": "Proximité", "desc": "À votre écoute, intervention rapide."}
+  ],
+  "seo": {
+    "title": "Mon Entreprise — Artisan de confiance",
+    "description": "Artisan qualifié. Devis gratuit, intervention rapide.",
+    "keywords": "artisan, construction, rénovation, devis gratuit"
+  }
+}

@@ -1,0 +1,299 @@
+html,
+body {
+  overflow-x: clip;
+}
+
+[id] {
+  scroll-margin-top: 5rem;
+}
+
+.gallery-item {
+  cursor: default !important;
+}
+
+.gallery-item:hover .gallery-img {
+  transform: scale(1.05);
+}
+
+.gallery-slide {
+  opacity: 1 !important;
+  transform: none !important;
+}
+
+.skip-link {
+  position: fixed;
+  top: 0.75rem;
+  left: 0.75rem;
+  z-index: 100000;
+  transform: translateY(-180%);
+  border-radius: 0.75rem;
+  background: #fff;
+  color: #0f172a;
+  padding: 0.65rem 0.9rem;
+  font: 700 0.875rem/1.2 Inter, system-ui, sans-serif;
+  box-shadow: 0 12px 30px rgba(15, 23, 42, 0.2);
+}
+
+.skip-link:focus {
+  transform: translateY(0);
+}
+
+.atlas-demo-notice {
+  position: relative;
+  z-index: 99999;
+  border-bottom: 1px solid rgba(251, 146, 60, 0.35);
+  background: #0f172a;
+  color: #f8fafc;
+  font: 500 0.82rem/1.45 Inter, system-ui, sans-serif;
+}
+
+.atlas-demo-notice__inner {
+  width: min(100% - 2rem, 72rem);
+  margin-inline: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-block: 0.72rem;
+}
+
+.atlas-demo-notice__copy {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 0.35rem 0.65rem;
+}
+
+.atlas-demo-notice strong {
+  color: #fdba74;
+  font-weight: 800;
+}
+
+.atlas-demo-notice a {
+  flex: 0 0 auto;
+  border-radius: 999px;
+  background: #f8fafc;
+  color: #0f172a;
+  padding: 0.42rem 0.78rem;
+  font-weight: 800;
+  text-decoration: none;
+}
+
+.atlas-demo-notice a:hover {
+  background: #ffedd5;
+}
+
+.atlas-demo-form-note {
+  margin-bottom: 1rem;
+  border: 1px solid rgba(251, 146, 60, 0.35);
+  border-radius: 0.8rem;
+  background: rgba(255, 247, 237, 0.96);
+  color: #7c2d12;
+  padding: 0.8rem 0.9rem;
+  font: 600 0.82rem/1.45 Inter, system-ui, sans-serif;
+}
+
+.atlas-demo-form-note a {
+  color: #9a3412;
+  font-weight: 800;
+  text-decoration: underline;
+  text-underline-offset: 0.16em;
+}
+
+[data-demo-status] {
+  margin-top: 0.8rem;
+  min-height: 1.45em;
+  color: currentColor;
+  font-weight: 700;
+}
+
+.demo-hero-texture {
+  background-image:
+    linear-gradient(135deg, rgba(255,255,255,.08) 25%, transparent 25%),
+    linear-gradient(315deg, rgba(255,255,255,.06) 25%, transparent 25%);
+  background-position: 0 0, 18px 18px;
+  background-size: 36px 36px;
+  opacity: .5;
+}
+
+[class~="text-2xl"]:empty::before {
+  content: "•";
+  color: currentColor;
+}
+
+[data-demo-icon] {
+  display: inline-flex !important;
+  min-width: 2.1rem;
+  min-height: 2.1rem;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(148, 163, 184, 0.35);
+  border-radius: 0.65rem;
+  background: rgba(248, 250, 252, 0.8);
+  color: #334155;
+  font: 900 0.62rem/1 Inter, system-ui, sans-serif !important;
+  letter-spacing: 0.04em;
+}
+
+:where(a, button, input, textarea, select):focus-visible {
+  outline: 3px solid #fb923c;
+  outline-offset: 3px;
+}
+
+/* Palette fallbacks for demo-only Tailwind tokens absent from site.css. */
+body[data-demo-palette="brick"] { --d50:#fff7ed;--d100:#ffedd5;--d200:#fed7aa;--d300:#fdba74;--d400:#fb923c;--d500:#f97316;--d600:#ea580c;--d700:#c2410c;--d800:#9a3412;--d900:#7c2d12;--d950:#431407; }
+body[data-demo-palette="leaf"] { --d50:#f4f8f1;--d100:#e4eedf;--d200:#c8ddbf;--d300:#a4c495;--d400:#7da76d;--d500:#608c50;--d600:#4b6e3c;--d700:#3d5833;--d800:#34472d;--d900:#2b3b27;--d950:#142012; }
+body[data-demo-palette="pink"] { --d50:#fdf2f8;--d100:#fce7f3;--d200:#fbcfe8;--d300:#f9a8d4;--d400:#f472b6;--d500:#ec4899;--d600:#db2777;--d700:#be185d;--d800:#9d174d;--d900:#831843;--d950:#500724; }
+body[data-demo-palette="red"] { --d50:#fef2f2;--d100:#fee2e2;--d200:#fecaca;--d300:#fca5a5;--d400:#f87171;--d500:#ef4444;--d600:#dc2626;--d700:#b91c1c;--d800:#991b1b;--d900:#7f1d1d;--d950:#450a0a; }
+body[data-demo-palette="amber"] { --d50:#fffbeb;--d100:#fef3c7;--d200:#fde68a;--d300:#fcd34d;--d400:#fbbf24;--d500:#f59e0b;--d600:#d97706;--d700:#b45309;--d800:#92400e;--d900:#78350f;--d950:#451a03; }
+body[data-demo-palette="purple"] { --d50:#faf5ff;--d100:#f3e8ff;--d200:#e9d5ff;--d300:#d8b4fe;--d400:#c084fc;--d500:#a855f7;--d600:#9333ea;--d700:#7e22ce;--d800:#6b21a8;--d900:#581c87;--d950:#3b0764; }
+body[data-demo-palette="orange"] { --d50:#fff7ed;--d100:#ffedd5;--d200:#fed7aa;--d300:#fdba74;--d400:#fb923c;--d500:#f97316;--d600:#ea580c;--d700:#c2410c;--d800:#9a3412;--d900:#7c2d12;--d950:#431407; }
+body[data-demo-palette="iron"] { --d50:#fafaf9;--d100:#f5f5f4;--d200:#e7e5e4;--d300:#d6d3d1;--d400:#a8a29e;--d500:#78716c;--d600:#57534e;--d700:#44403c;--d800:#292524;--d900:#1c1917;--d950:#0c0a09; }
+
+:is(.bg-brand-50,.bg-accent-50,.bg-leaf-50){background-color:var(--d50)!important}:is(.bg-brand-100,.bg-accent-100,.bg-leaf-100){background-color:var(--d100)!important}:is(.bg-brand-200,.bg-accent-200,.bg-leaf-200){background-color:var(--d200)!important}:is(.bg-brand-300,.bg-accent-300,.bg-leaf-300){background-color:var(--d300)!important}:is(.bg-brand-400,.bg-accent-400,.bg-leaf-400){background-color:var(--d400)!important}:is(.bg-brand-500,.bg-accent-500,.bg-leaf-500){background-color:var(--d500)!important}:is(.bg-brand-600,.bg-accent-600,.bg-leaf-600){background-color:var(--d600)!important}:is(.bg-brand-700,.bg-accent-700,.bg-leaf-700){background-color:var(--d700)!important}:is(.bg-brand-800,.bg-accent-800,.bg-leaf-800){background-color:var(--d800)!important}:is(.bg-brand-900,.bg-accent-900,.bg-leaf-900){background-color:var(--d900)!important}:is(.bg-brand-950,.bg-accent-950,.bg-leaf-950){background-color:var(--d950)!important}
+:is(.text-brand-50,.text-accent-50,.text-leaf-50){color:var(--d50)!important}:is(.text-brand-100,.text-accent-100,.text-leaf-100){color:var(--d100)!important}:is(.text-brand-200,.text-accent-200,.text-leaf-200){color:var(--d200)!important}:is(.text-brand-300,.text-accent-300,.text-leaf-300){color:var(--d300)!important}:is(.text-brand-400,.text-accent-400,.text-leaf-400){color:var(--d400)!important}:is(.text-brand-500,.text-accent-500,.text-leaf-500){color:var(--d500)!important}:is(.text-brand-600,.text-accent-600,.text-leaf-600){color:var(--d600)!important}:is(.text-brand-700,.text-accent-700,.text-leaf-700){color:var(--d700)!important}:is(.text-brand-800,.text-accent-800,.text-leaf-800){color:var(--d800)!important}:is(.text-brand-900,.text-accent-900,.text-leaf-900){color:var(--d900)!important}:is(.text-brand-950,.text-accent-950,.text-leaf-950){color:var(--d950)!important}
+:is(.bg-brand-900\/50,.bg-accent-900\/50,.bg-leaf-900\/50){background-color:color-mix(in srgb,var(--d900) 50%,transparent)!important}
+:is(.hover\:bg-brand-50,.hover\:bg-accent-50,.hover\:bg-leaf-50):hover{background-color:var(--d50)!important}:is(.hover\:bg-brand-300,.hover\:bg-accent-300,.hover\:bg-leaf-300):hover{background-color:var(--d300)!important}:is(.hover\:bg-brand-400,.hover\:bg-accent-400,.hover\:bg-leaf-400):hover{background-color:var(--d400)!important}:is(.hover\:bg-brand-500,.hover\:bg-accent-500,.hover\:bg-leaf-500):hover{background-color:var(--d500)!important}:is(.hover\:bg-brand-600,.hover\:bg-accent-600,.hover\:bg-leaf-600):hover{background-color:var(--d600)!important}:is(.hover\:bg-brand-700,.hover\:bg-accent-700,.hover\:bg-leaf-700):hover{background-color:var(--d700)!important}
+:is(.hover\:text-brand-600,.hover\:text-accent-600,.hover\:text-leaf-600):hover{color:var(--d600)!important}:is(.hover\:text-brand-700,.hover\:text-accent-700,.hover\:text-leaf-700):hover{color:var(--d700)!important}
+
+.bg-wood-50{background-color:#f8f5f2!important}.bg-wood-100{background-color:#eee6df!important}.bg-wood-900{background-color:#2f1c14!important}.text-wood-300{color:#c9a98f!important}.text-wood-500{color:#8a6a55!important}.border-wood-200{border-color:#dfd0c4!important}
+.bg-warm-50{background-color:#fffaf5!important}.bg-warm-100\/50{background-color:rgba(255,237,213,.5)!important}.bg-warm-900{background-color:#431407!important}.text-warm-300{color:#fdba74!important}.text-warm-400{color:#fb923c!important}.text-warm-500{color:#9a6b4a!important}.text-warm-600{color:#7c4d2d!important}.text-warm-700{color:#633b22!important}.text-warm-900{color:#431407!important}.border-warm-100{border-color:#ffedd5!important}.border-warm-200{border-color:#fed7aa!important}.border-warm-800{border-color:#9a3412!important}
+.bg-iron-50{background-color:#fafaf9!important}.bg-iron-100\/50{background-color:rgba(245,245,244,.5)!important}.bg-iron-800{background-color:#292524!important}.bg-iron-900{background-color:#1c1917!important}.text-iron-300{color:#d6d3d1!important}.text-iron-400{color:#a8a29e!important}.text-iron-500{color:#78716c!important}.text-iron-600{color:#57534e!important}.text-iron-700{color:#44403c!important}.text-iron-900{color:#1c1917!important}.border-iron-100{border-color:#f5f5f4!important}.border-iron-200{border-color:#e7e5e4!important}.border-iron-800{border-color:#292524!important}
+
+/* Progressive motion: content remains visible until JS opts in. */
+.atlas-motion-ready .atlas-reveal {
+  opacity: 0;
+  transform: translate3d(0, 2rem, 0) scale(0.985);
+  transition:
+    opacity 720ms cubic-bezier(0.22, 1, 0.36, 1),
+    transform 720ms cubic-bezier(0.22, 1, 0.36, 1);
+  transition-delay: var(--atlas-reveal-delay, 0ms);
+  will-change: opacity, transform;
+}
+
+.atlas-motion-ready .atlas-reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+.atlas-motion-ready .atlas-hero-item {
+  animation: atlas-hero-rise 780ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-delay: var(--atlas-hero-delay, 0ms);
+}
+
+.atlas-motion-ready .atlas-hero-motion img {
+  animation: atlas-hero-drift 12s ease-in-out infinite alternate;
+  transform-origin: center;
+  will-change: transform;
+}
+
+.atlas-demo-notice__inner {
+  animation: atlas-notice-enter 560ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+[data-demo-submit],
+a[aria-label="Parler de ce design à Atlas Nexus"] {
+  animation: atlas-cta-glow 3.4s ease-in-out infinite;
+}
+
+@media (hover: hover) {
+  .card-hover,
+  .gallery-item,
+  [data-demo-icon] {
+    transition:
+      transform 260ms cubic-bezier(0.22, 1, 0.36, 1),
+      box-shadow 260ms ease,
+      border-color 260ms ease;
+  }
+
+  .card-hover:hover,
+  .gallery-item:hover {
+    transform: translateY(-0.35rem);
+    box-shadow: 0 22px 45px rgba(15, 23, 42, 0.15);
+  }
+
+  .card-hover:hover [data-demo-icon],
+  .gallery-item:hover [data-demo-icon] {
+    transform: rotate(-3deg) scale(1.08);
+    border-color: var(--d400, #fb923c);
+  }
+}
+
+@keyframes atlas-notice-enter {
+  from { opacity: 0; transform: translateY(-0.8rem); }
+  to { opacity: 1; transform: none; }
+}
+
+@keyframes atlas-hero-rise {
+  from { opacity: 0; transform: translateY(1.5rem); }
+  to { opacity: 1; transform: none; }
+}
+
+@keyframes atlas-hero-drift {
+  from { transform: scale(1.015) translate3d(-0.4%, 0, 0); }
+  to { transform: scale(1.065) translate3d(0.6%, -0.4%, 0); }
+}
+
+@keyframes atlas-cta-glow {
+  0%, 100% { box-shadow: 0 10px 28px color-mix(in srgb, var(--d600, #f97316) 20%, transparent); }
+  50% { box-shadow: 0 14px 38px color-mix(in srgb, var(--d500, #fb923c) 42%, transparent); }
+}
+
+@media (max-width: 42rem) {
+  body {
+    padding-bottom: 5rem;
+  }
+
+  body[data-demo-palette="red"] nav > div > a span,
+  body[data-demo-palette="purple"] nav > div > a span {
+    display: none;
+  }
+
+  body[data-demo-palette="red"] nav > div > .flex,
+  body[data-demo-palette="purple"] nav > div > .flex {
+    gap: 0.8rem;
+    font-size: 0.72rem;
+  }
+
+  .atlas-demo-notice__inner {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 0.65rem;
+  }
+
+  .atlas-demo-notice a {
+    width: 100%;
+    text-align: center;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-delay: 0s !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-delay: 0s !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .fade-in,
+  .gallery-slide,
+  .atlas-reveal,
+  .atlas-hero-item,
+  .atlas-hero-motion img {
+    opacity: 1 !important;
+    transform: none !important;
+    animation: none !important;
+  }
+
+  [data-demo-submit],
+  a[aria-label="Parler de ce design à Atlas Nexus"],
+  .atlas-demo-notice__inner {
+    animation: none !important;
+  }
+
+  .skip-link {
+    transition: none !important;
+  }
+}

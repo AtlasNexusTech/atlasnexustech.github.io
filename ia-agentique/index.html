@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+<meta charset="UTF-8">
+<link rel="icon" type="image/png" href="/favicon.png">
+<link rel="shortcut icon" href="/favicon.ico">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Atlas Nexus : IA Agentique</title>
+<meta name="description" content="Déploiement et infogérance d'IA agentique. Atlas Nexus Tech installe et configure votre agent IA avec interface Web, connexion Telegram, fournisseur d'IA et compétences.">
+<link rel="stylesheet" href="/css/site.css?v=4">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;600;700;900&amp;family=Nunito+Sans:wght@400;600;700&amp;display=swap" rel="stylesheet">
+<style>
+  .gradient-text { background : linear-gradient(135deg, #2563EB 0%, #059669 100%); -webkit-background-clip : text; -webkit-text-fill-color : transparent; background-clip : text; }
+  .glow-word { position : relative; display : inline-block; background : linear-gradient(110deg, #0F172A 0%, #2563EB 32%, #7C3AED 56%, #059669 82%, #0F172A 100%); background-size: 240% 100%; -webkit-background-clip : text; -webkit-text-fill-color : transparent; background-clip : text; animation : agenticGlow 3.8s ease-in-out infinite; }
+  @keyframes agenticGlow { 0%,100% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } }
+  .agentic-card { position : relative; overflow : hidden; border-color : rgba(37,99,235,.28)!important; box-shadow: 0 18px 60px -28px rgba(37,99,235,.55); }
+  .agentic-card::before { content: ""; position : absolute; inset: -1px; background : radial-gradient(circle at 15% 0%, rgba(37,99,235,.13), transparent 38%), radial-gradient(circle at 95% 20%, rgba(5,150,105,.10), transparent 34%); pointer-events : none; }
+  .agentic-card > * { position : relative; }
+  .reveal { opacity: 0; transform : translateY(24px); transition : opacity 0.6s ease, transform 0.6s ease; }
+  .reveal.visible { opacity: 1; transform : translateY(0); }
+  .section-title { font-size : clamp(1.8rem, 4.5vw, 3rem); font-weight: 800; letter-spacing: -0.03em; line-height: 1.1; }
+  .section-title::after { content: ""; display : block; width: 3rem; height: 3px; border-radius: 2px; background : linear-gradient(90deg, #2563EB, #059669); margin-top: 0.5rem; }
+  .hero-orb { position : absolute; inset : auto 4% 8% auto; width : min(34vw, 360px); height : min(34vw, 360px); border-radius: 999px; background : radial-gradient(circle at 35% 35%, rgba(37,99,235,.22), rgba(5,150,105,.12) 38%, transparent 68%); filter : blur(2px); pointer-events : none; }
+  .pricing-card { position : relative; overflow : hidden; border-color : rgba(37,99,235,.22)!important; box-shadow: 0 18px 52px -34px rgba(37,99,235,.55); background : linear-gradient(145deg, #ffffff 0%, #f7fbff 52%, #eef8ff 100%); }
+  .pricing-card::before { content: ""; position : absolute; inset: -1px; background : radial-gradient(circle at 15% 0%, rgba(37,99,235,.10), transparent 38%), radial-gradient(circle at 95% 20%, rgba(5,150,105,.08), transparent 34%); pointer-events : none; }
+  .pricing-card > * { position : relative; }.pricing-card:hover { box-shadow: 0 22px 70px -32px rgba(37,99,235,.65); transform : translateY(-4px); transition : all 250ms ease; }
+  .pricing-card.featured { border-color : rgba(5,150,105,.35)!important; box-shadow: 0 18px 60px -28px rgba(5,150,105,.50); background : linear-gradient(145deg, #ffffff 0%, #f0fdf6 52%, #ecfdf5 100%); }
+  .pricing-card.featured:hover { box-shadow: 0 22px 70px -32px rgba(5,150,105,.65); }
+  .check-icon { color: #059669; }
+
+  /* ── Language switch ── */
+  .lang-switch { position : relative; display:inline-grid; grid-template-columns:1fr 1fr; align-items:center; min-width:92px; height:38px; padding:4px; border:1px solid rgba(37,99,235,.18); border-radius:999px; background:linear-gradient(135deg, rgba(255,255,255,.92), rgba(241,245,253,.84)); color:#64748B; font-size:.76rem; font-weight:900; box-shadow:inset 0 1px 0 rgba(255,255,255,.9), 0 12px 26px -20px rgba(37,99,235,.55); }
+  .lang-switch::before { content:""; position:absolute; top:4px; bottom:4px; width:calc(50% - 4px); border-radius:999px; background:linear-gradient(135deg,#2563EB,#059669); box-shadow:0 10px 22px -12px rgba(37,99,235,.75); transition:transform 220ms ease; }
+  .lang-switch[data-active="fr"]::before { transform:translateX(0); left:4px; }
+  .lang-switch[data-active="en"]::before { transform:translateX(100%); left:4px; }
+  .lang-switch a { position:relative; z-index:1; display:flex; align-items:center; justify-content:center; height:30px; border-radius:999px; color:#64748B; letter-spacing:.03em; }
+  .lang-switch a.active { color:white; }
+  .lang-switch:hover { border-color:rgba(37,99,235,.34); box-shadow:inset 0 1px 0 rgba(255,255,255,.9), 0 16px 34px -22px rgba(37,99,235,.72); }
+
+  /* ── Process step buttons : fall from top ── */
+  .step-fall {
+    opacity: 0;
+    transform : translateY(-120px);
+  }
+  .step-fall.animate {
+    animation : fallFromTop 1s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  }
+  @keyframes fallFromTop {
+    0%   { opacity: 0; transform : translateY(-120px); }
+    60%  { opacity: 1; transform : translateY(8px); }
+    80%  { transform : translateY(-3px); }
+    100% { opacity: 1; transform : translateY(0); }
+  }
+</style>
+
+<link rel="canonical" href="https://atlasnexus.tech/ia-agentique/">
+<link rel="alternate" hreflang="fr" href="https://atlasnexus.tech/ia-agentique/">
+<link rel="alternate" hreflang="en" href="https://atlasnexus.tech/ia-agentique/en/">
+<link rel="alternate" hreflang="x-default" href="https://atlasnexus.tech/ia-agentique/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Atlas Nexus">
+<meta property="og:locale" content="fr_FR">
+<meta property="og:title" content="Atlas Nexus : IA Agentique">
+<meta property="og:description" content="Déploiement et infogérance d'IA agentique. Atlas Nexus Tech installe et configure votre agent IA avec interface Web, Telegram, fournisseur d'IA et compétences.">
+<meta property="og:url" content="https://atlasnexus.tech/ia-agentique/">
+<meta property="og:image" content="https://atlasnexus.tech/assets/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Atlas Nexus : IA Agentique">
+<meta name="twitter:description" content="Déploiement et infogérance d'IA agentique. Atlas Nexus Tech installe et configure votre agent IA avec interface Web, Telegram, fournisseur d'IA et compétences.">
+<meta name="twitter:image" content="https://atlasnexus.tech/assets/og-image.png">
+<script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "@id": "https://atlasnexus.tech/ia-agentique/#service",
+  "name": "IA Agentique",
+  "url": "https://atlasnexus.tech/ia-agentique/",
+  "description": "Déploiement et infogérance d'IA agentique. Atlas Nexus Tech installe et configure un agent IA opérationnel avec interface Web, connexion Telegram, fournisseur d'IA et compétences.",
+  "provider": {
+    "@id": "https://atlasnexus.tech/#business"
+  },
+  "areaServed": {
+    "@type": "Country",
+    "name": "France"
+  },
+  "offers": {
+    "@type": "AggregateOffer",
+    "priceCurrency": "EUR",
+    "lowPrice": "15",
+    "highPrice": "90",
+    "offerCount": "4",
+    "availability": "https://schema.org/InStock",
+    "url": "https://atlasnexus.tech/ia-agentique/"
+  }
+}</script>
+<link rel="stylesheet" href="/css/atlas-header.css?v=1">
+<script src="/js/atlas-header.js?v=1" defer></script>
+</head>
+<body class="bg-surface text-foreground font-body antialiased atlas-unified-header">
+<header class="atlas-site-header" data-atlas-site-header>
+  <nav class="atlas-site-nav" aria-label="Atlas Nexus accueil">
+    <a href="/" class="atlas-site-brand" aria-label="Atlas Nexus accueil">
+      <img src="/atlas-logo.png?v=20260527" alt="" class="atlas-site-brand-logo" width="48" height="48">
+      <span class="atlas-site-brand-name">Atlas Nexus</span>
+    </a>
+    <ul class="atlas-site-links">
+      <li><a href="/#work">Réalisations</a></li>
+      <li><a href="/#offers">Offres</a></li>
+      <li><a href="/#why">Pourquoi</a></li>
+      <li><a href="https://github.com/AtlasNexusTech" target="_blank" rel="noopener">GitHub</a></li>
+    </ul>
+    <div class="atlas-site-actions">
+      <div class="atlas-site-language" data-active="fr" aria-label="Sélecteur de langue">
+        <a href="/" data-atlas-lang="fr" aria-current="page">FR</a>
+        <a href="/en/" data-atlas-lang="en">EN</a>
+      </div>
+      <button id="atlas-theme-toggle" class="atlas-theme-toggle" type="button" aria-label="Activer le thème sombre" aria-pressed="false">
+        <svg class="atlas-theme-icon-sun" aria-hidden="true" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l1.41 1.41"/></svg>
+        <svg class="atlas-theme-icon-moon" aria-hidden="true" viewBox="0 0 24 24"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
+      </button>
+      <a class="atlas-site-contact" href="/#contact">Contact</a>
+    </div>
+  </nav>
+</header>
+
+<!-- Nav -->
+<nav data-atlas-legacy-nav aria-hidden="true" inert class="fixed top-0 w-full z-50 bg-surface/85 backdrop-blur-lg border-b border-border">
+  <div class="max-w-6xl mx-auto px-6 h-[72px] flex items-center justify-between">
+    <a href="https://atlasnexus.tech" class="flex items-center gap-3">
+      <img src="/atlas-logo.png?v=20260527" alt="Atlas Nexus" class="w-9 h-9 rounded-lg shadow-lg shadow-blue-500/20">
+      <span class="font-display font-bold text-xl tracking-tight">Atlas Nexus</span>
+    </a>
+    <div class="flex items-center gap-3">
+      <div class="hidden sm:inline-grid lang-switch" data-active="fr" aria-label="Sélecteur de langue">
+        <a class="active" href="/ia-agentique/" onclick="localStorage.setItem('atlasnexus.lang','fr')">FR</a>
+        <a href="/ia-agentique/en/" onclick="localStorage.setItem('atlasnexus.lang','en')">EN</a>
+      </div>
+      <a href="#contact" class="bg-primary text-white px-5 py-2.5 rounded-full text-sm font-semibold hover:bg-primary-dark font-display">Démarrer un projet</a>
+    </div>
+  </div>
+</nav>
+
+<!-- Hero -->
+<section id="top" class="min-h-screen flex items-center pt-24 pb-16 relative overflow-hidden">
+  <div class="hero-orb"></div>
+  <div class="max-w-6xl mx-auto px-6 w-full relative z-10">
+    <div class="max-w-4xl">
+      <p class="text-accent font-semibold tracking-widest uppercase text-xs mb-4">IA Agentique sur mesure</p>
+      <h1 class="text-6xl sm:text-7xl lg:text-8xl font-black tracking-tight leading-none mb-6 font-display">
+        <span class="glow-word">Voyez votre agent</span><br>
+        <span class="text-foreground">fonctionner en 20 minutes</span><br>
+        <span class="gradient-text">Déployé sous 24–48 h</span>
+      </h1>
+      <p class="text-xl sm:text-2xl text-slate-600 max-w-2xl mb-3 leading-relaxed">
+        Un assistant IA professionnel intégré à vos outils, livré avec documentation et code visible. Démo opérationnelle en 20 minutes, déploiement complet sous 24-48 h.
+      </p>
+      <p class="text-lg text-slate-500 max-w-xl mb-10">
+        Interface web · Telegram · API · Automatisation
+      </p>
+      <div class="flex gap-4 flex-wrap">
+        <a href="#pricing" class="bg-primary text-white px-8 py-4 rounded-full text-lg font-semibold hover:bg-primary-dark font-display">Voir les offres</a>
+        <a href="?offer=maintenance#order-form" data-offer="maintenance" class="border-2 border-slate-300 text-slate-700 px-8 py-4 rounded-full text-lg font-semibold hover:border-primary hover:text-primary font-display">Infogérance dès 15€/mois</a>
+      </div>
+      <div class="flex gap-6 mt-12 text-sm text-slate-400">
+        <span>✓ Livraison 24-48h</span>
+        <span>✓ Code GitHub</span>
+        <span>✓ Documentation incluse</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Problem/Solution -->
+<section class="py-24 bg-white">
+  <div class="max-w-6xl mx-auto px-6">
+    <div class="grid lg:grid-cols-2 gap-16 items-center">
+      <div class="reveal">
+        <p class="text-accent font-semibold tracking-widest uppercase text-xs mb-3">Le problème</p>
+        <h2 class="section-title text-foreground mb-6 font-display">Vous passez trop de temps sur des tâches répétitives</h2>
+        <ul class="space-y-4 text-slate-600">
+          <li class="flex gap-3"><span class="text-red-400 font-bold shrink-0">✗</span> Répondre aux mêmes questions clients chaque jour</li>
+          <li class="flex gap-3"><span class="text-red-400 font-bold shrink-0">✗</span> Surveiller manuellement des données, dashboards, APIs</li>
+          <li class="flex gap-3"><span class="text-red-400 font-bold shrink-0">✗</span> Gérer des workflows qui pourraient être automatisés</li>
+          <li class="flex gap-3"><span class="text-red-400 font-bold shrink-0">✗</span> Perdre du temps en coordination, reporting, suivis</li>
+        </ul>
+      </div>
+      <div class="reveal">
+        <p class="text-accent font-semibold tracking-widest uppercase text-xs mb-3">La solution</p>
+        <h2 class="section-title text-foreground mb-6 font-display">Un agent IA qui travaille pendant que vous dormez</h2>
+        <ul class="space-y-4 text-slate-600">
+          <li class="flex gap-3"><span class="check-icon font-bold shrink-0">✓</span> Réponses automatiques via interface web et Telegram</li>
+          <li class="flex gap-3"><span class="check-icon font-bold shrink-0">✓</span> Surveillance de données 24/7 avec alertes</li>
+          <li class="flex gap-3"><span class="check-icon font-bold shrink-0">✓</span> Workflows automatisés : scraping → analyse → rapport</li>
+          <li class="flex gap-3"><span class="check-icon font-bold shrink-0">✓</span> Intégration directe à vos APIs et outils existants</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Pricing -->
+<section id="pricing" class="py-28 bg-surface">
+  <div class="max-w-6xl mx-auto px-6">
+    <div class="reveal text-center mb-16">
+      <p class="text-accent font-semibold tracking-widest uppercase text-xs mb-3">Offres</p>
+      <h2 class="section-title text-foreground mb-5 font-display">Déploiement et infogérance d'IA agentique</h2>
+      <p class="text-slate-600 max-w-2xl mx-auto leading-relaxed">Atlas Nexus Tech installe et configure un agent IA opérationnel sur l'ordinateur, le serveur ou le VPS du client. L'agent est livré avec une interface Web, une connexion Telegram, un fournisseur d'intelligence artificielle et les compétences nécessaires à son utilisation.</p>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+      <!-- Déploiement sur votre infrastructure -->
+      <div class="reveal pricing-card rounded-2xl p-8 border border-border flex flex-col">
+        <p class="text-sm font-bold text-accent mb-2">DÉPLOIEMENT STANDARD</p>
+        <h3 class="text-2xl font-bold text-foreground mb-1 font-display">Sur votre infrastructure</h3>
+        <p class="text-slate-500 text-sm mb-6">Processus standardisé : installé, configuré et testé pour les clients disposant déjà d'un ordinateur, d'un serveur ou d'un VPS et des comptes nécessaires</p>
+        <p class="text-4xl font-black text-foreground mb-1 font-display">50€</p>
+        <p class="text-sm text-slate-400 mb-8">Paiement unique</p>
+        <ul class="space-y-3 mb-8 text-sm text-slate-600 flex-1">
+          <li class="flex gap-2"><span class="check-icon">✓</span> Installation complète de l'agent IA</li>
+          <li class="flex gap-2"><span class="check-icon">✓</span> Mise en service de l'interface Web</li>
+          <li class="flex gap-2"><span class="check-icon">✓</span> Connexion à Telegram</li>
+          <li class="flex gap-2"><span class="check-icon">✓</span> Configuration du fournisseur d'IA choisi</li>
+          <li class="flex gap-2"><span class="check-icon">✓</span> Installation des compétences nécessaires</li>
+          <li class="flex gap-2"><span class="check-icon">✓</span> Personnalisation initiale du comportement de l'agent</li>
+          <li class="flex gap-2"><span class="check-icon">✓</span> Configuration des accès</li>
+          <li class="flex gap-2"><span class="check-icon">✓</span> Principaux paramètres de sécurité</li>
+          <li class="flex gap-2"><span class="check-icon">✓</span> Tests de fonctionnement</li>
+          <li class="flex gap-2"><span class="check-icon">✓</span> Documentation de prise en main</li>
+          <li class="flex gap-2"><span class="check-icon">✓</span> Accompagnement lors de la mise en service</li>
+          <li class="flex gap-2"><span class="check-icon">✓</span> Corrections techniques pendant 14 jours</li>
+        </ul>
+        <p class="text-xs text-slate-400 mb-6">Le client conserve le contrôle de son infrastructure, de ses comptes, de ses données et de la configuration de son agent. Les abonnements et frais de services externes restent à sa charge.</p>
+        <a href="https://buy.stripe.com/3cI7sKenygvyej95Qj1Fe04" class="block text-center bg-accent text-white py-3 rounded-full font-semibold hover:bg-accent-dark font-display transition-all">Payer 50€</a>
+        <a href="?offer=infra#order-form" data-offer="infra" class="block text-center mt-3 text-sm text-slate-500 font-semibold hover:text-primary">Ou décrire votre besoin avant de payer</a>
+      </div>
+
+      <!-- Déploiement clé en main -->
+      <div class="reveal pricing-card featured rounded-2xl p-8 border-2 flex flex-col relative" style="overflow:visible">
+        <div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-accent text-white text-xs font-bold px-4 py-1 rounded-full">FORMULE COMPLÈTE</div>
+        <p class="text-sm font-bold text-accent mb-2">DÉPLOIEMENT</p>
+        <h3 class="text-2xl font-bold text-foreground mb-1 font-display">Clé en main</h3>
+        <p class="text-slate-500 text-sm mb-6">L'ensemble du déploiement + les services techniques nécessaires au démarrage</p>
+        <p class="text-4xl font-black text-foreground mb-1 font-display">90€</p>
+        <p class="text-sm text-slate-400 mb-8">Enveloppe de démarrage de 40€ incluse</p>
+        <ul class="space-y-3 mb-8 text-sm text-slate-600 flex-1">
+          <li class="flex gap-2"><span class="check-icon">✓</span> Installation complète de l'agent IA</li>
+          <li class="flex gap-2"><span class="check-icon">✓</span> Création et configuration du VPS</li>
+          <li class="flex gap-2"><span class="check-icon">✓</span> Mise en service de l'interface Web</li>
+          <li class="flex gap-2"><span class="check-icon">✓</span> Connexion à Telegram</li>
+          <li class="flex gap-2"><span class="check-icon">✓</span> Fournisseur d'IA configuré + crédits API de prise en main</li>
+          <li class="flex gap-2"><span class="check-icon">✓</span> Installation des compétences nécessaires</li>
+          <li class="flex gap-2"><span class="check-icon">✓</span> Personnalisation initiale de l'agent</li>
+          <li class="flex gap-2"><span class="check-icon">✓</span> Configuration des accès et de la sécurité</li>
+          <li class="flex gap-2"><span class="check-icon">✓</span> Configuration d'un domaine ou sous-domaine</li>
+          <li class="flex gap-2"><span class="check-icon">✓</span> Licences ou services tiers nécessaires</li>
+          <li class="flex gap-2"><span class="check-icon">✓</span> Tests complets + documentation</li>
+          <li class="flex gap-2"><span class="check-icon">✓</span> Accompagnement à la prise en main</li>
+          <li class="flex gap-2"><span class="check-icon">✓</span> Corrections techniques et support pendant 30 jours</li>
+        </ul>
+        <p class="text-xs text-slate-400 mb-6">L'enveloppe de 40€ couvre notamment : premier mois de VPS, premiers crédits API, domaine ou sous-domaine, licence ou service tiers. Après la période initiale, les frais récurrents sont présentés avant renouvellement. Les développements spécifiques et automatisations avancées font l'objet d'un devis.</p>
+        <a href="https://buy.stripe.com/4gM6oGgvG9365MD2E71Fe05" class="block text-center bg-accent text-white py-3 rounded-full font-semibold hover:bg-accent-dark font-display transition-all">Payer 90€</a>
+        <a href="?offer=cle-en-main#order-form" data-offer="cle-en-main" class="block text-center mt-3 text-sm text-slate-500 font-semibold hover:text-primary">Ou décrire votre besoin avant de payer</a>
+      </div>
+    </div>
+
+    <!-- Infogérance -->
+    <div class="reveal text-center mt-24 mb-12">
+      <p class="text-accent font-semibold tracking-widest uppercase text-xs mb-3">Infogérance facultative</p>
+      <h2 class="section-title text-foreground mb-4 font-display">Gardez votre agent suivi et à jour</h2>
+    </div>
+    <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+      <!-- Maintenance essentielle -->
+      <div class="reveal pricing-card rounded-2xl p-8 border border-border flex flex-col">
+        <p class="text-sm font-bold text-accent mb-2">MAINTENANCE ESSENTIELLE</p>
+        <p class="text-4xl font-black text-foreground mb-1 font-display">15€ <span class="text-base font-semibold text-slate-400">/ mois</span></p>
+        <p class="text-sm text-slate-400 mb-3">Sans engagement · résiliable à tout moment</p>
+        <p class="text-slate-500 text-sm mb-6">La vérification de base du fonctionnement de votre agent</p>
+        <ul class="space-y-3 mb-8 text-sm text-slate-600 flex-1">
+          <li class="flex gap-2"><span class="check-icon">✓</span> Vérification périodique du fonctionnement</li>
+          <li class="flex gap-2"><span class="check-icon">✓</span> Mises à jour nécessaires</li>
+          <li class="flex gap-2"><span class="check-icon">✓</span> Sauvegarde de la configuration</li>
+          <li class="flex gap-2"><span class="check-icon">✓</span> Remise en service en cas d'incident simple</li>
+          <li class="flex gap-2"><span class="check-icon">✓</span> Une intervention technique par mois</li>
+        </ul>
+        <p class="text-xs text-slate-400 mb-6">Les frais de VPS, de modèles IA et de services externes sont réglés séparément.</p>
+        <a href="https://buy.stripe.com/7sY5kC2EQ1AE7UL4Mf1Fe06" class="block text-center bg-primary text-white py-3 rounded-full font-semibold hover:bg-primary-dark font-display transition-all">S'abonner: 15€/mois</a>
+        <a href="?offer=maintenance#order-form" data-offer="maintenance" class="block text-center mt-3 text-sm text-slate-500 font-semibold hover:text-primary">Ou décrire votre besoin avant de payer</a>
+      </div>
+
+      <!-- Infogérance complète -->
+      <div class="reveal pricing-card rounded-2xl p-8 border border-border flex flex-col">
+        <p class="text-sm font-bold text-accent mb-2">INFOGÉRANCE COMPLÈTE</p>
+        <p class="text-4xl font-black text-foreground mb-1 font-display">29€ <span class="text-base font-semibold text-slate-400">/ mois</span></p>
+        <p class="text-sm text-slate-400 mb-3">Sans engagement · résiliable à tout moment</p>
+        <p class="text-slate-500 text-sm mb-6">Le contrôle régulier de votre agent et de ses principaux services</p>
+        <ul class="space-y-3 mb-8 text-sm text-slate-600 flex-1">
+          <li class="flex gap-2"><span class="check-icon">✓</span> Contrôle régulier de l'agent et de ses principaux services</li>
+          <li class="flex gap-2"><span class="check-icon">✓</span> Mises à jour</li>
+          <li class="flex gap-2"><span class="check-icon">✓</span> Sauvegardes de la configuration</li>
+          <li class="flex gap-2"><span class="check-icon">✓</span> Remise en service en cas d'incident</li>
+          <li class="flex gap-2"><span class="check-icon">✓</span> Petites modifications de configuration</li>
+          <li class="flex gap-2"><span class="check-icon">✓</span> Jusqu'à deux interventions techniques par mois</li>
+          <li class="flex gap-2"><span class="check-icon">✓</span> Assistance prioritaire par message</li>
+        </ul>
+        <p class="text-xs text-slate-400 mb-6">Les frais techniques récurrents peuvent être regroupés avec l'abonnement après validation de leur montant par le client.</p>
+        <a href="https://buy.stripe.com/6oU5kCa7i936grhdiL1Fe07" class="block text-center bg-primary text-white py-3 rounded-full font-semibold hover:bg-primary-dark font-display transition-all">S'abonner: 29€/mois</a>
+        <a href="?offer=infogerance#order-form" data-offer="infogerance" class="block text-center mt-3 text-sm text-slate-500 font-semibold hover:text-primary">Ou décrire votre besoin avant de payer</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Use Cases -->
+<section class="py-28 bg-white">
+  <div class="max-w-6xl mx-auto px-6">
+    <div class="reveal text-center mb-16">
+      <p class="text-accent font-semibold tracking-widest uppercase text-xs mb-3">Cas d'usage</p>
+      <h2 class="section-title text-foreground mb-5 font-display">Ce que votre agent peut faire</h2>
+    </div>
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div class="reveal agentic-card bg-white rounded-2xl p-6 border border-border">
+        <div class="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center mb-4"><svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
+        <h3 class="font-bold text-lg mb-2 font-display">Assistant Client 24/7</h3>
+        <p class="text-slate-600 text-sm">FAQ intelligente, prise de RDV, qualification de leads sur Telegram ou votre site.</p>
+      </div>
+      <div class="reveal agentic-card bg-white rounded-2xl p-6 border border-border">
+        <div class="w-12 h-12 bg-green-100 rounded-xl flex items-center justify-center mb-4"><svg class="w-6 h-6 text-accent" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="3 17 9 11 13 15 21 7"/><polyline points="17 7 21 7 21 11"/></svg></div>
+        <h3 class="font-bold text-lg mb-2 font-display">Veille & Alertes</h3>
+        <p class="text-slate-600 text-sm">Surveillance de marchés, concurrents, mentions. Alertes programmées sur Telegram.</p>
+      </div>
+      <div class="reveal agentic-card bg-white rounded-2xl p-6 border border-border">
+        <div class="w-12 h-12 bg-purple-100 rounded-xl flex items-center justify-center mb-4"><svg class="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></div>
+        <h3 class="font-bold text-lg mb-2 font-display">Pipeline Data</h3>
+        <p class="text-slate-600 text-sm">Scraping → nettoyage → analyse → rapport. Automatisation complète du flux de données.</p>
+      </div>
+      <div class="reveal agentic-card bg-white rounded-2xl p-6 border border-border">
+        <div class="w-12 h-12 bg-orange-100 rounded-xl flex items-center justify-center mb-4"><svg class="w-6 h-6 text-orange-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg></div>
+        <h3 class="font-bold text-lg mb-2 font-display">Reporting Automatisé</h3>
+        <p class="text-slate-600 text-sm">Rapports quotidiens/hebdomadaires générés automatiquement, livrés sur Telegram ou email.</p>
+      </div>
+      <div class="reveal agentic-card bg-white rounded-2xl p-6 border border-border">
+        <div class="w-12 h-12 bg-red-100 rounded-xl flex items-center justify-center mb-4"><svg class="w-6 h-6 text-red-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></div>
+        <h3 class="font-bold text-lg mb-2 font-display">Alertes Métier</h3>
+        <p class="text-slate-600 text-sm">Détection d'anomalies, seuils critiques, notifications conditionnelles sur vos KPIs.</p>
+      </div>
+      <div class="reveal agentic-card bg-white rounded-2xl p-6 border border-border">
+        <div class="w-12 h-12 bg-teal-100 rounded-xl flex items-center justify-center mb-4"><svg class="w-6 h-6 text-teal-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg></div>
+        <h3 class="font-bold text-lg mb-2 font-display">Workflow Sur Mesure</h3>
+        <p class="text-slate-600 text-sm">Votre processus métier unique automatisé de bout en bout. L'agent s'adapte à vous.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Process -->
+<section class="py-28 bg-muted">
+  <div class="max-w-6xl mx-auto px-6">
+    <div class="reveal text-center mb-16">
+      <p class="text-purple-500 font-semibold tracking-widest uppercase text-xs mb-3">Processus</p>
+      <h2 class="section-title text-foreground mb-5 font-display">Votre agent livré en 3 étapes</h2>
+    </div>
+    <div class="grid md:grid-cols-3 gap-10 max-w-4xl mx-auto">
+      <div class="reveal text-center">
+        <div class="step-fall w-16 h-16 bg-primary text-white rounded-2xl flex items-center justify-center text-2xl font-black mx-auto mb-5" style="animation-delay:0.1s">1</div>
+        <h3 class="font-bold text-xl mb-3 font-display">Brief</h3>
+        <p class="text-slate-600 text-sm leading-relaxed">On définit ensemble votre use case, les intégrations nécessaires et le livrable attendu. 30 min d'appel.</p>
+      </div>
+      <div class="reveal text-center">
+        <div class="step-fall w-16 h-16 bg-primary text-white rounded-2xl flex items-center justify-center text-2xl font-black mx-auto mb-5" style="animation-delay:0.4s">2</div>
+        <h3 class="font-bold text-xl mb-3 font-display">Build</h3>
+        <p class="text-slate-600 text-sm leading-relaxed">Je construis, teste et documente. Vous suivez l'avancement sur GitHub. 24-48h selon l'offre.</p>
+      </div>
+      <div class="reveal text-center">
+        <div class="step-fall w-16 h-16 bg-accent text-white rounded-2xl flex items-center justify-center text-2xl font-black mx-auto mb-5" style="animation-delay:0.7s">3</div>
+        <h3 class="font-bold text-xl mb-3 font-display">Livraison</h3>
+        <p class="text-slate-600 text-sm leading-relaxed">Votre agent est en production. Vous recevez la doc, les commandes et le support prévu par votre formule (14 ou 30 jours).</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Contact / Checkout -->
+<section id="contact" class="py-28 bg-white">
+  <div class="max-w-3xl mx-auto px-6 text-center">
+    <div class="reveal">
+      <h2 class="section-title text-foreground mb-5 font-display">Commencez par décrire votre besoin</h2>
+      <p class="text-slate-600 text-lg mb-6 max-w-xl mx-auto">Décrivez votre besoin en 2 phrases : je vous réponds avec un diagnostic et un plan d'action concret sous 24h, sans engagement.</p>
+
+      <!-- Formulaire de commande -->
+      <div id="order-form" class="agentic-card bg-white rounded-2xl p-8 border border-border mb-10 max-w-xl mx-auto text-left" style="scroll-margin-top: 6rem;">
+        <h3 class="font-bold text-xl mb-6 font-display text-center">Choisir votre formule</h3>
+        <form action="https://formsubmit.co/contact@atlasnexus.tech" method="POST" class="space-y-4">
+          <input type="hidden" name="_subject" value="Nouvelle demande IA agentique : Atlas Nexus">
+          <input type="hidden" name="_captcha" value="false">
+          <input type="hidden" name="_template" value="table">
+          <div>
+            <label for="customer-name" class="block text-sm font-medium mb-2">Votre nom *</label>
+            <input id="customer-name" type="text" name="nom" autocomplete="name" required class="w-full px-4 py-3 rounded-xl border border-border bg-white text-foreground focus:border-primary focus:ring-2 focus:ring-blue-500/20 outline-none transition-all">
+          </div>
+          <div>
+            <label for="customer-email" class="block text-sm font-semibold text-foreground mb-1">Votre email *</label>
+            <input id="customer-email" type="email" name="email" autocomplete="email" required class="w-full px-4 py-3 rounded-xl border border-border bg-white text-foreground focus:border-primary focus:ring-2 focus:ring-blue-500/20 outline-none transition-all">
+          </div>
+          <div>
+            <label for="customer-phone" class="block text-sm font-semibold text-foreground mb-1">Votre téléphone *</label>
+            <input id="customer-phone" type="tel" name="telephone" autocomplete="tel" required class="w-full px-4 py-3 rounded-xl border border-border bg-white text-foreground focus:border-primary focus:ring-2 focus:ring-blue-500/20 outline-none transition-all" placeholder="06 12 34 56 78">
+          </div>
+          <div>
+            <label for="customer-project" class="block text-sm font-semibold text-foreground mb-1">Entreprise / Projet</label>
+            <input id="customer-project" type="text" name="entreprise" autocomplete="organization" class="w-full px-4 py-3 rounded-xl border border-border bg-white text-foreground focus:border-primary focus:ring-2 focus:ring-blue-500/20 outline-none transition-all">
+          </div>
+          <div>
+            <label for="offer-select" class="block text-sm font-semibold text-foreground mb-1">Offre souhaitée *</label>
+            <select id="offer-select" name="offre" required class="w-full px-4 py-3 rounded-xl border border-border bg-white text-foreground focus:border-primary focus:ring-2 focus:ring-blue-500/20 outline-none transition-all">
+              <option value="">-- Choisir --</option>
+              <option value="Déploiement sur votre infrastructure 50€">Déploiement sur votre infrastructure (50€)</option>
+              <option value="Déploiement clé en main 90€">Déploiement clé en main (90€)</option>
+              <option value="Maintenance essentielle 15€/mois">Maintenance essentielle (15€/mois)</option>
+              <option value="Infogérance complète 29€/mois">Infogérance complète (29€/mois)</option>
+            </select>
+            <p id="offer-prefill-status" class="mt-2 text-sm font-semibold text-primary" aria-live="polite"></p>
+          </div>
+          <div>
+            <label for="customer-need" class="block text-sm font-semibold text-foreground mb-1">Décrivez votre besoin *</label>
+            <textarea id="customer-need" name="besoin" rows="4" required class="w-full px-4 py-3 rounded-xl border border-border bg-white text-foreground focus:border-primary focus:ring-2 focus:ring-blue-500/20 outline-none transition-all resize-y"></textarea>
+          </div>
+          <div>
+            <label for="preferred-platform" class="block text-sm font-semibold text-foreground mb-1">Plateforme préférée</label>
+            <select id="preferred-platform" name="plateforme" class="w-full px-4 py-3 rounded-xl border border-border bg-white text-foreground focus:border-primary focus:ring-2 focus:ring-blue-500/20 outline-none transition-all">
+              <option value="">-- Choisir --</option>
+              <option value="Web UI + Telegram">Web UI + Telegram</option>
+              <option value="Telegram">Telegram</option>
+              <option value="Interface web">Interface web</option>
+              <option value="Autre">Autre / À définir</option>
+            </select>
+          </div>
+          <button type="submit" class="w-full bg-primary text-white py-3.5 rounded-full font-semibold hover:bg-primary-dark transition-all shadow-lg shadow-blue-500/20 text-base">
+            Envoyer la demande
+          </button>
+        </form>
+        <p class="text-slate-400 text-xs text-center mt-4">Envoyé directement via le formulaire sécurisé. Réponse sous 24 h.</p>
+      </div>
+
+      <!-- Accès rapide aux offres -->
+      <div class="grid sm:grid-cols-2 gap-4 max-w-lg mx-auto mb-8">
+        <a href="?offer=infra#order-form" data-offer="infra" class="bg-accent text-white py-3 px-4 rounded-full font-semibold hover:bg-accent-dark font-display text-sm transition-all">Déploiement sur infrastructure: 50€</a>
+        <a href="?offer=cle-en-main#order-form" data-offer="cle-en-main" class="bg-accent text-white py-3 px-4 rounded-full font-semibold hover:bg-accent-dark font-display text-sm transition-all">Déploiement clé en main: 90€</a>
+        <a href="?offer=maintenance#order-form" data-offer="maintenance" class="bg-primary text-white py-3 px-4 rounded-full font-semibold hover:bg-primary-dark font-display text-sm transition-all">Maintenance essentielle: 15€/mois</a>
+        <a href="?offer=infogerance#order-form" data-offer="infogerance" class="bg-primary text-white py-3 px-4 rounded-full font-semibold hover:bg-primary-dark font-display text-sm transition-all">Infogérance complète: 29€/mois</a>
+      </div>
+
+      <div class="flex flex-col gap-3 items-center">
+        <p class="text-slate-400 text-sm">Ou écrivez-moi directement :</p>
+        <a href="mailto:laslyalexandre@gmail.com?subject=Agent%20IA%20-%20Projet" class="text-primary hover:underline font-semibold">
+          laslyalexandre@gmail.com
+        </a>
+        <a href="mailto:atlasnexus.ops@proton.me" class="text-slate-400 text-sm hover:text-primary">
+          atlasnexus.ops@proton.me
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="py-12 border-t border-border bg-white">
+  <div class="max-w-6xl mx-auto px-6 text-center">
+    <p class="text-slate-400 text-sm">&copy; 2026 Atlas Nexus : Alexandre Lasly · <a href="/mentions-legales/" class="hover:text-primary">Mentions légales</a></p>
+    <p class="text-slate-400 text-xs mt-2"><a href="https://atlasnexus.tech" class="hover:text-primary">← Retour au site principal</a></p>
+  </div>
+</footer>
+
+<!-- Offer prefill -->
+<script>
+(function() {
+  const params = new URLSearchParams(window.location.search);
+  const selectedOffer = params.get('offer');
+  const offerSelect = document.getElementById('offer-select');
+  const status = document.getElementById('offer-prefill-status');
+  const offers = {
+    infra: 'Déploiement sur votre infrastructure 50€',
+    'cle-en-main': 'Déploiement clé en main 90€',
+    maintenance: 'Maintenance essentielle 15€/mois',
+    infogerance: 'Infogérance complète 29€/mois'
+  };
+  if (!offerSelect ||!status || !Object.prototype.hasOwnProperty.call(offers, selectedOffer)) return;
+  offerSelect.value = offers[selectedOffer];
+  status.textContent = `Offre présélectionnée : ${offerSelect.options[offerSelect.selectedIndex].text}`;
+})();
+</script>
+
+<!-- Scroll Reveal -->
+<script>
+(function() {
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    document.querySelectorAll('.reveal').forEach(el => el.classList.add('visible'));
+    document.querySelectorAll('.step-fall').forEach(el => { el.classList.add('animate'); el.style.opacity = '1'; el.style.transform = 'none'; });
+    return;
+  }
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  // ── Step fall animation ──
+  const stepObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('animate');
+        stepObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.5 });
+  document.querySelectorAll('.step-fall').forEach(el => stepObserver.observe(el));
+})();
+</script>
+
+
+<a href="#contact" class="fixed bottom-4 left-4 right-4 z-50 sm:hidden inline-flex items-center justify-center rounded-full bg-primary px-5 py-3 text-sm font-bold text-white shadow-2xl shadow-blue-900/20" aria-label="Choisir une formule de déploiement d'agent IA">Déploiement agent IA dès 50€ →</a>
+</body>
+</html>
