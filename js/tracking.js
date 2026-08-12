@@ -143,23 +143,11 @@
   }
 
   // ---- Bandeau de consentement --------------------------------------------
+  // Texte du bandeau retire a la demande du proprietaire du site : seuls les
+  // deux boutons restent. Laisser 'msg' vide n'affiche aucun paragraphe.
   var TXT = {
-    fr: {
-      msg: 'Nous mesurons quelles annonces am\u00e8nent de vrais rendez-vous. ' +
-           'Rien n\u2019est d\u00e9pos\u00e9 sur votre appareil sans votre accord.',
-      yes: 'Accepter',
-      no:  'Refuser',
-      more: 'En savoir plus',
-      href: '/mentions-legales/#cookies'
-    },
-    en: {
-      msg: 'We measure which ads bring real bookings. ' +
-           'Nothing is stored on your device without your consent.',
-      yes: 'Accept',
-      no:  'Decline',
-      more: 'Learn more',
-      href: '/mentions-legales/#cookies'
-    }
+    fr: { msg: '', yes: 'Accepter', no: 'Refuser', more: '', href: '/mentions-legales/#cookies' },
+    en: { msg: '', yes: 'Accept',   no: 'Decline', more: '', href: '/mentions-legales/#cookies' }
   };
 
   function lang() {
@@ -183,6 +171,9 @@
       'font:14px/1.5 system-ui,-apple-system,Segoe UI,Roboto,sans-serif;' +
       'opacity:0;transform:translateY(12px);transition:opacity .3s,transform .3s}' +
       '#atlas-consent.is-in{opacity:1;transform:none}' +
+      // sans texte : pastille compacte, alignee a droite, encombrement minimal
+      '#atlas-consent.is-bare{left:auto;right:16px;max-width:none;width:auto;' +
+      'margin:0;padding:10px 12px;gap:8px}' +
       '#atlas-consent p{margin:0;flex:1 1 320px}' +
       '#atlas-consent a{color:#93c5fd;text-decoration:underline}' +
       '#atlas-consent .atlas-consent-btns{display:flex;gap:8px;flex:0 0 auto}' +
@@ -201,8 +192,14 @@
     box.id = 'atlas-consent';
     box.setAttribute('role', 'dialog');
     box.setAttribute('aria-live', 'polite');
-    box.innerHTML =
-      '<p>' + t.msg + ' <a href="' + t.href + '">' + t.more + '</a></p>' +
+    var texte = '';
+    if (t.msg) {
+      texte = '<p>' + t.msg +
+              (t.more ? ' <a href="' + t.href + '">' + t.more + '</a>' : '') + '</p>';
+    } else {
+      box.className = 'is-bare';   // sans texte : simple pastille de deux boutons
+    }
+    box.innerHTML = texte +
       '<div class="atlas-consent-btns">' +
       '<button type="button" class="atlas-no">'  + t.no  + '</button>' +
       '<button type="button" class="atlas-yes">' + t.yes + '</button>' +
