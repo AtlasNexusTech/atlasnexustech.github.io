@@ -17,18 +17,20 @@
 (function () {
   'use strict';
 
-  /* SUIVI EN SOMMEIL (site en beta, demande du proprietaire le 12/08).
-     Tous les identifiants sont vides : aucune balise n'est chargee, aucun
-     cookie n'est depose et AUCUN bandeau de consentement n'est affiche.
-     Pour reactiver plus tard : remettre googleAdsId a 'AW-801944061',
-     ajouter l'etiquette de conversion dans googleAdsLabel, et le bandeau
-     reapparaitra automatiquement (il est conditionne aux identifiants). */
+  /* Suivi Google Ads actif. Aucun element d'interface n'est ajoute au site :
+     consentBanner = false, le bandeau reste dans le code mais ne s'affiche
+     jamais (demande du proprietaire, 12/08 : le bandeau cassait la direction
+     artistique). Passer consentBanner a true le reactive tel quel. */
   var CONFIG = {
-    ga4Id:            '',   // ex. 'G-XXXXXXXXXX'
-    googleAdsId:      '',   // en attente : 'AW-801944061'
-    googleAdsLabel:   '',   // en attente : etiquette de conversion Google Ads
-    metaPixelId:      '',   // ex. '123456789012345'
-    debug:            false // true => journalise chaque evenement en console
+    ga4Id:            '',              // ex. 'G-XXXXXXXXXX'
+    googleAdsId:      'AW-801944061',  // identifiant de balise Google Ads
+    googleAdsLabel:   '',              // etiquette de conversion -- MANQUANTE :
+                                       // tant qu'elle est vide, les evenements
+                                       // remontent mais AUCUNE conversion n'est
+                                       // comptee dans Google Ads.
+    metaPixelId:      '',              // ex. '123456789012345'
+    consentBanner:    false,           // false => chargement direct, sans bandeau
+    debug:            false            // true => journalise chaque evenement
   };
 
   var CONSENT_KEY   = 'atlas_consent';
@@ -275,7 +277,12 @@
 
   // ---- Demarrage -----------------------------------------------------------
   function start() {
-    if (!needsConsent()) return;          // aucun identifiant : rien a demander
+    if (!needsConsent()) return;          // aucun identifiant : rien a charger
+    if (!CONFIG.consentBanner) {          // sans bandeau : chargement direct
+      if (readConsent() === 'denied') return;   // refus deja exprime : respecte
+      grant();
+      return;
+    }
     var c = readConsent();
     if (c === 'granted') { grant(); return; }
     if (c === 'denied') return;           // choix respecte, pas de relance
@@ -290,11 +297,11 @@
 
   window.atlasTrack = track;              // appel manuel depuis une page
   window.atlasConsent = {                 // pilotage depuis un lien de pied de page
-    active: needsConsent(),               // false tant qu'aucun identifiant n'est saisi
+    active: needsConsent() && !!CONFIG.consentBanner,  // bandeau reellement propose ?
     get: readConsent,
     set: function (c) { writeConsent(c); if (c === 'granted') grant(); },
     ask: function () {
-      if (!needsConsent()) return false;  // rien a demander : pas de bandeau
+      if (!needsConsent() || !CONFIG.consentBanner) return false;  // pas de bandeau
       try { localStorage.removeItem(CONSENT_KEY); } catch (e) {}
       banner();
       return true;
