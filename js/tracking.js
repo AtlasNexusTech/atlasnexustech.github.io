@@ -17,10 +17,10 @@
 (function () {
   'use strict';
 
-  /* Suivi Google Ads actif. Aucun element d'interface n'est ajoute au site :
-     consentBanner = false, le bandeau reste dans le code mais ne s'affiche
-     jamais (demande du proprietaire, 12/08 : le bandeau cassait la direction
-     artistique). Passer consentBanner a true le reactive tel quel. */
+  /* Suivi Google Ads actif, sous consentement. Le bandeau reprend la charte du
+     site : capsule de verre identique a la barre de navigation, Rubik / Nunito
+     Sans, bleu primaire #2563EB, mode sombre gere. Passer consentBanner a false
+     pour charger sans rien afficher. */
   var CONFIG = {
     ga4Id:            '',              // ex. 'G-XXXXXXXXXX'
     googleAdsId:      'AW-801944061',  // identifiant de balise Google Ads
@@ -29,7 +29,7 @@
                                        // remontent mais AUCUNE conversion n'est
                                        // comptee dans Google Ads.
     metaPixelId:      '',              // ex. '123456789012345'
-    consentBanner:    false,           // false => chargement direct, sans bandeau
+    consentBanner:    true,            // false => chargement direct, sans bandeau
     debug:            false            // true => journalise chaque evenement
   };
 
@@ -148,11 +148,17 @@
   }
 
   // ---- Bandeau de consentement --------------------------------------------
-  // Texte du bandeau retire a la demande du proprietaire du site : seuls les
-  // deux boutons restent. Laisser 'msg' vide n'affiche aucun paragraphe.
   var TXT = {
-    fr: { msg: '', yes: 'Accepter', no: 'Refuser', more: '', href: '/mentions-legales/#cookies' },
-    en: { msg: '', yes: 'Accept',   no: 'Decline', more: '', href: '/mentions-legales/#cookies' }
+    fr: {
+      msg: 'Ce site utilise des cookies de mesure publicitaire.',
+      yes: 'Accepter', no: 'Refuser', more: 'En savoir plus',
+      href: '/mentions-legales/#cookies'
+    },
+    en: {
+      msg: 'This site uses advertising cookies.',
+      yes: 'Accept', no: 'Decline', more: 'Learn more',
+      href: '/mentions-legales/#cookies'
+    }
   };
 
   function lang() {
@@ -166,31 +172,51 @@
     if (document.getElementById('atlas-consent')) return;
     var t = TXT[lang()];
 
+    /* Charte du site : capsule de verre comme la barre de navigation
+       (fond blanc translucide, flou d'arriere-plan, bord clair, rayon 999px),
+       typographies Rubik / Nunito Sans, bleu primaire #2563EB, mode sombre
+       aligne sur les jetons dark-card / dark-border du theme Tailwind. */
     var css = document.createElement('style');
     css.textContent =
-      '#atlas-consent{position:fixed;left:16px;right:16px;bottom:16px;z-index:9999;' +
-      'max-width:760px;margin:0 auto;display:flex;flex-wrap:wrap;gap:12px;' +
-      'align-items:center;justify-content:space-between;padding:14px 18px;' +
-      'background:#0f172a;color:#e2e8f0;border-radius:14px;' +
-      'box-shadow:0 12px 40px rgba(15,23,42,.28);' +
-      'font:14px/1.5 system-ui,-apple-system,Segoe UI,Roboto,sans-serif;' +
-      'opacity:0;transform:translateY(12px);transition:opacity .3s,transform .3s}' +
+      '#atlas-consent{position:fixed;left:1rem;right:1rem;bottom:1rem;z-index:9998;' +
+      'width:calc(100% - 2rem);max-width:44rem;margin:0 auto;' +
+      'display:flex;flex-wrap:wrap;gap:.75rem 1.25rem;align-items:center;' +
+      'justify-content:space-between;padding:.7rem .8rem .7rem 1.35rem;' +
+      'border:1px solid rgba(255,255,255,.3);border-radius:999px;' +
+      'background:rgba(255,255,255,.78);' +
+      '-webkit-backdrop-filter:blur(24px);backdrop-filter:blur(24px);' +
+      'box-shadow:0 4px 30px rgba(15,23,42,.08);' +
+      'color:#0f172a;font-family:"Nunito Sans",Rubik,ui-sans-serif,system-ui,' +
+      '-apple-system,"Segoe UI",sans-serif;font-size:14px;line-height:1.5;' +
+      'opacity:0;transform:translateY(10px);' +
+      'transition:opacity .35s ease,transform .35s ease}' +
       '#atlas-consent.is-in{opacity:1;transform:none}' +
-      // sans texte : pastille compacte, alignee a droite, encombrement minimal
-      '#atlas-consent.is-bare{left:auto;right:16px;max-width:none;width:auto;' +
-      'margin:0;padding:10px 12px;gap:8px}' +
-      '#atlas-consent p{margin:0;flex:1 1 320px}' +
-      '#atlas-consent a{color:#93c5fd;text-decoration:underline}' +
-      '#atlas-consent .atlas-consent-btns{display:flex;gap:8px;flex:0 0 auto}' +
-      '#atlas-consent button{cursor:pointer;border:0;border-radius:9px;' +
-      'padding:9px 16px;font:inherit;font-weight:600}' +
-      '#atlas-consent .atlas-yes{background:#226cf3;color:#fff}' +
-      '#atlas-consent .atlas-yes:hover{background:#1d5fd8}' +
-      '#atlas-consent .atlas-no{background:transparent;color:#cbd5e1;' +
-      'box-shadow:inset 0 0 0 1px #475569}' +
-      '#atlas-consent .atlas-no:hover{color:#fff;box-shadow:inset 0 0 0 1px #94a3b8}' +
-      '@media(max-width:520px){#atlas-consent .atlas-consent-btns{flex:1 1 100%}' +
-      '#atlas-consent button{flex:1}}';
+      '#atlas-consent p{margin:0;flex:1 1 260px}' +
+      '#atlas-consent a{color:#2563EB;text-decoration:none;' +
+      'border-bottom:1px solid rgba(37,99,235,.35)}' +
+      '#atlas-consent a:hover{border-bottom-color:#2563EB}' +
+      '#atlas-consent .atlas-consent-btns{display:flex;align-items:center;' +
+      'gap:.5rem;flex:0 0 auto}' +
+      '#atlas-consent button{cursor:pointer;border:0;border-radius:999px;' +
+      'font-family:Rubik,"Nunito Sans",ui-sans-serif,system-ui,sans-serif;' +
+      'font-size:14px;font-weight:600;transition:all .2s ease}' +
+      '#atlas-consent .atlas-yes{background:#2563EB;color:#fff;padding:.5rem 1.25rem}' +
+      '#atlas-consent .atlas-yes:hover{background:#1D4ED8}' +
+      '#atlas-consent .atlas-no{background:transparent;color:#64748B;' +
+      'padding:.5rem .9rem}' +
+      '#atlas-consent .atlas-no:hover{color:#0f172a;background:rgba(15,23,42,.05)}' +
+      /* mode sombre du site (.dark sur <html>) */
+      '.dark #atlas-consent{background:rgba(17,24,39,.82);' +
+      'border-color:rgba(255,255,255,.08);color:#F1F5F9;' +
+      'box-shadow:0 4px 30px rgba(0,0,0,.35)}' +
+      '.dark #atlas-consent a{color:#60A5FA;border-bottom-color:rgba(96,165,250,.35)}' +
+      '.dark #atlas-consent .atlas-no{color:#94A3B8}' +
+      '.dark #atlas-consent .atlas-no:hover{color:#F1F5F9;background:rgba(255,255,255,.06)}' +
+      /* mobile : au-dessus du bouton fixe "Demander un devis" */
+      '@media(max-width:639px){#atlas-consent{bottom:5rem;border-radius:1.25rem;' +
+      'padding:1rem 1.1rem;gap:.85rem}' +
+      '#atlas-consent p{flex:1 1 100%}' +
+      '#atlas-consent .atlas-consent-btns{flex:1 1 100%;justify-content:flex-end}}';
     document.head.appendChild(css);
 
     var box = document.createElement('div');
