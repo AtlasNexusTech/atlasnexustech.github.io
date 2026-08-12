@@ -10,7 +10,7 @@ PRODUCT_CSS = ROOT / "css" / "product-v2.css"
 
 def test_product_pages_load_the_shared_atlas_v2_ui_layer():
     for html in (MARKETS, DESK_FR, DESK_EN):
-        assert 'href="/css/product-v2.css?v=1"' in html
+        assert 'href="/css/product-v2.css?v=2"' in html
         assert 'atlas-product-v2' in html
         assert 'atlas-product-hero' in html
         assert 'atlas-product-primary' in html
