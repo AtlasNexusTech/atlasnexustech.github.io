@@ -30,6 +30,7 @@
 </style>
 <link rel="stylesheet" href="/css/atlas-header.css?v=1">
 <script src="/js/atlas-header.js?v=1" defer></script>
+<script src="/js/tracking.js?v=2" defer></script>
 </head>
 <body class="bg-surface dark:bg-dark-surface text-foreground dark:text-dark-foreground font-body antialiased atlas-unified-header">
 <header class="atlas-site-header" data-atlas-site-header>
@@ -144,19 +145,23 @@
       </p>
     </section>
 
-    <section class="mb-12">
-      <h2 class="text-xl font-bold text-foreground dark:text-dark-foreground mb-3">5. Cookies</h2>
+    <section class="mb-12" id="cookies">
+      <h2 class="text-xl font-bold text-foreground dark:text-dark-foreground mb-3">5. Cookies et mesure publicitaire</h2>
       <p class="text-slate-600 dark:text-slate-300 leading-relaxed mb-2">
         Ce site utilise le stockage local du navigateur pour mémoriser certaines préférences d'interface. Selon le parcours utilisé, des prestataires externes peuvent également déposer leurs propres cookies ou traiter des données techniques:
       </p>
       <ul class="text-slate-600 dark:text-slate-300 space-y-1 list-disc list-inside">
-        <li>Préférence de thème et de langue : stockée localement dans le navigateur</li>
+        <li>Préférence de thème, de langue et choix de consentement : stockés localement dans le navigateur</li>
         <li>GoatCounter : mesure d'audience respectueuse de la vie privée, sans profil publicitaire</li>
         <li>FormSubmit : transmission des formulaires de contact</li>
         <li>Stripe : cookies et données nécessaires uniquement lorsqu'un parcours de paiement Stripe est ouvert</li>
+        <li>Google Ads : mesure des campagnes publicitaires (quelles annonces aboutissent à une prise de rendez-vous). Ces cookies ne sont déposés qu'après votre accord explicite via le bandeau de consentement.</li>
       </ul>
       <p class="text-slate-600 dark:text-slate-300 leading-relaxed mt-2">
-        Aucun outil publicitaire ni Google Analytics n'est utilisé. GoatCounter fournit des statistiques agrégées de consultation; FormSubmit et Stripe sont des destinataires techniques uniquement lorsque leurs fonctionnalités sont utilisées.
+        Aucune balise publicitaire n'est chargée tant que vous n'avez pas accepté : en l'absence d'accord, aucune requête n'est envoyée à Google et aucun cookie publicitaire n'est déposé. Votre choix est conservé six mois et peut être modifié à tout moment. GoatCounter fournit des statistiques agrégées de consultation; FormSubmit et Stripe sont des destinataires techniques uniquement lorsque leurs fonctionnalités sont utilisées. Google Analytics n'est pas utilisé.
+      </p>
+      <p class="mt-3">
+        <button type="button" id="atlas-consent-manage" class="text-sm font-semibold underline text-slate-600 dark:text-slate-300 hover:text-foreground dark:hover:text-dark-foreground">Gérer mon consentement</button>
       </p>
     </section>
 
@@ -201,5 +206,14 @@
 </script>
 
 <a href="/#contact" class="fixed bottom-4 left-4 right-4 z-50 sm:hidden inline-flex items-center justify-center rounded-full bg-primary px-5 py-3 text-sm font-bold text-white shadow-2xl shadow-blue-900/20" aria-label="Demander un devis Atlas Nexus">Demander un devis →</a>
+<script>
+(function () {
+  var b = document.getElementById('atlas-consent-manage');
+  if (!b) return;
+  b.addEventListener('click', function () {
+    if (window.atlasConsent) window.atlasConsent.ask();
+  });
+})();
+</script>
 </body>
 </html>

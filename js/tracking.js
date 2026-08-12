@@ -1,10 +1,15 @@
-/* Atlas Nexus — suivi de conversion
+/* Atlas Nexus -- suivi de conversion + consentement
  * ---------------------------------------------------------------------------
  * Un seul fichier pour Google Ads / GA4 et Meta. Renseignez les identifiants
  * ci-dessous : tant qu'un identifiant est vide, la plateforme correspondante
  * n'est simplement pas chargee (aucune erreur, aucun cookie depose).
  *
- * L'evenement qui compte est « booking_completed » : il se declenche quand un
+ * REGLE DE CONSENTEMENT : aucune balise publicitaire n'est chargee avant un
+ * accord explicite du visiteur. Tant que le consentement n'est pas donne,
+ * aucune requete n'est envoyee a Google ou Meta et aucun cookie n'est depose.
+ * Le bandeau n'apparait que si au moins un identifiant est renseigne.
+ *
+ * L'evenement qui compte est " booking_completed " : il se declenche quand un
  * rendez-vous Calendly est REELLEMENT confirme, pas au clic sur le bouton.
  * C'est cette distinction qui separe une depense publicitaire pilotee d'une
  * depense a l'aveugle.
@@ -13,12 +18,18 @@
   'use strict';
 
   var CONFIG = {
-    ga4Id:            '',   // ex. 'G-XXXXXXXXXX'
-    googleAdsId:      '',   // ex. 'AW-123456789'
-    googleAdsLabel:   '',   // ex. 'AbCdEfGhIj-KLmnOp'  (etiquette de conversion)
-    metaPixelId:      '',   // ex. '123456789012345'
-    debug:            false // true => journalise chaque evenement en console
+    ga4Id:            '',              // ex. 'G-XXXXXXXXXX'
+    googleAdsId:      'AW-801944061',  // identifiant de balise Google Ads
+    googleAdsLabel:   '',              // etiquette de conversion -- MANQUANTE :
+                                       // tant qu'elle est vide, les evenements
+                                       // remontent mais AUCUNE conversion n'est
+                                       // comptee dans Google Ads.
+    metaPixelId:      '',              // ex. '123456789012345'
+    debug:            false            // true => journalise chaque evenement
   };
+
+  var CONSENT_KEY   = 'atlas_consent';
+  var CONSENT_MONTHS = 6;              // duree de validite du choix (CNIL)
 
   var loaded = { google: false, meta: false };
 
@@ -28,12 +39,45 @@
     }
   }
 
+  function needsConsent() {
+    return !!(CONFIG.ga4Id || CONFIG.googleAdsId || CONFIG.metaPixelId);
+  }
+
+  // ---- Memoire du choix ----------------------------------------------------
+  function readConsent() {
+    try {
+      var raw = window.localStorage.getItem(CONSENT_KEY);
+      if (!raw) return null;
+      var v = JSON.parse(raw);
+      var age = Date.now() - (v.t || 0);
+      if (age > CONSENT_MONTHS * 30 * 24 * 3600 * 1000) return null;
+      return v.c === 'granted' ? 'granted' : 'denied';
+    } catch (e) { return null; }
+  }
+
+  function writeConsent(choice) {
+    try {
+      window.localStorage.setItem(CONSENT_KEY,
+        JSON.stringify({ c: choice, t: Date.now() }));
+    } catch (e) { /* navigation privee : le choix vaut pour la session */ }
+  }
+
   // ---- Chargement des balises ---------------------------------------------
   window.dataLayer = window.dataLayer || [];
   function gtag() { window.dataLayer.push(arguments); }
   window.gtag = window.gtag || gtag;
 
+  // Consent Mode v2 : tout est refuse par defaut, avant tout chargement.
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    analytics_storage: 'denied',
+    wait_for_update: 500
+  });
+
   function loadGoogle() {
+    if (loaded.google) return;
     var id = CONFIG.ga4Id || CONFIG.googleAdsId;
     if (!id) return;
     var s = document.createElement('script');
@@ -48,7 +92,7 @@
   }
 
   function loadMeta() {
-    if (!CONFIG.metaPixelId) return;
+    if (loaded.meta || !CONFIG.metaPixelId) return;
     /* eslint-disable */
     !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
     n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
@@ -60,6 +104,17 @@
     window.fbq('track', 'PageView');
     loaded.meta = true;
     log('Meta charge', CONFIG.metaPixelId);
+  }
+
+  function grant() {
+    gtag('consent', 'update', {
+      ad_storage: 'granted',
+      ad_user_data: 'granted',
+      ad_personalization: 'granted',
+      analytics_storage: 'granted'
+    });
+    loadGoogle();
+    loadMeta();
   }
 
   // ---- Emission d'un evenement --------------------------------------------
@@ -87,6 +142,85 @@
     }
   }
 
+  // ---- Bandeau de consentement --------------------------------------------
+  var TXT = {
+    fr: {
+      msg: 'Nous mesurons quelles annonces am\u00e8nent de vrais rendez-vous. ' +
+           'Rien n\u2019est d\u00e9pos\u00e9 sur votre appareil sans votre accord.',
+      yes: 'Accepter',
+      no:  'Refuser',
+      more: 'En savoir plus',
+      href: '/mentions-legales/#cookies'
+    },
+    en: {
+      msg: 'We measure which ads bring real bookings. ' +
+           'Nothing is stored on your device without your consent.',
+      yes: 'Accept',
+      no:  'Decline',
+      more: 'Learn more',
+      href: '/mentions-legales/#cookies'
+    }
+  };
+
+  function lang() {
+    var l = (document.documentElement.getAttribute('lang') || '').toLowerCase();
+    if (l.indexOf('en') === 0) return 'en';
+    if (l.indexOf('fr') === 0) return 'fr';
+    return location.pathname.indexOf('/en/') === 0 ? 'en' : 'fr';
+  }
+
+  function banner() {
+    if (document.getElementById('atlas-consent')) return;
+    var t = TXT[lang()];
+
+    var css = document.createElement('style');
+    css.textContent =
+      '#atlas-consent{position:fixed;left:16px;right:16px;bottom:16px;z-index:9999;' +
+      'max-width:760px;margin:0 auto;display:flex;flex-wrap:wrap;gap:12px;' +
+      'align-items:center;justify-content:space-between;padding:14px 18px;' +
+      'background:#0f172a;color:#e2e8f0;border-radius:14px;' +
+      'box-shadow:0 12px 40px rgba(15,23,42,.28);' +
+      'font:14px/1.5 system-ui,-apple-system,Segoe UI,Roboto,sans-serif;' +
+      'opacity:0;transform:translateY(12px);transition:opacity .3s,transform .3s}' +
+      '#atlas-consent.is-in{opacity:1;transform:none}' +
+      '#atlas-consent p{margin:0;flex:1 1 320px}' +
+      '#atlas-consent a{color:#93c5fd;text-decoration:underline}' +
+      '#atlas-consent .atlas-consent-btns{display:flex;gap:8px;flex:0 0 auto}' +
+      '#atlas-consent button{cursor:pointer;border:0;border-radius:9px;' +
+      'padding:9px 16px;font:inherit;font-weight:600}' +
+      '#atlas-consent .atlas-yes{background:#226cf3;color:#fff}' +
+      '#atlas-consent .atlas-yes:hover{background:#1d5fd8}' +
+      '#atlas-consent .atlas-no{background:transparent;color:#cbd5e1;' +
+      'box-shadow:inset 0 0 0 1px #475569}' +
+      '#atlas-consent .atlas-no:hover{color:#fff;box-shadow:inset 0 0 0 1px #94a3b8}' +
+      '@media(max-width:520px){#atlas-consent .atlas-consent-btns{flex:1 1 100%}' +
+      '#atlas-consent button{flex:1}}';
+    document.head.appendChild(css);
+
+    var box = document.createElement('div');
+    box.id = 'atlas-consent';
+    box.setAttribute('role', 'dialog');
+    box.setAttribute('aria-live', 'polite');
+    box.innerHTML =
+      '<p>' + t.msg + ' <a href="' + t.href + '">' + t.more + '</a></p>' +
+      '<div class="atlas-consent-btns">' +
+      '<button type="button" class="atlas-no">'  + t.no  + '</button>' +
+      '<button type="button" class="atlas-yes">' + t.yes + '</button>' +
+      '</div>';
+    document.body.appendChild(box);
+    requestAnimationFrame(function () { box.classList.add('is-in'); });
+
+    function close(choice) {
+      writeConsent(choice);
+      if (choice === 'granted') grant();
+      box.classList.remove('is-in');
+      setTimeout(function () { if (box.parentNode) box.parentNode.removeChild(box); }, 300);
+      log('consentement', choice);
+    }
+    box.querySelector('.atlas-yes').addEventListener('click', function () { close('granted'); });
+    box.querySelector('.atlas-no').addEventListener('click',  function () { close('denied'); });
+  }
+
   // ---- Evenements suivis ---------------------------------------------------
   function wire() {
     // 1) Clic sur un bouton de prise de rendez-vous (intention, pas conversion)
@@ -108,7 +242,7 @@
       }
     }, true);
 
-    // 2) Rendez-vous CONFIRME dans Calendly — la vraie conversion
+    // 2) Rendez-vous CONFIRME dans Calendly -- la vraie conversion
     window.addEventListener('message', function (e) {
       if (!e.origin || e.origin.indexOf('calendly.com') === -1) return;
       var d = e.data;
@@ -139,13 +273,25 @@
     }, { passive: true });
   }
 
-  loadGoogle();
-  loadMeta();
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', wire);
-  } else {
-    wire();
+  // ---- Demarrage -----------------------------------------------------------
+  function start() {
+    if (!needsConsent()) return;          // aucun identifiant : rien a demander
+    var c = readConsent();
+    if (c === 'granted') { grant(); return; }
+    if (c === 'denied') return;           // choix respecte, pas de relance
+    banner();
   }
 
-  window.atlasTrack = track;   // permet un appel manuel depuis une page
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', function () { start(); wire(); });
+  } else {
+    start(); wire();
+  }
+
+  window.atlasTrack = track;              // appel manuel depuis une page
+  window.atlasConsent = {                 // pilotage depuis un lien de pied de page
+    get: readConsent,
+    set: function (c) { writeConsent(c); if (c === 'granted') grant(); },
+    ask: function () { try { localStorage.removeItem(CONSENT_KEY); } catch (e) {} banner(); }
+  };
 })();
