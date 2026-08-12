@@ -275,6 +275,12 @@ html.dark .atlas-product-v2 .chip {
   }
 }
 
+@media (max-width: 639px) {
+  .atlas-product-v2 {
+    padding-bottom: 5.75rem;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .atlas-product-v2 *,
   .atlas-product-v2 *::before,

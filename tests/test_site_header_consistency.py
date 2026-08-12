@@ -72,7 +72,8 @@ def test_localized_header_copy_and_language_state():
         if is_english:
             assert 'data-active="en"' in markup, route
             assert '>Work</a>' in markup and '>Offers</a>' in markup and '>Why</a>' in markup, route
-            assert 'href="/en/#contact"' in markup or 'href="/#contact"' in markup, route
+            contact_target = "/#contact" if route == "en" else "/en/#contact"
+            assert f'href="{contact_target}"' in markup, route
             fr_target = "/atlas-desk/" if route == "atlas-desk/en" else "/"
             en_target = "/atlas-desk/en/" if route == "atlas-desk/en" else "/en/"
             assert f'<a href="{fr_target}" data-atlas-lang="fr">FR</a>' in markup, route

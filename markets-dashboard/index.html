@@ -491,7 +491,9 @@
 <!-- ════════════ Antigravity Canvas JS ════════════ -->
 <script>
 (function(){
-const c=document.getElementById("antigravity-canvas");if(!c)return;console.log('Canvas initialized',c.width,c.height);
+const c=document.getElementById("antigravity-canvas");if(!c)return;
+  const reduceMotion=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if(reduceMotion){c.style.display='none';return}
   const ctx=c.getContext("2d");
   let W,H,P=[];
   const N=55,D=140,R=200,F=.015;
@@ -520,7 +522,7 @@ const c=document.getElementById("antigravity-canvas");if(!c)return;console.log('
 
 <!-- ════════════ JS : Count-up ════════════ -->
 <script>
-(()=>{const e=t=>1-Math.pow(1-t,3);document.querySelectorAll('.count-up[data-target]').forEach(el=>{const t=Number(el.dataset.target||0),d=950,s=performance.now();(function n(r){const o=Math.min((r-s)/d,1);el.textContent=Math.round(e(o)*t).toLocaleString('en-US');if(o<1)requestAnimationFrame(n)})(s)})})();
+(()=>{if(window.matchMedia('(prefers-reduced-motion: reduce)').matches){document.querySelectorAll('.count-up[data-target]').forEach(el=>{el.textContent=Number(el.dataset.target||0).toLocaleString('en-US')});return}const e=t=>1-Math.pow(1-t,3);document.querySelectorAll('.count-up[data-target]').forEach(el=>{const t=Number(el.dataset.target||0),d=950,s=performance.now();(function n(r){const o=Math.min((r-s)/d,1);el.textContent=Math.round(e(o)*t).toLocaleString('en-US');if(o<1)requestAnimationFrame(n)})(s)})})();
 // Update data timestamp
 (function(){var d=new Date();var el=document.getElementById('data-timestamp');if(el)el.textContent='Updated: '+d.toLocaleDateString('en-US',{month:'short',day:'numeric'})+' '+d.toLocaleTimeString('en-US',{hour:'2-digit',minute:'2-digit'})+' CEST';})();
 </script>
@@ -545,6 +547,6 @@ const c=document.getElementById("antigravity-canvas");if(!c)return;console.log('
 (function(){const A='https://api.alternative.me/fng/?limit=1',K={'Extreme Fear':{color:'#e11d48'},Fear:{color:'#f97316'},Neutral:{color:'#eab308'},Greed:{color:'#84cc16'},'Extreme Greed':{color:'#22c55e'}},C=2*Math.PI*42;async function F(){try{const r=await fetch(A),d=await r.json(),e=d.data[0];return{value:parseInt(e.value),classification:e.value_classification,timestamp:new Date(parseInt(e.timestamp)*1e3)}}catch(e){return null}}function U(d){const g=document.getElementById('fng-gauge-fill'),v=document.getElementById('fng-value'),cl=document.getElementById('fng-classification'),t=document.getElementById('fng-timestamp'),m=document.getElementById('fng-meter-fill');if(!d){if(v)v.textContent='Error';return}const p=d.value/100,o=C*(1-p),i=K[d.classification]||K['Neutral'];if(g){g.setAttribute('stroke-dasharray',C);g.setAttribute('stroke-dashoffset',o);g.setAttribute('stroke',i.color)}if(v){v.textContent=d.value;v.style.color=i.color}if(cl){cl.textContent=d.classification;cl.style.color=i.color}if(m){m.style.width=d.value+'%';m.style.background=i.color}if(t)t.textContent='Updated: '+d.timestamp.toLocaleDateString('en-US',{month:'short',day:'numeric',hour:'2-digit',minute:'2-digit'})}F().then(U);setInterval(()=>F().then(U),9e5)})();
 </script>
 
-<a href="/#contact" class="fixed bottom-4 left-4 right-4 z-50 sm:hidden inline-flex items-center justify-center rounded-full bg-primary px-5 py-3 text-sm font-bold text-white shadow-2xl shadow-blue-900/20" aria-label="Demander un devis Atlas Nexus">Demander un devis →</a>
+<a href="/en/#contact" class="fixed bottom-4 left-4 right-4 z-50 sm:hidden inline-flex items-center justify-center rounded-full bg-primary px-5 py-3 text-sm font-bold text-white shadow-2xl shadow-blue-900/20" aria-label="Request an Atlas Nexus quote">Request a quote →</a>
 </body>
 </html>

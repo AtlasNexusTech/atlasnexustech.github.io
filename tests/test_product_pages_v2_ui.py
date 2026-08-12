@@ -24,6 +24,22 @@ def test_atlas_desk_language_switch_stays_in_product_context():
     assert '<a href="/atlas-desk/en/" data-atlas-lang="en" aria-current="page">EN</a>' in DESK_EN
 
 
+def test_english_product_mobile_ctas_are_localized_and_target_english_contact():
+    for html in (MARKETS, DESK_EN):
+        assert 'href="/en/#contact"' in html
+        assert 'aria-label="Request an Atlas Nexus quote"' in html
+        assert '>Request a quote →</a>' in html
+        assert "Demander un devis" not in html
+
+
+def test_markets_respects_reduced_motion_for_canvas_and_count_up():
+    assert "const reduceMotion=window.matchMedia('(prefers-reduced-motion: reduce)').matches" in MARKETS
+    assert "if(reduceMotion){c.style.display='none';return}" in MARKETS
+    assert "if(window.matchMedia('(prefers-reduced-motion: reduce)').matches){" in MARKETS
+    assert "el.textContent=Number(el.dataset.target||0).toLocaleString('en-US')" in MARKETS
+    assert "console.log('Canvas initialized'" not in MARKETS
+
+
 def test_shared_product_ui_covers_brand_surfaces_responsiveness_and_accessibility():
     assert PRODUCT_CSS.exists()
     css = PRODUCT_CSS.read_text(encoding="utf-8")
@@ -36,6 +52,8 @@ def test_shared_product_ui_covers_brand_surfaces_responsiveness_and_accessibilit
         ".atlas-product-v2 .highlight-card",
         ".atlas-product-v2 .market-card",
         "@media (max-width: 720px)",
+        "@media (max-width: 639px)",
+        "padding-bottom: 5.75rem",
         "@media (prefers-reduced-motion: reduce)",
         ":focus-visible",
         "html.dark",
