@@ -121,9 +121,10 @@
   }
 </style>
 <link rel="stylesheet" href="/css/atlas-header.css?v=1">
+<link rel="stylesheet" href="/css/product-v2.css?v=1">
 <script src="/js/atlas-header.js?v=1" defer></script>
 </head>
-<body class="bg-surface dark:bg-dark-surface text-foreground dark:text-dark-foreground font-body antialiased atlas-unified-header">
+<body class="bg-surface dark:bg-dark-surface text-foreground dark:text-dark-foreground font-body antialiased atlas-unified-header atlas-product-v2">
 <header class="atlas-site-header" data-atlas-site-header>
   <nav class="atlas-site-nav" aria-label="Atlas Nexus home">
     <a href="/en/" class="atlas-site-brand" aria-label="Atlas Nexus home">
@@ -196,31 +197,31 @@
 <main class="max-w-6xl mx-auto px-4 sm:px-6">
 
 <!-- ════════════ HERO ════════════ -->
-<section class="py-16 sm:py-24 relative overflow-hidden" aria-label="Markets overview">
+<section class="atlas-product-hero py-16 sm:py-24 relative overflow-hidden" aria-label="Markets overview">
   <canvas id="antigravity-canvas" class="absolute inset-0 w-full h-full z-0 pointer-events-none" aria-hidden="true"></canvas>
   <div class="hero-orb"></div>
   <div class="relative z-10">
     <div class="max-w-4xl hero-stagger mb-12">
-      <p class="text-accent dark:text-green-400 font-semibold tracking-widest uppercase text-xs mb-3">Live Market Intelligence</p>
+      <p class="atlas-product-kicker text-accent dark:text-green-400 font-semibold tracking-widest uppercase text-xs mb-3">Live Market Intelligence</p>
       <h1 class="hero-title text-foreground dark:text-dark-foreground mb-8">
         <span class="glow-word">Markets</span><br><span class="glow-word">Command</span><br><span class="glow-word">Deck</span>
       </h1>
       <p class="text-lg sm:text-xl text-slate-600 dark:text-slate-300 max-w-2xl leading-relaxed">
         Multi-asset intelligence cockpit for crypto, stocks, ETFs, indices, forex and commodities : live widgets, generated dashboards, and a technical scanner built for fast signal reading.
       </p>
-      <div class="flex gap-3 flex-wrap mt-8">
-        <a href="#scanner" class="bg-primary text-white px-7 py-3.5 rounded-full text-base font-semibold hover:bg-primary-dark inline-flex items-center gap-2 font-display">
+      <div class="atlas-product-actions flex gap-3 flex-wrap mt-8">
+        <a href="#scanner" class="atlas-product-primary bg-primary text-white px-7 py-3.5 rounded-full text-base font-semibold hover:bg-primary-dark inline-flex items-center gap-2 font-display">
           Open Live Scanner
           <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
         </a>
-        <a href="#dashboards" class="border-2 border-border dark:border-dark-border text-slate-700 dark:text-dark-foreground px-7 py-3.5 rounded-full text-base font-semibold hover:border-primary dark:hover:border-blue-500 font-display">
+        <a href="#dashboards" class="atlas-product-secondary border-2 border-border dark:border-dark-border text-slate-700 dark:text-dark-foreground px-7 py-3.5 rounded-full text-base font-semibold hover:border-primary dark:hover:border-blue-500 font-display">
           Browse Dashboards
         </a>
       </div>
     </div>
 
     <!-- Metrics row -->
-    <div class="grid sm:grid-cols-3 gap-5 mb-6">
+    <div class="atlas-product-panel grid sm:grid-cols-3 gap-5 mb-6">
       <div class="reveal reveal-delay-1 market-card rounded-2xl p-6 border">
         <p class="text-xs font-extrabold uppercase tracking-widest text-slate-400 dark:text-dark-dim mb-1">Scanner Coverage</p>
         <div class="metric-value font-display text-foreground dark:text-dark-foreground">

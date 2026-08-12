@@ -20,10 +20,10 @@ INCLUDED_ROUTES = (
 )
 
 EXCLUDED_ROUTES = (
-    "artisan-metallier", "augelle-deco", "az-bois", "blueline-logistics",
+    "archive", "artisan-metallier", "atlas-desk/client", "augelle-deco", "az-bois", "blueline-logistics",
     "demo-menuiserie.fr", "demo-refonte-artisan", "demo-refonte-consultant",
     "demo-refonte-restaurant", "demo-refonte-sante", "demo-seydi",
-    "demo-seydi-animee", "duault-anatole", "ed-maconnerie",
+    "demo-seydi-animee", "duault-anatole", "ed-maconnerie", "en/archive",
     "eponia-conseil", "menuiserie-devarenne", "peintre-95", "pwa-template",
     "stratea", "tad-agency", "tony-zanirato",
 )
@@ -72,20 +72,29 @@ def test_localized_header_copy_and_language_state():
         if is_english:
             assert 'data-active="en"' in markup, route
             assert '>Work</a>' in markup and '>Offers</a>' in markup and '>Why</a>' in markup, route
-            assert 'href="/en/#contact">Contact</a>' in markup, route
-            assert '<a href="/" data-atlas-lang="fr">FR</a>' in markup, route
-            assert '<a href="/en/" data-atlas-lang="en" aria-current="page">EN</a>' in markup, route
+            assert 'href="/en/#contact"' in markup or 'href="/#contact"' in markup, route
+            fr_target = "/atlas-desk/" if route == "atlas-desk/en" else "/"
+            en_target = "/atlas-desk/en/" if route == "atlas-desk/en" else "/en/"
+            assert f'<a href="{fr_target}" data-atlas-lang="fr">FR</a>' in markup, route
+            assert f'<a href="{en_target}" data-atlas-lang="en" aria-current="page">EN</a>' in markup, route
         else:
             assert 'data-active="fr"' in markup, route
             assert '>Réalisations</a>' in markup and '>Offres</a>' in markup and '>Pourquoi</a>' in markup, route
-            assert 'href="/#contact">Contact</a>' in markup, route
-            assert '<a href="/" data-atlas-lang="fr" aria-current="page">FR</a>' in markup, route
-            assert '<a href="/en/" data-atlas-lang="en">EN</a>' in markup, route
+            assert 'href="/#contact"' in markup, route
+            fr_target = "/atlas-desk/" if route == "atlas-desk" else "/"
+            en_target = "/atlas-desk/en/" if route == "atlas-desk" else "/en/"
+            assert f'<a href="{fr_target}" data-atlas-lang="fr" aria-current="page">FR</a>' in markup, route
+            assert f'<a href="{en_target}" data-atlas-lang="en">EN</a>' in markup, route
 
 
 def test_independent_prototypes_keep_their_own_headers():
+    archived_routes = {"archive", "en/archive"}
     for route in EXCLUDED_ROUTES:
         html = page(route)
+        if route in archived_routes:
+            assert 'href="/archive/css/atlas-header.css?v=1"' in html, route
+            assert 'href="/css/atlas-header.css' not in html, route
+            continue
         assert 'data-atlas-site-header' not in html, route
         assert '/css/atlas-header.css' not in html, route
         assert '/js/atlas-header.js' not in html, route

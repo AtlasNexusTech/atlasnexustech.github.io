@@ -1,0 +1,286 @@
+/* Atlas Nexus product UI — shared by Markets Dashboard and Atlas Desk. */
+:root {
+  --atlas-product-blue: #226cf3;
+  --atlas-product-blue-bright: #5ba2fc;
+  --atlas-product-ink: #0f172a;
+  --atlas-product-muted: #64748b;
+  --atlas-product-line: #e2e8f0;
+  --atlas-product-panel: linear-gradient(135deg, #226cf3, #5ba2fc);
+}
+
+.atlas-product-v2 {
+  background:
+    radial-gradient(circle at 8% 8%, rgba(91, 162, 252, .11), transparent 30rem),
+    radial-gradient(circle at 92% 22%, rgba(34, 108, 243, .07), transparent 26rem),
+    #f8fafc;
+}
+
+.atlas-product-v2 .atlas-site-brand-name {
+  font-weight: 500 !important;
+}
+
+.atlas-product-v2 .atlas-product-hero {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  margin: 0 auto 3rem;
+  padding: clamp(8rem, 14vw, 11rem) clamp(1.4rem, 5vw, 4rem) clamp(4rem, 7vw, 6rem);
+  border: 1px solid rgba(37, 99, 235, .15);
+  border-radius: 0 0 2.25rem 2.25rem;
+  background:
+    radial-gradient(circle at 78% 32%, rgba(91, 162, 252, .24), transparent 22rem),
+    linear-gradient(145deg, rgba(255,255,255,.97), rgba(239,246,255,.94) 55%, rgba(219,234,254,.9));
+  box-shadow: 0 38px 90px -62px rgba(30, 64, 175, .65);
+}
+
+.atlas-product-v2 .atlas-product-hero::before {
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(37,99,235,.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(37,99,235,.045) 1px, transparent 1px);
+  background-size: 46px 46px;
+  mask-image: linear-gradient(to bottom, rgba(0,0,0,.78), transparent 94%);
+  content: "";
+}
+
+.atlas-product-v2 .atlas-product-hero .hero-case,
+.atlas-product-v2 .atlas-product-hero .hero-title {
+  max-width: 14ch;
+  font-size: clamp(3rem, 8vw, 6.25rem) !important;
+  font-weight: 700 !important;
+  line-height: .98 !important;
+  letter-spacing: -.055em !important;
+}
+
+.atlas-product-v2 .atlas-product-hero .glow-word {
+  background: linear-gradient(110deg, #0f172a 2%, #226cf3 42%, #5ba2fc 68%, #0f172a 100%);
+  background-size: 220% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+
+.atlas-product-v2 .atlas-product-kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: .55rem;
+  margin-bottom: 1rem;
+  padding: .45rem .85rem;
+  border: 1px solid rgba(37,99,235,.2);
+  border-radius: 999px;
+  background: rgba(255,255,255,.72);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.95);
+  color: #1d4ed8;
+  font-size: .72rem;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+}
+
+.atlas-product-v2 .atlas-product-kicker::before {
+  width: .48rem;
+  height: .48rem;
+  border-radius: 999px;
+  background: #22c55e;
+  box-shadow: 0 0 0 5px rgba(34,197,94,.12);
+  content: "";
+}
+
+.atlas-product-v2 .atlas-product-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: inherit;
+  gap: .75rem;
+}
+
+.atlas-product-v2 .atlas-product-primary,
+.atlas-product-v2 .atlas-product-secondary {
+  display: inline-flex;
+  min-height: 48px;
+  align-items: center;
+  justify-content: center;
+  gap: .5rem;
+  padding: .78rem 1.35rem;
+  border-radius: 999px !important;
+  font-family: Rubik, ui-sans-serif, system-ui, sans-serif;
+  font-size: .94rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: transform .22s ease, box-shadow .22s ease, border-color .22s ease;
+}
+
+.atlas-product-v2 .atlas-product-primary {
+  border: 1px solid transparent;
+  background: linear-gradient(135deg, var(--atlas-product-blue), #3886fc);
+  box-shadow: 0 16px 34px -17px rgba(37,99,235,.82);
+  color: #fff !important;
+}
+
+.atlas-product-v2 .atlas-product-secondary {
+  border: 1px solid #cbd5e1;
+  background: rgba(255,255,255,.72);
+  color: var(--atlas-product-ink) !important;
+}
+
+.atlas-product-v2 .atlas-product-primary:hover,
+.atlas-product-v2 .atlas-product-secondary:hover {
+  transform: translateY(-2px);
+}
+
+.atlas-product-v2 .atlas-product-primary:hover {
+  box-shadow: 0 22px 42px -18px rgba(37,99,235,.9);
+}
+
+.atlas-product-v2 .atlas-product-secondary:hover {
+  border-color: var(--atlas-product-blue);
+}
+
+.atlas-product-v2 .atlas-product-panel,
+.atlas-product-v2 .highlight-card,
+.atlas-product-v2 .market-card,
+.atlas-product-v2 .signal-card,
+.atlas-product-v2 section > div > .grid > div,
+.atlas-product-v2 section > div > .grid > a {
+  border-radius: 1.35rem !important;
+}
+
+.atlas-product-v2 .highlight-card,
+.atlas-product-v2 .market-card,
+.atlas-product-v2 .signal-card {
+  border-color: rgba(37,99,235,.16) !important;
+  background: rgba(255,255,255,.84) !important;
+  box-shadow: 0 20px 55px -42px rgba(30,64,175,.62) !important;
+  -webkit-backdrop-filter: blur(16px);
+  backdrop-filter: blur(16px);
+}
+
+.atlas-product-v2 .section-title {
+  font-weight: 700 !important;
+  letter-spacing: -.035em !important;
+}
+
+.atlas-product-v2 .section-title::after {
+  width: 3.5rem;
+  background: var(--atlas-product-panel) !important;
+}
+
+.atlas-product-v2 .case-stat,
+.atlas-product-v2 .metric-value,
+.atlas-product-v2 .gradient-text {
+  background: var(--atlas-product-panel);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+}
+
+.atlas-product-v2 .tag,
+.atlas-product-v2 .chip {
+  border-color: rgba(37,99,235,.18);
+  background: rgba(239,246,255,.82);
+  color: #1d4ed8;
+}
+
+.atlas-product-v2 .code-block {
+  border-color: #24324a;
+  border-radius: 1.15rem;
+  background: linear-gradient(145deg, #0b1120, #111c30);
+  box-shadow: 0 24px 60px -45px rgba(2,6,23,.9);
+}
+
+.atlas-product-v2 footer {
+  background: rgba(255,255,255,.72) !important;
+  -webkit-backdrop-filter: blur(16px);
+  backdrop-filter: blur(16px);
+}
+
+.atlas-product-v2 :focus-visible {
+  outline: 3px solid var(--atlas-product-blue) !important;
+  outline-offset: 3px !important;
+}
+
+html.dark .atlas-product-v2 {
+  background:
+    radial-gradient(circle at 8% 8%, rgba(37,99,235,.17), transparent 28rem),
+    radial-gradient(circle at 92% 20%, rgba(91,162,252,.08), transparent 25rem),
+    #070d1a;
+}
+
+html.dark .atlas-product-v2 .atlas-product-hero {
+  border-color: rgba(91,162,252,.18);
+  background:
+    radial-gradient(circle at 80% 32%, rgba(37,99,235,.25), transparent 23rem),
+    linear-gradient(145deg, rgba(11,17,32,.98), rgba(13,24,48,.96) 58%, rgba(15,23,42,.95));
+  box-shadow: 0 42px 100px -65px rgba(37,99,235,.75);
+}
+
+html.dark .atlas-product-v2 .atlas-product-hero .glow-word {
+  background: linear-gradient(110deg, #f8fafc 0%, #93c5fd 42%, #5ba2fc 66%, #f8fafc 100%);
+  background-size: 220% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+
+html.dark .atlas-product-v2 .atlas-product-kicker {
+  border-color: rgba(91,162,252,.24);
+  background: rgba(15,23,42,.72);
+  color: #93c5fd;
+}
+
+html.dark .atlas-product-v2 .atlas-product-secondary {
+  border-color: #334155;
+  background: rgba(15,23,42,.7);
+  color: #e2e8f0 !important;
+}
+
+html.dark .atlas-product-v2 .highlight-card,
+html.dark .atlas-product-v2 .market-card,
+html.dark .atlas-product-v2 .signal-card {
+  border-color: rgba(91,162,252,.17) !important;
+  background: rgba(15,23,42,.78) !important;
+  box-shadow: 0 22px 60px -46px rgba(37,99,235,.75) !important;
+}
+
+html.dark .atlas-product-v2 .tag,
+html.dark .atlas-product-v2 .chip {
+  border-color: rgba(91,162,252,.22);
+  background: rgba(37,99,235,.11);
+  color: #bfdbfe;
+}
+
+@media (max-width: 720px) {
+  .atlas-product-v2 .atlas-product-hero {
+    margin-bottom: 2rem;
+    padding: 7rem 1.25rem 3.25rem;
+    border-radius: 0 0 1.5rem 1.5rem;
+  }
+
+  .atlas-product-v2 .atlas-product-hero .hero-case,
+  .atlas-product-v2 .atlas-product-hero .hero-title {
+    font-size: clamp(2.35rem, 13vw, 4.5rem) !important;
+  }
+
+  .atlas-product-v2 .metric-value {
+    font-size: 1.65em;
+  }
+
+  .atlas-product-v2 .atlas-product-actions {
+    flex-direction: column;
+  }
+
+  .atlas-product-v2 .atlas-product-primary,
+  .atlas-product-v2 .atlas-product-secondary {
+    width: 100%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .atlas-product-v2 *,
+  .atlas-product-v2 *::before,
+  .atlas-product-v2 *::after {
+    animation: none !important;
+    scroll-behavior: auto !important;
+    transition-duration: .01ms !important;
+  }
+}
