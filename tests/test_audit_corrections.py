@@ -20,14 +20,13 @@ def test_language_choice_never_redirects_automatically():
 
 
 def test_french_and_english_homepage_prices_are_synchronized():
-    # 3 cartes offre homepage : déploiement 50€, accompagnement 150€, supervision 15–29€/mois
+    # 3 cartes offre homepage : déploiement 50€, écosystème clé en main 90€, supervision 29€/mois
     fr_prices = re.findall(r'class="offer-price[^>]*>(\d+)€<', FR)
     en_prices = re.findall(r'class="offer-price[^>]*>€(\d+)<', EN)
-    assert fr_prices == ["50", "150"]
+    assert fr_prices == ["50", "90", "29"]
     assert en_prices == fr_prices
-    # fourchette supervision synchronisée FR/EN
-    assert re.search(r'15–29€', FR)
-    assert re.search(r'€15–29', EN)
+    assert "150€" not in FR and "€150" not in EN
+    assert "15–29€" not in FR and "€15–29" not in EN
 
 
 def test_alexandre_page_is_integrated_into_both_homepages_and_sitemap():

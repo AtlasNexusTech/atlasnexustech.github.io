@@ -131,9 +131,9 @@ def _article_with_heading(container, heading):
             "Votre premier agent en production sous 24\u00a0h",
             "50€",
             "Accompagnement + écosystème multi-agentique",
-            "150€",
+            "90€",
             "Supervision & évolution continue",
-            "15–29€",
+            "29€",
         ),
         (
             "en/index.html",
@@ -141,9 +141,9 @@ def _article_with_heading(container, heading):
             "Your first agent in production within 24\u00a0h",
             "€50",
             "Coaching + multi-agent ecosystem",
-            "€150",
+            "€90",
             "Supervision & continuous evolution",
-            "€15–29",
+            "€29",
         ),
     ],
 )
