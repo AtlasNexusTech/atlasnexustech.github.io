@@ -116,104 +116,88 @@ def _article_with_heading(container, heading):
 @pytest.mark.parametrize(
     (
         "relative_path",
-        "offer_path",
         "hero_label",
-        "secondary_label",
-        "card_title",
-        "card_cta",
-        "request_label",
-        "request_path",
-        "price",
-        "quote_marker",
+        "card_1_title",
+        "card_1_price",
+        "card_2_title",
+        "card_2_price",
+        "card_3_title",
+        "card_3_price",
     ),
     [
         (
             "index.html",
-            "/ia-agentique/",
-            "Déploiement d'agent IA · 50€",
-            "Voir mes réalisations & démos",
-            "Déploiement et infogérance d'IA agentique",
-            "Découvrir l'offre →",
-            "Demander un déploiement",
-            "/ia-agentique/?offer=infra#order-form",
+            "Réserver mon diagnostic",
+            "Votre premier agent en production sous 24\u00a0h",
             "50€",
-            "infogérance dès 15€/mois",
+            "Accompagnement + écosystème multi-agentique",
+            "150€",
+            "Supervision & évolution continue",
+            "15–29€",
         ),
         (
             "en/index.html",
-            "/ia-agentique/en/",
-            "AI agent deployment · €50",
-            "See my work & demos",
-            "AI agent deployment & managed services",
-            "Discover the offer →",
-            "Request a deployment",
-            "/ia-agentique/en/?offer=infra#order-form",
+            "Book my free 30-min diagnostic",
+            "Your first agent in production within 24\u00a0h",
             "€50",
-            "managed from €15/month",
+            "Coaching + multi-agent ecosystem",
+            "€150",
+            "Supervision & continuous evolution",
+            "€15–29",
         ),
     ],
 )
 def test_homepage_promotes_the_current_agent_offer(
     relative_path,
-    offer_path,
     hero_label,
-    secondary_label,
-    card_title,
-    card_cta,
-    request_label,
-    request_path,
-    price,
-    quote_marker,
+    card_1_title,
+    card_1_price,
+    card_2_title,
+    card_2_price,
+    card_3_title,
+    card_3_price,
 ):
     html = (ROOT / relative_path).read_text(encoding="utf-8")
-    hero_match = re.search(r'<!-- Hero -->(.*?)<!-- Products -->', html, re.DOTALL)
-    offers_match = re.search(r'<!-- Offers -->(.*?)<!-- Why -->', html, re.DOTALL)
+    hero_match = re.search(r'<!-- Hero -->(.*?)<!-- AvantApres -->', html, re.DOTALL)
+    offers_match = re.search(r'<!-- Offers -->(.*?)<!-- Garantie -->', html, re.DOTALL)
     assert hero_match is not None
     assert offers_match is not None
     hero = hero_match.group(1)
     offers = offers_match.group(1)
 
+    # Hero : CTA diagnostic (route de contact principale de la refonte)
     primary = _anchor_attributes(hero, hero_label)
-    assert f'href="{offer_path}"' in primary
+    assert 'href="#contact"' in primary
     assert "bg-primary" in primary
 
-    secondary = _anchor_attributes(hero, secondary_label)
-    assert 'href="#work"' in secondary
-    assert "border-2" in secondary
-    assert "bg-primary" not in secondary
+    # 3 cartes d'offre avec les prix réels
+    card_1 = _article_with_heading(offers, card_1_title)
+    assert card_1_price in _visible_text(card_1)
+    card_2 = _article_with_heading(offers, card_2_title)
+    assert card_2_price in _visible_text(card_2)
+    card_3 = _article_with_heading(offers, card_3_title)
+    assert card_3_price in _visible_text(card_3)
 
-    agent_card = _article_with_heading(offers, card_title)
-    card_text = _visible_text(agent_card)
-    assert price in card_text
-    assert "Telegram" in card_text
-    assert quote_marker in card_text.lower()
-
-    offer_link = _anchor_attributes(agent_card, card_cta)
-    assert f'href="{offer_path}"' in offer_link
-    request_link = _anchor_attributes(agent_card, request_label)
-    assert f'href="{request_path}"' in request_link
-
-    assert re.search(r"\bDiscord\b", card_text, re.IGNORECASE) is None
-    assert re.search(r"\bCLI\b", card_text, re.IGNORECASE) is None
-    assert re.search(r"(?:10\s*€|€\s*10)", card_text) is None
+    assert re.search(r"\bDiscord\b", offers, re.IGNORECASE) is None
+    assert re.search(r"(?:10\s*€|€\s*10)", offers) is None
 
 
 @pytest.mark.parametrize(
-    ("relative_path", "offer_path", "sticky_label"),
+    ("relative_path", "sticky_label"),
     [
-        ("index.html", "/ia-agentique/", "Déploiement agent IA · 50€ →"),
-        ("en/index.html", "/ia-agentique/en/", "AI agent deployment from €50 →"),
+        ("index.html", "Diagnostic 30 min gratuit →"),
+        ("en/index.html", "Free 30-min diagnostic →"),
     ],
 )
 def test_homepage_mobile_sticky_cta_targets_the_fixed_price_offer(
-    relative_path, offer_path, sticky_label
+    relative_path, sticky_label
 ):
     html = (ROOT / relative_path).read_text(encoding="utf-8")
     sticky = re.search(
         r'<a href="([^"]+)" class="fixed bottom-4[^>]*>(.*?)</a>', html, re.DOTALL
     )
     assert sticky is not None
-    assert sticky.group(1) == offer_path
+    assert sticky.group(1) == "#contact"
     assert sticky.group(2).strip() == sticky_label
 
 

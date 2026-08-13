@@ -20,16 +20,16 @@ def test_homepages_use_a_still_hero_image_instead_of_the_video():
         markup = background.group(0)
         assert "<video" not in markup
         assert "atlasnexus-hero-20260812" not in markup
-        assert '<source srcset="/assets/atlasnexus-hero-20260813.webp" type="image/webp">' in markup
+        assert '<source srcset="/assets/atlasnexus-hero-symbol-20260813.webp" type="image/webp">' in markup
         img = re.search(r"<img\b(?P<attrs>[^>]*)>", markup)
         assert img
         attrs = img.group("attrs")
         assert 'class="hero-bg-still"' in attrs
-        assert 'src="/assets/atlasnexus-hero-20260813.jpg"' in attrs
+        assert 'src="/assets/atlasnexus-hero-symbol-20260813-hq.jpg"' in attrs
         assert 'alt=""' in attrs
         assert 'loading="eager"' in attrs
         assert 'decoding="async"' in attrs
-        assert 'href="/css/v2.css?v=9"' in html
+        assert 'href="/css/v2.css?v=11"' in html
 
 
 def test_no_hero_video_asset_is_referenced_or_scripted_any_more():

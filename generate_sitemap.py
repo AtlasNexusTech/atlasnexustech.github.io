@@ -13,6 +13,20 @@ pages = subprocess.run(['find', '.', '-name', 'index.html', '-not', '-path', '*/
 pages = [p.replace('./', '').replace('/index.html', '') for p in pages]
 pages = [p for p in pages if p != '']
 
+# Exclure les pages noindex : jamais noindex + sitemap (signal SEO contradictoire).
+# Une page est noindex si son index.html contient name="robots" content="...noindex..."
+def is_noindex(p):
+    if p == 'index.html':
+        return False
+    try:
+        html = (BASE / p / 'index.html').read_text(encoding='utf-8')
+    except Exception:
+        return False
+    return bool(re.search(r'name="robots"\s+content="[^"]*noindex', html, re.I))
+
+pages = [p for p in pages if not is_noindex(p)]
+
+
 # Construire les URLs : root = /, sinon /<page>/
 urls = set()
 for p in pages:

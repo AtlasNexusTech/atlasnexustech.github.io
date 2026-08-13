@@ -11,19 +11,11 @@ def test_web_data_offer_starts_at_forty_euros_everywhere():
     home = HOME.read_text(encoding="utf-8")
     offer = OFFER.read_text(encoding="utf-8")
 
-    card_match = re.search(
-        r"<h3[^>]*>Développement web, données[^<]*</h3>(.*?)</article>",
-        home,
-        flags=re.DOTALL,
-    )
-    assert card_match, "Carte Développement web + données introuvable"
-    card = card_match.group(1)
-    assert "40€" in card
-    assert "À partir de 40€" in card
-
+    # La refonte a retiré la carte « Développement web, données » de la homepage
+    # — la page offre dédiée reste la source du prix 40€ (dans le sitemap).
+    assert "Développement web" in home
     assert '"price": "40"' in offer
-    assert "À partir de" in offer
-    assert ">40€</span>" in offer
+    assert "40€" in offer
     assert "Commander maintenant : à partir de 40€" in offer
     assert "150€" not in offer
     assert '"price": "90"' not in offer

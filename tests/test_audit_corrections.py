@@ -20,10 +20,14 @@ def test_language_choice_never_redirects_automatically():
 
 
 def test_french_and_english_homepage_prices_are_synchronized():
-    fr_prices = re.findall(r'class="offer-price[^>]*>(?:À partir de )?(\d+)€', FR)
-    en_prices = re.findall(r'class="offer-price[^>]*>(?:Starting from )?€(\d+)', EN)
-    assert fr_prices == ["50", "40"]
+    # 3 cartes offre homepage : déploiement 50€, accompagnement 150€, supervision 15–29€/mois
+    fr_prices = re.findall(r'class="offer-price[^>]*>(\d+)€<', FR)
+    en_prices = re.findall(r'class="offer-price[^>]*>€(\d+)<', EN)
+    assert fr_prices == ["50", "150"]
     assert en_prices == fr_prices
+    # fourchette supervision synchronisée FR/EN
+    assert re.search(r'15–29€', FR)
+    assert re.search(r'€15–29', EN)
 
 
 def test_alexandre_page_is_integrated_into_both_homepages_and_sitemap():
@@ -35,6 +39,7 @@ def test_alexandre_page_is_integrated_into_both_homepages_and_sitemap():
 def test_legal_notice_names_actual_processors_and_purposes():
     assert "GoatCounter" in LEGAL
     assert "FormSubmit" in LEGAL
+    assert "Hotjar" in LEGAL
     assert "mesure d'audience" in LEGAL
     assert "jamais cédées à des tiers" not in LEGAL
     assert "Aucun service d'analyse d'audience" not in LEGAL

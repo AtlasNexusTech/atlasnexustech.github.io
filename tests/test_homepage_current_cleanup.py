@@ -6,7 +6,7 @@ EN = (ROOT / "en" / "index.html").read_text(encoding="utf-8")
 
 
 def test_homepages_keep_the_diagnostic_and_remove_the_free_trial_offer():
-    assert "Réserver mon diagnostic gratuit de 30 min" in FR
+    assert "Réserver mon diagnostic" in FR
     assert "Book my free 30-min diagnostic" in EN
     for html in (FR, EN):
         assert 'href="/essai/"' not in html

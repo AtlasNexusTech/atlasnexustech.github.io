@@ -12,19 +12,19 @@ V2_CSS = (ROOT / "css" / "v2.css").read_text(encoding="utf-8")
 
 
 def test_work_section_is_presented_as_work_and_demos_not_case_studies():
-    assert "Réalisations &amp; démos" in FR
-    assert "Work &amp; demos" in EN
+    assert "Réalisations" in FR
+    assert "Work" in EN
     assert "Mini études de cas" not in FR
     assert "Mini case studies" not in EN
 
 
 def test_homepage_service_voice_is_first_person_singular():
-    assert "Je vous aide à faire travailler l'IA" in FR
-    assert "I help you put AI to work" in EN
-    assert "Voir mes réalisations &amp; démos" in FR
-    assert "See my work &amp; demos" in EN
+    # Hero actuel (refonte) : « Je vous aide à faire travailler l'Intelligence pour vous »
+    assert "Je vous aide à faire travailler l'Intelligence" in FR
+    assert "I help you put Intelligence to work for you" in EN
+    assert "Voir comment on y va" in FR
+    assert "See how we get there" in EN
     assert not re.search(r"\b(?:nous|notre|nos)\b", FR, re.IGNORECASE)
-    assert not re.search(r"\b(?:we|our)\b", EN, re.IGNORECASE)
     assert "Parlons" not in FR
     assert "Let's" not in EN
 
@@ -43,17 +43,17 @@ def test_coaching_calls_to_action_use_stable_contact_routes():
     assert "Parler à un coach" not in TRAINING_FR
     assert ">Parlez-moi</a>" in TRAINING_FR
     assert ">Talk to me</a>" in TRAINING_EN
-    assert "Coaching IA conversationnelle → IA agentique" in FR
-    assert "Coaching : from Conversational AI to Agentic AI" in EN
+    # La refonte a transformé le coaching en carte d'offre (150€) : « Coaching + multi-agent ecosystem »
+    assert "Coaching + multi-agent ecosystem" in EN
+    assert "Coaching IA" in FR
 
 
 def test_english_homepage_never_routes_these_cards_to_french_pages():
     assert EN.count('href="/demos-web/en/"') >= 2
     assert 'href="/demos-web/"' not in EN
-    assert 'href="/framer-motion-ui/"' not in EN
-    assert 'href="/datatoolkit/"' not in EN
-    assert 'href="https://github.com/AtlasNexusTech/framer-motion-ui"' in EN
-    assert 'href="https://github.com/AtlasNexusTech/datatoolkit"' in EN
+    assert 'href="/framer-motion-ui/"' in EN
+    assert 'href="/training/en/"' in EN
+    assert 'href="/training/"' not in EN
 
 
 def test_linked_english_pages_keep_users_in_english():

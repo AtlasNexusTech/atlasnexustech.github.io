@@ -24,7 +24,8 @@ EXCLUDED_ROUTES = (
     "demo-menuiserie.fr", "demo-refonte-artisan", "demo-refonte-consultant",
     "demo-refonte-restaurant", "demo-refonte-sante", "demo-seydi",
     "demo-seydi-animee", "duault-anatole", "ed-maconnerie", "en/archive",
-    "eponia-conseil", "menuiserie-devarenne", "peintre-95", "prime-agent", "pwa-template",
+    "eponia-conseil", "menuiserie-devarenne", "peintre-95", "prime-agent",
+    "pwa-template",
     "stratea", "tad-agency", "tony-zanirato",
 )
 
