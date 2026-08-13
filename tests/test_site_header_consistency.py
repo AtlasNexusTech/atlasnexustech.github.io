@@ -47,7 +47,7 @@ def test_included_pages_share_the_canonical_atlas_header():
     for route in INCLUDED_ROUTES:
         html = page(route)
         assert html.count('data-atlas-site-header') == 1, route
-        assert '<link rel="stylesheet" href="/css/atlas-header.css?v=1">' in html, route
+        assert '<link rel="stylesheet" href="/css/atlas-header.css?v=2">' in html, route
         assert '<script src="/js/atlas-header.js?v=1" defer></script>' in html, route
         assert '<span class="atlas-site-brand-name">Atlas Nexus</span>' in html, route
         assert 'src="/atlas-logo.png?v=20260527"' in html, route
