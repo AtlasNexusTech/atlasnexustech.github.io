@@ -57,7 +57,7 @@ def test_booking_motion_is_progressive_and_accessible():
     html = PAGE.read_text(encoding="utf-8")
     css = (ROOT / "css" / "booking.css").read_text(encoding="utf-8")
     js = BOOKING_JS
-    assert '/css/booking.css?v=2' in html
+    assert '/css/booking.css?v=3' in html
     assert '/js/booking.js?v=2' in html
     assert "prefers-reduced-motion: reduce" in js
     assert "IntersectionObserver" in js
@@ -72,3 +72,14 @@ def test_booking_motion_is_progressive_and_accessible():
     assert "opacity:1!important" in reduced
     assert "transform:none!important" in reduced
     assert "animation:none!important" in reduced
+
+
+def test_booking_hero_highlights_next_action_with_atlas_gradient():
+    html = PAGE.read_text(encoding="utf-8")
+    css = (ROOT / "css" / "booking.css").read_text(encoding="utf-8")
+    assert '<span class="booking-atlas-gradient">prochaine action claire.</span>' in html
+    assert ".booking-atlas-gradient" in css
+    assert "linear-gradient" in css
+    assert "background-clip:text" in css
+    assert "-webkit-background-clip:text" in css
+    assert "@keyframes booking-gradient-flow" in css
