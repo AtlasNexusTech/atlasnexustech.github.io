@@ -14,7 +14,7 @@ INCLUDED_ROUTES = (
     "extracteur-donnees-publiques", "framer-motion-ui", "growth",
     "ia-agentique", "ia-agentique/en", "ia-receptionniste", "install",
     "labs", "labs/en", "labs/atlas", "labs/atlas/en",
-    "markets-dashboard", "mentions-legales", "merci", "oobe-ace-agent",
+    "markets-dashboard", "mentions-legales", "merci", "oobe-ace-agent", "rendez-vous",
     "oobe-ace-agent-en", "revue-trimestrielle-powerpoint", "template-artisan",
     "training", "training/en", "verify", "verify/en",
 )
@@ -52,7 +52,7 @@ def test_included_pages_share_the_canonical_atlas_header():
         assert '<span class="atlas-site-brand-name">Atlas Nexus</span>' in html, route
         assert 'src="/atlas-logo.png?v=20260527"' in html, route
         assert 'class="atlas-site-brand"' in html, route
-        assert 'href="/#contact"' in html or 'href="/en/#contact"' in html, route
+        assert 'href="/#contact"' in html or 'href="/en/#contact"' in html or 'href="/rendez-vous/"' in html or route == "rendez-vous", route
         assert re.search(r'<body\b[^>]*\bclass="[^"]*\batlas-unified-header\b', html), route
         assert '<a href="https://github.com/AtlasNexusTech" target="_blank" rel="noopener">GitHub</a>' in html, route
         assert '<button id="atlas-theme-toggle" class="atlas-theme-toggle" type="button"' in html, route
@@ -81,7 +81,7 @@ def test_localized_header_copy_and_language_state():
         else:
             assert 'data-active="fr"' in markup, route
             assert '>Réalisations</a>' in markup and '>Offres</a>' in markup and '>Pourquoi</a>' in markup, route
-            assert 'href="/#contact"' in markup, route
+            assert 'href="/#contact"' in markup or 'href="/rendez-vous/"' in markup or route == "rendez-vous", route
             fr_target = "/atlas-desk/" if route == "atlas-desk" else "/"
             en_target = "/atlas-desk/en/" if route == "atlas-desk" else "/en/"
             assert f'<a href="{fr_target}" data-atlas-lang="fr" aria-current="page">FR</a>' in markup, route

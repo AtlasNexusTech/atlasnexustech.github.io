@@ -30,7 +30,7 @@ def test_homepage_service_voice_is_first_person_singular():
 
 
 def test_coaching_calls_to_action_use_stable_contact_routes():
-    assert 'href="#contact"' in FR
+    assert 'href="/rendez-vous/"' in FR
     assert 'href="#contact"' in EN
     for html in (FR, EN, TRAINING_FR, TRAINING_EN, DEMOS_EN):
         assert "/cdn-cgi/l/email-protection" not in html

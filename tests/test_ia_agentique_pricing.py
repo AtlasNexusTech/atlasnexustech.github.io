@@ -167,7 +167,8 @@ def test_homepage_promotes_the_current_agent_offer(
 
     # Hero : CTA diagnostic (route de contact principale de la refonte)
     primary = _anchor_attributes(hero, hero_label)
-    assert 'href="#contact"' in primary
+    expected_booking_target = "/rendez-vous/" if relative_path == "index.html" else "#contact"
+    assert f'href="{expected_booking_target}"' in primary
     assert "bg-primary" in primary
 
     # 3 cartes d'offre avec les prix réels
@@ -197,7 +198,8 @@ def test_homepage_mobile_sticky_cta_targets_the_fixed_price_offer(
         r'<a href="([^"]+)" class="fixed bottom-4[^>]*>(.*?)</a>', html, re.DOTALL
     )
     assert sticky is not None
-    assert sticky.group(1) == "#contact"
+    expected_booking_target = "/rendez-vous/" if relative_path == "index.html" else "#contact"
+    assert sticky.group(1) == expected_booking_target
     assert sticky.group(2).strip() == sticky_label
 
 
