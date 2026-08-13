@@ -150,14 +150,12 @@
   // ---- Bandeau de consentement --------------------------------------------
   var TXT = {
     fr: {
-      msg: 'Ce site utilise des cookies pour son bon fonctionnement.',
-      yes: 'Accepter', no: 'Refuser', more: 'En savoir plus',
-      href: '/mentions-legales/#cookies'
+      msg: 'We use cookies and similar technologies, including necessary cookies to provide our website, and optional cookies to improve and personalize your experience',
+      yes: 'Accepter', no: 'Refuser', more: '', href: ''
     },
     en: {
-      msg: 'This site uses cookies for its proper functioning.',
-      yes: 'Accept', no: 'Decline', more: 'Learn more',
-      href: '/mentions-legales/#cookies'
+      msg: 'We use cookies and similar technologies, including necessary cookies to provide our website, and optional cookies to improve and personalize your experience',
+      yes: 'Accept', no: 'Decline', more: '', href: ''
     }
   };
 
@@ -172,51 +170,53 @@
     if (document.getElementById('atlas-consent')) return;
     var t = TXT[lang()];
 
-    /* Charte du site : capsule de verre comme la barre de navigation
-       (fond blanc translucide, flou d'arriere-plan, bord clair, rayon 999px),
-       typographies Rubik / Nunito Sans, bleu primaire #2563EB, mode sombre
-       aligne sur les jetons dark-card / dark-border du theme Tailwind. */
+    /* Atlas Nexus : carte claire et compacte, proche des surfaces du site
+       (fond #F8FAFC, bordure bleue tres legere, Rubik / Nunito Sans,
+       rayons doux et boutons coherents avec les CTA principaux). */
     var css = document.createElement('style');
     css.textContent =
       '#atlas-consent{position:fixed;left:1rem;right:1rem;bottom:1rem;z-index:9998;' +
-      'width:calc(100% - 2rem);max-width:44rem;margin:0 auto;' +
-      'display:flex;flex-wrap:wrap;gap:.75rem 1.25rem;align-items:center;' +
-      'justify-content:space-between;padding:.7rem .8rem .7rem 1.35rem;' +
-      'border:1px solid rgba(255,255,255,.3);border-radius:999px;' +
-      'background:rgba(255,255,255,.78);' +
-      '-webkit-backdrop-filter:blur(24px);backdrop-filter:blur(24px);' +
-      'box-shadow:0 4px 30px rgba(15,23,42,.08);' +
-      'color:#0f172a;font-family:"Nunito Sans",Rubik,ui-sans-serif,system-ui,' +
-      '-apple-system,"Segoe UI",sans-serif;font-size:14px;line-height:1.5;' +
-      'opacity:0;transform:translateY(10px);' +
-      'transition:opacity .35s ease,transform .35s ease}' +
+      'width:calc(100% - 2rem);max-width:62rem;margin:0 auto;' +
+      'display:grid;grid-template-columns:minmax(0,1fr) auto;gap:1rem 1.5rem;' +
+      'align-items:center;padding:1.05rem 1.15rem 1.05rem 1.35rem;' +
+      'border:1px solid rgba(34,108,243,.16);border-radius:1.25rem;' +
+      'background:rgba(248,250,252,.96);' +
+      '-webkit-backdrop-filter:blur(18px);backdrop-filter:blur(18px);' +
+      'box-shadow:0 18px 48px rgba(15,23,42,.12),0 3px 12px rgba(34,108,243,.06);' +
+      'color:#334155;font-family:"Nunito Sans",Rubik,ui-sans-serif,system-ui,' +
+      '-apple-system,"Segoe UI",sans-serif;font-size:14px;line-height:1.55;' +
+      'opacity:0;transform:translateY(12px);' +
+      'transition:opacity .3s ease,transform .3s ease}' +
+      '#atlas-consent::before{content:"";position:absolute;left:0;top:1rem;bottom:1rem;' +
+      'width:3px;border-radius:999px;background:linear-gradient(180deg,#226CF3,#5BA2FC)}' +
       '#atlas-consent.is-in{opacity:1;transform:none}' +
-      '#atlas-consent p{margin:0;flex:1 1 260px}' +
-      '#atlas-consent a{color:#2563EB;text-decoration:none;' +
-      'border-bottom:1px solid rgba(37,99,235,.35)}' +
-      '#atlas-consent a:hover{border-bottom-color:#2563EB}' +
+      '#atlas-consent p{margin:0;max-width:48rem;letter-spacing:-.005em}' +
       '#atlas-consent .atlas-consent-btns{display:flex;align-items:center;' +
-      'gap:.5rem;flex:0 0 auto}' +
-      '#atlas-consent button{cursor:pointer;border:0;border-radius:999px;' +
+      'gap:.55rem;flex:0 0 auto}' +
+      '#atlas-consent button{cursor:pointer;border-radius:999px;' +
       'font-family:Rubik,"Nunito Sans",ui-sans-serif,system-ui,sans-serif;' +
-      'font-size:14px;font-weight:600;transition:all .2s ease}' +
-      '#atlas-consent .atlas-yes{background:#2563EB;color:#fff;padding:.5rem 1.25rem}' +
-      '#atlas-consent .atlas-yes:hover{background:#1D4ED8}' +
-      '#atlas-consent .atlas-no{background:transparent;color:#64748B;' +
-      'padding:.5rem .9rem}' +
-      '#atlas-consent .atlas-no:hover{color:#0f172a;background:rgba(15,23,42,.05)}' +
-      /* mode sombre du site (.dark sur <html>) */
-      '.dark #atlas-consent{background:rgba(17,24,39,.82);' +
-      'border-color:rgba(255,255,255,.08);color:#F1F5F9;' +
-      'box-shadow:0 4px 30px rgba(0,0,0,.35)}' +
-      '.dark #atlas-consent a{color:#60A5FA;border-bottom-color:rgba(96,165,250,.35)}' +
-      '.dark #atlas-consent .atlas-no{color:#94A3B8}' +
-      '.dark #atlas-consent .atlas-no:hover{color:#F1F5F9;background:rgba(255,255,255,.06)}' +
-      /* mobile : au-dessus du bouton fixe "Demander un devis" */
-      '@media(max-width:639px){#atlas-consent{bottom:5rem;border-radius:1.25rem;' +
-      'padding:1rem 1.1rem;gap:.85rem}' +
-      '#atlas-consent p{flex:1 1 100%}' +
-      '#atlas-consent .atlas-consent-btns{flex:1 1 100%;justify-content:flex-end}}';
+      'font-size:13px;font-weight:700;letter-spacing:.01em;transition:all .2s ease}' +
+      '#atlas-consent .atlas-yes{border:1px solid #226CF3;background:#226CF3;' +
+      'color:#fff;padding:.62rem 1.25rem;box-shadow:0 8px 18px rgba(34,108,243,.2)}' +
+      '#atlas-consent .atlas-yes:hover{background:#1859D8;border-color:#1859D8;' +
+      'transform:translateY(-1px)}' +
+      '#atlas-consent .atlas-no{border:1px solid #CBD5E1;background:#fff;' +
+      'color:#475569;padding:.62rem 1rem}' +
+      '#atlas-consent .atlas-no:hover{border-color:#94A3B8;color:#0F172A;' +
+      'background:#F8FAFC}' +
+      '.dark #atlas-consent{background:rgba(15,23,42,.96);' +
+      'border-color:rgba(91,162,252,.22);color:#CBD5E1;' +
+      'box-shadow:0 18px 48px rgba(0,0,0,.38)}' +
+      '.dark #atlas-consent .atlas-no{background:#111827;border-color:#334155;color:#CBD5E1}' +
+      '.dark #atlas-consent .atlas-no:hover{background:#1E293B;border-color:#64748B;color:#F8FAFC}' +
+      '@media(max-width:760px){#atlas-consent{bottom:5rem;display:flex;flex-direction:column;' +
+      'align-items:stretch;border-radius:1.1rem;padding:1rem 1rem 1rem 1.2rem;gap:.9rem}' +
+      '#atlas-consent p{font-size:13.5px;line-height:1.5}' +
+      '#atlas-consent .atlas-consent-btns{width:100%;justify-content:flex-end}' +
+      '#atlas-consent button{min-height:42px}}' +
+      '@media(max-width:420px){#atlas-consent .atlas-consent-btns{display:grid;' +
+      'grid-template-columns:1fr 1fr}#atlas-consent button{width:100%}}' +
+      '@media(prefers-reduced-motion:reduce){#atlas-consent{transition:none}}';
     document.head.appendChild(css);
 
     var box = document.createElement('div');
