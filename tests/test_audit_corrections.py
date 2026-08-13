@@ -47,6 +47,9 @@ def test_legal_notice_names_actual_processors_and_purposes():
     assert "adresse email, téléphone et contenu" not in LEGAL
     assert "entrepreneur individuel" not in LEGAL
     assert "éditeur du site" in LEGAL
+    # Le site cible les particuliers : médiateur de la consommation obligatoire dans les CGV
+    assert "CM2C" in LEGAL
+    assert "médiateur de la consommation" in LEGAL
 
 
 def test_sitemap_prioritizes_offers_and_cases_not_raw_demos():
