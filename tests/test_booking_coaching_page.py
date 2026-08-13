@@ -36,12 +36,14 @@ def test_preparation_document_is_offered_after_scheduling_with_manual_fallback()
     html = PAGE.read_text(encoding="utf-8")
     assert 'id="booking-confirmed"' in html
     assert 'hidden' in html
-    assert 'href="/assets/documents/nexus-preparation-coaching.pdf?v=1"' in html
+    assert 'href="/assets/documents/nexus-preparation-coaching.pdf?v=2"' in html
     assert 'download="Nexus-preparation-coaching.pdf"' in html
     assert "sessionStorage" in BOOKING_JS
     assert PDF.exists()
     reader = PdfReader(str(PDF))
     assert len(reader.pages) >= 2
+    first_page_images = list(reader.pages[0].images)
+    assert first_page_images, "Le logo Atlas Nexus doit être intégré à la première page"
     text = "\n".join(page.extract_text() or "" for page in reader.pages)
     for required in ("Préparation Nexus", "Votre objectif", "Situation actuelle", "Priorités", "Indicateurs de réussite"):
         assert required in text
