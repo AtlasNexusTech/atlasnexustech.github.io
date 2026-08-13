@@ -36,7 +36,7 @@ def test_preparation_document_is_offered_after_scheduling_with_manual_fallback()
     html = PAGE.read_text(encoding="utf-8")
     assert 'id="booking-confirmed"' in html
     assert 'hidden' in html
-    assert 'href="/assets/documents/nexus-preparation-coaching.pdf"' in html
+    assert 'href="/assets/documents/nexus-preparation-coaching.pdf?v=1"' in html
     assert 'download="Nexus-preparation-coaching.pdf"' in html
     assert "sessionStorage" in BOOKING_JS
     assert PDF.exists()
