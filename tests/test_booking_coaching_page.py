@@ -51,3 +51,24 @@ def test_preparation_document_is_offered_after_scheduling_with_manual_fallback()
 
 def test_homepage_primary_booking_paths_use_the_dedicated_page():
     assert HOME.count('href="/rendez-vous/"') >= 3
+
+
+def test_booking_motion_is_progressive_and_accessible():
+    html = PAGE.read_text(encoding="utf-8")
+    css = (ROOT / "css" / "booking.css").read_text(encoding="utf-8")
+    js = BOOKING_JS
+    assert '/css/booking.css?v=2' in html
+    assert '/js/booking.js?v=2' in html
+    assert "prefers-reduced-motion: reduce" in js
+    assert "IntersectionObserver" in js
+    assert "booking-motion-ready" in js
+    assert "booking-reveal" in js and "is-visible" in js
+    assert ".booking-motion-ready .booking-reveal" in css
+    assert ".booking-reveal.is-visible" in css
+    assert "booking-hero-rise" in css
+    assert "booking-ambient-drift" in css
+    assert "@media(prefers-reduced-motion:reduce)" in css
+    reduced = css.split("@media(prefers-reduced-motion:reduce)", 1)[1]
+    assert "opacity:1!important" in reduced
+    assert "transform:none!important" in reduced
+    assert "animation:none!important" in reduced

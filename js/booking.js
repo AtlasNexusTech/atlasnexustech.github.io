@@ -4,6 +4,39 @@
   var confirmed = document.getElementById('booking-confirmed');
   var storageKey = 'atlasNexusBookingConfirmed';
 
+  function initMotion() {
+    var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reduced || !('IntersectionObserver' in window)) return;
+
+    var selectors = [
+      '.booking-grid-three article',
+      '.booking-benefits > div',
+      '.booking-timeline > li',
+      '.booking-prep > *',
+      '.booking-calendar-head',
+      '.calendly-frame',
+      '.booking-fallback details'
+    ];
+    var targets = Array.prototype.slice.call(document.querySelectorAll(selectors.join(',')));
+    targets.forEach(function (target, index) {
+      target.classList.add('booking-reveal');
+      target.style.setProperty('--booking-delay', Math.min(index % 4, 3) * 70 + 'ms');
+    });
+
+    var observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add('is-visible');
+        observer.unobserve(entry.target);
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -5% 0px' });
+
+    targets.forEach(function (target) { observer.observe(target); });
+    document.documentElement.classList.add('booking-motion-ready');
+  }
+
+  initMotion();
+
   function safeGet() {
     try { return window.sessionStorage.getItem(storageKey); } catch (_) { return null; }
   }
