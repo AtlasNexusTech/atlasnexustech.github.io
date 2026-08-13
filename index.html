@@ -64,19 +64,8 @@
 <link rel="stylesheet" href="/css/atlas-header.css?v=2">
 <script src="/js/atlas-header.js?v=1" defer></script>
 
-  <script src="/js/tracking.js?v=8" defer></script>
+  <script src="/js/tracking.js?v=9" defer></script>
 
-<!-- Hotjar Tracking Code for Atlas Nexus -->
-<script>
-    (function(h,o,t,j,a,r){
-        h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
-        h._hjSettings={hjid:6713060,hjsv:6};
-        a=o.getElementsByTagName('head')[0];
-        r=o.createElement('script');r.async=1;
-        r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
-        a.appendChild(r);
-    })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
-</script>
 </head>
 <body class="bg-surface dark:bg-dark-surface text-foreground dark:text-dark-foreground font-body antialiased atlas-unified-header">
 <header class="atlas-site-header" data-atlas-site-header>
@@ -110,32 +99,6 @@
 
 <!-- Nav -->
 <header class="nav-fixed-center">
-  <nav data-atlas-legacy-nav aria-hidden="true" inert class="glass-nav flex h-[50px] items-center justify-between rounded-full px-5 sm:px-8">
-    <a href="#top" class="flex items-center gap-2 no-underline shrink-0" aria-label="Atlas Nexus accueil">
-      <img src="/atlas-logo.png?v=20260527" alt="Atlas Nexus" class="h-12 w-12 rounded-xl">
-      <span class="hidden items-center text-lg font-semibold tracking-tight text-foreground dark:text-dark-foreground">Atlas Nexus</span>
-      <span class="hidden rounded-full bg-accent/15 px-2.5 py-1 text-[11px] font-medium text-accent dark:text-green-400 -ml-0.5">Live</span>
-    </a>
-    <ul class="hidden items-center gap-1 text-sm font-medium text-slate-500 dark:text-dark-dim md:flex">
-      <li><a href="#work" class="relative rounded-full px-3 py-1.5 hover:text-foreground dark:hover:text-white transition-colors">Réalisations</a></li>
-      <li><a href="#offers" class="relative rounded-full px-3 py-1.5 hover:text-foreground dark:hover:text-white transition-colors">Offres</a></li>
-      <li><a href="#why" class="relative rounded-full px-3 py-1.5 hover:text-foreground dark:hover:text-white transition-colors">Pourquoi</a></li>
-      <li><a href="https://github.com/AtlasNexusTech" class="relative rounded-full px-3 py-1.5 hover:text-foreground dark:hover:text-white transition-colors">GitHub</a></li>
-    </ul>
-    <div class="flex items-center gap-2">
-      <div class="inline-grid lang-switch" data-active="fr" aria-label="Sélecteur de langue">
-        <a class="active" href="/" onclick="localStorage.setItem('atlasnexus.lang','fr')">FR</a>
-        <a href="/en/" onclick="localStorage.setItem('atlasnexus.lang','en')">EN</a>
-      </div>
-      <button id="theme-toggle" class="glass-nav-btn inline-flex items-center justify-center w-10 h-10 rounded-full text-foreground dark:text-dark-foreground hover:bg-white/20 dark:hover:bg-white/5 transition-all" aria-label="Toggle dark mode">
-        <svg class="w-4 h-4 rotate-0 scale-100 transition-transform duration-300 dark:-rotate-90 dark:scale-0" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
-        <svg class="absolute w-4 h-4 rotate-90 scale-0 transition-transform duration-300 dark:rotate-0 dark:scale-100" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
-      </button>
-      <a href="#contact" class="cursor-pointer bg-primary text-white px-5 py-2 rounded-full text-[15px] font-semibold hover:bg-primary-dark transition-colors" data-calendly>
-        Contact
-      </a>
-    </div>
-  </nav>
 </header>
 
 <!-- Hero -->
@@ -327,7 +290,7 @@
         <div class="reveal reveal-delay-1 bg-surface border border-border rounded-2xl p-5"><p class="font-bold mb-1">Une victoire en 24 h</p><p class="text-sm text-slate-600">Vous ne signez pas pour un projet de 6 mois : vous voyez un agent tourner sur une vraie tâche en 2 jours.</p></div>
         <div class="reveal reveal-delay-2 bg-surface border border-border rounded-2xl p-5"><p class="font-bold mb-1">Vous gardez la main</p><p class="text-sm text-slate-600">Les agents préparent, vous validez. Rien ne part sans vous tant que vous ne l'avez pas décidé.</p></div>
         <div class="reveal reveal-delay-2 bg-surface border border-border rounded-2xl p-5"><p class="font-bold mb-1">Formé, pas dépendant</p><p class="text-sm text-slate-600">Documentation en français clair et formation incluse : vous savez relancer, ajuster, comprendre.</p></div>
-        <div class="reveal reveal-delay-3 bg-surface border border-border rounded-2xl p-5"><p class="font-bold mb-1">Vos données restent chez vous</p><p class="text-sm text-slate-600">Vos mails, devis et fichiers clients ne partent pas sur une plateforme tierce : tout est traité sur votre machine.</p></div>
+        <div class="reveal reveal-delay-3 bg-surface border border-border rounded-2xl p-5"><p class="font-bold mb-1">Vos données restent chez vous</p><p class="text-sm text-slate-600">L'agent, ses fichiers, sa mémoire et son orchestration tournent sur votre infrastructure. Si vous choisissez un fournisseur IA cloud, seules les données nécessaires aux requêtes sont transmises à ce fournisseur, selon sa politique de traitement.</p></div>
         <div class="reveal reveal-delay-3 bg-surface border border-border rounded-2xl p-5"><p class="font-bold mb-1">Un interlocuteur, pas un ticket</p><p class="text-sm text-slate-600">Vous parlez à la personne qui a installé vos agents. Réponse directe, pas de support niveau 1.</p></div>
       </div>
     </div>
@@ -349,7 +312,7 @@
         <span>chiffres extraits du dépôt Git et des journaux d'exécution, pas des estimations</span>
       </div>
       <div class="proof-grid">
-        <div class="proof-item"><b>65</b><small>pages livrées et en ligne</small></div>
+        <div class="proof-item"><b>65</b><small>pages et interfaces construites</small></div>
         <div class="proof-item"><b>24</b><small>démos sectorielles</small></div>
         <div class="proof-item"><b>82</b><small>déploiements versionnés</small></div>
         <div class="proof-item"><b>33&nbsp;645</b><small>lignes de code livrées</small></div>

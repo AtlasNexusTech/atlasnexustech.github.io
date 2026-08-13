@@ -36,7 +36,7 @@
   var CONSENT_KEY   = 'atlas_consent';
   var CONSENT_MONTHS = 6;              // duree de validite du choix (CNIL)
 
-  var loaded = { google: false, meta: false };
+  var loaded = { google: false, meta: false, hotjar: false };
 
   function log() {
     if (CONFIG.debug && window.console) {
@@ -111,6 +111,20 @@
     log('Meta charge', CONFIG.metaPixelId);
   }
 
+  function loadHotjar() {
+    if (loaded.hotjar) return;
+    (function(h,o,t,j,a,r){
+        h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
+        h._hjSettings={hjid:6713060,hjsv:6};
+        a=o.getElementsByTagName('head')[0];
+        r=o.createElement('script');r.async=1;
+        r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
+        a.appendChild(r);
+    })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
+    loaded.hotjar = true;
+    log('Hotjar charge');
+  }
+
   function grant() {
     gtag('consent', 'update', {
       ad_storage: 'granted',
@@ -120,6 +134,7 @@
     });
     loadGoogle();
     loadMeta();
+    loadHotjar();
   }
 
   // ---- Emission d'un evenement --------------------------------------------

@@ -250,16 +250,6 @@ html.dark .atlas-theme-toggle {
   background: rgba(255,255,255,.06);
 }
 
-body.atlas-unified-header [data-atlas-legacy-nav] {
-  visibility: hidden !important;
-  pointer-events: none !important;
-}
-
-body.atlas-unified-header header:has(> [data-atlas-legacy-nav]:only-child) {
-  visibility: hidden !important;
-  pointer-events: none !important;
-}
-
 body.atlas-unified-header [data-atlas-site-header],
 body.atlas-unified-header [data-atlas-site-header] * {
   visibility: visible !important;

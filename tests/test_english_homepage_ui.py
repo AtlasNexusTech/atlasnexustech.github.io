@@ -17,7 +17,8 @@ def test_homepages_share_the_same_visual_system():
     assert ".hero-title { font-family: 'Rubik', sans-serif; font-size: clamp(3.2rem, 9vw, 7rem);" in css
     assert ".glow-word { position: relative; display: inline-block;" in css
     assert ".section-title { font-size: clamp(1.8rem, 4.5vw, 3rem);" in css
-    assert 'class="glass-nav flex h-[50px] items-center' in english_html
+    # La navigation legacy (glass-nav) a été supprimée — seule la nav Atlas reste.
+    assert 'class="glass-nav flex h-[50px] items-center' not in english_html
     assert 'class="glass-nav flex h-20 items-center' not in english_html
 
 

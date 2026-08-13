@@ -64,5 +64,6 @@ def test_shared_product_ui_covers_brand_surfaces_responsiveness_and_accessibilit
 def test_product_pages_use_the_compact_shared_header_without_visible_legacy_navigation():
     for html in (MARKETS, DESK_FR, DESK_EN):
         assert html.count("data-atlas-site-header") == 1
-        assert 'data-atlas-legacy-nav aria-hidden="true" inert' in html
+        # La navigation legacy a été supprimée (audit 13/08) : plus de menu masqué livré.
+        assert 'data-atlas-legacy-nav' not in html
         assert 'atlas-unified-header' in html

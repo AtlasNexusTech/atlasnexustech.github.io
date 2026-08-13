@@ -57,9 +57,8 @@ def test_included_pages_share_the_canonical_atlas_header():
         assert '<a href="https://github.com/AtlasNexusTech" target="_blank" rel="noopener">GitHub</a>' in html, route
         assert '<button id="atlas-theme-toggle" class="atlas-theme-toggle" type="button"' in html, route
         assert 'aria-pressed="false"' in html, route
-        for legacy_nav in re.findall(r'<nav\b[^>]*data-atlas-legacy-nav[^>]*>', html, re.I):
-            assert 'aria-hidden="true"' in legacy_nav, route
-            assert re.search(r'\binert(?:\s|>)', legacy_nav), route
+        # La navigation legacy a été supprimée (audit 13/08) : plus aucun menu masqué en production.
+        assert 'data-atlas-legacy-nav' not in html, route
 
 
 def test_localized_header_copy_and_language_state():
@@ -109,7 +108,7 @@ def test_shared_header_assets_preserve_mobile_focus_and_theme_accessibility():
     assert "@media (max-width: 640px)" in css
     assert ":focus-visible" in css
     assert "prefers-reduced-motion: reduce" in css
-    assert "[data-atlas-legacy-nav]" in css
+    assert "data-atlas-legacy-nav" not in css
     assert "atlas-theme-toggle" in js
     assert "safeStorage.set('theme'" in js
     assert "aria-pressed" in js
