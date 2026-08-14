@@ -1,7 +1,8 @@
 from pathlib import Path
 from playwright.sync_api import sync_playwright
+import os
 
-BASE = "http://127.0.0.1:4174"
+BASE = os.environ.get("ATLAS_QA_BASE", "http://127.0.0.1:4174")
 OUT = Path(__file__).resolve().parents[1] / "qa"
 OUT.mkdir(exist_ok=True)
 

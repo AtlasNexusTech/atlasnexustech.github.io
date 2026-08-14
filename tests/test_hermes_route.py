@@ -12,6 +12,10 @@ def test_homepage_links_to_hermes_and_prime_agent():
     assert 'src="/assets/hermes-portrait.jpg"' in HOME
     assert 'src="/assets/prime-agent-identity.jpg"' in HOME
     assert 'class="work-shot work-hermes-shot"' not in HOME
+    assert '>Installation Hermes</a>' in HOME
+    assert '>Installation Prime-Agent</a>' in HOME
+    assert 'Découvrir Hermes' in HOME
+    assert 'Découvrir Prime Agent' in HOME
 
 
 def test_hermes_route_has_production_canonical_and_home_link():
