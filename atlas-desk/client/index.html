@@ -142,6 +142,17 @@ body{
   background:rgba(255,255,255,0.06);color:var(--text);
   font-size:16px;padding:4px 8px;line-height:1;
 }
+@media (max-width:700px){
+  body{height:100dvh}
+  #topbar{flex-wrap:wrap;gap:6px;padding:8px}
+  .logo{flex:1 0 100%;text-align:center}
+  #topbar input{flex:1 1 140px;max-width:none;min-width:0}
+  #topbar button{flex:0 0 auto;padding:8px 10px}
+  #status{flex:1 0 100%;overflow:hidden;text-align:center;text-overflow:ellipsis}
+  .dialog-box{width:min(320px,calc(100vw - 32px))}
+  #filePanel{left:8px;right:8px;width:auto}
+  #qrPanel{left:8px;right:8px;top:108px;max-height:calc(100dvh - 124px);overflow:auto}
+}
 </style>
 </head>
 <body>
