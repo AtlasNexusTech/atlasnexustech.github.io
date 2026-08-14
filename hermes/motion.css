@@ -1,0 +1,22 @@
+/* V2 finale — motion layer (no text translation/crossing) */
+.mission-demo{transform-style:preserve-3d;will-change:transform}
+.mission-demo.is-visible{animation:demoFloat 7s ease-in-out infinite}
+.demo-signal{position:absolute;z-index:-1;inset:50% auto auto -46px;width:46px;height:100px;transform:translateY(-50%);overflow:hidden}
+.demo-signal:before{content:"";position:absolute;left:0;right:0;top:50%;height:1px;background:linear-gradient(90deg,transparent,rgba(34,108,243,.45))}
+.demo-signal i{position:absolute;top:calc(50% - 3px);width:6px;height:6px;border-radius:50%;background:#226cf3;box-shadow:0 0 0 5px rgba(34,108,243,.08);animation:signalTravel 3.2s linear infinite}
+.demo-signal i:nth-child(2){animation-delay:-1.05s}.demo-signal i:nth-child(3){animation-delay:-2.1s}
+.demo-progress{height:3px;margin-top:13px;overflow:hidden;border-radius:99px;background:#e5edf8}
+.demo-progress i{display:block;width:38%;height:100%;border-radius:inherit;background:linear-gradient(90deg,transparent,#226cf3,transparent);animation:progressSweep 3.8s ease-in-out infinite}
+.live-pill i{animation:statusPulse 2.2s ease-out infinite}
+.mission-demo.is-visible .execution-item{animation:itemBreathe 6s ease-in-out infinite}
+.mission-demo.is-visible .execution-item:nth-child(2){animation-delay:.35s}.mission-demo.is-visible .execution-item:nth-child(3){animation-delay:.7s}.mission-demo.is-visible .execution-item:nth-child(4){animation-delay:1.05s}
+.bento:after{content:"";position:absolute;inset:-120% 42% auto -18%;height:250%;transform:rotate(18deg);background:linear-gradient(90deg,transparent,rgba(34,108,243,.045),transparent);transition:transform .8s cubic-bezier(.2,.8,.2,1);pointer-events:none}.bento:hover:after{transform:translateX(180%) rotate(18deg)}
+.night-report i{animation:nightPulse 2.8s ease-in-out infinite}.night-report i.done{animation-delay:1.4s}
+@keyframes demoFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}
+@keyframes signalTravel{0%{left:-8px;opacity:0}14%,80%{opacity:1}100%{left:44px;opacity:0}}
+@keyframes progressSweep{0%{transform:translateX(-110%)}55%,100%{transform:translateX(300%)}}
+@keyframes statusPulse{0%{box-shadow:0 0 0 0 rgba(7,133,94,.32)}70%{box-shadow:0 0 0 7px rgba(7,133,94,0)}100%{box-shadow:0 0 0 0 rgba(7,133,94,0)}}
+@keyframes itemBreathe{0%,78%,100%{background:transparent}84%{background:#f4f8ff}}
+@keyframes nightPulse{0%,100%{transform:scale(.9);opacity:.7}50%{transform:scale(1.08);opacity:1}}
+@media(prefers-reduced-motion:reduce){.mission-demo.is-visible,.demo-signal i,.demo-progress i,.live-pill i,.mission-demo.is-visible .execution-item,.night-report i{animation:none!important}.bento:after{display:none}}
+@media(max-width:980px){.nav-links{display:none!important}.nav-links.is-open{position:absolute!important;top:70px!important;right:20px!important;left:20px!important;display:grid!important;gap:3px!important;padding:14px!important;border:1px solid #dfe7f1!important;border-radius:16px!important;background:#fff!important;box-shadow:0 24px 70px -44px rgba(22,45,88,.42)!important}.nav-links.is-open a{padding:12px!important}.menu-button{display:block!important;margin-left:auto!important}.nav-cta{display:none!important}}

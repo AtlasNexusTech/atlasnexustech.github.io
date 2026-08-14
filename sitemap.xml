@@ -36,4 +36,5 @@
   <url><loc>https://atlasnexus.tech/training/</loc><xhtml:link rel="alternate" hreflang="fr" href="https://atlasnexus.tech/training/"/><xhtml:link rel="alternate" hreflang="en" href="https://atlasnexus.tech/training/en/"/><xhtml:link rel="alternate" hreflang="x-default" href="https://atlasnexus.tech/training/"/><changefreq>monthly</changefreq><priority>0.9</priority></url>
   <url><loc>https://atlasnexus.tech/alexandre-lasly/</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
   <url><loc>https://atlasnexus.tech/verify/</loc><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://atlasnexus.tech/hermes/</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
 </urlset>
