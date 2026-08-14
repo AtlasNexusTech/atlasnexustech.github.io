@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
 <head>
+
+
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; form-action 'self' https://formsubmit.co; script-src 'self' 'unsafe-inline' https://gc.zgo.at https://assets.calendly.com https://cdn.jsdelivr.net https://s3.tradingview.com https://www.googletagmanager.com https://connect.facebook.net https://static.hotjar.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://assets.calendly.com https://cdn.jsdelivr.net; font-src 'self' data: https://fonts.gstatic.com; img-src 'self' data: blob: https:; connect-src 'self' https: wss: ws://localhost:* ws://127.0.0.1:*; frame-src https://calendly.com https://*.calendly.com https://vars.hotjar.com; media-src 'self' blob: https:; worker-src 'self' blob:; manifest-src 'self'; upgrade-insecure-requests">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="icon" type="image/png" href="/favicon.png">
@@ -36,7 +40,7 @@
     <div class="mb-5"><p class="text-xs font-black uppercase tracking-[.22em]" style="color:var(--accent)">Hawkeye V4</p><h2 class="section-title text-foreground dark:text-dark-foreground">Forex market pressure radar</h2><p class="mt-3 max-w-3xl text-sm text-slate-500 dark:text-dark-dim">Category-level pressure slots. This is not execution advice : each row is a manual chart-check candidate.</p></div>
     <div class="grid lg:grid-cols-2 gap-5">
       <div class="panel rounded-[1.5rem] p-5"><h3 class="font-display font-bold text-foreground dark:text-dark-foreground flex items-center justify-between mb-2">Bullish pressure <span class="text-xs font-bold text-accent dark:text-green-400 bg-accent/10 dark:bg-green-400/10 px-2 py-0.5 rounded-full">7 assets</span></h3>
-          <a class="hawk-row flex items-start justify-between gap-4 border-b border-border/70 dark:border-dark-border/70 py-3 no-underline last:border-b-0" href="https://www.tradingview.com/chart/?symbol=EURUSD" target="_blank" rel="noopener">
+          <a class="hawk-row flex items-start justify-between gap-4 border-b border-border/70 dark:border-dark-border/70 py-3 no-underline last:border-b-0" href="https://www.tradingview.com/chart/?symbol=EURUSD" target="_blank" rel="noopener noreferrer">
             <div>
               <div class="flex flex-wrap items-center gap-2"><span class="font-extrabold text-foreground dark:text-dark-foreground text-sm">Euro / US Dollar</span><span class="text-[10px] font-black uppercase tracking-wide text-accent dark:text-green-400 bg-accent/10 px-1.5 py-0.5 rounded-full">Bullish</span></div>
               <div class="text-[11px] text-slate-400 dark:text-dark-dim mt-1">EURUSD · uptrend · Dollar index anchor</div>
@@ -45,7 +49,7 @@
             <div class="shrink-0 text-right"><span class="score-pill score-hot">76/100</span><div class="text-[11px] text-slate-400 dark:text-dark-dim mt-1">Net +42</div></div>
           </a>
 
-          <a class="hawk-row flex items-start justify-between gap-4 border-b border-border/70 dark:border-dark-border/70 py-3 no-underline last:border-b-0" href="https://www.tradingview.com/chart/?symbol=USDJPY" target="_blank" rel="noopener">
+          <a class="hawk-row flex items-start justify-between gap-4 border-b border-border/70 dark:border-dark-border/70 py-3 no-underline last:border-b-0" href="https://www.tradingview.com/chart/?symbol=USDJPY" target="_blank" rel="noopener noreferrer">
             <div>
               <div class="flex flex-wrap items-center gap-2"><span class="font-extrabold text-foreground dark:text-dark-foreground text-sm">US Dollar / Yen</span><span class="text-[10px] font-black uppercase tracking-wide text-accent dark:text-green-400 bg-accent/10 px-1.5 py-0.5 rounded-full">Bullish</span></div>
               <div class="text-[11px] text-slate-400 dark:text-dark-dim mt-1">USDJPY · uptrend · Rates / carry pulse</div>
@@ -54,7 +58,7 @@
             <div class="shrink-0 text-right"><span class="score-pill score-warm">74/100</span><div class="text-[11px] text-slate-400 dark:text-dark-dim mt-1">Net +40</div></div>
           </a>
 
-          <a class="hawk-row flex items-start justify-between gap-4 border-b border-border/70 dark:border-dark-border/70 py-3 no-underline last:border-b-0" href="https://www.tradingview.com/chart/?symbol=GBPUSD" target="_blank" rel="noopener">
+          <a class="hawk-row flex items-start justify-between gap-4 border-b border-border/70 dark:border-dark-border/70 py-3 no-underline last:border-b-0" href="https://www.tradingview.com/chart/?symbol=GBPUSD" target="_blank" rel="noopener noreferrer">
             <div>
               <div class="flex flex-wrap items-center gap-2"><span class="font-extrabold text-foreground dark:text-dark-foreground text-sm">Pound / US Dollar</span><span class="text-[10px] font-black uppercase tracking-wide text-accent dark:text-green-400 bg-accent/10 px-1.5 py-0.5 rounded-full">Bullish</span></div>
               <div class="text-[11px] text-slate-400 dark:text-dark-dim mt-1">GBPUSD · uptrend · G10 risk pair</div>
@@ -63,7 +67,7 @@
             <div class="shrink-0 text-right"><span class="score-pill score-warm">72/100</span><div class="text-[11px] text-slate-400 dark:text-dark-dim mt-1">Net +38</div></div>
           </a>
 
-          <a class="hawk-row flex items-start justify-between gap-4 border-b border-border/70 dark:border-dark-border/70 py-3 no-underline last:border-b-0" href="https://www.tradingview.com/chart/?symbol=AUDUSD" target="_blank" rel="noopener">
+          <a class="hawk-row flex items-start justify-between gap-4 border-b border-border/70 dark:border-dark-border/70 py-3 no-underline last:border-b-0" href="https://www.tradingview.com/chart/?symbol=AUDUSD" target="_blank" rel="noopener noreferrer">
             <div>
               <div class="flex flex-wrap items-center gap-2"><span class="font-extrabold text-foreground dark:text-dark-foreground text-sm">Australian Dollar / US Dollar</span><span class="text-[10px] font-black uppercase tracking-wide text-accent dark:text-green-400 bg-accent/10 px-1.5 py-0.5 rounded-full">Bullish</span></div>
               <div class="text-[11px] text-slate-400 dark:text-dark-dim mt-1">AUDUSD · uptrend · China/commodities proxy</div>
@@ -72,7 +76,7 @@
             <div class="shrink-0 text-right"><span class="score-pill score-warm">70/100</span><div class="text-[11px] text-slate-400 dark:text-dark-dim mt-1">Net +36</div></div>
           </a>
 
-          <a class="hawk-row flex items-start justify-between gap-4 border-b border-border/70 dark:border-dark-border/70 py-3 no-underline last:border-b-0" href="https://www.tradingview.com/chart/?symbol=USDCAD" target="_blank" rel="noopener">
+          <a class="hawk-row flex items-start justify-between gap-4 border-b border-border/70 dark:border-dark-border/70 py-3 no-underline last:border-b-0" href="https://www.tradingview.com/chart/?symbol=USDCAD" target="_blank" rel="noopener noreferrer">
             <div>
               <div class="flex flex-wrap items-center gap-2"><span class="font-extrabold text-foreground dark:text-dark-foreground text-sm">US Dollar / Canadian Dollar</span><span class="text-[10px] font-black uppercase tracking-wide text-accent dark:text-green-400 bg-accent/10 px-1.5 py-0.5 rounded-full">Bullish</span></div>
               <div class="text-[11px] text-slate-400 dark:text-dark-dim mt-1">USDCAD · active pressure · Oil + North America</div>
@@ -81,7 +85,7 @@
             <div class="shrink-0 text-right"><span class="score-pill score-warm">68/100</span><div class="text-[11px] text-slate-400 dark:text-dark-dim mt-1">Net +34</div></div>
           </a>
 
-          <a class="hawk-row flex items-start justify-between gap-4 border-b border-border/70 dark:border-dark-border/70 py-3 no-underline last:border-b-0" href="https://www.tradingview.com/chart/?symbol=USDCHF" target="_blank" rel="noopener">
+          <a class="hawk-row flex items-start justify-between gap-4 border-b border-border/70 dark:border-dark-border/70 py-3 no-underline last:border-b-0" href="https://www.tradingview.com/chart/?symbol=USDCHF" target="_blank" rel="noopener noreferrer">
             <div>
               <div class="flex flex-wrap items-center gap-2"><span class="font-extrabold text-foreground dark:text-dark-foreground text-sm">US Dollar / Swiss Franc</span><span class="text-[10px] font-black uppercase tracking-wide text-accent dark:text-green-400 bg-accent/10 px-1.5 py-0.5 rounded-full">Bullish</span></div>
               <div class="text-[11px] text-slate-400 dark:text-dark-dim mt-1">USDCHF · active pressure · Defensive FX</div>
@@ -90,7 +94,7 @@
             <div class="shrink-0 text-right"><span class="score-pill score-warm">66/100</span><div class="text-[11px] text-slate-400 dark:text-dark-dim mt-1">Net +32</div></div>
           </a>
 
-          <a class="hawk-row flex items-start justify-between gap-4 border-b border-border/70 dark:border-dark-border/70 py-3 no-underline last:border-b-0" href="https://www.tradingview.com/chart/?symbol=NZDUSD" target="_blank" rel="noopener">
+          <a class="hawk-row flex items-start justify-between gap-4 border-b border-border/70 dark:border-dark-border/70 py-3 no-underline last:border-b-0" href="https://www.tradingview.com/chart/?symbol=NZDUSD" target="_blank" rel="noopener noreferrer">
             <div>
               <div class="flex flex-wrap items-center gap-2"><span class="font-extrabold text-foreground dark:text-dark-foreground text-sm">New Zealand Dollar / US Dollar</span><span class="text-[10px] font-black uppercase tracking-wide text-accent dark:text-green-400 bg-accent/10 px-1.5 py-0.5 rounded-full">Bullish</span></div>
               <div class="text-[11px] text-slate-400 dark:text-dark-dim mt-1">NZDUSD · active pressure · Risk beta</div>
@@ -99,7 +103,7 @@
             <div class="shrink-0 text-right"><span class="score-pill score-warm">64/100</span><div class="text-[11px] text-slate-400 dark:text-dark-dim mt-1">Net +30</div></div>
           </a></div>
       <div class="panel rounded-[1.5rem] p-5"><h3 class="font-display font-bold text-foreground dark:text-dark-foreground flex items-center justify-between mb-2">Bearish pressure <span class="text-xs font-bold text-red-500 bg-red-500/10 px-2 py-0.5 rounded-full">7 assets</span></h3>
-          <a class="hawk-row flex items-start justify-between gap-4 border-b border-border/70 dark:border-dark-border/70 py-3 no-underline last:border-b-0" href="https://www.tradingview.com/chart/?symbol=EURJPY" target="_blank" rel="noopener">
+          <a class="hawk-row flex items-start justify-between gap-4 border-b border-border/70 dark:border-dark-border/70 py-3 no-underline last:border-b-0" href="https://www.tradingview.com/chart/?symbol=EURJPY" target="_blank" rel="noopener noreferrer">
             <div>
               <div class="flex flex-wrap items-center gap-2"><span class="font-extrabold text-foreground dark:text-dark-foreground text-sm">Euro / Yen</span><span class="text-[10px] font-black uppercase tracking-wide text-red-500 bg-red-500/10 px-1.5 py-0.5 rounded-full">Bearish</span></div>
               <div class="text-[11px] text-slate-400 dark:text-dark-dim mt-1">EURJPY · downtrend · Carry / Europe-Japan</div>
@@ -108,7 +112,7 @@
             <div class="shrink-0 text-right"><span class="score-pill score-bear">72/100</span><div class="text-[11px] text-slate-400 dark:text-dark-dim mt-1">Net -37</div></div>
           </a>
 
-          <a class="hawk-row flex items-start justify-between gap-4 border-b border-border/70 dark:border-dark-border/70 py-3 no-underline last:border-b-0" href="https://www.tradingview.com/chart/?symbol=GBPJPY" target="_blank" rel="noopener">
+          <a class="hawk-row flex items-start justify-between gap-4 border-b border-border/70 dark:border-dark-border/70 py-3 no-underline last:border-b-0" href="https://www.tradingview.com/chart/?symbol=GBPJPY" target="_blank" rel="noopener noreferrer">
             <div>
               <div class="flex flex-wrap items-center gap-2"><span class="font-extrabold text-foreground dark:text-dark-foreground text-sm">Pound / Yen</span><span class="text-[10px] font-black uppercase tracking-wide text-red-500 bg-red-500/10 px-1.5 py-0.5 rounded-full">Bearish</span></div>
               <div class="text-[11px] text-slate-400 dark:text-dark-dim mt-1">GBPJPY · downtrend · Volatile carry cross</div>
@@ -117,7 +121,7 @@
             <div class="shrink-0 text-right"><span class="score-pill score-bear">70/100</span><div class="text-[11px] text-slate-400 dark:text-dark-dim mt-1">Net -36</div></div>
           </a>
 
-          <a class="hawk-row flex items-start justify-between gap-4 border-b border-border/70 dark:border-dark-border/70 py-3 no-underline last:border-b-0" href="https://www.tradingview.com/chart/?symbol=EURGBP" target="_blank" rel="noopener">
+          <a class="hawk-row flex items-start justify-between gap-4 border-b border-border/70 dark:border-dark-border/70 py-3 no-underline last:border-b-0" href="https://www.tradingview.com/chart/?symbol=EURGBP" target="_blank" rel="noopener noreferrer">
             <div>
               <div class="flex flex-wrap items-center gap-2"><span class="font-extrabold text-foreground dark:text-dark-foreground text-sm">Euro / Pound</span><span class="text-[10px] font-black uppercase tracking-wide text-red-500 bg-red-500/10 px-1.5 py-0.5 rounded-full">Bearish</span></div>
               <div class="text-[11px] text-slate-400 dark:text-dark-dim mt-1">EURGBP · downtrend · European relative value</div>
@@ -126,7 +130,7 @@
             <div class="shrink-0 text-right"><span class="score-pill score-bear">68/100</span><div class="text-[11px] text-slate-400 dark:text-dark-dim mt-1">Net -35</div></div>
           </a>
 
-          <a class="hawk-row flex items-start justify-between gap-4 border-b border-border/70 dark:border-dark-border/70 py-3 no-underline last:border-b-0" href="https://www.tradingview.com/chart/?symbol=EURCHF" target="_blank" rel="noopener">
+          <a class="hawk-row flex items-start justify-between gap-4 border-b border-border/70 dark:border-dark-border/70 py-3 no-underline last:border-b-0" href="https://www.tradingview.com/chart/?symbol=EURCHF" target="_blank" rel="noopener noreferrer">
             <div>
               <div class="flex flex-wrap items-center gap-2"><span class="font-extrabold text-foreground dark:text-dark-foreground text-sm">Euro / Swiss Franc</span><span class="text-[10px] font-black uppercase tracking-wide text-red-500 bg-red-500/10 px-1.5 py-0.5 rounded-full">Bearish</span></div>
               <div class="text-[11px] text-slate-400 dark:text-dark-dim mt-1">EURCHF · downtrend · Defensive Europe</div>
@@ -135,7 +139,7 @@
             <div class="shrink-0 text-right"><span class="score-pill score-bear">66/100</span><div class="text-[11px] text-slate-400 dark:text-dark-dim mt-1">Net -34</div></div>
           </a>
 
-          <a class="hawk-row flex items-start justify-between gap-4 border-b border-border/70 dark:border-dark-border/70 py-3 no-underline last:border-b-0" href="https://www.tradingview.com/chart/?symbol=AUDJPY" target="_blank" rel="noopener">
+          <a class="hawk-row flex items-start justify-between gap-4 border-b border-border/70 dark:border-dark-border/70 py-3 no-underline last:border-b-0" href="https://www.tradingview.com/chart/?symbol=AUDJPY" target="_blank" rel="noopener noreferrer">
             <div>
               <div class="flex flex-wrap items-center gap-2"><span class="font-extrabold text-foreground dark:text-dark-foreground text-sm">Australian Dollar / Yen</span><span class="text-[10px] font-black uppercase tracking-wide text-red-500 bg-red-500/10 px-1.5 py-0.5 rounded-full">Bearish</span></div>
               <div class="text-[11px] text-slate-400 dark:text-dark-dim mt-1">AUDJPY · mixed pressure · Risk carry</div>
@@ -144,7 +148,7 @@
             <div class="shrink-0 text-right"><span class="score-pill score-warm">64/100</span><div class="text-[11px] text-slate-400 dark:text-dark-dim mt-1">Net -33</div></div>
           </a>
 
-          <a class="hawk-row flex items-start justify-between gap-4 border-b border-border/70 dark:border-dark-border/70 py-3 no-underline last:border-b-0" href="https://www.tradingview.com/chart/?symbol=EURAUD" target="_blank" rel="noopener">
+          <a class="hawk-row flex items-start justify-between gap-4 border-b border-border/70 dark:border-dark-border/70 py-3 no-underline last:border-b-0" href="https://www.tradingview.com/chart/?symbol=EURAUD" target="_blank" rel="noopener noreferrer">
             <div>
               <div class="flex flex-wrap items-center gap-2"><span class="font-extrabold text-foreground dark:text-dark-foreground text-sm">Euro / Australian Dollar</span><span class="text-[10px] font-black uppercase tracking-wide text-red-500 bg-red-500/10 px-1.5 py-0.5 rounded-full">Bearish</span></div>
               <div class="text-[11px] text-slate-400 dark:text-dark-dim mt-1">EURAUD · mixed pressure · Europe vs commodities</div>
@@ -153,7 +157,7 @@
             <div class="shrink-0 text-right"><span class="score-pill score-warm">62/100</span><div class="text-[11px] text-slate-400 dark:text-dark-dim mt-1">Net -32</div></div>
           </a>
 
-          <a class="hawk-row flex items-start justify-between gap-4 border-b border-border/70 dark:border-dark-border/70 py-3 no-underline last:border-b-0" href="https://www.tradingview.com/chart/?symbol=USDCNH" target="_blank" rel="noopener">
+          <a class="hawk-row flex items-start justify-between gap-4 border-b border-border/70 dark:border-dark-border/70 py-3 no-underline last:border-b-0" href="https://www.tradingview.com/chart/?symbol=USDCNH" target="_blank" rel="noopener noreferrer">
             <div>
               <div class="flex flex-wrap items-center gap-2"><span class="font-extrabold text-foreground dark:text-dark-foreground text-sm">US Dollar / Offshore Yuan</span><span class="text-[10px] font-black uppercase tracking-wide text-red-500 bg-red-500/10 px-1.5 py-0.5 rounded-full">Bearish</span></div>
               <div class="text-[11px] text-slate-400 dark:text-dark-dim mt-1">USDCNH · mixed pressure · China pressure</div>
@@ -166,91 +170,91 @@
   <section id="top15" class="pb-16">
     <div class="mb-5"><p class="text-xs font-black uppercase tracking-[.22em]" style="color:var(--accent)">Top 15</p><h2 class="section-title text-foreground dark:text-dark-foreground">Top 15 currency pairs by global FX turnover / liquidity proxy</h2><p class="mt-3 max-w-3xl text-sm text-slate-500 dark:text-dark-dim">Compact ranked view with daily 1D fluctuation. For non-equity markets, “market cap” uses the closest useful proxy : AUM, turnover, benchmark size, futures liquidity or global market relevance.</p></div>
     <div class="panel rounded-[1.5rem] p-4"><div class="top15-grid">
-          <a class="rank-row compact-rank grid grid-cols-[34px_minmax(0,1fr)_auto] gap-2 items-center border-b border-border/60 dark:border-dark-border/60 py-2 no-underline last:border-b-0" href="https://www.tradingview.com/chart/?symbol=EURUSD" target="_blank" rel="noopener">
+          <a class="rank-row compact-rank grid grid-cols-[34px_minmax(0,1fr)_auto] gap-2 items-center border-b border-border/60 dark:border-dark-border/60 py-2 no-underline last:border-b-0" href="https://www.tradingview.com/chart/?symbol=EURUSD" target="_blank" rel="noopener noreferrer">
             <div class="text-xs font-black text-slate-400 dark:text-dark-dim">#1</div>
             <div class="min-w-0"><div class="font-extrabold text-sm text-foreground dark:text-dark-foreground truncate">EURUSD <span class="font-semibold text-slate-500 dark:text-dark-dim">· Euro / US Dollar</span></div><div class="text-[11px] text-slate-500 dark:text-dark-dim mt-0.5 truncate">Dollar index anchor</div></div>
             <div class="text-right shrink-0"><div class="text-xs font-black" style="color:var(--accent)">Highest</div><div class="daily-change daily-up">1D +0.2%</div></div>
           </a>
 
-          <a class="rank-row compact-rank grid grid-cols-[34px_minmax(0,1fr)_auto] gap-2 items-center border-b border-border/60 dark:border-dark-border/60 py-2 no-underline last:border-b-0" href="https://www.tradingview.com/chart/?symbol=USDJPY" target="_blank" rel="noopener">
+          <a class="rank-row compact-rank grid grid-cols-[34px_minmax(0,1fr)_auto] gap-2 items-center border-b border-border/60 dark:border-dark-border/60 py-2 no-underline last:border-b-0" href="https://www.tradingview.com/chart/?symbol=USDJPY" target="_blank" rel="noopener noreferrer">
             <div class="text-xs font-black text-slate-400 dark:text-dark-dim">#2</div>
             <div class="min-w-0"><div class="font-extrabold text-sm text-foreground dark:text-dark-foreground truncate">USDJPY <span class="font-semibold text-slate-500 dark:text-dark-dim">· US Dollar / Yen</span></div><div class="text-[11px] text-slate-500 dark:text-dark-dim mt-0.5 truncate">Rates / carry pulse</div></div>
             <div class="text-right shrink-0"><div class="text-xs font-black" style="color:var(--accent)">Very high</div><div class="daily-change daily-up">1D +0.1%</div></div>
           </a>
 
-          <a class="rank-row compact-rank grid grid-cols-[34px_minmax(0,1fr)_auto] gap-2 items-center border-b border-border/60 dark:border-dark-border/60 py-2 no-underline last:border-b-0" href="https://www.tradingview.com/chart/?symbol=GBPUSD" target="_blank" rel="noopener">
+          <a class="rank-row compact-rank grid grid-cols-[34px_minmax(0,1fr)_auto] gap-2 items-center border-b border-border/60 dark:border-dark-border/60 py-2 no-underline last:border-b-0" href="https://www.tradingview.com/chart/?symbol=GBPUSD" target="_blank" rel="noopener noreferrer">
             <div class="text-xs font-black text-slate-400 dark:text-dark-dim">#3</div>
             <div class="min-w-0"><div class="font-extrabold text-sm text-foreground dark:text-dark-foreground truncate">GBPUSD <span class="font-semibold text-slate-500 dark:text-dark-dim">· Pound / US Dollar</span></div><div class="text-[11px] text-slate-500 dark:text-dark-dim mt-0.5 truncate">G10 risk pair</div></div>
             <div class="text-right shrink-0"><div class="text-xs font-black" style="color:var(--accent)">Very high</div><div class="daily-change daily-up">1D +0.1%</div></div>
           </a>
 
-          <a class="rank-row compact-rank grid grid-cols-[34px_minmax(0,1fr)_auto] gap-2 items-center border-b border-border/60 dark:border-dark-border/60 py-2 no-underline last:border-b-0" href="https://www.tradingview.com/chart/?symbol=AUDUSD" target="_blank" rel="noopener">
+          <a class="rank-row compact-rank grid grid-cols-[34px_minmax(0,1fr)_auto] gap-2 items-center border-b border-border/60 dark:border-dark-border/60 py-2 no-underline last:border-b-0" href="https://www.tradingview.com/chart/?symbol=AUDUSD" target="_blank" rel="noopener noreferrer">
             <div class="text-xs font-black text-slate-400 dark:text-dark-dim">#4</div>
             <div class="min-w-0"><div class="font-extrabold text-sm text-foreground dark:text-dark-foreground truncate">AUDUSD <span class="font-semibold text-slate-500 dark:text-dark-dim">· Australian Dollar / US Dollar</span></div><div class="text-[11px] text-slate-500 dark:text-dark-dim mt-0.5 truncate">China/commodities proxy</div></div>
             <div class="text-right shrink-0"><div class="text-xs font-black" style="color:var(--accent)">High</div><div class="daily-change daily-up">1D +0.4%</div></div>
           </a>
 
-          <a class="rank-row compact-rank grid grid-cols-[34px_minmax(0,1fr)_auto] gap-2 items-center border-b border-border/60 dark:border-dark-border/60 py-2 no-underline last:border-b-0" href="https://www.tradingview.com/chart/?symbol=USDCAD" target="_blank" rel="noopener">
+          <a class="rank-row compact-rank grid grid-cols-[34px_minmax(0,1fr)_auto] gap-2 items-center border-b border-border/60 dark:border-dark-border/60 py-2 no-underline last:border-b-0" href="https://www.tradingview.com/chart/?symbol=USDCAD" target="_blank" rel="noopener noreferrer">
             <div class="text-xs font-black text-slate-400 dark:text-dark-dim">#5</div>
             <div class="min-w-0"><div class="font-extrabold text-sm text-foreground dark:text-dark-foreground truncate">USDCAD <span class="font-semibold text-slate-500 dark:text-dark-dim">· US Dollar / Canadian Dollar</span></div><div class="text-[11px] text-slate-500 dark:text-dark-dim mt-0.5 truncate">Oil + North America</div></div>
             <div class="text-right shrink-0"><div class="text-xs font-black" style="color:var(--accent)">High</div><div class="daily-change daily-up">1D +0.1%</div></div>
           </a>
 
-          <a class="rank-row compact-rank grid grid-cols-[34px_minmax(0,1fr)_auto] gap-2 items-center border-b border-border/60 dark:border-dark-border/60 py-2 no-underline last:border-b-0" href="https://www.tradingview.com/chart/?symbol=USDCHF" target="_blank" rel="noopener">
+          <a class="rank-row compact-rank grid grid-cols-[34px_minmax(0,1fr)_auto] gap-2 items-center border-b border-border/60 dark:border-dark-border/60 py-2 no-underline last:border-b-0" href="https://www.tradingview.com/chart/?symbol=USDCHF" target="_blank" rel="noopener noreferrer">
             <div class="text-xs font-black text-slate-400 dark:text-dark-dim">#6</div>
             <div class="min-w-0"><div class="font-extrabold text-sm text-foreground dark:text-dark-foreground truncate">USDCHF <span class="font-semibold text-slate-500 dark:text-dark-dim">· US Dollar / Swiss Franc</span></div><div class="text-[11px] text-slate-500 dark:text-dark-dim mt-0.5 truncate">Defensive FX</div></div>
             <div class="text-right shrink-0"><div class="text-xs font-black" style="color:var(--accent)">High</div><div class="daily-change daily-down">1D -0.2%</div></div>
           </a>
 
-          <a class="rank-row compact-rank grid grid-cols-[34px_minmax(0,1fr)_auto] gap-2 items-center border-b border-border/60 dark:border-dark-border/60 py-2 no-underline last:border-b-0" href="https://www.tradingview.com/chart/?symbol=NZDUSD" target="_blank" rel="noopener">
+          <a class="rank-row compact-rank grid grid-cols-[34px_minmax(0,1fr)_auto] gap-2 items-center border-b border-border/60 dark:border-dark-border/60 py-2 no-underline last:border-b-0" href="https://www.tradingview.com/chart/?symbol=NZDUSD" target="_blank" rel="noopener noreferrer">
             <div class="text-xs font-black text-slate-400 dark:text-dark-dim">#7</div>
             <div class="min-w-0"><div class="font-extrabold text-sm text-foreground dark:text-dark-foreground truncate">NZDUSD <span class="font-semibold text-slate-500 dark:text-dark-dim">· New Zealand Dollar / US Dollar</span></div><div class="text-[11px] text-slate-500 dark:text-dark-dim mt-0.5 truncate">Risk beta</div></div>
             <div class="text-right shrink-0"><div class="text-xs font-black" style="color:var(--accent)">High</div><div class="daily-change daily-down">1D -0.1%</div></div>
           </a>
 
-          <a class="rank-row compact-rank grid grid-cols-[34px_minmax(0,1fr)_auto] gap-2 items-center border-b border-border/60 dark:border-dark-border/60 py-2 no-underline last:border-b-0" href="https://www.tradingview.com/chart/?symbol=EURJPY" target="_blank" rel="noopener">
+          <a class="rank-row compact-rank grid grid-cols-[34px_minmax(0,1fr)_auto] gap-2 items-center border-b border-border/60 dark:border-dark-border/60 py-2 no-underline last:border-b-0" href="https://www.tradingview.com/chart/?symbol=EURJPY" target="_blank" rel="noopener noreferrer">
             <div class="text-xs font-black text-slate-400 dark:text-dark-dim">#8</div>
             <div class="min-w-0"><div class="font-extrabold text-sm text-foreground dark:text-dark-foreground truncate">EURJPY <span class="font-semibold text-slate-500 dark:text-dark-dim">· Euro / Yen</span></div><div class="text-[11px] text-slate-500 dark:text-dark-dim mt-0.5 truncate">Carry / Europe-Japan</div></div>
             <div class="text-right shrink-0"><div class="text-xs font-black" style="color:var(--accent)">High</div><div class="daily-change daily-up">1D +0.3%</div></div>
           </a>
 
-          <a class="rank-row compact-rank grid grid-cols-[34px_minmax(0,1fr)_auto] gap-2 items-center border-b border-border/60 dark:border-dark-border/60 py-2 no-underline last:border-b-0" href="https://www.tradingview.com/chart/?symbol=GBPJPY" target="_blank" rel="noopener">
+          <a class="rank-row compact-rank grid grid-cols-[34px_minmax(0,1fr)_auto] gap-2 items-center border-b border-border/60 dark:border-dark-border/60 py-2 no-underline last:border-b-0" href="https://www.tradingview.com/chart/?symbol=GBPJPY" target="_blank" rel="noopener noreferrer">
             <div class="text-xs font-black text-slate-400 dark:text-dark-dim">#9</div>
             <div class="min-w-0"><div class="font-extrabold text-sm text-foreground dark:text-dark-foreground truncate">GBPJPY <span class="font-semibold text-slate-500 dark:text-dark-dim">· Pound / Yen</span></div><div class="text-[11px] text-slate-500 dark:text-dark-dim mt-0.5 truncate">Volatile carry cross</div></div>
             <div class="text-right shrink-0"><div class="text-xs font-black" style="color:var(--accent)">High</div><div class="daily-change daily-up">1D +0.2%</div></div>
           </a>
 
-          <a class="rank-row compact-rank grid grid-cols-[34px_minmax(0,1fr)_auto] gap-2 items-center border-b border-border/60 dark:border-dark-border/60 py-2 no-underline last:border-b-0" href="https://www.tradingview.com/chart/?symbol=EURGBP" target="_blank" rel="noopener">
+          <a class="rank-row compact-rank grid grid-cols-[34px_minmax(0,1fr)_auto] gap-2 items-center border-b border-border/60 dark:border-dark-border/60 py-2 no-underline last:border-b-0" href="https://www.tradingview.com/chart/?symbol=EURGBP" target="_blank" rel="noopener noreferrer">
             <div class="text-xs font-black text-slate-400 dark:text-dark-dim">#10</div>
             <div class="min-w-0"><div class="font-extrabold text-sm text-foreground dark:text-dark-foreground truncate">EURGBP <span class="font-semibold text-slate-500 dark:text-dark-dim">· Euro / Pound</span></div><div class="text-[11px] text-slate-500 dark:text-dark-dim mt-0.5 truncate">European relative value</div></div>
             <div class="text-right shrink-0"><div class="text-xs font-black" style="color:var(--accent)">High</div><div class="daily-change daily-up">1D +0.1%</div></div>
           </a>
 
-          <a class="rank-row compact-rank grid grid-cols-[34px_minmax(0,1fr)_auto] gap-2 items-center border-b border-border/60 dark:border-dark-border/60 py-2 no-underline last:border-b-0" href="https://www.tradingview.com/chart/?symbol=EURCHF" target="_blank" rel="noopener">
+          <a class="rank-row compact-rank grid grid-cols-[34px_minmax(0,1fr)_auto] gap-2 items-center border-b border-border/60 dark:border-dark-border/60 py-2 no-underline last:border-b-0" href="https://www.tradingview.com/chart/?symbol=EURCHF" target="_blank" rel="noopener noreferrer">
             <div class="text-xs font-black text-slate-400 dark:text-dark-dim">#11</div>
             <div class="min-w-0"><div class="font-extrabold text-sm text-foreground dark:text-dark-foreground truncate">EURCHF <span class="font-semibold text-slate-500 dark:text-dark-dim">· Euro / Swiss Franc</span></div><div class="text-[11px] text-slate-500 dark:text-dark-dim mt-0.5 truncate">Defensive Europe</div></div>
             <div class="text-right shrink-0"><div class="text-xs font-black" style="color:var(--accent)">Medium</div><div class="daily-change daily-up">1D +0.0%</div></div>
           </a>
 
-          <a class="rank-row compact-rank grid grid-cols-[34px_minmax(0,1fr)_auto] gap-2 items-center border-b border-border/60 dark:border-dark-border/60 py-2 no-underline last:border-b-0" href="https://www.tradingview.com/chart/?symbol=AUDJPY" target="_blank" rel="noopener">
+          <a class="rank-row compact-rank grid grid-cols-[34px_minmax(0,1fr)_auto] gap-2 items-center border-b border-border/60 dark:border-dark-border/60 py-2 no-underline last:border-b-0" href="https://www.tradingview.com/chart/?symbol=AUDJPY" target="_blank" rel="noopener noreferrer">
             <div class="text-xs font-black text-slate-400 dark:text-dark-dim">#12</div>
             <div class="min-w-0"><div class="font-extrabold text-sm text-foreground dark:text-dark-foreground truncate">AUDJPY <span class="font-semibold text-slate-500 dark:text-dark-dim">· Australian Dollar / Yen</span></div><div class="text-[11px] text-slate-500 dark:text-dark-dim mt-0.5 truncate">Risk carry</div></div>
             <div class="text-right shrink-0"><div class="text-xs font-black" style="color:var(--accent)">Medium</div><div class="daily-change daily-up">1D +0.5%</div></div>
           </a>
 
-          <a class="rank-row compact-rank grid grid-cols-[34px_minmax(0,1fr)_auto] gap-2 items-center border-b border-border/60 dark:border-dark-border/60 py-2 no-underline last:border-b-0" href="https://www.tradingview.com/chart/?symbol=EURAUD" target="_blank" rel="noopener">
+          <a class="rank-row compact-rank grid grid-cols-[34px_minmax(0,1fr)_auto] gap-2 items-center border-b border-border/60 dark:border-dark-border/60 py-2 no-underline last:border-b-0" href="https://www.tradingview.com/chart/?symbol=EURAUD" target="_blank" rel="noopener noreferrer">
             <div class="text-xs font-black text-slate-400 dark:text-dark-dim">#13</div>
             <div class="min-w-0"><div class="font-extrabold text-sm text-foreground dark:text-dark-foreground truncate">EURAUD <span class="font-semibold text-slate-500 dark:text-dark-dim">· Euro / Australian Dollar</span></div><div class="text-[11px] text-slate-500 dark:text-dark-dim mt-0.5 truncate">Europe vs commodities</div></div>
             <div class="text-right shrink-0"><div class="text-xs font-black" style="color:var(--accent)">Medium</div><div class="daily-change daily-down">1D -0.2%</div></div>
           </a>
 
-          <a class="rank-row compact-rank grid grid-cols-[34px_minmax(0,1fr)_auto] gap-2 items-center border-b border-border/60 dark:border-dark-border/60 py-2 no-underline last:border-b-0" href="https://www.tradingview.com/chart/?symbol=USDCNH" target="_blank" rel="noopener">
+          <a class="rank-row compact-rank grid grid-cols-[34px_minmax(0,1fr)_auto] gap-2 items-center border-b border-border/60 dark:border-dark-border/60 py-2 no-underline last:border-b-0" href="https://www.tradingview.com/chart/?symbol=USDCNH" target="_blank" rel="noopener noreferrer">
             <div class="text-xs font-black text-slate-400 dark:text-dark-dim">#14</div>
             <div class="min-w-0"><div class="font-extrabold text-sm text-foreground dark:text-dark-foreground truncate">USDCNH <span class="font-semibold text-slate-500 dark:text-dark-dim">· US Dollar / Offshore Yuan</span></div><div class="text-[11px] text-slate-500 dark:text-dark-dim mt-0.5 truncate">China pressure</div></div>
             <div class="text-right shrink-0"><div class="text-xs font-black" style="color:var(--accent)">Medium</div><div class="daily-change daily-down">1D -0.0%</div></div>
           </a>
 
-          <a class="rank-row compact-rank grid grid-cols-[34px_minmax(0,1fr)_auto] gap-2 items-center border-b border-border/60 dark:border-dark-border/60 py-2 no-underline last:border-b-0" href="https://www.tradingview.com/chart/?symbol=USDSEK" target="_blank" rel="noopener">
+          <a class="rank-row compact-rank grid grid-cols-[34px_minmax(0,1fr)_auto] gap-2 items-center border-b border-border/60 dark:border-dark-border/60 py-2 no-underline last:border-b-0" href="https://www.tradingview.com/chart/?symbol=USDSEK" target="_blank" rel="noopener noreferrer">
             <div class="text-xs font-black text-slate-400 dark:text-dark-dim">#15</div>
             <div class="min-w-0"><div class="font-extrabold text-sm text-foreground dark:text-dark-foreground truncate">USDSEK <span class="font-semibold text-slate-500 dark:text-dark-dim">· US Dollar / Swedish Krona</span></div><div class="text-[11px] text-slate-500 dark:text-dark-dim mt-0.5 truncate">European cyclicals</div></div>
             <div class="text-right shrink-0"><div class="text-xs font-black" style="color:var(--accent)">Medium</div><div class="daily-change daily-down">1D -0.6%</div></div>

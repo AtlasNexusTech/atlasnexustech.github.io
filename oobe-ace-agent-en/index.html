@@ -1,7 +1,11 @@
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
 <head>
-  <meta charset="UTF-8">
+
+
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; form-action 'self' https://formsubmit.co; script-src 'self' 'unsafe-inline' https://gc.zgo.at https://assets.calendly.com https://cdn.jsdelivr.net https://s3.tradingview.com https://www.googletagmanager.com https://connect.facebook.net https://static.hotjar.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://assets.calendly.com https://cdn.jsdelivr.net; font-src 'self' data: https://fonts.gstatic.com; img-src 'self' data: blob: https:; connect-src 'self' https: wss: ws://localhost:* ws://127.0.0.1:*; frame-src https://calendly.com https://*.calendly.com https://vars.hotjar.com; media-src 'self' blob: https:; worker-src 'self' blob:; manifest-src 'self'; upgrade-insecure-requests">
+<meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="icon" type="image/png" href="/favicon.png">
 <link rel="shortcut icon" href="/favicon.ico">
@@ -43,7 +47,7 @@
       <li><a href="/en/#work">Work</a></li>
       <li><a href="/en/#offers">Offers</a></li>
       <li><a href="/en/#why">Why</a></li>
-      <li><a href="https://github.com/AtlasNexusTech" target="_blank" rel="noopener">GitHub</a></li>
+      <li><a href="https://github.com/AtlasNexusTech" target="_blank" rel="noopener noreferrer">GitHub</a></li>
     </ul>
     <div class="atlas-site-actions">
       <div class="atlas-site-language" data-active="en" aria-label="Language selector">
@@ -130,7 +134,7 @@
   <footer class="py-10 border-t border-border dark:border-dark-border bg-white dark:bg-dark-surface"><div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row gap-3 md:items-center md:justify-between text-sm text-slate-500"><p>Atlas Nexus · OOBE × Ace Agent presentation</p><p>OOBE Protocol · Ace Data Cloud · Seedance 2.0 · x402guard · Solana</p></div></footer>
   <script>
     if (localStorage.getItem('theme') === 'dark' || (!localStorage.getItem('theme') && window.matchMedia('(prefers-color-scheme: dark)').matches)) document.documentElement.classList.add('dark');
-    document.getElementById('theme-toggle').addEventListener('click',()=>{document.documentElement.classList.toggle('dark');localStorage.setItem('theme',document.documentElement.classList.contains('dark')?'dark':'light')});
+    document.getElementById('theme-toggle')?.addEventListener('click',()=>{document.documentElement.classList.toggle('dark');localStorage.setItem('theme',document.documentElement.classList.contains('dark')?'dark':'light')});
     const observer=new IntersectionObserver((entries)=>{entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')})},{threshold:.1});document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
   </script>
 

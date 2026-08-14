@@ -54,7 +54,7 @@ def test_included_pages_share_the_canonical_atlas_header():
         assert 'class="atlas-site-brand"' in html, route
         assert 'href="/#contact"' in html or 'href="/en/#contact"' in html or 'href="/rendez-vous/"' in html or route == "rendez-vous", route
         assert re.search(r'<body\b[^>]*\bclass="[^"]*\batlas-unified-header\b', html), route
-        assert '<a href="https://github.com/AtlasNexusTech" target="_blank" rel="noopener">GitHub</a>' in html, route
+        assert '<a href="https://github.com/AtlasNexusTech" target="_blank" rel="noopener noreferrer">GitHub</a>' in html, route
         assert '<button id="atlas-theme-toggle" class="atlas-theme-toggle" type="button"' in html, route
         assert 'aria-pressed="false"' in html, route
         # La navigation legacy a été supprimée (audit 13/08) : plus aucun menu masqué en production.

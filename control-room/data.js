@@ -1,50 +1,50 @@
 window.dashboardData = {
   focus: {
-    title: "GitHub → publication → preuve live",
-    copy: "Pousser proprement, vérifier le rendu, puis garder une URL partageable pour les prochaines itérations."
+    title: "Démonstration de pilotage opérationnel",
+    copy: "Données synthétiques destinées à illustrer une organisation de projets, sans information client ni activité interne réelle."
   },
   lanes: [
     {
-      title: "AI2Work — build Render",
-      detail: "Source main vérifiée localement; build Next.js OK. À surveiller côté Render après chaque nouveau push.",
+      title: "Projet démonstratif — livraison web",
+      detail: "Exemple synthétique : contrôle qualité terminé et publication prête à être vérifiée.",
       status: "ship",
       label: "Green",
-      tags: ["Next.js", "Render", "Wallet UI"],
+      tags: ["Web", "QA", "Livraison"],
       priority: 1
     },
     {
-      title: "Atlas Control Room",
-      detail: "Dashboard statique amélioré, prêt à versionner et publier comme cockpit opérationnel Atlas.",
+      title: "Tableau de suivi démonstratif",
+      detail: "Exemple synthétique de cockpit destiné à centraliser les statuts et prochaines étapes.",
       status: "ship",
       label: "Ship",
       tags: ["GitHub Pages", "Static", "Ops"],
       priority: 2
     },
     {
-      title: "Offres monétisables",
-      detail: "Pages Web, IA agentique et Motion UI à garder orientées livrable client simple, vendable et vérifiable.",
+      title: "Offres à qualifier",
+      detail: "Exemple synthétique de priorisation commerciale avant validation.",
       status: "watch",
       label: "Watch",
       tags: ["AtlasNexus", "Offers", "€"],
       priority: 3
     },
     {
-      title: "Deals achat-revente",
-      detail: "Shortlist active avec liens directs uniquement; qualifier les risques avant projection de marge.",
+      title: "Opportunités à examiner",
+      detail: "Exemple synthétique : vérifier les données et les risques avant toute décision.",
       status: "watch",
       label: "Qualify",
-      tags: ["LBC", "DPE", "Marge"],
+      tags: ["Données", "Risques", "Décision"],
       priority: 4
     }
   ],
   deals: [
-    { city: "Thiais", price: "119k€", note: "2 pièces · 35 m² · DPE D", risk: "Vérifier charges + PV AG" },
-    { city: "Valenton", price: "110k€", note: "2 pièces · 26,28 m² · DPE E", risk: "Négociation DPE / travaux" },
-    { city: "Chennevières", price: "100k€", note: "Studio · 21,77 m² · DPE E", risk: "Liquidité + coût rénovation" }
+    { city: "Exemple A", price: "—", note: "Opportunité synthétique", risk: "Vérifier les données sources" },
+    { city: "Exemple B", price: "—", note: "Opportunité synthétique", risk: "Qualifier les hypothèses" },
+    { city: "Exemple C", price: "—", note: "Opportunité synthétique", risk: "Documenter la décision" }
   ],
   timeline: [
-    { title: "Publier", body: "Pousser le dashboard sur GitHub Pages avec un commit scoped et vérifier l’URL live avec cache-buster.", owner: "Bolt" },
-    { title: "Prouver", body: "Conserver une version locale accessible sur localhost et une version publique partageable pour validation rapide.", owner: "Atlas" },
-    { title: "Itérer", body: "Ajouter ensuite les vrais flux utiles : builds, liens Render/GitHub, opportunités et tâches du jour.", owner: "Alexandre" }
+    { title: "Préparer", body: "Rassembler les éléments nécessaires à une livraison démonstrative.", owner: "Équipe" },
+    { title: "Vérifier", body: "Contrôler le rendu et consigner les résultats sans donnée confidentielle.", owner: "Équipe" },
+    { title: "Itérer", body: "Améliorer le livrable à partir des contrôles réalisés.", owner: "Équipe" }
   ]
 };

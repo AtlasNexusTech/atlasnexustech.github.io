@@ -6,12 +6,22 @@ on:
   pull_request:
     branches: [main]
 
+permissions:
+  contents: read
+
 jobs:
   validate:
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     steps:
-      - uses: actions/checkout@v4
-      - name: HTML Lint
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          persist-credentials: false
+      - name: Security regression checks
+        run: python3 scripts/security_check.py
+      - name: Site tests
         run: |
-          sudo apt-get install -y tidy 2>/dev/null || true
-          find . -name "*.html" -exec tidy -q -e {} \; 2>/dev/null || echo "HTML validation passed"
+          python3 -m pip install --disable-pip-version-check -r requirements-test.txt
+          python3 -m pytest -q
+      - name: Dependency audit
+        run: npm audit --omit=dev --audit-level=high

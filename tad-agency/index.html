@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <html lang="fr" class="scroll-smooth">
 <head>
+
+
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; form-action 'self' https://formsubmit.co; script-src 'self' 'unsafe-inline' https://gc.zgo.at https://assets.calendly.com https://cdn.jsdelivr.net https://s3.tradingview.com https://www.googletagmanager.com https://connect.facebook.net https://static.hotjar.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://assets.calendly.com https://cdn.jsdelivr.net; font-src 'self' data: https://fonts.gstatic.com; img-src 'self' data: blob: https:; connect-src 'self' https: wss: ws://localhost:* ws://127.0.0.1:*; frame-src https://calendly.com https://*.calendly.com https://vars.hotjar.com; media-src 'self' blob: https:; worker-src 'self' blob:; manifest-src 'self'; upgrade-insecure-requests">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="icon" type="image/png" href="/favicon.png">
@@ -66,7 +70,7 @@
       </div>
       <a href="#equipe" class="text-forest-700 hover:text-forest-500 text-sm uppercase tracking-wider font-medium transition-colors">Qui sommes-nous</a>
       <a href="#devis" class="text-forest-700 hover:text-forest-500 text-sm uppercase tracking-wider font-medium transition-colors">Devis</a>
-      <a href="https://calendly.com/tad-agency/30min" target="_blank" class="bg-forest-500 text-white px-5 py-2 rounded-lg font-semibold text-sm hover:bg-forest-700 transition-colors shadow-lg">Réserver</a>
+      <a href="https://calendly.com/tad-agency/30min" target="_blank" class="bg-forest-500 text-white px-5 py-2 rounded-lg font-semibold text-sm hover:bg-forest-700 transition-colors shadow-lg" rel="noopener noreferrer">Réserver</a>
     </div>
   </div>
 </nav>
@@ -217,7 +221,7 @@
         <p class="text-forest-700 mb-6">Envoyez ce résumé à <strong>contact@tad-agency.fr</strong>. Réponse sous 24h.</p>
         <div id="summaryBox" class="bg-sand-50 rounded-xl p-4 text-left text-sm text-forest-700 leading-relaxed mb-6"></div>
         <div class="flex flex-col sm:flex-row gap-3 justify-center">
-          <a href="https://calendly.com/tad-agency/30min" target="_blank" class="bg-forest-500 text-white px-6 py-3 rounded-xl font-semibold hover:bg-forest-700 transition-colors">📅 Prendre un RDV</a>
+          <a href="https://calendly.com/tad-agency/30min" target="_blank" class="bg-forest-500 text-white px-6 py-3 rounded-xl font-semibold hover:bg-forest-700 transition-colors" rel="noopener noreferrer">📅 Prendre un RDV</a>
           <button onclick="sendEmail()" class="border-2 border-forest-500 text-forest-500 px-6 py-3 rounded-xl font-semibold hover:bg-forest-500 hover:text-white transition-colors">📧 Envoyer par email</button>
         </div>
       </div>
@@ -232,7 +236,7 @@
     <p class="text-sand-200 text-lg mb-8">Contactez-nous pour un devis personnalisé.</p>
     <div class="flex flex-col sm:flex-row gap-4 justify-center">
       <a href="#devis" class="gesture-card inline-flex bg-sand-500 text-forest-900 px-8 py-4 rounded-xl font-bold text-lg hover:bg-sand-300 transition-colors shadow-xl">Demander un devis</a>
-      <a href="https://calendly.com/tad-agency/30min" target="_blank" class="inline-flex border-2 border-white/30 text-white px-8 py-4 rounded-xl font-semibold text-lg hover:bg-white/10 transition-colors">Prendre rendez-vous</a>
+      <a href="https://calendly.com/tad-agency/30min" target="_blank" class="inline-flex border-2 border-white/30 text-white px-8 py-4 rounded-xl font-semibold text-lg hover:bg-white/10 transition-colors" rel="noopener noreferrer">Prendre rendez-vous</a>
     </div>
   </div>
 </section>
@@ -250,7 +254,7 @@
         <a href="#services" class="block text-sand-300 text-sm hover:text-white mb-1 transition-colors">Services</a>
         <a href="#equipe" class="block text-sand-300 text-sm hover:text-white mb-1 transition-colors">Équipe</a>
         <a href="#devis" class="block text-sand-300 text-sm hover:text-white mb-1 transition-colors">Devis</a>
-        <a href="https://calendly.com/tad-agency/30min" target="_blank" class="block text-sand-300 text-sm hover:text-white mb-1 transition-colors">Rendez-vous</a>
+        <a href="https://calendly.com/tad-agency/30min" target="_blank" class="block text-sand-300 text-sm hover:text-white mb-1 transition-colors" rel="noopener noreferrer">Rendez-vous</a>
 
       </div>
       <div>
@@ -272,17 +276,21 @@ document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
 // Devis
 function fillSummary() {
-  var s = '';
-  s += '<b>Entreprise :</b> ' + document.getElementById('company').value + '<br>';
-  s += '<b>Contact :</b> ' + document.getElementById('name').value + '<br>';
-  s += '<b>Email :</b> ' + document.getElementById('email').value + '<br>';
-  if (document.getElementById('phone').value) s += '<b>Tél :</b> ' + document.getElementById('phone').value + '<br>';
-  s += '<br><b>Événement :</b> ' + document.getElementById('eventType').value + ': ' + document.getElementById('guests').value + ' pers.';
-  if (document.getElementById('duration').value) s += ': ' + document.getElementById('duration').value;
-  if (document.getElementById('date').value) s += '<br><b>Date :</b> ' + document.getElementById('date').value;
-  s += '<br><b>Budget :</b> ' + document.getElementById('budget').value;
-  if (document.getElementById('message').value) s += '<br><br><b>Message :</b> ' + document.getElementById('message').value;
-  document.getElementById('summaryBox').innerHTML = s;
+  const value = id => document.getElementById(id).value.trim();
+  const lines = [
+    'Entreprise : ' + value('company'),
+    'Contact : ' + value('name'),
+    'Email : ' + value('email')
+  ];
+  if (value('phone')) lines.push('Tél : ' + value('phone'));
+  lines.push('', 'Événement : ' + value('eventType') + ' · ' + value('guests') + ' pers.');
+  if (value('duration')) lines.push('Durée : ' + value('duration'));
+  if (value('date')) lines.push('Date : ' + value('date'));
+  lines.push('Budget : ' + value('budget'));
+  if (value('message')) lines.push('', 'Message : ' + value('message'));
+  const summary = document.getElementById('summaryBox');
+  summary.style.whiteSpace = 'pre-line';
+  summary.textContent = lines.join('\n');
 }
 function sendEmail() {
   var body = document.getElementById('summaryBox').innerText;

@@ -89,4 +89,6 @@ def test_external_links_are_safe():
     for html in (FR, EN):
         for tag in re.findall(r'<a\b[^>]*href="https?://[^">]+"[^>]*>', html, re.I):
             assert 'target="_blank"' in tag
-            assert 'rel="noopener"' in tag
+            rel = re.search(r'rel="([^"]+)"', tag)
+            assert rel
+            assert {"noopener", "noreferrer"}.issubset(set(rel.group(1).split()))

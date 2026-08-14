@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <html lang="fr" class="scroll-smooth">
 <head>
+
+
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; form-action 'self' https://formsubmit.co; script-src 'self' 'unsafe-inline' https://gc.zgo.at https://assets.calendly.com https://cdn.jsdelivr.net https://s3.tradingview.com https://www.googletagmanager.com https://connect.facebook.net https://static.hotjar.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://assets.calendly.com https://cdn.jsdelivr.net; font-src 'self' data: https://fonts.gstatic.com; img-src 'self' data: blob: https:; connect-src 'self' https: wss: ws://localhost:* ws://127.0.0.1:*; frame-src https://calendly.com https://*.calendly.com https://vars.hotjar.com; media-src 'self' blob: https:; worker-src 'self' blob:; manifest-src 'self'; upgrade-insecure-requests">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="icon" type="image/png" href="/favicon.png">
@@ -124,7 +128,7 @@
       <li><a href="/#work">Réalisations</a></li>
       <li><a href="/#offers">Offres</a></li>
       <li><a href="/#why">Pourquoi</a></li>
-      <li><a href="https://github.com/AtlasNexusTech" target="_blank" rel="noopener">GitHub</a></li>
+      <li><a href="https://github.com/AtlasNexusTech" target="_blank" rel="noopener noreferrer">GitHub</a></li>
     </ul>
     <div class="atlas-site-actions">
       <div class="atlas-site-language" data-active="fr" aria-label="Sélecteur de langue">
@@ -211,7 +215,7 @@
                 <span class="text-accent font-bold mt-0.5">✓</span> Personnalisable : vos données, vos couleurs, vos KPIs
               </li>
             </ul>
-            <a href="/markets-dashboard/" target="_blank" class="inline-flex items-center gap-2 text-primary font-semibold hover:text-primary-dark text-sm">
+            <a href="/markets-dashboard/" target="_blank" class="inline-flex items-center gap-2 text-primary font-semibold hover:text-primary-dark text-sm" rel="noopener noreferrer">
               Voir la démo live →
             </a>
           </div>
@@ -334,7 +338,7 @@
   if (stored === 'dark') apply(true);
   else if (stored === 'light') apply(false);
   else if (window.matchMedia('(prefers-color-scheme: dark)').matches) apply(true);
-  toggle.addEventListener('click', () => {
+  if (toggle) toggle.addEventListener('click', () => {
     const isDark =!html.classList.contains('dark');
     apply(isDark);
     localStorage.setItem('theme', isDark? 'dark' : 'light');

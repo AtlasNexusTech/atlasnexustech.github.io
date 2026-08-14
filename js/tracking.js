@@ -287,7 +287,11 @@
 
     // 2) Rendez-vous CONFIRME dans Calendly -- la vraie conversion
     window.addEventListener('message', function (e) {
-      if (!e.origin || e.origin.indexOf('calendly.com') === -1) return;
+      if (!e.origin) return;
+      var originHost;
+      try { originHost = new URL(e.origin).hostname.toLowerCase(); }
+      catch (_) { return; }
+      if (originHost !== 'calendly.com' && !originHost.endsWith('.calendly.com')) return;
       var d = e.data;
       if (!d || typeof d.event !== 'string') return;
       if (d.event === 'calendly.event_scheduled') {

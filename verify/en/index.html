@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
 <head>
+
+
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; form-action 'self' https://formsubmit.co; script-src 'self' 'unsafe-inline' https://gc.zgo.at https://assets.calendly.com https://cdn.jsdelivr.net https://s3.tradingview.com https://www.googletagmanager.com https://connect.facebook.net https://static.hotjar.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://assets.calendly.com https://cdn.jsdelivr.net; font-src 'self' data: https://fonts.gstatic.com; img-src 'self' data: blob: https:; connect-src 'self' https: wss: ws://localhost:* ws://127.0.0.1:*; frame-src https://calendly.com https://*.calendly.com https://vars.hotjar.com; media-src 'self' blob: https:; worker-src 'self' blob:; manifest-src 'self'; upgrade-insecure-requests">
 <meta charset="UTF-8">
 <link rel="icon" type="image/png" href="/favicon.png">
 <link rel="shortcut icon" href="/favicon.ico">
@@ -10,7 +14,7 @@
 <title>Verify Agent Identity : Atlas Nexus</title>
 <meta name="description" content="Verify an AI agent's identity on-chain. ERC-8004 registration, cryptographic signatures, lookup, attestations. Celo Mainnet.">
 <link rel="stylesheet" href="/css/site.css?v=4">
-<script src="https://cdn.jsdelivr.net/npm/ethers@5.7.2/dist/ethers.umd.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/ethers@5.7.2/dist/ethers.umd.min.js" integrity="sha384-Htz1SE4Sl5aitpvFgr2j0sfsGUIuSXI6t8hEyrlQ93zflEF3a29bH2AvkUROUw7J" crossorigin="anonymous"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;600;700;900&amp;family=Nunito+Sans:wght@400;600;700&amp;display=swap" rel="stylesheet">
 <style>.gradient-text { background : linear-gradient(135deg, #2563EB 0%, #059669 100%); -webkit-background-clip : text; -webkit-text-fill-color : transparent; background-clip : text; }
@@ -51,7 +55,7 @@
       <li><a href="/en/#work">Work</a></li>
       <li><a href="/en/#offers">Offers</a></li>
       <li><a href="/en/#why">Why</a></li>
-      <li><a href="https://github.com/AtlasNexusTech" target="_blank" rel="noopener">GitHub</a></li>
+      <li><a href="https://github.com/AtlasNexusTech" target="_blank" rel="noopener noreferrer">GitHub</a></li>
     </ul>
     <div class="atlas-site-actions">
       <div class="atlas-site-language" data-active="en" aria-label="Language selector">
@@ -246,9 +250,9 @@
   <div class="max-w-6xl mx-auto px-6 text-center">
     <p class="text-slate-400 text-sm">&copy; 2026 Atlas Nexus : Alexandre Lasly</p>
     <p class="text-slate-400 text-xs mt-2">
-      <a href="https://atlasnexus.tech/agent-identity/" class="hover:text-primary">← Back to agent identity page</a> · 
-      <a href="/mentions-legales/" class="hover:text-primary">Legal notice</a> · 
-      <a href="https://celoscan.io/address/0x8004A169FB4a3325136EB29fA0ceB6D2e539a432" class="hover:text-primary" target="_blank">Contract on Celoscan</a>
+      <a href="https://atlasnexus.tech/agent-identity/" class="hover:text-primary">← Back to agent identity page</a> ·
+      <a href="/mentions-legales/" class="hover:text-primary">Legal notice</a> ·
+      <a href="https://celoscan.io/address/0x8004A169FB4a3325136EB29fA0ceB6D2e539a432" class="hover:text-primary" target="_blank" rel="noopener noreferrer">Contract on Celoscan</a>
     </p>
   </div>
 </footer>
@@ -316,17 +320,17 @@ async function registerAgent() {
   if (!signer) return alert('Connect your wallet first.');
   const btn = document.getElementById('btnRegister'), status = document.getElementById('regStatus');
   btn.disabled = true; btn.textContent = 'Transaction pending...';
-  status.innerHTML = '<span class="spinner inline-block w-4 h-4 border-2 border-primary border-t-transparent rounded-full mr-2"></span> Minting...';
+  status.textContent = 'Preparing transaction…';
   try {
     const tx = await identityContract.register(userAddress, { gasLimit: 200000 });
-    status.innerHTML = '<span class="spinner inline-block w-4 h-4 border-2 border-primary border-t-transparent rounded-full mr-2"></span> Confirming...';
+    status.textContent = 'Waiting for confirmation…';
     await tx.wait();
-    status.innerHTML = '✅ Identity minted!';
+    status.textContent = '✅ Identity minted!';
     status.className = 'text-sm text-accent font-semibold';
     btn.textContent = 'Mint successful ✓';
-    setTimeout(() => { btn.disabled = false; btn.textContent = 'Mint identity : blockchain network fees only'; status.innerHTML = ''; }, 5000);
+    setTimeout(() => { btn.disabled = false; btn.textContent = 'Mint identity : blockchain network fees only'; status.textContent = ''; }, 5000);
   } catch(e) {
-    status.innerHTML = '❌ ' + (e.reason || e.message || 'Error');
+    status.textContent = '❌ ' + String(e.reason || e.message || 'Error').slice(0,300);
     status.className = 'text-sm text-red-500';
     btn.disabled = false; btn.textContent = 'Mint identity : blockchain network fees only';
   }
@@ -363,17 +367,17 @@ async function signMessage() {
   if (!msg) return alert('Enter a message.');
   const btn = document.getElementById('btnSign'), status = document.getElementById('signStatus');
   btn.disabled = true; btn.textContent = 'Signing...';
-  status.innerHTML = '<span class="spinner inline-block w-4 h-4 border-2 border-primary border-t-transparent rounded-full mr-2"></span>';
+  status.textContent = 'Waiting for signature…';
   try {
     const signature = await signer.signMessage(msg);
     document.getElementById('signatureOutput').textContent = signature;
     document.getElementById('signResult').classList.remove('hidden');
-    status.innerHTML = '✅ Signed!';
+    status.textContent = '✅ Signed!';
     btn.disabled = false; btn.textContent = 'Sign';
     document.getElementById('verifyAddress').value = userAddress;
     document.getElementById('verifyMessage').value = msg;
     document.getElementById('verifySignature').value = signature;
-  } catch(e) { status.innerHTML = '❌ Signature rejected'; btn.disabled = false; btn.textContent = 'Sign'; }
+  } catch(e) { status.textContent = '❌ Signature rejected'; btn.disabled = false; btn.textContent = 'Sign'; }
 }
 async function verifySignature() {
   const addr = document.getElementById('verifyAddress').value.trim();
@@ -385,13 +389,13 @@ async function verifySignature() {
   try {
     const recovered = ethers.utils.verifyMessage(msg, sig);
     if (recovered.toLowerCase() === addr.toLowerCase()) {
-      status.innerHTML = '✅ SIGNATURE VALID : address ' + addr.slice(0,10) + '... signed this message.';
+      status.textContent = '✅ SIGNATURE VALID : address ' + addr.slice(0,10) + '... signed this message.';
       status.className = 'text-sm text-accent font-semibold';
     } else {
-      status.innerHTML = '❌ SIGNATURE INVALID : recovered signer (' + recovered.slice(0,10) + '...) does not match.';
+      status.textContent = '❌ SIGNATURE INVALID : recovered signer (' + recovered.slice(0,10) + '...) does not match.';
       status.className = 'text-sm text-red-500 font-semibold';
     }
-  } catch(e) { status.innerHTML = '⚠ Malformed or corrupted signature.'; status.className = 'text-sm text-amber-600 font-semibold'; }
+  } catch(e) { status.textContent = '⚠ Malformed or corrupted signature.'; status.className = 'text-sm text-amber-600 font-semibold'; }
 }
 async function loadStats() {
   try {

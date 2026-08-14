@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
+
+
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; form-action 'self' https://formsubmit.co; script-src 'self' 'unsafe-inline' https://gc.zgo.at https://assets.calendly.com https://cdn.jsdelivr.net https://s3.tradingview.com https://www.googletagmanager.com https://connect.facebook.net https://static.hotjar.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://assets.calendly.com https://cdn.jsdelivr.net; font-src 'self' data: https://fonts.gstatic.com; img-src 'self' data: blob: https:; connect-src 'self' https: wss: ws://localhost:* ws://127.0.0.1:*; frame-src https://calendly.com https://*.calendly.com https://vars.hotjar.com; media-src 'self' blob: https:; worker-src 'self' blob:; manifest-src 'self'; upgrade-insecure-requests">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Template Artisan : Site vitrine PWA prêt à l'emploi | 39€</title>
@@ -33,7 +37,7 @@
       <li><a href="/#work">Réalisations</a></li>
       <li><a href="/#offers">Offres</a></li>
       <li><a href="/#why">Pourquoi</a></li>
-      <li><a href="https://github.com/AtlasNexusTech" target="_blank" rel="noopener">GitHub</a></li>
+      <li><a href="https://github.com/AtlasNexusTech" target="_blank" rel="noopener noreferrer">GitHub</a></li>
     </ul>
     <div class="atlas-site-actions">
       <div class="atlas-site-language" data-active="fr" aria-label="Sélecteur de langue">
@@ -82,7 +86,7 @@
 <section class="max-w-5xl mx-auto px-6 py-20">
   <h2 class="text-3xl md:text-4xl font-black text-center mb-4">Ce que vous recevez</h2>
   <p class="text-stone-500 text-center mb-12 max-w-lg mx-auto">Un site complet, professionnel, prêt à être en ligne en quelques minutes.</p>
-  
+
   <div class="grid md:grid-cols-3 gap-6">
     <div class="bg-white rounded-2xl p-6 border border-stone-200 shadow-sm hover:shadow-md transition">
       <div class="text-3xl mb-3">📁</div>
@@ -122,7 +126,7 @@
   <div class="max-w-5xl mx-auto px-6">
     <h2 class="text-3xl md:text-4xl font-black text-center mb-4">Démos live: 6 secteurs</h2>
     <p class="text-stone-400 text-center mb-12">Cliquez pour voir chaque secteur en action. Sites réels, déployés.</p>
-    
+
     <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6" id="demos-grid"></div>
   </div>
 </section>
@@ -134,7 +138,7 @@
     <div class="text-6xl font-black mb-2">39€</div>
     <p class="text-stone-500 mb-2">Paiement unique. Accès à vie.</p>
     <p class="text-stone-400 text-sm mb-8">Mises à jour incluses. Licence pour 1 site.</p>
-    
+
     <ul class="text-left space-y-3 mb-8 max-w-sm mx-auto">
       <li class="flex items-start gap-3"><span class="text-green-500 mt-0.5">✓</span> Template HTML complet (PWA, SEO, responsive)</li>
       <li class="flex items-start gap-3"><span class="text-green-500 mt-0.5">✓</span> Script generateur (6 secteurs)</li>
@@ -142,7 +146,7 @@
       <li class="flex items-start gap-3"><span class="text-green-500 mt-0.5">✓</span> Guide de deploiement (GitHub Pages gratuit)</li>
       <li class="flex items-start gap-3"><span class="text-green-500 mt-0.5">✓</span> Fichier config.json simple a modifier</li>
     </ul>
-    
+
     <a href="https://buy.stripe.com/placeholder" id="buy-btn" class="block w-full px-8 py-4 bg-brand-600 hover:bg-brand-700 text-white rounded-xl font-bold text-lg transition shadow-xl shadow-brand-600/20">
       Acheter maintenant: 39€
     </a>
@@ -195,8 +199,8 @@ const DEMOS = [
 const grid = document.getElementById('demos-grid');
 DEMOS.forEach(d => {
   grid.innerHTML += `
-    <a href="https://atlasnexus.tech/artisan-demo/${d.slug}/" target="_blank" 
-       class="demo-card group bg-stone-800 rounded-2xl p-6 border border-stone-700 hover:border-stone-500 transition-all duration-300 no-underline">
+    <a href="https://atlasnexus.tech/artisan-demo/${d.slug}/" target="_blank"
+       class="demo-card group bg-stone-800 rounded-2xl p-6 border border-stone-700 hover:border-stone-500 transition-all duration-300 no-underline" rel="noopener noreferrer">
       <div class="flex items-center gap-3 mb-3">
         <span class="text-3xl">${d.emoji}</span>
         <div>

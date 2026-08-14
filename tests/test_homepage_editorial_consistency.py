@@ -79,7 +79,7 @@ def test_linked_english_pages_keep_users_in_english():
             if f'AtlasNexusTech/{repo}' in html:
                 assert re.search(
                     rf'href="https://github\.com/AtlasNexusTech/{repo}"[^>]*'
-                    r'target="_blank"[^>]*rel="noopener"',
+                    r'target="_blank"[^>]*rel="[^"]*noopener[^"]*"',
                     html,
                 )
 

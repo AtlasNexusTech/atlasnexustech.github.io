@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <html lang="fr" class="scroll-smooth">
 <head>
+
+
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; form-action 'self' https://formsubmit.co; script-src 'self' 'unsafe-inline' https://gc.zgo.at https://assets.calendly.com https://cdn.jsdelivr.net https://s3.tradingview.com https://www.googletagmanager.com https://connect.facebook.net https://static.hotjar.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://assets.calendly.com https://cdn.jsdelivr.net; font-src 'self' data: https://fonts.gstatic.com; img-src 'self' data: blob: https:; connect-src 'self' https: wss: ws://localhost:* ws://127.0.0.1:*; frame-src https://calendly.com https://*.calendly.com https://vars.hotjar.com; media-src 'self' blob: https:; worker-src 'self' blob:; manifest-src 'self'; upgrade-insecure-requests">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="icon" type="image/png" href="/favicon.png">
@@ -47,7 +51,7 @@
       <li><a href="/#work">Réalisations</a></li>
       <li><a href="/#offers">Offres</a></li>
       <li><a href="/#why">Pourquoi</a></li>
-      <li><a href="https://github.com/AtlasNexusTech" target="_blank" rel="noopener">GitHub</a></li>
+      <li><a href="https://github.com/AtlasNexusTech" target="_blank" rel="noopener noreferrer">GitHub</a></li>
     </ul>
     <div class="atlas-site-actions">
       <div class="atlas-site-language" data-active="fr" aria-label="Sélecteur de langue">
@@ -272,7 +276,7 @@
   const t = document.getElementById('theme-toggle');
   const apply = (dark) => { document.documentElement.classList.toggle('dark', dark); };
   apply(localStorage.getItem('atlasnexus.theme') === 'dark' || (!localStorage.getItem('atlasnexus.theme') && window.matchMedia('(prefers-color-scheme: dark)').matches));
-  t.addEventListener('click', () => { const dark =!document.documentElement.classList.contains('dark'); localStorage.setItem('atlasnexus.theme', dark? 'dark' : 'light'); apply(dark); });
+  if (t) t.addEventListener('click', () => { const dark =!document.documentElement.classList.contains('dark'); localStorage.setItem('atlasnexus.theme', dark? 'dark' : 'light'); apply(dark); });
 </script>
 
 </body>
