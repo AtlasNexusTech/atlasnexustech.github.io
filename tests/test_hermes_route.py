@@ -37,6 +37,12 @@ def test_prime_agent_is_a_real_installation_page_not_a_dead_redirect():
     assert 'Demander l’installation' in PRIME
     assert 'http-equiv="refresh"' not in PRIME
     assert 'location.replace' not in PRIME
+    assert 'Claude Opus 5' in PRIME
+    assert 'OAuth Anthropic' in PRIME
+    assert 'Raisonnement configurable jusqu’à <strong>max</strong>' in PRIME
+    assert 'Noyau IPython' in PRIME
+    assert 'Sessions reprenables, forkables et sous-agents' in PRIME
+    assert 'Mode autonome avec critères de validation' in PRIME
 
 
 def test_new_assets_exist():
@@ -48,5 +54,6 @@ def test_new_assets_exist():
         "hermes/motion.css",
         "hermes/app.js",
         "prime-agent/prime.css",
+        "prime-agent/edge.css",
     ):
         assert (ROOT / relative).is_file(), relative

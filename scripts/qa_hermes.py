@@ -65,6 +65,14 @@ with sync_playwright() as p:
         if prime_metrics["documentWidth"] > prime_metrics["viewport"] + 1 or prime_metrics["hasRedirect"]:
             failures.append(f"prime {name}: route contract {prime_metrics}")
         page.screenshot(path=str(OUT / f"prime-hero-{name}.png"), full_page=False)
+        edge = page.locator("#difference")
+        edge.scroll_into_view_if_needed()
+        page.wait_for_timeout(350)
+        if "Claude Opus 5" not in edge.inner_text() or "OAuth Anthropic" not in edge.inner_text():
+            failures.append(f"prime {name}: competitive claims missing")
+        page.evaluate("document.querySelector('#difference').scrollIntoView({block:'start'})")
+        page.wait_for_timeout(850)
+        page.screenshot(path=str(OUT / f"prime-edge-{name}.png"), full_page=False)
         if console_errors:
             failures.append(f"{name} console: {console_errors}")
         if failed_requests:

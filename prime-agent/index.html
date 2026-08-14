@@ -12,6 +12,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;500;600;700;800&family=Rubik:wght@500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/hermes/styles.css">
   <link rel="stylesheet" href="/prime-agent/prime.css">
+  <link rel="stylesheet" href="/prime-agent/edge.css">
   <script src="/hermes/app.js" defer></script>
 </head>
 <body>
@@ -29,15 +30,16 @@
     <section class="hero prime-hero" id="top">
       <div class="hero-grid shell">
         <div class="hero-copy reveal">
-          <p class="eyebrow"><span class="status-dot"></span> Interface agentique privée</p>
-          <h1>Votre cockpit pour piloter <span>missions et agents.</span></h1>
-          <p class="hero-lead">Prime Agent réunit dans une interface claire vos missions, vos sessions, vos agents et leur historique. Atlas Nexus l’installe et le configure selon votre organisation.</p>
+          <p class="eyebrow"><span class="status-dot"></span> Claude Opus 5 · OAuth Anthropic</p>
+          <h1>Le spécialiste des missions <span>techniques complexes.</span></h1>
+          <p class="hero-lead">Prime Agent associe Claude Opus 5, un raisonnement intensif et un espace d’exécution persistant. Il conserve le fil, délègue à des sous-agents et avance jusqu’aux critères de validation définis.</p>
           <div class="hero-actions"><a class="button" href="#contact">Demander l’installation <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a><a class="text-link" href="#capabilities">Découvrir le cockpit <span aria-hidden="true">↓</span></a></div>
-          <ul class="trust-row" aria-label="Points de confiance"><li><svg viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"/></svg>Interface privée</li><li><svg viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"/></svg>Historique centralisé</li><li><svg viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"/></svg>Installé pour votre usage</li></ul>
+          <ul class="trust-row" aria-label="Points de confiance"><li><svg viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"/></svg>OAuth, sans clé API à saisir</li><li><svg viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"/></svg>Raisonnement jusqu’à max</li><li><svg viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"/></svg>Sessions persistantes</li></ul>
         </div>
 
         <div class="prime-window reveal reveal-delay" aria-label="Aperçu du cockpit Prime Agent">
-          <div class="prime-window-bar"><div class="prime-identity"><img src="/assets/prime-agent-identity.jpg" alt="" width="38" height="38"><div><strong>Prime Agent</strong><span>Cockpit privé</span></div></div><span class="live-pill"><i></i> En ligne</span></div>
+          <div class="prime-window-bar"><div class="prime-identity"><img src="/assets/prime-agent-identity.jpg" alt="" width="38" height="38"><div><strong>Prime Agent</strong><span>Cockpit privé</span></div></div><span class="live-pill"><i></i> Opus 5 · OAuth</span></div>
+          <div class="prime-model-strip"><span>ANTHROPIC OAUTH</span><strong>Claude Opus 5</strong><i></i><span>THINKING</span><strong>Max</strong></div>
           <div class="prime-layout">
             <aside aria-label="Navigation du cockpit"><span class="active">Vue d’ensemble</span><span>Missions</span><span>Agents</span><span>Sessions</span><span>Historique</span></aside>
             <div class="prime-main">
@@ -51,6 +53,28 @@
     </section>
 
     <section class="signal-band" aria-label="Positionnement"><div class="shell signal-grid"><p>Plusieurs agents, plusieurs sessions.</p><span aria-hidden="true">→</span><p><strong>Un seul cockpit pour garder le fil.</strong></p></div></section>
+
+    <section class="section prime-edge" id="difference">
+      <div class="shell">
+        <div class="section-heading reveal"><p class="eyebrow">DEUX AGENTS, DEUX SPÉCIALITÉS</p><h2>Pourquoi choisir Prime Agent plutôt qu’Hermes&nbsp;?</h2><p>Ce n’est pas une hiérarchie de puissance. Hermes et Prime Agent répondent à des façons de travailler différentes.</p></div>
+        <div class="prime-compare">
+          <article class="prime-compare-card hermes-side reveal">
+            <div class="prime-compare-head"><img src="/assets/hermes-portrait.jpg" alt="" width="52" height="52"><div><small>HERMES</small><h3>Le collaborateur numérique polyvalent</h3></div></div>
+            <p>Conçu pour exécuter des processus métier dans plusieurs outils, avec un périmètre d’autorisations, une vérification et un compte rendu.</p>
+            <ul><li>Processus métier multi-outils</li><li>Missions récurrentes et opérationnelles</li><li>Intégrations, suivi et reporting</li><li>Large catalogue de compétences</li></ul>
+            <a href="/hermes/">Découvrir Hermes <span aria-hidden="true">→</span></a>
+          </article>
+          <article class="prime-compare-card prime-side reveal reveal-delay">
+            <div class="prime-compare-head"><img src="/assets/prime-agent-identity.jpg" alt="" width="52" height="52"><div><small>PRIME AGENT</small><h3>Le spécialiste de l’exécution technique profonde</h3></div></div>
+            <p>Conçu pour les missions longues qui demandent davantage de raisonnement, de continuité, de code et de capacité à diviser le travail.</p>
+            <ul><li><strong>Claude Opus 5</strong> connecté par OAuth Anthropic</li><li>Raisonnement configurable jusqu’à <strong>max</strong></li><li>Noyau IPython et espace d’exécution persistants</li><li>Sessions reprenables, forkables et sous-agents</li><li>Mode autonome avec critères de validation</li></ul>
+            <a href="#contact">Installer Prime Agent <span aria-hidden="true">→</span></a>
+          </article>
+        </div>
+        <div class="prime-decision reveal"><span>Choisissez Hermes pour orchestrer votre activité.</span><strong>Choisissez Prime Agent pour pousser une mission technique jusqu’au bout.</strong></div>
+        <p class="prime-auth-note">L’accès à Claude Opus 5 dépend des droits et limites du compte Anthropic connecté. Atlas Nexus configure la connexion OAuth sans exposer vos identifiants.</p>
+      </div>
+    </section>
 
     <section class="section missions" id="capabilities">
       <div class="shell">
