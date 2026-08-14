@@ -43,17 +43,13 @@ def test_hero_image_assets_exist_and_are_high_definition():
     for asset in (WEBP, JPG):
         assert asset.is_file()
         assert asset.stat().st_size > 40_000
-    import subprocess, json
+    from PIL import Image
 
     for asset in (WEBP, JPG):
-        probe = subprocess.run(
-            ["ffprobe", "-v", "error", "-show_entries", "stream=width,height",
-             "-of", "json", str(asset)],
-            check=True, capture_output=True, text=True,
-        )
-        stream = json.loads(probe.stdout)["streams"][0]
-        assert stream["width"] == 1920
-        assert stream["height"] >= 1000
+        with Image.open(asset) as image:
+            width, height = image.size
+        assert width == 1920
+        assert height >= 1000
 
 
 def test_still_hero_keeps_the_video_rendering_contract():
