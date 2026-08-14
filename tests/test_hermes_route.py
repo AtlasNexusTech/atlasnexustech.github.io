@@ -5,6 +5,8 @@ HOME = (ROOT / "index.html").read_text(encoding="utf-8")
 HERMES = (ROOT / "hermes" / "index.html").read_text(encoding="utf-8")
 MOTION = (ROOT / "hermes" / "motion.css").read_text(encoding="utf-8")
 PRIME = (ROOT / "prime-agent" / "index.html").read_text(encoding="utf-8")
+PRIME_MOTION = (ROOT / "prime-agent" / "motion.css").read_text(encoding="utf-8")
+PRIME_MOTION_JS = (ROOT / "prime-agent" / "motion.js").read_text(encoding="utf-8")
 
 
 def test_homepage_links_to_hermes_and_prime_agent():
@@ -43,6 +45,18 @@ def test_prime_agent_is_a_real_installation_page_not_a_dead_redirect():
     assert 'Noyau IPython' in PRIME
     assert 'Sessions reprenables, forkables et sous-agents' in PRIME
     assert 'Mode autonome avec critères de validation' in PRIME
+    assert 'href="#method">Installation</a>' not in PRIME
+    assert 'class="button button-small nav-cta"' not in PRIME
+
+
+def test_prime_agent_motion_is_choreographed_and_accessible():
+    assert 'href="/prime-agent/motion.css"' in PRIME
+    assert 'src="/prime-agent/motion.js"' in PRIME
+    assert 'PRIME AGENT MOTION STORYBOARD' in PRIME_MOTION_JS
+    assert 'const TIMING = Object.freeze' in PRIME_MOTION_JS
+    assert 'prefers-reduced-motion:reduce' in PRIME_MOTION
+    assert 'animation:none!important' in PRIME_MOTION
+    assert '.prime-page .site-header .brand>span{display:none}' in PRIME_MOTION
 
 
 def test_new_assets_exist():
@@ -55,5 +69,7 @@ def test_new_assets_exist():
         "hermes/app.js",
         "prime-agent/prime.css",
         "prime-agent/edge.css",
+        "prime-agent/motion.css",
+        "prime-agent/motion.js",
     ):
         assert (ROOT / relative).is_file(), relative
