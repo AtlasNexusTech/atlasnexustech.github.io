@@ -4,6 +4,7 @@ ROOT = Path(__file__).resolve().parents[1]
 HOME = (ROOT / "index.html").read_text(encoding="utf-8")
 HERMES = (ROOT / "hermes" / "index.html").read_text(encoding="utf-8")
 MOTION = (ROOT / "hermes" / "motion.css").read_text(encoding="utf-8")
+PRIME = (ROOT / "prime-agent" / "index.html").read_text(encoding="utf-8")
 
 
 def test_homepage_links_to_hermes_and_prime_agent():
@@ -31,6 +32,13 @@ def test_motion_is_decorative_and_accessible():
     assert 'animation:none!important' in MOTION
 
 
+def test_prime_agent_is_a_real_installation_page_not_a_dead_redirect():
+    assert '<title>Installation Prime-Agent — Atlas Nexus</title>' in PRIME
+    assert 'Demander l’installation' in PRIME
+    assert 'http-equiv="refresh"' not in PRIME
+    assert 'location.replace' not in PRIME
+
+
 def test_new_assets_exist():
     for relative in (
         "assets/hermes-portrait.jpg",
@@ -39,5 +47,6 @@ def test_new_assets_exist():
         "hermes/styles.css",
         "hermes/motion.css",
         "hermes/app.js",
+        "prime-agent/prime.css",
     ):
         assert (ROOT / relative).is_file(), relative

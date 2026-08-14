@@ -51,6 +51,20 @@ with sync_playwright() as p:
         if not hermes_metrics["motion"] or not hermes_metrics["reducedRule"]:
             failures.append(f"hermes {name}: motion contract {hermes_metrics}")
         page.screenshot(path=str(OUT / f"hermes-hero-{name}.png"), full_page=False)
+
+        page.goto(BASE + "/prime-agent/", wait_until="networkidle")
+        page.wait_for_timeout(400)
+        prime_metrics = page.evaluate("""() => ({
+          viewport: innerWidth,
+          documentWidth: document.documentElement.scrollWidth,
+          title: document.title,
+          h1: document.querySelector('h1')?.innerText,
+          canonical: document.querySelector('link[rel="canonical"]')?.href,
+          hasRedirect: !!document.querySelector('meta[http-equiv="refresh"]')
+        })""")
+        if prime_metrics["documentWidth"] > prime_metrics["viewport"] + 1 or prime_metrics["hasRedirect"]:
+            failures.append(f"prime {name}: route contract {prime_metrics}")
+        page.screenshot(path=str(OUT / f"prime-hero-{name}.png"), full_page=False)
         if console_errors:
             failures.append(f"{name} console: {console_errors}")
         if failed_requests:
