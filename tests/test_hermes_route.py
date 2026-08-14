@@ -9,7 +9,9 @@ MOTION = (ROOT / "hermes" / "motion.css").read_text(encoding="utf-8")
 def test_homepage_links_to_hermes_and_prime_agent():
     assert 'href="/hermes/"' in HOME
     assert 'href="/prime-agent/"' in HOME
+    assert 'src="/assets/hermes-portrait.jpg"' in HOME
     assert 'src="/assets/prime-agent-identity.jpg"' in HOME
+    assert 'class="work-shot work-hermes-shot"' not in HOME
 
 
 def test_hermes_route_has_production_canonical_and_home_link():
@@ -27,6 +29,7 @@ def test_motion_is_decorative_and_accessible():
 
 def test_new_assets_exist():
     for relative in (
+        "assets/hermes-portrait.jpg",
         "assets/prime-agent-identity.jpg",
         "css/home-solutions.css",
         "hermes/styles.css",

@@ -21,15 +21,19 @@ with sync_playwright() as p:
           documentWidth: document.documentElement.scrollWidth,
           hermesLinks: document.querySelectorAll('a[href="/hermes/"]').length,
           primeLinks: document.querySelectorAll('a[href="/prime-agent/"]').length,
-          imageReady: !!document.querySelector('.agent-solution-portrait img')?.complete
+          imageReady: !!document.querySelector('.agent-solution-hermes-visual img')?.complete,
+          primeLogoReady: !!document.querySelector('.agent-solution-prime-visual img')?.complete
         })""")
         if home_metrics["documentWidth"] > home_metrics["viewport"] + 1:
             failures.append(f"home {name}: horizontal overflow {home_metrics}")
-        if home_metrics["hermesLinks"] < 1 or home_metrics["primeLinks"] < 1 or not home_metrics["imageReady"]:
+        if home_metrics["hermesLinks"] < 1 or home_metrics["primeLinks"] < 1 or not home_metrics["imageReady"] or not home_metrics["primeLogoReady"]:
             failures.append(f"home {name}: links/image {home_metrics}")
         page.locator("#solutions-agentiques").scroll_into_view_if_needed()
         page.wait_for_timeout(450)
         page.locator("#solutions-agentiques").screenshot(path=str(OUT / f"home-solutions-{name}.png"))
+        page.locator("#work").scroll_into_view_if_needed()
+        page.wait_for_timeout(450)
+        page.locator("#work").screenshot(path=str(OUT / f"home-work-{name}.png"))
 
         page.goto(BASE + "/hermes/", wait_until="networkidle")
         page.wait_for_timeout(550)
