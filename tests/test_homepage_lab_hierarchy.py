@@ -46,7 +46,7 @@ def test_lab_is_compact_automatic_marquee_in_both_locales():
         assert 'data-direction="1"' in section
         assert 'aria-label=' in section
         assert 'aria-pressed="false"' in section
-        assert len(re.findall(r'\blab-card\b', section)) == 5
+        assert len(re.findall(r'\blab-card\b', section)) == 6
         assert secondary_copy in html_module.unescape(section)
         assert re.search(r'<a[^>]+class="[^"]*lab-card[^"]*"', section)
         assert "cloneNode(true)" in html
