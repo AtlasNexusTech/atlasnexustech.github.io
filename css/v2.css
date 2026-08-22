@@ -21,7 +21,7 @@ p a:not([class*="rounded-full"]), .footer-links a {
 p a:not([class*="rounded-full"]):hover, .footer-links a:hover { background-size: 100% 1.5px; }
 
 /* ── HEADER : signature Atlas Nexus ───────────────────────────── */
-.atlas-site-brand-name { font-family: 'Rubik', 'Segoe UI', sans-serif !important; font-weight: 400 !important; letter-spacing: normal !important; color: #64748b; }
+.atlas-site-brand-name { font-family: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, monospace !important; font-weight: 500 !important; letter-spacing: -0.025em !important; color: #64748b; }
 .dark .atlas-site-brand-name { color: #94a3b8; }
 @media (min-width: 641px) { .atlas-site-brand-name { font-size: 0.875rem !important; } }
 @media (max-width: 640px) { .atlas-site-brand-name { font-size: .78rem !important; } .atlas-site-brand { gap: .38rem !important; } }

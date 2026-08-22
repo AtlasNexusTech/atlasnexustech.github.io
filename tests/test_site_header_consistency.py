@@ -47,7 +47,7 @@ def test_included_pages_share_the_canonical_atlas_header():
     for route in INCLUDED_ROUTES:
         html = page(route)
         assert html.count('data-atlas-site-header') == 1, route
-        assert '<link rel="stylesheet" href="/css/atlas-header.css?v=2">' in html, route
+        assert '<link rel="stylesheet" href="/css/atlas-header.css?v=3">' in html, route
         assert '<script src="/js/atlas-header.js?v=1" defer></script>' in html, route
         assert '<span class="atlas-site-brand-name">Atlas Nexus</span>' in html, route
         assert 'src="/atlas-logo.png?v=20260527"' in html, route
@@ -93,7 +93,7 @@ def test_independent_prototypes_keep_their_own_headers():
     for route in EXCLUDED_ROUTES:
         html = page(route)
         if route in archived_routes:
-            assert 'href="/archive/css/atlas-header.css?v=1"' in html, route
+            assert 'href="/archive/css/atlas-header.css?v=2"' in html, route
             assert 'href="/css/atlas-header.css' not in html, route
             continue
         assert 'data-atlas-site-header' not in html, route
@@ -115,6 +115,30 @@ def test_shared_header_assets_preserve_mobile_focus_and_theme_accessibility():
     assert "try {" in js and "catch (_)" in js
     for forbidden in ("fetch(", "XMLHttpRequest", "WebSocket", ".innerHTML", "insertAdjacentHTML", "eval(", "new Function"):
         assert forbidden not in js
+
+
+def test_every_atlas_wordmark_uses_reference_ibm_plex_mono_typography():
+    # Canonical header, archive, dashboards, private demo and agent product headers.
+    font_sources = (
+        ("css/atlas-header.css", ".atlas-site-brand-name"),
+        ("archive/css/atlas-header.css", ".atlas-site-brand-name"),
+        ("css/site.css", ".atlas-header-wordmark"),
+        ("demo-seydi/styles.css", ".brand strong"),
+        ("hermes/styles.css", ".brand"),
+    )
+    for relative_path, _ in font_sources:
+        css = (ROOT / relative_path).read_text(encoding="utf-8")
+        assert "IBM+Plex+Mono:wght@500" in css, relative_path
+
+    typography_rules = font_sources + (("css/v2.css", ".atlas-site-brand-name"),)
+    for relative_path, selector in typography_rules:
+        css = (ROOT / relative_path).read_text(encoding="utf-8")
+        match = re.search(rf"{re.escape(selector)}\s*\{{([^}}]+)\}}", css)
+        assert match, (relative_path, selector)
+        rule = match.group(1)
+        assert re.search(r"font-family\s*:\s*[\"']IBM Plex Mono[\"']", rule), relative_path
+        assert re.search(r"font-weight\s*:\s*500\b", rule), relative_path
+        assert re.search(r"letter-spacing\s*:\s*-0?\.025em\b", rule), relative_path
 
 
 def test_versioned_browser_contract_covers_runtime_requirements():

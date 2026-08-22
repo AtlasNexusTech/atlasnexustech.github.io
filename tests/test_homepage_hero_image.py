@@ -29,7 +29,7 @@ def test_homepages_use_a_still_hero_image_instead_of_the_video():
         assert 'alt=""' in attrs
         assert 'loading="eager"' in attrs
         assert 'decoding="async"' in attrs
-        assert 'href="/css/v2.css?v=12"' in html
+        assert 'href="/css/v2.css?v=13"' in html
 
 
 def test_no_hero_video_asset_is_referenced_or_scripted_any_more():
