@@ -1,4 +1,3 @@
-import hashlib
 from pathlib import Path
 
 from PIL import Image
@@ -13,13 +12,11 @@ SHOTS = {
 }
 
 
-def test_homepages_use_fresh_product_screenshots():
-    for filename, obsolete_hash in SHOTS.items():
+def test_removed_homepage_product_cards_do_not_reference_stale_screenshots():
+    for filename in SHOTS:
         expected_src = f'/assets/shots/{filename}?v=20260812-ui2'
-        assert expected_src in FR
-        assert expected_src in EN
-        path = ROOT / "assets" / "shots" / filename
-        assert hashlib.sha256(path.read_bytes()).hexdigest() != obsolete_hash
+        assert expected_src not in FR
+        assert expected_src not in EN
 
 
 def test_product_screenshots_are_crisp_card_native_images():
