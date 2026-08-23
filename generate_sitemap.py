@@ -1,122 +1,156 @@
-"""Génère sitemap.xml complet pour atlasnexus.tech.
-Scanne les pages réelles (index.html), ajoute hreflang FR/EN quand les paires existent.
+"""Generate the canonical XML sitemap for atlasnexus.tech.
+
+Only indexable HTML pages are included. Private demos, utility routes,
+meta-refresh aliases and pages carrying a noindex directive are deliberately
+excluded so Google receives one coherent indexing signal.
 """
-import subprocess, re, json
+
+from __future__ import annotations
+
+import xml.etree.ElementTree as ET
+from html import escape
+from html.parser import HTMLParser
 from pathlib import Path
 
-BASE = Path(__file__).parent
+BASE = Path(__file__).resolve().parent
 DOMAIN = "https://atlasnexus.tech"
+OUTPUT = BASE / "sitemap.xml"
 
-# pages réelles (dossiers avec index.html)
-pages = subprocess.run(['find', '.', '-name', 'index.html', '-not', '-path', '*/node_modules/*'],
-                       capture_output=True, text=True, cwd=BASE).stdout.split()
-pages = [p.replace('./', '').replace('/index.html', '') for p in pages]
-pages = [p for p in pages if p != '']
+# This route is served outside this repository but is linked from both
+# homepages and has a live, indexable canonical page.
+SPECIAL_INDEXABLE_ROUTES = {"/alexandre-lasly/"}
 
-# Exclure les pages noindex : jamais noindex + sitemap (signal SEO contradictoire).
-# Une page est noindex si son index.html contient name="robots" content="...noindex..."
-def is_noindex(p):
-    if p == 'index.html':
-        return False
-    try:
-        html = (BASE / p / 'index.html').read_text(encoding='utf-8')
-    except Exception:
-        return False
-    return bool(re.search(r'name="robots"\s+content="[^"]*noindex', html, re.I))
-
-pages = [p for p in pages if not is_noindex(p)]
+HIGH_PRIORITY_ROUTES = {
+    "/ia-agentique/",
+    "/en/ia-agentique/",
+    "/developpement-web-donnees/",
+    "/en/developpement-web-donnees/",
+    "/training/",
+    "/en/training/",
+    "/alexandre-lasly/",
+}
 
 
-# Construire les URLs : root = /, sinon /<page>/
-urls = set()
-for p in pages:
-    if p == 'index.html':
-        urls.add('/')
-    else:
-        urls.add('/' + p + '/')
+class SeoMetadataParser(HTMLParser):
+    """Read indexability metadata without adding an HTML dependency."""
 
-# paires FR/EN : /x/ ↔ /en/x/ ou /x/en/
-def lang_pair(u):
-    """Retourne (fr, en) si la page a un équivalent EN, sinon None."""
-    if u == '/':
-        return ('/', '/en/')
-    path = u.strip('/')
-    # cas /en/x/ (déjà EN) — son FR est /x/
-    if path.startswith('en/'):
-        fr = '/' + path[3:] + '/'
-        return (fr, u) if fr in urls else None
-    # cas /x/en/ (EN dans sous-dossier) — son FR est /x/
-    if path.endswith('/en'):
-        fr = '/' + path[:-3] + '/'
-        return (fr, u) if fr in urls else None
-    # page FR — chercher /en/x/ ou /x/en/
-    en1 = '/en/' + path + '/'
-    en2 = '/' + path + '/en/'
-    if en1 in urls:
-        return (u, en1)
-    if en2 in urls:
-        return (u, en2)
+    def __init__(self) -> None:
+        super().__init__(convert_charrefs=True)
+        self.robots: list[str] = []
+        self.has_meta_refresh = False
+
+    def handle_starttag(self, tag: str, attrs: list[tuple[str, str | None]]) -> None:
+        if tag.lower() != "meta":
+            return
+        attrs_map = {str(key).lower(): (value or "") for key, value in attrs}
+        if attrs_map.get("name", "").lower() in {"robots", "googlebot"}:
+            self.robots.append(attrs_map.get("content", "").lower())
+        if attrs_map.get("http-equiv", "").lower() == "refresh":
+            self.has_meta_refresh = True
+
+    @property
+    def indexable(self) -> bool:
+        return "noindex" not in ",".join(self.robots) and not self.has_meta_refresh
+
+
+def route_for(page: Path) -> str:
+    parent = page.relative_to(BASE).parent.as_posix()
+    return "/" if parent == "." else f"/{parent.strip('/')}/"
+
+
+def metadata_for(page: Path) -> SeoMetadataParser:
+    parser = SeoMetadataParser()
+    parser.feed(page.read_text(encoding="utf-8"))
+    return parser
+
+
+def discover_routes() -> set[str]:
+    routes: set[str] = set(SPECIAL_INDEXABLE_ROUTES)
+    for page in BASE.rglob("index.html"):
+        relative = page.relative_to(BASE)
+        if any(part.startswith(".") or part == "node_modules" for part in relative.parts):
+            continue
+        if metadata_for(page).indexable:
+            routes.add(route_for(page))
+    return routes
+
+
+def language_pair(route: str, routes: set[str]) -> tuple[str, str] | None:
+    """Return the French and English routes when both versions exist."""
+    if route == "/":
+        return ("/", "/en/") if "/en/" in routes else None
+    if route == "/en/":
+        return ("/", "/en/") if "/" in routes else None
+
+    path = route.strip("/")
+    if path.startswith("en/"):
+        french = f"/{path[3:]}/"
+        return (french, route) if french in routes else None
+    if path.endswith("/en"):
+        french = f"/{path[:-3]}/"
+        return (french, route) if french in routes else None
+
+    english_prefix = f"/en/{path}/"
+    english_suffix = f"/{path}/en/"
+    if english_prefix in routes:
+        return (route, english_prefix)
+    if english_suffix in routes:
+        return (route, english_suffix)
     return None
 
-# Priorités par type de page
-def priority(u):
-    if u == '/' or u == '/en/':
-        return '1.0'
-    path = u.strip('/').rstrip('/')
-    if path in ('ia-agentique', 'en/ia-agentique', 'developpement-web-donnees', 'en/developpement-web-donnees',
-                'training', 'en/training'):
-        return '0.9'
-    if 'en' in path.split('/') or path.endswith('en'):
-        return '0.8'
-    return '0.7'
 
-def changefreq(u):
-    if u == '/' or u == '/en/':
-        return 'weekly'
-    if 'demo' in u or 'artisan' in u or 'refonte' in u:
-        return 'monthly'
-    return 'monthly'
+def priority(route: str) -> str:
+    if route in {"/", "/en/"}:
+        return "1.0"
+    if route in HIGH_PRIORITY_ROUTES:
+        return "0.9"
+    if route.startswith("/en/") or route.endswith("/en/"):
+        return "0.8"
+    return "0.7"
 
-lines = []
-lines.append('<?xml version="1.0" encoding="UTF-8"?>')
-lines.append('<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"')
-lines.append('        xmlns:xhtml="http://www.w3.org/1999/xhtml">')
 
-# Trier : root d'abord, puis alphabétique
-sorted_urls = sorted(urls, key=lambda u: (u != '/', u))
+def url(value: str) -> str:
+    return escape(f"{DOMAIN}{value}", quote=True)
 
-for u in sorted_urls:
-    pair = lang_pair(u)
-    if pair:
-        fr, en = pair
-        # n'écrire que la version FR (avec les 2 hreflang) pour éviter les doublons
-        if u != fr:
-            continue
-        line = f'  <url><loc>{DOMAIN}{fr}</loc>'
-        line += f'<xhtml:link rel="alternate" hreflang="fr" href="{DOMAIN}{fr}"/>'
-        line += f'<xhtml:link rel="alternate" hreflang="en" href="{DOMAIN}{en}"/>'
-        line += f'<xhtml:link rel="alternate" hreflang="x-default" href="{DOMAIN}{fr}"/>'
-        line += f'<changefreq>{changefreq(fr)}</changefreq><priority>{priority(fr)}</priority></url>'
-        lines.append(line)
-    else:
-        line = f'  <url><loc>{DOMAIN}{u}</loc>'
-        line += f'<changefreq>{changefreq(u)}</changefreq><priority>{priority(u)}</priority></url>'
+
+def build_sitemap(routes: set[str] | None = None) -> str:
+    routes = discover_routes() if routes is None else set(routes)
+    lines = [
+        '<?xml version="1.0" encoding="UTF-8"?>',
+        '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"',
+        '        xmlns:xhtml="http://www.w3.org/1999/xhtml">',
+    ]
+
+    sorted_routes = sorted(routes, key=lambda route: (route != "/", route))
+    for route in sorted_routes:
+        pair = language_pair(route, routes)
+        if pair:
+            french, english = pair
+            line = f"  <url><loc>{url(route)}</loc>"
+            line += f'<xhtml:link rel="alternate" hreflang="fr" href="{url(french)}"/>'
+            line += f'<xhtml:link rel="alternate" hreflang="en" href="{url(english)}"/>'
+            line += f'<xhtml:link rel="alternate" hreflang="x-default" href="{url(french)}"/>'
+            frequency = "weekly" if route in {"/", "/en/"} else "monthly"
+            line += f"<changefreq>{frequency}</changefreq><priority>{priority(route)}</priority></url>"
+        else:
+            frequency = "weekly" if route == "/" else "monthly"
+            line = f"  <url><loc>{url(route)}</loc>"
+            line += f"<changefreq>{frequency}</changefreq><priority>{priority(route)}</priority></url>"
         lines.append(line)
 
-# pages spéciales hors repo (dédupliquées — verify/ peut déjà être scanné)
-import re as _re
-_existing = set(_re.findall(r'<loc>(https://atlasnexus\.tech/[^<]*)</loc>', '\n'.join(lines)))
-if 'https://atlasnexus.tech/alexandre-lasly/' not in _existing:
-    lines.append('  <url><loc>https://atlasnexus.tech/alexandre-lasly/</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>')
-if 'https://atlasnexus.tech/verify/' not in _existing:
-    lines.append('  <url><loc>https://atlasnexus.tech/verify/</loc><changefreq>monthly</changefreq><priority>0.3</priority></url>')
+    lines.append("</urlset>")
+    content = "\n".join(lines) + "\n"
+    ET.fromstring(content)
+    return content
 
-lines.append('</urlset>')
-content = '\n'.join(lines) + '\n'
-(BASE / 'sitemap.xml').write_text(content, encoding='utf-8')
-print(f'Sitemap généré : {sum(1 for l in lines if "<url>" in l)} URLs')
 
-# validation XML rapide
-import xml.etree.ElementTree as ET
-ET.fromstring(content)
-print('✅ XML valide')
+def main() -> None:
+    content = build_sitemap()
+    OUTPUT.write_text(content, encoding="utf-8")
+    count = content.count("<url>")
+    print(f"Sitemap generated: {count} canonical URL entries")
+    print("XML valid")
+
+
+if __name__ == "__main__":
+    main()
