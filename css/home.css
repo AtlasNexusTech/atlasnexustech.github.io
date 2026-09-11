@@ -37,7 +37,7 @@
   .dark a.border.border-border.rounded-xl { border-color: #334155; }
   .dark a.border.border-border.rounded-xl:hover { border-color: #3B82F6; }
 
-  .step-number { font-size: clamp(2.4rem, 5vw, 3.5rem); font-weight: 900; background: linear-gradient(135deg, #226CF3 0%, #5BA2FC 50%, #3886FC 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+  .step-number { font-size: clamp(3rem, 6vw, 4.5rem); font-weight: 900; background: linear-gradient(135deg, #226CF3 0%, #5BA2FC 50%, #3886FC 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
 
   /* ── Step counter animation ── */
   .step-number.animate { animation: countPulse 0.6s cubic-bezier(0.22, 1, 0.36, 1); }
